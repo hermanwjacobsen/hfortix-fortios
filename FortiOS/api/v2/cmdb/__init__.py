@@ -22,9 +22,11 @@ class CMDB:
         # Initialize endpoint classes
         from .alertemail import AlertEmail
         from .antivirus import Antivirus
+        from .application import Application
         
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
+        self.application = Application(client)
     
     def get(self, path, params=None, vdom=None):
         """
