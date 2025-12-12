@@ -21,8 +21,10 @@ class Log:
         
         # Initialize endpoint classes
         from .disk.disk import Disk
+        from .fortianalyzer.fortianalyzer import FortiAnalyzer
         
         self.disk = Disk(client)
+        self.fortianalyzer = FortiAnalyzer(client)
     
     def get(self, endpoint, params=None):
         """
