@@ -24,10 +24,12 @@ class CMDB:
         from .antivirus import Antivirus
         from .application import Application
         from .authentication import Authentication
+        from .automation import Automation
         
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
         self.application = Application(client)
+        self.automation = Automation(client)
         self.authentication = Authentication(client)
     
     def get(self, path, params=None, vdom=None):
