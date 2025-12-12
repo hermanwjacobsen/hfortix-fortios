@@ -24,11 +24,13 @@ class Log:
         from .fortianalyzer.fortianalyzer import FortiAnalyzer
         from .memory.memory import Memory
         from .forticloud.forticloud import FortiCloud
+        from .search.search import Search
         
         self.disk = Disk(client)
         self.fortianalyzer = FortiAnalyzer(client)
         self.memory = Memory(client)
         self.forticloud = FortiCloud(client)
+        self.search = Search(client)
     
     def get(self, endpoint, params=None):
         """
