@@ -5,6 +5,7 @@ Configure CASB security policies and rules
 
 from .attribute_match import AttributeMatch
 from .saas_application import SaasApplication
+from .user_activity import UserActivity
 
 
 class Casb:
@@ -22,3 +23,4 @@ class Casb:
         # Initialize endpoints
         self.attribute_match = AttributeMatch(client)
         self.saas_application = SaasApplication(client)
+        self.user_activity = UserActivity(client)
