@@ -27,6 +27,7 @@ class CMDB:
         from .automation import Automation
         from .casb import Casb
         from .certificate import Certificate
+        from .diameter_filter import DiameterFilter
         
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
@@ -35,6 +36,7 @@ class CMDB:
         self.automation = Automation(client)
         self.casb = Casb(client)
         self.certificate = Certificate(client)
+        self.diameter_filter = DiameterFilter(client)
     
     def get(self, path, params=None, vdom=None):
         """
