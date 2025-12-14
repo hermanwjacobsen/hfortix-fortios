@@ -36,6 +36,7 @@ class CMDB:
         from .diameter_filter import DiameterFilter
         from .dlp import DLP
         from .dnsfilter import DNSFilter
+        from .emailfilter import EmailFilter
 
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
@@ -47,6 +48,7 @@ class CMDB:
         self.diameter_filter = DiameterFilter(client)
         self.dlp = DLP(client)
         self.dnsfilter = DNSFilter(client)
+        self.emailfilter = EmailFilter(client)
 
     def get(
         self,
