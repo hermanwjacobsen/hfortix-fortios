@@ -6,15 +6,19 @@ API Endpoints:
     GET  /alertemail/setting - Get alert email settings
     PUT  /alertemail/setting - Update alert email settings
 """
+from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class AlertEmail:
     """Alert Email Settings endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         self._client = client
     
-    def get(self, vdom=None):
+    def get(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         GET /alertemail/setting
         Get alert email settings
@@ -31,45 +35,47 @@ class AlertEmail:
         """
         return self._client.get('cmdb', 'alertemail/setting', vdom=vdom)
     
-    def update(self, 
-               username=None,
-               mailto1=None, 
-               mailto2=None, 
-               mailto3=None,
-               filter_mode=None,
-               email_interval=None,
-               severity=None,
-               local_disk_usage=None,
-               # Log types (enable/disable)
-               ips_logs=None,
-               firewall_authentication_failure_logs=None,
-               ha_logs=None,
-               ipsec_errors_logs=None,
-               fds_update_logs=None,
-               ppp_errors_logs=None,
-               antivirus_logs=None,
-               webfilter_logs=None,
-               configuration_changes_logs=None,
-               violation_traffic_logs=None,
-               admin_login_logs=None,
-               fds_license_expiring_warning=None,
-               log_disk_usage_warning=None,
-               fortiguard_log_quota_warning=None,
-               amc_interface_bypass_mode=None,
-               fips_cc_errors=None,
-               fsso_disconnect_logs=None,
-               ssh_logs=None,
-               # Interval settings (minutes)
-               emergency_interval=None,
-               alert_interval=None,
-               critical_interval=None,
-               error_interval=None,
-               warning_interval=None,
-               notification_interval=None,
-               information_interval=None,
-               debug_interval=None,
-               vdom=None,
-               **kwargs):
+    def update(
+        self,
+        username: Optional[str] = None,
+        mailto1: Optional[str] = None,
+        mailto2: Optional[str] = None,
+        mailto3: Optional[str] = None,
+        filter_mode: Optional[str] = None,
+        email_interval: Optional[int] = None,
+        severity: Optional[str] = None,
+        local_disk_usage: Optional[int] = None,
+        # Log types (enable/disable)
+        ips_logs: Optional[str] = None,
+        firewall_authentication_failure_logs: Optional[str] = None,
+        ha_logs: Optional[str] = None,
+        ipsec_errors_logs: Optional[str] = None,
+        fds_update_logs: Optional[str] = None,
+        ppp_errors_logs: Optional[str] = None,
+        antivirus_logs: Optional[str] = None,
+        webfilter_logs: Optional[str] = None,
+        configuration_changes_logs: Optional[str] = None,
+        violation_traffic_logs: Optional[str] = None,
+        admin_login_logs: Optional[str] = None,
+        fds_license_expiring_warning: Optional[str] = None,
+        log_disk_usage_warning: Optional[str] = None,
+        fortiguard_log_quota_warning: Optional[str] = None,
+        amc_interface_bypass_mode: Optional[str] = None,
+        fips_cc_errors: Optional[str] = None,
+        fsso_disconnect_logs: Optional[str] = None,
+        ssh_logs: Optional[str] = None,
+        # Interval settings (minutes)
+        emergency_interval: Optional[int] = None,
+        alert_interval: Optional[int] = None,
+        critical_interval: Optional[int] = None,
+        error_interval: Optional[int] = None,
+        warning_interval: Optional[int] = None,
+        notification_interval: Optional[int] = None,
+        information_interval: Optional[int] = None,
+        debug_interval: Optional[int] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         PUT /alertemail/setting
         Update alert email settings
