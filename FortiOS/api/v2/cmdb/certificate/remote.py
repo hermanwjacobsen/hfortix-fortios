@@ -12,12 +12,16 @@ Note: This is a READ-ONLY endpoint. Remote certificates are typically:
     - SSL/TLS certificates from external services
     - Certificates retrieved during SSL inspection
 """
+from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class Remote:
     """Certificate Remote endpoint (read-only)"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Remote endpoint
         
@@ -26,7 +30,7 @@ class Remote:
         """
         self._client = client
     
-    def list(self, vdom=None, **kwargs):
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         List all remote certificates
         
@@ -46,9 +50,23 @@ class Remote:
         """
         return self.get(vdom=vdom, **kwargs)
     
-    def get(self, name=None, attr=None, count=None, skip_to_datasource=None, acs=None, 
-            search=None, scope=None, datasource=None, with_meta=None, skip=None, 
-            format=None, action=None, vdom=None, **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        attr: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        format: Optional[str] = None,
+        action: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get remote certificate(s)
         

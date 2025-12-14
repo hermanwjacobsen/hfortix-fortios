@@ -10,6 +10,7 @@ Available Endpoints:
     - local: View local certificates (read-only)
     - remote: View remote certificates (read-only)
 """
+from typing import TYPE_CHECKING
 
 from .ca import Ca
 from .crl import Crl
@@ -17,11 +18,14 @@ from .hsm_local import HsmLocal
 from .local import Local
 from .remote import Remote
 
+if TYPE_CHECKING:
+    from ....client import FortiOS
+
 
 class Certificate:
     """Certificate management category"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Certificate category
         

@@ -13,12 +13,16 @@ API Endpoints:
 Note: This endpoint supports full CRUD operations for HSM certificates.
 HSM certificates require HSM hardware or cloud HSM service (e.g., Google Cloud HSM).
 """
+from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class HsmLocal:
     """Certificate HSM-Local endpoint (full CRUD)"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize HsmLocal endpoint
         
@@ -27,7 +31,7 @@ class HsmLocal:
         """
         self._client = client
     
-    def list(self, vdom=None, **kwargs):
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         List all HSM local certificates
         
@@ -47,9 +51,23 @@ class HsmLocal:
         """
         return self.get(vdom=vdom, **kwargs)
     
-    def get(self, name=None, attr=None, count=None, skip_to_datasource=None, acs=None, 
-            search=None, scope=None, datasource=None, with_meta=None, skip=None, 
-            format=None, action=None, vdom=None, **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        attr: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        format: Optional[str] = None,
+        action: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get HSM local certificate(s)
         
@@ -104,7 +122,7 @@ class HsmLocal:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, data, vdom=None):
+    def create(self, data: Dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Create new HSM local certificate
         
@@ -133,7 +151,7 @@ class HsmLocal:
         """
         return self._client.post('cmdb', 'certificate/hsm-local', data=data, vdom=vdom)
     
-    def update(self, name, data, vdom=None):
+    def update(self, name: str, data: Dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Update existing HSM local certificate
         
@@ -151,7 +169,7 @@ class HsmLocal:
         """
         return self._client.put('cmdb', f'certificate/hsm-local/{name}', data=data, vdom=vdom)
     
-    def delete(self, name, vdom=None):
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Delete HSM local certificate
         
@@ -167,7 +185,7 @@ class HsmLocal:
         """
         return self._client.delete('cmdb', f'certificate/hsm-local/{name}', vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if HSM local certificate exists
         
