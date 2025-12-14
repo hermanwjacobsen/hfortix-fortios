@@ -12,6 +12,11 @@ if TYPE_CHECKING:
     from .access_proxy6 import AccessProxy6
     from .access_proxy_ssh_client_cert import AccessProxySshClientCert
     from .access_proxy_virtual_host import AccessProxyVirtualHost
+    from .address import Address
+    from .address6 import Address6
+    from .address6_template import Address6Template
+    from .addrgrp import Addrgrp
+    from .addrgrp6 import Addrgrp6
     from .dos_policy import DosPolicy
     from .dos_policy6 import DosPolicy6
 
@@ -69,6 +74,46 @@ class Firewall:
             from .dos_policy6 import DosPolicy6
             self._dos_policy6 = DosPolicy6(self._client)
         return self._dos_policy6
+
+    @property
+    def address(self) -> 'Address':
+        """Access IPv4 address endpoint"""
+        if not hasattr(self, '_address'):
+            from .address import Address
+            self._address = Address(self._client)
+        return self._address
+
+    @property
+    def address6(self) -> 'Address6':
+        """Access IPv6 address endpoint"""
+        if not hasattr(self, '_address6'):
+            from .address6 import Address6
+            self._address6 = Address6(self._client)
+        return self._address6
+
+    @property
+    def address6_template(self) -> 'Address6Template':
+        """Access IPv6 address template endpoint"""
+        if not hasattr(self, '_address6_template'):
+            from .address6_template import Address6Template
+            self._address6_template = Address6Template(self._client)
+        return self._address6_template
+
+    @property
+    def addrgrp(self) -> 'Addrgrp':
+        """Access IPv4 address group endpoint"""
+        if not hasattr(self, '_addrgrp'):
+            from .addrgrp import Addrgrp
+            self._addrgrp = Addrgrp(self._client)
+        return self._addrgrp
+
+    @property
+    def addrgrp6(self) -> 'Addrgrp6':
+        """Access IPv6 address group endpoint"""
+        if not hasattr(self, '_addrgrp6'):
+            from .addrgrp6 import Addrgrp6
+            self._addrgrp6 = Addrgrp6(self._client)
+        return self._addrgrp6
 
     @property
     def access_proxy(self) -> 'AccessProxy':
