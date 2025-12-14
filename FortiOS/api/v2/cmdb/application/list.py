@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/list/{name} - Update application control list
     DELETE /api/v2/cmdb/application/list/{name} - Delete application control list
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

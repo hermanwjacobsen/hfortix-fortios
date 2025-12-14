@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /casb/attribute-match/{name} - Update attribute match rule
     DELETE /casb/attribute-match/{name} - Delete attribute match rule
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

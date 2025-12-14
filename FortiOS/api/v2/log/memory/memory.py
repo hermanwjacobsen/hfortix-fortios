@@ -3,7 +3,7 @@ FortiOS Memory Log API
 
 This module provides methods to retrieve logs from memory storage.
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

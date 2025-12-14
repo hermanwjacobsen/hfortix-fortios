@@ -12,7 +12,7 @@ Note: This is a READ-ONLY endpoint. Remote certificates are typically:
     - SSL/TLS certificates from external services
     - Certificates retrieved during SSL inspection
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 

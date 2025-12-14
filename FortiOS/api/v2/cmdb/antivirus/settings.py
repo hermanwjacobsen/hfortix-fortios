@@ -6,7 +6,7 @@ API Endpoints:
     GET  /antivirus/settings - Get antivirus settings
     PUT  /antivirus/settings - Update antivirus settings
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/authentication/rule/{name} - Update authentication rule
     DELETE /api/v2/cmdb/authentication/rule/{name} - Delete authentication rule
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

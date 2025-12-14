@@ -11,7 +11,7 @@ API Endpoints:
     POST   /api/v2/service/sniffer/delete/   - Delete a packet capture
     GET    /api/v2/service/sniffer/meta/     - Get system limitations and meta info
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

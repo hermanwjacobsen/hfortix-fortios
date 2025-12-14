@@ -9,7 +9,7 @@ API Endpoints:
     PUT    /antivirus/exempt-list/{name} - Update exempt list entry
     DELETE /antivirus/exempt-list/{name} - Delete exempt list entry
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

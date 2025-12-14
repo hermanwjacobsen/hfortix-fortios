@@ -13,7 +13,7 @@ API Endpoints:
 
 Note: POST, PUT, and DELETE operations are not supported on this endpoint.
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

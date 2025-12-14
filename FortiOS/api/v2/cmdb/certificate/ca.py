@@ -12,7 +12,7 @@ Note: This is a READ-ONLY endpoint. CA certificates are typically:
     - User-uploaded certificates via GUI/CLI
     - Factory certificates
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 

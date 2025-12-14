@@ -7,7 +7,7 @@ API Endpoints:
     GET /security-rating/report/           - Get full Security Rating report
     GET /security-rating/recommendations/  - Get recommendations for specific checks
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

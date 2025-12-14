@@ -2,7 +2,7 @@
 FortiOS Service API
 Service endpoints for operations and diagnostics
 """
-from typing import Optional, Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from ...client import FortiOS
@@ -24,8 +24,8 @@ class Service:
         self._client = client
         
         # Initialize endpoint classes
-        from .sniffer.sniffer import Sniffer
         from .security_rating.security_rating import SecurityRating
+        from .sniffer.sniffer import Sniffer
         from .system.system import System
         
         self.sniffer = Sniffer(client)

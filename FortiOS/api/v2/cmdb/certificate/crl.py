@@ -12,7 +12,7 @@ Note: This is a READ-ONLY endpoint. CRL certificates are typically:
     - User-uploaded CRLs via GUI/CLI
     - Auto-updated CRLs from LDAP/HTTP/SCEP sources
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 

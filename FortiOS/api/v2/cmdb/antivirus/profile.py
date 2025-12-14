@@ -9,7 +9,7 @@ API Endpoints:
     PUT    /antivirus/profile/{name} - Update antivirus profile
     DELETE /antivirus/profile/{name} - Delete antivirus profile
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

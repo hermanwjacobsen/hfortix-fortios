@@ -2,7 +2,7 @@
 FortiOS Log API
 Log retrieval endpoints for various log sources
 """
-from typing import Optional, Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from ...client import FortiOS
@@ -26,8 +26,8 @@ class Log:
         # Initialize endpoint classes
         from .disk.disk import Disk
         from .fortianalyzer.fortianalyzer import FortiAnalyzer
-        from .memory.memory import Memory
         from .forticloud.forticloud import FortiCloud
+        from .memory.memory import Memory
         from .search.search import Search
         
         self.disk = Disk(client)

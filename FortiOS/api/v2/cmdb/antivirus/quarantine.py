@@ -6,7 +6,7 @@ API Endpoints:
     GET  /antivirus/quarantine - Get quarantine settings
     PUT  /antivirus/quarantine - Update quarantine settings
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

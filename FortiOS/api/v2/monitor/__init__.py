@@ -5,7 +5,7 @@ Real-time monitoring and status endpoints
 Note: Monitor API endpoints are not yet implemented.
 This is a placeholder for future development.
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ...client import FortiOS

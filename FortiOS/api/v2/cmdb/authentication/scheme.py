@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/authentication/scheme/{name} - Update authentication scheme
     DELETE /api/v2/cmdb/authentication/scheme/{name} - Delete authentication scheme
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

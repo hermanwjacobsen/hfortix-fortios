@@ -7,7 +7,7 @@ API Endpoints:
     GET    /api/v2/cmdb/authentication/setting       - Get authentication settings
     PUT    /api/v2/cmdb/authentication/setting       - Update authentication settings
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

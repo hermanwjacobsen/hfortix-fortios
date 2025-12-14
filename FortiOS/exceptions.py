@@ -5,28 +5,28 @@ Backward compatibility wrapper - imports from base exceptions and FortiOS-specif
 
 # Import base exceptions
 from exceptions import (
-    FortinetError,
+    HTTP_STATUS_CODES,
+    APIError,
     AuthenticationError,
     AuthorizationError,
-    APIError,
-    ResourceNotFoundError,
     BadRequestError,
+    FortinetError,
     MethodNotAllowedError,
     RateLimitError,
+    ResourceNotFoundError,
     ServerError,
     get_http_status_description,
-    HTTP_STATUS_CODES,
 )
 
 # Import FortiOS-specific exceptions and helpers
 from exceptions_forti import (
+    FORTIOS_ERROR_CODES,
     DuplicateEntryError,
     EntryInUseError,
     InvalidValueError,
     PermissionDeniedError,
     get_error_description,
     raise_for_status,
-    FORTIOS_ERROR_CODES,
 )
 
 # Backward compatibility aliases

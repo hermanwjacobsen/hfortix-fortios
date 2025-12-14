@@ -8,7 +8,7 @@ API Endpoints:
     GET /system/fabric-time-in-sync/                             - Check Fabric time synchronization
     GET /system/fabric-admin-lockout-exists-on-firmware-update/  - Check admin lockout on firmware update
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....client import FortiOS

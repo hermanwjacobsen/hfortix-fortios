@@ -13,7 +13,7 @@ API Endpoints:
 Note: This endpoint supports full CRUD operations for HSM certificates.
 HSM certificates require HSM hardware or cloud HSM service (e.g., Google Cloud HSM).
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 

@@ -14,7 +14,7 @@ API Endpoints:
     GET /disk/traffic/{subtype}                  - Get traffic logs by subtype
     GET /disk/event/{subtype}                    - Get event logs by subtype
 """
-from typing import Optional, Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from ....client import FortiOS

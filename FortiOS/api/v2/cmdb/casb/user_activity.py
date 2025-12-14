@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /casb/user-activity/{name} - Update user activity control
     DELETE /casb/user-activity/{name} - Delete user activity control
 """
-from typing import Optional, Any, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 

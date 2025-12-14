@@ -1,4 +1,5 @@
-from typing import Optional, Any, Union
+from typing import Any, Optional, Union
+
 import requests
 
 
@@ -69,9 +70,9 @@ class FortiOS:
         
         # Initialize API helpers
         from .api.v2.cmdb import CMDB
-        from .api.v2.service import Service
         from .api.v2.log import Log
         from .api.v2.monitor import Monitor
+        from .api.v2.service import Service
         self.cmdb = CMDB(self)
         self.service = Service(self)
         self.log = Log(self)
