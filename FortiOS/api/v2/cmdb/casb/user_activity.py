@@ -12,6 +12,8 @@ API Endpoints:
 """
 from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
 
+from FortiOS.exceptions import APIError, ResourceNotFoundError
+
 if TYPE_CHECKING:
     from ....client import FortiOS
 
@@ -288,5 +290,5 @@ class UserActivity:
         try:
             self.get(name, vdom=vdom)
             return True
-        except:
+        except (APIError, ResourceNotFoundError):
             return False

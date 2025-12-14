@@ -19,8 +19,13 @@ Examples:
     from fortinet.exceptions import FortinetError, APIError
 """
 
-__version__ = '0.1.0'
-__author__ = 'Herman W. Jacobsen'
+# Import version from FortiOS submodule
+try:
+    from .FortiOS.version import __version__, __author__
+except ImportError:
+    # Fallback if FortiOS not installed
+    __version__ = '0.1.0'
+    __author__ = 'Herman W. Jacobsen'
 
 # Import base exceptions - always available
 from .exceptions import (

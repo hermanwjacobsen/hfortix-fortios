@@ -18,14 +18,17 @@ class FortiOS:
         and start making API calls. No login/logout needed.
         
         Args:
-            host: FortiGate IP/hostname (e.g., "192.168.1.99")
+            host: FortiGate IP/hostname (e.g., "192.168.1.99" or "fortigate.company.com")
             token: API token for authentication
-            verify: Verify SSL certificates (default: True, use False for self-signed)
+            verify: Verify SSL certificates (default: True, recommended for production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
             port: HTTPS port (default: None = use 443, or specify custom port like 8443)
         
         Examples:
-            # Simple - default port 443
+            # Production - with valid SSL certificate
+            fgt = FortiOS("fortigate.company.com", token="abc123", verify=True)
+            
+            # Development/Testing - with self-signed certificate
             fgt = FortiOS("192.168.1.99", token="abc123", verify=False)
             
             # Custom port

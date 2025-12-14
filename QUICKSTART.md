@@ -43,11 +43,18 @@ from fortinet.FortiOS import FortiOS
 ```python
 from fortinet import FortiOS, APIError
 
-# Initialize
+# Production environment - with valid SSL certificate
 fgt = FortiOS(
+    host='fortigate.company.com',
+    token='your-api-token',
+    verify=True  # Recommended: Verify SSL certificates
+)
+
+# Development/Testing - with self-signed certificate
+fgt_dev = FortiOS(
     host='192.168.1.99',
     token='your-api-token',
-    verify=False
+    verify=False  # Only for dev/test with self-signed certs
 )
 
 # Basic operations

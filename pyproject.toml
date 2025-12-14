@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fortinet-sdk"
+name = "hfortix"
 version = "0.1.0"
-description = "Python client library for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)"
+description = "HFortix - Python SDK for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)"
 readme = "README.md"
 authors = [
     {name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}
@@ -14,7 +14,7 @@ maintainers = [
     {name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}
 ]
 license = {text = "MIT"}
-keywords = ["fortinet", "fortigate", "fortios", "fortimanager", "fortianalyzer", "api", "sdk", "firewall", "security"]
+keywords = ["hfortix", "fortinet", "fortigate", "fortios", "fortimanager", "fortianalyzer", "api", "sdk", "firewall", "security"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -47,11 +47,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/hermanwjacobsen/fortinet-sdk"
-Documentation = "https://github.com/hermanwjacobsen/fortinet-sdk/blob/main/README.md"
-Repository = "https://github.com/hermanwjacobsen/fortinet-sdk"
-"Bug Tracker" = "https://github.com/hermanwjacobsen/fortinet-sdk/issues"
-Changelog = "https://github.com/hermanwjacobsen/fortinet-sdk/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/hermanwjacobsen/hfortix"
+Documentation = "https://github.com/hermanwjacobsen/hfortix/blob/main/README.md"
+Repository = "https://github.com/hermanwjacobsen/hfortix"
+"Bug Tracker" = "https://github.com/hermanwjacobsen/hfortix/issues"
+Changelog = "https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md"
 
 # Package discovery is handled by setup.py find_packages()
 # This provides better compatibility and flexibility

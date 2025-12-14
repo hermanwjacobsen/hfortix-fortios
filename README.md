@@ -40,11 +40,18 @@ cd fortinet-sdk/FortiOS
 ```python
 from fortinet import FortiOS, FortinetError, APIError
 
-# Initialize client
+# Production with valid SSL certificate
 fgt = FortiOS(
+    host='fortigate.company.com',
+    token='your-api-token',
+    verify=True  # Recommended for production
+)
+
+# Development/Testing with self-signed certificate
+fgt_dev = FortiOS(
     host='192.168.1.99',
     token='your-api-token',
-    verify=False
+    verify=False  # Only for dev/test environments
 )
 
 # Use the API
@@ -55,8 +62,19 @@ result = fgt.cmdb.firewall.address.list()
 ```python
 from FortiOS import FortiOS
 
-# Same usage as above
-fgt = FortiOS(host='192.168.1.99', token='your-api-token')
+# Production environment
+fgt = FortiOS(
+    host='fortigate.company.com',
+    token='your-api-token',
+    verify=True
+)
+
+# Development environment
+fgt_dev = FortiOS(
+    host='192.168.1.99',
+    token='your-api-token',
+    verify=False
+)
 ```
 
 ### Exception Handling

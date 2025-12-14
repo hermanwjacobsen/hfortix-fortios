@@ -1,5 +1,5 @@
 """
-Setup configuration for Fortinet Python SDK
+Setup configuration for HFortix - Python SDK for Fortinet Products
 """
 from setuptools import setup, find_packages
 from pathlib import Path
@@ -17,14 +17,14 @@ with open('requirements.txt') as f:
             requirements.append(line)
 
 setup(
-    name="fortinet-sdk",
+    name="hfortix",
     version="0.1.0",
     author="Herman W. Jacobsen",
     author_email="herman@wjacobsen.fo",
-    description="Python client library for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)",
+    description="HFortix - Python SDK for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/hermanwjacobsen/fortinet-sdk",
+    url="https://github.com/hermanwjacobsen/hfortix",
     packages=find_packages(exclude=['X', 'X.*', 'Tests', 'Tests.*']),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -53,10 +53,10 @@ setup(
             'python-dotenv>=1.0.0',
         ],
     },
-    keywords='fortinet fortigate fortios fortimanager fortianalyzer api sdk firewall security',
+    keywords='hfortix fortinet fortigate fortios fortimanager fortianalyzer api sdk firewall security',
     project_urls={
-        'Bug Reports': 'https://github.com/hermanwjacobsen/fortinet-sdk/issues',
-        'Source': 'https://github.com/hermanwjacobsen/fortinet-sdk',
-        'Documentation': 'https://github.com/hermanwjacobsen/fortinet-sdk/blob/main/README.md',
+        'Bug Reports': 'https://github.com/hermanwjacobsen/hfortix/issues',
+        'Source': 'https://github.com/hermanwjacobsen/hfortix',
+        'Documentation': 'https://github.com/hermanwjacobsen/hfortix/blob/main/README.md',
     },
 )

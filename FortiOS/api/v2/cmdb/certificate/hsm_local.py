@@ -15,6 +15,8 @@ HSM certificates require HSM hardware or cloud HSM service (e.g., Google Cloud H
 """
 from typing import Optional, Dict, Any, Union, TYPE_CHECKING
 
+from FortiOS.exceptions import APIError, ResourceNotFoundError
+
 if TYPE_CHECKING:
     from ....client import FortiOS
 
@@ -203,5 +205,5 @@ class HsmLocal:
         try:
             self.get(name, vdom=vdom)
             return True
-        except:
+        except (APIError, ResourceNotFoundError):
             return False

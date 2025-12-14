@@ -14,6 +14,8 @@ Note: This is a READ-ONLY endpoint. CA certificates are typically:
 """
 from typing import Optional, Dict, Any, Union, TYPE_CHECKING
 
+from FortiOS.exceptions import APIError, ResourceNotFoundError
+
 if TYPE_CHECKING:
     from ....client import FortiOS
 
@@ -142,7 +144,7 @@ class Ca:
         try:
             self.get(name, vdom=vdom)
             return True
-        except:
+        except (APIError, ResourceNotFoundError):
             return False
     
     def get_bundle_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:

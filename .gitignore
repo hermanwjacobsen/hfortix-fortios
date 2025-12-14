@@ -36,8 +36,11 @@ ENV/
 
 # Environment variables (IMPORTANT - contains tokens!)
 .env
-*.env
-.env.*
+.env.local
+.env.*.local
+
+# But DO include the example file
+!.env.example
 
 # Testing
 .pytest_cache/
