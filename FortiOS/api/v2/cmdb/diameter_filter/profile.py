@@ -2,6 +2,10 @@
 FortiOS CMDB Diameter Filter Profile API
 Configure Diameter filter profiles
 """
+from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class Profile:
@@ -9,7 +13,7 @@ class Profile:
     Diameter Filter Profile API endpoint
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Profile endpoint
         
@@ -19,7 +23,7 @@ class Profile:
         self._client = client
         self._base_path = "diameter-filter/profile"
     
-    def list(self, params=None, vdom=None):
+    def list(self, params: Optional[Dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         List all diameter filter profiles
         
@@ -32,7 +36,7 @@ class Profile:
         """
         return self._client.get('cmdb', self._base_path, params=params, vdom=vdom)
     
-    def get(self, name=None, params=None, vdom=None):
+    def get(self, name: Optional[str] = None, params: Optional[Dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get diameter filter profile details
         
@@ -48,11 +52,22 @@ class Profile:
             return self._client.get('cmdb', f"{self._base_path}/{name}", params=params, vdom=vdom)
         return self.list(params=params, vdom=vdom)
     
-    def create(self, name, comment=None, monitor_all_messages=None, log_packet=None,
-               track_requests_answers=None, missing_request_action=None,
-               protocol_version_invalid=None, message_length_invalid=None,
-               request_error_flag_set=None, cmd_flags_reserve_set=None,
-               command_code_invalid=None, command_code_range=None, **kwargs):
+    def create(
+        self,
+        name: str,
+        comment: Optional[str] = None,
+        monitor_all_messages: Optional[str] = None,
+        log_packet: Optional[str] = None,
+        track_requests_answers: Optional[str] = None,
+        missing_request_action: Optional[str] = None,
+        protocol_version_invalid: Optional[str] = None,
+        message_length_invalid: Optional[str] = None,
+        request_error_flag_set: Optional[str] = None,
+        cmd_flags_reserve_set: Optional[str] = None,
+        command_code_invalid: Optional[str] = None,
+        command_code_range: Optional[str] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Create a new diameter filter profile
         
@@ -116,11 +131,22 @@ class Profile:
         
         return self._client.post('cmdb', self._base_path, data=data, vdom=vdom)
     
-    def update(self, name, comment=None, monitor_all_messages=None, log_packet=None,
-               track_requests_answers=None, missing_request_action=None,
-               protocol_version_invalid=None, message_length_invalid=None,
-               request_error_flag_set=None, cmd_flags_reserve_set=None,
-               command_code_invalid=None, command_code_range=None, **kwargs):
+    def update(
+        self,
+        name: str,
+        comment: Optional[str] = None,
+        monitor_all_messages: Optional[str] = None,
+        log_packet: Optional[str] = None,
+        track_requests_answers: Optional[str] = None,
+        missing_request_action: Optional[str] = None,
+        protocol_version_invalid: Optional[str] = None,
+        message_length_invalid: Optional[str] = None,
+        request_error_flag_set: Optional[str] = None,
+        cmd_flags_reserve_set: Optional[str] = None,
+        command_code_invalid: Optional[str] = None,
+        command_code_range: Optional[str] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Update an existing diameter filter profile
         
@@ -184,7 +210,7 @@ class Profile:
         
         return self._client.put('cmdb', f"{self._base_path}/{name}", data=data, vdom=vdom)
     
-    def delete(self, name, vdom=None):
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Delete a diameter filter profile
         
@@ -197,7 +223,7 @@ class Profile:
         """
         return self._client.delete('cmdb', f"{self._base_path}/{name}", vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if a diameter filter profile exists
         
