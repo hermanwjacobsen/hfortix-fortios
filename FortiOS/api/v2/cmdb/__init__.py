@@ -2,6 +2,10 @@
 FortiOS CMDB API
 Configuration Management Database endpoints
 """
+from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ...client import FortiOS
 
 
 class CMDB:
@@ -10,7 +14,7 @@ class CMDB:
     Provides access to FortiOS configuration endpoints
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CMDB helper
         
@@ -38,7 +42,12 @@ class CMDB:
         self.certificate = Certificate(client)
         self.diameter_filter = DiameterFilter(client)
     
-    def get(self, path, params=None, vdom=None):
+    def get(
+        self,
+        path: str,
+        params: Optional[Dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> Dict[str, Any]:
         """
         GET request to CMDB API
         
@@ -65,7 +74,13 @@ class CMDB:
         """
         return self._client.request('GET', 'cmdb', path, params=params, vdom=vdom)
     
-    def post(self, path, data, params=None, vdom=None):
+    def post(
+        self,
+        path: str,
+        data: Dict[str, Any],
+        params: Optional[Dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> Dict[str, Any]:
         """
         POST request to CMDB API - Create new object
         
@@ -87,7 +102,13 @@ class CMDB:
         """
         return self._client.request('POST', 'cmdb', path, data=data, params=params, vdom=vdom)
     
-    def put(self, path, data, params=None, vdom=None):
+    def put(
+        self,
+        path: str,
+        data: Dict[str, Any],
+        params: Optional[Dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> Dict[str, Any]:
         """
         PUT request to CMDB API - Update existing object
         
@@ -109,7 +130,12 @@ class CMDB:
         """
         return self._client.request('PUT', 'cmdb', path, data=data, params=params, vdom=vdom)
     
-    def delete(self, path, params=None, vdom=None):
+    def delete(
+        self,
+        path: str,
+        params: Optional[Dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> Dict[str, Any]:
         """
         DELETE request to CMDB API - Delete object
         

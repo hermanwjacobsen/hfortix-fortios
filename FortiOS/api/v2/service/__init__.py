@@ -2,6 +2,10 @@
 FortiOS Service API
 Service endpoints for operations and diagnostics
 """
+from typing import Optional, Dict, Any, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ...client import FortiOS
 
 
 class Service:
@@ -10,7 +14,7 @@ class Service:
     Provides access to service endpoints
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Service helper
         
@@ -28,7 +32,11 @@ class Service:
         self.security_rating = SecurityRating(client)
         self.system = System(client)
     
-    def get(self, endpoint, params=None):
+    def get(
+        self,
+        endpoint: str,
+        params: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
         """
         GET request to service API endpoint
         
@@ -41,7 +49,11 @@ class Service:
         """
         return self._client.get('service', endpoint, params=params)
     
-    def post(self, endpoint, data=None):
+    def post(
+        self,
+        endpoint: str,
+        data: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
         """
         POST request to service API endpoint
         

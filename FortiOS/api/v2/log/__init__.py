@@ -2,6 +2,10 @@
 FortiOS Log API
 Log retrieval endpoints for various log sources
 """
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ...client import FortiOS
 
 
 class Log:
@@ -10,7 +14,7 @@ class Log:
     Provides access to log endpoints
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Log helper
         
