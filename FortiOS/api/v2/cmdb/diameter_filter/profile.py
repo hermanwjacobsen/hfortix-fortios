@@ -2,7 +2,7 @@
 FortiOS CMDB Diameter Filter Profile API
 Configure Diameter filter profiles
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -23,7 +23,7 @@ class Profile:
         self._client = client
         self._base_path = "diameter-filter/profile"
     
-    def list(self, params: Optional[Dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def list(self, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         List all diameter filter profiles
         
@@ -36,7 +36,7 @@ class Profile:
         """
         return self._client.get('cmdb', self._base_path, params=params, vdom=vdom)
     
-    def get(self, name: Optional[str] = None, params: Optional[Dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get(self, name: Optional[str] = None, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get diameter filter profile details
         
@@ -67,7 +67,7 @@ class Profile:
         command_code_invalid: Optional[str] = None,
         command_code_range: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create a new diameter filter profile
         
@@ -146,7 +146,7 @@ class Profile:
         command_code_invalid: Optional[str] = None,
         command_code_range: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update an existing diameter filter profile
         
@@ -210,7 +210,7 @@ class Profile:
         
         return self._client.put('cmdb', f"{self._base_path}/{name}", data=data, vdom=vdom)
     
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete a diameter filter profile
         

@@ -3,7 +3,7 @@ FortiOS FortiCloud Log API
 
 This module provides methods to retrieve logs from FortiCloud storage.
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -22,7 +22,7 @@ class FortiCloud:
     
     # Archive Operations
     
-    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Return a description of the quarantined virus file.
         
@@ -45,7 +45,7 @@ class FortiCloud:
             endpoint += f'/{mkey}'
         return self._client.get('log', endpoint, params=kwargs if kwargs else None)
     
-    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Return a list of archived items for the desired type.
         
@@ -69,7 +69,7 @@ class FortiCloud:
             endpoint += f'/{mkey}'
         return self._client.get('log', endpoint, params=kwargs if kwargs else None)
     
-    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Download an archived file.
         
@@ -106,7 +106,7 @@ class FortiCloud:
         start: Optional[int] = None,
         end: Optional[int] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve raw log data for the given log type.
         
@@ -167,7 +167,7 @@ class FortiCloud:
         start: Optional[int] = None,
         end: Optional[int] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve raw traffic log data for the given subtype.
         
@@ -226,7 +226,7 @@ class FortiCloud:
         start: Optional[int] = None,
         end: Optional[int] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve raw event log data for the given subtype.
         
@@ -289,7 +289,7 @@ class FortiCloud:
         filter: Optional[str] = None,
         vdom: str = 'root',
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve formatted log data for the given log type.
         
@@ -357,7 +357,7 @@ class FortiCloud:
         filter: Optional[str] = None,
         vdom: str = 'root',
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get formatted traffic logs from FortiCloud (JSON format).
         
@@ -422,7 +422,7 @@ class FortiCloud:
         filter: Optional[str] = None,
         vdom: str = 'root',
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get formatted event logs from FortiCloud (JSON format).
         

@@ -17,7 +17,7 @@ API Endpoints:
     PUT    /casb/profile/{name} - Update CASB profile
     DELETE /casb/profile/{name} - Delete CASB profile
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -35,7 +35,7 @@ class Profile:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CASB profiles
         
@@ -70,7 +70,7 @@ class Profile:
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get CASB profile(s)
         
@@ -142,10 +142,10 @@ class Profile:
         self,
         name: str,
         comment: Optional[str] = None,
-        saas_application: Optional[List[Dict[str, Any]]] = None,
+        saas_application: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create a new CASB profile
         
@@ -217,10 +217,10 @@ class Profile:
         self,
         name: str,
         comment: Optional[str] = None,
-        saas_application: Optional[List[Dict[str, Any]]] = None,
+        saas_application: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update an existing CASB profile
         
@@ -278,7 +278,7 @@ class Profile:
         
         return self._client.put('cmdb', f'casb/profile/{name}', data=data, vdom=vdom)
     
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete a CASB profile
         

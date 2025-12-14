@@ -13,7 +13,7 @@ API Endpoints:
 
 Note: POST, PUT, and DELETE operations are not supported on this endpoint.
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -41,7 +41,7 @@ class Name:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get application signature(s)
         
@@ -107,7 +107,7 @@ class Name:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def list(self, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all application signatures (convenience method)
         

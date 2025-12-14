@@ -7,7 +7,7 @@ API Endpoints:
     GET    /api/v2/cmdb/authentication/setting       - Get authentication settings
     PUT    /api/v2/cmdb/authentication/setting       - Update authentication settings
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -20,7 +20,7 @@ class Setting:
         self._client = client
     
     @staticmethod
-    def _format_name_list(items: Optional[List[Union[str, Dict[str, Any]]]]) -> Optional[List[Dict[str, Any]]]:
+    def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
         
@@ -52,7 +52,7 @@ class Setting:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get authentication settings
         
@@ -114,11 +114,11 @@ class Setting:
         captive_portal_port: Optional[int] = None,
         auth_https: Optional[str] = None,
         captive_portal_ssl_port: Optional[int] = None,
-        user_cert_ca: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        dev_range: Optional[List[Union[str, Dict[str, Any]]]] = None,
+        user_cert_ca: Optional[list[Union[str, dict[str, Any]]]] = None,
+        dev_range: Optional[list[Union[str, dict[str, Any]]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update authentication settings
         

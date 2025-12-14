@@ -2,7 +2,7 @@
 FortiOS CMDB API
 Configuration Management Database endpoints
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ...client import FortiOS
@@ -45,9 +45,9 @@ class CMDB:
     def get(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET request to CMDB API
         
@@ -77,10 +77,10 @@ class CMDB:
     def post(
         self,
         path: str,
-        data: Dict[str, Any],
-        params: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any],
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         POST request to CMDB API - Create new object
         
@@ -105,10 +105,10 @@ class CMDB:
     def put(
         self,
         path: str,
-        data: Dict[str, Any],
-        params: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any],
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT request to CMDB API - Update existing object
         
@@ -133,9 +133,9 @@ class CMDB:
     def delete(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         DELETE request to CMDB API - Delete object
         

@@ -9,7 +9,7 @@ API Endpoints:
     PUT    /antivirus/exempt-list/{name} - Update exempt list entry
     DELETE /antivirus/exempt-list/{name} - Delete exempt list entry
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -38,7 +38,7 @@ class ExemptList:
         format: Optional[str] = None,
         action: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET /antivirus/exempt-list or /antivirus/exempt-list/{name}
         Get exempt list entries
@@ -125,7 +125,7 @@ class ExemptList:
         status: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         POST /antivirus/exempt-list
         Create new exempt list entry
@@ -203,7 +203,7 @@ class ExemptList:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT /antivirus/exempt-list/{name}
         Update exempt list entry
@@ -303,7 +303,7 @@ class ExemptList:
         mkey: Optional[str] = None,
         scope: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         DELETE /antivirus/exempt-list/{name}
         Delete exempt list entry
@@ -360,7 +360,7 @@ class ExemptList:
         self,
         vdom: Optional[Union[str, bool]] = None,
         **params: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Alias for get() without name parameter - more intuitive for getting all entries
         

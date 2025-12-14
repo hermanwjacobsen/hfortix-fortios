@@ -5,7 +5,7 @@ Real-time monitoring and status endpoints
 Note: Monitor API endpoints are not yet implemented.
 This is a placeholder for future development.
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ...client import FortiOS
@@ -53,9 +53,9 @@ class Monitor:
     def get(
         self,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET request to Monitor API
         

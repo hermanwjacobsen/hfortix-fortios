@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Any, Union
 import requests
 
 
@@ -104,10 +104,10 @@ class FortiOS:
         method: str,
         api_type: str,
         path: str,
-        data: Optional[Dict[str, Any]] = None,
-        params: Optional[Dict[str, Any]] = None,
+        data: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Generic request method for all API calls
         
@@ -152,9 +152,9 @@ class FortiOS:
         self,
         api_type: str,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET request
         
@@ -186,7 +186,7 @@ class FortiOS:
         self,
         api_type: str,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
     ) -> bytes:
         """
@@ -231,10 +231,10 @@ class FortiOS:
         self,
         api_type: str,
         path: str,
-        data: Dict[str, Any],
-        params: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any],
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         POST request - Create new object
         
@@ -258,10 +258,10 @@ class FortiOS:
         self,
         api_type: str,
         path: str,
-        data: Dict[str, Any],
-        params: Optional[Dict[str, Any]] = None,
+        data: dict[str, Any],
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT request - Update existing object
         
@@ -285,9 +285,9 @@ class FortiOS:
         self,
         api_type: str,
         path: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         DELETE request - Delete object
         

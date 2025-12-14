@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/authentication/scheme/{name} - Update authentication scheme
     DELETE /api/v2/cmdb/authentication/scheme/{name} - Delete authentication scheme
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -23,7 +23,7 @@ class Scheme:
         self._client = client
     
     @staticmethod
-    def _format_name_list(items: Optional[List[Union[str, Dict[str, Any]]]]) -> Optional[List[Dict[str, Any]]]:
+    def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
         
@@ -63,7 +63,7 @@ class Scheme:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get authentication scheme(s)
         
@@ -129,7 +129,7 @@ class Scheme:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def list(self, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all authentication schemes (convenience method)
         
@@ -159,7 +159,7 @@ class Scheme:
         fsso_guest: Optional[str] = None,
         user_cert: Optional[str] = None,
         cert_http_header: Optional[str] = None,
-        user_database: Optional[List[Union[str, Dict[str, Any]]]] = None,
+        user_database: Optional[list[Union[str, dict[str, Any]]]] = None,
         ssh_ca: Optional[str] = None,
         external_idp: Optional[str] = None,
         group_attr_type: Optional[str] = None,
@@ -167,7 +167,7 @@ class Scheme:
         digest_rfc2069: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create authentication scheme
         
@@ -297,7 +297,7 @@ class Scheme:
         fsso_guest: Optional[str] = None,
         user_cert: Optional[str] = None,
         cert_http_header: Optional[str] = None,
-        user_database: Optional[List[Union[str, Dict[str, Any]]]] = None,
+        user_database: Optional[list[Union[str, dict[str, Any]]]] = None,
         ssh_ca: Optional[str] = None,
         external_idp: Optional[str] = None,
         group_attr_type: Optional[str] = None,
@@ -305,7 +305,7 @@ class Scheme:
         digest_rfc2069: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update authentication scheme
         
@@ -412,7 +412,7 @@ class Scheme:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Delete authentication scheme
         

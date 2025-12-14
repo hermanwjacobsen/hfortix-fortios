@@ -6,7 +6,7 @@ API Endpoints:
     GET  /alertemail/setting - Get alert email settings
     PUT  /alertemail/setting - Update alert email settings
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -18,7 +18,7 @@ class AlertEmail:
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
     
-    def get(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         GET /alertemail/setting
         Get alert email settings
@@ -75,7 +75,7 @@ class AlertEmail:
         debug_interval: Optional[int] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT /alertemail/setting
         Update alert email settings

@@ -9,7 +9,7 @@ API Endpoints:
     PUT    /antivirus/profile/{name} - Update antivirus profile
     DELETE /antivirus/profile/{name} - Delete antivirus profile
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -38,7 +38,7 @@ class Profile:
         format: Optional[str] = None,
         action: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET /antivirus/profile or /antivirus/profile/{name}
         Get antivirus profiles
@@ -137,7 +137,7 @@ class Profile:
         ems_threat_feed: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         POST /antivirus/profile
         Create new antivirus profile
@@ -288,7 +288,7 @@ class Profile:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT /antivirus/profile/{name}
         Update antivirus profile
@@ -443,7 +443,7 @@ class Profile:
         mkey: Optional[str] = None,
         scope: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         DELETE /antivirus/profile/{name}
         Delete antivirus profile
@@ -493,7 +493,7 @@ class Profile:
         self,
         vdom: Optional[Union[str, bool]] = None,
         **params: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Alias for get() without name parameter - more intuitive for getting all profiles
         

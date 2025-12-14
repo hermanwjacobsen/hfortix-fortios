@@ -12,7 +12,7 @@ Note: This is a READ-ONLY endpoint. CA certificates are typically:
     - User-uploaded certificates via GUI/CLI
     - Factory certificates
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 
@@ -32,7 +32,7 @@ class Ca:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CA certificates
         
@@ -71,7 +71,7 @@ class Ca:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get CA certificate(s)
         
@@ -147,7 +147,7 @@ class Ca:
         except (APIError, ResourceNotFoundError):
             return False
     
-    def get_bundle_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_bundle_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all bundle (pre-installed) CA certificates
         
@@ -163,7 +163,7 @@ class Ca:
         """
         return self.get(filter='source==bundle', vdom=vdom)
     
-    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all user-uploaded CA certificates
         
@@ -179,7 +179,7 @@ class Ca:
         """
         return self.get(filter='source==user', vdom=vdom)
     
-    def get_trusted_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_trusted_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all trusted CA certificates (for SSL inspection)
         

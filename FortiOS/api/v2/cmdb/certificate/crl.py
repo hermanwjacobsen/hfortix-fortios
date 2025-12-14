@@ -12,7 +12,7 @@ Note: This is a READ-ONLY endpoint. CRL certificates are typically:
     - User-uploaded CRLs via GUI/CLI
     - Auto-updated CRLs from LDAP/HTTP/SCEP sources
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 
@@ -32,7 +32,7 @@ class Crl:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CRL certificates
         
@@ -71,7 +71,7 @@ class Crl:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get CRL certificate(s)
         
@@ -147,7 +147,7 @@ class Crl:
         except (APIError, ResourceNotFoundError):
             return False
     
-    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all factory (pre-installed) CRL certificates
         
@@ -163,7 +163,7 @@ class Crl:
         """
         return self.get(filter='source==factory', vdom=vdom)
     
-    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all user-uploaded CRL certificates
         
@@ -179,7 +179,7 @@ class Crl:
         """
         return self.get(filter='source==user', vdom=vdom)
     
-    def get_ldap_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_ldap_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all LDAP-sourced CRL certificates
         
@@ -195,7 +195,7 @@ class Crl:
         """
         return self.get(filter='ldap-server!=', vdom=vdom)
     
-    def get_http_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_http_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all HTTP-sourced CRL certificates
         

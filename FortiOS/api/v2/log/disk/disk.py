@@ -14,7 +14,7 @@ API Endpoints:
     GET /disk/traffic/{subtype}                  - Get traffic logs by subtype
     GET /disk/event/{subtype}                    - Get event logs by subtype
 """
-from typing import Optional, Dict, Any, TYPE_CHECKING
+from typing import Optional, Any, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -32,7 +32,7 @@ class Disk:
         """
         self._client = client
 
-    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get quarantined virus file metadata.
         
@@ -71,7 +71,7 @@ class Disk:
         
         return self._client.get('log', endpoint, params=params if params else None)
 
-    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get archived items (packet captures from IPS or Application Control).
         
@@ -111,7 +111,7 @@ class Disk:
         
         return self._client.get('log', endpoint, params=params if params else None)
 
-    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Download an archived file (binary data).
         
@@ -155,7 +155,7 @@ class Disk:
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get raw log data for the specified log type.
         
@@ -228,7 +228,7 @@ class Disk:
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get raw traffic logs by subtype.
         
@@ -289,7 +289,7 @@ class Disk:
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get raw event logs by subtype.
         
@@ -349,7 +349,7 @@ class Disk:
         end: Optional[int] = None,
         filter: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get log data for the specified type (formatted, not raw).
         
@@ -408,7 +408,7 @@ class Disk:
         end: Optional[int] = None,
         filter: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get traffic logs by subtype (formatted, not raw).
         
@@ -464,7 +464,7 @@ class Disk:
         end: Optional[int] = None,
         filter: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get event logs by subtype (formatted, not raw).
         

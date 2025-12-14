@@ -6,7 +6,7 @@ API Endpoints:
     GET  /antivirus/settings - Get antivirus settings
     PUT  /antivirus/settings - Update antivirus settings
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -27,7 +27,7 @@ class Settings:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET /antivirus/settings
         Get antivirus settings
@@ -84,7 +84,7 @@ class Settings:
         use_extreme_db: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT /antivirus/settings
         Update antivirus settings

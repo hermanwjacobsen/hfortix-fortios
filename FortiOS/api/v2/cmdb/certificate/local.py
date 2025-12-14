@@ -13,7 +13,7 @@ Note: This is a READ-ONLY endpoint. Local certificates are typically:
     - ACME/Let's Encrypt certificates
     - SCEP certificates
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 
@@ -33,7 +33,7 @@ class Local:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all local certificates
         
@@ -72,7 +72,7 @@ class Local:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get local certificate(s)
         
@@ -148,7 +148,7 @@ class Local:
         except (APIError, ResourceNotFoundError):
             return False
     
-    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all factory (pre-installed) local certificates
         
@@ -164,7 +164,7 @@ class Local:
         """
         return self.get(filter='source==factory', vdom=vdom)
     
-    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get all user-uploaded local certificates
         

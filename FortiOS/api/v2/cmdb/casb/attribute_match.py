@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /casb/attribute-match/{name} - Update attribute match rule
     DELETE /casb/attribute-match/{name} - Delete attribute match rule
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -28,7 +28,7 @@ class AttributeMatch:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CASB attribute match rules
         
@@ -65,7 +65,7 @@ class AttributeMatch:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get CASB attribute match rule(s)
         
@@ -134,10 +134,10 @@ class AttributeMatch:
         name: str,
         application: Optional[str] = None,
         match_strategy: Optional[str] = None,
-        match: Optional[List[Dict[str, Any]]] = None,
+        match: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create CASB attribute match rule
         
@@ -245,10 +245,10 @@ class AttributeMatch:
         name: str,
         application: Optional[str] = None,
         match_strategy: Optional[str] = None,
-        match: Optional[List[Dict[str, Any]]] = None,
+        match: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update CASB attribute match rule
         
@@ -330,7 +330,7 @@ class AttributeMatch:
         
         return self._client.put('cmdb', f'casb/attribute-match/{name}', data, vdom=vdom)
     
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete CASB attribute match rule
         

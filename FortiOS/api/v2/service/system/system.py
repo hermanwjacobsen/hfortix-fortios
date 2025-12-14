@@ -8,7 +8,7 @@ API Endpoints:
     GET /system/fabric-time-in-sync/                             - Check Fabric time synchronization
     GET /system/fabric-admin-lockout-exists-on-firmware-update/  - Check admin lockout on firmware update
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -32,7 +32,7 @@ class System:
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve PSIRT vulnerability advisories for the Security Fabric.
         
@@ -87,7 +87,7 @@ class System:
         utc: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Check whether Security Fabric device times are synchronized.
         
@@ -135,7 +135,7 @@ class System:
         
         return self._client.get('service', endpoint, params=params)
 
-    def fabric_admin_lockout_exists(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def fabric_admin_lockout_exists(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Check for admin lockout risks on firmware update.
         

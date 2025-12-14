@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/list/{name} - Update application control list
     DELETE /api/v2/cmdb/application/list/{name} - Delete application control list
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -38,7 +38,7 @@ class List:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get application control list(s)
         
@@ -105,7 +105,7 @@ class List:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def list(self, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all application control lists (convenience method)
         
@@ -128,22 +128,22 @@ class List:
         app_replacemsg: Optional[str] = None,
         control_default_network_services: Optional[str] = None,
         deep_app_inspection: Optional[str] = None,
-        default_network_services: Optional[List[Dict[str, Any]]] = None,
+        default_network_services: Optional[list[dict[str, Any]]] = None,
         enforce_default_app_port: Optional[str] = None,
         extended_log: Optional[str] = None,
         force_inclusion_ssl_di_sigs: Optional[str] = None,
-        options: Optional[List[str]] = None,
+        options: Optional[list[str]] = None,
         other_application_action: Optional[str] = None,
         other_application_log: Optional[str] = None,
-        p2p_black_list: Optional[List[str]] = None,
-        p2p_block_list: Optional[List[str]] = None,
+        p2p_black_list: Optional[list[str]] = None,
+        p2p_block_list: Optional[list[str]] = None,
         replacemsg_group: Optional[str] = None,
         unknown_application_action: Optional[str] = None,
         unknown_application_log: Optional[str] = None,
-        entries: Optional[List[Dict[str, Any]]] = None,
+        entries: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create application control list
         
@@ -260,22 +260,22 @@ class List:
         app_replacemsg: Optional[str] = None,
         control_default_network_services: Optional[str] = None,
         deep_app_inspection: Optional[str] = None,
-        default_network_services: Optional[List[Dict[str, Any]]] = None,
+        default_network_services: Optional[list[dict[str, Any]]] = None,
         enforce_default_app_port: Optional[str] = None,
         extended_log: Optional[str] = None,
         force_inclusion_ssl_di_sigs: Optional[str] = None,
-        options: Optional[List[str]] = None,
+        options: Optional[list[str]] = None,
         other_application_action: Optional[str] = None,
         other_application_log: Optional[str] = None,
-        p2p_black_list: Optional[List[str]] = None,
-        p2p_block_list: Optional[List[str]] = None,
+        p2p_black_list: Optional[list[str]] = None,
+        p2p_block_list: Optional[list[str]] = None,
         replacemsg_group: Optional[str] = None,
         unknown_application_action: Optional[str] = None,
         unknown_application_log: Optional[str] = None,
-        entries: Optional[List[Dict[str, Any]]] = None,
+        entries: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update application control list
         
@@ -374,7 +374,7 @@ class List:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Delete application control list
         

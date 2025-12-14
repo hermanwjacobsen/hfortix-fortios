@@ -7,7 +7,7 @@ API Endpoints:
     GET /security-rating/report/           - Get full Security Rating report
     GET /security-rating/recommendations/  - Get recommendations for specific checks
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -28,7 +28,7 @@ class SecurityRating:
         show_hidden: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve full report of all Security Rating tests
         
@@ -116,7 +116,7 @@ class SecurityRating:
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Retrieve recommendations for Security Rating tests
         

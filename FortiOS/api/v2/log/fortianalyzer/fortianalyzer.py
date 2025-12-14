@@ -14,7 +14,7 @@ API Endpoints:
     GET /fortianalyzer/traffic/{subtype}                 - Get formatted traffic logs (JSON)
     GET /fortianalyzer/event/{subtype}                   - Get formatted event logs (JSON)
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -32,7 +32,7 @@ class FortiAnalyzer:
         """
         self._client = client
 
-    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get quarantined virus file metadata from FortiAnalyzer.
         
@@ -59,7 +59,7 @@ class FortiAnalyzer:
         
         return self._client.get('log', endpoint, params=params if params else None)
 
-    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get archived packet captures for IPS or Application Control from FortiAnalyzer.
         
@@ -87,7 +87,7 @@ class FortiAnalyzer:
         
         return self._client.get('log', endpoint, params=params if params else None)
 
-    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
+    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Download an archived packet capture file from FortiAnalyzer.
         
@@ -127,7 +127,7 @@ class FortiAnalyzer:
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get raw log data from FortiAnalyzer in plain text format.
         
@@ -189,7 +189,7 @@ class FortiAnalyzer:
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get raw traffic logs from FortiAnalyzer in plain text format.
         
@@ -247,7 +247,7 @@ class FortiAnalyzer:
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get raw event logs from FortiAnalyzer in plain text format.
         
@@ -306,7 +306,7 @@ class FortiAnalyzer:
         filter: Optional[str] = None,
         vdom: str = 'root',
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get log data from FortiAnalyzer for the specified type (formatted, not raw).
         
@@ -374,7 +374,7 @@ class FortiAnalyzer:
         filter: Optional[str] = None,
         vdom: str = 'root',
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get formatted traffic logs from FortiAnalyzer (JSON format).
         
@@ -438,7 +438,7 @@ class FortiAnalyzer:
         filter: Optional[str] = None,
         vdom: str = 'root',
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get formatted event logs from FortiAnalyzer (JSON format).
         

@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/group/{name} - Update an application group
     DELETE /api/v2/cmdb/application/group/{name} - Delete an application group
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -45,7 +45,7 @@ class Group:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get application group(s).
         
@@ -131,7 +131,7 @@ class Group:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         List all application groups.
         
@@ -186,17 +186,17 @@ class Group:
         # Group parameters
         comment: Optional[str] = None,
         type: Optional[str] = None,
-        application: Optional[List[Union[int, Dict[str, Any]]]] = None,
-        category: Optional[List[Union[int, Dict[str, Any]]]] = None,
-        risk: Optional[List[Union[int, Dict[str, Any]]]] = None,
+        application: Optional[list[Union[int, dict[str, Any]]]] = None,
+        category: Optional[list[Union[int, dict[str, Any]]]] = None,
+        risk: Optional[list[Union[int, dict[str, Any]]]] = None,
         protocols: Optional[str] = None,
-        vendor: Optional[List[Union[int, Dict[str, Any]]]] = None,
-        technology: Optional[List[Union[int, Dict[str, Any]]]] = None,
+        vendor: Optional[list[Union[int, dict[str, Any]]]] = None,
+        technology: Optional[list[Union[int, dict[str, Any]]]] = None,
         behavior: Optional[str] = None,
-        popularity: Optional[List[Union[int, Dict[str, Any]]]] = None,
+        popularity: Optional[list[Union[int, dict[str, Any]]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create a new application group.
         
@@ -278,14 +278,14 @@ class Group:
         # Group parameters
         comment: Optional[str] = None,
         type: Optional[str] = None,
-        application: Optional[List[Union[int, Dict[str, Any]]]] = None,
-        category: Optional[List[Union[int, Dict[str, Any]]]] = None,
-        risk: Optional[List[Union[int, Dict[str, Any]]]] = None,
+        application: Optional[list[Union[int, dict[str, Any]]]] = None,
+        category: Optional[list[Union[int, dict[str, Any]]]] = None,
+        risk: Optional[list[Union[int, dict[str, Any]]]] = None,
         protocols: Optional[str] = None,
-        vendor: Optional[List[Union[int, Dict[str, Any]]]] = None,
-        technology: Optional[List[Union[int, Dict[str, Any]]]] = None,
+        vendor: Optional[list[Union[int, dict[str, Any]]]] = None,
+        technology: Optional[list[Union[int, dict[str, Any]]]] = None,
         behavior: Optional[str] = None,
-        popularity: Optional[List[Union[int, Dict[str, Any]]]] = None,
+        popularity: Optional[list[Union[int, dict[str, Any]]]] = None,
         # Action parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
@@ -293,7 +293,7 @@ class Group:
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update an existing application group.
         
@@ -394,7 +394,7 @@ class Group:
         name: str,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Delete an application group.
         

@@ -7,7 +7,7 @@ API Endpoints:
     GET    /automation/setting       - Get automation settings
     PUT    /automation/setting       - Update automation settings
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -33,7 +33,7 @@ class Setting:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get automation settings
         
@@ -80,7 +80,7 @@ class Setting:
         secure_mode: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update automation settings
         

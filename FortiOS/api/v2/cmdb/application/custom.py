@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/custom/{tag} - Update a custom application signature
     DELETE /api/v2/cmdb/application/custom/{tag} - Delete a custom application signature
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -45,7 +45,7 @@ class Custom:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get custom application signature(s).
         
@@ -131,7 +131,7 @@ class Custom:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         List all custom application signatures.
         
@@ -194,7 +194,7 @@ class Custom:
         vendor: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create a new custom application signature.
         
@@ -277,7 +277,7 @@ class Custom:
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update an existing custom application signature.
         
@@ -369,7 +369,7 @@ class Custom:
         tag: str,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Delete a custom application signature.
         

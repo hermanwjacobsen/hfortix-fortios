@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /casb/saas-application/{name} - Update SaaS application
     DELETE /casb/saas-application/{name} - Delete SaaS application
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -28,7 +28,7 @@ class SaasApplication:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CASB SaaS applications
         
@@ -63,7 +63,7 @@ class SaasApplication:
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get CASB SaaS application(s)
         
@@ -137,16 +137,16 @@ class SaasApplication:
         casb_name: Optional[str] = None,
         status: Optional[str] = None,
         domain_control: Optional[str] = None,
-        domain_control_domains: Optional[List[Dict[str, Any]]] = None,
+        domain_control_domains: Optional[list[dict[str, Any]]] = None,
         log: Optional[str] = None,
-        access_rule: Optional[List[Dict[str, Any]]] = None,
+        access_rule: Optional[list[dict[str, Any]]] = None,
         safe_search: Optional[str] = None,
-        safe_search_control: Optional[List[str]] = None,
+        safe_search_control: Optional[list[str]] = None,
         tenant_control: Optional[str] = None,
-        tenant_control_tenants: Optional[List[Dict[str, Any]]] = None,
+        tenant_control_tenants: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create CASB SaaS application
         
@@ -234,16 +234,16 @@ class SaasApplication:
         casb_name: Optional[str] = None,
         status: Optional[str] = None,
         domain_control: Optional[str] = None,
-        domain_control_domains: Optional[List[Dict[str, Any]]] = None,
+        domain_control_domains: Optional[list[dict[str, Any]]] = None,
         log: Optional[str] = None,
-        access_rule: Optional[List[Dict[str, Any]]] = None,
+        access_rule: Optional[list[dict[str, Any]]] = None,
         safe_search: Optional[str] = None,
-        safe_search_control: Optional[List[str]] = None,
+        safe_search_control: Optional[list[str]] = None,
         tenant_control: Optional[str] = None,
-        tenant_control_tenants: Optional[List[Dict[str, Any]]] = None,
+        tenant_control_tenants: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update CASB SaaS application
         
@@ -322,7 +322,7 @@ class SaasApplication:
         
         return self._client.put('cmdb', f'casb/saas-application/{name}', data, vdom=vdom)
     
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete CASB SaaS application
         

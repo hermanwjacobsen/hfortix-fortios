@@ -10,7 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/authentication/rule/{name} - Update authentication rule
     DELETE /api/v2/cmdb/authentication/rule/{name} - Delete authentication rule
 """
-from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -23,7 +23,7 @@ class Rule:
         self._client = client
     
     @staticmethod
-    def _format_name_list(items: Optional[List[Union[str, Dict[str, Any]]]]) -> Optional[List[Dict[str, Any]]]:
+    def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
         
@@ -63,7 +63,7 @@ class Rule:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get authentication rule(s)
         
@@ -129,7 +129,7 @@ class Rule:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def list(self, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all authentication rules (convenience method)
         
@@ -150,11 +150,11 @@ class Rule:
         name: str,
         status: Optional[str] = None,
         protocol: Optional[str] = None,
-        srcintf: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        srcaddr: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        srcaddr6: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        dstaddr: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        dstaddr6: Optional[List[Union[str, Dict[str, Any]]]] = None,
+        srcintf: Optional[list[Union[str, dict[str, Any]]]] = None,
+        srcaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
+        srcaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
+        dstaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
+        dstaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
         ip_based: Optional[str] = None,
         active_auth_method: Optional[str] = None,
         sso_auth_method: Optional[str] = None,
@@ -167,7 +167,7 @@ class Rule:
         comments: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Create authentication rule
         
@@ -282,11 +282,11 @@ class Rule:
         name: str,
         status: Optional[str] = None,
         protocol: Optional[str] = None,
-        srcintf: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        srcaddr: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        srcaddr6: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        dstaddr: Optional[List[Union[str, Dict[str, Any]]]] = None,
-        dstaddr6: Optional[List[Union[str, Dict[str, Any]]]] = None,
+        srcintf: Optional[list[Union[str, dict[str, Any]]]] = None,
+        srcaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
+        srcaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
+        dstaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
+        dstaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
         ip_based: Optional[str] = None,
         active_auth_method: Optional[str] = None,
         sso_auth_method: Optional[str] = None,
@@ -299,7 +299,7 @@ class Rule:
         comments: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Update authentication rule
         
@@ -404,7 +404,7 @@ class Rule:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Delete authentication rule
         

@@ -2,7 +2,7 @@
 FortiOS Service API
 Service endpoints for operations and diagnostics
 """
-from typing import Optional, Dict, Any, TYPE_CHECKING
+from typing import Optional, Any, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ...client import FortiOS
@@ -35,8 +35,8 @@ class Service:
     def get(
         self,
         endpoint: str,
-        params: Optional[Dict[str, Any]] = None
-    ) -> Dict[str, Any]:
+        params: Optional[dict[str, Any]] = None
+    ) -> dict[str, Any]:
         """
         GET request to service API endpoint
         
@@ -52,8 +52,8 @@ class Service:
     def post(
         self,
         endpoint: str,
-        data: Optional[Dict[str, Any]] = None
-    ) -> Dict[str, Any]:
+        data: Optional[dict[str, Any]] = None
+    ) -> dict[str, Any]:
         """
         POST request to service API endpoint
         

@@ -6,7 +6,7 @@ API Endpoints:
     GET  /antivirus/quarantine - Get quarantine settings
     PUT  /antivirus/quarantine - Update quarantine settings
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -27,7 +27,7 @@ class Quarantine:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         GET /antivirus/quarantine
         Get quarantine settings
@@ -90,7 +90,7 @@ class Quarantine:
         destination: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         PUT /antivirus/quarantine
         Update quarantine settings

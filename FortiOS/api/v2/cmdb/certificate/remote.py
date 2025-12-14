@@ -12,7 +12,7 @@ Note: This is a READ-ONLY endpoint. Remote certificates are typically:
     - SSL/TLS certificates from external services
     - Certificates retrieved during SSL inspection
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 
@@ -32,7 +32,7 @@ class Remote:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all remote certificates
         
@@ -68,7 +68,7 @@ class Remote:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get remote certificate(s)
         

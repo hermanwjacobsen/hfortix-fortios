@@ -11,7 +11,7 @@ API Endpoints:
     POST   /api/v2/service/sniffer/delete/   - Delete a packet capture
     GET    /api/v2/service/sniffer/meta/     - Get system limitations and meta info
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
@@ -23,7 +23,7 @@ class Sniffer:
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
     
-    def list(self, mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all packet captures
         
@@ -61,7 +61,7 @@ class Sniffer:
         return self._client.get('service', 'sniffer/list/', 
                                params=params if params else None, vdom=vdom)
     
-    def start(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def start(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Start a new packet capture
         
@@ -92,7 +92,7 @@ class Sniffer:
         
         return self._client.post('service', 'sniffer/start/', data, vdom=vdom)
     
-    def stop(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def stop(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Stop a running packet capture
         
@@ -176,7 +176,7 @@ class Sniffer:
         # Return raw binary content (PCAP file)
         return res.content
     
-    def delete(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def delete(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Delete a packet capture
         
@@ -202,7 +202,7 @@ class Sniffer:
         
         return self._client.post('service', 'sniffer/delete/', data, vdom=vdom)
     
-    def meta(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def meta(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get system limitations and meta information
         

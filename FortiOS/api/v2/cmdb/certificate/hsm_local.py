@@ -13,7 +13,7 @@ API Endpoints:
 Note: This endpoint supports full CRUD operations for HSM certificates.
 HSM certificates require HSM hardware or cloud HSM service (e.g., Google Cloud HSM).
 """
-from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+from typing import Optional, Any, Union, TYPE_CHECKING
 
 from FortiOS.exceptions import APIError, ResourceNotFoundError
 
@@ -33,7 +33,7 @@ class HsmLocal:
         """
         self._client = client
     
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all HSM local certificates
         
@@ -69,7 +69,7 @@ class HsmLocal:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Get HSM local certificate(s)
         
@@ -124,7 +124,7 @@ class HsmLocal:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, data: Dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def create(self, data: dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Create new HSM local certificate
         
@@ -153,7 +153,7 @@ class HsmLocal:
         """
         return self._client.post('cmdb', 'certificate/hsm-local', data=data, vdom=vdom)
     
-    def update(self, name: str, data: Dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def update(self, name: str, data: dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Update existing HSM local certificate
         
@@ -171,7 +171,7 @@ class HsmLocal:
         """
         return self._client.put('cmdb', f'certificate/hsm-local/{name}', data=data, vdom=vdom)
     
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete HSM local certificate
         
