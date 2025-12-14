@@ -4,6 +4,62 @@ import requests
 
 
 class FortiOS:
+    """
+    FortiOS REST API Client
+    
+    Python client for interacting with Fortinet FortiGate firewalls via REST API.
+    Supports configuration management (CMDB), monitoring, logging, and services.
+    
+    This client uses token-based authentication and provides a stateless interface
+    to FortiOS devices. No login/logout required - just initialize with your token
+    and start making API calls.
+    
+    Main API categories:
+        - cmdb: Configuration Management Database (firewall policies, objects, etc.)
+        - monitor: Real-time monitoring and status
+        - log: Log queries and analysis
+        - service: System services (sniffer, security rating, etc.)
+    
+    Attributes:
+        host (str): FortiGate hostname or IP address
+        url (str): Complete HTTPS URL to FortiGate
+        verify (bool): SSL certificate verification enabled/disabled
+        vdom (str): Active virtual domain (None = default VDOM)
+        port (int): HTTPS port number
+        session (requests.Session): HTTP session with connection pooling
+        cmdb (CMDB): Configuration management interface
+        monitor (Monitor): Monitoring interface
+        log (Log): Logging interface
+        service (Service): Services interface
+    
+    Example:
+        >>> from fortinet import FortiOS
+        >>> fgt = FortiOS("fortigate.example.com", token="your_token_here")
+        >>> 
+        >>> # List firewall addresses
+        >>> addresses = fgt.cmdb.firewall.address.list()
+        >>> 
+        >>> # Create a firewall address
+        >>> fgt.cmdb.firewall.address.create(
+        ...     name='test-host',
+        ...     subnet='192.0.2.100/32',
+        ...     comment='Example host'
+        ... )
+        >>> 
+        >>> # Get system status
+        >>> status = fgt.monitor.system.status.get()
+    
+    Note:
+        - Requires FortiOS 6.0+ with REST API enabled
+        - API token must be created in FortiOS: System > Admin > API Users
+        - Use verify=False only in development with self-signed certificates
+    
+    See Also:
+        - API Reference: https://docs.fortinet.com/
+        - Token Setup: QUICKSTART.md
+        - Examples: EXAMPLES.md
+    """
+    
     def __init__(
         self,
         host: Optional[str] = None,
