@@ -125,7 +125,7 @@ class Local:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if local certificate exists
         
@@ -146,7 +146,7 @@ class Local:
         except:
             return False
     
-    def get_factory_certificates(self, vdom=None):
+    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all factory (pre-installed) local certificates
         
@@ -162,7 +162,7 @@ class Local:
         """
         return self.get(filter='source==factory', vdom=vdom)
     
-    def get_user_certificates(self, vdom=None):
+    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all user-uploaded local certificates
         

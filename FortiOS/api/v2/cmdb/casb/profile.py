@@ -297,7 +297,7 @@ class Profile:
         """
         return self._client.delete('cmdb', f'casb/profile/{name}', vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if a CASB profile exists
         

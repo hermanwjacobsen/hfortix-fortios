@@ -2,7 +2,7 @@
 FortiOS Log API
 Log retrieval endpoints for various log sources
 """
-from typing import TYPE_CHECKING
+from typing import Optional, Dict, Any, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ...client import FortiOS
@@ -36,7 +36,11 @@ class Log:
         self.forticloud = FortiCloud(client)
         self.search = Search(client)
     
-    def get(self, endpoint, params=None):
+    def get(
+        self,
+        endpoint: str,
+        params: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
         """
         GET request to log API endpoint
         
@@ -49,7 +53,11 @@ class Log:
         """
         return self._client.get('log', endpoint, params=params)
     
-    def get_binary(self, endpoint, params=None):
+    def get_binary(
+        self,
+        endpoint: str,
+        params: Optional[Dict[str, Any]] = None
+    ) -> bytes:
         """
         GET request to log API endpoint returning binary data
         

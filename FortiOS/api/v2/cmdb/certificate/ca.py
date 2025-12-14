@@ -124,7 +124,7 @@ class Ca:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if CA certificate exists
         
@@ -145,7 +145,7 @@ class Ca:
         except:
             return False
     
-    def get_bundle_certificates(self, vdom=None):
+    def get_bundle_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all bundle (pre-installed) CA certificates
         
@@ -161,7 +161,7 @@ class Ca:
         """
         return self.get(filter='source==bundle', vdom=vdom)
     
-    def get_user_certificates(self, vdom=None):
+    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all user-uploaded CA certificates
         
@@ -177,7 +177,7 @@ class Ca:
         """
         return self.get(filter='source==user', vdom=vdom)
     
-    def get_trusted_certificates(self, vdom=None):
+    def get_trusted_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all trusted CA certificates (for SSL inspection)
         

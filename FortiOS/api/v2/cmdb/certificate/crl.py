@@ -124,7 +124,7 @@ class Crl:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if CRL certificate exists
         
@@ -145,7 +145,7 @@ class Crl:
         except:
             return False
     
-    def get_factory_certificates(self, vdom=None):
+    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all factory (pre-installed) CRL certificates
         
@@ -161,7 +161,7 @@ class Crl:
         """
         return self.get(filter='source==factory', vdom=vdom)
     
-    def get_user_certificates(self, vdom=None):
+    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all user-uploaded CRL certificates
         
@@ -177,7 +177,7 @@ class Crl:
         """
         return self.get(filter='source==user', vdom=vdom)
     
-    def get_ldap_certificates(self, vdom=None):
+    def get_ldap_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all LDAP-sourced CRL certificates
         
@@ -193,7 +193,7 @@ class Crl:
         """
         return self.get(filter='ldap-server!=', vdom=vdom)
     
-    def get_http_certificates(self, vdom=None):
+    def get_http_certificates(self, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Get all HTTP-sourced CRL certificates
         
