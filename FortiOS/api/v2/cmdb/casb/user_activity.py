@@ -10,12 +10,16 @@ API Endpoints:
     PUT    /casb/user-activity/{name} - Update user activity control
     DELETE /casb/user-activity/{name} - Delete user activity control
 """
+from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class UserActivity:
     """CASB user activity endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize UserActivity endpoint
         
@@ -24,7 +28,7 @@ class UserActivity:
         """
         self._client = client
     
-    def list(self, vdom=None, **kwargs):
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         List all CASB user activity controls
         
@@ -47,9 +51,23 @@ class UserActivity:
         """
         return self.get(vdom=vdom, **kwargs)
     
-    def get(self, name=None, attr=None, count=None, skip_to_datasource=None, acs=None, 
-            search=None, scope=None, datasource=None, with_meta=None, skip=None, 
-            format=None, action=None, vdom=None, **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        attr: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        format: Optional[str] = None,
+        action: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get CASB user activity control(s)
         
@@ -101,9 +119,20 @@ class UserActivity:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, name, application, casb_name, status='enable', category=None, 
-               description=None, match_strategy=None, match=None, control_options=None, 
-               type=None, vdom=None):
+    def create(
+        self,
+        name: str,
+        application: str,
+        casb_name: str,
+        status: str = 'enable',
+        category: Optional[str] = None,
+        description: Optional[str] = None,
+        match_strategy: Optional[str] = None,
+        match: Optional[List[Dict[str, Any]]] = None,
+        control_options: Optional[List[Dict[str, Any]]] = None,
+        type: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> Dict[str, Any]:
         """
         Create new CASB user activity control
         
@@ -158,8 +187,19 @@ class UserActivity:
         
         return self._client.post('cmdb', 'casb/user-activity', data, vdom=vdom)
     
-    def update(self, name, status=None, category=None, description=None, match_strategy=None,
-               match=None, control_options=None, application=None, casb_name=None, vdom=None):
+    def update(
+        self,
+        name: str,
+        status: Optional[str] = None,
+        category: Optional[str] = None,
+        description: Optional[str] = None,
+        match_strategy: Optional[str] = None,
+        match: Optional[List[Dict[str, Any]]] = None,
+        control_options: Optional[List[Dict[str, Any]]] = None,
+        application: Optional[str] = None,
+        casb_name: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> Dict[str, Any]:
         """
         Update existing CASB user activity control
         
@@ -212,7 +252,7 @@ class UserActivity:
         
         return self._client.put('cmdb', f'casb/user-activity/{name}', data, vdom=vdom)
     
-    def delete(self, name, vdom=None):
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Delete CASB user activity control
         
@@ -230,7 +270,7 @@ class UserActivity:
         """
         return self._client.delete('cmdb', f'casb/user-activity/{name}', vdom=vdom)
     
-    def exists(self, name, vdom=None):
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if user activity control exists
         

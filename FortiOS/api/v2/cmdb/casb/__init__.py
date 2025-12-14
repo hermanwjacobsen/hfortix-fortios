@@ -2,6 +2,10 @@
 FortiOS CMDB - CASB (Cloud Access Security Broker)
 Configure CASB security policies and rules
 """
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 from .attribute_match import AttributeMatch
 from .profile import Profile
@@ -12,7 +16,7 @@ from .user_activity import UserActivity
 class Casb:
     """CASB category class"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CASB category
         

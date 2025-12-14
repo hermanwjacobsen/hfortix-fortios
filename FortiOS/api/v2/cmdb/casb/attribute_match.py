@@ -10,12 +10,16 @@ API Endpoints:
     PUT    /casb/attribute-match/{name} - Update attribute match rule
     DELETE /casb/attribute-match/{name} - Delete attribute match rule
 """
+from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class AttributeMatch:
     """CASB attribute match endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize AttributeMatch endpoint
         
@@ -24,7 +28,7 @@ class AttributeMatch:
         """
         self._client = client
     
-    def list(self, vdom=None, **kwargs):
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         List all CASB attribute match rules
         
@@ -45,9 +49,23 @@ class AttributeMatch:
         """
         return self.get(vdom=vdom, **kwargs)
     
-    def get(self, name=None, attr=None, count=None, skip_to_datasource=None, acs=None, 
-            search=None, scope=None, datasource=None, with_meta=None, skip=None, 
-            format=None, action=None, vdom=None, **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        attr: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        format: Optional[str] = None,
+        action: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get CASB attribute match rule(s)
         
@@ -111,7 +129,15 @@ class AttributeMatch:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, name, application=None, match_strategy=None, match=None, vdom=None, **kwargs):
+    def create(
+        self,
+        name: str,
+        application: Optional[str] = None,
+        match_strategy: Optional[str] = None,
+        match: Optional[List[Dict[str, Any]]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Create CASB attribute match rule
         
@@ -214,7 +240,15 @@ class AttributeMatch:
         
         return self._client.post('cmdb', 'casb/attribute-match', data, vdom=vdom)
     
-    def update(self, name, application=None, match_strategy=None, match=None, vdom=None, **kwargs):
+    def update(
+        self,
+        name: str,
+        application: Optional[str] = None,
+        match_strategy: Optional[str] = None,
+        match: Optional[List[Dict[str, Any]]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Update CASB attribute match rule
         
@@ -296,7 +330,7 @@ class AttributeMatch:
         
         return self._client.put('cmdb', f'casb/attribute-match/{name}', data, vdom=vdom)
     
-    def delete(self, name, vdom=None):
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Delete CASB attribute match rule
         

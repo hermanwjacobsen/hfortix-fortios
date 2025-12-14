@@ -10,12 +10,16 @@ API Endpoints:
     PUT    /casb/saas-application/{name} - Update SaaS application
     DELETE /casb/saas-application/{name} - Delete SaaS application
 """
+from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class SaasApplication:
     """CASB SaaS application endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CASB SaaS Application endpoint
         
@@ -24,7 +28,7 @@ class SaasApplication:
         """
         self._client = client
     
-    def list(self, vdom=None, **kwargs):
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         List all CASB SaaS applications
         
@@ -43,10 +47,23 @@ class SaasApplication:
         """
         return self.get(vdom=vdom, **kwargs)
     
-    def get(self, name=None, datasource=None, with_meta=None, skip=None, 
-            action=None, format=None, filter=None, count=None, 
-            skip_to_datasource=None, acs=None, search=None, scope=None,
-            vdom=None, **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        action: Optional[str] = None,
+        format: Optional[str] = None,
+        filter: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get CASB SaaS application(s)
         
@@ -113,11 +130,23 @@ class SaasApplication:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, name, type=None, casb_name=None, status=None, 
-               domain_control=None, domain_control_domains=None, log=None, 
-               access_rule=None, safe_search=None, safe_search_control=None,
-               tenant_control=None, tenant_control_tenants=None,
-               vdom=None, **kwargs):
+    def create(
+        self,
+        name: str,
+        type: Optional[str] = None,
+        casb_name: Optional[str] = None,
+        status: Optional[str] = None,
+        domain_control: Optional[str] = None,
+        domain_control_domains: Optional[List[Dict[str, Any]]] = None,
+        log: Optional[str] = None,
+        access_rule: Optional[List[Dict[str, Any]]] = None,
+        safe_search: Optional[str] = None,
+        safe_search_control: Optional[List[str]] = None,
+        tenant_control: Optional[str] = None,
+        tenant_control_tenants: Optional[List[Dict[str, Any]]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Create CASB SaaS application
         
@@ -198,11 +227,23 @@ class SaasApplication:
         
         return self._client.post('cmdb', 'casb/saas-application', data, vdom=vdom)
     
-    def update(self, name, type=None, casb_name=None, status=None, 
-               domain_control=None, domain_control_domains=None, log=None, 
-               access_rule=None, safe_search=None, safe_search_control=None,
-               tenant_control=None, tenant_control_tenants=None,
-               vdom=None, **kwargs):
+    def update(
+        self,
+        name: str,
+        type: Optional[str] = None,
+        casb_name: Optional[str] = None,
+        status: Optional[str] = None,
+        domain_control: Optional[str] = None,
+        domain_control_domains: Optional[List[Dict[str, Any]]] = None,
+        log: Optional[str] = None,
+        access_rule: Optional[List[Dict[str, Any]]] = None,
+        safe_search: Optional[str] = None,
+        safe_search_control: Optional[List[str]] = None,
+        tenant_control: Optional[str] = None,
+        tenant_control_tenants: Optional[List[Dict[str, Any]]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Update CASB SaaS application
         
@@ -281,7 +322,7 @@ class SaasApplication:
         
         return self._client.put('cmdb', f'casb/saas-application/{name}', data, vdom=vdom)
     
-    def delete(self, name, vdom=None):
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Delete CASB SaaS application
         

@@ -17,12 +17,16 @@ API Endpoints:
     PUT    /casb/profile/{name} - Update CASB profile
     DELETE /casb/profile/{name} - Delete CASB profile
 """
+from typing import Optional, Dict, Any, Union, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class Profile:
     """CASB profile endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CASB Profile endpoint
         
@@ -31,7 +35,7 @@ class Profile:
         """
         self._client = client
     
-    def list(self, vdom=None, **kwargs):
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         List all CASB profiles
         
@@ -50,10 +54,23 @@ class Profile:
         """
         return self.get(vdom=vdom, **kwargs)
     
-    def get(self, name=None, datasource=None, with_meta=None, skip=None, 
-            action=None, format=None, filter=None, count=None, 
-            skip_to_datasource=None, acs=None, search=None, scope=None,
-            vdom=None, **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        action: Optional[str] = None,
+        format: Optional[str] = None,
+        filter: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get CASB profile(s)
         
@@ -121,8 +138,14 @@ class Profile:
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, name, comment=None, saas_application=None, 
-               vdom=None, **kwargs):
+    def create(
+        self,
+        name: str,
+        comment: Optional[str] = None,
+        saas_application: Optional[List[Dict[str, Any]]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Create a new CASB profile
         
@@ -190,8 +213,14 @@ class Profile:
         
         return self._client.post('cmdb', 'casb/profile', data=data, vdom=vdom)
     
-    def update(self, name, comment=None, saas_application=None,
-               vdom=None, **kwargs):
+    def update(
+        self,
+        name: str,
+        comment: Optional[str] = None,
+        saas_application: Optional[List[Dict[str, Any]]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Update an existing CASB profile
         
@@ -249,7 +278,7 @@ class Profile:
         
         return self._client.put('cmdb', f'casb/profile/{name}', data=data, vdom=vdom)
     
-    def delete(self, name, vdom=None):
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
         """
         Delete a CASB profile
         
