@@ -3,6 +3,10 @@ FortiOS Memory Log API
 
 This module provides methods to retrieve logs from memory storage.
 """
+from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class Memory:
@@ -12,13 +16,13 @@ class Memory:
     Provides methods to retrieve and manage logs stored in memory.
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """Initialize Memory log API with FortiOS client."""
         self._client = client
     
     # Archive Operations
     
-    def virus_archive(self, mkey=None, **kwargs):
+    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         Return a description of the quarantined virus file.
         
@@ -41,7 +45,7 @@ class Memory:
             endpoint += f'/{mkey}'
         return self._client.get('log', endpoint, params=kwargs if kwargs else None)
     
-    def archive(self, log_type, mkey=None, **kwargs):
+    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         Return a list of archived items for the desired type.
         
@@ -65,7 +69,7 @@ class Memory:
             endpoint += f'/{mkey}'
         return self._client.get('log', endpoint, params=kwargs if kwargs else None)
     
-    def archive_download(self, log_type, mkey=None, **kwargs):
+    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> Dict[str, Any]:
         """
         Download an archived file.
         
@@ -93,8 +97,16 @@ class Memory:
     
     # Raw Log Retrieval
     
-    def raw(self, log_type, rows=None, session_id=None, serial_no=None, 
-            start=None, end=None, **kwargs):
+    def raw(
+        self,
+        log_type: str,
+        rows: Optional[int] = None,
+        session_id: Optional[int] = None,
+        serial_no: Optional[str] = None,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Retrieve raw log data for the given log type.
         
@@ -146,8 +158,16 @@ class Memory:
         
         return self._client.get('log', endpoint, params=params if params else None)
     
-    def traffic_raw(self, subtype, rows=None, session_id=None, serial_no=None,
-                    start=None, end=None, **kwargs):
+    def traffic_raw(
+        self,
+        subtype: str,
+        rows: Optional[int] = None,
+        session_id: Optional[int] = None,
+        serial_no: Optional[str] = None,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Retrieve raw traffic log data for the given subtype.
         
@@ -197,8 +217,16 @@ class Memory:
         
         return self._client.get('log', endpoint, params=params if params else None)
     
-    def event_raw(self, subtype, rows=None, session_id=None, serial_no=None,
-                  start=None, end=None, **kwargs):
+    def event_raw(
+        self,
+        subtype: str,
+        rows: Optional[int] = None,
+        session_id: Optional[int] = None,
+        serial_no: Optional[str] = None,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Retrieve raw event log data for the given subtype.
         
@@ -252,7 +280,16 @@ class Memory:
     
     # Formatted Log Retrieval
     
-    def get(self, log_type, rows=None, start=None, end=None, filter=None, vdom='root', **kwargs):
+    def get(
+        self,
+        log_type: str,
+        rows: Optional[int] = None,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        filter: Optional[str] = None,
+        vdom: str = 'root',
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Retrieve formatted log data for the given log type.
         
@@ -309,9 +346,18 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
         
-        return self._client.get('log', endpoint, params=params if params else None, vdom=vdom)
+        return self._client.get('log', endpoint, params=params if params else None)
     
-    def traffic(self, subtype, rows=None, start=None, end=None, filter=None, vdom='root', **kwargs):
+    def traffic(
+        self,
+        subtype: str,
+        rows: Optional[int] = None,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        filter: Optional[str] = None,
+        vdom: str = 'root',
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get formatted traffic logs from memory (JSON format).
         
@@ -365,9 +411,18 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
         
-        return self._client.get('log', endpoint, params=params if params else None, vdom=vdom)
+        return self._client.get('log', endpoint, params=params if params else None)
     
-    def event(self, subtype, rows=None, start=None, end=None, filter=None, vdom='root', **kwargs):
+    def event(
+        self,
+        subtype: str,
+        rows: Optional[int] = None,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        filter: Optional[str] = None,
+        vdom: str = 'root',
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         Get formatted event logs from memory (JSON format).
         

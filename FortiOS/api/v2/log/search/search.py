@@ -3,6 +3,10 @@ FortiOS Log Search API
 
 This module provides methods to manage log search sessions.
 """
+from typing import Optional, Dict, Any, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class Search:
@@ -12,11 +16,11 @@ class Search:
     Provides methods to manage log search sessions (abort, status).
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         """Initialize Search log API with FortiOS client."""
         self._client = client
     
-    def abort(self, session_id, **kwargs):
+    def abort(self, session_id: int, **kwargs: Any) -> Dict[str, Any]:
         """
         Abort a running log search session.
         
@@ -42,7 +46,7 @@ class Search:
         endpoint = f'search/abort/{session_id}'
         return self._client.post('log', endpoint, data=kwargs if kwargs else None)
     
-    def status(self, session_id, **kwargs):
+    def status(self, session_id: int, **kwargs: Any) -> Dict[str, Any]:
         """
         Returns status of log search session, if it is active or not.
         
