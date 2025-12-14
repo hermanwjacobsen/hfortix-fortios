@@ -8,6 +8,12 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....client import FortiOS
+    from .access_proxy import AccessProxy
+    from .access_proxy6 import AccessProxy6
+    from .access_proxy_ssh_client_cert import AccessProxySshClientCert
+    from .access_proxy_virtual_host import AccessProxyVirtualHost
+    from .dos_policy import DosPolicy
+    from .dos_policy6 import DosPolicy6
 
 from .ipmacbinding import Ipmacbinding
 from .schedule import Schedule
@@ -47,3 +53,51 @@ class Firewall:
         self.ssh = Ssh(client)
         self.ssl = Ssl(client)
         self.wildcard_fqdn = WildcardFqdn(client)
+
+    @property
+    def dos_policy(self) -> 'DosPolicy':
+        """Access DoS policy endpoint"""
+        if not hasattr(self, '_dos_policy'):
+            from .dos_policy import DosPolicy
+            self._dos_policy = DosPolicy(self._client)
+        return self._dos_policy
+
+    @property
+    def dos_policy6(self) -> 'DosPolicy6':
+        """Access DoS policy6 endpoint"""
+        if not hasattr(self, '_dos_policy6'):
+            from .dos_policy6 import DosPolicy6
+            self._dos_policy6 = DosPolicy6(self._client)
+        return self._dos_policy6
+
+    @property
+    def access_proxy(self) -> 'AccessProxy':
+        """Access access proxy endpoint"""
+        if not hasattr(self, '_access_proxy'):
+            from .access_proxy import AccessProxy
+            self._access_proxy = AccessProxy(self._client)
+        return self._access_proxy
+
+    @property
+    def access_proxy6(self) -> 'AccessProxy6':
+        """Access access proxy6 endpoint"""
+        if not hasattr(self, '_access_proxy6'):
+            from .access_proxy6 import AccessProxy6
+            self._access_proxy6 = AccessProxy6(self._client)
+        return self._access_proxy6
+
+    @property
+    def access_proxy_ssh_client_cert(self) -> 'AccessProxySshClientCert':
+        """Access access proxy SSH client cert endpoint"""
+        if not hasattr(self, '_access_proxy_ssh_client_cert'):
+            from .access_proxy_ssh_client_cert import AccessProxySshClientCert
+            self._access_proxy_ssh_client_cert = AccessProxySshClientCert(self._client)
+        return self._access_proxy_ssh_client_cert
+
+    @property
+    def access_proxy_virtual_host(self) -> 'AccessProxyVirtualHost':
+        """Access access proxy virtual host endpoint"""
+        if not hasattr(self, '_access_proxy_virtual_host'):
+            from .access_proxy_virtual_host import AccessProxyVirtualHost
+            self._access_proxy_virtual_host = AccessProxyVirtualHost(self._client)
+        return self._access_proxy_virtual_host
