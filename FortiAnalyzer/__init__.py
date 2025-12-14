@@ -9,15 +9,15 @@ Example usage (when available):
     from fortinet import FortiAnalyzer
     
     faz = FortiAnalyzer(
-        host='192.168.1.101',
+        host='fortianalyzer.example.com',  # Example hostname
         username='admin',
-        password='password'
+        password='your_password_here'
     )
     
-    # Query logs
+    # Query logs (using RFC 5737 example IP in filter)
     logs = faz.logs.query(
         logtype='traffic',
-        filter='srcip=10.0.0.1'
+        filter='srcip=192.0.2.100'
     )
 """
 

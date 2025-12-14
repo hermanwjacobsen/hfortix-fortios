@@ -9,9 +9,9 @@ Example usage (when available):
     from fortinet import FortiManager
     
     fm = FortiManager(
-        host='192.168.1.100',
+        host='fortimanager.example.com',  # Example hostname
         username='admin',
-        password='password'
+        password='your_password_here'
     )
     
     # Get list of managed devices

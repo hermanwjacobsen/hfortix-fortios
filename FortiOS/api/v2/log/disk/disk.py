@@ -252,11 +252,11 @@ class Disk:
             # Get forward traffic logs
             result = fgt.log.disk.traffic_raw(subtype='forward', rows=100)
 
-            # Get local traffic with filter
+            # Get local traffic with filter (using RFC 5737 example IP)
             result = fgt.log.disk.traffic_raw(
                 subtype='local',
                 rows=50,
-                filter='srcip==192.168.1.100'
+                filter='srcip==192.0.2.100'
             )
         """
         endpoint = f'disk/traffic/{subtype}/raw'

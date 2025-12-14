@@ -19,7 +19,7 @@ class FortiOS:
         and start making API calls. No login/logout needed.
 
         Args:
-            host: FortiGate IP/hostname (e.g., "192.168.1.99" or "fortigate.company.com")
+            host: FortiGate IP/hostname (e.g., "192.0.2.10" or "fortigate.example.com")
             token: API token for authentication
             verify: Verify SSL certificates (default: True, recommended for production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
@@ -27,16 +27,16 @@ class FortiOS:
 
         Examples:
             # Production - with valid SSL certificate
-            fgt = FortiOS("fortigate.company.com", token="abc123", verify=True)
+            fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
 
-            # Development/Testing - with self-signed certificate
-            fgt = FortiOS("192.168.1.99", token="abc123", verify=False)
+            # Development/Testing - with self-signed certificate (example IP from RFC 5737)
+            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False)
 
             # Custom port
-            fgt = FortiOS("192.168.1.99", token="abc123", verify=False, port=8443)
+            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False, port=8443)
 
             # Port in hostname (alternative)
-            fgt = FortiOS("192.168.1.99:8443", token="abc123", verify=False)
+            fgt = FortiOS("192.0.2.10:8443", token="your_token_here", verify=False)
         """
         self.host = host
         self.vdom = vdom
@@ -247,8 +247,8 @@ class FortiOS:
             vdom: Virtual domain
 
         Examples:
-            # Create firewall address
-            post('cmdb', 'firewall/address', {'name': 'test', 'subnet': '10.0.0.0/24'})
+            # Create firewall address (using RFC 5737 example network)
+            post('cmdb', 'firewall/address', {'name': 'test', 'subnet': '192.0.2.0/24'})
 
             # Clone existing object
             post('cmdb', 'firewall/address', data, params={'action': 'clone', 'nkey': 'new_name'})
@@ -274,8 +274,8 @@ class FortiOS:
             vdom: Virtual domain
 
         Examples:
-            # Update firewall address
-            put('cmdb', 'firewall/address/myaddr', {'subnet': '10.0.1.0/24'})
+            # Update firewall address (using RFC 5737 example network)
+            put('cmdb', 'firewall/address/myaddr', {'subnet': '198.51.100.0/24'})
 
             # Move object
             put('cmdb', 'firewall/policy/1', data, params={'action': 'move', 'after': '5'})

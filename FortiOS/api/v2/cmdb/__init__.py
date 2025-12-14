@@ -94,8 +94,8 @@ class CMDB:
             JSON response
 
         Examples:
-            # Create firewall address
-            cmdb.post('firewall/address', {'name': 'test', 'subnet': '10.0.0.0/24'})
+            # Create firewall address (using RFC 5737 example network)
+            cmdb.post('firewall/address', {'name': 'test', 'subnet': '192.0.2.0/24'})
 
             # Clone existing
             cmdb.post('firewall/address', data, params={'action': 'clone', 'nkey': 'new_name'})
@@ -122,8 +122,8 @@ class CMDB:
             JSON response
 
         Examples:
-            # Update firewall address
-            cmdb.put('firewall/address/myaddr', {'subnet': '10.0.1.0/24'})
+            # Update firewall address (using RFC 5737 example network)
+            cmdb.put('firewall/address/myaddr', {'subnet': '198.51.100.0/24'})
 
             # Move object
             cmdb.put('firewall/policy/1', data, params={'action': 'move', 'after': '5'})
