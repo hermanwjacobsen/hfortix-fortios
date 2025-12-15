@@ -108,7 +108,7 @@ class Fctems:
         if ems_id:
             path = f'{path}/{ems_id}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -282,7 +282,7 @@ class Fctems:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'endpoint-control/fctems', data=data, vdom=vdom)
+        return self._client.post('cmdb', 'endpoint-control/fctems', data=data, vdom=vdom)
 
     def update(
         self,
@@ -395,7 +395,7 @@ class Fctems:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', f'endpoint-control/fctems/{ems_id}', data=data, vdom=vdom)
+        return self._client.put('cmdb', f'endpoint-control/fctems/{ems_id}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -421,5 +421,5 @@ class Fctems:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client._delete('cmdb', f'endpoint-control/fctems/{ems_id}', 
+        return self._client.delete('cmdb', f'endpoint-control/fctems/{ems_id}', 
                                    params=params if params else None, vdom=vdom)

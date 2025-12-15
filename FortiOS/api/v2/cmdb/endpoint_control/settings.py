@@ -77,7 +77,7 @@ class Settings:
 
         params.update(kwargs)
 
-        return self._client._get('cmdb', 'endpoint-control/settings', 
+        return self._client.get('cmdb', 'endpoint-control/settings', 
                                params=params if params else None, vdom=vdom)
 
     def update(
@@ -182,4 +182,4 @@ class Settings:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', 'endpoint-control/settings', data=data, vdom=vdom)
+        return self._client.put('cmdb', 'endpoint-control/settings', data=data, vdom=vdom)

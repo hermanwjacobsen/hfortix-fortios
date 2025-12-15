@@ -46,7 +46,7 @@ class Search:
             >>> result = fgt.log.search.abort(12345)
         """
         endpoint = f'search/abort/{session_id}'
-        return self._client._post('log', endpoint, data=kwargs if kwargs else None)
+        return self._client.post('log', endpoint, data=kwargs if kwargs else None)
 
     def status(self, session_id: int, **kwargs: Any) -> dict[str, Any]:
         """
@@ -79,4 +79,4 @@ class Search:
             ...     print("Search completed!")
         """
         endpoint = f'search/status/{session_id}'
-        return self._client._get('log', endpoint, params=kwargs if kwargs else None)
+        return self._client.get('log', endpoint, params=kwargs if kwargs else None)

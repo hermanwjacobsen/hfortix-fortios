@@ -100,7 +100,7 @@ class Filepattern:
         
         params.update(kwargs)
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -214,7 +214,7 @@ class Filepattern:
         
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'dlp/filepattern', data, vdom=vdom)
+        return self._client.post('cmdb', 'dlp/filepattern', data, vdom=vdom)
     
     def update(
         self,
@@ -300,7 +300,7 @@ class Filepattern:
         
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'dlp/filepattern/{id}', data, vdom=vdom)
+        return self._client.put('cmdb', f'dlp/filepattern/{id}', data, vdom=vdom)
     
     def delete(
         self,
@@ -322,4 +322,4 @@ class Filepattern:
             >>> result = fgt.cmdb.dlp.filepattern.delete(1)
             >>> print(f"Status: {result['status']}")
         """
-        return self._client._delete('cmdb', f'dlp/filepattern/{id}', vdom=vdom)
+        return self._client.delete('cmdb', f'dlp/filepattern/{id}', vdom=vdom)

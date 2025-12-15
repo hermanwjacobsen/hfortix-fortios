@@ -116,7 +116,7 @@ class Custom:
         if tag:
             path = f'{path}/{tag}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -258,7 +258,7 @@ class Custom:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'application/custom', data, vdom=vdom)
+        return self._client.post('cmdb', 'application/custom', data, vdom=vdom)
 
     def update(
         self,
@@ -358,7 +358,7 @@ class Custom:
             if value is not None:
                 params[key] = value
 
-        return self._client._put(
+        return self._client.put(
             'cmdb',
             f'application/custom/{tag}',
             data,
@@ -398,7 +398,7 @@ class Custom:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client._delete(
+        return self._client.delete(
             'cmdb',
             f'application/custom/{tag}',
             params=params if params else None,

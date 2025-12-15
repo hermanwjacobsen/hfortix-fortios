@@ -41,7 +41,7 @@ class Settings:
             >>> settings = client.cmdb.dlp.settings.get()
             >>> print(f"Timeout: {settings['results']['config-builder-timeout']}")
         """
-        return self._client._get('cmdb', 'dlp/settings', vdom=vdom, params=kwargs)
+        return self._client.get('cmdb', 'dlp/settings', vdom=vdom, params=kwargs)
     
     def update(self, config_builder_timeout=None, vdom=None, **kwargs):
         """Update DLP settings.
@@ -71,4 +71,4 @@ class Settings:
                 raise ValueError("config_builder_timeout must be between 10 and 100000")
             data['config-builder-timeout'] = config_builder_timeout
         
-        return self._client._put('cmdb', 'dlp/settings', data, vdom)
+        return self._client.put('cmdb', 'dlp/settings', data, vdom)

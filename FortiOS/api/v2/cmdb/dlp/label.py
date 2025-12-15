@@ -97,7 +97,7 @@ class Label:
         
         params.update(kwargs)
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -218,7 +218,7 @@ class Label:
         
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'dlp/label', data, vdom=vdom)
+        return self._client.post('cmdb', 'dlp/label', data, vdom=vdom)
     
     def update(
         self,
@@ -313,7 +313,7 @@ class Label:
         
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'dlp/label/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'dlp/label/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -335,4 +335,4 @@ class Label:
             >>> result = fgt.cmdb.dlp.label.delete('mpip-label1')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client._delete('cmdb', f'dlp/label/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'dlp/label/{name}', vdom=vdom)

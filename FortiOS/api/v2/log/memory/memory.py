@@ -45,7 +45,7 @@ class Memory:
         endpoint = 'memory/virus/archive'
         if mkey is not None:
             endpoint += f'/{mkey}'
-        return self._client._get('log', endpoint, params=kwargs if kwargs else None)
+        return self._client.get('log', endpoint, params=kwargs if kwargs else None)
 
     def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -69,7 +69,7 @@ class Memory:
         endpoint = f'memory/{log_type}/archive'
         if mkey is not None:
             endpoint += f'/{mkey}'
-        return self._client._get('log', endpoint, params=kwargs if kwargs else None)
+        return self._client.get('log', endpoint, params=kwargs if kwargs else None)
 
     def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -95,7 +95,7 @@ class Memory:
         endpoint = f'memory/{log_type}/archive-download'
         if mkey is not None:
             endpoint += f'/{mkey}'
-        return self._client._get_binary('log', endpoint, params=kwargs if kwargs else None)
+        return self._client.get_binary('log', endpoint, params=kwargs if kwargs else None)
 
     # Raw Log Retrieval
 
@@ -158,7 +158,7 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def traffic_raw(
         self,
@@ -217,7 +217,7 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def event_raw(
         self,
@@ -278,7 +278,7 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     # Formatted Log Retrieval
 
@@ -348,7 +348,7 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def traffic(
         self,
@@ -413,7 +413,7 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def event(
         self,
@@ -480,4 +480,4 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None, vdom=vdom)
+        return self._client.get('log', endpoint, params=params if params else None, vdom=vdom)

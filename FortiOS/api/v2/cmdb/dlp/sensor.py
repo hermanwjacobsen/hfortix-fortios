@@ -97,7 +97,7 @@ class Sensor:
         
         params.update(kwargs)
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -222,7 +222,7 @@ class Sensor:
         
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'dlp/sensor', data, vdom=vdom)
+        return self._client.post('cmdb', 'dlp/sensor', data, vdom=vdom)
     
     def update(
         self,
@@ -317,7 +317,7 @@ class Sensor:
         
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'dlp/sensor/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'dlp/sensor/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -339,4 +339,4 @@ class Sensor:
             >>> result = fgt.cmdb.dlp.sensor.delete('pii-sensor')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client._delete('cmdb', f'dlp/sensor/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'dlp/sensor/{name}', vdom=vdom)

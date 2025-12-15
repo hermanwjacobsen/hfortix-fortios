@@ -61,7 +61,7 @@ class Log:
         Returns:
             dict: API response
         """
-        return self._client._get('log', endpoint, params=params)
+        return self._client.get('log', endpoint, params=params)
 
     def _get_binary(
         self,
@@ -80,4 +80,4 @@ class Log:
         Returns:
             bytes: Binary response data
         """
-        return self._client._get_binary('log', endpoint, params=params)
+        return self._client.get_binary('log', endpoint, params=params)

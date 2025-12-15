@@ -38,7 +38,7 @@ class Custom:
         Example:
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.list()
         """
-        return self._client._get('cmdb', 'firewall.wildcard-fqdn/custom', vdom=vdom, params=params)
+        return self._client.get('cmdb', 'firewall.wildcard-fqdn/custom', vdom=vdom, params=params)
     
     def get(self, name: str, vdom=None, **params):
         """
@@ -55,7 +55,7 @@ class Custom:
         Example:
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.get('*.example.com')
         """
-        return self._client._get('cmdb', f'firewall.wildcard-fqdn/custom/{name}', vdom=vdom, params=params)
+        return self._client.get('cmdb', f'firewall.wildcard-fqdn/custom/{name}', vdom=vdom, params=params)
     
     def create(
         self,
@@ -111,7 +111,7 @@ class Custom:
         if uuid is not None:
             data['uuid'] = uuid
         
-        return self._client._post('cmdb', 'firewall.wildcard-fqdn/custom', data, vdom=vdom)
+        return self._client.post('cmdb', 'firewall.wildcard-fqdn/custom', data, vdom=vdom)
     
     def update(
         self,
@@ -158,7 +158,7 @@ class Custom:
         if uuid is not None:
             data['uuid'] = uuid
         
-        return self._client._put('cmdb', f'firewall.wildcard-fqdn/custom/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'firewall.wildcard-fqdn/custom/{name}', data, vdom=vdom)
     
     def delete(self, name: str, vdom=None):
         """
@@ -174,7 +174,7 @@ class Custom:
         Example:
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.delete('wildcard-example')
         """
-        return self._client._delete('cmdb', f'firewall.wildcard-fqdn/custom/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'firewall.wildcard-fqdn/custom/{name}', vdom=vdom)
     
     def exists(self, name: str, vdom=None):
         """

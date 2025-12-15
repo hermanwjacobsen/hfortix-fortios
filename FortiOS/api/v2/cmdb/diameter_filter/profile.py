@@ -36,7 +36,7 @@ class Profile:
         Returns:
             List of diameter filter profiles
         """
-        return self._client._get('cmdb', self._base_path, params=params, vdom=vdom)
+        return self._client.get('cmdb', self._base_path, params=params, vdom=vdom)
 
     def get(self, name: Optional[str] = None, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -51,7 +51,7 @@ class Profile:
             Profile details or list of profiles
         """
         if name:
-            return self._client._get('cmdb', f"{self._base_path}/{name}", params=params, vdom=vdom)
+            return self._client.get('cmdb', f"{self._base_path}/{name}", params=params, vdom=vdom)
         return self.list(params=params, vdom=vdom)
 
     def create(
@@ -131,7 +131,7 @@ class Profile:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client._post('cmdb', self._base_path, data=data, vdom=vdom)
+        return self._client.post('cmdb', self._base_path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -210,7 +210,7 @@ class Profile:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client._put('cmdb', f"{self._base_path}/{name}", data=data, vdom=vdom)
+        return self._client.put('cmdb', f"{self._base_path}/{name}", data=data, vdom=vdom)
 
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -223,7 +223,7 @@ class Profile:
         Returns:
             Deletion response
         """
-        return self._client._delete('cmdb', f"{self._base_path}/{name}", vdom=vdom)
+        return self._client.delete('cmdb', f"{self._base_path}/{name}", vdom=vdom)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

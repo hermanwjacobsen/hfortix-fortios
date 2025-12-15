@@ -100,7 +100,7 @@ class DataType:
         
         params.update(kwargs)
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -222,7 +222,7 @@ class DataType:
         
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'dlp/data-type', data, vdom=vdom)
+        return self._client.post('cmdb', 'dlp/data-type', data, vdom=vdom)
     
     def update(
         self,
@@ -319,7 +319,7 @@ class DataType:
         
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'dlp/data-type/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'dlp/data-type/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -341,4 +341,4 @@ class DataType:
             >>> result = fgt.cmdb.dlp.data_type.delete('custom-ssn')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client._delete('cmdb', f'dlp/data-type/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'dlp/data-type/{name}', vdom=vdom)

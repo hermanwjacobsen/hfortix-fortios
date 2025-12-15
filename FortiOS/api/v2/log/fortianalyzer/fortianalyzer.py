@@ -59,7 +59,7 @@ class FortiAnalyzer:
             params['mkey'] = mkey
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -87,7 +87,7 @@ class FortiAnalyzer:
             params['mkey'] = mkey
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -117,7 +117,7 @@ class FortiAnalyzer:
             params['mkey'] = mkey
         params.update(kwargs)
 
-        return self._client._get_binary('log', endpoint, params=params if params else None)
+        return self._client.get_binary('log', endpoint, params=params if params else None)
 
     def raw(
         self,
@@ -179,7 +179,7 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def traffic_raw(
         self,
@@ -237,7 +237,7 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def event_raw(
         self,
@@ -297,7 +297,7 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def get(
         self,
@@ -365,7 +365,7 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def traffic(
         self,
@@ -429,7 +429,7 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def event(
         self,
@@ -495,4 +495,4 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client._get('log', endpoint, params=params if params else None, vdom=vdom)
+        return self._client.get('log', endpoint, params=params if params else None, vdom=vdom)

@@ -73,7 +73,7 @@ class Setting:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client._get('cmdb', 'automation/setting', params=params, vdom=vdom)
+        return self._client.get('cmdb', 'automation/setting', params=params, vdom=vdom)
 
     def update(
         self,
@@ -130,4 +130,4 @@ class Setting:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client._put('cmdb', 'automation/setting', data=data, vdom=vdom)
+        return self._client.put('cmdb', 'automation/setting', data=data, vdom=vdom)

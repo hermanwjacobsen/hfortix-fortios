@@ -108,7 +108,7 @@ class Profile:
         if name:
             path = f'{path}/{name}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -278,7 +278,7 @@ class Profile:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'emailfilter/profile', data=data, vdom=vdom)
+        return self._client.post('cmdb', 'emailfilter/profile', data=data, vdom=vdom)
 
     def update(
         self,
@@ -412,7 +412,7 @@ class Profile:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', f'emailfilter/profile/{name}', data=data, vdom=vdom)
+        return self._client.put('cmdb', f'emailfilter/profile/{name}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -438,5 +438,5 @@ class Profile:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client._delete('cmdb', f'emailfilter/profile/{name}', 
+        return self._client.delete('cmdb', f'emailfilter/profile/{name}', 
                                    params=params if params else None, vdom=vdom)

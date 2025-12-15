@@ -108,7 +108,7 @@ class Cfm:
         if domain_id:
             path = f'{path}/{domain_id}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -231,7 +231,7 @@ class Cfm:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'ethernet-oam/cfm', data=data, vdom=vdom)
+        return self._client.post('cmdb', 'ethernet-oam/cfm', data=data, vdom=vdom)
 
     def update(
         self,
@@ -301,7 +301,7 @@ class Cfm:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', f'ethernet-oam/cfm/{domain_id}', data=data, vdom=vdom)
+        return self._client.put('cmdb', f'ethernet-oam/cfm/{domain_id}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -327,5 +327,5 @@ class Cfm:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client._delete('cmdb', f'ethernet-oam/cfm/{domain_id}', 
+        return self._client.delete('cmdb', f'ethernet-oam/cfm/{domain_id}', 
                                    params=params if params else None, vdom=vdom)

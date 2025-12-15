@@ -116,7 +116,7 @@ class Group:
         if name:
             path = f'{path}/{name}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -272,7 +272,7 @@ class Group:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'application/group', data, vdom=vdom)
+        return self._client.post('cmdb', 'application/group', data, vdom=vdom)
 
     def update(
         self,
@@ -383,7 +383,7 @@ class Group:
             if value is not None:
                 params[key] = value
 
-        return self._client._put(
+        return self._client.put(
             'cmdb',
             f'application/group/{name}',
             data,
@@ -423,7 +423,7 @@ class Group:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client._delete(
+        return self._client.delete(
             'cmdb',
             f'application/group/{name}',
             params=params if params else None,

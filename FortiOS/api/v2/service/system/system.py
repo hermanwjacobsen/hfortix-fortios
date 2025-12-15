@@ -82,7 +82,7 @@ class System:
 
         params.update(kwargs)
 
-        return self._client._get('service', endpoint, params=params)
+        return self._client.get('service', endpoint, params=params)
 
     def fabric_time_in_sync(
         self,
@@ -135,7 +135,7 @@ class System:
 
         params.update(kwargs)
 
-        return self._client._get('service', endpoint, params=params)
+        return self._client.get('service', endpoint, params=params)
 
     def fabric_admin_lockout_exists(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -175,4 +175,4 @@ class System:
 
         params.update(kwargs)
 
-        return self._client._get('service', endpoint, params=params)
+        return self._client.get('service', endpoint, params=params)

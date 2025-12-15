@@ -109,7 +109,7 @@ class SecurityRating:
 
         params.update(kwargs)
 
-        return self._client._get('service', 'security-rating/report/',
+        return self._client.get('service', 'security-rating/report/',
                                params=params, vdom=vdom)
 
     def recommendations(
@@ -186,5 +186,5 @@ class SecurityRating:
 
         params.update(kwargs)
 
-        return self._client._get('service', 'security-rating/recommendations/',
+        return self._client.get('service', 'security-rating/recommendations/',
                                params=params, vdom=vdom)

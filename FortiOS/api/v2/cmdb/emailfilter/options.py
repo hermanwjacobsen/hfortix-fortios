@@ -77,7 +77,7 @@ class Options:
 
         params.update(kwargs)
 
-        return self._client._get('cmdb', 'emailfilter/options', 
+        return self._client.get('cmdb', 'emailfilter/options', 
                                params=params if params else None, vdom=vdom)
 
     def update(
@@ -111,4 +111,4 @@ class Options:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', 'emailfilter/options', data=data, vdom=vdom)
+        return self._client.put('cmdb', 'emailfilter/options', data=data, vdom=vdom)

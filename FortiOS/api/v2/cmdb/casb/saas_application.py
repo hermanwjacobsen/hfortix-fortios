@@ -130,7 +130,7 @@ class SaasApplication:
         # Build path
         path = f'casb/saas-application/{name}' if name else 'casb/saas-application'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -227,7 +227,7 @@ class SaasApplication:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'casb/saas-application', data, vdom=vdom)
+        return self._client.post('cmdb', 'casb/saas-application', data, vdom=vdom)
 
     def update(
         self,
@@ -322,7 +322,7 @@ class SaasApplication:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client._put('cmdb', f'casb/saas-application/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'casb/saas-application/{name}', data, vdom=vdom)
 
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -340,4 +340,4 @@ class SaasApplication:
             >>> result = fgt.cmdb.casb.saas_application.delete('my-custom-app')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client._delete('cmdb', f'casb/saas-application/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'casb/saas-application/{name}', vdom=vdom)

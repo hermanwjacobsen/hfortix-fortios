@@ -110,7 +110,7 @@ class Profile:
         params.update(kwargs)
 
         path = f'antivirus/profile/{name}' if name else 'antivirus/profile'
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -256,7 +256,7 @@ class Profile:
         # Add any extra kwargs (protocol settings like http, ftp, etc.)
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'antivirus/profile', data, vdom=vdom)
+        return self._client.post('cmdb', 'antivirus/profile', data, vdom=vdom)
 
     def update(
         self,
@@ -435,7 +435,7 @@ class Profile:
             if value is not None:
                 params[param_name] = value
 
-        return self._client._put('cmdb', f'antivirus/profile/{name}', data, params=params if params else None, vdom=vdom)
+        return self._client.put('cmdb', f'antivirus/profile/{name}', data, params=params if params else None, vdom=vdom)
 
     def delete(
         self,
@@ -489,7 +489,7 @@ class Profile:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client._delete('cmdb', f'antivirus/profile/{name}', params=params if params else None, vdom=vdom)
+        return self._client.delete('cmdb', f'antivirus/profile/{name}', params=params if params else None, vdom=vdom)
 
     def list(
         self,

@@ -105,7 +105,7 @@ class List:
         if name:
             path = f'{path}/{name}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
@@ -253,7 +253,7 @@ class List:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'application/list', data, vdom=vdom)
+        return self._client.post('cmdb', 'application/list', data, vdom=vdom)
 
     def update(
         self,
@@ -370,7 +370,7 @@ class List:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', f'application/list/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'application/list/{name}', data, vdom=vdom)
 
     def delete(
         self,
@@ -391,4 +391,4 @@ class List:
             >>> # Delete application list
             >>> result = fgt.cmdb.application.list.delete('web-filter')
         """
-        return self._client._delete('cmdb', f'application/list/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'application/list/{name}', vdom=vdom)

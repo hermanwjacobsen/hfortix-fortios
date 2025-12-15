@@ -98,7 +98,7 @@ class Profile:
         if name:
             path = f'{path}/{name}'
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -180,7 +180,7 @@ class Profile:
             api_key = key.replace('_', '-')
             data[api_key] = value
         
-        return self._client._post('cmdb', 'file-filter/profile', data=data, vdom=vdom)
+        return self._client.post('cmdb', 'file-filter/profile', data=data, vdom=vdom)
 
     def update(
         self,
@@ -225,7 +225,7 @@ class Profile:
             api_key = key.replace('_', '-')
             data[api_key] = value
         
-        return self._client._put('cmdb', f'file-filter/profile/{name}', data=data, vdom=vdom)
+        return self._client.put('cmdb', f'file-filter/profile/{name}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -252,7 +252,7 @@ class Profile:
         if scope is not None:
             params['scope'] = scope
         
-        return self._client._delete(
+        return self._client.delete(
             'cmdb',
             f'file-filter/profile/{name}',
             params=params if params else None,

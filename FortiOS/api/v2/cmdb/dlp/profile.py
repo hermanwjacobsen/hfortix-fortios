@@ -97,7 +97,7 @@ class Profile:
         
         params.update(kwargs)
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -251,7 +251,7 @@ class Profile:
         
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'dlp/profile', data, vdom=vdom)
+        return self._client.post('cmdb', 'dlp/profile', data, vdom=vdom)
     
     def update(
         self,
@@ -362,7 +362,7 @@ class Profile:
         
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'dlp/profile/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'dlp/profile/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -384,4 +384,4 @@ class Profile:
             >>> result = fgt.cmdb.dlp.profile.delete('email-protection')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client._delete('cmdb', f'dlp/profile/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'dlp/profile/{name}', vdom=vdom)

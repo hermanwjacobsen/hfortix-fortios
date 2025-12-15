@@ -108,7 +108,7 @@ class HostKey:
                 params[key] = value
         params.update(kwargs)
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def create(
         self,
@@ -192,7 +192,7 @@ class HostKey:
                 data[api_name] = value
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'firewall.ssh/host-key', data, vdom=vdom)
+        return self._client.post('cmdb', 'firewall.ssh/host-key', data, vdom=vdom)
     
     def update(
         self,
@@ -271,7 +271,7 @@ class HostKey:
                 data[api_name] = value
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'firewall.ssh/host-key/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'firewall.ssh/host-key/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -292,7 +292,7 @@ class HostKey:
             >>> # Delete host key
             >>> result = fgt.cmdb.firewall.ssh.host_key.delete('server1-key')
         """
-        return self._client._delete('cmdb', f'firewall.ssh/host-key/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'firewall.ssh/host-key/{name}', vdom=vdom)
     
     def exists(
         self,

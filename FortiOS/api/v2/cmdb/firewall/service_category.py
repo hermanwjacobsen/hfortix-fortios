@@ -140,7 +140,7 @@ class ServiceCategory:
         if name:
             path = f'{path}/{name}'
         
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -197,7 +197,7 @@ class ServiceCategory:
         
         data.update(kwargs)
         
-        return self._client._post('cmdb', 'firewall.service/category', data, vdom=vdom)
+        return self._client.post('cmdb', 'firewall.service/category', data, vdom=vdom)
 
     def update(
         self,
@@ -251,7 +251,7 @@ class ServiceCategory:
         
         data.update(kwargs)
         
-        return self._client._put('cmdb', f'firewall.service/category/{name}', data, vdom=vdom)
+        return self._client.put('cmdb', f'firewall.service/category/{name}', data, vdom=vdom)
 
     def delete(
         self,
@@ -272,7 +272,7 @@ class ServiceCategory:
             >>> # Delete category
             >>> result = fgt.cmdb.firewall.service.category.delete('Custom-Apps')
         """
-        return self._client._delete('cmdb', f'firewall.service/category/{name}', vdom=vdom)
+        return self._client.delete('cmdb', f'firewall.service/category/{name}', vdom=vdom)
 
     def exists(
         self,

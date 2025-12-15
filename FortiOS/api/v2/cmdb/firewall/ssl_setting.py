@@ -42,7 +42,7 @@ class Setting:
             # Get with metadata
             result = fgt.cmdb.firewall.ssl.setting.get(meta=True)
         """
-        return self._client._get('cmdb', 'firewall.ssl/setting', vdom=vdom, params=params)
+        return self._client.get('cmdb', 'firewall.ssl/setting', vdom=vdom, params=params)
     
     def update(
         self,
@@ -118,4 +118,4 @@ class Setting:
         if abbreviate_handshake is not None:
             data['abbreviate-handshake'] = abbreviate_handshake
         
-        return self._client._put('cmdb', 'firewall.ssl/setting', data, vdom=vdom)
+        return self._client.put('cmdb', 'firewall.ssl/setting', data, vdom=vdom)

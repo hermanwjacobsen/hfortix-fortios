@@ -102,7 +102,7 @@ class Dataplan:
         if name:
             path = f'{path}/{name}'
 
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -240,7 +240,7 @@ class Dataplan:
 
         data.update(kwargs)
 
-        return self._client._post('cmdb', 'extension-controller/dataplan', data=data, vdom=vdom)
+        return self._client.post('cmdb', 'extension-controller/dataplan', data=data, vdom=vdom)
 
     def update(
         self,
@@ -328,7 +328,7 @@ class Dataplan:
 
         data.update(kwargs)
 
-        return self._client._put('cmdb', f'extension-controller/dataplan/{name}', data=data, vdom=vdom)
+        return self._client.put('cmdb', f'extension-controller/dataplan/{name}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -354,5 +354,5 @@ class Dataplan:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client._delete('cmdb', f'extension-controller/dataplan/{name}', 
+        return self._client.delete('cmdb', f'extension-controller/dataplan/{name}', 
                                    params=params if params else None, vdom=vdom)

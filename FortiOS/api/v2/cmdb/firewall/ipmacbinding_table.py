@@ -86,7 +86,7 @@ class IpmacbindingTable:
         params.update(kwargs)
         
         path = 'firewall.ipmacbinding/table'
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def get(
         self,
@@ -133,7 +133,7 @@ class IpmacbindingTable:
         params.update(kwargs)
         
         path = f'firewall.ipmacbinding/table/{seq_num}'
-        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -198,7 +198,7 @@ class IpmacbindingTable:
                 data[key] = value
         
         path = 'firewall.ipmacbinding/table'
-        return self._client._post('cmdb', path, data=data, vdom=vdom)
+        return self._client.post('cmdb', path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -264,7 +264,7 @@ class IpmacbindingTable:
                 data[key] = value
         
         path = f'firewall.ipmacbinding/table/{seq_num}'
-        return self._client._put('cmdb', path, data=data, vdom=vdom)
+        return self._client.put('cmdb', path, data=data, vdom=vdom)
 
     def delete(
         self,
@@ -289,7 +289,7 @@ class IpmacbindingTable:
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.delete(2, vdom='customer1')
         """
         path = f'firewall.ipmacbinding/table/{seq_num}'
-        return self._client._delete('cmdb', path, vdom=vdom)
+        return self._client.delete('cmdb', path, vdom=vdom)
 
     def exists(
         self,
