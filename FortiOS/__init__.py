@@ -19,7 +19,7 @@ Exceptions:
     APIError: API request/response errors
 """
 
-from .client import FortiOS
+from .fortios import FortiOS
 from .exceptions import APIError, FortiOSError, LoginError
 from .version import __author__, __version__
 
