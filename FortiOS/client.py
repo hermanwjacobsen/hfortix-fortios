@@ -131,10 +131,11 @@ class FortiOS:
         from .api.v2.log import Log
         from .api.v2.monitor import Monitor
         from .api.v2.service import Service
-        self.cmdb = CMDB(self)
-        self.service = Service(self)
-        self.log = Log(self)
-        self.monitor = Monitor(self)
+        
+        self.cmdb: CMDB = CMDB(self)
+        self.service: Service = Service(self)
+        self.log: Log = Log(self)
+        self.monitor: Monitor = Monitor(self)
 
     def _handle_response_errors(self, response: requests.Response) -> None:
         """

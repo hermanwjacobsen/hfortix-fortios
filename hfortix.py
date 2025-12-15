@@ -19,12 +19,14 @@ Examples:
     from hfortix import FortinetError, APIError
 """
 
+from typing import TYPE_CHECKING
+
 # Import version from FortiOS submodule
 try:
     from FortiOS.version import __version__, __author__
 except ImportError:
     # Fallback if FortiOS not installed
-    __version__ = '0.3.4'
+    __version__ = '0.3.5'
     __author__ = 'Herman W. Jacobsen'
 
 # Import base exceptions - always available
@@ -48,7 +50,9 @@ try:
     _FORTIOS_AVAILABLE = True
 except ImportError:
     _FORTIOS_AVAILABLE = False
-    FortiOS = None
+    if not TYPE_CHECKING:
+        # Provide a stub for runtime when FortiOS is not available
+        FortiOS = None  # type: ignore
 
 # Try to import FortiManager if available (future)
 try:

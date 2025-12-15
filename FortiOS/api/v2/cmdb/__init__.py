@@ -14,6 +14,24 @@ class CMDB:
     """
     CMDB API helper class
     Provides access to FortiOS configuration endpoints
+    
+    Attributes:
+        alertemail: Alert email configuration
+        antivirus: Antivirus profiles and settings
+        application: Application control lists
+        authentication: Authentication rules and settings
+        automation: Automation stitches and actions
+        casb: Cloud Access Security Broker
+        certificate: Certificate management
+        diameter_filter: Diameter filter profiles
+        dlp: Data Loss Prevention
+        dnsfilter: DNS filtering profiles
+        emailfilter: Email filter profiles
+        endpoint_control: Endpoint control settings
+        ethernet_oam: Ethernet OAM settings
+        extension_controller: Extension controller
+        file_filter: File filtering profiles
+        firewall: Firewall policies and objects
     """
 
     def __init__(self, client: 'FortiOS') -> None:
@@ -43,22 +61,22 @@ class CMDB:
         from .file_filter import FileFilter
         from .firewall import Firewall
 
-        self.alertemail = AlertEmail(client)
-        self.antivirus = Antivirus(client)
-        self.application = Application(client)
-        self.authentication = Authentication(client)
-        self.automation = Automation(client)
-        self.casb = Casb(client)
-        self.certificate = Certificate(client)
-        self.diameter_filter = DiameterFilter(client)
-        self.dlp = DLP(client)
-        self.dnsfilter = DNSFilter(client)
-        self.emailfilter = EmailFilter(client)
-        self.endpoint_control = EndpointControl(client)
-        self.ethernet_oam = EthernetOAM(client)
-        self.extension_controller = ExtensionController(client)
-        self.file_filter = FileFilter(client)
-        self.firewall = Firewall(client)
+        self.alertemail: AlertEmail = AlertEmail(client)
+        self.antivirus: Antivirus = Antivirus(client)
+        self.application: Application = Application(client)
+        self.authentication: Authentication = Authentication(client)
+        self.automation: Automation = Automation(client)
+        self.casb: Casb = Casb(client)
+        self.certificate: Certificate = Certificate(client)
+        self.diameter_filter: DiameterFilter = DiameterFilter(client)
+        self.dlp: DLP = DLP(client)
+        self.dnsfilter: DNSFilter = DNSFilter(client)
+        self.emailfilter: EmailFilter = EmailFilter(client)
+        self.endpoint_control: EndpointControl = EndpointControl(client)
+        self.ethernet_oam: EthernetOAM = EthernetOAM(client)
+        self.extension_controller: ExtensionController = ExtensionController(client)
+        self.file_filter: FileFilter = FileFilter(client)
+        self.firewall: Firewall = Firewall(client)
 
     def get(
         self,

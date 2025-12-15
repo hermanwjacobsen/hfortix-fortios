@@ -19,6 +19,87 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Async support
 - CLI tool
 
+## [0.3.5] - 2025-12-15
+
+### Improved - IDE Autocomplete & Type Hints ✨
+
+#### Developer Experience Enhancements
+- **Added PEP 561 support** - Created `FortiOS/py.typed` marker file for better IDE type checking
+- **Enhanced type hints** - Added explicit type annotations to all API helper classes
+  - `self.cmdb: CMDB` - Full autocomplete for CMDB endpoints
+  - `self.firewall: Firewall` - Full autocomplete for firewall endpoints
+  - All 16 CMDB categories now have proper type hints
+- **Improved `__all__` exports** - Better module discovery and import suggestions
+- **Updated setup.py** - Added `package_data` for py.typed and "Typing :: Typed" classifier
+- **Fixed duplicate assignments** - Removed redundant initialization in CMDB `__init__.py`
+
+#### Documentation Improvements
+- Added comprehensive docstrings explaining API helper class attributes
+- Clarified purpose of generic methods (advanced/fallback usage)
+- Better examples in class docstrings
+
+### Technical Details
+- Type hints now work correctly in VS Code, PyCharm, and other PEP 561-compliant IDEs
+- Autocomplete shows all available endpoints when typing `fgt.cmdb.firewall.`
+- Method signatures display parameter types and return types
+- No breaking changes - fully backward compatible
+
+## [0.3.4] - 2025-12-15
+
+### Documentation - Unified Import Syntax 📚
+
+#### Updated All Documentation
+- **README.md** - Changed all examples to use `from hfortix import FortiOS`
+- **QUICKSTART.md** - Updated import patterns and all code examples
+- **Added PyPI badges** - Version, Python 3.8+, MIT license
+- **Status updates** - FortiOS "✅ Active", FortiManager/FortiAnalyzer "⏸️ Planned"
+
+### Technical Details
+- All documentation now reflects the unified package import structure
+- Installation instructions prioritize PyPI method
+- 190 insertions, 78 deletions across documentation files
+
+## [0.3.3] - 2025-12-15
+
+### Added - Unified Package Import Structure 📦
+
+#### Package Restructuring
+- **Created `hfortix.py`** - Main module for unified imports
+- **Enable `from hfortix import FortiOS`** - Clean import syntax
+- **Backward compatible** - Old imports still work
+- **Updated `__init__.py`** - Changed from relative to absolute imports
+
+### Technical Details
+- Added `py_modules=['hfortix', 'exceptions', 'exceptions_forti']` to setup.py
+- Package now supports both import styles:
+  - Recommended: `from hfortix import FortiOS`
+  - Also works: `from FortiOS import FortiOS`
+
+## [0.3.2] - 2025-12-15
+
+### Fixed - Package Distribution 🔧
+
+#### Resolved Import Errors
+- **Fixed ModuleNotFoundError** - Added root-level modules to package
+- **Updated setup.py** - Added `py_modules` configuration
+- **Included exceptions modules** - Both `exceptions.py` and `exceptions_forti.py` now in package
+
+### Technical Details
+- Root-level Python modules now properly included in wheel and sdist
+- No code changes needed - pure packaging fix
+
+## [0.3.1] - 2025-12-15
+
+### Fixed - Import Error Handling 🛠️
+
+#### Exception Module Imports
+- **Added fallback imports** - Better handling for missing exception modules
+- **Enhanced FortiOS/exceptions.py** - Try/except blocks for imports
+- **Fallback exceptions defined** - Basic exception classes if imports fail
+
+### Technical Details
+- Partial fix for import issues (fully resolved in 0.3.2)
+
 ## [0.3.0] - 2025-12-14
 
 ### Added - Firewall Flat Endpoints + Sub-categories! 🎉

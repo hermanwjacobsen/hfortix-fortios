@@ -14,9 +14,16 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Log API**: 42 methods across 5 modules (100% complete) ✅
 - **Monitor API**: Not yet implemented ⏸️
 
-**Latest Addition (v0.3.3):**
-- ✅ **Unified Package Import**: `from hfortix import FortiOS` (new recommended syntax)
-- ✅ **Flat Firewall Endpoints (11 endpoints):**
+**Latest Addition (v0.3.5):**
+- ✨ **Enhanced IDE Autocomplete**: Full PEP 561 type hint support for better IntelliSense
+- ✅ **Type Annotations**: Explicit type hints on all API helper classes (cmdb, firewall, etc.)
+- ✅ **Better Import Discovery**: Improved `__all__` exports for cleaner autocomplete suggestions
+- 🐛 **Bug Fix**: Removed duplicate assignments in CMDB initialization
+
+**Previous Releases:**
+- v0.3.4: Unified import syntax documentation (`from hfortix import FortiOS`)
+- v0.3.3: Package restructuring for unified imports
+- v0.3.0: Firewall endpoints (11 flat + 17 nested = 28 total)
   - firewall/DoS-policy, DoS-policy6 (DoS protection)
   - firewall/access-proxy, access-proxy6 (Reverse proxy/WAF)
   - firewall/access-proxy-ssh-client-cert (SSH certificates)
@@ -36,6 +43,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 ## 🎯 Features
 
 - **Unified Package**: Import all Fortinet products from a single package
+- **Enhanced IDE Support**: Full type hints with PEP 561 compliance for excellent autocomplete
 - **Modular Architecture**: Each product module can be used independently
 - **PyPI Installation**: `pip install hfortix` - simple and straightforward
 - **Comprehensive Exception Handling**: 387+ FortiOS error codes with detailed descriptions

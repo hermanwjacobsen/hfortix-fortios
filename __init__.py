@@ -1,5 +1,5 @@
 """
-Fortinet SDK - Python client library for Fortinet products
+HFortix - Python client library for Fortinet products
 
 This package provides Python SDKs for Fortinet products:
 - FortiOS: FortiGate firewall management
@@ -9,26 +9,26 @@ This package provides Python SDKs for Fortinet products:
 Each product module can be used independently or as part of the complete package.
 
 Examples:
-    # Import specific product
-    from fortinet.FortiOS import FortiOS
+    # Recommended: Import from main package
+    from hfortix import FortiOS
     
-    # Or if using standalone FortiOS module
-    from FortiOS import FortiOS
+    # Also works: Import from submodule
+    from hfortix.FortiOS import FortiOS
     
     # Import base exceptions
-    from fortinet.exceptions import FortinetError, APIError
+    from hfortix import FortinetError, APIError
 """
 
 # Import version from FortiOS submodule
 try:
-    from .FortiOS.version import __version__, __author__
+    from FortiOS.version import __version__, __author__
 except ImportError:
     # Fallback if FortiOS not installed
-    __version__ = '0.1.0'
+    __version__ = '0.3.2'
     __author__ = 'Herman W. Jacobsen'
 
 # Import base exceptions - always available
-from .exceptions import (
+from exceptions import (
     FortinetError,
     AuthenticationError,
     AuthorizationError,
@@ -44,7 +44,7 @@ from .exceptions import (
 
 # Try to import FortiOS if available
 try:
-    from .FortiOS import FortiOS
+    from FortiOS import FortiOS
     _FORTIOS_AVAILABLE = True
 except ImportError:
     _FORTIOS_AVAILABLE = False
@@ -52,7 +52,7 @@ except ImportError:
 
 # Try to import FortiManager if available (future)
 try:
-    from .FortiManager import FortiManager
+    from FortiManager import FortiManager
     _FORTIMANAGER_AVAILABLE = True
 except ImportError:
     _FORTIMANAGER_AVAILABLE = False
@@ -60,7 +60,7 @@ except ImportError:
 
 # Try to import FortiAnalyzer if available (future)
 try:
-    from .FortiAnalyzer import FortiAnalyzer
+    from FortiAnalyzer import FortiAnalyzer
     _FORTIANALYZER_AVAILABLE = True
 except ImportError:
     _FORTIANALYZER_AVAILABLE = False

@@ -1,6 +1,6 @@
 """Version information for HFortix - Python SDK for Fortinet Products."""
 
-__version__ = "0.1.0"
+__version__ = "0.3.5"
 __author__ = "Herman W. Jacobsen"
 __license__ = "MIT"
 __email__ = "herman@wjacobsen.fo"
