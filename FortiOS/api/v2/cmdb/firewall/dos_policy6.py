@@ -42,7 +42,7 @@ class DosPolicy6:
             >>> policies = fgt.cmdb.firewall.dos_policy6.list()
             >>> print(f"Total IPv6 DoS policies: {len(policies['results'])}")
         """
-        return self._client.cmdb.get(self._path, vdom=vdom, params=params)
+        return self._client.cmdb._get(self._path, vdom=vdom, params=params)
 
     def get(self, policyid: int | None = None, vdom: str | None = None, **params: Any) -> dict[str, Any]:
         """
@@ -68,7 +68,7 @@ class DosPolicy6:
             path = f'{self._path}/{policyid}'
         else:
             path = self._path
-        return self._client.cmdb.get(path, vdom=vdom, params=params)
+        return self._client.cmdb._get(path, vdom=vdom, params=params)
 
     def create(
         self,
@@ -186,7 +186,7 @@ class DosPolicy6:
         if anomaly is not None:
             data['anomaly'] = anomaly
             
-        return self._client.cmdb.post(self._path, data=data, vdom=vdom)
+        return self._client.cmdb._post(self._path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -246,7 +246,7 @@ class DosPolicy6:
             data['anomaly'] = anomaly
             
         path = f'{self._path}/{policyid}'
-        return self._client.cmdb.put(path, data=data, vdom=vdom)
+        return self._client.cmdb._put(path, data=data, vdom=vdom)
 
     def delete(self, policyid: int, vdom: str | None = None) -> dict[str, Any]:
         """
@@ -263,7 +263,7 @@ class DosPolicy6:
             >>> result = fgt.cmdb.firewall.dos_policy6.delete(policyid=1)
         """
         path = f'{self._path}/{policyid}'
-        return self._client.cmdb.delete(path, vdom=vdom)
+        return self._client.cmdb._delete(path, vdom=vdom)
 
     def exists(self, policyid: int, vdom: str | None = None) -> bool:
         """

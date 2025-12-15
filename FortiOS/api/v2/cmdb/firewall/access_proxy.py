@@ -42,7 +42,7 @@ class AccessProxy:
             >>> proxies = fgt.cmdb.firewall.access_proxy.list()
             >>> print(f"Total proxies: {len(proxies['results'])}")
         """
-        return self._client.cmdb.get(self._path, vdom=vdom, params=params)
+        return self._client.cmdb._get(self._path, vdom=vdom, params=params)
 
     def get(self, name: str | None = None, vdom: str | None = None, **params: Any) -> dict[str, Any]:
         """
@@ -68,7 +68,7 @@ class AccessProxy:
             path = f'{self._path}/{name}'
         else:
             path = self._path
-        return self._client.cmdb.get(path, vdom=vdom, params=params)
+        return self._client.cmdb._get(path, vdom=vdom, params=params)
 
     def create(
         self,
@@ -163,7 +163,7 @@ class AccessProxy:
         if api_gateway6 is not None:
             data['api-gateway6'] = api_gateway6
             
-        return self._client.cmdb.post(self._path, data=data, vdom=vdom)
+        return self._client.cmdb._post(self._path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -250,7 +250,7 @@ class AccessProxy:
             data['api-gateway6'] = api_gateway6
             
         path = f'{self._path}/{name}'
-        return self._client.cmdb.put(path, data=data, vdom=vdom)
+        return self._client.cmdb._put(path, data=data, vdom=vdom)
 
     def delete(self, name: str, vdom: str | None = None) -> dict[str, Any]:
         """
@@ -267,7 +267,7 @@ class AccessProxy:
             >>> result = fgt.cmdb.firewall.access_proxy.delete('proxy1')
         """
         path = f'{self._path}/{name}'
-        return self._client.cmdb.delete(path, vdom=vdom)
+        return self._client.cmdb._delete(path, vdom=vdom)
 
     def exists(self, name: str, vdom: str | None = None) -> bool:
         """

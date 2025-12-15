@@ -4,6 +4,8 @@ from typing import Any, Optional, Union
 
 import requests
 
+__all__ = ['FortiOS']
+
 
 class FortiOS:
     """
@@ -24,11 +26,8 @@ class FortiOS:
     
     Attributes:
         host (str): FortiGate hostname or IP address
-        url (str): Complete HTTPS URL to FortiGate
-        verify (bool): SSL certificate verification enabled/disabled
         vdom (str): Active virtual domain (None = default VDOM)
         port (int): HTTPS port number
-        session (requests.Session): HTTP session with connection pooling
         cmdb (CMDB): Configuration management interface
         monitor (Monitor): Monitoring interface
         log (Log): Logging interface
@@ -104,19 +103,19 @@ class FortiOS:
         if host:
             # If port is already in host string, use as-is
             if ':' in host:
-                self.url = f"https://{host}"
+                self._url = f"https://{host}"
             # If explicit port provided, append it
             elif port:
-                self.url = f"https://{host}:{port}"
+                self._url = f"https://{host}:{port}"
             # Otherwise use default (443)
             else:
-                self.url = f"https://{host}"
+                self._url = f"https://{host}"
         else:
-            self.url = None
+            self._url = None
 
-        self.verify = verify
-        self.session = requests.Session()
-        self.session.verify = verify
+        self._verify = verify
+        self._session = requests.Session()
+        self._session.verify = verify
 
         if not verify:
             import urllib3
@@ -124,7 +123,7 @@ class FortiOS:
 
         # Set token if provided
         if token:
-            self.session.headers['Authorization'] = f'Bearer {token}'
+            self._session.headers['Authorization'] = f'Bearer {token}'
 
         # Initialize API helpers
         from .api.v2.cmdb import CMDB
@@ -182,7 +181,7 @@ class FortiOS:
         Returns:
             JSON response
         """
-        url = f"{self.url}/api/v2/{api_type}/{path}"
+        url = f"{self._url}/api/v2/{api_type}/{path}"
         params = params or {}
 
         # Only add vdom parameter if explicitly specified (either from login or this call)
@@ -196,7 +195,7 @@ class FortiOS:
         # else: No vdom parameter (FortiGate uses its default)
 
         # Make request
-        res = self.session.request(
+        res = self._session.request(
             method=method,
             url=url,
             json=data if data else None,
@@ -269,7 +268,7 @@ class FortiOS:
             archive = get_binary('log', 'disk/ips/archive-download', params={'mkey': 123})
         """
         # Build URL
-        url = f"{self.url}/api/v2/{api_type}/{path}"
+        url = f"{self._url}/api/v2/{api_type}/{path}"
         params = params or {}
 
         # Add vdom if applicable
@@ -279,7 +278,7 @@ class FortiOS:
             params['vdom'] = self.vdom
 
         # Make request
-        res = self.session.get(url, params=params if params else None)
+        res = self._session.get(url, params=params if params else None)
 
         # Handle errors
         self._handle_response_errors(res)
@@ -370,8 +369,8 @@ class FortiOS:
         Optional: Python automatically cleans up when object is destroyed.
         Use this for explicit resource management or in long-running apps.
         """
-        if self.session:
-            self.session.close()
+        if self._session:
+            self._session.close()
 
     def __enter__(self) -> 'FortiOS':
         """Context manager entry"""

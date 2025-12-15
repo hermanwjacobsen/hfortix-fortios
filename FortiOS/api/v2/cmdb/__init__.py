@@ -9,6 +9,8 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 if TYPE_CHECKING:
     from ...client import FortiOS
 
+__all__ = ['CMDB']
+
 
 class CMDB:
     """
@@ -78,14 +80,17 @@ class CMDB:
         self.file_filter: FileFilter = FileFilter(client)
         self.firewall: Firewall = Firewall(client)
 
-    def get(
+    def _get(
         self,
         path: str,
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
     ) -> dict[str, Any]:
         """
-        GET request to CMDB API
+        GET request to CMDB API (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
+        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.get()
 
         Args:
             path: Endpoint path (e.g., 'firewall/address', 'alertemail/setting')
@@ -96,21 +101,13 @@ class CMDB:
             JSON response
 
         Examples:
-            # Get all firewall addresses
-            cmdb.get('firewall/address')
-
-            # Get specific address
-            cmdb.get('firewall/address/myaddr')
-
-            # With filters
-            cmdb.get('firewall/address', params={'format': 'name|comment'})
-
-            # Skip vdom
-            cmdb.get('alertemail/setting', vdom=False)
+            # For endpoints without dedicated classes (e.g., firewall/vip)
+            cmdb._get('firewall/vip')
+            cmdb._get('firewall/vip/myaddr')
         """
         return self._client.request('GET', 'cmdb', path, params=params, vdom=vdom)
 
-    def post(
+    def _post(
         self,
         path: str,
         data: dict[str, Any],
@@ -118,7 +115,10 @@ class CMDB:
         vdom: Optional[Union[str, bool]] = None
     ) -> dict[str, Any]:
         """
-        POST request to CMDB API - Create new object
+        POST request to CMDB API (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
+        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.create()
 
         Args:
             path: Endpoint path
@@ -130,15 +130,12 @@ class CMDB:
             JSON response
 
         Examples:
-            # Create firewall address (using RFC 5737 example network)
-            cmdb.post('firewall/address', {'name': 'test', 'subnet': '192.0.2.0/24'})
-
-            # Clone existing
-            cmdb.post('firewall/address', data, params={'action': 'clone', 'nkey': 'new_name'})
+            # For endpoints without dedicated classes (e.g., firewall/vip)
+            cmdb._post('firewall/vip', {'name': 'test', ...})
         """
         return self._client.request('POST', 'cmdb', path, data=data, params=params, vdom=vdom)
 
-    def put(
+    def _put(
         self,
         path: str,
         data: dict[str, Any],
@@ -146,7 +143,10 @@ class CMDB:
         vdom: Optional[Union[str, bool]] = None
     ) -> dict[str, Any]:
         """
-        PUT request to CMDB API - Update existing object
+        PUT request to CMDB API (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
+        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.update()
 
         Args:
             path: Endpoint path (include object identifier)
@@ -158,22 +158,22 @@ class CMDB:
             JSON response
 
         Examples:
-            # Update firewall address (using RFC 5737 example network)
-            cmdb.put('firewall/address/myaddr', {'subnet': '198.51.100.0/24'})
-
-            # Move object
-            cmdb.put('firewall/policy/1', data, params={'action': 'move', 'after': '5'})
+            # For endpoints without dedicated classes (e.g., firewall/vip)
+            cmdb._put('firewall/vip/myaddr', {'extport': '443'})
         """
         return self._client.request('PUT', 'cmdb', path, data=data, params=params, vdom=vdom)
 
-    def delete(
+    def _delete(
         self,
         path: str,
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
     ) -> dict[str, Any]:
         """
-        DELETE request to CMDB API - Delete object
+        DELETE request to CMDB API (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
+        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.delete()
 
         Args:
             path: Endpoint path (include object identifier)
@@ -184,7 +184,7 @@ class CMDB:
             JSON response
 
         Examples:
-            # Delete firewall address
-            cmdb.delete('firewall/address/myaddr')
+            # For endpoints without dedicated classes (e.g., firewall/vip)
+            cmdb._delete('firewall/vip/myaddr')
         """
         return self._client.request('DELETE', 'cmdb', path, params=params, vdom=vdom)

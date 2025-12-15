@@ -9,6 +9,8 @@ from typing import TYPE_CHECKING, Any, Optional
 if TYPE_CHECKING:
     from ...client import FortiOS
 
+__all__ = ['Log']
+
 
 class Log:
     """
@@ -38,13 +40,15 @@ class Log:
         self.forticloud = FortiCloud(client)
         self.search = Search(client)
 
-    def get(
+    def _get(
         self,
         endpoint: str,
         params: Optional[dict[str, Any]] = None
     ) -> dict[str, Any]:
         """
-        GET request to log API endpoint
+        GET request to log API endpoint (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
 
         Args:
             endpoint: API endpoint path (without /api/v2/log/)
@@ -55,13 +59,15 @@ class Log:
         """
         return self._client.get('log', endpoint, params=params)
 
-    def get_binary(
+    def _get_binary(
         self,
         endpoint: str,
         params: Optional[dict[str, Any]] = None
     ) -> bytes:
         """
-        GET request to log API endpoint returning binary data
+        GET request to log API endpoint returning binary data (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
 
         Args:
             endpoint: API endpoint path (without /api/v2/log/)

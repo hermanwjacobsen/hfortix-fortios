@@ -62,87 +62,87 @@ class Firewall:
     @property
     def dos_policy(self) -> 'DosPolicy':
         """Access DoS policy endpoint"""
-        if not hasattr(self, '_dos_policy'):
+        if not hasattr(self, '__dos_policy'):
             from .dos_policy import DosPolicy
-            self._dos_policy = DosPolicy(self._client)
-        return self._dos_policy
+            self.__dos_policy = DosPolicy(self._client)
+        return self.__dos_policy
 
     @property
     def dos_policy6(self) -> 'DosPolicy6':
         """Access DoS policy6 endpoint"""
-        if not hasattr(self, '_dos_policy6'):
+        if not hasattr(self, '__dos_policy6'):
             from .dos_policy6 import DosPolicy6
-            self._dos_policy6 = DosPolicy6(self._client)
-        return self._dos_policy6
+            self.__dos_policy6 = DosPolicy6(self._client)
+        return self.__dos_policy6
 
     @property
     def address(self) -> 'Address':
         """Access IPv4 address endpoint"""
-        if not hasattr(self, '_address'):
+        if not hasattr(self, '__address'):
             from .address import Address
-            self._address = Address(self._client)
-        return self._address
+            self.__address = Address(self._client)
+        return self.__address
 
     @property
     def address6(self) -> 'Address6':
         """Access IPv6 address endpoint"""
-        if not hasattr(self, '_address6'):
+        if not hasattr(self, '__address6'):
             from .address6 import Address6
-            self._address6 = Address6(self._client)
-        return self._address6
+            self.__address6 = Address6(self._client)
+        return self.__address6
 
     @property
     def address6_template(self) -> 'Address6Template':
         """Access IPv6 address template endpoint"""
-        if not hasattr(self, '_address6_template'):
+        if not hasattr(self, '__address6_template'):
             from .address6_template import Address6Template
-            self._address6_template = Address6Template(self._client)
-        return self._address6_template
+            self.__address6_template = Address6Template(self._client)
+        return self.__address6_template
 
     @property
     def addrgrp(self) -> 'Addrgrp':
         """Access IPv4 address group endpoint"""
-        if not hasattr(self, '_addrgrp'):
+        if not hasattr(self, '__addrgrp'):
             from .addrgrp import Addrgrp
-            self._addrgrp = Addrgrp(self._client)
-        return self._addrgrp
+            self.__addrgrp = Addrgrp(self._client)
+        return self.__addrgrp
 
     @property
     def addrgrp6(self) -> 'Addrgrp6':
         """Access IPv6 address group endpoint"""
-        if not hasattr(self, '_addrgrp6'):
+        if not hasattr(self, '__addrgrp6'):
             from .addrgrp6 import Addrgrp6
-            self._addrgrp6 = Addrgrp6(self._client)
-        return self._addrgrp6
+            self.__addrgrp6 = Addrgrp6(self._client)
+        return self.__addrgrp6
 
     @property
     def access_proxy(self) -> 'AccessProxy':
         """Access access proxy endpoint"""
-        if not hasattr(self, '_access_proxy'):
+        if not hasattr(self, '__access_proxy'):
             from .access_proxy import AccessProxy
-            self._access_proxy = AccessProxy(self._client)
-        return self._access_proxy
+            self.__access_proxy = AccessProxy(self._client)
+        return self.__access_proxy
 
     @property
     def access_proxy6(self) -> 'AccessProxy6':
         """Access access proxy6 endpoint"""
-        if not hasattr(self, '_access_proxy6'):
+        if not hasattr(self, '__access_proxy6'):
             from .access_proxy6 import AccessProxy6
-            self._access_proxy6 = AccessProxy6(self._client)
-        return self._access_proxy6
+            self.__access_proxy6 = AccessProxy6(self._client)
+        return self.__access_proxy6
 
     @property
     def access_proxy_ssh_client_cert(self) -> 'AccessProxySshClientCert':
         """Access access proxy SSH client cert endpoint"""
-        if not hasattr(self, '_access_proxy_ssh_client_cert'):
+        if not hasattr(self, '__access_proxy_ssh_client_cert'):
             from .access_proxy_ssh_client_cert import AccessProxySshClientCert
-            self._access_proxy_ssh_client_cert = AccessProxySshClientCert(self._client)
-        return self._access_proxy_ssh_client_cert
+            self.__access_proxy_ssh_client_cert = AccessProxySshClientCert(self._client)
+        return self.__access_proxy_ssh_client_cert
 
     @property
     def access_proxy_virtual_host(self) -> 'AccessProxyVirtualHost':
         """Access access proxy virtual host endpoint"""
-        if not hasattr(self, '_access_proxy_virtual_host'):
+        if not hasattr(self, '__access_proxy_virtual_host'):
             from .access_proxy_virtual_host import AccessProxyVirtualHost
-            self._access_proxy_virtual_host = AccessProxyVirtualHost(self._client)
-        return self._access_proxy_virtual_host
+            self.__access_proxy_virtual_host = AccessProxyVirtualHost(self._client)
+        return self.__access_proxy_virtual_host

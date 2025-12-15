@@ -42,7 +42,7 @@ class AccessProxyVirtualHost:
             >>> vhosts = fgt.cmdb.firewall.access_proxy_virtual_host.list()
             >>> print(f"Total virtual hosts: {len(vhosts['results'])}")
         """
-        return self._client.cmdb.get(self._path, vdom=vdom, params=params)
+        return self._client.cmdb._get(self._path, vdom=vdom, params=params)
 
     def get(self, name: str | None = None, vdom: str | None = None, **params: Any) -> dict[str, Any]:
         """
@@ -68,7 +68,7 @@ class AccessProxyVirtualHost:
             path = f'{self._path}/{name}'
         else:
             path = self._path
-        return self._client.cmdb.get(path, vdom=vdom, params=params)
+        return self._client.cmdb._get(path, vdom=vdom, params=params)
 
     def create(
         self,
@@ -126,7 +126,7 @@ class AccessProxyVirtualHost:
         if replacemsg_group is not None:
             data['replacemsg-group'] = replacemsg_group
             
-        return self._client.cmdb.post(self._path, data=data, vdom=vdom)
+        return self._client.cmdb._post(self._path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -173,7 +173,7 @@ class AccessProxyVirtualHost:
             data['replacemsg-group'] = replacemsg_group
             
         path = f'{self._path}/{name}'
-        return self._client.cmdb.put(path, data=data, vdom=vdom)
+        return self._client.cmdb._put(path, data=data, vdom=vdom)
 
     def delete(self, name: str, vdom: str | None = None) -> dict[str, Any]:
         """
@@ -190,7 +190,7 @@ class AccessProxyVirtualHost:
             >>> result = fgt.cmdb.firewall.access_proxy_virtual_host.delete('vhost1')
         """
         path = f'{self._path}/{name}'
-        return self._client.cmdb.delete(path, vdom=vdom)
+        return self._client.cmdb._delete(path, vdom=vdom)
 
     def exists(self, name: str, vdom: str | None = None) -> bool:
         """

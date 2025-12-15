@@ -1,6 +1,6 @@
 """
 FortiOS Service API
-Service endpoints for operations and diagnostics
+Service operations endpoints (sniffer, security rating, etc.)
 """
 from __future__ import annotations
 
@@ -8,6 +8,8 @@ from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from ...client import FortiOS
+
+__all__ = ['Service']
 
 
 class Service:
@@ -34,13 +36,15 @@ class Service:
         self.security_rating = SecurityRating(client)
         self.system = System(client)
 
-    def get(
+    def _get(
         self,
         endpoint: str,
         params: Optional[dict[str, Any]] = None
     ) -> dict[str, Any]:
         """
-        GET request to service API endpoint
+        GET request to service API endpoint (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
 
         Args:
             endpoint: API endpoint path (without /api/v2/service/)
@@ -51,13 +55,15 @@ class Service:
         """
         return self._client.get('service', endpoint, params=params)
 
-    def post(
+    def _post(
         self,
         endpoint: str,
         data: Optional[dict[str, Any]] = None
     ) -> dict[str, Any]:
         """
-        POST request to service API endpoint
+        POST request to service API endpoint (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
 
         Args:
             endpoint: API endpoint path (without /api/v2/service/)

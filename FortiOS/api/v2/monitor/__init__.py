@@ -12,6 +12,8 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 if TYPE_CHECKING:
     from ...client import FortiOS
 
+__all__ = ['Monitor']
+
 
 class Monitor:
     """
@@ -52,14 +54,16 @@ class Monitor:
         """
         self._client = client
 
-    def get(
+    def _get(
         self,
         path: str,
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None
     ) -> dict[str, Any]:
         """
-        GET request to Monitor API
+        GET request to Monitor API (Advanced/Internal)
+        
+        ⚠️ Advanced Usage: For endpoints without dedicated classes.
 
         Args:
             path: Endpoint path (e.g., 'system/status', 'firewall/session')
@@ -71,17 +75,13 @@ class Monitor:
 
         Examples:
             >>> # Get system status
-            >>> monitor.get('system/status')
+            >>> monitor._get('system/status')
 
             >>> # Get firewall sessions
-            >>> monitor.get('firewall/session')
-
-            >>> # Get interface statistics
-            >>> monitor.get('system/interface', params={'interface_name': 'port1'})
+            >>> monitor._get('firewall/session')
 
         Note:
             Most monitor endpoints are read-only (GET only) and provide
-            real-time status information. Some endpoints may support POST
-            for triggering actions (e.g., clearing sessions).
+            real-time status information.
         """
         return self._client.get('monitor', path, params=params, vdom=vdom)
