@@ -19,36 +19,33 @@ class FortiOS:
     and start making API calls.
     
     Main API categories:
-        - cmdb: Configuration Management Database (firewall policies, objects, etc.)
-        - monitor: Real-time monitoring and status
-        - log: Log queries and analysis
-        - service: System services (sniffer, security rating, etc.)
+        - api.cmdb: Configuration Management Database (firewall policies, objects, etc.)
+        - api.monitor: Real-time monitoring and status
+        - api.log: Log queries and analysis
+        - api.service: System services (sniffer, security rating, etc.)
     
     Attributes:
         host (str): FortiGate hostname or IP address
         vdom (str): Active virtual domain (None = default VDOM)
         port (int): HTTPS port number
-        cmdb (CMDB): Configuration management interface
-        monitor (Monitor): Monitoring interface
-        log (Log): Logging interface
-        service (Service): Services interface
+        api (API): API namespace containing cmdb, monitor, log, service
     
     Example:
         >>> from fortinet import FortiOS
         >>> fgt = FortiOS("fortigate.example.com", token="your_token_here")
         >>> 
         >>> # List firewall addresses
-        >>> addresses = fgt.cmdb.firewall.address.list()
+        >>> addresses = fgt.api.cmdb.firewall.address.list()
         >>> 
         >>> # Create a firewall address
-        >>> fgt.cmdb.firewall.address.create(
+        >>> fgt.api.cmdb.firewall.address.create(
         ...     name='test-host',
         ...     subnet='192.0.2.100/32',
         ...     comment='Example host'
         ... )
         >>> 
         >>> # Get system status
-        >>> status = fgt.monitor.system.status.get()
+        >>> status = fgt.api.monitor.system.status.get()
     
     Note:
         - Requires FortiOS 6.0+ with REST API enabled
@@ -125,20 +122,34 @@ class FortiOS:
         if token:
             self._session.headers['Authorization'] = f'Bearer {token}'
 
-        # Initialize API helpers
-        from .api.v2.cmdb import CMDB
-        from .api.v2.log import Log
-        from .api.v2.monitor import Monitor
-        from .api.v2.service import Service
+        # Initialize API namespace
+        from .api import API
         
-        self.cmdb: CMDB = CMDB(self)
-        self.service: Service = Service(self)
-        self.log: Log = Log(self)
-        self.monitor: Monitor = Monitor(self)
+        self.api = API(self)
+
+    @property
+    def cmdb(self):
+        """Backward compatibility: redirect to api.cmdb"""
+        return self.api.cmdb
+    
+    @property
+    def log(self):
+        """Backward compatibility: redirect to api.log"""
+        return self.api.log
+    
+    @property
+    def monitor(self):
+        """Backward compatibility: redirect to api.monitor"""
+        return self.api.monitor
+    
+    @property
+    def service(self):
+        """Backward compatibility: redirect to api.service"""
+        return self.api.service
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ['host', 'port', 'vdom', 'cmdb', 'service', 'log', 'monitor', 'close']
+        return ['host', 'port', 'vdom', 'api', 'close']
 
     def _handle_response_errors(self, response: requests.Response) -> None:
         """
