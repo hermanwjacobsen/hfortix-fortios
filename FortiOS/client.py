@@ -25,9 +25,6 @@ class FortiOS:
         - api.service: System services (sniffer, security rating, etc.)
     
     Attributes:
-        host (str): FortiGate hostname or IP address
-        vdom (str): Active virtual domain (None = default VDOM)
-        port (int): HTTPS port number
         api (API): API namespace containing cmdb, monitor, log, service
     
     Example:
@@ -92,9 +89,9 @@ class FortiOS:
             # Port in hostname (alternative)
             fgt = FortiOS("192.0.2.10:8443", token="your_token_here", verify=False)
         """
-        self.host = host
-        self.vdom = vdom
-        self.port = port
+        self._host = host
+        self._vdom = vdom
+        self._port = port
 
         # Build URL with port handling
         if host:
@@ -127,29 +124,24 @@ class FortiOS:
         
         self.api = API(self)
 
-    @property
-    def cmdb(self):
-        """Backward compatibility: redirect to api.cmdb"""
-        return self.api.cmdb
-    
-    @property
-    def log(self):
-        """Backward compatibility: redirect to api.log"""
-        return self.api.log
-    
-    @property
-    def monitor(self):
-        """Backward compatibility: redirect to api.monitor"""
-        return self.api.monitor
-    
-    @property
-    def service(self):
-        """Backward compatibility: redirect to api.service"""
-        return self.api.service
-
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ['host', 'port', 'vdom', 'api', 'close']
+        return ['api']
+
+    @property
+    def host(self) -> Optional[str]:
+        """FortiGate hostname or IP address"""
+        return self._host
+
+    @property
+    def port(self) -> Optional[int]:
+        """HTTPS port number"""
+        return self._port
+
+    @property
+    def vdom(self) -> Optional[str]:
+        """Active virtual domain"""
+        return self._vdom
 
     def _handle_response_errors(self, response: requests.Response) -> None:
         """
@@ -204,9 +196,9 @@ class FortiOS:
         if vdom is not None:
             # Use specific vdom for this request
             params['vdom'] = vdom
-        elif self.vdom is not None and 'vdom' not in params:
+        elif self._vdom is not None and 'vdom' not in params:
             # Use default vdom from login
-            params['vdom'] = self.vdom
+            params['vdom'] = self._vdom
         # else: No vdom parameter (FortiGate uses its default)
 
         # Make request
@@ -222,7 +214,7 @@ class FortiOS:
 
         return res.json()
 
-    def get(
+    def _get(
         self,
         api_type: str,
         path: str,
@@ -256,7 +248,7 @@ class FortiOS:
         """
         return self.request('GET', api_type, path, params=params, vdom=vdom)
 
-    def get_binary(
+    def _get_binary(
         self,
         api_type: str,
         path: str,
@@ -289,8 +281,8 @@ class FortiOS:
         # Add vdom if applicable
         if vdom is not None:
             params['vdom'] = vdom
-        elif self.vdom is not None and 'vdom' not in params:
-            params['vdom'] = self.vdom
+        elif self._vdom is not None and 'vdom' not in params:
+            params['vdom'] = self._vdom
 
         # Make request
         res = self._session.get(url, params=params if params else None)
@@ -301,7 +293,7 @@ class FortiOS:
         # Return raw binary content
         return res.content
 
-    def post(
+    def _post(
         self,
         api_type: str,
         path: str,
@@ -328,7 +320,7 @@ class FortiOS:
         """
         return self.request('POST', api_type, path, data=data, params=params, vdom=vdom)
 
-    def put(
+    def _put(
         self,
         api_type: str,
         path: str,
@@ -355,7 +347,7 @@ class FortiOS:
         """
         return self.request('PUT', api_type, path, data=data, params=params, vdom=vdom)
 
-    def delete(
+    def _delete(
         self,
         api_type: str,
         path: str,

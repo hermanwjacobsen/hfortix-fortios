@@ -140,7 +140,7 @@ class ServiceGroup:
         if name:
             path = f'{path}/{name}'
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -216,7 +216,7 @@ class ServiceGroup:
         
         data.update(kwargs)
         
-        return self._client.post('cmdb', 'firewall.service/group', data, vdom=vdom)
+        return self._client._post('cmdb', 'firewall.service/group', data, vdom=vdom)
 
     def update(
         self,
@@ -286,7 +286,7 @@ class ServiceGroup:
         
         data.update(kwargs)
         
-        return self._client.put('cmdb', f'firewall.service/group/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'firewall.service/group/{name}', data, vdom=vdom)
 
     def delete(
         self,
@@ -307,7 +307,7 @@ class ServiceGroup:
             >>> # Delete service group
             >>> result = fgt.cmdb.firewall.service.group.delete('Web-Services')
         """
-        return self._client.delete('cmdb', f'firewall.service/group/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'firewall.service/group/{name}', vdom=vdom)
 
     def exists(
         self,

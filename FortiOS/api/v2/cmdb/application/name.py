@@ -107,7 +107,7 @@ class Name:
         if name:
             path = f'{path}/{name}'
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """

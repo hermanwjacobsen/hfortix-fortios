@@ -60,7 +60,7 @@ class Sniffer:
 
         params.update(kwargs)
 
-        return self._client.get('service', 'sniffer/list/',
+        return self._client._get('service', 'sniffer/list/',
                                params=params if params else None, vdom=vdom)
 
     def start(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
@@ -92,7 +92,7 @@ class Sniffer:
         data = {'mkey': mkey}
         data.update(kwargs)
 
-        return self._client.post('service', 'sniffer/start/', data, vdom=vdom)
+        return self._client._post('service', 'sniffer/start/', data, vdom=vdom)
 
     def stop(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -118,7 +118,7 @@ class Sniffer:
         data = {'mkey': mkey}
         data.update(kwargs)
 
-        return self._client.post('service', 'sniffer/stop/', data, vdom=vdom)
+        return self._client._post('service', 'sniffer/stop/', data, vdom=vdom)
 
     def download(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> bytes:
         """
@@ -202,7 +202,7 @@ class Sniffer:
         data = {'mkey': mkey}
         data.update(kwargs)
 
-        return self._client.post('service', 'sniffer/delete/', data, vdom=vdom)
+        return self._client._post('service', 'sniffer/delete/', data, vdom=vdom)
 
     def meta(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -234,5 +234,5 @@ class Sniffer:
         params = {}
         params.update(kwargs)
 
-        return self._client.get('service', 'sniffer/meta/',
+        return self._client._get('service', 'sniffer/meta/',
                                params=params if params else None, vdom=vdom)

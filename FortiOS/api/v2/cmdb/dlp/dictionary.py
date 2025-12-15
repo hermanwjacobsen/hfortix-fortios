@@ -100,7 +100,7 @@ class Dictionary:
         
         params.update(kwargs)
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -223,7 +223,7 @@ class Dictionary:
         
         data.update(kwargs)
         
-        return self._client.post('cmdb', 'dlp/dictionary', data, vdom=vdom)
+        return self._client._post('cmdb', 'dlp/dictionary', data, vdom=vdom)
     
     def update(
         self,
@@ -322,7 +322,7 @@ class Dictionary:
         
         data.update(kwargs)
         
-        return self._client.put('cmdb', f'dlp/dictionary/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'dlp/dictionary/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -344,4 +344,4 @@ class Dictionary:
             >>> result = fgt.cmdb.dlp.dictionary.delete('banned-words')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/dictionary/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'dlp/dictionary/{name}', vdom=vdom)

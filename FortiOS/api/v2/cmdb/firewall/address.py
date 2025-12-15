@@ -129,7 +129,7 @@ class Address:
         if name:
             path = f'{path}/{name}'
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -238,7 +238,7 @@ class Address:
                 data[key] = value
         
         path = 'firewall/address'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+        return self._client._post('cmdb', path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -329,7 +329,7 @@ class Address:
                 data[key] = value
         
         path = f'firewall/address/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        return self._client._put('cmdb', path, data=data, vdom=vdom)
 
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -347,7 +347,7 @@ class Address:
             >>> result = fgt.cmdb.firewall.address.delete('test-address')
         """
         path = f'firewall/address/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        return self._client._delete('cmdb', path, vdom=vdom)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

@@ -129,7 +129,7 @@ class Scheme:
         if name is not None:
             path = f'{path}/{name}'
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
@@ -283,7 +283,7 @@ class Scheme:
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'authentication/scheme', data, vdom=vdom)
+        return self._client._post('cmdb', 'authentication/scheme', data, vdom=vdom)
 
     def update(
         self,
@@ -408,7 +408,7 @@ class Scheme:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'authentication/scheme/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'authentication/scheme/{name}', data, vdom=vdom)
 
     def delete(
         self,
@@ -429,4 +429,4 @@ class Scheme:
             >>> # Delete authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.delete('basic-http-auth')
         """
-        return self._client.delete('cmdb', f'authentication/scheme/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'authentication/scheme/{name}', vdom=vdom)

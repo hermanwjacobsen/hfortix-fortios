@@ -71,7 +71,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -111,7 +111,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
         """
@@ -145,7 +145,7 @@ class Disk:
         params.update(kwargs)
 
         # This returns binary data, similar to sniffer download
-        return self._client.get_binary('log', endpoint, params=params if params else None)
+        return self._client._get_binary('log', endpoint, params=params if params else None)
 
     def raw(
         self,
@@ -218,7 +218,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def traffic_raw(
         self,
@@ -279,7 +279,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def event_raw(
         self,
@@ -341,7 +341,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def get(
         self,
@@ -400,7 +400,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def traffic(
         self,
@@ -456,7 +456,7 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)
 
     def event(
         self,
@@ -514,4 +514,4 @@ class Disk:
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client._get('log', endpoint, params=params if params else None)

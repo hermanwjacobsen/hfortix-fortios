@@ -73,7 +73,7 @@ class Quarantine:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'antivirus/quarantine', params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', 'antivirus/quarantine', params=params if params else None, vdom=vdom)
 
     def update(
         self,
@@ -184,4 +184,4 @@ class Quarantine:
         # Add any extra kwargs
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'antivirus/quarantine', data, vdom=vdom)
+        return self._client._put('cmdb', 'antivirus/quarantine', data, vdom=vdom)

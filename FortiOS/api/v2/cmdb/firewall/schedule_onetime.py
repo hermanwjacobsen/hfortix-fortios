@@ -80,7 +80,7 @@ class ScheduleOnetime:
         params.update(kwargs)
         
         path = 'firewall.schedule/onetime'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def get(
         self,
@@ -124,7 +124,7 @@ class ScheduleOnetime:
         params.update(kwargs)
         
         path = f'firewall.schedule/onetime/{name}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -191,7 +191,7 @@ class ScheduleOnetime:
                 data[key] = value
         
         path = 'firewall.schedule/onetime'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+        return self._client._post('cmdb', path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -247,7 +247,7 @@ class ScheduleOnetime:
                 data[key] = value
         
         path = f'firewall.schedule/onetime/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        return self._client._put('cmdb', path, data=data, vdom=vdom)
 
     def delete(
         self,
@@ -269,7 +269,7 @@ class ScheduleOnetime:
             >>> result = fgt.cmdb.firewall.schedule.onetime.delete('old-maintenance')
         """
         path = f'firewall.schedule/onetime/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        return self._client._delete('cmdb', path, vdom=vdom)
 
     def exists(
         self,

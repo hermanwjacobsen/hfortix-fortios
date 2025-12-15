@@ -108,7 +108,7 @@ class PerIpShaper:
                 params[key] = value
         params.update(kwargs)
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def create(
         self,
@@ -177,7 +177,7 @@ class PerIpShaper:
                 data[api_name] = value
         data.update(kwargs)
         
-        return self._client.post('cmdb', 'firewall.shaper/per-ip-shaper', data, vdom=vdom)
+        return self._client._post('cmdb', 'firewall.shaper/per-ip-shaper', data, vdom=vdom)
     
     def update(
         self,
@@ -244,7 +244,7 @@ class PerIpShaper:
                 data[api_name] = value
         data.update(kwargs)
         
-        return self._client.put('cmdb', f'firewall.shaper/per-ip-shaper/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'firewall.shaper/per-ip-shaper/{name}', data, vdom=vdom)
     
     def delete(
         self,
@@ -265,7 +265,7 @@ class PerIpShaper:
             >>> # Delete per-IP shaper
             >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.delete('user-limit')
         """
-        return self._client.delete('cmdb', f'firewall.shaper/per-ip-shaper/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'firewall.shaper/per-ip-shaper/{name}', vdom=vdom)
     
     def exists(
         self,

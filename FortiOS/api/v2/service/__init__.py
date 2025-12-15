@@ -57,7 +57,7 @@ class Service:
         Returns:
             dict: API response
         """
-        return self._client.get('service', endpoint, params=params)
+        return self._client._get('service', endpoint, params=params)
 
     def _post(
         self,
@@ -76,4 +76,4 @@ class Service:
         Returns:
             dict: API response
         """
-        return self._client.post('service', endpoint, data=data)
+        return self._client._post('service', endpoint, data=data)

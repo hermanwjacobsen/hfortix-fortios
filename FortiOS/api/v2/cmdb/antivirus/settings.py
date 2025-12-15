@@ -73,7 +73,7 @@ class Settings:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'antivirus/settings', params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', 'antivirus/settings', params=params if params else None, vdom=vdom)
 
     def update(
         self,
@@ -159,4 +159,4 @@ class Settings:
         # Add any extra kwargs
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'antivirus/settings', data, vdom=vdom)
+        return self._client._put('cmdb', 'antivirus/settings', data, vdom=vdom)

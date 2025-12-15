@@ -124,7 +124,7 @@ class HsmLocal:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(self, data: dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -153,7 +153,7 @@ class HsmLocal:
             ... }
             >>> result = fgt.cmdb.certificate.hsm_local.create(data)
         """
-        return self._client.post('cmdb', 'certificate/hsm-local', data=data, vdom=vdom)
+        return self._client._post('cmdb', 'certificate/hsm-local', data=data, vdom=vdom)
 
     def update(self, name: str, data: dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -171,7 +171,7 @@ class HsmLocal:
             >>> data = {'comments': 'Updated HSM certificate'}
             >>> result = fgt.cmdb.certificate.hsm_local.update('my-hsm-cert', data)
         """
-        return self._client.put('cmdb', f'certificate/hsm-local/{name}', data=data, vdom=vdom)
+        return self._client._put('cmdb', f'certificate/hsm-local/{name}', data=data, vdom=vdom)
 
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -187,7 +187,7 @@ class HsmLocal:
         Example:
             >>> result = fgt.cmdb.certificate.hsm_local.delete('my-hsm-cert')
         """
-        return self._client.delete('cmdb', f'certificate/hsm-local/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'certificate/hsm-local/{name}', vdom=vdom)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

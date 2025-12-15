@@ -30,7 +30,7 @@ class FortigateProfile:
         path = 'extension-controller/fortigate-profile'
         if name:
             path = f'{path}/{name}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """Get all FortiGate profiles."""
@@ -41,19 +41,19 @@ class FortigateProfile:
         data = {'name': name}
         for key, value in kwargs.items():
             data[key.replace('_', '-')] = value
-        return self._client.post('cmdb', 'extension-controller/fortigate-profile', data=data, vdom=vdom)
+        return self._client._post('cmdb', 'extension-controller/fortigate-profile', data=data, vdom=vdom)
 
     def update(self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """Update a FortiGate profile."""
         data = {}
         for key, value in kwargs.items():
             data[key.replace('_', '-')] = value
-        return self._client.put('cmdb', f'extension-controller/fortigate-profile/{name}', data=data, vdom=vdom)
+        return self._client._put('cmdb', f'extension-controller/fortigate-profile/{name}', data=data, vdom=vdom)
 
     def delete(self, name: str, scope: Optional[str] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """Delete a FortiGate profile."""
         params = {}
         if scope is not None:
             params['scope'] = scope
-        return self._client.delete('cmdb', f'extension-controller/fortigate-profile/{name}', 
+        return self._client._delete('cmdb', f'extension-controller/fortigate-profile/{name}', 
                                    params=params if params else None, vdom=vdom)

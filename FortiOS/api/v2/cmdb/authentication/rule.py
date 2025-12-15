@@ -129,7 +129,7 @@ class Rule:
         if name is not None:
             path = f'{path}/{name}'
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
@@ -277,7 +277,7 @@ class Rule:
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'authentication/rule', data, vdom=vdom)
+        return self._client._post('cmdb', 'authentication/rule', data, vdom=vdom)
 
     def update(
         self,
@@ -400,7 +400,7 @@ class Rule:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'authentication/rule/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'authentication/rule/{name}', data, vdom=vdom)
 
     def delete(
         self,
@@ -421,4 +421,4 @@ class Rule:
             >>> # Delete authentication rule
             >>> result = fgt.cmdb.authentication.rule.delete('web-auth-rule')
         """
-        return self._client.delete('cmdb', f'authentication/rule/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'authentication/rule/{name}', vdom=vdom)

@@ -100,7 +100,7 @@ class ExactDataMatch:
         
         params.update(kwargs)
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(
         self,
@@ -197,7 +197,7 @@ class ExactDataMatch:
         
         data_payload.update(kwargs)
         
-        return self._client.post('cmdb', 'dlp/exact-data-match', data_payload, vdom=vdom)
+        return self._client._post('cmdb', 'dlp/exact-data-match', data_payload, vdom=vdom)
     
     def update(
         self,
@@ -266,7 +266,7 @@ class ExactDataMatch:
         
         data_payload.update(kwargs)
         
-        return self._client.put('cmdb', f'dlp/exact-data-match/{name}', data_payload, vdom=vdom)
+        return self._client._put('cmdb', f'dlp/exact-data-match/{name}', data_payload, vdom=vdom)
     
     def delete(
         self,
@@ -288,4 +288,4 @@ class ExactDataMatch:
             >>> result = fgt.cmdb.dlp.exact_data_match.delete('employee-ssn-db')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/exact-data-match/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'dlp/exact-data-match/{name}', vdom=vdom)

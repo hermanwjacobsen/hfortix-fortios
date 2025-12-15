@@ -58,7 +58,7 @@ class Setting:
                 params[key] = value
         params.update(kwargs)
         
-        return self._client.get('cmdb', 'firewall.ssh/setting', params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', 'firewall.ssh/setting', params=params if params else None, vdom=vdom)
     
     def update(
         self,
@@ -156,4 +156,4 @@ class Setting:
                 data[api_name] = value
         data.update(kwargs)
         
-        return self._client.put('cmdb', 'firewall.ssh/setting', data, vdom=vdom)
+        return self._client._put('cmdb', 'firewall.ssh/setting', data, vdom=vdom)

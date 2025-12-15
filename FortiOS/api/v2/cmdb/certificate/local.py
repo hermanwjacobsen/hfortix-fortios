@@ -127,7 +127,7 @@ class Local:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

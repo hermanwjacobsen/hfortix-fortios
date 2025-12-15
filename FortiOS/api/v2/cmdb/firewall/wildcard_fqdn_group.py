@@ -37,7 +37,7 @@ class Group:
         Example:
             result = fgt.cmdb.firewall.wildcard_fqdn.group.list()
         """
-        return self._client.get('cmdb', 'firewall.wildcard-fqdn/group', vdom=vdom, params=params)
+        return self._client._get('cmdb', 'firewall.wildcard-fqdn/group', vdom=vdom, params=params)
     
     def get(self, name: str, vdom=None, **params):
         """
@@ -54,7 +54,7 @@ class Group:
         Example:
             result = fgt.cmdb.firewall.wildcard_fqdn.group.get('example-group')
         """
-        return self._client.get('cmdb', f'firewall.wildcard-fqdn/group/{name}', vdom=vdom, params=params)
+        return self._client._get('cmdb', f'firewall.wildcard-fqdn/group/{name}', vdom=vdom, params=params)
     
     def create(
         self,
@@ -105,7 +105,7 @@ class Group:
         if uuid is not None:
             data['uuid'] = uuid
         
-        return self._client.post('cmdb', 'firewall.wildcard-fqdn/group', data, vdom=vdom)
+        return self._client._post('cmdb', 'firewall.wildcard-fqdn/group', data, vdom=vdom)
     
     def update(
         self,
@@ -156,7 +156,7 @@ class Group:
         if uuid is not None:
             data['uuid'] = uuid
         
-        return self._client.put('cmdb', f'firewall.wildcard-fqdn/group/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'firewall.wildcard-fqdn/group/{name}', data, vdom=vdom)
     
     def delete(self, name: str, vdom=None):
         """
@@ -172,7 +172,7 @@ class Group:
         Example:
             result = fgt.cmdb.firewall.wildcard_fqdn.group.delete('web-wildcards')
         """
-        return self._client.delete('cmdb', f'firewall.wildcard-fqdn/group/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'firewall.wildcard-fqdn/group/{name}', vdom=vdom)
     
     def exists(self, name: str, vdom=None):
         """

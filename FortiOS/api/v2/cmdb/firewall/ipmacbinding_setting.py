@@ -79,7 +79,7 @@ class IpmacbindingSetting:
         params.update(kwargs)
         
         path = 'firewall.ipmacbinding/setting'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def update(
         self,
@@ -143,4 +143,4 @@ class IpmacbindingSetting:
                 data[key] = value
         
         path = 'firewall.ipmacbinding/setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        return self._client._put('cmdb', path, data=data, vdom=vdom)

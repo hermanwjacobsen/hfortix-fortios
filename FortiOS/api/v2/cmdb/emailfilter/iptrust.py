@@ -108,7 +108,7 @@ class Iptrust:
         if entry_id is not None:
             path = f'{path}/{entry_id}'
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -204,7 +204,7 @@ class Iptrust:
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'emailfilter/iptrust', data=data, vdom=vdom)
+        return self._client._post('cmdb', 'emailfilter/iptrust', data=data, vdom=vdom)
 
     def update(
         self,
@@ -273,7 +273,7 @@ class Iptrust:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'emailfilter/iptrust/{entry_id}', data=data, vdom=vdom)
+        return self._client._put('cmdb', f'emailfilter/iptrust/{entry_id}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -299,5 +299,5 @@ class Iptrust:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client.delete('cmdb', f'emailfilter/iptrust/{entry_id}', 
+        return self._client._delete('cmdb', f'emailfilter/iptrust/{entry_id}', 
                                    params=params if params else None, vdom=vdom)

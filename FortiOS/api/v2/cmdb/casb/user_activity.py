@@ -121,7 +121,7 @@ class UserActivity:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -189,7 +189,7 @@ class UserActivity:
         if type is not None:
             data['type'] = type
 
-        return self._client.post('cmdb', 'casb/user-activity', data, vdom=vdom)
+        return self._client._post('cmdb', 'casb/user-activity', data, vdom=vdom)
 
     def update(
         self,
@@ -254,7 +254,7 @@ class UserActivity:
         if casb_name is not None:
             data['casb-name'] = casb_name
 
-        return self._client.put('cmdb', f'casb/user-activity/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'casb/user-activity/{name}', data, vdom=vdom)
 
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -272,7 +272,7 @@ class UserActivity:
         Example:
             >>> result = fgt.cmdb.casb.user_activity.delete('my-app-upload')
         """
-        return self._client.delete('cmdb', f'casb/user-activity/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'casb/user-activity/{name}', vdom=vdom)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

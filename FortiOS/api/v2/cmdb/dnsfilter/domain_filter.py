@@ -62,7 +62,7 @@ class DomainFilter:
         if kwargs:
             params.update(kwargs)
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
     
     def list(self, vdom: Optional[str] = None, **kwargs: Any) -> dict[str, Any]:
         """List all DNS domain filters.
@@ -149,7 +149,7 @@ class DomainFilter:
         if kwargs:
             data.update(kwargs)
         
-        return self._client.post('cmdb', 'dnsfilter/domain-filter', data, vdom=vdom)
+        return self._client._post('cmdb', 'dnsfilter/domain-filter', data, vdom=vdom)
     
     def update(
         self,
@@ -205,7 +205,7 @@ class DomainFilter:
         if kwargs:
             data.update(kwargs)
         
-        return self._client.put('cmdb', f'dnsfilter/domain-filter/{filter_id}', data, vdom=vdom)
+        return self._client._put('cmdb', f'dnsfilter/domain-filter/{filter_id}', data, vdom=vdom)
     
     def delete(self, filter_id: int, vdom: Optional[str] = None) -> dict[str, Any]:
         """Delete a DNS domain filter.
@@ -220,4 +220,4 @@ class DomainFilter:
         Example:
             >>> client.cmdb.dnsfilter.domain_filter.delete(filter_id=10)
         """
-        return self._client.delete('cmdb', f'dnsfilter/domain-filter/{filter_id}', vdom=vdom)
+        return self._client._delete('cmdb', f'dnsfilter/domain-filter/{filter_id}', vdom=vdom)

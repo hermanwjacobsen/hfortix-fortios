@@ -129,7 +129,7 @@ class AttributeMatch:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -240,7 +240,7 @@ class AttributeMatch:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'casb/attribute-match', data, vdom=vdom)
+        return self._client._post('cmdb', 'casb/attribute-match', data, vdom=vdom)
 
     def update(
         self,
@@ -330,7 +330,7 @@ class AttributeMatch:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'casb/attribute-match/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'casb/attribute-match/{name}', data, vdom=vdom)
 
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
@@ -348,4 +348,4 @@ class AttributeMatch:
             >>> result = fgt.cmdb.casb.attribute_match.delete('my-rule')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'casb/attribute-match/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'casb/attribute-match/{name}', vdom=vdom)

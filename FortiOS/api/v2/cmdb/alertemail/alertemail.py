@@ -35,7 +35,7 @@ class AlertEmail:
             >>> settings = fgt.cmdb.alertemail.get()
             >>> print(settings['results']['mailto1'])
         """
-        return self._client.get('cmdb', 'alertemail/setting', vdom=vdom)
+        return self._client._get('cmdb', 'alertemail/setting', vdom=vdom)
 
     def update(
         self,
@@ -202,8 +202,8 @@ class AlertEmail:
         # Add any extra kwargs
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'alertemail/setting', data, vdom=vdom)
+        return self._client._put('cmdb', 'alertemail/setting', data, vdom=vdom)
 
     # Backward compatibility aliases
     get_setting = get
-    update_setting = lambda self, data, vdom=None: self._client.put('cmdb', 'alertemail/setting', data, vdom=vdom)
+    update_setting = lambda self, data, vdom=None: self._client._put('cmdb', 'alertemail/setting', data, vdom=vdom)

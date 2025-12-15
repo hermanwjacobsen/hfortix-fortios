@@ -140,7 +140,7 @@ class ServiceCustom:
         if name:
             path = f'{path}/{name}'
         
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -260,7 +260,7 @@ class ServiceCustom:
         
         data.update(kwargs)
         
-        return self._client.post('cmdb', 'firewall.service/custom', data, vdom=vdom)
+        return self._client._post('cmdb', 'firewall.service/custom', data, vdom=vdom)
 
     def update(
         self,
@@ -367,7 +367,7 @@ class ServiceCustom:
         
         data.update(kwargs)
         
-        return self._client.put('cmdb', f'firewall.service/custom/{name}', data, vdom=vdom)
+        return self._client._put('cmdb', f'firewall.service/custom/{name}', data, vdom=vdom)
 
     def delete(
         self,
@@ -388,7 +388,7 @@ class ServiceCustom:
             >>> # Delete service
             >>> result = fgt.cmdb.firewall.service.custom.delete('HTTPS-8443')
         """
-        return self._client.delete('cmdb', f'firewall.service/custom/{name}', vdom=vdom)
+        return self._client._delete('cmdb', f'firewall.service/custom/{name}', vdom=vdom)
 
     def exists(
         self,

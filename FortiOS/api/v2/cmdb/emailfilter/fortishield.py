@@ -77,7 +77,7 @@ class Fortishield:
 
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'emailfilter/fortishield', 
+        return self._client._get('cmdb', 'emailfilter/fortishield', 
                                params=params if params else None, vdom=vdom)
 
     def update(
@@ -124,4 +124,4 @@ class Fortishield:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'emailfilter/fortishield', data=data, vdom=vdom)
+        return self._client._put('cmdb', 'emailfilter/fortishield', data=data, vdom=vdom)

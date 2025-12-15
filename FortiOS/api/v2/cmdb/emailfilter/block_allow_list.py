@@ -108,7 +108,7 @@ class BlockAllowList:
         if list_id is not None:
             path = f'{path}/{list_id}'
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client._get('cmdb', path, params=params if params else None, vdom=vdom)
 
     def list(
         self,
@@ -205,7 +205,7 @@ class BlockAllowList:
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'emailfilter/block-allow-list', data=data, vdom=vdom)
+        return self._client._post('cmdb', 'emailfilter/block-allow-list', data=data, vdom=vdom)
 
     def update(
         self,
@@ -274,7 +274,7 @@ class BlockAllowList:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'emailfilter/block-allow-list/{list_id}', data=data, vdom=vdom)
+        return self._client._put('cmdb', f'emailfilter/block-allow-list/{list_id}', data=data, vdom=vdom)
 
     def delete(
         self,
@@ -300,5 +300,5 @@ class BlockAllowList:
         if scope is not None:
             params['scope'] = scope
 
-        return self._client.delete('cmdb', f'emailfilter/block-allow-list/{list_id}', 
+        return self._client._delete('cmdb', f'emailfilter/block-allow-list/{list_id}', 
                                    params=params if params else None, vdom=vdom)

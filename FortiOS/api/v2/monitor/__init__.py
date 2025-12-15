@@ -88,4 +88,4 @@ class Monitor:
             Most monitor endpoints are read-only (GET only) and provide
             real-time status information.
         """
-        return self._client.get('monitor', path, params=params, vdom=vdom)
+        return self._client._get('monitor', path, params=params, vdom=vdom)

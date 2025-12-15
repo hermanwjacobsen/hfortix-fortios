@@ -92,7 +92,7 @@ class Setting:
 
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'authentication/setting',
+        return self._client._get('cmdb', 'authentication/setting',
                                params=params if params else None, vdom=vdom)
 
     def update(
@@ -242,4 +242,4 @@ class Setting:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'authentication/setting', data, vdom=vdom)
+        return self._client._put('cmdb', 'authentication/setting', data, vdom=vdom)
