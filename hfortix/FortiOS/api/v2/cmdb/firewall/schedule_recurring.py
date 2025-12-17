@@ -90,7 +90,7 @@ class ScheduleRecurring:
 
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         action: Optional[str] = None,
@@ -99,10 +99,10 @@ class ScheduleRecurring:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get a specific recurring schedule by name.
+        Get a specific recurring schedule by name, or list all if name is not provided.
 
         Args:
-            name: Schedule name
+            name: Schedule name (optional - if None, lists all schedules)
             datasource: Include datasource information
             with_meta: Include metadata
             action: Special actions (default, schema)
@@ -113,6 +113,8 @@ class ScheduleRecurring:
             API response dict
 
         Examples:
+            >>> # List all schedules
+            >>> result = fgt.cmdb.firewall.schedule.recurring.get()
             >>> # Get recurring schedule
             >>> result = fgt.cmdb.firewall.schedule.recurring.get('weekday-business-hours')
             >>> print(f"Days: {result['results']['day']}")
@@ -130,7 +132,11 @@ class ScheduleRecurring:
 
         params.update(kwargs)
 
-        path = f"firewall.schedule/recurring/{encode_path_component(name)}"
+        if name is not None:
+            path = f"firewall.schedule/recurring/{encode_path_component(name)}"
+        else:
+            path = "firewall.schedule/recurring"
+            
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )

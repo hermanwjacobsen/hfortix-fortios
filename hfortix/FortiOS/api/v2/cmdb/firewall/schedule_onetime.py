@@ -90,7 +90,7 @@ class ScheduleOnetime:
 
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         action: Optional[str] = None,
@@ -99,10 +99,10 @@ class ScheduleOnetime:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get a specific onetime schedule by name.
+        Get a specific onetime schedule by name, or list all if name is not provided.
 
         Args:
-            name: Schedule name
+            name: Schedule name (optional - if None, lists all schedules)
             datasource: Include datasource information
             with_meta: Include metadata
             action: Special actions (default, schema)
@@ -113,6 +113,8 @@ class ScheduleOnetime:
             API response dict
 
         Examples:
+            >>> # List all schedules
+            >>> result = fgt.cmdb.firewall.schedule.onetime.get()
             >>> # Get onetime schedule
             >>> result = fgt.cmdb.firewall.schedule.onetime.get('maintenance-2024-01-01')
             >>> print(f"Starts: {result['results']['start']}")
@@ -130,7 +132,11 @@ class ScheduleOnetime:
 
         params.update(kwargs)
 
-        path = f"firewall.schedule/onetime/{encode_path_component(name)}"
+        if name is not None:
+            path = f"firewall.schedule/onetime/{encode_path_component(name)}"
+        else:
+            path = "firewall.schedule/onetime"
+            
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )

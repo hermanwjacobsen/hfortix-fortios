@@ -93,7 +93,7 @@ class ScheduleGroup:
 
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         action: Optional[str] = None,
@@ -102,10 +102,10 @@ class ScheduleGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get a specific schedule group by name.
+        Get a specific schedule group by name, or list all if name is not provided.
 
         Args:
-            name: Schedule group name
+            name: Schedule group name (optional - if None, lists all groups)
             datasource: Include datasource information
             with_meta: Include metadata
             action: Special actions (default, schema)
@@ -116,7 +116,9 @@ class ScheduleGroup:
             API response dict
 
         Examples:
-            >>> # Get schedule group
+            >>> # List all groups
+            >>> result = fgt.cmdb.firewall.schedule.group.get()
+            >>> # Get specific schedule group
             >>> result = fgt.cmdb.firewall.schedule.group.get('workweek')
             >>> print(f"Members: {result['results']['member']}")
         """
@@ -133,7 +135,11 @@ class ScheduleGroup:
 
         params.update(kwargs)
 
-        path = f"firewall.schedule/group/{encode_path_component(name)}"
+        if name is not None:
+            path = f"firewall.schedule/group/{encode_path_component(name)}"
+        else:
+            path = "firewall.schedule/group"
+            
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )

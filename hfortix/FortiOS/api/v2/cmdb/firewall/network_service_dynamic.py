@@ -103,7 +103,7 @@ class NetworkServiceDynamic:
         # Conditional path: list all if mkey is None, get specific otherwise
         if mkey is not None:
             mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{{self.path}}/{{{param_name}_str}}"
+            path = f"{self.path}/{mkey_str}"
         else:
             path = self.path
 
