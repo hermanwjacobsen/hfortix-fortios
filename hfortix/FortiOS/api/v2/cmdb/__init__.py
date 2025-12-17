@@ -41,6 +41,9 @@ class CMDB:
         log: Logging configuration
         monitoring: Monitoring configuration
         report: Report configuration and layouts
+        router: Router configuration (BGP, OSPF, static routes, etc.)
+        rule: Rule signatures (FMWP, IOT, OT detection)
+        sctp_filter: SCTP filter profiles
     """
 
     def __init__(self, client: "HTTPClient") -> None:
@@ -75,6 +78,9 @@ class CMDB:
         from .log import Log
         from .monitoring import Monitoring
         from .report import Report
+        from .router import Router
+        from .rule import Rule
+        from .sctp_filter import SctpFilter
 
         self.alertemail: AlertEmail = AlertEmail(client)
         self.antivirus: Antivirus = Antivirus(client)
@@ -98,6 +104,9 @@ class CMDB:
         self.log: Log = Log(client)
         self.monitoring: Monitoring = Monitoring(client)
         self.report: Report = Report(client)
+        self.router: Router = Router(client)
+        self.rule: Rule = Rule(client)
+        self.sctp_filter: SctpFilter = SctpFilter(client)
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
@@ -124,4 +133,7 @@ class CMDB:
             "log",
             "monitoring",
             "report",
+            "router",
+            "rule",
+            "sctp_filter",
         ]

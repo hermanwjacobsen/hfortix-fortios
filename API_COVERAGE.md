@@ -32,17 +32,17 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 | API Category | Status | Implemented | Total Available | Coverage |
 |--------------|--------|-------------|-----------------|----------|
-| **Configuration (CMDB)** | 🔷 Beta | 23 categories | 40 categories | 57.5% |
+| **Configuration (CMDB)** | 🔷 Beta | 24 categories | 40 categories | 60.0% |
 | **Monitoring** | 🔷 Beta | 6 categories | 33 categories | 18% |
 | **Logging** | 🔷 Beta | 5 categories | 5 categories | 100% |
 | **Service** | 🔷 Beta | 3 categories | 3 categories | 100% |
-| **Overall** | 🔷 Beta | **37 categories** | **77 categories** | **48%** |
+| **Overall** | 🔷 Beta | **38 categories** | **77 categories** | **49%** |
 
 **CMDB Detailed Progress:**
 - **Total Categories Available:** 40 (FortiOS 7.6.5 Configuration API)
-- **Categories Implemented:** 23 (57.5% coverage)
-- **Total Endpoints Implemented:** 200+ endpoints
-- **Coverage:** 57.5% of all CMDB categories
+- **Categories Implemented:** 24 (60.0% coverage)
+- **Total Endpoints Implemented:** 200+ endpoints (including 26 router endpoints)
+- **Coverage:** 60.0% of all CMDB categories
 
 **Note:** All implementations are in beta status and will remain so until version 1.0.0 with comprehensive unit test coverage.
 
@@ -348,33 +348,32 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ---
 
-### Not Yet Implemented (17 Categories Remaining)
+### Not Yet Implemented (16 Categories Remaining)
 
 **FortiOS 7.6.5 CMDB Categories Not Yet Implemented:**
 
 <details>
 <summary><strong>Click to expand full list of remaining CMDB categories</strong></summary>
 
-1. **router** - 🔥 **HIGH PRIORITY** - Routing configuration (static, BGP, OSPF, policy routing)
-3. **rule** - Traffic shaping and QoS rules
-4. **sctp-filter** - Stream Control Transmission Protocol filtering
-5. **ssh-filter** - SSH protocol filtering
-6. **switch-controller** - FortiSwitch management and configuration
-7. **system** - 🔥 **HIGH PRIORITY** - System-wide settings (admin, interface, zone, HA, etc.)
-8. **telemetry-controller** - Telemetry and monitoring integration
-9. **user** - 🔥 **HIGH PRIORITY** - User authentication and LDAP/RADIUS servers
-10. **videofilter** - Video streaming filtering
-11. **virtual-patch** - Virtual patching for vulnerabilities
-12. **voip** - VoIP inspection and SIP configuration
-13. **vpn** - 🔥 **HIGH PRIORITY** - VPN configuration (IPsec, SSL-VPN, tunnels)
-14. **waf** - Web Application Firewall profiles
-15. **wanopt** - WAN optimization configuration
-16. **web-proxy** - Explicit web proxy configuration
-17. **webfilter** - 🔥 **HIGH PRIORITY** - Web filtering and URL categories
-18. **wireless-controller** - FortiAP wireless management
-19. **ztna** - Zero Trust Network Access configuration
+1. **rule** - Traffic shaping and QoS rules
+2. **sctp-filter** - Stream Control Transmission Protocol filtering
+3. **ssh-filter** - SSH protocol filtering
+4. **switch-controller** - FortiSwitch management and configuration
+5. **system** - 🔥 **HIGH PRIORITY** - System-wide settings (admin, interface, zone, HA, etc.)
+6. **telemetry-controller** - Telemetry and monitoring integration
+7. **user** - 🔥 **HIGH PRIORITY** - User authentication and LDAP/RADIUS servers
+8. **videofilter** - Video streaming filtering
+9. **virtual-patch** - Virtual patching for vulnerabilities
+10. **voip** - VoIP inspection and SIP configuration
+11. **vpn** - 🔥 **HIGH PRIORITY** - VPN configuration (IPsec, SSL-VPN, tunnels)
+12. **waf** - Web Application Firewall profiles
+13. **wanopt** - WAN optimization configuration
+14. **web-proxy** - Explicit web proxy configuration
+15. **webfilter** - 🔥 **HIGH PRIORITY** - Web filtering and URL categories
+16. **wireless-controller** - FortiAP wireless management
+17. **ztna** - Zero Trust Network Access configuration
 
-**Note:** All 23 implemented CMDB categories are in beta status.
+**Note:** All 24 implemented CMDB categories are in beta status.
 
 ---
 
@@ -406,7 +405,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 | 20 | log | 🔷 Beta | Log configuration |
 | 21 | monitoring | 🔷 Beta | Monitoring config |
 | 22 | report | 🔷 Beta | Report configuration |
-| 23 | router | ⏸️ Not Started | Routing protocols |
+| 23 | router | 🔷 Beta | Routing protocols (⚠️ singleton pattern) |
 | 24 | rule | ⏸️ Not Started | Traffic rules |
 | 25 | sctp-filter | ⏸️ Not Started | SCTP filtering |
 | 26 | ssh-filter | ⏸️ Not Started | SSH filtering |
@@ -426,8 +425,8 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 | 40 | ztna | ⏸️ Not Started | ZTNA |
 
 **Implementation Status:**
-- 🔷 **Beta (Implemented):** 23 categories (57.5%)
-- ⏸️ **Not Started:** 17 categories (42.5%)
+- 🔷 **Beta (Implemented):** 24 categories (60.0%)
+- ⏸️ **Not Started:** 16 categories (40.0%)
 
 **Note:** All implemented categories remain in beta status until v1.0.0 with comprehensive unit test coverage.
 

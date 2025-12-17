@@ -12,11 +12,11 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **FortiOS 7.6.5 Coverage (December 17, 2025):**
 
-- **CMDB API**: 23 of 40 categories (57.5% coverage) - 200+ endpoints 🔷 Beta
+- **CMDB API**: 24 of 40 categories (60.0% coverage) - 200+ endpoints 🔷 Beta
 - **Monitor API**: 6 of 33 categories (18% coverage) - 50+ endpoints 🔷 Beta
 - **Log API**: 5 of 5 categories (100% coverage) - Log reading functionality 🔷 Beta
 - **Service API**: 3 of 3 categories (100% coverage) - 21 methods 🔷 Beta
-- **Overall**: 37 of 77 categories (48% coverage) - 250+ API methods
+- **Overall**: 38 of 77 categories (49% coverage) - 250+ API methods
 
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
@@ -524,6 +524,109 @@ result = fgt.api.cmdb.firewall.schedule.onetime.create(
 )
 ```
 
+### FortiOS - Routing Protocols (Singleton Endpoints) ⚠️
+
+**Important:** Routing protocol configurations use a different pattern than collection endpoints.
+
+**Collection Endpoints** (addresses, policies, etc.) support standard CRUD:
+```python
+# Standard CRUD - simple and intuitive
+fgt.api.cmdb.firewall.address.create(name='test', subnet='192.168.1.0/24')
+fgt.api.cmdb.firewall.address.update(name='test', comment='updated')
+fgt.api.cmdb.firewall.address.delete('test')
+```
+
+**Singleton Endpoints** (BGP, OSPF, RIP, ISIS, etc.) require GET→Modify→PUT pattern:
+```python
+# BGP Neighbor Management - requires full config update
+# Step 1: Get current BGP configuration
+result = fgt.api.cmdb.router.bgp.get()
+
+# Step 2: Extract config (handles different response formats)
+if isinstance(result, list):
+    config = result[0] if result else {}
+elif isinstance(result, dict) and 'results' in result:
+    config = result['results']
+    if isinstance(config, list):
+        config = config[0] if config else {}
+else:
+    config = result
+
+# Step 3: Modify nested objects (neighbors, networks, etc.)
+neighbors = config.get('neighbor', [])
+neighbors.append({
+    'ip': '10.0.0.1',
+    'remote-as': 65001,
+    'description': 'New BGP neighbor',
+    'shutdown': 'enable'  # Disabled for safety
+})
+config['neighbor'] = neighbors
+
+# Step 4: Send entire config back
+result = fgt.api.cmdb.router.bgp.update(data_dict=config)
+
+# Verify
+config = fgt.api.cmdb.router.bgp.get()
+# Extract config again (same as step 2)
+neighbors = config.get('neighbor', []) if isinstance(config, dict) else []
+print(f"BGP now has {len(neighbors)} neighbors")
+```
+
+```python
+# OSPF Network Management - same pattern
+config = fgt.api.cmdb.router.ospf.get()
+# Extract config (same pattern as BGP)
+if isinstance(config, list):
+    config = config[0] if config else {}
+
+networks = config.get('network', [])
+networks.append({
+    'id': 9999,
+    'prefix': '192.168.1.0 255.255.255.0'
+})
+config['network'] = networks
+fgt.api.cmdb.router.ospf.update(data_dict=config)
+```
+
+```python
+# RIP Network Management
+config = fgt.api.cmdb.router.rip.get()
+if isinstance(config, list):
+    config = config[0]
+
+networks = config.get('network', [])
+networks.append({'id': 1, 'prefix': '10.0.0.0 255.0.0.0'})
+config['network'] = networks
+fgt.api.cmdb.router.rip.update(data_dict=config)
+```
+
+**Why This Pattern?**
+- FortiOS API design: Routing protocols are singleton objects (only one BGP/OSPF/RIP config per VDOM)
+- Nested objects (neighbors, networks, areas) are managed as lists within the main config
+- The API requires sending the entire configuration on updates to maintain consistency
+
+**Future Enhancement:**
+Helper methods are planned to simplify this pattern:
+```python
+# Planned for future release (not yet available)
+fgt.api.cmdb.router.bgp.add_neighbor(ip='10.0.0.1', remote_as=65001)
+fgt.api.cmdb.router.bgp.remove_neighbor('10.0.0.1')
+fgt.api.cmdb.router.bgp.list_neighbors()
+```
+
+**Affected Endpoints:**
+- `router/bgp` - BGP neighbors, networks, aggregate addresses, VRFs
+- `router/ospf` - OSPF areas, interfaces, networks, neighbors
+- `router/ospf6` - OSPFv3 areas, interfaces
+- `router/rip` - RIP networks, neighbors, interfaces
+- `router/ripng` - RIPng networks, neighbors
+- `router/isis` - IS-IS NETs, interfaces
+- `router/bfd` - BFD neighbors (IPv4)
+- `router/bfd6` - BFD neighbors (IPv6)
+
+See `X/tests/FortiOS/cmdb/router/test_bgp.py` for complete working examples.
+```
+
 ### Exception Hierarchy
 ```
 Exception
@@ -627,24 +730,64 @@ fgt = FortiOS(
 
 - [🚧] FortiOS API implementation (In Development)
   - [x] Exception handling system (387 error codes)
-  - [x] Base client architecture
-  - [🔷] CMDB endpoints (Beta - partial coverage)
-    - Firewall (address, policy, service, etc.)
-    - System (interface, admin, global, etc.)
-    - Router (static, policy, etc.)
-    - VPN (IPsec, SSL, etc.)
-  - [🔷] Service endpoints (Beta)
+  - [x] Base client architecture with HTTP/2, retry logic, circuit breaker
+  - [🔷] CMDB endpoints (Beta - 57.5% coverage, 23/40 categories)
+    - [🔷] Firewall (address, policy, service, DoS, ICAP, IPS, etc.) - Beta
+    - [🔷] System (interface, admin, global, etc.) - Beta
+    - [🔷] Router (static, bgp, ospf, rip, isis, etc.) - **NEW** Beta ⚠️ See note below
+    - [🔷] VPN (IPsec, SSL, etc.) - Beta
+    - [🔷] Log (disk, syslog, fortianalyzer, etc.) - Beta
+    - [🔷] Wireless Controller, User, Web Filter, Application - Beta
+    - [ ] Remaining 17 categories (Switch Controller, WAD, etc.)
+  - [🔷] Monitor endpoints (Beta - 18% coverage, 6/33 categories)
+    - [🔷] Firewall, Endpoint Control, Azure, CASB, Extender - Beta
+    - [ ] Remaining 27 categories
+  - [🔷] Service endpoints (Beta - 100% coverage, 3/3 categories)
     - Sniffer, Security Rating, etc.
-  - [🔷] Log endpoints (Beta)
+  - [🔷] Log endpoints (Beta - 100% coverage, 5/5 categories)
     - Traffic, Event, Virus, etc.
-  - [ ] Monitor endpoints (Not Started)
-  - [ ] Complete API coverage
 - [x] Modular package architecture
+- [x] PyPI package publication (hfortix on PyPI)
 - [ ] FortiManager module (Not Started)
 - [ ] FortiAnalyzer module (Not Started)
-- [ ] PyPI package publication
-- [ ] Async support
-- [ ] CLI tool
+- [ ] Helper methods for singleton routing endpoints (Planned - see Todo.md)
+- [ ] Async support (Planned)
+- [ ] CLI tool (Planned)
+
+### ⚠️ Important Note: Singleton Routing Endpoints (Beta)
+
+**Routing protocol configurations (BGP, OSPF, RIP, ISIS, etc.) use a different pattern than collection endpoints:**
+
+- **Collection Endpoints** (addresses, policies, etc.): Use standard CRUD operations
+  ```python
+  # Simple add/remove pattern
+  fgt.api.cmdb.firewall.address.create(name='test', subnet='192.168.1.0/24')
+  fgt.api.cmdb.firewall.address.delete('test')
+  ```
+
+- **Singleton Endpoints** (bgp, ospf, rip, isis, etc.): Require GET→Modify→PUT pattern
+  ```python
+  # Must get entire config, modify, and send back
+  config = fgt.api.cmdb.router.bgp.get()
+  config['neighbor'].append({'ip': '10.0.0.1', 'remote-as': 65001})
+  fgt.api.cmdb.router.bgp.update(data_dict=config)
+  ```
+
+**Why?** This is a FortiOS API design - routing protocols are singleton objects with nested lists (neighbors, networks, areas). The API requires sending the entire configuration on updates.
+
+**Future Enhancement:** Helper methods like `add_neighbor()`, `remove_neighbor()`, `list_neighbors()` are planned to simplify this pattern. See `X/Todo.md` for details.
+
+**Affected Endpoints:**
+- `router/bgp` - BGP neighbors, networks, VRFs
+- `router/ospf` - OSPF areas, interfaces, networks
+- `router/ospf6` - OSPFv3 configuration
+- `router/rip` - RIP networks, neighbors
+- `router/ripng` - RIPng configuration
+- `router/isis` - IS-IS NETs, interfaces
+- `router/bfd` - BFD neighbors (IPv4)
+- `router/bfd6` - BFD neighbors (IPv6)
+
+**All implementations remain in BETA until version 1.0.0 with comprehensive unit test coverage.**
 
 ---
 

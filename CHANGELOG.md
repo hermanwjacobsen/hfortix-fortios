@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Router CMDB Category** - Complete routing protocol configuration support (BETA)
+  - Implemented all 26 router endpoints with full CRUD operations
+  - Collection endpoints: static, static6, access-list, access-list6, prefix-list, prefix-list6, route-map, policy, policy6, aspath-list, community-list, extcommunity-list, key-chain, auth-path, multicast, multicast6, multicast-flow
+  - Singleton endpoints: bgp, ospf, ospf6, rip, ripng, isis, bfd, bfd6, setting
+  - Comprehensive test coverage: 22/26 endpoints tested (85%), 100% pass rate
+  - **Note:** Singleton endpoints (BGP, OSPF, RIP, etc.) require GET→Modify→PUT pattern for nested objects
+  - See examples: `X/tests/FortiOS/cmdb/router/test_bgp.py`, `test_ospf.py`, `test_rip.py`
+
+### Changed
+
+- **Singleton Endpoint Pattern** - Important behavioral note for routing protocols
+  - Routing protocol endpoints (BGP, OSPF, RIP, ISIS, etc.) work differently than other endpoints
+  - Unlike firewall addresses or policies, you cannot add/remove individual neighbors or networks
+  - Instead, you must retrieve the entire configuration, make changes, and send it back
+  - This requires more code than typical CRUD operations (see README examples)
+  - **Why?** FortiOS API design - routing configs are single objects with nested lists
+  - **Future:** Helper methods like `add_neighbor()`, `remove_neighbor()` are planned to simplify this
+
 ## [0.3.13] - 2025-12-17
 
 ### Added
