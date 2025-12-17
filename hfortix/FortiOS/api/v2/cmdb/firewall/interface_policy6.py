@@ -77,9 +77,7 @@ class InterfacePolicy6:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get an interface-policy6 entry by policyid."""
-        policyid_str = self._client.validate_mkey(policyid, "policyid")
-
+        """Get an interface-policy6 entry by policyid or list all."""
         params: dict[str, Any] = {}
         for key, value in {
             "datasource": datasource,
@@ -92,9 +90,16 @@ class InterfacePolicy6:
                 params[key] = value
         params.update(kwargs)
 
+        # Determine path based on whether policyid is provided
+        if policyid is not None:
+            policyid_str = self._client.validate_mkey(policyid, "policyid")
+            path = f"{self.path}/{encode_path_component(str(policyid))}"
+        else:
+            path = self.path
+
         return self._client.get(
             "cmdb",
-            f"{self.path}/{encode_path_component(policyid)}" if policyid else self.path,
+            path,
             params=params if params else None,
             vdom=vdom,
             raw_json=raw_json,

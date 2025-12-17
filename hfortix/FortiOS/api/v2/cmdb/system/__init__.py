@@ -352,9 +352,12 @@ class System:
     @property
     def global_settings(self):
         """Global system settings (singleton)"""
-        from .global_settings import GlobalSettings
+        # Import from 'global' module using importlib (global is a Python keyword)
+        import importlib
+        global_module = importlib.import_module('.global', package='hfortix.FortiOS.api.v2.cmdb.system')
+        Global = global_module.Global
 
-        return GlobalSettings(self._client)
+        return Global(self._client)
 
     @property
     def dns(self):

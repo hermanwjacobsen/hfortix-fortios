@@ -77,9 +77,7 @@ class IdentityBasedRoute:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get an identity-based route entry by name."""
-        name_str = self._client.validate_mkey(name, "name")
-
+        """Get an identity-based route entry by name or list all."""
         params: dict[str, Any] = {}
         for key, value in {
             "datasource": datasource,
@@ -92,9 +90,16 @@ class IdentityBasedRoute:
                 params[key] = value
         params.update(kwargs)
 
+        # Determine path based on whether name is provided
+        if name is not None:
+            name_str = self._client.validate_mkey(name, "name")
+            path = f"{self.path}/{encode_path_component(str(name))}"
+        else:
+            path = self.path
+
         return self._client.get(
             "cmdb",
-            f"{self.path}/{encode_path_component(name)}" if name else self.path,
+            path,
             params=params if params else None,
             vdom=vdom,
             raw_json=raw_json,
