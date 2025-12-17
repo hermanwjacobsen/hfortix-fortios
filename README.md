@@ -8,25 +8,28 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Current Status
 
-**FortiOS 7.6.5 Coverage (December 16, 2025):**
+**FortiOS 7.6.5 Coverage (December 17, 2025):**
 
 - **CMDB API**: 15 of 40 categories (38% coverage) - 74+ endpoints 🔷 Beta
 - **Log API**: 5 of 5 categories (100% coverage) - 42 methods 🔷 Beta
 - **Service API**: 3 of 3 categories (100% coverage) - 21 methods 🔷 Beta
 - **Monitor API**: Not yet implemented (0 of 28 categories) ⏸️
 
-**Latest Features (v0.3.9):**
+**Latest Features (v0.3.10):**
+- ✨ **Configurable Timeouts**: Customize connection and read timeouts
+  - `connect_timeout`: Connection establishment timeout (default: 10.0s)
+  - `read_timeout`: Response read timeout (default: 300.0s)
+  - Example: `FortiOS(host='...', token='...', connect_timeout=30.0, read_timeout=600.0)`
+- ✨ **URL Encoding for Special Characters**: Automatic encoding of special characters in object names
+  - Handles `/`, `@`, `:`, spaces, and other special characters
+  - Works with objects like `Test_NET_192.0.2.0/24` (IP addresses with CIDR notation)
+  - Applied to all 145 CMDB endpoint files automatically
+- ✅ **Bug Fix**: Fixed 404 errors when object names contain special characters
+
+**Previous Release (v0.3.9):**
 - ✨ **raw_json Parameter**: All 45+ API methods now support `raw_json=True` for full response access
-  - Default: Returns just the results data
-  - With `raw_json=True`: Returns complete response with status codes, metadata
-  - Example: `fgt.api.cmdb.firewall.address.get('obj1', raw_json=True)`
 - ✨ **Logging System**: Global and per-instance logging control
-  - Global: `hfortix.set_log_level('DEBUG'|'INFO'|'WARNING'|'ERROR'|'OFF')`
-  - Per-instance: `FortiOS(debug='info')`
-  - Automatic sensitive data sanitization (tokens, passwords)
-  - Request/response logging with timing information
 - ✅ **Code Quality**: 100% PEP 8 compliance (black + isort + flake8)
-- ✅ **Bug Fixes**: Fixed undefined variables, certificate helpers, DoS policy bugs
 - ✅ **Comprehensive Tests**: 159 test files covering all endpoints
 
 **Previous Releases:**
