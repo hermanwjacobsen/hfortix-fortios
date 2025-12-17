@@ -68,7 +68,7 @@ class HTTPClient:
         - Booleans: Converted to lowercase strings ('true'/'false')
         - None values: Should be filtered out before passing to params
         - Special characters: URL-encoded automatically
-        
+
     Path Encoding:
         Paths are URL-encoded with / and % as safe characters to prevent
         double-encoding of already-encoded components.
@@ -109,7 +109,7 @@ class HTTPClient:
             circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
             max_connections: Maximum number of connections in the pool (default: 100)
             max_keepalive_connections: Maximum number of keepalive connections (default: 20)
-        
+
         Raises:
             ValueError: If parameters are invalid
         """
@@ -125,68 +125,72 @@ class HTTPClient:
         if read_timeout <= 0:
             raise ValueError(f"read_timeout must be > 0, got {read_timeout}")
         if circuit_breaker_threshold <= 0:
-            raise ValueError(f"circuit_breaker_threshold must be > 0, got {circuit_breaker_threshold}")
+            raise ValueError(
+                f"circuit_breaker_threshold must be > 0, got {circuit_breaker_threshold}"
+            )
         if circuit_breaker_timeout <= 0:
             raise ValueError(f"circuit_breaker_timeout must be > 0, got {circuit_breaker_timeout}")
         if max_connections <= 0:
             raise ValueError(f"max_connections must be > 0, got {max_connections}")
         if max_keepalive_connections < 0:
-            raise ValueError(f"max_keepalive_connections must be >= 0, got {max_keepalive_connections}")
+            raise ValueError(
+                f"max_keepalive_connections must be >= 0, got {max_keepalive_connections}"
+            )
         if max_keepalive_connections > max_connections:
             raise ValueError(
                 f"max_keepalive_connections ({max_keepalive_connections}) cannot exceed "
                 f"max_connections ({max_connections})"
             )
-        
+
         # Normalize URL: remove trailing slashes to prevent double-slash issues
-        self._url = url.rstrip('/')
+        self._url = url.rstrip("/")
         self._verify = verify
         self._vdom = vdom
         self._max_retries = max_retries
         self._connect_timeout = connect_timeout
         self._read_timeout = read_timeout
-        
+
         # Set default User-Agent if not provided
         if user_agent is None:
             # Import here to avoid circular dependency
             from . import __version__
-            user_agent = f'hfortix/{__version__}'
-        
+
+            user_agent = f"hfortix/{__version__}"
+
         # Initialize httpx client with proper timeout configuration
         self._client = httpx.Client(
-            headers={'User-Agent': user_agent},
+            headers={"User-Agent": user_agent},
             timeout=httpx.Timeout(
                 connect=connect_timeout,
                 read=read_timeout,
                 write=30.0,  # Default write timeout
-                pool=10.0    # Default pool timeout
+                pool=10.0,  # Default pool timeout
             ),
             verify=verify,
             http2=True,  # Enable HTTP/2 support
             limits=httpx.Limits(
-                max_connections=max_connections,
-                max_keepalive_connections=max_keepalive_connections
-            )
+                max_connections=max_connections, max_keepalive_connections=max_keepalive_connections
+            ),
         )
 
         # Initialize retry statistics
         self._retry_stats = {
-            'total_retries': 0,
-            'total_requests': 0,
-            'successful_requests': 0,
-            'failed_requests': 0,
-            'retry_by_reason': {},
-            'retry_by_endpoint': {},
-            'last_retry_time': None,
+            "total_retries": 0,
+            "total_requests": 0,
+            "successful_requests": 0,
+            "failed_requests": 0,
+            "retry_by_reason": {},
+            "retry_by_endpoint": {},
+            "last_retry_time": None,
         }
 
         # Initialize circuit breaker state
         self._circuit_breaker = {
-            'consecutive_failures': 0,
-            'last_failure_time': None,
-            'state': 'closed',  # closed, open, half_open
-            'failure_threshold': circuit_breaker_threshold,
-            'timeout': circuit_breaker_timeout,
+            "consecutive_failures": 0,
+            "last_failure_time": None,
+            "state": "closed",  # closed, open, half_open
+            "failure_threshold": circuit_breaker_threshold,
+            "timeout": circuit_breaker_timeout,
         }
 
         # Initialize per-endpoint timeout configuration
@@ -212,16 +216,16 @@ class HTTPClient:
     def _sanitize_data(data: Optional[dict[str, Any]]) -> dict[str, Any]:
         """
         Remove sensitive fields from data before logging (recursive)
-        
+
         Recursively sanitizes nested dictionaries and lists to prevent
         logging sensitive information like passwords, tokens, keys, etc.
-        
+
         Args:
             data: Data to sanitize (can be dict, list, or any value)
-            
+
         Returns:
             Sanitized copy of data with sensitive values redacted
-            
+
         Examples:
             >>> client._sanitize_data({'password': 'secret123', 'name': 'test'})
             {'password': '***REDACTED***', 'name': 'test'}
@@ -268,46 +272,46 @@ class HTTPClient:
     def _normalize_path(path: str) -> str:
         """
         Normalize API path by removing leading slashes
-        
+
         Args:
             path: Path to normalize
-            
+
         Returns:
             Normalized path without leading slashes
-            
+
         Examples:
             >>> HTTPClient._normalize_path('/firewall/address')
             'firewall/address'
             >>> HTTPClient._normalize_path('firewall/address')
             'firewall/address'
         """
-        return path.lstrip('/') if isinstance(path, str) else path
+        return path.lstrip("/") if isinstance(path, str) else path
 
     def _build_url(self, api_type: str, path: str) -> str:
         """
         Build complete API URL from components
-        
+
         Centralizes URL construction logic with proper encoding.
-        
+
         Args:
             api_type: API type (cmdb, monitor, log, service)
             path: Endpoint path
-            
+
         Returns:
             Complete URL string
         """
         # Normalize path: remove leading slash
         path = self._normalize_path(path)
-        
+
         # URL encode the path, treating / and % as safe characters
-        encoded_path = quote(str(path), safe='/%') if isinstance(path, str) else path
-        
+        encoded_path = quote(str(path), safe="/%") if isinstance(path, str) else path
+
         return f"{self._url}/api/v2/{api_type}/{encoded_path}"
 
     def get_retry_stats(self) -> dict[str, Any]:
         """
         Get retry statistics
-        
+
         Returns:
             dict: Retry statistics including:
                 - total_retries: Total number of retries across all requests
@@ -318,32 +322,32 @@ class HTTPClient:
                 - retry_by_endpoint: Count of retries grouped by endpoint
                 - last_retry_time: Timestamp of last retry (None if no retries)
                 - success_rate: Percentage of successful requests (0-100)
-        
+
         Example:
             >>> stats = client.get_retry_stats()
             >>> print(f"Total retries: {stats['total_retries']}")
             >>> print(f"Success rate: {stats['success_rate']:.1f}%")
             >>> print(f"Timeout retries: {stats['retry_by_reason'].get('Timeout', 0)}")
         """
-        total = self._retry_stats['total_requests']
-        successful = self._retry_stats['successful_requests']
+        total = self._retry_stats["total_requests"]
+        successful = self._retry_stats["successful_requests"]
         success_rate = (successful / total * 100) if total > 0 else 0.0
-        
+
         return {
-            'total_retries': self._retry_stats['total_retries'],
-            'total_requests': total,
-            'successful_requests': successful,
-            'failed_requests': self._retry_stats['failed_requests'],
-            'retry_by_reason': self._retry_stats['retry_by_reason'].copy(),
-            'retry_by_endpoint': self._retry_stats['retry_by_endpoint'].copy(),
-            'last_retry_time': self._retry_stats['last_retry_time'],
-            'success_rate': success_rate,
+            "total_retries": self._retry_stats["total_retries"],
+            "total_requests": total,
+            "successful_requests": successful,
+            "failed_requests": self._retry_stats["failed_requests"],
+            "retry_by_reason": self._retry_stats["retry_by_reason"].copy(),
+            "retry_by_endpoint": self._retry_stats["retry_by_endpoint"].copy(),
+            "last_retry_time": self._retry_stats["last_retry_time"],
+            "success_rate": success_rate,
         }
 
     def get_connection_stats(self) -> dict[str, Any]:
         """
         Get HTTP connection pool statistics
-        
+
         Returns:
             dict: Connection statistics including:
                 - http2_enabled: Whether HTTP/2 is enabled
@@ -351,24 +355,24 @@ class HTTPClient:
                 - max_keepalive_connections: Maximum keepalive connections
                 - circuit_breaker_state: Current circuit breaker state
                 - consecutive_failures: Number of consecutive failures
-        
+
         Example:
             >>> stats = client.get_connection_stats()
             >>> print(f"Circuit breaker: {stats['circuit_breaker_state']}")
         """
         return {
-            'http2_enabled': True,
-            'max_connections': 100,
-            'max_keepalive_connections': 20,
-            'circuit_breaker_state': self._circuit_breaker['state'],
-            'consecutive_failures': self._circuit_breaker['consecutive_failures'],
-            'last_failure_time': self._circuit_breaker['last_failure_time'],
+            "http2_enabled": True,
+            "max_connections": 100,
+            "max_keepalive_connections": 20,
+            "circuit_breaker_state": self._circuit_breaker["state"],
+            "consecutive_failures": self._circuit_breaker["consecutive_failures"],
+            "last_failure_time": self._circuit_breaker["last_failure_time"],
         }
 
     def get_circuit_breaker_state(self) -> dict[str, Any]:
         """
         Get circuit breaker state and statistics
-        
+
         Returns:
             dict: Circuit breaker information including:
                 - state: Current state (closed/open/half_open)
@@ -376,7 +380,7 @@ class HTTPClient:
                 - failure_threshold: Threshold to open circuit
                 - last_failure_time: Timestamp of last failure
                 - timeout: Wait time before half-open (seconds)
-        
+
         Example:
             >>> state = client.get_circuit_breaker_state()
             >>> if state['state'] == 'open':
@@ -387,16 +391,16 @@ class HTTPClient:
     def reset_circuit_breaker(self) -> None:
         """
         Manually reset circuit breaker to closed state
-        
+
         Useful for testing or when you know the service has recovered.
-        
+
         Example:
             >>> client.reset_circuit_breaker()
             >>> # Circuit is now closed and will accept requests
         """
-        self._circuit_breaker['consecutive_failures'] = 0
-        self._circuit_breaker['last_failure_time'] = None
-        self._circuit_breaker['state'] = 'closed'
+        self._circuit_breaker["consecutive_failures"] = 0
+        self._circuit_breaker["last_failure_time"] = None
+        self._circuit_breaker["state"] = "closed"
         logger.info("Circuit breaker manually reset to closed state")
 
     def configure_endpoint_timeout(
@@ -409,21 +413,21 @@ class HTTPClient:
     ) -> None:
         """
         Configure custom timeout for specific endpoint patterns
-        
+
         Args:
             endpoint_pattern: Endpoint pattern (e.g., 'monitor/system/status', 'cmdb/firewall/*')
             connect: Connection timeout in seconds
             read: Read timeout in seconds
             write: Write timeout in seconds
             pool: Pool timeout in seconds
-        
+
         Example:
             >>> # Fast endpoint - short timeout
             >>> client.configure_endpoint_timeout('monitor/system/status', read=5.0)
-            >>> 
+            >>>
             >>> # Slow endpoint - longer timeout
             >>> client.configure_endpoint_timeout('cmdb/firewall/policy', read=600.0)
-            >>> 
+            >>>
             >>> # Wildcard pattern
             >>> client.configure_endpoint_timeout('monitor/*', read=10.0)
         """
@@ -439,18 +443,18 @@ class HTTPClient:
     def _get_endpoint_timeout(self, endpoint: str) -> Optional[httpx.Timeout]:
         """
         Get configured timeout for endpoint (checks patterns)
-        
+
         Supports shell-style wildcard patterns:
         - `monitor/*` - matches all monitor endpoints
         - `*/status` - matches any endpoint ending in /status
         - `monitor/*/interface` - matches monitor/{anything}/interface
-        
+
         Args:
             endpoint: Full endpoint path (e.g., 'monitor/system/status')
-        
+
         Returns:
             Configured timeout or None to use default
-            
+
         Examples:
             >>> client.configure_endpoint_timeout('monitor/*', read=10.0)
             >>> client._get_endpoint_timeout('monitor/system/status')  # Matches
@@ -459,63 +463,62 @@ class HTTPClient:
         # Check exact match first (highest priority)
         if endpoint in self._endpoint_timeouts:
             return self._endpoint_timeouts[endpoint]
-        
+
         # Check wildcard patterns using fnmatch
         for pattern, timeout in self._endpoint_timeouts.items():
-            if '*' in pattern or '?' in pattern or '[' in pattern:
+            if "*" in pattern or "?" in pattern or "[" in pattern:
                 if fnmatch.fnmatch(endpoint, pattern):
                     return timeout
-        
-        return None
 
+        return None
 
     def _record_retry(self, reason: str, endpoint: str) -> None:
         """
         Record retry statistics
-        
+
         Args:
             reason: Reason for retry (e.g., 'ConnectionError', 'Timeout', 'HTTP 429')
             endpoint: Endpoint being retried
         """
-        self._retry_stats['total_retries'] += 1
-        self._retry_stats['last_retry_time'] = time.time()
-        
+        self._retry_stats["total_retries"] += 1
+        self._retry_stats["last_retry_time"] = time.time()
+
         # Track by reason
-        if reason not in self._retry_stats['retry_by_reason']:
-            self._retry_stats['retry_by_reason'][reason] = 0
-        self._retry_stats['retry_by_reason'][reason] += 1
-        
+        if reason not in self._retry_stats["retry_by_reason"]:
+            self._retry_stats["retry_by_reason"][reason] = 0
+        self._retry_stats["retry_by_reason"][reason] += 1
+
         # Track by endpoint
-        if endpoint not in self._retry_stats['retry_by_endpoint']:
-            self._retry_stats['retry_by_endpoint'][endpoint] = 0
-        self._retry_stats['retry_by_endpoint'][endpoint] += 1
+        if endpoint not in self._retry_stats["retry_by_endpoint"]:
+            self._retry_stats["retry_by_endpoint"][endpoint] = 0
+        self._retry_stats["retry_by_endpoint"][endpoint] += 1
 
     def _check_circuit_breaker(self, endpoint: str) -> None:
         """
         Check circuit breaker state before making request
-        
+
         Args:
             endpoint: Endpoint being accessed
-        
+
         Raises:
             CircuitBreakerOpenError: If circuit breaker is open
         """
-        state = self._circuit_breaker['state']
-        
-        if state == 'open':
+        state = self._circuit_breaker["state"]
+
+        if state == "open":
             # Check if timeout has elapsed to transition to half-open
-            if self._circuit_breaker['last_failure_time']:
-                elapsed = time.time() - self._circuit_breaker['last_failure_time']
-                if elapsed >= self._circuit_breaker['timeout']:
-                    self._circuit_breaker['state'] = 'half_open'
+            if self._circuit_breaker["last_failure_time"]:
+                elapsed = time.time() - self._circuit_breaker["last_failure_time"]
+                if elapsed >= self._circuit_breaker["timeout"]:
+                    self._circuit_breaker["state"] = "half_open"
                     logger.info("Circuit breaker transitioning to half-open state")
                 else:
-                    remaining = self._circuit_breaker['timeout'] - elapsed
+                    remaining = self._circuit_breaker["timeout"] - elapsed
                     logger.error(
-                        "Circuit breaker is OPEN - service unavailable (retry in %.1fs)",
-                        remaining
+                        "Circuit breaker is OPEN - service unavailable (retry in %.1fs)", remaining
                     )
                     from .exceptions import CircuitBreakerOpenError
+
                     raise CircuitBreakerOpenError(
                         f"Circuit breaker is OPEN for {endpoint}. "
                         f"Service appears to be down. Retry in {remaining:.1f}s"
@@ -523,43 +526,37 @@ class HTTPClient:
 
     def _record_circuit_breaker_success(self) -> None:
         """Record successful request - reset circuit breaker"""
-        if self._circuit_breaker['consecutive_failures'] > 0:
+        if self._circuit_breaker["consecutive_failures"] > 0:
             logger.info(
                 "Circuit breaker: Service recovered after %d failures",
-                self._circuit_breaker['consecutive_failures']
+                self._circuit_breaker["consecutive_failures"],
             )
-        self._circuit_breaker['consecutive_failures'] = 0
-        self._circuit_breaker['last_failure_time'] = None
-        self._circuit_breaker['state'] = 'closed'
+        self._circuit_breaker["consecutive_failures"] = 0
+        self._circuit_breaker["last_failure_time"] = None
+        self._circuit_breaker["state"] = "closed"
 
     def _record_circuit_breaker_failure(self, endpoint: str) -> None:
         """
         Record failed request - update circuit breaker state
-        
+
         Args:
             endpoint: Endpoint that failed
         """
-        self._circuit_breaker['consecutive_failures'] += 1
-        self._circuit_breaker['last_failure_time'] = time.time()
-        
-        failures = self._circuit_breaker['consecutive_failures']
-        threshold = self._circuit_breaker['failure_threshold']
-        
-        if failures >= threshold and self._circuit_breaker['state'] != 'open':
-            self._circuit_breaker['state'] = 'open'
+        self._circuit_breaker["consecutive_failures"] += 1
+        self._circuit_breaker["last_failure_time"] = time.time()
+
+        failures = self._circuit_breaker["consecutive_failures"]
+        threshold = self._circuit_breaker["failure_threshold"]
+
+        if failures >= threshold and self._circuit_breaker["state"] != "open":
+            self._circuit_breaker["state"] = "open"
             logger.error(
-                "Circuit breaker OPENED after %d consecutive failures for %s",
-                failures,
-                endpoint
+                "Circuit breaker OPENED after %d consecutive failures for %s", failures, endpoint
             )
         elif failures < threshold:
             logger.warning(
-                "Circuit breaker: %d/%d consecutive failures for %s",
-                failures,
-                threshold,
-                endpoint
+                "Circuit breaker: %d/%d consecutive failures for %s", failures, threshold, endpoint
             )
-
 
     def _handle_response_errors(self, response: httpx.Response) -> None:
         """
@@ -647,7 +644,7 @@ class HTTPClient:
             )
             self._record_retry(reason, endpoint)
             return True
-        
+
         if isinstance(error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)):
             # Differentiate timeout types
             if isinstance(error, httpx.ConnectTimeout):
@@ -717,10 +714,10 @@ class HTTPClient:
         # Check for Retry-After header (for 429 rate limits)
         if response is not None:
             # Log rate limit status if available
-            rate_limit_remaining = response.headers.get('X-RateLimit-Remaining')
+            rate_limit_remaining = response.headers.get("X-RateLimit-Remaining")
             if rate_limit_remaining:
                 logger.debug("Rate limit remaining: %s", rate_limit_remaining)
-            
+
             if "Retry-After" in response.headers:
                 try:
                     retry_after = int(response.headers["Retry-After"])
@@ -731,7 +728,7 @@ class HTTPClient:
 
         # Exponential backoff: 1s, 2s, 4s, 8s, ...
         # Cap at 30 seconds to avoid excessive delays
-        delay = min(2 ** attempt, 30.0)
+        delay = min(2**attempt, 30.0)
         logger.debug("Exponential backoff delay: %.1f seconds", delay)
         return delay
 
@@ -776,7 +773,7 @@ class HTTPClient:
         # Individual path components may already be encoded by endpoint files using
         # encode_path_component(), so quote() with safe='/' won't double-encode
         # already-encoded %XX sequences (e.g., %2F stays as %2F)
-        encoded_path = quote(str(path), safe='/%') if isinstance(path, str) else path
+        encoded_path = quote(str(path), safe="/%") if isinstance(path, str) else path
         url = f"{self._url}/api/v2/{api_type}/{encoded_path}"
         params = params or {}
 
@@ -798,12 +795,12 @@ class HTTPClient:
             logger.error(
                 "Circuit breaker blocked request",
                 extra={
-                    'request_id': request_id,
-                    'method': method,
-                    'endpoint': full_path,
-                    'circuit_state': self._circuit_breaker['state'],
-                    'consecutive_failures': self._circuit_breaker['consecutive_failures'],
-                }
+                    "request_id": request_id,
+                    "method": method,
+                    "endpoint": full_path,
+                    "circuit_state": self._circuit_breaker["state"],
+                    "consecutive_failures": self._circuit_breaker["consecutive_failures"],
+                },
             )
             raise
 
@@ -818,29 +815,28 @@ class HTTPClient:
         logger.debug(
             "Request started",
             extra={
-                'request_id': request_id,
-                'method': method.upper(),
-                'endpoint': full_path,
-                'has_data': bool(data),
-                'has_params': bool(params),
-            }
+                "request_id": request_id,
+                "method": method.upper(),
+                "endpoint": full_path,
+                "has_data": bool(data),
+                "has_params": bool(params),
+            },
         )
         if params:
             logger.debug(
-                "Request parameters", 
-                extra={'request_id': request_id, 'params': self._sanitize_data(params)}
+                "Request parameters",
+                extra={"request_id": request_id, "params": self._sanitize_data(params)},
             )
         if data:
             logger.debug(
-                "Request data", 
-                extra={'request_id': request_id, 'data': self._sanitize_data(data)}
+                "Request data", extra={"request_id": request_id, "data": self._sanitize_data(data)}
             )
 
         # Track timing
         start_time = time.time()
-        
+
         # Track total requests
-        self._retry_stats['total_requests'] += 1
+        self._retry_stats["total_requests"] += 1
 
         # Retry loop with exponential backoff
         last_error = None
@@ -862,21 +858,21 @@ class HTTPClient:
 
                 # Record success in circuit breaker
                 self._record_circuit_breaker_success()
-                
+
                 # Record successful request
-                self._retry_stats['successful_requests'] += 1
+                self._retry_stats["successful_requests"] += 1
 
                 # Structured log for successful response
                 logger.info(
                     "Request completed successfully",
                     extra={
-                        'request_id': request_id,
-                        'method': method.upper(),
-                        'endpoint': full_path,
-                        'status_code': res.status_code,
-                        'duration_seconds': round(duration, 3),
-                        'attempts': attempt + 1,
-                    }
+                        "request_id": request_id,
+                        "method": method.upper(),
+                        "endpoint": full_path,
+                        "status_code": res.status_code,
+                        "duration_seconds": round(duration, 3),
+                        "attempts": attempt + 1,
+                    },
                 )
 
                 # Warn about slow requests
@@ -884,11 +880,11 @@ class HTTPClient:
                     logger.warning(
                         "Slow request detected",
                         extra={
-                            'request_id': request_id,
-                            'method': method.upper(),
-                            'endpoint': full_path,
-                            'duration_seconds': round(duration, 3),
-                        }
+                            "request_id": request_id,
+                            "method": method.upper(),
+                            "endpoint": full_path,
+                            "duration_seconds": round(duration, 3),
+                        },
                     )
 
                 # Parse JSON response
@@ -907,28 +903,32 @@ class HTTPClient:
 
             except Exception as e:
                 last_error = e
-                
+
                 # Record failure in circuit breaker
                 self._record_circuit_breaker_failure(endpoint_key)
 
                 # Check if we should retry
                 if self._should_retry(e, attempt, endpoint_key):
                     # Calculate delay
-                    response_obj = getattr(e, 'response', None) if isinstance(e, httpx.HTTPStatusError) else None
+                    response_obj = (
+                        getattr(e, "response", None)
+                        if isinstance(e, httpx.HTTPStatusError)
+                        else None
+                    )
                     delay = self._get_retry_delay(attempt, response_obj)
 
                     # Structured log for retry
                     logger.info(
                         "Retrying request after delay",
                         extra={
-                            'request_id': request_id,
-                            'method': method.upper(),
-                            'endpoint': full_path,
-                            'error_type': type(e).__name__,
-                            'attempt': attempt + 1,
-                            'max_attempts': self._max_retries + 1,
-                            'delay_seconds': delay,
-                        }
+                            "request_id": request_id,
+                            "method": method.upper(),
+                            "endpoint": full_path,
+                            "error_type": type(e).__name__,
+                            "attempt": attempt + 1,
+                            "max_attempts": self._max_retries + 1,
+                            "delay_seconds": delay,
+                        },
                     )
 
                     # Wait before retry
@@ -943,20 +943,20 @@ class HTTPClient:
         # If we've exhausted all retries, restore timeout and raise the last error
         if endpoint_timeout:
             self._client.timeout = original_timeout
-            
+
         if last_error:
             # Record failed request
-            self._retry_stats['failed_requests'] += 1
-            
+            self._retry_stats["failed_requests"] += 1
+
             logger.error(
                 "Request failed after all retries",
                 extra={
-                    'request_id': request_id,
-                    'method': method.upper(),
-                    'endpoint': full_path,
-                    'total_attempts': self._max_retries + 1,
-                    'error_type': type(last_error).__name__,
-                }
+                    "request_id": request_id,
+                    "method": method.upper(),
+                    "endpoint": full_path,
+                    "total_attempts": self._max_retries + 1,
+                    "error_type": type(last_error).__name__,
+                },
             )
             raise last_error
 
@@ -993,7 +993,7 @@ class HTTPClient:
         Returns:
             Raw binary response data
         """
-        path = path.lstrip('/') if isinstance(path, str) else path
+        path = path.lstrip("/") if isinstance(path, str) else path
         url = f"{self._url}/api/v2/{api_type}/{path}"
         params = params or {}
 
@@ -1179,7 +1179,7 @@ class HTTPClient:
         self,
         exc_type: Optional[type[BaseException]],
         exc_val: Optional[BaseException],
-        exc_tb: Optional[Any]
+        exc_tb: Optional[Any],
     ) -> None:
         """Exit context manager - ensures session is closed"""
         self.close()
