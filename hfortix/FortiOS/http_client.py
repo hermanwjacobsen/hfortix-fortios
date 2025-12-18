@@ -27,7 +27,7 @@ HTTPResponse: TypeAlias = dict[str, Any]
 __all__ = ["HTTPClient", "HTTPResponse", "encode_path_component"]
 
 
-def encode_path_component(component: str) -> str:
+def encode_path_component(component: str | int) -> str:
     """
     Encode a single path component for use in URLs.
 
@@ -35,7 +35,7 @@ def encode_path_component(component: str) -> str:
     commonly used in FortiOS object names (e.g., IP addresses with CIDR notation).
 
     Args:
-        component: Path component to encode (e.g., object name)
+        component: Path component to encode (e.g., object name or ID)
 
     Returns:
         URL-encoded string safe for use in URL paths
@@ -45,8 +45,10 @@ def encode_path_component(component: str) -> str:
         'Test_NET_192.0.2.0%2F24'
         >>> encode_path_component("test@example.com")
         'test%40example.com'
+        >>> encode_path_component(123)
+        '123'
     """
-    return quote(component, safe="")
+    return quote(str(component), safe="")
 
 
 class HTTPClient:

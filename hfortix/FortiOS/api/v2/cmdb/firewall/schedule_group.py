@@ -90,7 +90,7 @@ class ScheduleGroup:
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
-        member: Optional[list[dict[str, str]]] = None,
+        member: Optional[Union[list[str], list[dict[str, str]]]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -145,8 +145,12 @@ class ScheduleGroup:
                 # Convert string list to dict list if needed
                 if isinstance(member, list) and len(member) > 0:
                     if isinstance(member[0], str):
-                        member = [{"name": m} for m in member]
-                payload_dict["member"] = member
+                        converted_member = [{"name": m} for m in member]
+                        payload_dict["member"] = converted_member
+                    else:
+                        payload_dict["member"] = member
+                else:
+                    payload_dict["member"] = member
             if color is not None:
                 payload_dict["color"] = color
             if fabric_object is not None:
@@ -176,7 +180,7 @@ class ScheduleGroup:
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
-        member: Optional[list[dict[str, str]]] = None,
+        member: Optional[Union[list[str], list[dict[str, str]]]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -228,7 +232,7 @@ class ScheduleGroup:
                 # Convert string list to dict list if needed
                 if isinstance(member, list) and len(member) > 0:
                     if isinstance(member[0], str):
-                        member = [{"name": m} for m in member]
+                        member = [{"name": m} for m in member] # type: ignore[union-attr]
                 payload_dict["member"] = member
             if color is not None:
                 payload_dict["color"] = color

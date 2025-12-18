@@ -47,11 +47,10 @@ class Profile:
         Returns:
             Profile details or list of profiles
         """
-        if name:
-            return self._client.get(
-                "cmdb", f"{self._base_path}/{name}", params=params, vdom=vdom, raw_json=raw_json
-            )
-        return self.list(params=params, vdom=vdom)
+        path = self._base_path
+        if name is not None:
+            path = f"{path}/{encode_path_component(name)}"
+        return self._client.get("cmdb", path, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,

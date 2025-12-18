@@ -99,16 +99,13 @@ class Policy:
         # Extract vdom if present
         vdom = params.pop("vdom", None)
 
-        
         # Conditional path: list all if mkey is None, get specific otherwise
+        path = self.path
         if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
+            path = f"{path}/{encode_path_component(mkey)}"
 
         return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", path, params=params, vdom=vdom, raw_json=raw_json
         )
 
     def post(
