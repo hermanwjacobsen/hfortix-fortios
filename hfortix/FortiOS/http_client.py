@@ -14,7 +14,7 @@ import fnmatch
 import logging
 import time
 import uuid
-from typing import Any, Optional, TypeAlias, Union
+from typing import Any, Callable, Optional, TypeAlias, Union
 from urllib.parse import quote
 
 import httpx
@@ -1194,3 +1194,56 @@ class HTTPClient:
         if self._client:
             self._client.close()
             logger.debug("HTTP client session closed")
+
+    @staticmethod
+    def make_exists_method(get_method: Callable[..., Any]) -> Callable[..., bool]:
+        """
+        Create an exists() helper that works with both sync and async modes.
+        
+        This utility wraps a get() method and returns a function that:
+        - Returns True if the object exists
+        - Returns False if ResourceNotFoundError is raised
+        - Works transparently with both sync and async clients
+        
+        Args:
+            get_method: The get() method to wrap (bound method from endpoint instance)
+        
+        Returns:
+            A function that returns bool (sync) or Coroutine[bool] (async)
+        
+        Example:
+            class Address:
+                def __init__(self, client):
+                    self._client = client
+                
+                def get(self, name, **kwargs):
+                    return self._client.get("cmdb", f"/firewall/address/{name}", **kwargs)
+                
+                # Create exists method using the helper
+                exists = HTTPClient.make_exists_method(get)
+        """
+        import inspect
+        
+        def exists_wrapper(*args: Any, **kwargs: Any) -> Union[bool, Any]:
+            """Check if an object exists."""
+            from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+            
+            # Call the get method
+            result = get_method(*args, **kwargs)
+            
+            # Check if we got a coroutine (async mode)
+            if inspect.iscoroutine(result):
+                # Return async version
+                async def _exists_async():
+                    try:
+                        await result  # type: ignore[misc]
+                        return True
+                    except ResourceNotFoundError:
+                        return False
+                return _exists_async()
+            else:
+                # Sync mode - we already called get(), it succeeded
+                # If it raised ResourceNotFoundError, we wouldn't be here
+                return True
+        
+        return exists_wrapper

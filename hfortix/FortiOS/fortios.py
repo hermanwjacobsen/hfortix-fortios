@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 
 from .api import API
 from .http_client import HTTPClient
+
+if TYPE_CHECKING:
+    from .http_client_async import AsyncHTTPClient
 
 __all__ = ["FortiOS"]
 
@@ -57,10 +60,59 @@ class FortiOS:
         - Examples: EXAMPLES.md
     """
 
+    # Type overloads for better IDE support
+    @overload
     def __init__(
         self,
         host: Optional[str] = None,
         token: Optional[str] = None,
+        *,
+        mode: Literal["sync"] = "sync",
+        verify: bool = True,
+        vdom: Optional[str] = None,
+        port: Optional[int] = None,
+        debug: Optional[str] = None,
+        max_retries: int = 3,
+        connect_timeout: float = 10.0,
+        read_timeout: float = 300.0,
+        user_agent: Optional[str] = None,
+        circuit_breaker_threshold: int = 5,
+        circuit_breaker_timeout: float = 60.0,
+        max_connections: int = 100,
+        max_keepalive_connections: int = 20,
+    ) -> None:
+        """Synchronous FortiOS client (default)"""
+        ...
+
+    @overload
+    def __init__(
+        self,
+        host: Optional[str] = None,
+        token: Optional[str] = None,
+        *,
+        mode: Literal["async"],
+        verify: bool = True,
+        vdom: Optional[str] = None,
+        port: Optional[int] = None,
+        debug: Optional[str] = None,
+        max_retries: int = 3,
+        connect_timeout: float = 10.0,
+        read_timeout: float = 300.0,
+        user_agent: Optional[str] = None,
+        circuit_breaker_threshold: int = 5,
+        circuit_breaker_timeout: float = 60.0,
+        max_connections: int = 100,
+        max_keepalive_connections: int = 20,
+    ) -> None:
+        """Asynchronous FortiOS client"""
+        ...
+
+    def __init__(
+        self,
+        host: Optional[str] = None,
+        token: Optional[str] = None,
+        *,
+        mode: Literal["sync", "async"] = "sync",
         verify: bool = True,
         vdom: Optional[str] = None,
         port: Optional[int] = None,
@@ -75,7 +127,7 @@ class FortiOS:
         max_keepalive_connections: int = 20,
     ) -> None:
         """
-        Initialize FortiOS API client
+        Initialize FortiOS API client (sync or async mode)
 
         With token authentication, everything is stateless - just provide credentials
         and start making API calls. No login/logout needed.
@@ -83,6 +135,9 @@ class FortiOS:
         Args:
             host: FortiGate IP/hostname (e.g., "192.0.2.10" or "fortigate.example.com")
             token: API token for authentication
+            mode: Client mode - 'sync' (default) or 'async'
+                 - 'sync': Traditional synchronous API calls
+                 - 'async': Asynchronous API calls with async/await
             verify: Verify SSL certificates (default: True, recommended for production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
             port: HTTPS port (default: None = use 443, or specify custom port like 8443)
@@ -99,6 +154,18 @@ class FortiOS:
             max_keepalive_connections: Maximum number of keepalive connections (default: 20)
 
         Examples:
+            # Synchronous mode (default)
+            fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
+            addresses = fgt.api.cmdb.firewall.address.get("test-host")
+
+            # Asynchronous mode
+            fgt = FortiOS("fortigate.example.com", token="your_token_here", mode="async")
+            addresses = await fgt.api.cmdb.firewall.address.get("test-host")
+
+            # Async with context manager
+            async with FortiOS("192.0.2.10", token="token", mode="async", verify=False) as fgt:
+                status = await fgt.api.monitor.system.status.get()
+
             # Production - with valid SSL certificate
             fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
 
@@ -123,6 +190,7 @@ class FortiOS:
         self._host = host
         self._vdom = vdom
         self._port = port
+        self._mode = mode
 
         # Set up instance-specific logging if requested
         if debug:
@@ -142,30 +210,49 @@ class FortiOS:
         else:
             raise ValueError("host parameter is required")
 
-        # Initialize HTTP client
-        self._client = HTTPClient(
-            url=url,
-            verify=verify,
-            token=token,
-            vdom=vdom,
-            max_retries=max_retries,
-            connect_timeout=connect_timeout,
-            read_timeout=read_timeout,
-            user_agent=user_agent,
-            circuit_breaker_threshold=circuit_breaker_threshold,
-            circuit_breaker_timeout=circuit_breaker_timeout,
-            max_connections=max_connections,
-            max_keepalive_connections=max_keepalive_connections,
-        )
+        # Initialize HTTP client based on mode
+        self._client: Union[HTTPClient, AsyncHTTPClient]
+        if mode == "async":
+            from .http_client_async import AsyncHTTPClient
+
+            self._client = AsyncHTTPClient(
+                url=url,
+                verify=verify,
+                token=token,
+                vdom=vdom,
+                max_retries=max_retries,
+                connect_timeout=connect_timeout,
+                read_timeout=read_timeout,
+                user_agent=user_agent,
+                circuit_breaker_threshold=circuit_breaker_threshold,
+                circuit_breaker_timeout=circuit_breaker_timeout,
+                max_connections=max_connections,
+                max_keepalive_connections=max_keepalive_connections,
+            )
+        else:
+            self._client = HTTPClient(
+                url=url,
+                verify=verify,
+                token=token,
+                vdom=vdom,
+                max_retries=max_retries,
+                connect_timeout=connect_timeout,
+                read_timeout=read_timeout,
+                user_agent=user_agent,
+                circuit_breaker_threshold=circuit_breaker_threshold,
+                circuit_breaker_timeout=circuit_breaker_timeout,
+                max_connections=max_connections,
+                max_keepalive_connections=max_keepalive_connections,
+            )
 
         # Initialize API namespace.
         # Store it privately and expose a property so IDEs treat it as a concrete
         # instance attribute (often improves autocomplete ranking vs dunder attrs).
-        self._api = API(self._client)
+        self._api = API(self._client)  # type: ignore[arg-type]
 
         # Log initialization
         logger = logging.getLogger("hfortix.client")
-        logger.info("Initialized FortiOS client for %s", host or "unknown")
+        logger.info("Initialized FortiOS client for %s (mode=%s)", host or "unknown", mode)
         if not verify:
             logger.warning("SSL verification disabled - not recommended for production")
         if vdom:
@@ -264,14 +351,68 @@ class FortiOS:
 
         Optional: Python automatically cleans up when object is destroyed.
         Use this for explicit resource management or in long-running apps.
+
+        Note:
+            For async mode, use `await fgt.aclose()` instead.
         """
+        if self._mode == "async":
+            raise RuntimeError(
+                "Cannot use .close() in async mode. Use 'await fgt.aclose()' or 'async with' instead."
+            )
         self._client.close()
 
+    async def aclose(self) -> None:
+        """
+        Close the async HTTP session and release resources (async mode only)
+
+        Use this method when working in async mode to properly clean up resources.
+
+        Example:
+            >>> fgt = FortiOS("192.0.2.10", token="...", mode="async")
+            >>> try:
+            ...     addresses = await fgt.api.cmdb.firewall.address.list()
+            ... finally:
+            ...     await fgt.aclose()
+
+        Note:
+            Prefer using 'async with' statement for automatic cleanup:
+            >>> async with FortiOS("192.0.2.10", token="...", mode="async") as fgt:
+            ...     addresses = await fgt.api.cmdb.firewall.address.list()
+        """
+        if self._mode != "async":
+            raise RuntimeError("aclose() is only available in async mode")
+        await self._client.close()  # type: ignore[misc]
+
     def __enter__(self) -> "FortiOS":
-        """Context manager entry"""
+        """Context manager entry (sync mode only)"""
+        if self._mode == "async":
+            raise RuntimeError(
+                "Cannot use 'with' statement in async mode. Use 'async with' instead."
+            )
         return self
 
     def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
-        """Context manager exit - automatically closes session"""
+        """Context manager exit - automatically closes session (sync mode only)"""
+        if self._mode == "async":
+            raise RuntimeError(
+                "Cannot use 'with' statement in async mode. Use 'async with' instead."
+            )
         self.close()
+        return False
+
+    async def __aenter__(self) -> "FortiOS":
+        """Async context manager entry (async mode only)"""
+        if self._mode != "async":
+            raise RuntimeError(
+                "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."
+            )
+        return self
+
+    async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
+        """Async context manager exit - automatically closes session (async mode only)"""
+        if self._mode != "async":
+            raise RuntimeError(
+                "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."
+            )
+        await self.aclose()
         return False

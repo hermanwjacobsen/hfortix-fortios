@@ -5,30 +5,63 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.15] - 2025-12-19
 
 ### Added
+
+- **Async/Await Support**: Full dual-mode support for asynchronous operations
+  - Single `FortiOS` class now supports both sync and async modes via `mode` parameter
+  - All 750+ API methods work transparently in async mode with `await`
+  - All 288 `.exists()` helper methods are async-aware
+  - Async context manager support with `async with`
+  - Zero breaking changes - existing sync code continues to work
+  - Implementation:
+    - New `AsyncHTTPClient` class mirroring sync `HTTPClient` with async/await
+    - `mode="async"` parameter on `FortiOS.__init__()`
+    - Automatic coroutine detection using `inspect.iscoroutine()`
+    - Type hints with `@overload` decorators for IDE support
+  - Performance: Enables concurrent operations with `asyncio.gather()` for 3x+ speedup
+  - See [ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ASYNC_GUIDE.md) for complete documentation
 
 - **Helper Methods**: Added `.exists()` helper method to 288 CMDB endpoints
   - Provides safe existence checking without raising exceptions
   - Returns `True` if object exists, `False` if not found
+  - Works transparently in both sync and async modes
   - Available on all endpoints that support full CRUD operations
-  - Example: `if fgt.api.cmdb.firewall.address.exists("test-host"): ...`
-  - See `HELPER_METHODS.md` for complete documentation and usage examples
+  - Example (sync): `if fgt.api.cmdb.firewall.address.exists("test-host"): ...`
+  - Example (async): `if await fgt.api.cmdb.firewall.address.exists("test-host"): ...`
+  - See [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) for complete documentation and usage examples
 
 ### Documentation
 
-- **API Reference**: Created comprehensive `ENDPOINT_METHODS.md` documentation
+- **Async Guide**: Created comprehensive [ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ASYNC_GUIDE.md) documentation
+  - Complete async/await usage guide with examples
+  - Common patterns: concurrent requests, bulk operations, error handling
+  - Migration guide from sync to async
+  - Performance comparisons and best practices
+  - Advanced usage: rate limiting, timeouts, multiple FortiGates
+  - Troubleshooting common async errors
+- **API Reference**: Created comprehensive [ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ENDPOINT_METHODS.md) documentation
   - Complete listing of all 857 FortiOS API endpoints
   - Shows available methods (`.get()`, `.post()`, `.put()`, `.delete()`, `.exists()`) for each endpoint
   - Organized by API category (CMDB, LOG, MONITOR, SERVICE)
   - Quick navigation with anchor links to all subcategories
   - Coverage: 561 CMDB endpoints, 19 LOG endpoints, 274 MONITOR endpoints, 3 SERVICE endpoints
-- **Helper Methods Guide**: Created detailed `HELPER_METHODS.md` documentation
+- **Helper Methods Guide**: Created detailed [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) documentation
   - In-depth guide to the `.exists()` helper method
-  - Practical usage examples for common scenarios
+  - Practical usage examples for common scenarios (idempotent operations, safe deletion, batch processing)
   - Reference table of identifier types for all 288 endpoints with `.exists()`
   - Organized by category with example code snippets
+- **README Updates**: Added GitHub links to all documentation references
+  - Updated documentation links to point to GitHub repository
+  - Added ASYNC_GUIDE.md, ENDPOINT_METHODS.md and HELPER_METHODS.md to main documentation section
+  - Updated roadmap to mark async support as completed (v0.3.15)
+  - Added async/await to features list
+  - Improved discoverability for PyPI users
+- **QUICKSTART Updates**: Added async/await section
+  - Quick example of async mode usage
+  - Link to comprehensive ASYNC_GUIDE.md
+  - Updated tips section to mention async for concurrent operations
 
 ## [0.3.14] - 2025-12-19
 

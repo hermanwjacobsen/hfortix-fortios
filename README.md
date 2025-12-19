@@ -35,11 +35,23 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - ✨ **Firewall Expansion** (v0.3.11): FTP proxy, ICAP, IPS, DoS policies, access-proxy (WAF)
 
 **📖 Documentation:**
-- **User Guide**: See [QUICKSTART.md](QUICKSTART.md) for getting started
-- **API Coverage**: [API_COVERAGE.md](API_COVERAGE.md) for endpoint details
-- **Full Changelog**: [CHANGELOG.md](CHANGELOG.md) for complete version history
+- **User Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
+- **Async Guide**: [ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ASYNC_GUIDE.md) - Async/await support documentation
+- **API Method Reference**: [ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ENDPOINT_METHODS.md) - All 857 endpoints with available methods
+- **Helper Methods Guide**: [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) - Safe existence checking and best practices
+- **API Coverage**: [API_COVERAGE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/API_COVERAGE.md) - Implementation status by category
+- **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.14):**
+**Latest Features (v0.3.15):**
+- ✨ **Async/Await Support**: Full dual-mode support for async operations (NEW!)
+  - Single `FortiOS` class works in both sync and async modes
+  - All 750+ API methods support async with `mode="async"` parameter
+  - All helper methods (`.exists()`) work transparently in both modes
+  - Async context manager support with `async with`
+  - Zero breaking changes - existing sync code continues to work
+- ✨ **288 Endpoints Updated**: All `.exists()` helper methods now async-aware
+
+**Previous Release (v0.3.14):**
 - ✨ **Request ID / Correlation Tracking**: Auto-generated or custom request IDs for distributed tracing
 - ✨ **Circuit Breaker Pattern**: Automatic fail-fast to prevent cascading failures (opens after 5 failures, auto-recovers)
 - ✨ **Connection Pool Metrics**: Monitor HTTP client health with `get_connection_stats()` method
@@ -112,6 +124,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 - **Unified Package**: Import all Fortinet products from a single package
 - **Type-Safe & Type-Checked**: Full PEP 561 compliance with mypy/pyright support for IDE autocomplete
+- **Async/Await Support**: Full dual-mode operation - works with both sync and async code
 - **Modular Architecture**: Each product module can be used independently
 - **PyPI Installation**: `pip install hfortix` - simple and straightforward
 - **Comprehensive Exception Handling**: 387+ FortiOS error codes with detailed descriptions
@@ -802,7 +815,7 @@ fgt = FortiOS(
 - [ ] FortiManager module (Not Started)
 - [ ] FortiAnalyzer module (Not Started)
 - [ ] Helper methods for singleton routing endpoints (Planned)
-- [ ] Async support (Planned)
+- [x] Async/await support (Implemented in v0.3.15)
 - [ ] CLI tool (Planned)
 
 ### ⚠️ Important Note: Singleton Routing Endpoints (Beta)

@@ -245,11 +245,24 @@ class MacAddressTable:
             ...     print("Address exists")
         """
         from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
-        try:
-            self.get(mac=mac, vdom=vdom)
-            return True
-        except ResourceNotFoundError:
-            return False
+        import inspect
+        
+        # Call get() - returns dict (sync) or coroutine (async)
+        result = self.get(mac=mac, vdom=vdom)
+        
+        # Check if async mode
+        if inspect.iscoroutine(result):
+            async def _async():
+                try:
+                    await result  # type: ignore[misc]
+                    return True
+                except ResourceNotFoundError:
+                    return False
+            return _async()
+        
+        # Sync mode - get() already executed, no exception means it exists
+        return True
+
 
     def post(
         self,

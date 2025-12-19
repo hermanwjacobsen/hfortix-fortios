@@ -245,11 +245,24 @@ class CustomCommand:
             ...     print("Address exists")
         """
         from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
-        try:
-            self.get(command_name=command_name, vdom=vdom)
-            return True
-        except ResourceNotFoundError:
-            return False
+        import inspect
+        
+        # Call get() - returns dict (sync) or coroutine (async)
+        result = self.get(command_name=command_name, vdom=vdom)
+        
+        # Check if async mode
+        if inspect.iscoroutine(result):
+            async def _async():
+                try:
+                    await result  # type: ignore[misc]
+                    return True
+                except ResourceNotFoundError:
+                    return False
+            return _async()
+        
+        # Sync mode - get() already executed, no exception means it exists
+        return True
+
 
     def post(
         self,

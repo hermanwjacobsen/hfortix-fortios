@@ -325,6 +325,7 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 - Set `verify=True` in production
 - Use pagination for large datasets
 - Check error codes in exception handlers
+- Use async mode for concurrent operations (see ASYNC_GUIDE.md)
 
 ❌ **DON'T:**
 - Hardcode credentials
@@ -332,8 +333,37 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 - Use bare `except:` clauses
 - Make too many rapid API calls (rate limiting)
 
+## Advanced Features
+
+### Async/Await Support
+
+For high-performance concurrent operations, use async mode:
+
+```python
+import asyncio
+from hfortix import FortiOS
+
+async def main():
+    # Enable async mode
+    async with FortiOS(host='...', token='...', mode="async") as fgt:
+        # All methods work with await
+        addresses = await fgt.api.cmdb.firewall.address.list()
+        
+        # Run multiple operations concurrently
+        addr, pol, svc = await asyncio.gather(
+            fgt.api.cmdb.firewall.address.list(),
+            fgt.api.cmdb.firewall.policy.list(),
+            fgt.api.cmdb.firewall.service.custom.list()
+        )
+
+asyncio.run(main())
+```
+
+**See [ASYNC_GUIDE.md](ASYNC_GUIDE.md) for complete async documentation.**
+
 ## Support
 
 - 📖 [Full Documentation](README.md)
+- 🚀 [Async/Await Guide](ASYNC_GUIDE.md)
 - 🐛 [Report Issues](issues)
 - 💬 [Discussions](discussions)

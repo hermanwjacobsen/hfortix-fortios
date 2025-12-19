@@ -393,27 +393,46 @@ class Address:
         self,
         name: str,
         vdom: str | bool | None = None,
-    ) -> bool:
+    ):
         """
         Check if an object exists.
+        
+        Automatically works in both sync and async modes.
         
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
         
         Returns:
-            True if object exists, False otherwise
+            bool (sync mode) or Coroutine[bool] (async mode)
         
-        Example:
+        Example (Sync):
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
+            ...     print("Address exists")
+        
+        Example (Async):
+            >>> if await fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
         from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
-        try:
-            self.get(name=name, vdom=vdom)
-            return True
-        except ResourceNotFoundError:
-            return False
+        import inspect
+        
+        # Call get() - returns dict (sync) or coroutine (async)
+        result = self.get(name=name, vdom=vdom)
+        
+        # Check if async mode
+        if inspect.iscoroutine(result):
+            async def _async():
+                try:
+                    await result  # type: ignore[misc]
+                    return True
+                except ResourceNotFoundError:
+                    return False
+            return _async()
+        
+        # Sync mode - get() already executed, no exception means it exists
+        return True
+
 
     def post(
         self,
