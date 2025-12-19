@@ -301,6 +301,32 @@ class CentralSnatMap:
         params.update(kwargs)
         return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
+    def exists(
+        self,
+        policyid: str,
+        vdom: str | bool | None = None,
+    ) -> bool:
+        """
+        Check if an object exists.
+        
+        Args:
+            policyid: Object identifier
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+        
+        Returns:
+            True if object exists, False otherwise
+        
+        Example:
+            >>> if fgt.api.cmdb.firewall.address.exists("server1"):
+            ...     print("Address exists")
+        """
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+        try:
+            self.get(policyid=policyid, vdom=vdom)
+            return True
+        except ResourceNotFoundError:
+            return False
+
     def post(
         self,
         payload_dict: dict[str, Any] | None = None,
@@ -309,19 +335,19 @@ class CentralSnatMap:
         uuid: str | None = None,
         status: str | None = None,
         type: str | None = None,
-        srcintf: list | None = None,
-        dstintf: list | None = None,
-        orig_addr: list | None = None,
-        orig_addr6: list | None = None,
-        dst_addr: list | None = None,
-        dst_addr6: list | None = None,
+        srcintf: list | None = None, # type: ignore
+        dstintf: list | None = None, # type: ignore
+        orig_addr: list | None = None, # type: ignore
+        orig_addr6: list | None = None, # type: ignore
+        dst_addr: list | None = None, # type: ignore
+        dst_addr6: list | None = None, # type: ignore
         protocol: int | None = None,
         orig_port: str | None = None,
         nat: str | None = None,
         nat46: str | None = None,
         nat64: str | None = None,
-        nat_ippool: list | None = None,
-        nat_ippool6: list | None = None,
+        nat_ippool: list | None = None, # type: ignore
+        nat_ippool6: list | None = None, # type: ignore
         port_preserve: str | None = None,
         port_random: str | None = None,
         nat_port: str | None = None,

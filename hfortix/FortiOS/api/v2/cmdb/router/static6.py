@@ -285,6 +285,32 @@ class Static6:
         params.update(kwargs)
         return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
+    def exists(
+        self,
+        seq_num: str,
+        vdom: str | bool | None = None,
+    ) -> bool:
+        """
+        Check if an object exists.
+        
+        Args:
+            seq_num: Object identifier
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+        
+        Returns:
+            True if object exists, False otherwise
+        
+        Example:
+            >>> if fgt.api.cmdb.firewall.address.exists("server1"):
+            ...     print("Address exists")
+        """
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+        try:
+            self.get(seq_num=seq_num, vdom=vdom)
+            return True
+        except ResourceNotFoundError:
+            return False
+
     def post(
         self,
         payload_dict: dict[str, Any] | None = None,

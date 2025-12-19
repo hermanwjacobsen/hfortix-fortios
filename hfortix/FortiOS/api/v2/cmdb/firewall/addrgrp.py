@@ -261,6 +261,32 @@ class Addrgrp:
         params.update(kwargs)
         return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
+    def exists(
+        self,
+        name: str,
+        vdom: str | bool | None = None,
+    ) -> bool:
+        """
+        Check if an object exists.
+        
+        Args:
+            name: Object identifier
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+        
+        Returns:
+            True if object exists, False otherwise
+        
+        Example:
+            >>> if fgt.api.cmdb.firewall.address.exists("server1"):
+            ...     print("Address exists")
+        """
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+        try:
+            self.get(name=name, vdom=vdom)
+            return True
+        except ResourceNotFoundError:
+            return False
+
     def post(
         self,
         payload_dict: dict[str, Any] | None = None,
@@ -269,13 +295,13 @@ class Addrgrp:
         type: str | None = None,
         category: str | None = None,
         allow_routing: str | None = None,
-        member: list | None = None,
+        member: list | None = None, # type: ignore
         comment: str | None = None,
         uuid: str | None = None,
         exclude: str | None = None,
-        exclude_member: list | None = None,
+        exclude_member: list | None = None, # type: ignore
         color: int | None = None,
-        tagging: list | None = None,
+        tagging: list | None = None, # type: ignore
         fabric_object: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
