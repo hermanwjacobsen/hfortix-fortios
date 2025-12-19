@@ -5,6 +5,66 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.14] - 2025-12-19
+
+### Fixed
+
+- **Critical**: Fixed httpx dependency in requirements.txt (was incorrectly listing requests/urllib3)
+  - Package now correctly declares httpx[http2]>=0.27.0 as dependency
+  - Resolves installation issues where wrong HTTP library was installed
+- **Build**: Updated MANIFEST.in to reflect moved development docs
+  - Commented out CONTRIBUTING.md and DEVELOPMENT.md (moved to development workspace)
+  - Prevents build warnings about missing files
+- **Type Checking**: Fixed mypy configuration for Python 3.10+ syntax
+  - Updated pyproject.toml: python_version = "3.10" (was "3.8")
+  - Added httpx module ignore for missing type stubs
+  - Fixes compatibility with modern union syntax (str | None)
+
+### Added
+
+- **PEP 561 Compliance**: Full type checker support for hfortix package
+  - ✅ `py.typed` marker file included in package
+  - ✅ All public APIs have complete type hints
+  - ✅ mypy/pyright can now validate user code using hfortix
+  - ✅ IDE autocomplete with full type information
+  - Benefits: Catch type errors at development time, better developer experience
+  - Example: Type checkers now understand `fgt.api.cmdb.firewall.address.get()` returns `dict[str, Any]`
+- **Public API**: Added `get_connection_stats()` method to FortiOS class
+  - Monitor HTTP connection pool health and performance
+  - Track retry statistics by reason and endpoint
+  - Access circuit breaker state and failure counts
+  - Example: `stats = fgt.get_connection_stats()`
+- **Exception Exports**: Exported all 16 exception classes from main hfortix package
+  - Complete exception hierarchy now available: `from hfortix import CircuitBreakerOpenError, ...`
+  - Added 10 new exception exports: ServiceUnavailableError, CircuitBreakerOpenError, TimeoutError, DuplicateEntryError, EntryInUseError, InvalidValueError, PermissionDeniedError
+  - Exported helper functions: get_error_description(), raise_for_status()
+  - Exported data structures: FORTIOS_ERROR_CODES, HTTP_STATUS_CODES
+
+### Changed
+
+- **Python Version Requirement**: Updated minimum Python version from 3.8 to 3.10
+  - Code uses Python 3.10+ syntax (str | None union types)
+  - Updated pyproject.toml: requires-python = ">=3.10"
+  - Removed Python 3.8, 3.9 from classifiers
+  - Added "Typing :: Typed" classifier for PEP 561 compliance
+- **Development Status**: Updated from Alpha (3) to Beta (4)
+  - Package metadata now consistently declares Beta status
+  - Updated in setup.py, pyproject.toml classifiers
+  - Reflects maturity of codebase and API stability
+- **Documentation**: Updated API_COVERAGE.md to reflect 100% coverage achievement
+  - Changed from "38/77 (49%)" to "77/77 (100%)"
+  - Added celebration section for milestone achievement
+  - Updated test coverage statistics (226 test files)
+- **Documentation**: Removed broken internal development references from README.md
+  - Cleaned up references to development workspace content
+
+### Notes
+
+- Version synchronized across setup.py (0.3.14), pyproject.toml (0.3.14), and hfortix/FortiOS/__init__.py (0.3.14)
+- All changes are backward compatible
+- PEP 561 compliance makes hfortix a first-class typed Python package
+- This release prepares the package for broader beta testing
+
 ## [Unreleased]
 
 ### Added

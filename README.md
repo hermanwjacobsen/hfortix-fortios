@@ -3,8 +3,9 @@
 Python client library for Fortinet products including FortiOS, FortiManager, and FortiAnalyzer.
 
 [![PyPI version](https://badge.fury.io/py/hfortix.svg)](https://pypi.org/project/hfortix/)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-blue.svg)](LICENSE)
+[![Typing: Typed](https://img.shields.io/badge/typing-typed-green.svg)](https://peps.python.org/pep-0561/)
 
 ## 🎯 Current Status
 
@@ -38,7 +39,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **API Coverage**: [API_COVERAGE.md](API_COVERAGE.md) for endpoint details
 - **Full Changelog**: [CHANGELOG.md](CHANGELOG.md) for complete version history
 
-**Latest Features (v0.3.13):**
+**Latest Features (v0.3.14):**
 - ✨ **Request ID / Correlation Tracking**: Auto-generated or custom request IDs for distributed tracing
 - ✨ **Circuit Breaker Pattern**: Automatic fail-fast to prevent cascading failures (opens after 5 failures, auto-recovers)
 - ✨ **Connection Pool Metrics**: Monitor HTTP client health with `get_connection_stats()` method
@@ -110,16 +111,16 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 ## 🎯 Features
 
 - **Unified Package**: Import all Fortinet products from a single package
-- **Enhanced IDE Support**: Full type hints with PEP 561 compliance for excellent autocomplete
+- **Type-Safe & Type-Checked**: Full PEP 561 compliance with mypy/pyright support for IDE autocomplete
 - **Modular Architecture**: Each product module can be used independently
 - **PyPI Installation**: `pip install hfortix` - simple and straightforward
 - **Comprehensive Exception Handling**: 387+ FortiOS error codes with detailed descriptions
 - **Automatic Retry Logic**: Built-in retry mechanism with exponential backoff for transient failures
 - **HTTP/2 Support**: Modern HTTP client with connection multiplexing for improved performance
-- **Type-Safe**: Proper exception hierarchy and error handling
+- **Circuit Breaker**: Prevents cascade failures with automatic recovery
 - **Simplified APIs**: Auto-conversion for common patterns (e.g., address group members)
 - **Well-Documented**: Extensive API documentation and examples
-- **Modern Python**: Type hints, PEP 585 compliance, Python 3.8+
+- **Modern Python**: Type hints, PEP 585 compliance, Python 3.10+
 
 ## 📦 Available Modules
 
@@ -216,7 +217,7 @@ fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
 - Request/response logging with timing
 - Hierarchical loggers for fine-grained control
 
-### Advanced HTTP Features ✨ NEW in v0.3.13
+### Advanced HTTP Features ✨ NEW in v0.3.14
 
 Enterprise-grade reliability and observability features:
 
