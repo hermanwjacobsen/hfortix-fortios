@@ -10,7 +10,6 @@ This is an internal implementation detail and not part of the public API.
 from __future__ import annotations
 
 import asyncio
-import fnmatch
 import logging
 import time
 import uuid
@@ -18,6 +17,8 @@ from typing import Any, Callable, Optional, TypeAlias, Union
 from urllib.parse import quote
 
 import httpx
+
+from .http_client_base import BaseHTTPClient
 
 logger = logging.getLogger("hfortix.http.async")
 
@@ -27,7 +28,7 @@ HTTPResponse: TypeAlias = dict[str, Any]
 __all__ = ["AsyncHTTPClient", "HTTPResponse"]
 
 
-class AsyncHTTPClient:
+class AsyncHTTPClient(BaseHTTPClient):
     """
     Internal async HTTP client for FortiOS API requests (Async Implementation)
     
@@ -88,42 +89,19 @@ class AsyncHTTPClient:
         Raises:
             ValueError: If parameters are invalid
         """
-        # Validate parameters (same as sync version)
-        if not url:
-            raise ValueError("URL is required and cannot be empty")
-        if max_retries < 0:
-            raise ValueError(f"max_retries must be >= 0, got {max_retries}")
-        if max_retries > 100:
-            logger.warning("max_retries=%d is very high, consider reducing", max_retries)
-        if connect_timeout <= 0:
-            raise ValueError(f"connect_timeout must be > 0, got {connect_timeout}")
-        if read_timeout <= 0:
-            raise ValueError(f"read_timeout must be > 0, got {read_timeout}")
-        if circuit_breaker_threshold <= 0:
-            raise ValueError(
-                f"circuit_breaker_threshold must be > 0, got {circuit_breaker_threshold}"
-            )
-        if circuit_breaker_timeout <= 0:
-            raise ValueError(f"circuit_breaker_timeout must be > 0, got {circuit_breaker_timeout}")
-        if max_connections <= 0:
-            raise ValueError(f"max_connections must be > 0, got {max_connections}")
-        if max_keepalive_connections < 0:
-            raise ValueError(
-                f"max_keepalive_connections must be >= 0, got {max_keepalive_connections}"
-            )
-        if max_keepalive_connections > max_connections:
-            raise ValueError(
-                f"max_keepalive_connections ({max_keepalive_connections}) cannot exceed "
-                f"max_connections ({max_connections})"
-            )
-
-        # Normalize URL: remove trailing slashes
-        self._url = url.rstrip("/")
-        self._verify = verify
-        self._vdom = vdom
-        self._max_retries = max_retries
-        self._connect_timeout = connect_timeout
-        self._read_timeout = read_timeout
+        # Call parent class constructor (handles validation and common initialization)
+        super().__init__(
+            url=url,
+            verify=verify,
+            vdom=vdom,
+            max_retries=max_retries,
+            connect_timeout=connect_timeout,
+            read_timeout=read_timeout,
+            circuit_breaker_threshold=circuit_breaker_threshold,
+            circuit_breaker_timeout=circuit_breaker_timeout,
+            max_connections=max_connections,
+            max_keepalive_connections=max_keepalive_connections,
+        )
 
         # Set default User-Agent if not provided
         if user_agent is None:
@@ -147,29 +125,6 @@ class AsyncHTTPClient:
             ),
         )
 
-        # Initialize retry statistics
-        self._retry_stats = {
-            "total_retries": 0,
-            "total_requests": 0,
-            "successful_requests": 0,
-            "failed_requests": 0,
-            "retry_by_reason": {},
-            "retry_by_endpoint": {},
-            "last_retry_time": None,
-        }
-
-        # Initialize circuit breaker state
-        self._circuit_breaker = {
-            "consecutive_failures": 0,
-            "last_failure_time": None,
-            "state": "closed",  # closed, open, half_open
-            "failure_threshold": circuit_breaker_threshold,
-            "timeout": circuit_breaker_timeout,
-        }
-
-        # Initialize per-endpoint timeout configuration
-        self._endpoint_timeouts: dict[str, httpx.Timeout] = {}
-
         # Set token if provided
         if token:
             self._client.headers["Authorization"] = f"Bearer {token}"
@@ -186,154 +141,12 @@ class AsyncHTTPClient:
             max_connections,
         )
 
-    @staticmethod
-    def _sanitize_data(data: Optional[dict[str, Any]]) -> dict[str, Any]:
-        """Remove sensitive fields from data before logging (recursive)"""
-        if not data:
-            return {}
-
-        sensitive_keys = [
-            "password",
-            "passwd",
-            "secret",
-            "token",
-            "key",
-            "private-key",
-            "passphrase",
-            "psk",
-            "pre-shared-key",
-            "vdom",
-            "api-key",
-            "api_key",
-            "apikey",
-            "auth-token",
-            "authorization",
-            "cookie",
-            "x-api-key",
-        ]
-
-        def _sanitize(obj: Any) -> Any:
-            if isinstance(obj, dict):
-                return {
-                    k: "***REDACTED***"
-                    if any(fnmatch.fnmatch(k.lower(), f"*{sens}*") for sens in sensitive_keys)
-                    else _sanitize(v)
-                    for k, v in obj.items()
-                }
-            elif isinstance(obj, list):
-                return [_sanitize(item) for item in obj]
-            else:
-                return obj
-
-        return _sanitize(data)
-
-    @staticmethod
-    def _normalize_path(path: str) -> str:
-        """Normalize path by removing leading slashes"""
-        if not isinstance(path, str):
-            return path
-        return path.lstrip("/")
-
-    def _build_url(self, api_type: str, path: str) -> str:
-        """Build full API URL from components"""
-        path = self._normalize_path(path)
-        encoded_path = quote(str(path), safe="/%")
-        return f"{self._url}/api/v2/{api_type}/{encoded_path}"
-
-    def get_retry_stats(self) -> dict[str, Any]:
-        """Get retry statistics"""
-        return self._retry_stats.copy()
-
     def get_connection_stats(self) -> dict[str, Any]:
         """Get connection statistics (placeholder for async)"""
         return {
             "active_connections": 0,  # httpx.AsyncClient doesn't expose this easily
             "idle_connections": 0,
         }
-
-    def get_circuit_breaker_state(self) -> dict[str, Any]:
-        """Get current circuit breaker state"""
-        return self._circuit_breaker.copy()
-
-    def _record_retry(self, reason: str, endpoint: str) -> None:
-        """Record retry attempt in statistics"""
-        self._retry_stats["total_retries"] += 1
-        self._retry_stats["last_retry_time"] = time.time()
-
-        # Track by reason
-        if reason not in self._retry_stats["retry_by_reason"]:
-            self._retry_stats["retry_by_reason"][reason] = 0
-        self._retry_stats["retry_by_reason"][reason] += 1
-
-        # Track by endpoint
-        if endpoint not in self._retry_stats["retry_by_endpoint"]:
-            self._retry_stats["retry_by_endpoint"][endpoint] = 0
-        self._retry_stats["retry_by_endpoint"][endpoint] += 1
-
-    def _get_endpoint_timeout(self, endpoint: str) -> Optional[httpx.Timeout]:
-        """Get custom timeout for specific endpoint if configured"""
-        return self._endpoint_timeouts.get(endpoint)
-
-    def configure_endpoint_timeout(
-        self,
-        endpoint_pattern: str,
-        connect_timeout: Optional[float] = None,
-        read_timeout: Optional[float] = None,
-    ) -> None:
-        """Configure custom timeout for specific endpoints"""
-        timeout = httpx.Timeout(
-            connect=connect_timeout or self._connect_timeout,
-            read=read_timeout or self._read_timeout,
-            write=30.0,
-            pool=10.0,
-        )
-        self._endpoint_timeouts[endpoint_pattern] = timeout
-        logger.info(
-            "Configured custom timeout for endpoint pattern '%s': connect=%.1fs, read=%.1fs",
-            endpoint_pattern,
-            timeout.connect,
-            timeout.read,
-        )
-
-    def _check_circuit_breaker(self, endpoint: str) -> None:
-        """Check circuit breaker state before making request"""
-        if self._circuit_breaker["state"] == "open":
-            last_failure = self._circuit_breaker["last_failure_time"]
-            if last_failure is not None:
-                elapsed = time.time() - last_failure
-                timeout = self._circuit_breaker["timeout"]
-
-                if elapsed >= timeout:
-                    self._circuit_breaker["state"] = "half_open"
-                    logger.info("Circuit breaker transitioned to HALF_OPEN for %s", endpoint)
-                else:
-                    raise RuntimeError(
-                        f"Circuit breaker is OPEN for {endpoint}. "
-                        f"Retry in {timeout - elapsed:.1f} seconds"
-                    )
-
-    def _record_circuit_breaker_success(self) -> None:
-        """Record successful request in circuit breaker"""
-        if self._circuit_breaker["state"] == "half_open":
-            self._circuit_breaker["state"] = "closed"
-            self._circuit_breaker["consecutive_failures"] = 0
-            logger.info("Circuit breaker transitioned to CLOSED after successful request")
-        elif self._circuit_breaker["state"] == "closed":
-            self._circuit_breaker["consecutive_failures"] = 0
-
-    def _record_circuit_breaker_failure(self, endpoint: str) -> None:
-        """Record failed request in circuit breaker"""
-        self._circuit_breaker["consecutive_failures"] += 1
-        self._circuit_breaker["last_failure_time"] = time.time()
-
-        failures = self._circuit_breaker["consecutive_failures"]
-        threshold = self._circuit_breaker["failure_threshold"]
-
-        if failures >= threshold and self._circuit_breaker["state"] != "open":
-            self._circuit_breaker["state"] = "open"
-            logger.error(
-                "Circuit breaker OPENED after %d consecutive failures for %s", failures, endpoint
-            )
 
     def _handle_response_errors(self, response: httpx.Response) -> None:
         """Handle HTTP response errors using FortiOS error handling"""
@@ -371,77 +184,6 @@ class AsyncHTTPClient:
                     len(response.content),
                 )
                 response.raise_for_status()
-
-    def _should_retry(self, error: Exception, attempt: int, endpoint: str = "") -> bool:
-        """Determine if a request should be retried"""
-        if attempt >= self._max_retries:
-            return False
-
-        # Retry on connection errors and timeouts
-        if isinstance(error, (httpx.ConnectError, httpx.NetworkError)):
-            reason = type(error).__name__
-            logger.warning(
-                "Retryable connection error on attempt %d/%d: %s",
-                attempt + 1,
-                self._max_retries + 1,
-                str(error),
-            )
-            self._record_retry(reason, endpoint)
-            return True
-
-        if isinstance(error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)):
-            if isinstance(error, httpx.ConnectTimeout):
-                reason = f"Timeout (connect, {self._connect_timeout}s)"
-            elif isinstance(error, httpx.ReadTimeout):
-                reason = f"Timeout (read, {self._read_timeout}s)"
-            elif isinstance(error, httpx.WriteTimeout):
-                reason = "Timeout (write)"
-            else:
-                reason = f"Timeout ({type(error).__name__})"
-
-            logger.warning(
-                "Timeout on attempt %d/%d: %s",
-                attempt + 1,
-                self._max_retries + 1,
-                reason,
-            )
-            self._record_retry(reason, endpoint)
-            return True
-
-        # Retry on rate limit errors and server errors
-        if isinstance(error, httpx.HTTPStatusError):
-            response = error.response
-            if response is not None:
-                status_code = response.status_code
-                if status_code in (429, 500, 502, 503, 504):
-                    reason = f"HTTP {status_code}"
-                    logger.warning(
-                        "Retryable HTTP %d on attempt %d/%d",
-                        status_code,
-                        attempt + 1,
-                        self._max_retries + 1,
-                    )
-                    self._record_retry(reason, endpoint)
-                    return True
-
-        return False
-
-    def _get_retry_delay(self, attempt: int, response: Optional[httpx.Response] = None) -> float:
-        """Calculate retry delay with exponential backoff"""
-        # Check for Retry-After header
-        if response is not None:
-            if "Retry-After" in response.headers:
-                try:
-                    retry_after = int(response.headers["Retry-After"])
-                    logger.debug("Using Retry-After header: %d seconds", retry_after)
-                    return float(retry_after)
-                except (ValueError, TypeError):
-                    pass
-
-        # Exponential backoff: 1s, 2s, 4s, 8s, ... (capped at 30s)
-        delay = min(2**attempt, 30.0)
-        logger.debug("Exponential backoff delay: %.1f seconds", delay)
-        return delay
 
     async def request(
         self,
