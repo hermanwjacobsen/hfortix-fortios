@@ -42,7 +42,7 @@ class AddLicense:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize AddLicense endpoint.
 
@@ -83,7 +83,7 @@ class AddLicense:
 class Vdom:
     """Vdom operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Vdom endpoint.
 

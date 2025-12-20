@@ -42,7 +42,7 @@ class Abort:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Abort endpoint.
 
@@ -83,7 +83,7 @@ class Abort:
 class Query:
     """Query operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Query endpoint.
 

@@ -42,7 +42,7 @@ class Revoke:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Revoke endpoint.
 
@@ -83,7 +83,7 @@ class Revoke:
 class Dhcp6:
     """Dhcp6 operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Dhcp6 endpoint.
 

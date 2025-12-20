@@ -43,7 +43,7 @@ Important:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from ....http_client_interface import IHTTPClient
 
 
 class CertificateCrl:
@@ -63,7 +63,7 @@ class CertificateCrl:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CertificateCrl endpoint.
 

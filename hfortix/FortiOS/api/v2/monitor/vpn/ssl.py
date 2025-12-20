@@ -42,7 +42,7 @@ class ClearTunnel:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearTunnel endpoint.
 
@@ -79,7 +79,7 @@ class ClearTunnel:
 class Delete:
     """Delete operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Delete endpoint.
 
@@ -124,7 +124,7 @@ class Delete:
 class Stats:
     """Stats operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Stats endpoint.
 
@@ -161,7 +161,7 @@ class Stats:
 class Ssl:
     """Ssl operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ssl endpoint.
 

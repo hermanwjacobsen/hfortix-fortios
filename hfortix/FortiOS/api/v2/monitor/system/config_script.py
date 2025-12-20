@@ -42,7 +42,7 @@ class Delete:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Delete endpoint.
 
@@ -83,7 +83,7 @@ class Delete:
 class Run:
     """Run operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Run endpoint.
 
@@ -124,7 +124,7 @@ class Run:
 class Upload:
     """Upload operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upload endpoint.
 
@@ -169,7 +169,7 @@ class Upload:
 class ConfigScript:
     """ConfigScript operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ConfigScript endpoint.
 

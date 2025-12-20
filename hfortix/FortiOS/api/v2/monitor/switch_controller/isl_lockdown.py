@@ -42,7 +42,7 @@ class Status:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -82,7 +82,7 @@ class Status:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -127,7 +127,7 @@ class Update:
 class IslLockdown:
     """IslLockdown operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize IslLockdown endpoint.
 

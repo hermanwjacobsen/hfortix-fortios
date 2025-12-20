@@ -42,7 +42,7 @@ class Backup:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Backup endpoint.
 
@@ -108,7 +108,7 @@ Access Group: sysgrp.
 class Restore:
     """Restore operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Restore endpoint.
 
@@ -177,7 +177,7 @@ class Restore:
 class RestoreStatus:
     """RestoreStatus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize RestoreStatus endpoint.
 
@@ -217,7 +217,7 @@ class RestoreStatus:
 class UsbFilelist:
     """UsbFilelist operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UsbFilelist endpoint.
 
@@ -254,7 +254,7 @@ class UsbFilelist:
 class Config:
     """Config operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Config endpoint.
 

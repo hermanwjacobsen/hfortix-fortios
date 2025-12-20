@@ -42,7 +42,7 @@ class Status:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -83,7 +83,7 @@ class Status:
 class 5gModem:
     """5gModem operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize 5gModem endpoint.
 

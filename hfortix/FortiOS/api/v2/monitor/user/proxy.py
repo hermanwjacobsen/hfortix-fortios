@@ -42,7 +42,7 @@ class Count:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Count endpoint.
 
@@ -79,7 +79,7 @@ class Count:
 class Proxy:
     """Proxy operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Proxy endpoint.
 

@@ -42,7 +42,7 @@ class Upgrade:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upgrade endpoint.
 
@@ -119,7 +119,7 @@ class Upgrade:
 class UpgradePaths:
     """UpgradePaths operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UpgradePaths endpoint.
 
@@ -156,7 +156,7 @@ class UpgradePaths:
 class Firmware:
     """Firmware operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Firmware endpoint.
 

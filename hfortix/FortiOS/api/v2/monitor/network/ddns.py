@@ -42,7 +42,7 @@ class Lookup:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Lookup endpoint.
 
@@ -82,7 +82,7 @@ class Lookup:
 class Servers:
     """Servers operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Servers endpoint.
 
@@ -119,7 +119,7 @@ class Servers:
 class Ddns:
     """Ddns operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ddns endpoint.
 

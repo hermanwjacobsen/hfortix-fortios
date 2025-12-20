@@ -30,7 +30,7 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from .base import LogResource, RawResource
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from ....http_client_interface import IHTTPClient
 
 
 # Traffic subtypes
@@ -47,7 +47,7 @@ class TrafficForward:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/forward", storage)
         self._resource = LogResource(client, "traffic/forward", storage)
@@ -118,7 +118,7 @@ class TrafficForward:
 class TrafficLocal:
     """Local traffic - /disk/traffic/local"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/local", storage)
         self._resource = LogResource(client, "traffic/local", storage)
@@ -189,7 +189,7 @@ class TrafficLocal:
 class TrafficMulticast:
     """Multicast traffic - /disk/traffic/multicast"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/multicast", storage)
         self._resource = LogResource(client, "traffic/multicast", storage)
@@ -260,7 +260,7 @@ class TrafficMulticast:
 class TrafficSniffer:
     """Sniffer traffic - /disk/traffic/sniffer"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/sniffer", storage)
         self._resource = LogResource(client, "traffic/sniffer", storage)
@@ -331,7 +331,7 @@ class TrafficSniffer:
 class TrafficFortiview:
     """Fortiview traffic - /disk/traffic/fortiview"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/fortiview", storage)
         self._resource = LogResource(client, "traffic/fortiview", storage)
@@ -402,7 +402,7 @@ class TrafficFortiview:
 class TrafficThreat:
     """Threat traffic - /disk/traffic/threat"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/threat", storage)
         self._resource = LogResource(client, "traffic/threat", storage)
@@ -473,7 +473,7 @@ class TrafficThreat:
 class Traffic:
     """Traffic container - /disk/traffic/{subtype}"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.forward = TrafficForward(client, storage)
         self.local = TrafficLocal(client, storage)

@@ -42,7 +42,7 @@ class Current:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Current endpoint.
 
@@ -79,7 +79,7 @@ class Current:
 class Exists:
     """Exists operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Exists endpoint.
 
@@ -116,7 +116,7 @@ class Exists:
 class Saved:
     """Saved operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Saved endpoint.
 
@@ -153,7 +153,7 @@ class Saved:
 class UpgradeReport:
     """UpgradeReport operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UpgradeReport endpoint.
 

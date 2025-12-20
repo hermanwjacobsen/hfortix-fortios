@@ -42,7 +42,7 @@ class Hits:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Hits endpoint.
 
@@ -79,7 +79,7 @@ class Hits:
 class Stat:
     """Stat operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Stat endpoint.
 
@@ -116,7 +116,7 @@ class Stat:
 class BotnetDomains:
     """BotnetDomains operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize BotnetDomains endpoint.
 

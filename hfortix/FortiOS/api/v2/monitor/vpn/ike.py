@@ -42,7 +42,7 @@ class Clear:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Clear endpoint.
 
@@ -83,7 +83,7 @@ class Clear:
 class Ike:
     """Ike operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ike endpoint.
 

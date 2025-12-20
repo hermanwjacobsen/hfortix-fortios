@@ -42,7 +42,7 @@ class ClearCounters:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearCounters endpoint.
 
@@ -83,7 +83,7 @@ class ClearCounters:
 class UpdateGlobalLabel:
     """UpdateGlobalLabel operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UpdateGlobalLabel endpoint.
 
@@ -132,7 +132,7 @@ class UpdateGlobalLabel:
 class SecurityPolicy:
     """SecurityPolicy operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SecurityPolicy endpoint.
 

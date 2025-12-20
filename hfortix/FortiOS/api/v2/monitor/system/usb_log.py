@@ -42,7 +42,7 @@ class Start:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Start endpoint.
 
@@ -79,7 +79,7 @@ class Start:
 class Stop:
     """Stop operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Stop endpoint.
 
@@ -116,7 +116,7 @@ class Stop:
 class UsbLog:
     """UsbLog operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UsbLog endpoint.
 

@@ -42,7 +42,7 @@ class Usage:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Usage endpoint.
 
@@ -91,7 +91,7 @@ class Usage:
 class Resource:
     """Resource operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Resource endpoint.
 

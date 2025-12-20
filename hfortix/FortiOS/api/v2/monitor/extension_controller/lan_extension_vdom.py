@@ -42,7 +42,7 @@ class LanExtensionVdom:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         """
         Initialize LAN Extension VDOM monitor.
 

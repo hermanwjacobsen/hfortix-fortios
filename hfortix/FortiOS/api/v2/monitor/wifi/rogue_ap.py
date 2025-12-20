@@ -42,7 +42,7 @@ class ClearAll:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearAll endpoint.
 
@@ -79,7 +79,7 @@ class ClearAll:
 class SetStatus:
     """SetStatus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SetStatus endpoint.
 
@@ -128,7 +128,7 @@ class SetStatus:
 class RogueAp:
     """RogueAp operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize RogueAp endpoint.
 

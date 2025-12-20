@@ -42,7 +42,7 @@ class Download:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -89,7 +89,7 @@ class Download:
 class ReadInfo:
     """ReadInfo operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ReadInfo endpoint.
 
@@ -130,7 +130,7 @@ class ReadInfo:
 class Certificate:
     """Certificate operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Certificate endpoint.
 

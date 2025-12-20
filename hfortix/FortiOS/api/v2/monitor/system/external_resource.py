@@ -42,7 +42,7 @@ class Dynamic:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Dynamic endpoint.
 
@@ -83,7 +83,7 @@ class Dynamic:
 class EntryList:
     """EntryList operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize EntryList endpoint.
 
@@ -139,7 +139,7 @@ class EntryList:
 class GenericAddress:
     """GenericAddress operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize GenericAddress endpoint.
 
@@ -184,7 +184,7 @@ class GenericAddress:
 class Refresh:
     """Refresh operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Refresh endpoint.
 
@@ -233,7 +233,7 @@ class Refresh:
 class ValidateJsonpath:
     """ValidateJsonpath operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ValidateJsonpath endpoint.
 
@@ -273,7 +273,7 @@ class ValidateJsonpath:
 class ExternalResource:
     """ExternalResource operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ExternalResource endpoint.
 

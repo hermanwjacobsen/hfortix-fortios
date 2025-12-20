@@ -42,7 +42,7 @@ class DeviceStatus:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize DeviceStatus endpoint.
 
@@ -86,7 +86,7 @@ class DeviceStatus:
 class Disclaimer:
     """Disclaimer operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Disclaimer endpoint.
 
@@ -123,7 +123,7 @@ class Disclaimer:
 class Domains:
     """Domains operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Domains endpoint.
 
@@ -160,7 +160,7 @@ class Domains:
 class Login:
     """Login operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Login endpoint.
 
@@ -213,7 +213,7 @@ class Login:
 class Logout:
     """Logout operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Logout endpoint.
 
@@ -250,7 +250,7 @@ class Logout:
 class Migrate:
     """Migrate operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Migrate endpoint.
 
@@ -295,7 +295,7 @@ class Migrate:
 class RegisterDevice:
     """RegisterDevice operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize RegisterDevice endpoint.
 
@@ -364,7 +364,7 @@ class RegisterDevice:
 class Forticloud:
     """Forticloud operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Forticloud endpoint.
 

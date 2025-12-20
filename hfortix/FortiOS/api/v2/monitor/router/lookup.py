@@ -42,7 +42,7 @@ class HaPeer:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize HaPeer endpoint.
 
@@ -89,7 +89,7 @@ class HaPeer:
 class Lookup:
     """Lookup operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Lookup endpoint.
 

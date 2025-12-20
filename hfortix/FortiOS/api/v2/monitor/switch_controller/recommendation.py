@@ -42,7 +42,7 @@ class PseConfig:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PseConfig endpoint.
 
@@ -83,7 +83,7 @@ class PseConfig:
 class Recommendation:
     """Recommendation operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Recommendation endpoint.
 

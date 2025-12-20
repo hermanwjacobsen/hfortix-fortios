@@ -42,7 +42,7 @@ class GetTestConnect:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize GetTestConnect endpoint.
 
@@ -107,7 +107,7 @@ class GetTestConnect:
 class TestConnect:
     """TestConnect operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TestConnect endpoint.
 
@@ -172,7 +172,7 @@ class TestConnect:
 class Radius:
     """Radius operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Radius endpoint.
 

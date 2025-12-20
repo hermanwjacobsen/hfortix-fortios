@@ -42,7 +42,7 @@ class Connect:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Connect endpoint.
 
@@ -83,7 +83,7 @@ class Connect:
 class List:
     """List operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize List endpoint.
 
@@ -120,7 +120,7 @@ class List:
 class Scan:
     """Scan operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Scan endpoint.
 
@@ -157,7 +157,7 @@ class Scan:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -194,7 +194,7 @@ class Status:
 class Network:
     """Network operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Network endpoint.
 

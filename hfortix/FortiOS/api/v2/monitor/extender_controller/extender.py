@@ -42,7 +42,7 @@ class Diagnose:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Diagnose endpoint.
 
@@ -87,7 +87,7 @@ class Diagnose:
 class ModemFirmware:
     """ModemFirmware operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ModemFirmware endpoint.
 
@@ -127,7 +127,7 @@ class ModemFirmware:
 class Reset:
     """Reset operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Reset endpoint.
 
@@ -168,7 +168,7 @@ class Reset:
 class Upgrade:
     """Upgrade operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upgrade endpoint.
 
@@ -213,7 +213,7 @@ class Upgrade:
 class Extender:
     """Extender operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Extender endpoint.
 

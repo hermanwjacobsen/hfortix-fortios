@@ -42,7 +42,7 @@ class Download:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -79,7 +79,7 @@ class Download:
 class Dump:
     """Dump operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Dump endpoint.
 
@@ -116,7 +116,7 @@ class Dump:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -153,7 +153,7 @@ class Update:
 class ComLog:
     """ComLog operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ComLog endpoint.
 

@@ -42,7 +42,7 @@ class DhcpRenew:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize DhcpRenew endpoint.
 
@@ -87,7 +87,7 @@ class DhcpRenew:
 class DhcpStatus:
     """DhcpStatus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize DhcpStatus endpoint.
 
@@ -131,7 +131,7 @@ class DhcpStatus:
 class KernelInterfaces:
     """KernelInterfaces operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize KernelInterfaces endpoint.
 
@@ -168,7 +168,7 @@ class KernelInterfaces:
 class Poe:
     """Poe operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Poe endpoint.
 
@@ -213,7 +213,7 @@ class Poe:
 class PoeUsage:
     """PoeUsage operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PoeUsage endpoint.
 
@@ -250,7 +250,7 @@ class PoeUsage:
 class SpeedTestStatus:
     """SpeedTestStatus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SpeedTestStatus endpoint.
 
@@ -290,7 +290,7 @@ class SpeedTestStatus:
 class SpeedTestTrigger:
     """SpeedTestTrigger operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SpeedTestTrigger endpoint.
 
@@ -331,7 +331,7 @@ class SpeedTestTrigger:
 class Transceivers:
     """Transceivers operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Transceivers endpoint.
 
@@ -372,7 +372,7 @@ class Transceivers:
 class WakeOnLan:
     """WakeOnLan operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize WakeOnLan endpoint.
 
@@ -433,7 +433,7 @@ class WakeOnLan:
 class Interface:
     """Interface operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Interface endpoint.
 

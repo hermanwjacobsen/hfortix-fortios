@@ -54,7 +54,7 @@ from ..waf import WAF
 from ..webfilter import Webfilter
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from ....http_client_interface import IHTTPClient
 
 
 class Disk:
@@ -70,7 +70,7 @@ class Disk:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         """Initialize Disk log endpoint."""
         self._client = client
         

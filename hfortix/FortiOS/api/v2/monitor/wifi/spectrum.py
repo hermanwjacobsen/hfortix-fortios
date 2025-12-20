@@ -42,7 +42,7 @@ class KeepAlive:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize KeepAlive endpoint.
 
@@ -91,7 +91,7 @@ class KeepAlive:
 class Start:
     """Start operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Start endpoint.
 
@@ -144,7 +144,7 @@ class Start:
 class Stop:
     """Stop operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Stop endpoint.
 
@@ -189,7 +189,7 @@ class Stop:
 class Spectrum:
     """Spectrum operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Spectrum endpoint.
 

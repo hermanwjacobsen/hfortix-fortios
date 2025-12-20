@@ -42,7 +42,7 @@ class GenerateKey:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize GenerateKey endpoint.
 
@@ -87,7 +87,7 @@ class GenerateKey:
 class ApiUser:
     """ApiUser operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ApiUser endpoint.
 

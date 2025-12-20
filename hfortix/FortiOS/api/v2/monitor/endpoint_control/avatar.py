@@ -42,7 +42,7 @@ class Download:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -95,7 +95,7 @@ class Download:
 class Avatar:
     """Avatar operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Avatar endpoint.
 

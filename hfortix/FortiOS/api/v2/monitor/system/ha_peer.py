@@ -42,7 +42,7 @@ class Disconnect:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Disconnect endpoint.
 
@@ -95,7 +95,7 @@ class Disconnect:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -148,7 +148,7 @@ class Update:
 class HaPeer:
     """HaPeer operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize HaPeer endpoint.
 

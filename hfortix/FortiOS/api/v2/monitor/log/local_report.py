@@ -42,7 +42,7 @@ class Delete:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Delete endpoint.
 
@@ -83,7 +83,7 @@ class Delete:
 class Download:
     """Download operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -128,7 +128,7 @@ Access Group: loggrp.
 class LocalReport:
     """LocalReport operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize LocalReport endpoint.
 

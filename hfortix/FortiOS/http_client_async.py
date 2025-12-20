@@ -29,7 +29,9 @@ __all__ = ["AsyncHTTPClient", "HTTPResponse"]
 
 class AsyncHTTPClient:
     """
-    Internal async HTTP client for FortiOS API requests
+    Internal async HTTP client for FortiOS API requests (Async Implementation)
+    
+    Implements the IHTTPClient protocol for asynchronous HTTP operations.
 
     Async version of HTTPClient using httpx.AsyncClient. Handles all HTTP communication
     with FortiGate devices including:
@@ -41,7 +43,14 @@ class AsyncHTTPClient:
     - Automatic retry with exponential backoff
     - Async context manager support (use with 'async with' statement)
 
-    This class is internal and not exposed to users.
+    Protocol Implementation:
+        This class implements the IHTTPClient protocol, allowing it to be used
+        interchangeably with other HTTP client implementations (e.g., HTTPClient,
+        custom user-provided async clients). All methods return coroutines that
+        must be awaited.
+
+    This class is internal and not exposed to users directly, but users can provide
+    their own async IHTTPClient implementations to FortiOS.__init__().
     """
 
     def __init__(

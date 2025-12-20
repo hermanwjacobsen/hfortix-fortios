@@ -42,7 +42,7 @@ class Start:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Start endpoint.
 
@@ -79,7 +79,7 @@ class Start:
 class Fsck:
     """Fsck operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Fsck endpoint.
 

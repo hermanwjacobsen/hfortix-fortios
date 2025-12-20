@@ -42,7 +42,7 @@ class Neighbors:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Neighbors endpoint.
 
@@ -87,7 +87,7 @@ class Neighbors:
 class Ports:
     """Ports operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ports endpoint.
 
@@ -132,7 +132,7 @@ class Ports:
 class Lldp:
     """Lldp operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Lldp endpoint.
 

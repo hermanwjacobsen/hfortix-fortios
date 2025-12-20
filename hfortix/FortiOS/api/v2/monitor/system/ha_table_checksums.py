@@ -42,7 +42,7 @@ class HaTableChecksums:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize HaTableChecksums endpoint.
 

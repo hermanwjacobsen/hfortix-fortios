@@ -42,7 +42,7 @@ class MultiClassShaper:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize MultiClassShaper endpoint.
 
@@ -79,7 +79,7 @@ class MultiClassShaper:
 class Reset:
     """Reset operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Reset endpoint.
 
@@ -116,7 +116,7 @@ class Reset:
 class Shaper:
     """Shaper operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Shaper endpoint.
 

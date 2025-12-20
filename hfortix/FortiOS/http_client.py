@@ -53,7 +53,9 @@ def encode_path_component(component: str | int) -> str:
 
 class HTTPClient:
     """
-    Internal HTTP client for FortiOS API requests
+    Internal HTTP client for FortiOS API requests (Sync Implementation)
+    
+    Implements the IHTTPClient protocol for synchronous HTTP operations.
 
     Handles all HTTP communication with FortiGate devices including:
     - Session management
@@ -75,7 +77,13 @@ class HTTPClient:
         Paths are URL-encoded with / and % as safe characters to prevent
         double-encoding of already-encoded components.
 
-    This class is internal and not exposed to users.
+    Protocol Implementation:
+        This class implements the IHTTPClient protocol, allowing it to be used
+        interchangeably with other HTTP client implementations (e.g., AsyncHTTPClient,
+        custom user-provided clients).
+
+    This class is internal and not exposed to users directly, but users can provide
+    their own IHTTPClient implementations to FortiOS.__init__().
     """
 
     def __init__(

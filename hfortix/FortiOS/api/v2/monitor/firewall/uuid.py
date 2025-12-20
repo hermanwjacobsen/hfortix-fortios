@@ -42,7 +42,7 @@ class TypeLookup:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TypeLookup resource.
 
@@ -83,7 +83,7 @@ class TypeLookup:
 class UUID:
     """UUID list and type lookup operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UUID endpoint.
 

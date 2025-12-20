@@ -42,7 +42,7 @@ class Create:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Create endpoint.
 
@@ -91,7 +91,7 @@ class Create:
 class Download:
     """Download operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -131,7 +131,7 @@ class Download:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -184,7 +184,7 @@ class Update:
 class CustomLanguage:
     """CustomLanguage operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CustomLanguage endpoint.
 

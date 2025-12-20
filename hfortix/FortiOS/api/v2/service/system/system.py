@@ -28,7 +28,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from .....http_client import HTTPClient
+    from .....http_client_interface import IHTTPClient
 
 
 class FabricAdminLockoutExistsOnFirmwareUpdate:
@@ -47,7 +47,7 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def get(
@@ -104,7 +104,7 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
 class FabricTimeInSync:
     """FabricTimeInSync resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def get(
@@ -163,7 +163,7 @@ class FabricTimeInSync:
 class PsirtVulnerabilities:
     """PsirtVulnerabilities resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def get(
@@ -221,7 +221,7 @@ class PsirtVulnerabilities:
 class System:
     """Main System service class"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
         self._fabricAdminLockoutExistsOnFirmwareUpdate = None
         self._fabricTimeInSync = None

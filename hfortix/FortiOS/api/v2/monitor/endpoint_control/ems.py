@@ -42,7 +42,7 @@ class CertStatus:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CertStatus endpoint.
 
@@ -90,7 +90,7 @@ class CertStatus:
 class MalwareHash:
     """MalwareHash operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize MalwareHash endpoint.
 
@@ -127,7 +127,7 @@ class MalwareHash:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -172,7 +172,7 @@ class Status:
 class StatusSummary:
     """StatusSummary operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize StatusSummary endpoint.
 
@@ -213,7 +213,7 @@ class StatusSummary:
 class UnverifyCert:
     """UnverifyCert operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UnverifyCert endpoint.
 
@@ -258,7 +258,7 @@ class UnverifyCert:
 class VerifyCert:
     """VerifyCert operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize VerifyCert endpoint.
 
@@ -307,7 +307,7 @@ class VerifyCert:
 class Ems:
     """Ems operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ems endpoint.
 

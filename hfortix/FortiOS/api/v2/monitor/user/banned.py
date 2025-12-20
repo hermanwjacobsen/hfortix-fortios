@@ -42,7 +42,7 @@ class AddUsers:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize AddUsers endpoint.
 
@@ -87,7 +87,7 @@ class AddUsers:
 class Check:
     """Check operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Check endpoint.
 
@@ -127,7 +127,7 @@ class Check:
 class ClearAll:
     """ClearAll operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearAll endpoint.
 
@@ -164,7 +164,7 @@ class ClearAll:
 class ClearUsers:
     """ClearUsers operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearUsers endpoint.
 
@@ -205,7 +205,7 @@ class ClearUsers:
 class Banned:
     """Banned operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Banned endpoint.
 

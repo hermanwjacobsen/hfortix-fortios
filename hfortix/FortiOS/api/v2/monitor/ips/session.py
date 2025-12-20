@@ -42,7 +42,7 @@ class Performance:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Performance endpoint.
 
@@ -79,7 +79,7 @@ class Performance:
 class Session:
     """Session operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Session endpoint.
 

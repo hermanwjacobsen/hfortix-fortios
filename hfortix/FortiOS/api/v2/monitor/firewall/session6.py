@@ -42,7 +42,7 @@ class CloseMultiple:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CloseMultiple endpoint.
 
@@ -103,7 +103,7 @@ class CloseMultiple:
 class Session6:
     """Session6 operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Session6 endpoint.
 

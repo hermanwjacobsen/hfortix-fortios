@@ -42,7 +42,7 @@ class CreateDefault:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CreateDefault endpoint.
 
@@ -83,7 +83,7 @@ class CreateDefault:
 class ApProfile:
     """ApProfile operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ApProfile endpoint.
 

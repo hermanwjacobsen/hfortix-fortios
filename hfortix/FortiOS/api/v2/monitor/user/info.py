@@ -42,7 +42,7 @@ class Query:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Query endpoint.
 
@@ -115,7 +115,7 @@ class Query:
 class Thumbnail:
     """Thumbnail operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Thumbnail endpoint.
 
@@ -155,7 +155,7 @@ class Thumbnail:
 class ThumbnailFile:
     """ThumbnailFile operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ThumbnailFile endpoint.
 
@@ -195,7 +195,7 @@ class ThumbnailFile:
 class Info:
     """Info operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Info endpoint.
 

@@ -42,7 +42,7 @@ class Reset:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Reset endpoint.
 
@@ -79,7 +79,7 @@ class Reset:
 class Webcache:
     """Webcache operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Webcache endpoint.
 

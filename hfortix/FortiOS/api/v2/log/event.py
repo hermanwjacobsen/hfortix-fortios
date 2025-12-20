@@ -30,7 +30,7 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from .base import LogResource, RawResource
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from ....http_client_interface import IHTTPClient
 
 
 # Event subtypes
@@ -47,7 +47,7 @@ class EventVPN:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/vpn", storage)
         self._resource = LogResource(client, "event/vpn", storage)
@@ -118,7 +118,7 @@ class EventVPN:
 class EventUser:
     """User events - /disk/event/user"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/user", storage)
         self._resource = LogResource(client, "event/user", storage)
@@ -189,7 +189,7 @@ class EventUser:
 class EventRouter:
     """Router events - /disk/event/router"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/router", storage)
         self._resource = LogResource(client, "event/router", storage)
@@ -260,7 +260,7 @@ class EventRouter:
 class EventWireless:
     """Wireless events - /disk/event/wireless"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/wireless", storage)
         self._resource = LogResource(client, "event/wireless", storage)
@@ -331,7 +331,7 @@ class EventWireless:
 class EventWAD:
     """WAD events - /disk/event/wad"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/wad", storage)
         self._resource = LogResource(client, "event/wad", storage)
@@ -402,7 +402,7 @@ class EventWAD:
 class EventEndpoint:
     """Endpoint events - /disk/event/endpoint"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/endpoint", storage)
         self._resource = LogResource(client, "event/endpoint", storage)
@@ -473,7 +473,7 @@ class EventEndpoint:
 class EventHA:
     """HA events - /disk/event/ha"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/ha", storage)
         self._resource = LogResource(client, "event/ha", storage)
@@ -544,7 +544,7 @@ class EventHA:
 class EventComplianceCheck:
     """Compliance check events - /disk/event/compliance-check"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/compliance-check", storage)
         self._resource = LogResource(client, "event/compliance-check", storage)
@@ -615,7 +615,7 @@ class EventComplianceCheck:
 class EventSecurityRating:
     """Security rating events - /disk/event/security-rating"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/security-rating", storage)
         self._resource = LogResource(client, "event/security-rating", storage)
@@ -686,7 +686,7 @@ class EventSecurityRating:
 class EventFortiextender:
     """Fortiextender events - /disk/event/fortiextender"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/fortiextender", storage)
         self._resource = LogResource(client, "event/fortiextender", storage)
@@ -757,7 +757,7 @@ class EventFortiextender:
 class EventConnector:
     """Connector events - /disk/event/connector"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/connector", storage)
         self._resource = LogResource(client, "event/connector", storage)
@@ -828,7 +828,7 @@ class EventConnector:
 class EventSystem:
     """System events - /disk/event/system"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/system", storage)
         self._resource = LogResource(client, "event/system", storage)
@@ -899,7 +899,7 @@ class EventSystem:
 class Event:
     """Event container - /disk/event/{subtype}"""
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self.vpn = EventVPN(client, storage)
         self.user = EventUser(client, storage)

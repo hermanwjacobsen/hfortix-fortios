@@ -42,7 +42,7 @@ class Download:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -79,7 +79,7 @@ class Download:
 class Upload:
     """Upload operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upload endpoint.
 
@@ -124,7 +124,7 @@ class Upload:
 class Pacfile:
     """Pacfile operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Pacfile endpoint.
 

@@ -42,7 +42,7 @@ class Clear:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Clear endpoint.
 
@@ -79,7 +79,7 @@ class Clear:
 class Download:
     """Download operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -116,7 +116,7 @@ class Download:
 class CrashLog:
     """CrashLog operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CrashLog endpoint.
 

@@ -42,7 +42,7 @@ class ConnectionCount:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ConnectionCount endpoint.
 
@@ -79,7 +79,7 @@ class ConnectionCount:
 class TunnelDown:
     """TunnelDown operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TunnelDown endpoint.
 
@@ -128,7 +128,7 @@ class TunnelDown:
 class TunnelResetStats:
     """TunnelResetStats operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TunnelResetStats endpoint.
 
@@ -169,7 +169,7 @@ class TunnelResetStats:
 class TunnelUp:
     """TunnelUp operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TunnelUp endpoint.
 
@@ -218,7 +218,7 @@ class TunnelUp:
 class Ipsec:
     """Ipsec operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ipsec endpoint.
 

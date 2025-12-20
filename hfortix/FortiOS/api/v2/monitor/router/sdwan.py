@@ -42,7 +42,7 @@ class Routes:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Routes endpoint.
 
@@ -79,7 +79,7 @@ class Routes:
 class RoutesStatistics:
     """RoutesStatistics operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize RoutesStatistics endpoint.
 
@@ -120,7 +120,7 @@ class RoutesStatistics:
 class Routes6:
     """Routes6 operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Routes6 endpoint.
 
@@ -157,7 +157,7 @@ class Routes6:
 class Sdwan:
     """Sdwan operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Sdwan endpoint.
 

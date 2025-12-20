@@ -28,7 +28,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from .....http_client import HTTPClient
+    from .....http_client_interface import IHTTPClient
 
 
 class Abort:
@@ -44,7 +44,7 @@ class Abort:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def post(
@@ -92,7 +92,7 @@ class Abort:
 class Status:
     """Status search session endpoint resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def get(
@@ -162,7 +162,7 @@ class Search:
         status = fgt.api.log.search.status.get(session_id=12345)
     """
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         """Initialize Search log API with FortiOS client."""
         self._client = client
         self.abort = Abort(client)

@@ -42,7 +42,7 @@ class ClearSoftIn:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearSoftIn endpoint.
 
@@ -79,7 +79,7 @@ class ClearSoftIn:
 class ClearSoftOut:
     """ClearSoftOut operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearSoftOut endpoint.
 
@@ -116,7 +116,7 @@ class ClearSoftOut:
 class Neighbors:
     """Neighbors operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Neighbors endpoint.
 
@@ -153,7 +153,7 @@ class Neighbors:
 class NeighborsStatistics:
     """NeighborsStatistics operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize NeighborsStatistics endpoint.
 
@@ -194,7 +194,7 @@ class NeighborsStatistics:
 class Neighbors6:
     """Neighbors6 operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Neighbors6 endpoint.
 
@@ -231,7 +231,7 @@ class Neighbors6:
 class Paths:
     """Paths operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Paths endpoint.
 
@@ -268,7 +268,7 @@ class Paths:
 class PathsStatistics:
     """PathsStatistics operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PathsStatistics endpoint.
 
@@ -309,7 +309,7 @@ class PathsStatistics:
 class Paths6:
     """Paths6 operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Paths6 endpoint.
 
@@ -346,7 +346,7 @@ class Paths6:
 class SoftResetNeighbor:
     """SoftResetNeighbor operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SoftResetNeighbor endpoint.
 
@@ -387,7 +387,7 @@ class SoftResetNeighbor:
 class Bgp:
     """Bgp operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Bgp endpoint.
 

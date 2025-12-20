@@ -42,7 +42,7 @@ class PendingAuthorizations:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PendingAuthorizations endpoint.
 
@@ -79,7 +79,7 @@ class PendingAuthorizations:
 class RegisterAppliance:
     """RegisterAppliance operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize RegisterAppliance endpoint.
 
@@ -140,7 +140,7 @@ class RegisterAppliance:
 class Csf:
     """Csf operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Csf endpoint.
 

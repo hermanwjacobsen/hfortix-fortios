@@ -28,7 +28,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from .....http_client import HTTPClient
+    from .....http_client_interface import IHTTPClient
 
 
 class Delete:
@@ -47,7 +47,7 @@ class Delete:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def post(
@@ -106,7 +106,7 @@ class Delete:
 class Download:
     """Download resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def post(
@@ -165,7 +165,7 @@ class Download:
 class List:
     """List resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def get(
@@ -224,7 +224,7 @@ class List:
 class Meta:
     """Meta resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def get(
@@ -281,7 +281,7 @@ class Meta:
 class Start:
     """Start resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def post(
@@ -340,7 +340,7 @@ class Start:
 class Stop:
     """Stop resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
 
     def post(
@@ -400,7 +400,7 @@ class Stop:
 class Sniffer:
     """Main Sniffer service class"""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'IHTTPClient') -> None:
         self._client = client
         self._delete = None
         self._download = None

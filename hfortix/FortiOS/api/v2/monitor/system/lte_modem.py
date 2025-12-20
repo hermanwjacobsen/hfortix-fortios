@@ -42,7 +42,7 @@ class Status:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -79,7 +79,7 @@ class Status:
 class Upgrade:
     """Upgrade operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upgrade endpoint.
 
@@ -116,7 +116,7 @@ class Upgrade:
 class Upload:
     """Upload operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upload endpoint.
 
@@ -161,7 +161,7 @@ class Upload:
 class LteModem:
     """LteModem operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize LteModem endpoint.
 

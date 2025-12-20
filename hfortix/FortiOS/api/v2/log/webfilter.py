@@ -30,7 +30,7 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from .base import LogResource, RawResource
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from ....http_client_interface import IHTTPClient
 
 
 class Webfilter:
@@ -46,7 +46,7 @@ class Webfilter:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
         self._client = client
         self._storage = storage
         self.raw = RawResource(client, "webfilter", storage)

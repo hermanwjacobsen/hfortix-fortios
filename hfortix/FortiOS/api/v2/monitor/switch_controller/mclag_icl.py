@@ -42,7 +42,7 @@ class EligiblePeer:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize EligiblePeer endpoint.
 
@@ -82,7 +82,7 @@ class EligiblePeer:
 class SetTierPlus:
     """SetTierPlus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SetTierPlus endpoint.
 
@@ -143,7 +143,7 @@ class SetTierPlus:
 class SetTier1:
     """SetTier1 operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SetTier1 endpoint.
 
@@ -192,7 +192,7 @@ class SetTier1:
 class TierPlusCandidates:
     """TierPlusCandidates operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TierPlusCandidates endpoint.
 
@@ -241,7 +241,7 @@ class TierPlusCandidates:
 class MclagIcl:
     """MclagIcl operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize MclagIcl endpoint.
 

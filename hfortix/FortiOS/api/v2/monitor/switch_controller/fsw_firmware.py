@@ -42,7 +42,7 @@ class Download:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -83,7 +83,7 @@ class Download:
 class Push:
     """Push operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Push endpoint.
 
@@ -128,7 +128,7 @@ class Push:
 class Upload:
     """Upload operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upload endpoint.
 
@@ -173,7 +173,7 @@ class Upload:
 class FswFirmware:
     """FswFirmware operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize FswFirmware endpoint.
 

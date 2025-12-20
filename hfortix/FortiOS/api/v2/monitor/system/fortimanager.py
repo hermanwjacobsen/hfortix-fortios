@@ -42,7 +42,7 @@ class BackupAction:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize BackupAction endpoint.
 
@@ -87,7 +87,7 @@ class BackupAction:
 class BackupDetails:
     """BackupDetails operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize BackupDetails endpoint.
 
@@ -130,7 +130,7 @@ class BackupDetails:
 class BackupSummary:
     """BackupSummary operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize BackupSummary endpoint.
 
@@ -167,7 +167,7 @@ class BackupSummary:
 class Fortimanager:
     """Fortimanager operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Fortimanager endpoint.
 

@@ -42,7 +42,7 @@ class AddLicense:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize AddLicense endpoint.
 
@@ -83,7 +83,7 @@ class AddLicense:
 class CheckConnectivity:
     """CheckConnectivity operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CheckConnectivity endpoint.
 
@@ -120,7 +120,7 @@ class CheckConnectivity:
 class Create:
     """Create operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Create endpoint.
 
@@ -233,7 +233,7 @@ class Create:
 class DeregisterDevice:
     """DeregisterDevice operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize DeregisterDevice endpoint.
 
@@ -278,7 +278,7 @@ class DeregisterDevice:
 class Login:
     """Login operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Login endpoint.
 
@@ -343,7 +343,7 @@ class Login:
 class Transfer:
     """Transfer operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Transfer endpoint.
 
@@ -400,7 +400,7 @@ class Transfer:
 class Forticare:
     """Forticare operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Forticare endpoint.
 

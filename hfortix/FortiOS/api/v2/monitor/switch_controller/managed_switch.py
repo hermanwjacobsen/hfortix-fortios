@@ -42,7 +42,7 @@ class Bios:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Bios endpoint.
 
@@ -83,7 +83,7 @@ class Bios:
 class BouncePort:
     """BouncePort operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize BouncePort endpoint.
 
@@ -136,7 +136,7 @@ class BouncePort:
 class CableStatus:
     """CableStatus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CableStatus endpoint.
 
@@ -179,7 +179,7 @@ class CableStatus:
 class DhcpSnooping:
     """DhcpSnooping operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize DhcpSnooping endpoint.
 
@@ -216,7 +216,7 @@ class DhcpSnooping:
 class FaceplateXml:
     """FaceplateXml operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize FaceplateXml endpoint.
 
@@ -256,7 +256,7 @@ class FaceplateXml:
 class FactoryReset:
     """FactoryReset operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize FactoryReset endpoint.
 
@@ -297,7 +297,7 @@ class FactoryReset:
 class HealthStatus:
     """HealthStatus operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize HealthStatus endpoint.
 
@@ -342,7 +342,7 @@ class HealthStatus:
 class Models:
     """Models operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Models endpoint.
 
@@ -379,7 +379,7 @@ class Models:
 class PoeReset:
     """PoeReset operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PoeReset endpoint.
 
@@ -424,7 +424,7 @@ class PoeReset:
 class PortHealth:
     """PortHealth operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PortHealth endpoint.
 
@@ -465,7 +465,7 @@ class PortHealth:
 class PortStats:
     """PortStats operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PortStats endpoint.
 
@@ -506,7 +506,7 @@ class PortStats:
 class PortStatsReset:
     """PortStatsReset operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PortStatsReset endpoint.
 
@@ -551,7 +551,7 @@ class PortStatsReset:
 class Restart:
     """Restart operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Restart endpoint.
 
@@ -592,7 +592,7 @@ class Restart:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -633,7 +633,7 @@ class Status:
 class Transceivers:
     """Transceivers operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Transceivers endpoint.
 
@@ -670,7 +670,7 @@ class Transceivers:
 class TxRx:
     """TxRx operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TxRx endpoint.
 
@@ -713,7 +713,7 @@ class TxRx:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -758,7 +758,7 @@ class Update:
 class ManagedSwitch:
     """ManagedSwitch operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ManagedSwitch endpoint.
 

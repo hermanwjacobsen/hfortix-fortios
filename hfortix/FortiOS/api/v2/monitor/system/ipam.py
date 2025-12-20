@@ -42,7 +42,7 @@ class List:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize List endpoint.
 
@@ -79,7 +79,7 @@ class List:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -116,7 +116,7 @@ class Status:
 class Utilization:
     """Utilization operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Utilization endpoint.
 
@@ -153,7 +153,7 @@ class Utilization:
 class Ipam:
     """Ipam operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Ipam endpoint.
 

@@ -42,7 +42,7 @@ class Auth:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Auth endpoint.
 
@@ -91,7 +91,7 @@ class Auth:
 class Count:
     """Count operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Count endpoint.
 
@@ -140,7 +140,7 @@ class Count:
 class Deauth:
     """Deauth operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Deauth endpoint.
 
@@ -205,7 +205,7 @@ class Deauth:
 class Firewall:
     """Firewall operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Firewall endpoint.
 

@@ -42,7 +42,7 @@ class Eject:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Eject endpoint.
 
@@ -79,7 +79,7 @@ class Eject:
 class UsbDevice:
     """UsbDevice operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UsbDevice endpoint.
 

@@ -42,7 +42,7 @@ class Delete:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Delete endpoint.
 
@@ -83,7 +83,7 @@ class Delete:
 class File:
     """File operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize File endpoint.
 
@@ -124,7 +124,7 @@ class File:
 class Info:
     """Info operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Info endpoint.
 
@@ -165,7 +165,7 @@ class Info:
 class Save:
     """Save operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Save endpoint.
 
@@ -206,7 +206,7 @@ class Save:
 class UpdateComments:
     """UpdateComments operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize UpdateComments endpoint.
 
@@ -251,7 +251,7 @@ class UpdateComments:
 class ConfigRevision:
     """ConfigRevision operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ConfigRevision endpoint.
 

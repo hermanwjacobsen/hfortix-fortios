@@ -42,7 +42,7 @@ class Download:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Download endpoint.
 
@@ -87,7 +87,7 @@ class Download:
 class DownloadEval:
     """DownloadEval operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize DownloadEval endpoint.
 
@@ -136,7 +136,7 @@ class DownloadEval:
 class Upload:
     """Upload operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Upload endpoint.
 
@@ -177,7 +177,7 @@ class Upload:
 class Vmlicense:
     """Vmlicense operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Vmlicense endpoint.
 

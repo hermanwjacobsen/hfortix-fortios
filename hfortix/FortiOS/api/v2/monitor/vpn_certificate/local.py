@@ -42,7 +42,7 @@ class Create:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Create endpoint.
 
@@ -91,7 +91,7 @@ class Create:
 class ImportLocal:
     """ImportLocal operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ImportLocal endpoint.
 
@@ -172,7 +172,7 @@ class ImportLocal:
 class Local:
     """Local operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Local endpoint.
 

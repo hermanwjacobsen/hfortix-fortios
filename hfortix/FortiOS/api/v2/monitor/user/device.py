@@ -42,7 +42,7 @@ class IotQuery:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize IotQuery endpoint.
 
@@ -85,7 +85,7 @@ class IotQuery:
 class PurdueLevel:
     """PurdueLevel operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize PurdueLevel endpoint.
 
@@ -134,7 +134,7 @@ class PurdueLevel:
 class Query:
     """Query operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Query endpoint.
 
@@ -211,7 +211,7 @@ class Query:
 class Stats:
     """Stats operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Stats endpoint.
 
@@ -270,7 +270,7 @@ class Stats:
 class Device:
     """Device operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Device endpoint.
 

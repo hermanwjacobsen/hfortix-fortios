@@ -42,7 +42,7 @@ class Close:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Close endpoint.
 
@@ -99,7 +99,7 @@ class Close:
 class CloseAll:
     """CloseAll operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CloseAll endpoint.
 
@@ -136,7 +136,7 @@ class CloseAll:
 class CloseMultiple:
     """CloseMultiple operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CloseMultiple endpoint.
 
@@ -205,7 +205,7 @@ class CloseMultiple:
 class Session:
     """Session operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Session endpoint.
 

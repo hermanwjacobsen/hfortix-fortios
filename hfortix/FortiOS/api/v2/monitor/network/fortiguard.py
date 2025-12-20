@@ -42,7 +42,7 @@ class LiveServicesLatency:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize LiveServicesLatency endpoint.
 
@@ -79,7 +79,7 @@ class LiveServicesLatency:
 class Fortiguard:
     """Fortiguard operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Fortiguard endpoint.
 

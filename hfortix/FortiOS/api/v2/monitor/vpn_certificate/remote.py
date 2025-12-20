@@ -42,7 +42,7 @@ class ImportRemote:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ImportRemote endpoint.
 
@@ -87,7 +87,7 @@ class ImportRemote:
 class Remote:
     """Remote operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Remote endpoint.
 

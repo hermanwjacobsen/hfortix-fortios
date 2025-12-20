@@ -42,7 +42,7 @@ class EnableAppBandwidthTracking:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize EnableAppBandwidthTracking endpoint.
 
@@ -79,7 +79,7 @@ class EnableAppBandwidthTracking:
 class Interface:
     """Interface operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Interface endpoint.
 
@@ -122,7 +122,7 @@ class Interface:
 class TopApplications:
     """TopApplications operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TopApplications endpoint.
 
@@ -162,7 +162,7 @@ class TopApplications:
 class TrafficHistory:
     """TrafficHistory operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TrafficHistory endpoint.
 

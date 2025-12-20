@@ -42,7 +42,7 @@ class Reboot:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Reboot endpoint.
 
@@ -83,7 +83,7 @@ class Reboot:
 class Shutdown:
     """Shutdown operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Shutdown endpoint.
 
@@ -124,7 +124,7 @@ class Shutdown:
 class Os:
     """Os operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Os endpoint.
 

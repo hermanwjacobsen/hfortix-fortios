@@ -42,7 +42,7 @@ class Select:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Select endpoint.
 
@@ -83,7 +83,7 @@ class Select:
 class GeoipQuery:
     """GeoipQuery operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize GeoipQuery endpoint.
 

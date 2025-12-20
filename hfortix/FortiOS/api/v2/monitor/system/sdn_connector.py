@@ -42,7 +42,7 @@ class NsxSecurityTags:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize NsxSecurityTags endpoint.
 
@@ -83,7 +83,7 @@ class NsxSecurityTags:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -128,7 +128,7 @@ class Status:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -169,7 +169,7 @@ class Update:
 class ValidateGcpKey:
     """ValidateGcpKey operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ValidateGcpKey endpoint.
 
@@ -210,7 +210,7 @@ class ValidateGcpKey:
 class SdnConnector:
     """SdnConnector operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize SdnConnector endpoint.
 

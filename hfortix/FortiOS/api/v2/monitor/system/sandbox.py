@@ -42,7 +42,7 @@ class CloudRegions:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize CloudRegions endpoint.
 
@@ -79,7 +79,7 @@ class CloudRegions:
 class Connection:
     """Connection operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Connection endpoint.
 
@@ -120,7 +120,7 @@ class Connection:
 class Detect:
     """Detect operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Detect endpoint.
 
@@ -157,7 +157,7 @@ class Detect:
 class Stats:
     """Stats operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Stats endpoint.
 
@@ -194,7 +194,7 @@ class Stats:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Status endpoint.
 
@@ -231,7 +231,7 @@ class Status:
 class Sandbox:
     """Sandbox operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Sandbox endpoint.
 

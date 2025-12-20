@@ -42,7 +42,7 @@ class Generate:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Generate endpoint.
 
@@ -143,7 +143,7 @@ class Generate:
 class Csr:
     """Csr operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Csr endpoint.
 

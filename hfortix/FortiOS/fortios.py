@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 
 from .api import API
 from .http_client import HTTPClient
+from .http_client_interface import IHTTPClient
 
 if TYPE_CHECKING:
     from .http_client_async import AsyncHTTPClient
@@ -67,6 +68,7 @@ class FortiOS:
         host: Optional[str] = None,
         token: Optional[str] = None,
         *,
+        client: Optional[IHTTPClient] = None,
         mode: Literal["sync"] = "sync",
         verify: bool = True,
         vdom: Optional[str] = None,
@@ -90,6 +92,7 @@ class FortiOS:
         host: Optional[str] = None,
         token: Optional[str] = None,
         *,
+        client: Optional[IHTTPClient] = None,
         mode: Literal["async"],
         verify: bool = True,
         vdom: Optional[str] = None,
@@ -112,6 +115,7 @@ class FortiOS:
         host: Optional[str] = None,
         token: Optional[str] = None,
         *,
+        client: Optional[IHTTPClient] = None,
         mode: Literal["sync", "async"] = "sync",
         verify: bool = True,
         vdom: Optional[str] = None,
@@ -134,10 +138,16 @@ class FortiOS:
 
         Args:
             host: FortiGate IP/hostname (e.g., "192.0.2.10" or "fortigate.example.com")
+                  Not required if providing a custom client
             token: API token for authentication
+                   Not required if providing a custom client
+            client: Optional custom HTTP client implementing IHTTPClient protocol
+                   If provided, host/token/verify/etc. are ignored and the custom client is used
+                   Allows for custom authentication, proxying, caching, etc.
             mode: Client mode - 'sync' (default) or 'async'
                  - 'sync': Traditional synchronous API calls
                  - 'async': Asynchronous API calls with async/await
+                 Ignored if custom client is provided
             verify: Verify SSL certificates (default: True, recommended for production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
             port: HTTPS port (default: None = use 443, or specify custom port like 8443)
@@ -165,6 +175,18 @@ class FortiOS:
             # Async with context manager
             async with FortiOS("192.0.2.10", token="token", mode="async", verify=False) as fgt:
                 status = await fgt.api.monitor.system.status.get()
+
+            # Custom HTTP client
+            class MyHTTPClient:
+                def get(self, api_type, path, **kwargs):
+                    # Custom implementation with company auth, logging, etc.
+                    ...
+                def post(self, api_type, path, data, **kwargs):
+                    ...
+                # ... put, delete
+            
+            fgt = FortiOS(client=MyHTTPClient())
+            addresses = fgt.api.cmdb.firewall.address.get("test-host")
 
             # Production - with valid SSL certificate
             fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
@@ -196,54 +218,60 @@ class FortiOS:
         if debug:
             self._setup_logging(debug)
 
-        # Build URL with port handling
-        if host:
-            # If port is already in host string, use as-is
-            if ":" in host:
-                url = f"https://{host}"
-            # If explicit port provided, append it
-            elif port:
-                url = f"https://{host}:{port}"
-            # Otherwise use default (443)
+        # Initialize HTTP client
+        self._client: Union[HTTPClient, AsyncHTTPClient, IHTTPClient]
+        
+        # If custom client provided, use it directly
+        if client is not None:
+            self._client = client
+        else:
+            # Build URL with port handling
+            if host:
+                # If port is already in host string, use as-is
+                if ":" in host:
+                    url = f"https://{host}"
+                # If explicit port provided, append it
+                elif port:
+                    url = f"https://{host}:{port}"
+                # Otherwise use default (443)
+                else:
+                    url = f"https://{host}"
             else:
-                url = f"https://{host}"
-        else:
-            raise ValueError("host parameter is required")
+                raise ValueError("host parameter is required when not providing a custom client")
 
-        # Initialize HTTP client based on mode
-        self._client: Union[HTTPClient, AsyncHTTPClient]
-        if mode == "async":
-            from .http_client_async import AsyncHTTPClient
+            # Create default client based on mode
+            if mode == "async":
+                from .http_client_async import AsyncHTTPClient
 
-            self._client = AsyncHTTPClient(
-                url=url,
-                verify=verify,
-                token=token,
-                vdom=vdom,
-                max_retries=max_retries,
-                connect_timeout=connect_timeout,
-                read_timeout=read_timeout,
-                user_agent=user_agent,
-                circuit_breaker_threshold=circuit_breaker_threshold,
-                circuit_breaker_timeout=circuit_breaker_timeout,
-                max_connections=max_connections,
-                max_keepalive_connections=max_keepalive_connections,
-            )
-        else:
-            self._client = HTTPClient(
-                url=url,
-                verify=verify,
-                token=token,
-                vdom=vdom,
-                max_retries=max_retries,
-                connect_timeout=connect_timeout,
-                read_timeout=read_timeout,
-                user_agent=user_agent,
-                circuit_breaker_threshold=circuit_breaker_threshold,
-                circuit_breaker_timeout=circuit_breaker_timeout,
-                max_connections=max_connections,
-                max_keepalive_connections=max_keepalive_connections,
-            )
+                self._client = AsyncHTTPClient(
+                    url=url,
+                    verify=verify,
+                    token=token,
+                    vdom=vdom,
+                    max_retries=max_retries,
+                    connect_timeout=connect_timeout,
+                    read_timeout=read_timeout,
+                    user_agent=user_agent,
+                    circuit_breaker_threshold=circuit_breaker_threshold,
+                    circuit_breaker_timeout=circuit_breaker_timeout,
+                    max_connections=max_connections,
+                    max_keepalive_connections=max_keepalive_connections,
+                )
+            else:
+                self._client = HTTPClient(
+                    url=url,
+                    verify=verify,
+                    token=token,
+                    vdom=vdom,
+                    max_retries=max_retries,
+                    connect_timeout=connect_timeout,
+                    read_timeout=read_timeout,
+                    user_agent=user_agent,
+                    circuit_breaker_threshold=circuit_breaker_threshold,
+                    circuit_breaker_timeout=circuit_breaker_timeout,
+                    max_connections=max_connections,
+                    max_keepalive_connections=max_keepalive_connections,
+                )
 
         # Initialize API namespace.
         # Store it privately and expose a property so IDEs treat it as a concrete

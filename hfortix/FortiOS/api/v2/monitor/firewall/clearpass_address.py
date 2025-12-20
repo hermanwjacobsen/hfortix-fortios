@@ -42,7 +42,7 @@ class Add:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Add endpoint.
 
@@ -87,7 +87,7 @@ class Add:
 class Delete:
     """Delete operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Delete endpoint.
 
@@ -132,7 +132,7 @@ class Delete:
 class ClearpassAddress:
     """ClearpassAddress operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearpassAddress endpoint.
 

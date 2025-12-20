@@ -42,7 +42,7 @@ class ClearStatistics:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ClearStatistics endpoint.
 
@@ -79,7 +79,7 @@ class ClearStatistics:
 class ManualUpdate:
     """ManualUpdate operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ManualUpdate endpoint.
 
@@ -120,7 +120,7 @@ class ManualUpdate:
 class ServerInfo:
     """ServerInfo operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ServerInfo endpoint.
 
@@ -157,7 +157,7 @@ class ServerInfo:
 class TestAvailability:
     """TestAvailability operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize TestAvailability endpoint.
 
@@ -206,7 +206,7 @@ class TestAvailability:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Update endpoint.
 
@@ -243,7 +243,7 @@ class Update:
 class Fortiguard:
     """Fortiguard operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Fortiguard endpoint.
 

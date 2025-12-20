@@ -42,7 +42,7 @@ class ImportLanguage:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize ImportLanguage endpoint.
 
@@ -83,7 +83,7 @@ class ImportLanguage:
 class Language:
     """Language operations."""
 
-    def __init__(self, client: 'HTTPClient'):
+    def __init__(self, client: 'IHTTPClient'):
         """
         Initialize Language endpoint.
 
