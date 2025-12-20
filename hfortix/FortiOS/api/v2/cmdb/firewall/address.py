@@ -421,6 +421,7 @@ class Address:
             ...     print("Address exists")
         """
         import inspect
+        from typing import cast, Coroutine, Any
 
         from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
 
@@ -432,12 +433,16 @@ class Address:
 
             async def _async():
                 try:
-                    await result  # type: ignore[misc]
+                    # Runtime check confirms result is a coroutine, cast for mypy
+                    await cast(Coroutine[Any, Any, dict[str, Any]], result)
                     return True
                 except ResourceNotFoundError:
                     return False
 
-            return _async()
+            # Type ignore justified: mypy can't verify Union return type narrowing
+
+
+            return _async()  # type: ignore[return-value]
 
         # Sync mode - get() already executed, no exception means it exists
         return True
