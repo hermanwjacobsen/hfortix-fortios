@@ -453,7 +453,7 @@ class Address:
         route_tag: int | None = None,
         sub_type: str | None = None,
         clearpass_spt: str | None = None,
-        macaddr: list | None = None,  # type: ignore
+        macaddr: list | None = None,
         start_ip: str | None = None,
         end_ip: str | None = None,
         fqdn: str | None = None,
@@ -462,8 +462,8 @@ class Address:
         cache_ttl: int | None = None,
         wildcard: str | None = None,
         sdn: str | None = None,
-        fsso_group: list | None = None,  # type: ignore
-        sso_attribute_value: list | None = None,  # type: ignore
+        fsso_group: list | None = None,
+        sso_attribute_value: list | None = None,
         interface: str | None = None,
         tenant: str | None = None,
         organization: str | None = None,
@@ -485,8 +485,8 @@ class Address:
         sdn_addr_type: str | None = None,
         node_ip_only: str | None = None,
         obj_id: str | None = None,
-        list: list | None = None,  # type: ignore
-        tagging: list | None = None,  # type: ignore
+        list: list | None = None,
+        tagging: list | None = None,
         allow_routing: str | None = None,
         passive_fqdn_learning: str | None = None,
         fabric_object: str | None = None,

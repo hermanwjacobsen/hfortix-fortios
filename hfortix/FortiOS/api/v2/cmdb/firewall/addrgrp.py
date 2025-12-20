@@ -316,13 +316,13 @@ class Addrgrp:
         type: str | None = None,
         category: str | None = None,
         allow_routing: str | None = None,
-        member: list | None = None,  # type: ignore
+        member: list | None = None,
         comment: str | None = None,
         uuid: str | None = None,
         exclude: str | None = None,
-        exclude_member: list | None = None,  # type: ignore
+        exclude_member: list | None = None,
         color: int | None = None,
-        tagging: list | None = None,  # type: ignore
+        tagging: list | None = None,
         fabric_object: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
