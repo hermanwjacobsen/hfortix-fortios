@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.process.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.process.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Kill:
     """
     Kill Operations.
-    
+
     Provides read-only access for FortiOS kill data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Kill endpoint.
 
@@ -61,25 +61,25 @@ class Kill:
     ) -> dict[str, Any]:
         """
         Kill a running process.
-        
+
         Args:
             pid: The process ID. (optional)
             signal: Signal to use when killing the process [9 (SIGKILL) | 11 (SIGSEGV) | 15 (SIGTERM)]. Defaults to 15. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.process.kill.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if pid is not None:
-            data['pid'] = pid
+            data["pid"] = pid
         if signal is not None:
-            data['signal'] = signal
+            data["signal"] = signal
         data.update(kwargs)
         return self._client.post("monitor", "/system/process/kill", data=data)
 
@@ -87,7 +87,7 @@ class Kill:
 class Process:
     """Process operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Process endpoint.
 

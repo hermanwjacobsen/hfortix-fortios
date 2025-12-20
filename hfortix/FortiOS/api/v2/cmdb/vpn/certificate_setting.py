@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.vpn.certificate_setting.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.vpn.certificate_setting.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.vpn.certificate_setting.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.vpn.certificate_setting.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.vpn.certificate_setting.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class CertificateSetting:
     """
     Certificatesetting Operations.
-    
+
     Provides CRUD operations for FortiOS certificatesetting configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class CertificateSetting:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CertificateSetting endpoint.
 
@@ -82,14 +82,14 @@ class CertificateSetting:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class CertificateSetting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/vpn.certificate/setting"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -154,7 +156,7 @@ class CertificateSetting:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -195,7 +197,7 @@ class CertificateSetting:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -203,7 +205,7 @@ class CertificateSetting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -211,74 +213,76 @@ class CertificateSetting:
         params = {}
         endpoint = "/vpn.certificate/setting"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if ocsp_status is not None:
-            data_payload['ocsp-status'] = ocsp_status
+            data_payload["ocsp-status"] = ocsp_status
         if ocsp_option is not None:
-            data_payload['ocsp-option'] = ocsp_option
+            data_payload["ocsp-option"] = ocsp_option
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if proxy_port is not None:
-            data_payload['proxy-port'] = proxy_port
+            data_payload["proxy-port"] = proxy_port
         if proxy_username is not None:
-            data_payload['proxy-username'] = proxy_username
+            data_payload["proxy-username"] = proxy_username
         if proxy_password is not None:
-            data_payload['proxy-password'] = proxy_password
+            data_payload["proxy-password"] = proxy_password
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if ocsp_default_server is not None:
-            data_payload['ocsp-default-server'] = ocsp_default_server
+            data_payload["ocsp-default-server"] = ocsp_default_server
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         if check_ca_cert is not None:
-            data_payload['check-ca-cert'] = check_ca_cert
+            data_payload["check-ca-cert"] = check_ca_cert
         if check_ca_chain is not None:
-            data_payload['check-ca-chain'] = check_ca_chain
+            data_payload["check-ca-chain"] = check_ca_chain
         if subject_match is not None:
-            data_payload['subject-match'] = subject_match
+            data_payload["subject-match"] = subject_match
         if subject_set is not None:
-            data_payload['subject-set'] = subject_set
+            data_payload["subject-set"] = subject_set
         if cn_match is not None:
-            data_payload['cn-match'] = cn_match
+            data_payload["cn-match"] = cn_match
         if cn_allow_multi is not None:
-            data_payload['cn-allow-multi'] = cn_allow_multi
+            data_payload["cn-allow-multi"] = cn_allow_multi
         if crl_verification is not None:
-            data_payload['crl-verification'] = crl_verification
+            data_payload["crl-verification"] = crl_verification
         if strict_ocsp_check is not None:
-            data_payload['strict-ocsp-check'] = strict_ocsp_check
+            data_payload["strict-ocsp-check"] = strict_ocsp_check
         if ssl_min_proto_version is not None:
-            data_payload['ssl-min-proto-version'] = ssl_min_proto_version
+            data_payload["ssl-min-proto-version"] = ssl_min_proto_version
         if cmp_save_extra_certs is not None:
-            data_payload['cmp-save-extra-certs'] = cmp_save_extra_certs
+            data_payload["cmp-save-extra-certs"] = cmp_save_extra_certs
         if cmp_key_usage_checking is not None:
-            data_payload['cmp-key-usage-checking'] = cmp_key_usage_checking
+            data_payload["cmp-key-usage-checking"] = cmp_key_usage_checking
         if cert_expire_warning is not None:
-            data_payload['cert-expire-warning'] = cert_expire_warning
+            data_payload["cert-expire-warning"] = cert_expire_warning
         if certname_rsa1024 is not None:
-            data_payload['certname-rsa1024'] = certname_rsa1024
+            data_payload["certname-rsa1024"] = certname_rsa1024
         if certname_rsa2048 is not None:
-            data_payload['certname-rsa2048'] = certname_rsa2048
+            data_payload["certname-rsa2048"] = certname_rsa2048
         if certname_rsa4096 is not None:
-            data_payload['certname-rsa4096'] = certname_rsa4096
+            data_payload["certname-rsa4096"] = certname_rsa4096
         if certname_dsa1024 is not None:
-            data_payload['certname-dsa1024'] = certname_dsa1024
+            data_payload["certname-dsa1024"] = certname_dsa1024
         if certname_dsa2048 is not None:
-            data_payload['certname-dsa2048'] = certname_dsa2048
+            data_payload["certname-dsa2048"] = certname_dsa2048
         if certname_ecdsa256 is not None:
-            data_payload['certname-ecdsa256'] = certname_ecdsa256
+            data_payload["certname-ecdsa256"] = certname_ecdsa256
         if certname_ecdsa384 is not None:
-            data_payload['certname-ecdsa384'] = certname_ecdsa384
+            data_payload["certname-ecdsa384"] = certname_ecdsa384
         if certname_ecdsa521 is not None:
-            data_payload['certname-ecdsa521'] = certname_ecdsa521
+            data_payload["certname-ecdsa521"] = certname_ecdsa521
         if certname_ed25519 is not None:
-            data_payload['certname-ed25519'] = certname_ed25519
+            data_payload["certname-ed25519"] = certname_ed25519
         if certname_ed448 is not None:
-            data_payload['certname-ed448'] = certname_ed448
+            data_payload["certname-ed448"] = certname_ed448
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

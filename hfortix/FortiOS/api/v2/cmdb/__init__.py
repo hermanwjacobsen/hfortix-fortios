@@ -13,19 +13,19 @@ Key HTTP Methods:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Access CMDB endpoints via: fgt.api.cmdb
-    >>> 
+    >>>
     >>> # Firewall operations
     >>> fgt.api.cmdb.firewall.address.get()           # List addresses
     >>> fgt.api.cmdb.firewall.policy.post(...)        # Create policy
     >>> fgt.api.cmdb.firewall.address.put(name=...)   # Update address
     >>> fgt.api.cmdb.firewall.address.delete(name...) # Delete address
-    >>> 
+    >>>
     >>> # System operations
     >>> fgt.api.cmdb.system.interface.get(name="port1")
     >>> fgt.api.cmdb.system.admin.get()
-    >>> 
+    >>>
     >>> # Router operations
     >>> fgt.api.cmdb.router.static.get()
     >>> fgt.api.cmdb.router.bgp.put(...)
@@ -47,10 +47,10 @@ __all__ = ["CMDB"]
 class CMDB:
     """
     FortiOS CMDB (Configuration Management Database) API.
-    
+
     Provides access to FortiOS configuration endpoints for managing firewall policies,
     system settings, routing, VPN, logging, and more.
-    
+
     Common Operations:
         - **Firewall**: Policies, addresses, services, VIPs, NAT
         - **System**: Interfaces, admins, DNS, NTP, HA, certificates
@@ -58,13 +58,13 @@ class CMDB:
         - **VPN**: IPsec, SSL-VPN, certificates
         - **Security Profiles**: Antivirus, IPS, web filtering, DLP
         - **User**: User accounts, authentication, LDAP, RADIUS
-    
+
     HTTP Methods by Operation:
         - **GET**: List/retrieve configuration (no changes)
         - **POST**: Create new objects (returns 404 if name already exists)
-        - **PUT**: Update existing objects (returns 404 if name doesn't exist)  
+        - **PUT**: Update existing objects (returns 404 if name doesn't exist)
         - **DELETE**: Remove objects (returns 404 if name doesn't exist)
-    
+
     Attributes:
         alertemail: Alert email configuration
         antivirus: Antivirus profiles and settings
@@ -103,29 +103,29 @@ class CMDB:
         webfilter: Web filtering profiles and URL filters
         wireless_controller: Wireless controller for FortiAP management
         ztna: Zero Trust Network Access configuration
-    
+
     Example:
         >>> from hfortix.FortiOS import FortiOS
         >>> fgt = FortiOS(host="192.168.1.99", token="your-token")
-        >>> 
+        >>>
         >>> # Create firewall address (POST for new objects)
         >>> fgt.api.cmdb.firewall.address.post(
         ...     name="Server01",
         ...     subnet="192.168.100.10/32"
         ... )
-        >>> 
+        >>>
         >>> # Update firewall address (PUT for existing objects)
         >>> fgt.api.cmdb.firewall.address.put(
-        ...     name="Server01", 
+        ...     name="Server01",
         ...     subnet="192.168.100.20/32"
         ... )
-        >>> 
+        >>>
         >>> # Get specific address
         >>> addr = fgt.api.cmdb.firewall.address.get(name="Server01")
-        >>> 
+        >>>
         >>> # List all addresses
         >>> all_addrs = fgt.api.cmdb.firewall.address.get()
-        >>> 
+        >>>
         >>> # Delete address
         >>> fgt.api.cmdb.firewall.address.delete(name="Server01")
     """
@@ -140,6 +140,8 @@ class CMDB:
         self._client = client
 
         # Initialize endpoint classes
+        from importlib import import_module
+
         from .alertemail import Alertemail
         from .antivirus import Antivirus
         from .application import Application
@@ -147,17 +149,31 @@ class CMDB:
         from .automation import Automation
         from .casb import Casb
         from .certificate import Certificate
-        from importlib import import_module
-        diameter_filter_mod = import_module('.diameter-filter', 'hfortix.FortiOS.api.v2.cmdb')
+
+        diameter_filter_mod = import_module(
+            ".diameter-filter", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .dlp import Dlp
         from .dnsfilter import Dnsfilter
         from .emailfilter import Emailfilter
-        endpoint_control_mod = import_module('.endpoint-control', 'hfortix.FortiOS.api.v2.cmdb')
-        ethernet_oam_mod = import_module('.ethernet-oam', 'hfortix.FortiOS.api.v2.cmdb')
-        extension_controller_mod = import_module('.extension-controller', 'hfortix.FortiOS.api.v2.cmdb')
-        file_filter_mod = import_module('.file-filter', 'hfortix.FortiOS.api.v2.cmdb')
+
+        endpoint_control_mod = import_module(
+            ".endpoint-control", "hfortix.FortiOS.api.v2.cmdb"
+        )
+        ethernet_oam_mod = import_module(
+            ".ethernet-oam", "hfortix.FortiOS.api.v2.cmdb"
+        )
+        extension_controller_mod = import_module(
+            ".extension-controller", "hfortix.FortiOS.api.v2.cmdb"
+        )
+        file_filter_mod = import_module(
+            ".file-filter", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .firewall import Firewall
-        ftp_proxy_mod = import_module('.ftp-proxy', 'hfortix.FortiOS.api.v2.cmdb')
+
+        ftp_proxy_mod = import_module(
+            ".ftp-proxy", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .icap import Icap
         from .ips import Ips
         from .log import Log
@@ -165,7 +181,10 @@ class CMDB:
         from .report import Report
         from .router import Router
         from .rule import Rule
-        sctp_filter_mod = import_module('.sctp-filter', 'hfortix.FortiOS.api.v2.cmdb')
+
+        sctp_filter_mod = import_module(
+            ".sctp-filter", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .system import System
 
         self.alertemail = Alertemail(client)
@@ -181,7 +200,9 @@ class CMDB:
         self.emailfilter = Emailfilter(client)
         self.endpoint_control = endpoint_control_mod.EndpointControl(client)
         self.ethernet_oam = ethernet_oam_mod.EthernetOam(client)
-        self.extension_controller = extension_controller_mod.ExtensionController(client)
+        self.extension_controller = (
+            extension_controller_mod.ExtensionController(client)
+        )
         self.file_filter = file_filter_mod.FileFilter(client)
         self.firewall = Firewall(client)
         self.ftp_proxy = ftp_proxy_mod.FtpProxy(client)

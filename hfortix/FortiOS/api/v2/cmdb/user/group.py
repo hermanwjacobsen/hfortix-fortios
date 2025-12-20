@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.user.group.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.user.group.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.user.group.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.user.group.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.user.group.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Group:
     """
     Group Operations.
-    
+
     Provides CRUD operations for FortiOS group configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Group:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Group:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Group endpoint.
 
@@ -90,7 +90,7 @@ class Group:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Group:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Group:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/user/group/{name}"
         else:
             endpoint = "/user/group"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -165,7 +167,7 @@ class Group:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -198,7 +200,7 @@ class Group:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -206,71 +208,73 @@ class Group:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/user/group/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if group_type is not None:
-            data_payload['group-type'] = group_type
+            data_payload["group-type"] = group_type
         if authtimeout is not None:
-            data_payload['authtimeout'] = authtimeout
+            data_payload["authtimeout"] = authtimeout
         if auth_concurrent_override is not None:
-            data_payload['auth-concurrent-override'] = auth_concurrent_override
+            data_payload["auth-concurrent-override"] = auth_concurrent_override
         if auth_concurrent_value is not None:
-            data_payload['auth-concurrent-value'] = auth_concurrent_value
+            data_payload["auth-concurrent-value"] = auth_concurrent_value
         if http_digest_realm is not None:
-            data_payload['http-digest-realm'] = http_digest_realm
+            data_payload["http-digest-realm"] = http_digest_realm
         if sso_attribute_value is not None:
-            data_payload['sso-attribute-value'] = sso_attribute_value
+            data_payload["sso-attribute-value"] = sso_attribute_value
         if member is not None:
-            data_payload['member'] = member
+            data_payload["member"] = member
         if match is not None:
-            data_payload['match'] = match
+            data_payload["match"] = match
         if user_id is not None:
-            data_payload['user-id'] = user_id
+            data_payload["user-id"] = user_id
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if user_name is not None:
-            data_payload['user-name'] = user_name
+            data_payload["user-name"] = user_name
         if sponsor is not None:
-            data_payload['sponsor'] = sponsor
+            data_payload["sponsor"] = sponsor
         if company is not None:
-            data_payload['company'] = company
+            data_payload["company"] = company
         if email is not None:
-            data_payload['email'] = email
+            data_payload["email"] = email
         if mobile_phone is not None:
-            data_payload['mobile-phone'] = mobile_phone
+            data_payload["mobile-phone"] = mobile_phone
         if sms_server is not None:
-            data_payload['sms-server'] = sms_server
+            data_payload["sms-server"] = sms_server
         if sms_custom_server is not None:
-            data_payload['sms-custom-server'] = sms_custom_server
+            data_payload["sms-custom-server"] = sms_custom_server
         if expire_type is not None:
-            data_payload['expire-type'] = expire_type
+            data_payload["expire-type"] = expire_type
         if expire is not None:
-            data_payload['expire'] = expire
+            data_payload["expire"] = expire
         if max_accounts is not None:
-            data_payload['max-accounts'] = max_accounts
+            data_payload["max-accounts"] = max_accounts
         if multiple_guest_add is not None:
-            data_payload['multiple-guest-add'] = multiple_guest_add
+            data_payload["multiple-guest-add"] = multiple_guest_add
         if guest is not None:
-            data_payload['guest'] = guest
+            data_payload["guest"] = guest
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -282,13 +286,13 @@ class Group:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -296,18 +300,20 @@ class Group:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/group/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -316,37 +322,39 @@ class Group:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -382,7 +390,7 @@ class Group:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -413,7 +421,7 @@ class Group:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -421,7 +429,7 @@ class Group:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -429,54 +437,56 @@ class Group:
         params = {}
         endpoint = "/user/group"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if group_type is not None:
-            data_payload['group-type'] = group_type
+            data_payload["group-type"] = group_type
         if authtimeout is not None:
-            data_payload['authtimeout'] = authtimeout
+            data_payload["authtimeout"] = authtimeout
         if auth_concurrent_override is not None:
-            data_payload['auth-concurrent-override'] = auth_concurrent_override
+            data_payload["auth-concurrent-override"] = auth_concurrent_override
         if auth_concurrent_value is not None:
-            data_payload['auth-concurrent-value'] = auth_concurrent_value
+            data_payload["auth-concurrent-value"] = auth_concurrent_value
         if http_digest_realm is not None:
-            data_payload['http-digest-realm'] = http_digest_realm
+            data_payload["http-digest-realm"] = http_digest_realm
         if sso_attribute_value is not None:
-            data_payload['sso-attribute-value'] = sso_attribute_value
+            data_payload["sso-attribute-value"] = sso_attribute_value
         if member is not None:
-            data_payload['member'] = member
+            data_payload["member"] = member
         if match is not None:
-            data_payload['match'] = match
+            data_payload["match"] = match
         if user_id is not None:
-            data_payload['user-id'] = user_id
+            data_payload["user-id"] = user_id
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if user_name is not None:
-            data_payload['user-name'] = user_name
+            data_payload["user-name"] = user_name
         if sponsor is not None:
-            data_payload['sponsor'] = sponsor
+            data_payload["sponsor"] = sponsor
         if company is not None:
-            data_payload['company'] = company
+            data_payload["company"] = company
         if email is not None:
-            data_payload['email'] = email
+            data_payload["email"] = email
         if mobile_phone is not None:
-            data_payload['mobile-phone'] = mobile_phone
+            data_payload["mobile-phone"] = mobile_phone
         if sms_server is not None:
-            data_payload['sms-server'] = sms_server
+            data_payload["sms-server"] = sms_server
         if sms_custom_server is not None:
-            data_payload['sms-custom-server'] = sms_custom_server
+            data_payload["sms-custom-server"] = sms_custom_server
         if expire_type is not None:
-            data_payload['expire-type'] = expire_type
+            data_payload["expire-type"] = expire_type
         if expire is not None:
-            data_payload['expire'] = expire
+            data_payload["expire"] = expire
         if max_accounts is not None:
-            data_payload['max-accounts'] = max_accounts
+            data_payload["max-accounts"] = max_accounts
         if multiple_guest_add is not None:
-            data_payload['multiple-guest-add'] = multiple_guest_add
+            data_payload["multiple-guest-add"] = multiple_guest_add
         if guest is not None:
-            data_payload['guest'] = guest
+            data_payload["guest"] = guest
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

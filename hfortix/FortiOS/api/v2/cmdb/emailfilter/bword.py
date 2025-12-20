@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.emailfilter.bword.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.emailfilter.bword.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.emailfilter.bword.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.emailfilter.bword.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.emailfilter.bword.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Bword:
     """
     Bword Operations.
-    
+
     Provides CRUD operations for FortiOS bword configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Bword:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Bword:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Bword endpoint.
 
@@ -90,7 +90,7 @@ class Bword:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Bword:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Bword:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if id:
             endpoint = f"/emailfilter/bword/{id}"
         else:
             endpoint = "/emailfilter/bword"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -145,7 +147,7 @@ class Bword:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             id: Object identifier (required)
@@ -158,7 +160,7 @@ class Bword:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -166,31 +168,33 @@ class Bword:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for put()")
         endpoint = f"/emailfilter/bword/{id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if entries is not None:
-            data_payload['entries'] = entries
+            data_payload["entries"] = entries
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -202,13 +206,13 @@ class Bword:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -216,18 +220,20 @@ class Bword:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for delete()")
         endpoint = f"/emailfilter/bword/{id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -243,7 +249,7 @@ class Bword:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -254,7 +260,7 @@ class Bword:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -262,7 +268,7 @@ class Bword:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -270,14 +276,16 @@ class Bword:
         params = {}
         endpoint = "/emailfilter/bword"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if entries is not None:
-            data_payload['entries'] = entries
+            data_payload["entries"] = entries
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

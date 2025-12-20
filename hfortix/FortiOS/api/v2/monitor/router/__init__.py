@@ -61,5 +61,5 @@ class Router:
             "policy",
             "policy6",
             "sdwan",
-            "statistics"
+            "statistics",
         ]

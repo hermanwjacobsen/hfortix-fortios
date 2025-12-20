@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.user.tacacs_plus.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.user.tacacs_plus.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Test:
     """
     Test Operations.
-    
+
     Provides read-only access for FortiOS test data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Test endpoint.
 
@@ -65,7 +65,7 @@ class Test:
     ) -> dict[str, Any]:
         """
         Test the connectivity of the given TACACS+ server.
-        
+
         Args:
             mkey: Name of FortiGate's TACACS+ object whose settings to test. (optional)
             ordinal: If 'mkey' is provided, the server-key pair to use from the object: 'primary', 'secondary' or 'tertiary'. Defaults to 'primary'. (optional)
@@ -76,34 +76,36 @@ class Test:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.tacacs_plus.test.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         if ordinal is not None:
-            data['ordinal'] = ordinal
+            data["ordinal"] = ordinal
         if server is not None:
-            data['server'] = server
+            data["server"] = server
         if secret is not None:
-            data['secret'] = secret
+            data["secret"] = secret
         if port is not None:
-            data['port'] = port
+            data["port"] = port
         if source_ip is not None:
-            data['source_ip'] = source_ip
+            data["source_ip"] = source_ip
         data.update(kwargs)
-        return self._client.post("monitor", "/user/tacacs-plus/test", data=data)
+        return self._client.post(
+            "monitor", "/user/tacacs-plus/test", data=data
+        )
 
 
 class TacacsPlus:
     """TacacsPlus operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize TacacsPlus endpoint.
 

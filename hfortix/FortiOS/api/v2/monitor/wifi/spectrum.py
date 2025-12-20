@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.wifi.spectrum.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.wifi.spectrum.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class KeepAlive:
     """
     Keepalive Operations.
-    
+
     Provides read-only access for FortiOS keepalive data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize KeepAlive endpoint.
 
@@ -62,7 +62,7 @@ class KeepAlive:
     ) -> dict[str, Any]:
         """
         Extend duration of an existing spectrum analysis for a specific FortiAP.
-        
+
         Args:
             wtp_id: FortiAP ID. (optional)
             radio_id: Radio ID. (optional)
@@ -70,28 +70,30 @@ class KeepAlive:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.spectrum.keep_alive.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if wtp_id is not None:
-            data['wtp_id'] = wtp_id
+            data["wtp_id"] = wtp_id
         if radio_id is not None:
-            data['radio_id'] = radio_id
+            data["radio_id"] = radio_id
         if duration is not None:
-            data['duration'] = duration
+            data["duration"] = duration
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/spectrum/keep-alive", data=data)
+        return self._client.post(
+            "monitor", "/wifi/spectrum/keep-alive", data=data
+        )
 
 
 class Start:
     """Start operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Start endpoint.
 
@@ -112,7 +114,7 @@ class Start:
     ) -> dict[str, Any]:
         """
         Start spectrum analysis for a specific FortiAP for a duration of time.
-        
+
         Args:
             wtp_id: FortiAP ID. (optional)
             radio_id: Radio ID. (optional)
@@ -121,22 +123,22 @@ class Start:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.spectrum.start.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if wtp_id is not None:
-            data['wtp_id'] = wtp_id
+            data["wtp_id"] = wtp_id
         if radio_id is not None:
-            data['radio_id'] = radio_id
+            data["radio_id"] = radio_id
         if channels is not None:
-            data['channels'] = channels
+            data["channels"] = channels
         if duration is not None:
-            data['duration'] = duration
+            data["duration"] = duration
         data.update(kwargs)
         return self._client.post("monitor", "/wifi/spectrum/start", data=data)
 
@@ -144,7 +146,7 @@ class Start:
 class Stop:
     """Stop operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Stop endpoint.
 
@@ -163,25 +165,25 @@ class Stop:
     ) -> dict[str, Any]:
         """
         Stop spectrum analysis for a specific FortiAP.
-        
+
         Args:
             wtp_id: FortiAP ID. (optional)
             radio_id: Radio ID. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.spectrum.stop.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if wtp_id is not None:
-            data['wtp_id'] = wtp_id
+            data["wtp_id"] = wtp_id
         if radio_id is not None:
-            data['radio_id'] = radio_id
+            data["radio_id"] = radio_id
         data.update(kwargs)
         return self._client.post("monitor", "/wifi/spectrum/stop", data=data)
 
@@ -189,7 +191,7 @@ class Stop:
 class Spectrum:
     """Spectrum operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Spectrum endpoint.
 
@@ -212,20 +214,20 @@ class Spectrum:
     ) -> dict[str, Any]:
         """
         Retrieve spectrum analysis information for a specific FortiAP.
-        
+
         Args:
             wtp_id: FortiAP ID to query. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.spectrum.get(wtp_id='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['wtp_id'] = wtp_id
+        params["wtp_id"] = wtp_id
         params.update(kwargs)
         return self._client.get("monitor", "/wifi/spectrum", params=params)

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.vpn_certificate.csr.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.vpn_certificate.csr.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Generate:
     """
     Generate Operations.
-    
+
     Provides read-only access for FortiOS generate data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Generate endpoint.
 
@@ -75,7 +75,7 @@ class Generate:
     ) -> dict[str, Any]:
         """
         Generate a certificate signing request (CSR) and a private key.
-        
+
         Args:
             certname: Certicate name. Used to retrieve / download the CSR. Not included in CSR and key content. (optional)
             subject: Subject (Host IP/Domain Name/E-Mail). Common Name (CN) of the certificate subject. (optional)
@@ -96,54 +96,56 @@ class Generate:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn_certificate.csr.generate.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if certname is not None:
-            data['certname'] = certname
+            data["certname"] = certname
         if subject is not None:
-            data['subject'] = subject
+            data["subject"] = subject
         if keytype is not None:
-            data['keytype'] = keytype
+            data["keytype"] = keytype
         if keysize is not None:
-            data['keysize'] = keysize
+            data["keysize"] = keysize
         if curvename is not None:
-            data['curvename'] = curvename
+            data["curvename"] = curvename
         if orgunits is not None:
-            data['orgunits'] = orgunits
+            data["orgunits"] = orgunits
         if org is not None:
-            data['org'] = org
+            data["org"] = org
         if city is not None:
-            data['city'] = city
+            data["city"] = city
         if state is not None:
-            data['state'] = state
+            data["state"] = state
         if countrycode is not None:
-            data['countrycode'] = countrycode
+            data["countrycode"] = countrycode
         if email is not None:
-            data['email'] = email
+            data["email"] = email
         if subject_alt_name is not None:
-            data['subject_alt_name'] = subject_alt_name
+            data["subject_alt_name"] = subject_alt_name
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         if scep_url is not None:
-            data['scep_url'] = scep_url
+            data["scep_url"] = scep_url
         if scep_password is not None:
-            data['scep_password'] = scep_password
+            data["scep_password"] = scep_password
         if scope is not None:
-            data['scope'] = scope
+            data["scope"] = scope
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn-certificate/csr/generate", data=data)
+        return self._client.post(
+            "monitor", "/vpn-certificate/csr/generate", data=data
+        )
 
 
 class Csr:
     """Csr operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Csr endpoint.
 

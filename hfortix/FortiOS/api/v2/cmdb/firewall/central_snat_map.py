@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.central_snat_map.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.central_snat_map.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.central_snat_map.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.central_snat_map.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.central_snat_map.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class CentralSnatMap:
     """
     Centralsnatmap Operations.
-    
+
     Provides CRUD operations for FortiOS centralsnatmap configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class CentralSnatMap:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class CentralSnatMap:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CentralSnatMap endpoint.
 
@@ -90,7 +90,7 @@ class CentralSnatMap:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             policyid: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class CentralSnatMap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class CentralSnatMap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if policyid:
             endpoint = f"/firewall/central-snat-map/{policyid}"
         else:
             endpoint = "/firewall/central-snat-map"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -163,7 +165,7 @@ class CentralSnatMap:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             policyid: Object identifier (required)
@@ -194,7 +196,7 @@ class CentralSnatMap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -202,67 +204,69 @@ class CentralSnatMap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/central-snat-map/{policyid}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if srcintf is not None:
-            data_payload['srcintf'] = srcintf
+            data_payload["srcintf"] = srcintf
         if dstintf is not None:
-            data_payload['dstintf'] = dstintf
+            data_payload["dstintf"] = dstintf
         if orig_addr is not None:
-            data_payload['orig-addr'] = orig_addr
+            data_payload["orig-addr"] = orig_addr
         if orig_addr6 is not None:
-            data_payload['orig-addr6'] = orig_addr6
+            data_payload["orig-addr6"] = orig_addr6
         if dst_addr is not None:
-            data_payload['dst-addr'] = dst_addr
+            data_payload["dst-addr"] = dst_addr
         if dst_addr6 is not None:
-            data_payload['dst-addr6'] = dst_addr6
+            data_payload["dst-addr6"] = dst_addr6
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if orig_port is not None:
-            data_payload['orig-port'] = orig_port
+            data_payload["orig-port"] = orig_port
         if nat is not None:
-            data_payload['nat'] = nat
+            data_payload["nat"] = nat
         if nat46 is not None:
-            data_payload['nat46'] = nat46
+            data_payload["nat46"] = nat46
         if nat64 is not None:
-            data_payload['nat64'] = nat64
+            data_payload["nat64"] = nat64
         if nat_ippool is not None:
-            data_payload['nat-ippool'] = nat_ippool
+            data_payload["nat-ippool"] = nat_ippool
         if nat_ippool6 is not None:
-            data_payload['nat-ippool6'] = nat_ippool6
+            data_payload["nat-ippool6"] = nat_ippool6
         if port_preserve is not None:
-            data_payload['port-preserve'] = port_preserve
+            data_payload["port-preserve"] = port_preserve
         if port_random is not None:
-            data_payload['port-random'] = port_random
+            data_payload["port-random"] = port_random
         if nat_port is not None:
-            data_payload['nat-port'] = nat_port
+            data_payload["nat-port"] = nat_port
         if dst_port is not None:
-            data_payload['dst-port'] = dst_port
+            data_payload["dst-port"] = dst_port
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -274,13 +278,13 @@ class CentralSnatMap:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -288,18 +292,20 @@ class CentralSnatMap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/central-snat-map/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -308,37 +314,39 @@ class CentralSnatMap:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             policyid: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(policyid=policyid, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()  # type: ignore
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -348,19 +356,19 @@ class CentralSnatMap:
         uuid: str | None = None,
         status: str | None = None,
         type: str | None = None,
-        srcintf: list | None = None, # type: ignore
-        dstintf: list | None = None, # type: ignore
-        orig_addr: list | None = None, # type: ignore
-        orig_addr6: list | None = None, # type: ignore
-        dst_addr: list | None = None, # type: ignore
-        dst_addr6: list | None = None, # type: ignore
+        srcintf: list | None = None,  # type: ignore
+        dstintf: list | None = None,  # type: ignore
+        orig_addr: list | None = None,  # type: ignore
+        orig_addr6: list | None = None,  # type: ignore
+        dst_addr: list | None = None,  # type: ignore
+        dst_addr6: list | None = None,  # type: ignore
         protocol: int | None = None,
         orig_port: str | None = None,
         nat: str | None = None,
         nat46: str | None = None,
         nat64: str | None = None,
-        nat_ippool: list | None = None, # type: ignore
-        nat_ippool6: list | None = None, # type: ignore
+        nat_ippool: list | None = None,  # type: ignore
+        nat_ippool6: list | None = None,  # type: ignore
         port_preserve: str | None = None,
         port_random: str | None = None,
         nat_port: str | None = None,
@@ -372,7 +380,7 @@ class CentralSnatMap:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -401,7 +409,7 @@ class CentralSnatMap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -409,7 +417,7 @@ class CentralSnatMap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -417,50 +425,52 @@ class CentralSnatMap:
         params = {}
         endpoint = "/firewall/central-snat-map"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if srcintf is not None:
-            data_payload['srcintf'] = srcintf
+            data_payload["srcintf"] = srcintf
         if dstintf is not None:
-            data_payload['dstintf'] = dstintf
+            data_payload["dstintf"] = dstintf
         if orig_addr is not None:
-            data_payload['orig-addr'] = orig_addr
+            data_payload["orig-addr"] = orig_addr
         if orig_addr6 is not None:
-            data_payload['orig-addr6'] = orig_addr6
+            data_payload["orig-addr6"] = orig_addr6
         if dst_addr is not None:
-            data_payload['dst-addr'] = dst_addr
+            data_payload["dst-addr"] = dst_addr
         if dst_addr6 is not None:
-            data_payload['dst-addr6'] = dst_addr6
+            data_payload["dst-addr6"] = dst_addr6
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if orig_port is not None:
-            data_payload['orig-port'] = orig_port
+            data_payload["orig-port"] = orig_port
         if nat is not None:
-            data_payload['nat'] = nat
+            data_payload["nat"] = nat
         if nat46 is not None:
-            data_payload['nat46'] = nat46
+            data_payload["nat46"] = nat46
         if nat64 is not None:
-            data_payload['nat64'] = nat64
+            data_payload["nat64"] = nat64
         if nat_ippool is not None:
-            data_payload['nat-ippool'] = nat_ippool
+            data_payload["nat-ippool"] = nat_ippool
         if nat_ippool6 is not None:
-            data_payload['nat-ippool6'] = nat_ippool6
+            data_payload["nat-ippool6"] = nat_ippool6
         if port_preserve is not None:
-            data_payload['port-preserve'] = port_preserve
+            data_payload["port-preserve"] = port_preserve
         if port_random is not None:
-            data_payload['port-random'] = port_random
+            data_payload["port-random"] = port_random
         if nat_port is not None:
-            data_payload['nat-port'] = nat_port
+            data_payload["nat-port"] = nat_port
         if dst_port is not None:
-            data_payload['dst-port'] = dst_port
+            data_payload["dst-port"] = dst_port
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

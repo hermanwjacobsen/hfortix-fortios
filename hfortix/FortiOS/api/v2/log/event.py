@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.log.event.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.log.event.get(
     ...     count=100,
@@ -37,17 +37,17 @@ if TYPE_CHECKING:
 class EventVPN:
     """
     Eventvpn Operations.
-    
+
     Provides read-only access for FortiOS eventvpn data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/vpn", storage)
         self._resource = LogResource(client, "event/vpn", storage)
@@ -62,15 +62,15 @@ class EventVPN:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get VPN event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='user==admin')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'user==admin'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -81,7 +81,7 @@ class EventVPN:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -101,7 +101,7 @@ class EventVPN:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -111,14 +111,26 @@ class EventVPN:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventUser:
     """User events - /disk/event/user"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/user", storage)
         self._resource = LogResource(client, "event/user", storage)
@@ -133,15 +145,15 @@ class EventUser:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get user event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='user==admin')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'user==admin'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -152,7 +164,7 @@ class EventUser:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -172,7 +184,7 @@ class EventUser:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -182,14 +194,26 @@ class EventUser:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventRouter:
     """Router events - /disk/event/router"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/router", storage)
         self._resource = LogResource(client, "event/router", storage)
@@ -204,15 +228,15 @@ class EventRouter:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get router event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='msg=="route changed"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'msg=="route changed"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -223,7 +247,7 @@ class EventRouter:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -243,7 +267,7 @@ class EventRouter:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -253,14 +277,26 @@ class EventRouter:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventWireless:
     """Wireless events - /disk/event/wireless"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/wireless", storage)
         self._resource = LogResource(client, "event/wireless", storage)
@@ -275,15 +311,15 @@ class EventWireless:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get wireless event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='ssid=="Corporate"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'ssid=="Corporate"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -294,7 +330,7 @@ class EventWireless:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -314,7 +350,7 @@ class EventWireless:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -324,14 +360,26 @@ class EventWireless:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventWAD:
     """WAD events - /disk/event/wad"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/wad", storage)
         self._resource = LogResource(client, "event/wad", storage)
@@ -346,15 +394,15 @@ class EventWAD:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get WAD event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='subtype=="auth"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'subtype=="auth"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -365,7 +413,7 @@ class EventWAD:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -385,7 +433,7 @@ class EventWAD:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -395,14 +443,26 @@ class EventWAD:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventEndpoint:
     """Endpoint events - /disk/event/endpoint"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/endpoint", storage)
         self._resource = LogResource(client, "event/endpoint", storage)
@@ -417,15 +477,15 @@ class EventEndpoint:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get endpoint event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='hostname=="PC01"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'hostname=="PC01"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -436,7 +496,7 @@ class EventEndpoint:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -456,7 +516,7 @@ class EventEndpoint:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -466,14 +526,26 @@ class EventEndpoint:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventHA:
     """HA events - /disk/event/ha"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/ha", storage)
         self._resource = LogResource(client, "event/ha", storage)
@@ -488,15 +560,15 @@ class EventHA:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get HA event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='msg=="HA state changed"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'msg=="HA state changed"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -507,7 +579,7 @@ class EventHA:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -527,7 +599,7 @@ class EventHA:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -537,14 +609,26 @@ class EventHA:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventComplianceCheck:
     """Compliance check events - /disk/event/compliance-check"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/compliance-check", storage)
         self._resource = LogResource(client, "event/compliance-check", storage)
@@ -559,15 +643,15 @@ class EventComplianceCheck:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get compliance check event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='result=="fail"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'result=="fail"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -578,7 +662,7 @@ class EventComplianceCheck:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -598,7 +682,7 @@ class EventComplianceCheck:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -608,14 +692,26 @@ class EventComplianceCheck:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventSecurityRating:
     """Security rating events - /disk/event/security-rating"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/security-rating", storage)
         self._resource = LogResource(client, "event/security-rating", storage)
@@ -630,15 +726,15 @@ class EventSecurityRating:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get security rating event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='rating<80')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'rating<80'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -649,7 +745,7 @@ class EventSecurityRating:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -669,7 +765,7 @@ class EventSecurityRating:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -679,14 +775,26 @@ class EventSecurityRating:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventFortiextender:
     """Fortiextender events - /disk/event/fortiextender"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/fortiextender", storage)
         self._resource = LogResource(client, "event/fortiextender", storage)
@@ -701,15 +809,15 @@ class EventFortiextender:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get fortiextender event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='device=="FXT-001"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'device=="FXT-001"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -720,7 +828,7 @@ class EventFortiextender:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -740,7 +848,7 @@ class EventFortiextender:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -750,14 +858,26 @@ class EventFortiextender:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventConnector:
     """Connector events - /disk/event/connector"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/connector", storage)
         self._resource = LogResource(client, "event/connector", storage)
@@ -772,15 +892,15 @@ class EventConnector:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get connector event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='status=="connected"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'status=="connected"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -791,7 +911,7 @@ class EventConnector:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -811,7 +931,7 @@ class EventConnector:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -821,14 +941,26 @@ class EventConnector:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class EventSystem:
     """System events - /disk/event/system"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "event/system", storage)
         self._resource = LogResource(client, "event/system", storage)
@@ -843,15 +975,15 @@ class EventSystem:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get system event logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='level=="alert"')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'level=="alert"'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -862,7 +994,7 @@ class EventSystem:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -882,7 +1014,7 @@ class EventSystem:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -892,14 +1024,26 @@ class EventSystem:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class Event:
     """Event container - /disk/event/{subtype}"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.vpn = EventVPN(client, storage)
         self.user = EventUser(client, storage)
@@ -913,6 +1057,7 @@ class Event:
         self.fortiextender = EventFortiextender(client, storage)
         self.connector = EventConnector(client, storage)
         self.system = EventSystem(client, storage)
+
 
 __all__ = [
     "EventVPN",

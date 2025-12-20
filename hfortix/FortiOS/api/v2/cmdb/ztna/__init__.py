@@ -6,21 +6,26 @@ from .web_portal import WebPortal
 from .web_portal_bookmark import WebPortalBookmark
 from .web_proxy import WebProxy
 
-__all__ = ['ReverseConnector', 'TrafficForwardProxy', 'WebPortal', 'WebPortalBookmark', 'WebProxy']
-
+__all__ = [
+    "ReverseConnector",
+    "TrafficForwardProxy",
+    "WebPortal",
+    "WebPortalBookmark",
+    "WebProxy",
+]
 
 
 class Ztna:
     """
     Ztna category wrapper.
-    
+
     This class provides access to all ztna CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Ztna with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

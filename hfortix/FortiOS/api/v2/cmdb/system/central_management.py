@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.central_management.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.central_management.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.central_management.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.central_management.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.central_management.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class CentralManagement:
     """
     Centralmanagement Operations.
-    
+
     Provides CRUD operations for FortiOS centralmanagement configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class CentralManagement:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CentralManagement endpoint.
 
@@ -82,14 +82,14 @@ class CentralManagement:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class CentralManagement:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/central-management"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -144,7 +146,7 @@ class CentralManagement:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -175,7 +177,7 @@ class CentralManagement:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -183,7 +185,7 @@ class CentralManagement:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -191,54 +193,60 @@ class CentralManagement:
         params = {}
         endpoint = "/system/central-management"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if mode is not None:
-            data_payload['mode'] = mode
+            data_payload["mode"] = mode
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if fortigate_cloud_sso_default_profile is not None:
-            data_payload['fortigate-cloud-sso-default-profile'] = fortigate_cloud_sso_default_profile
+            data_payload["fortigate-cloud-sso-default-profile"] = (
+                fortigate_cloud_sso_default_profile
+            )
         if schedule_config_restore is not None:
-            data_payload['schedule-config-restore'] = schedule_config_restore
+            data_payload["schedule-config-restore"] = schedule_config_restore
         if schedule_script_restore is not None:
-            data_payload['schedule-script-restore'] = schedule_script_restore
+            data_payload["schedule-script-restore"] = schedule_script_restore
         if allow_push_configuration is not None:
-            data_payload['allow-push-configuration'] = allow_push_configuration
+            data_payload["allow-push-configuration"] = allow_push_configuration
         if allow_push_firmware is not None:
-            data_payload['allow-push-firmware'] = allow_push_firmware
+            data_payload["allow-push-firmware"] = allow_push_firmware
         if allow_remote_firmware_upgrade is not None:
-            data_payload['allow-remote-firmware-upgrade'] = allow_remote_firmware_upgrade
+            data_payload["allow-remote-firmware-upgrade"] = (
+                allow_remote_firmware_upgrade
+            )
         if allow_monitor is not None:
-            data_payload['allow-monitor'] = allow_monitor
+            data_payload["allow-monitor"] = allow_monitor
         if serial_number is not None:
-            data_payload['serial-number'] = serial_number
+            data_payload["serial-number"] = serial_number
         if fmg is not None:
-            data_payload['fmg'] = fmg
+            data_payload["fmg"] = fmg
         if fmg_source_ip is not None:
-            data_payload['fmg-source-ip'] = fmg_source_ip
+            data_payload["fmg-source-ip"] = fmg_source_ip
         if fmg_source_ip6 is not None:
-            data_payload['fmg-source-ip6'] = fmg_source_ip6
+            data_payload["fmg-source-ip6"] = fmg_source_ip6
         if local_cert is not None:
-            data_payload['local-cert'] = local_cert
+            data_payload["local-cert"] = local_cert
         if ca_cert is not None:
-            data_payload['ca-cert'] = ca_cert
+            data_payload["ca-cert"] = ca_cert
         if server_list is not None:
-            data_payload['server-list'] = server_list
+            data_payload["server-list"] = server_list
         if fmg_update_port is not None:
-            data_payload['fmg-update-port'] = fmg_update_port
+            data_payload["fmg-update-port"] = fmg_update_port
         if fmg_update_http_header is not None:
-            data_payload['fmg-update-http-header'] = fmg_update_http_header
+            data_payload["fmg-update-http-header"] = fmg_update_http_header
         if include_default_servers is not None:
-            data_payload['include-default-servers'] = include_default_servers
+            data_payload["include-default-servers"] = include_default_servers
         if enc_algorithm is not None:
-            data_payload['enc-algorithm'] = enc_algorithm
+            data_payload["enc-algorithm"] = enc_algorithm
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

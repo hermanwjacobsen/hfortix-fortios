@@ -27,21 +27,47 @@ from .setting import Setting
 from .static import Static
 from .static6 import Static6
 
-__all__ = ['AccessList', 'AccessList6', 'AspathList', 'AuthPath', 'Bfd', 'Bfd6', 'Bgp', 'CommunityList', 'ExtcommunityList', 'Isis', 'KeyChain', 'Multicast', 'Multicast6', 'MulticastFlow', 'Ospf', 'Ospf6', 'Policy', 'Policy6', 'PrefixList', 'PrefixList6', 'Rip', 'Ripng', 'RouteMap', 'Setting', 'Static', 'Static6']
-
+__all__ = [
+    "AccessList",
+    "AccessList6",
+    "AspathList",
+    "AuthPath",
+    "Bfd",
+    "Bfd6",
+    "Bgp",
+    "CommunityList",
+    "ExtcommunityList",
+    "Isis",
+    "KeyChain",
+    "Multicast",
+    "Multicast6",
+    "MulticastFlow",
+    "Ospf",
+    "Ospf6",
+    "Policy",
+    "Policy6",
+    "PrefixList",
+    "PrefixList6",
+    "Rip",
+    "Ripng",
+    "RouteMap",
+    "Setting",
+    "Static",
+    "Static6",
+]
 
 
 class Router:
     """
     Router category wrapper.
-    
+
     This class provides access to all router CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Router with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

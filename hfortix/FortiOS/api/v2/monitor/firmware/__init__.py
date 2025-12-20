@@ -30,6 +30,4 @@ class Firmware:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return [
-            "extension_device"
-        ]
+        return ["extension_device"]

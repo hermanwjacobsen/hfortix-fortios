@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.webfilter.profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.webfilter.profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.webfilter.profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.webfilter.profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.webfilter.profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Profile:
     """
     Profile Operations.
-    
+
     Provides CRUD operations for FortiOS profile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Profile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Profile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Profile endpoint.
 
@@ -90,7 +90,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Profile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/webfilter/profile/{name}"
         else:
             endpoint = "/webfilter/profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -176,7 +178,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -220,7 +222,7 @@ class Profile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -228,93 +230,101 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/webfilter/profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if feature_set is not None:
-            data_payload['feature-set'] = feature_set
+            data_payload["feature-set"] = feature_set
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if https_replacemsg is not None:
-            data_payload['https-replacemsg'] = https_replacemsg
+            data_payload["https-replacemsg"] = https_replacemsg
         if web_flow_log_encoding is not None:
-            data_payload['web-flow-log-encoding'] = web_flow_log_encoding
+            data_payload["web-flow-log-encoding"] = web_flow_log_encoding
         if ovrd_perm is not None:
-            data_payload['ovrd-perm'] = ovrd_perm
+            data_payload["ovrd-perm"] = ovrd_perm
         if post_action is not None:
-            data_payload['post-action'] = post_action
+            data_payload["post-action"] = post_action
         if override is not None:
-            data_payload['override'] = override
+            data_payload["override"] = override
         if web is not None:
-            data_payload['web'] = web
+            data_payload["web"] = web
         if ftgd_wf is not None:
-            data_payload['ftgd-wf'] = ftgd_wf
+            data_payload["ftgd-wf"] = ftgd_wf
         if antiphish is not None:
-            data_payload['antiphish'] = antiphish
+            data_payload["antiphish"] = antiphish
         if wisp is not None:
-            data_payload['wisp'] = wisp
+            data_payload["wisp"] = wisp
         if wisp_servers is not None:
-            data_payload['wisp-servers'] = wisp_servers
+            data_payload["wisp-servers"] = wisp_servers
         if wisp_algorithm is not None:
-            data_payload['wisp-algorithm'] = wisp_algorithm
+            data_payload["wisp-algorithm"] = wisp_algorithm
         if log_all_url is not None:
-            data_payload['log-all-url'] = log_all_url
+            data_payload["log-all-url"] = log_all_url
         if web_content_log is not None:
-            data_payload['web-content-log'] = web_content_log
+            data_payload["web-content-log"] = web_content_log
         if web_filter_activex_log is not None:
-            data_payload['web-filter-activex-log'] = web_filter_activex_log
+            data_payload["web-filter-activex-log"] = web_filter_activex_log
         if web_filter_command_block_log is not None:
-            data_payload['web-filter-command-block-log'] = web_filter_command_block_log
+            data_payload["web-filter-command-block-log"] = (
+                web_filter_command_block_log
+            )
         if web_filter_cookie_log is not None:
-            data_payload['web-filter-cookie-log'] = web_filter_cookie_log
+            data_payload["web-filter-cookie-log"] = web_filter_cookie_log
         if web_filter_applet_log is not None:
-            data_payload['web-filter-applet-log'] = web_filter_applet_log
+            data_payload["web-filter-applet-log"] = web_filter_applet_log
         if web_filter_jscript_log is not None:
-            data_payload['web-filter-jscript-log'] = web_filter_jscript_log
+            data_payload["web-filter-jscript-log"] = web_filter_jscript_log
         if web_filter_js_log is not None:
-            data_payload['web-filter-js-log'] = web_filter_js_log
+            data_payload["web-filter-js-log"] = web_filter_js_log
         if web_filter_vbs_log is not None:
-            data_payload['web-filter-vbs-log'] = web_filter_vbs_log
+            data_payload["web-filter-vbs-log"] = web_filter_vbs_log
         if web_filter_unknown_log is not None:
-            data_payload['web-filter-unknown-log'] = web_filter_unknown_log
+            data_payload["web-filter-unknown-log"] = web_filter_unknown_log
         if web_filter_referer_log is not None:
-            data_payload['web-filter-referer-log'] = web_filter_referer_log
+            data_payload["web-filter-referer-log"] = web_filter_referer_log
         if web_filter_cookie_removal_log is not None:
-            data_payload['web-filter-cookie-removal-log'] = web_filter_cookie_removal_log
+            data_payload["web-filter-cookie-removal-log"] = (
+                web_filter_cookie_removal_log
+            )
         if web_url_log is not None:
-            data_payload['web-url-log'] = web_url_log
+            data_payload["web-url-log"] = web_url_log
         if web_invalid_domain_log is not None:
-            data_payload['web-invalid-domain-log'] = web_invalid_domain_log
+            data_payload["web-invalid-domain-log"] = web_invalid_domain_log
         if web_ftgd_err_log is not None:
-            data_payload['web-ftgd-err-log'] = web_ftgd_err_log
+            data_payload["web-ftgd-err-log"] = web_ftgd_err_log
         if web_ftgd_quota_usage is not None:
-            data_payload['web-ftgd-quota-usage'] = web_ftgd_quota_usage
+            data_payload["web-ftgd-quota-usage"] = web_ftgd_quota_usage
         if extended_log is not None:
-            data_payload['extended-log'] = extended_log
+            data_payload["extended-log"] = extended_log
         if web_extended_all_action_log is not None:
-            data_payload['web-extended-all-action-log'] = web_extended_all_action_log
+            data_payload["web-extended-all-action-log"] = (
+                web_extended_all_action_log
+            )
         if web_antiphishing_log is not None:
-            data_payload['web-antiphishing-log'] = web_antiphishing_log
+            data_payload["web-antiphishing-log"] = web_antiphishing_log
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -326,13 +336,13 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -340,18 +350,20 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/webfilter/profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -360,37 +372,39 @@ class Profile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -437,7 +451,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -479,7 +493,7 @@ class Profile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -487,7 +501,7 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -495,76 +509,84 @@ class Profile:
         params = {}
         endpoint = "/webfilter/profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if feature_set is not None:
-            data_payload['feature-set'] = feature_set
+            data_payload["feature-set"] = feature_set
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if https_replacemsg is not None:
-            data_payload['https-replacemsg'] = https_replacemsg
+            data_payload["https-replacemsg"] = https_replacemsg
         if web_flow_log_encoding is not None:
-            data_payload['web-flow-log-encoding'] = web_flow_log_encoding
+            data_payload["web-flow-log-encoding"] = web_flow_log_encoding
         if ovrd_perm is not None:
-            data_payload['ovrd-perm'] = ovrd_perm
+            data_payload["ovrd-perm"] = ovrd_perm
         if post_action is not None:
-            data_payload['post-action'] = post_action
+            data_payload["post-action"] = post_action
         if override is not None:
-            data_payload['override'] = override
+            data_payload["override"] = override
         if web is not None:
-            data_payload['web'] = web
+            data_payload["web"] = web
         if ftgd_wf is not None:
-            data_payload['ftgd-wf'] = ftgd_wf
+            data_payload["ftgd-wf"] = ftgd_wf
         if antiphish is not None:
-            data_payload['antiphish'] = antiphish
+            data_payload["antiphish"] = antiphish
         if wisp is not None:
-            data_payload['wisp'] = wisp
+            data_payload["wisp"] = wisp
         if wisp_servers is not None:
-            data_payload['wisp-servers'] = wisp_servers
+            data_payload["wisp-servers"] = wisp_servers
         if wisp_algorithm is not None:
-            data_payload['wisp-algorithm'] = wisp_algorithm
+            data_payload["wisp-algorithm"] = wisp_algorithm
         if log_all_url is not None:
-            data_payload['log-all-url'] = log_all_url
+            data_payload["log-all-url"] = log_all_url
         if web_content_log is not None:
-            data_payload['web-content-log'] = web_content_log
+            data_payload["web-content-log"] = web_content_log
         if web_filter_activex_log is not None:
-            data_payload['web-filter-activex-log'] = web_filter_activex_log
+            data_payload["web-filter-activex-log"] = web_filter_activex_log
         if web_filter_command_block_log is not None:
-            data_payload['web-filter-command-block-log'] = web_filter_command_block_log
+            data_payload["web-filter-command-block-log"] = (
+                web_filter_command_block_log
+            )
         if web_filter_cookie_log is not None:
-            data_payload['web-filter-cookie-log'] = web_filter_cookie_log
+            data_payload["web-filter-cookie-log"] = web_filter_cookie_log
         if web_filter_applet_log is not None:
-            data_payload['web-filter-applet-log'] = web_filter_applet_log
+            data_payload["web-filter-applet-log"] = web_filter_applet_log
         if web_filter_jscript_log is not None:
-            data_payload['web-filter-jscript-log'] = web_filter_jscript_log
+            data_payload["web-filter-jscript-log"] = web_filter_jscript_log
         if web_filter_js_log is not None:
-            data_payload['web-filter-js-log'] = web_filter_js_log
+            data_payload["web-filter-js-log"] = web_filter_js_log
         if web_filter_vbs_log is not None:
-            data_payload['web-filter-vbs-log'] = web_filter_vbs_log
+            data_payload["web-filter-vbs-log"] = web_filter_vbs_log
         if web_filter_unknown_log is not None:
-            data_payload['web-filter-unknown-log'] = web_filter_unknown_log
+            data_payload["web-filter-unknown-log"] = web_filter_unknown_log
         if web_filter_referer_log is not None:
-            data_payload['web-filter-referer-log'] = web_filter_referer_log
+            data_payload["web-filter-referer-log"] = web_filter_referer_log
         if web_filter_cookie_removal_log is not None:
-            data_payload['web-filter-cookie-removal-log'] = web_filter_cookie_removal_log
+            data_payload["web-filter-cookie-removal-log"] = (
+                web_filter_cookie_removal_log
+            )
         if web_url_log is not None:
-            data_payload['web-url-log'] = web_url_log
+            data_payload["web-url-log"] = web_url_log
         if web_invalid_domain_log is not None:
-            data_payload['web-invalid-domain-log'] = web_invalid_domain_log
+            data_payload["web-invalid-domain-log"] = web_invalid_domain_log
         if web_ftgd_err_log is not None:
-            data_payload['web-ftgd-err-log'] = web_ftgd_err_log
+            data_payload["web-ftgd-err-log"] = web_ftgd_err_log
         if web_ftgd_quota_usage is not None:
-            data_payload['web-ftgd-quota-usage'] = web_ftgd_quota_usage
+            data_payload["web-ftgd-quota-usage"] = web_ftgd_quota_usage
         if extended_log is not None:
-            data_payload['extended-log'] = extended_log
+            data_payload["extended-log"] = extended_log
         if web_extended_all_action_log is not None:
-            data_payload['web-extended-all-action-log'] = web_extended_all_action_log
+            data_payload["web-extended-all-action-log"] = (
+                web_extended_all_action_log
+            )
         if web_antiphishing_log is not None:
-            data_payload['web-antiphishing-log'] = web_antiphishing_log
+            data_payload["web-antiphishing-log"] = web_antiphishing_log
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

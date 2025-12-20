@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.wag_profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.wag_profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.wag_profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.wag_profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.wag_profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class WagProfile:
     """
     Wagprofile Operations.
-    
+
     Provides CRUD operations for FortiOS wagprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class WagProfile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class WagProfile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize WagProfile endpoint.
 
@@ -90,7 +90,7 @@ class WagProfile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class WagProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class WagProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller/wag-profile/{name}"
         else:
             endpoint = "/wireless-controller/wag-profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -150,7 +152,7 @@ class WagProfile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -168,7 +170,7 @@ class WagProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -176,41 +178,43 @@ class WagProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller/wag-profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if tunnel_type is not None:
-            data_payload['tunnel-type'] = tunnel_type
+            data_payload["tunnel-type"] = tunnel_type
         if wag_ip is not None:
-            data_payload['wag-ip'] = wag_ip
+            data_payload["wag-ip"] = wag_ip
         if wag_port is not None:
-            data_payload['wag-port'] = wag_port
+            data_payload["wag-port"] = wag_port
         if ping_interval is not None:
-            data_payload['ping-interval'] = ping_interval
+            data_payload["ping-interval"] = ping_interval
         if ping_number is not None:
-            data_payload['ping-number'] = ping_number
+            data_payload["ping-number"] = ping_number
         if return_packet_timeout is not None:
-            data_payload['return-packet-timeout'] = return_packet_timeout
+            data_payload["return-packet-timeout"] = return_packet_timeout
         if dhcp_ip_addr is not None:
-            data_payload['dhcp-ip-addr'] = dhcp_ip_addr
+            data_payload["dhcp-ip-addr"] = dhcp_ip_addr
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -222,13 +226,13 @@ class WagProfile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -236,18 +240,20 @@ class WagProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/wag-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -256,37 +262,39 @@ class WagProfile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -307,7 +315,7 @@ class WagProfile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -323,7 +331,7 @@ class WagProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -331,7 +339,7 @@ class WagProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -339,24 +347,26 @@ class WagProfile:
         params = {}
         endpoint = "/wireless-controller/wag-profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if tunnel_type is not None:
-            data_payload['tunnel-type'] = tunnel_type
+            data_payload["tunnel-type"] = tunnel_type
         if wag_ip is not None:
-            data_payload['wag-ip'] = wag_ip
+            data_payload["wag-ip"] = wag_ip
         if wag_port is not None:
-            data_payload['wag-port'] = wag_port
+            data_payload["wag-port"] = wag_port
         if ping_interval is not None:
-            data_payload['ping-interval'] = ping_interval
+            data_payload["ping-interval"] = ping_interval
         if ping_number is not None:
-            data_payload['ping-number'] = ping_number
+            data_payload["ping-number"] = ping_number
         if return_packet_timeout is not None:
-            data_payload['return-packet-timeout'] = return_packet_timeout
+            data_payload["return-packet-timeout"] = return_packet_timeout
         if dhcp_ip_addr is not None:
-            data_payload['dhcp-ip-addr'] = dhcp_ip_addr
+            data_payload["dhcp-ip-addr"] = dhcp_ip_addr
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

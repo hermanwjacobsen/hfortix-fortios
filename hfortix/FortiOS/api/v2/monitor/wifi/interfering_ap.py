@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.wifi.interfering_ap.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.wifi.interfering_ap.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class InterferingAp:
     """
     Interferingap Operations.
-    
+
     Provides read-only access for FortiOS interferingap data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize InterferingAp endpoint.
 
@@ -61,24 +61,26 @@ class InterferingAp:
     ) -> dict[str, Any]:
         """
         Retrieve a list of interfering APs for one FortiAP radio.
-        
+
         Args:
             wtp: FortiAP ID to query. (optional)
             radio: Radio ID. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.interfering_ap.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if wtp is not None:
-            params['wtp'] = wtp
+            params["wtp"] = wtp
         if radio is not None:
-            params['radio'] = radio
+            params["radio"] = radio
         params.update(kwargs)
-        return self._client.get("monitor", "/wifi/interfering_ap", params=params)
+        return self._client.get(
+            "monitor", "/wifi/interfering_ap", params=params
+        )

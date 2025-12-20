@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.ble_profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.ble_profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.ble_profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.ble_profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.ble_profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class BleProfile:
     """
     Bleprofile Operations.
-    
+
     Provides CRUD operations for FortiOS bleprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class BleProfile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class BleProfile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize BleProfile endpoint.
 
@@ -90,7 +90,7 @@ class BleProfile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class BleProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class BleProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller/ble-profile/{name}"
         else:
             endpoint = "/wireless-controller/ble-profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -159,7 +161,7 @@ class BleProfile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -186,7 +188,7 @@ class BleProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -194,59 +196,61 @@ class BleProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller/ble-profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if advertising is not None:
-            data_payload['advertising'] = advertising
+            data_payload["advertising"] = advertising
         if ibeacon_uuid is not None:
-            data_payload['ibeacon-uuid'] = ibeacon_uuid
+            data_payload["ibeacon-uuid"] = ibeacon_uuid
         if major_id is not None:
-            data_payload['major-id'] = major_id
+            data_payload["major-id"] = major_id
         if minor_id is not None:
-            data_payload['minor-id'] = minor_id
+            data_payload["minor-id"] = minor_id
         if eddystone_namespace is not None:
-            data_payload['eddystone-namespace'] = eddystone_namespace
+            data_payload["eddystone-namespace"] = eddystone_namespace
         if eddystone_instance is not None:
-            data_payload['eddystone-instance'] = eddystone_instance
+            data_payload["eddystone-instance"] = eddystone_instance
         if eddystone_url is not None:
-            data_payload['eddystone-url'] = eddystone_url
+            data_payload["eddystone-url"] = eddystone_url
         if txpower is not None:
-            data_payload['txpower'] = txpower
+            data_payload["txpower"] = txpower
         if beacon_interval is not None:
-            data_payload['beacon-interval'] = beacon_interval
+            data_payload["beacon-interval"] = beacon_interval
         if ble_scanning is not None:
-            data_payload['ble-scanning'] = ble_scanning
+            data_payload["ble-scanning"] = ble_scanning
         if scan_type is not None:
-            data_payload['scan-type'] = scan_type
+            data_payload["scan-type"] = scan_type
         if scan_threshold is not None:
-            data_payload['scan-threshold'] = scan_threshold
+            data_payload["scan-threshold"] = scan_threshold
         if scan_period is not None:
-            data_payload['scan-period'] = scan_period
+            data_payload["scan-period"] = scan_period
         if scan_time is not None:
-            data_payload['scan-time'] = scan_time
+            data_payload["scan-time"] = scan_time
         if scan_interval is not None:
-            data_payload['scan-interval'] = scan_interval
+            data_payload["scan-interval"] = scan_interval
         if scan_window is not None:
-            data_payload['scan-window'] = scan_window
+            data_payload["scan-window"] = scan_window
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -258,13 +262,13 @@ class BleProfile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -272,18 +276,20 @@ class BleProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/ble-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -292,37 +298,39 @@ class BleProfile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -352,7 +360,7 @@ class BleProfile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -377,7 +385,7 @@ class BleProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -385,7 +393,7 @@ class BleProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -393,42 +401,44 @@ class BleProfile:
         params = {}
         endpoint = "/wireless-controller/ble-profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if advertising is not None:
-            data_payload['advertising'] = advertising
+            data_payload["advertising"] = advertising
         if ibeacon_uuid is not None:
-            data_payload['ibeacon-uuid'] = ibeacon_uuid
+            data_payload["ibeacon-uuid"] = ibeacon_uuid
         if major_id is not None:
-            data_payload['major-id'] = major_id
+            data_payload["major-id"] = major_id
         if minor_id is not None:
-            data_payload['minor-id'] = minor_id
+            data_payload["minor-id"] = minor_id
         if eddystone_namespace is not None:
-            data_payload['eddystone-namespace'] = eddystone_namespace
+            data_payload["eddystone-namespace"] = eddystone_namespace
         if eddystone_instance is not None:
-            data_payload['eddystone-instance'] = eddystone_instance
+            data_payload["eddystone-instance"] = eddystone_instance
         if eddystone_url is not None:
-            data_payload['eddystone-url'] = eddystone_url
+            data_payload["eddystone-url"] = eddystone_url
         if txpower is not None:
-            data_payload['txpower'] = txpower
+            data_payload["txpower"] = txpower
         if beacon_interval is not None:
-            data_payload['beacon-interval'] = beacon_interval
+            data_payload["beacon-interval"] = beacon_interval
         if ble_scanning is not None:
-            data_payload['ble-scanning'] = ble_scanning
+            data_payload["ble-scanning"] = ble_scanning
         if scan_type is not None:
-            data_payload['scan-type'] = scan_type
+            data_payload["scan-type"] = scan_type
         if scan_threshold is not None:
-            data_payload['scan-threshold'] = scan_threshold
+            data_payload["scan-threshold"] = scan_threshold
         if scan_period is not None:
-            data_payload['scan-period'] = scan_period
+            data_payload["scan-period"] = scan_period
         if scan_time is not None:
-            data_payload['scan-time'] = scan_time
+            data_payload["scan-time"] = scan_time
         if scan_interval is not None:
-            data_payload['scan-interval'] = scan_interval
+            data_payload["scan-interval"] = scan_interval
         if scan_window is not None:
-            data_payload['scan-window'] = scan_window
+            data_payload["scan-window"] = scan_window
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

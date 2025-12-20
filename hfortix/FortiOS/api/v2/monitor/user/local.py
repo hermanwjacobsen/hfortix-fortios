@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.user.local.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.user.local.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class ChangePassword:
     """
     Changepassword Operations.
-    
+
     Provides read-only access for FortiOS changepassword data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ChangePassword endpoint.
 
@@ -61,33 +61,35 @@ class ChangePassword:
     ) -> dict[str, Any]:
         """
         Change password for local user.
-        
+
         Args:
             username: User name. (optional)
             new_password: Password. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.local.change_password.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if username is not None:
-            data['username'] = username
+            data["username"] = username
         if new_password is not None:
-            data['new_password'] = new_password
+            data["new_password"] = new_password
         data.update(kwargs)
-        return self._client.post("monitor", "/user/local/change-password", data=data)
+        return self._client.post(
+            "monitor", "/user/local/change-password", data=data
+        )
 
 
 class Local:
     """Local operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Local endpoint.
 

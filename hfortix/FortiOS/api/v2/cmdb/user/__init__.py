@@ -25,21 +25,45 @@ from .security_exempt_list import SecurityExemptList
 from .setting import Setting
 from .tacacs_plus_ import TacacsPlus
 
-__all__ = ['Adgrp', 'Certificate', 'DomainController', 'Exchange', 'ExternalIdentityProvider', 'Fortitoken', 'Fsso', 'FssoPolling', 'Group', 'KrbKeytab', 'Ldap', 'Local', 'NacPolicy', 'PasswordPolicy', 'Peer', 'Peergrp', 'Pop3', 'Quarantine', 'Radius', 'Saml', 'Scim', 'SecurityExemptList', 'Setting', 'TacacsPlus']
-
+__all__ = [
+    "Adgrp",
+    "Certificate",
+    "DomainController",
+    "Exchange",
+    "ExternalIdentityProvider",
+    "Fortitoken",
+    "Fsso",
+    "FssoPolling",
+    "Group",
+    "KrbKeytab",
+    "Ldap",
+    "Local",
+    "NacPolicy",
+    "PasswordPolicy",
+    "Peer",
+    "Peergrp",
+    "Pop3",
+    "Quarantine",
+    "Radius",
+    "Saml",
+    "Scim",
+    "SecurityExemptList",
+    "Setting",
+    "TacacsPlus",
+]
 
 
 class User:
     """
     User category wrapper.
-    
+
     This class provides access to all user CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize User with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

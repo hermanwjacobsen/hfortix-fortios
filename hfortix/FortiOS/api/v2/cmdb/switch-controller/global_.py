@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.switch_controller.global_.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.switch_controller.global_.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.global_.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.switch_controller.global_.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.switch_controller.global_.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Global:
     """
     Global Operations.
-    
+
     Provides CRUD operations for FortiOS global configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Global:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Global endpoint.
 
@@ -82,14 +82,14 @@ class Global:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/switch-controller/global"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -148,7 +150,7 @@ class Global:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -183,7 +185,7 @@ class Global:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -191,7 +193,7 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -199,62 +201,72 @@ class Global:
         params = {}
         endpoint = "/switch-controller/global"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if mac_aging_interval is not None:
-            data_payload['mac-aging-interval'] = mac_aging_interval
+            data_payload["mac-aging-interval"] = mac_aging_interval
         if https_image_push is not None:
-            data_payload['https-image-push'] = https_image_push
+            data_payload["https-image-push"] = https_image_push
         if vlan_all_mode is not None:
-            data_payload['vlan-all-mode'] = vlan_all_mode
+            data_payload["vlan-all-mode"] = vlan_all_mode
         if vlan_optimization is not None:
-            data_payload['vlan-optimization'] = vlan_optimization
+            data_payload["vlan-optimization"] = vlan_optimization
         if vlan_identity is not None:
-            data_payload['vlan-identity'] = vlan_identity
+            data_payload["vlan-identity"] = vlan_identity
         if disable_discovery is not None:
-            data_payload['disable-discovery'] = disable_discovery
+            data_payload["disable-discovery"] = disable_discovery
         if mac_retention_period is not None:
-            data_payload['mac-retention-period'] = mac_retention_period
+            data_payload["mac-retention-period"] = mac_retention_period
         if default_virtual_switch_vlan is not None:
-            data_payload['default-virtual-switch-vlan'] = default_virtual_switch_vlan
+            data_payload["default-virtual-switch-vlan"] = (
+                default_virtual_switch_vlan
+            )
         if dhcp_server_access_list is not None:
-            data_payload['dhcp-server-access-list'] = dhcp_server_access_list
+            data_payload["dhcp-server-access-list"] = dhcp_server_access_list
         if dhcp_option82_format is not None:
-            data_payload['dhcp-option82-format'] = dhcp_option82_format
+            data_payload["dhcp-option82-format"] = dhcp_option82_format
         if dhcp_option82_circuit_id is not None:
-            data_payload['dhcp-option82-circuit-id'] = dhcp_option82_circuit_id
+            data_payload["dhcp-option82-circuit-id"] = dhcp_option82_circuit_id
         if dhcp_option82_remote_id is not None:
-            data_payload['dhcp-option82-remote-id'] = dhcp_option82_remote_id
+            data_payload["dhcp-option82-remote-id"] = dhcp_option82_remote_id
         if dhcp_snoop_client_req is not None:
-            data_payload['dhcp-snoop-client-req'] = dhcp_snoop_client_req
+            data_payload["dhcp-snoop-client-req"] = dhcp_snoop_client_req
         if dhcp_snoop_client_db_exp is not None:
-            data_payload['dhcp-snoop-client-db-exp'] = dhcp_snoop_client_db_exp
+            data_payload["dhcp-snoop-client-db-exp"] = dhcp_snoop_client_db_exp
         if dhcp_snoop_db_per_port_learn_limit is not None:
-            data_payload['dhcp-snoop-db-per-port-learn-limit'] = dhcp_snoop_db_per_port_learn_limit
+            data_payload["dhcp-snoop-db-per-port-learn-limit"] = (
+                dhcp_snoop_db_per_port_learn_limit
+            )
         if log_mac_limit_violations is not None:
-            data_payload['log-mac-limit-violations'] = log_mac_limit_violations
+            data_payload["log-mac-limit-violations"] = log_mac_limit_violations
         if mac_violation_timer is not None:
-            data_payload['mac-violation-timer'] = mac_violation_timer
+            data_payload["mac-violation-timer"] = mac_violation_timer
         if sn_dns_resolution is not None:
-            data_payload['sn-dns-resolution'] = sn_dns_resolution
+            data_payload["sn-dns-resolution"] = sn_dns_resolution
         if mac_event_logging is not None:
-            data_payload['mac-event-logging'] = mac_event_logging
+            data_payload["mac-event-logging"] = mac_event_logging
         if bounce_quarantined_link is not None:
-            data_payload['bounce-quarantined-link'] = bounce_quarantined_link
+            data_payload["bounce-quarantined-link"] = bounce_quarantined_link
         if quarantine_mode is not None:
-            data_payload['quarantine-mode'] = quarantine_mode
+            data_payload["quarantine-mode"] = quarantine_mode
         if update_user_device is not None:
-            data_payload['update-user-device'] = update_user_device
+            data_payload["update-user-device"] = update_user_device
         if custom_command is not None:
-            data_payload['custom-command'] = custom_command
+            data_payload["custom-command"] = custom_command
         if fips_enforce is not None:
-            data_payload['fips-enforce'] = fips_enforce
+            data_payload["fips-enforce"] = fips_enforce
         if firmware_provision_on_authorization is not None:
-            data_payload['firmware-provision-on-authorization'] = firmware_provision_on_authorization
+            data_payload["firmware-provision-on-authorization"] = (
+                firmware_provision_on_authorization
+            )
         if switch_on_deauth is not None:
-            data_payload['switch-on-deauth'] = switch_on_deauth
+            data_payload["switch-on-deauth"] = switch_on_deauth
         if firewall_auth_user_hold_period is not None:
-            data_payload['firewall-auth-user-hold-period'] = firewall_auth_user_hold_period
+            data_payload["firewall-auth-user-hold-period"] = (
+                firewall_auth_user_hold_period
+            )
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

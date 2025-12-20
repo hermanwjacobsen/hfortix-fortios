@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.user.device.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.user.device.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class IotQuery:
     """
     Iotquery Operations.
-    
+
     Provides read-only access for FortiOS iotquery data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize IotQuery endpoint.
 
@@ -61,31 +61,33 @@ class IotQuery:
     ) -> dict[str, Any]:
         """
         Retrieve IoT/OT information for a given device from user device store.
-        
+
         Args:
             mac: Main MAC address of the device. (required)
             ip: IP address of the device. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.device.iot_query.get(mac='value', ip='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mac'] = mac
-        params['ip'] = ip
+        params["mac"] = mac
+        params["ip"] = ip
         params.update(kwargs)
-        return self._client.get("monitor", "/user/device/iot-query", params=params)
+        return self._client.get(
+            "monitor", "/user/device/iot-query", params=params
+        )
 
 
 class PurdueLevel:
     """PurdueLevel operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PurdueLevel endpoint.
 
@@ -105,7 +107,7 @@ class PurdueLevel:
     ) -> dict[str, Any]:
         """
         Update the Purdue level of device from device store.
-        
+
         Args:
             mac: Main MAC address of the device. (optional)
             ip: IP address of the device. (optional)
@@ -113,28 +115,30 @@ class PurdueLevel:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.device.purdue_level.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mac is not None:
-            data['mac'] = mac
+            data["mac"] = mac
         if ip is not None:
-            data['ip'] = ip
+            data["ip"] = ip
         if level is not None:
-            data['level'] = level
+            data["level"] = level
         data.update(kwargs)
-        return self._client.post("monitor", "/user/device/purdue-level", data=data)
+        return self._client.post(
+            "monitor", "/user/device/purdue-level", data=data
+        )
 
 
 class Query:
     """Query operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Query endpoint.
 
@@ -161,7 +165,7 @@ class Query:
     ) -> dict[str, Any]:
         """
         Retrieve user devices from user device store.
-        
+
         Args:
             timestamp_from: To get entries since the timestamp for unified historical query. (optional)
             timestamp_to: To get entries before the timestamp for unified historical query. (optional)
@@ -176,34 +180,34 @@ class Query:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.device.query.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if timestamp_from is not None:
-            params['timestamp_from'] = timestamp_from
+            params["timestamp_from"] = timestamp_from
         if timestamp_to is not None:
-            params['timestamp_to'] = timestamp_to
+            params["timestamp_to"] = timestamp_to
         if filters is not None:
-            params['filters'] = filters
+            params["filters"] = filters
         if query_type is not None:
-            params['query_type'] = query_type
+            params["query_type"] = query_type
         if view_type is not None:
-            params['view_type'] = view_type
+            params["view_type"] = view_type
         if query_id is not None:
-            params['query_id'] = query_id
+            params["query_id"] = query_id
         if cache_query is not None:
-            params['cache_query'] = cache_query
+            params["cache_query"] = cache_query
         if key_only is not None:
-            params['key_only'] = key_only
+            params["key_only"] = key_only
         if filter_logic is not None:
-            params['filter_logic'] = filter_logic
+            params["filter_logic"] = filter_logic
         if total_only is not None:
-            params['total_only'] = total_only
+            params["total_only"] = total_only
         params.update(kwargs)
         return self._client.get("monitor", "/user/device/query", params=params)
 
@@ -211,7 +215,7 @@ class Query:
 class Stats:
     """Stats operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Stats endpoint.
 
@@ -234,7 +238,7 @@ class Stats:
     ) -> dict[str, Any]:
         """
         Retrieve user devices stats from device store by given stat item.
-        
+
         Args:
             stat_key: key of the stats count on [os_name|hardware_type|detected_interface|is_online|max_vuln_level|fortiswitch_id|fortiswitch_port_name]. fortiswitch_id and fortiswitch_port_name only for fortiswitch_client stats query type (required)
             timestamp_to: To get entries before the timestamp for stats query. (required)
@@ -245,24 +249,24 @@ class Stats:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.device.stats.get(stat_key='value', timestamp_to=1)
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['stat-key'] = stat_key
-        params['timestamp_to'] = timestamp_to
+        params["stat-key"] = stat_key
+        params["timestamp_to"] = timestamp_to
         if stat_query_type is not None:
-            params['stat-query-type'] = stat_query_type
+            params["stat-query-type"] = stat_query_type
         if timestamp_from is not None:
-            params['timestamp_from'] = timestamp_from
+            params["timestamp_from"] = timestamp_from
         if filters is not None:
-            params['filters'] = filters
+            params["filters"] = filters
         if filter_logic is not None:
-            params['filter_logic'] = filter_logic
+            params["filter_logic"] = filter_logic
         params.update(kwargs)
         return self._client.get("monitor", "/user/device/stats", params=params)
 
@@ -270,7 +274,7 @@ class Stats:
 class Device:
     """Device operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Device endpoint.
 

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.internet_service_details.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.internet_service_details.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class InternetServiceDetails:
     """
     Internetservicedetails Operations.
-    
+
     Provides read-only access for FortiOS internetservicedetails data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize InternetServiceDetails endpoint.
 
@@ -65,7 +65,7 @@ class InternetServiceDetails:
     ) -> dict[str, Any]:
         """
         List all details for a given Internet Service ID.
-        
+
         Args:
             id: ID of the Internet Service to get details for. (required)
             country_id: Filter: Country ID. (optional)
@@ -76,24 +76,26 @@ class InternetServiceDetails:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.internet_service_details.get(id=1)
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['id'] = id
+        params["id"] = id
         if country_id is not None:
-            params['country_id'] = country_id
+            params["country_id"] = country_id
         if region_id is not None:
-            params['region_id'] = region_id
+            params["region_id"] = region_id
         if city_id is not None:
-            params['city_id'] = city_id
+            params["city_id"] = city_id
         if summary_only is not None:
-            params['summary_only'] = summary_only
+            params["summary_only"] = summary_only
         if ipv6_only is not None:
-            params['ipv6_only'] = ipv6_only
+            params["ipv6_only"] = ipv6_only
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-details", params=params)
+        return self._client.get(
+            "monitor", "/firewall/internet-service-details", params=params
+        )

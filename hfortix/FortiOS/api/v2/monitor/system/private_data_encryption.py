@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.private_data_encryption.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.private_data_encryption.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Set:
     """
     Set Operations.
-    
+
     Provides read-only access for FortiOS set data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Set endpoint.
 
@@ -61,33 +61,35 @@ class Set:
     ) -> dict[str, Any]:
         """
         Sets private data encryption.
-        
+
         Args:
             enable: Enable private data encryption. (optional)
             password: Admin password. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.private_data_encryption.set.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if enable is not None:
-            data['enable'] = enable
+            data["enable"] = enable
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         data.update(kwargs)
-        return self._client.post("monitor", "/system/private-data-encryption/set", data=data)
+        return self._client.post(
+            "monitor", "/system/private-data-encryption/set", data=data
+        )
 
 
 class PrivateDataEncryption:
     """PrivateDataEncryption operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PrivateDataEncryption endpoint.
 

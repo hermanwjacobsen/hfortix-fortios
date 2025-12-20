@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.time.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.time.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Set:
     """
     Set Operations.
-    
+
     Provides read-only access for FortiOS set data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Set endpoint.
 
@@ -65,7 +65,7 @@ class Set:
     ) -> dict[str, Any]:
         """
         Sets current system time stamp.
-        
+
         Args:
             year: Specifies the year for setting/updating time manually. (optional)
             month: Specifies the month (0 - 11) for setting/updating time manually. (optional)
@@ -76,26 +76,26 @@ class Set:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.time.set.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if year is not None:
-            data['year'] = year
+            data["year"] = year
         if month is not None:
-            data['month'] = month
+            data["month"] = month
         if day is not None:
-            data['day'] = day
+            data["day"] = day
         if hour is not None:
-            data['hour'] = hour
+            data["hour"] = hour
         if minute is not None:
-            data['minute'] = minute
+            data["minute"] = minute
         if second is not None:
-            data['second'] = second
+            data["second"] = second
         data.update(kwargs)
         return self._client.post("monitor", "/system/time/set", data=data)
 
@@ -103,7 +103,7 @@ class Set:
 class Time:
     """Time operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Time endpoint.
 
@@ -123,15 +123,15 @@ class Time:
     ) -> dict[str, Any]:
         """
         Gets current system time stamp.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.time.get()
         """

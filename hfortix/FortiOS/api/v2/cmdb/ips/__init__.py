@@ -9,21 +9,29 @@ from .sensor import Sensor
 from .settings import Settings
 from .view_map import ViewMap
 
-__all__ = ['Custom', 'Decoder', 'Global', 'Rule', 'RuleSettings', 'Sensor', 'Settings', 'ViewMap']
-
+__all__ = [
+    "Custom",
+    "Decoder",
+    "Global",
+    "Rule",
+    "RuleSettings",
+    "Sensor",
+    "Settings",
+    "ViewMap",
+]
 
 
 class Ips:
     """
     Ips category wrapper.
-    
+
     This class provides access to all ips CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Ips with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

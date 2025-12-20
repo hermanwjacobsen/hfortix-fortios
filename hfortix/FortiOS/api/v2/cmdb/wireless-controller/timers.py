@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.timers.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.timers.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.timers.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.timers.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.timers.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Timers:
     """
     Timers Operations.
-    
+
     Provides CRUD operations for FortiOS timers configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Timers:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Timers endpoint.
 
@@ -82,14 +82,14 @@ class Timers:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Timers:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/wireless-controller/timers"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -147,7 +149,7 @@ class Timers:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -181,7 +183,7 @@ class Timers:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -189,7 +191,7 @@ class Timers:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -197,60 +199,66 @@ class Timers:
         params = {}
         endpoint = "/wireless-controller/timers"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if echo_interval is not None:
-            data_payload['echo-interval'] = echo_interval
+            data_payload["echo-interval"] = echo_interval
         if nat_session_keep_alive is not None:
-            data_payload['nat-session-keep-alive'] = nat_session_keep_alive
+            data_payload["nat-session-keep-alive"] = nat_session_keep_alive
         if discovery_interval is not None:
-            data_payload['discovery-interval'] = discovery_interval
+            data_payload["discovery-interval"] = discovery_interval
         if client_idle_timeout is not None:
-            data_payload['client-idle-timeout'] = client_idle_timeout
+            data_payload["client-idle-timeout"] = client_idle_timeout
         if client_idle_rehome_timeout is not None:
-            data_payload['client-idle-rehome-timeout'] = client_idle_rehome_timeout
+            data_payload["client-idle-rehome-timeout"] = (
+                client_idle_rehome_timeout
+            )
         if auth_timeout is not None:
-            data_payload['auth-timeout'] = auth_timeout
+            data_payload["auth-timeout"] = auth_timeout
         if rogue_ap_log is not None:
-            data_payload['rogue-ap-log'] = rogue_ap_log
+            data_payload["rogue-ap-log"] = rogue_ap_log
         if fake_ap_log is not None:
-            data_payload['fake-ap-log'] = fake_ap_log
+            data_payload["fake-ap-log"] = fake_ap_log
         if sta_offline_cleanup is not None:
-            data_payload['sta-offline-cleanup'] = sta_offline_cleanup
+            data_payload["sta-offline-cleanup"] = sta_offline_cleanup
         if sta_offline_ip2mac_cleanup is not None:
-            data_payload['sta-offline-ip2mac-cleanup'] = sta_offline_ip2mac_cleanup
+            data_payload["sta-offline-ip2mac-cleanup"] = (
+                sta_offline_ip2mac_cleanup
+            )
         if sta_cap_cleanup is not None:
-            data_payload['sta-cap-cleanup'] = sta_cap_cleanup
+            data_payload["sta-cap-cleanup"] = sta_cap_cleanup
         if rogue_ap_cleanup is not None:
-            data_payload['rogue-ap-cleanup'] = rogue_ap_cleanup
+            data_payload["rogue-ap-cleanup"] = rogue_ap_cleanup
         if rogue_sta_cleanup is not None:
-            data_payload['rogue-sta-cleanup'] = rogue_sta_cleanup
+            data_payload["rogue-sta-cleanup"] = rogue_sta_cleanup
         if wids_entry_cleanup is not None:
-            data_payload['wids-entry-cleanup'] = wids_entry_cleanup
+            data_payload["wids-entry-cleanup"] = wids_entry_cleanup
         if ble_device_cleanup is not None:
-            data_payload['ble-device-cleanup'] = ble_device_cleanup
+            data_payload["ble-device-cleanup"] = ble_device_cleanup
         if sta_stats_interval is not None:
-            data_payload['sta-stats-interval'] = sta_stats_interval
+            data_payload["sta-stats-interval"] = sta_stats_interval
         if vap_stats_interval is not None:
-            data_payload['vap-stats-interval'] = vap_stats_interval
+            data_payload["vap-stats-interval"] = vap_stats_interval
         if radio_stats_interval is not None:
-            data_payload['radio-stats-interval'] = radio_stats_interval
+            data_payload["radio-stats-interval"] = radio_stats_interval
         if sta_capability_interval is not None:
-            data_payload['sta-capability-interval'] = sta_capability_interval
+            data_payload["sta-capability-interval"] = sta_capability_interval
         if sta_locate_timer is not None:
-            data_payload['sta-locate-timer'] = sta_locate_timer
+            data_payload["sta-locate-timer"] = sta_locate_timer
         if ipsec_intf_cleanup is not None:
-            data_payload['ipsec-intf-cleanup'] = ipsec_intf_cleanup
+            data_payload["ipsec-intf-cleanup"] = ipsec_intf_cleanup
         if ble_scan_report_intv is not None:
-            data_payload['ble-scan-report-intv'] = ble_scan_report_intv
+            data_payload["ble-scan-report-intv"] = ble_scan_report_intv
         if drma_interval is not None:
-            data_payload['drma-interval'] = drma_interval
+            data_payload["drma-interval"] = drma_interval
         if ap_reboot_wait_interval1 is not None:
-            data_payload['ap-reboot-wait-interval1'] = ap_reboot_wait_interval1
+            data_payload["ap-reboot-wait-interval1"] = ap_reboot_wait_interval1
         if ap_reboot_wait_time is not None:
-            data_payload['ap-reboot-wait-time'] = ap_reboot_wait_time
+            data_payload["ap-reboot-wait-time"] = ap_reboot_wait_time
         if ap_reboot_wait_interval2 is not None:
-            data_payload['ap-reboot-wait-interval2'] = ap_reboot_wait_interval2
+            data_payload["ap-reboot-wait-interval2"] = ap_reboot_wait_interval2
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

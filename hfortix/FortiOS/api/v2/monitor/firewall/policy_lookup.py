@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.policy_lookup.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.policy_lookup.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class PolicyLookup:
     """
     Policylookup Operations.
-    
+
     Provides read-only access for FortiOS policylookup data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PolicyLookup endpoint.
 
@@ -74,7 +74,7 @@ class PolicyLookup:
     ) -> dict[str, Any]:
         """
         Performs a policy lookup by creating a dummy packet and asking the kernel which policy would be hit.
-        
+
         Args:
             srcintf: Source interface. (required)
             sourceip: Source IP. (required)
@@ -94,39 +94,41 @@ class PolicyLookup:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.policy_lookup.get(srcintf='value', sourceip='value', protocol='value', dest='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['srcintf'] = srcintf
-        params['sourceip'] = sourceip
-        params['protocol'] = protocol
-        params['dest'] = dest
+        params["srcintf"] = srcintf
+        params["sourceip"] = sourceip
+        params["protocol"] = protocol
+        params["dest"] = dest
         if ipv6 is not None:
-            params['ipv6'] = ipv6
+            params["ipv6"] = ipv6
         if sourceport is not None:
-            params['sourceport'] = sourceport
+            params["sourceport"] = sourceport
         if destport is not None:
-            params['destport'] = destport
+            params["destport"] = destport
         if icmptype is not None:
-            params['icmptype'] = icmptype
+            params["icmptype"] = icmptype
         if icmpcode is not None:
-            params['icmpcode'] = icmpcode
+            params["icmpcode"] = icmpcode
         if policy_type is not None:
-            params['policy_type'] = policy_type
+            params["policy_type"] = policy_type
         if auth_type is not None:
-            params['auth_type'] = auth_type
+            params["auth_type"] = auth_type
         if user_group is not None:
-            params['user_group'] = user_group
+            params["user_group"] = user_group
         if server_name is not None:
-            params['server_name'] = server_name
+            params["server_name"] = server_name
         if user_db is not None:
-            params['user_db'] = user_db
+            params["user_db"] = user_db
         if group_attr_type is not None:
-            params['group_attr_type'] = group_attr_type
+            params["group_attr_type"] = group_attr_type
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/policy-lookup", params=params)
+        return self._client.get(
+            "monitor", "/firewall/policy-lookup", params=params
+        )

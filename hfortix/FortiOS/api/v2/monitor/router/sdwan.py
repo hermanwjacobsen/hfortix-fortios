@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.router.sdwan.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.router.sdwan.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Routes:
     """
     Routes Operations.
-    
+
     Provides read-only access for FortiOS routes data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Routes endpoint.
 
@@ -59,27 +59,29 @@ class Routes:
     ) -> dict[str, Any]:
         """
         List all discovered IPv4 SD-WAN routes.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.sdwan.routes.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/router/sdwan/routes", params=params)
+        return self._client.get(
+            "monitor", "/router/sdwan/routes", params=params
+        )
 
 
 class RoutesStatistics:
     """RoutesStatistics operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize RoutesStatistics endpoint.
 
@@ -97,30 +99,32 @@ class RoutesStatistics:
     ) -> dict[str, Any]:
         """
         Retrieve SD-WAN routes statistics, including number of IPv4 or IPv6 SD-WAN routes.
-        
+
         Args:
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.sdwan.routes_statistics.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/router/sdwan/routes-statistics", params=params)
+        return self._client.get(
+            "monitor", "/router/sdwan/routes-statistics", params=params
+        )
 
 
 class Routes6:
     """Routes6 operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Routes6 endpoint.
 
@@ -137,27 +141,29 @@ class Routes6:
     ) -> dict[str, Any]:
         """
         List all discovered IPv6 SD-WAN routes.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.sdwan.routes6.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/router/sdwan/routes6", params=params)
+        return self._client.get(
+            "monitor", "/router/sdwan/routes6", params=params
+        )
 
 
 class Sdwan:
     """Sdwan operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Sdwan endpoint.
 

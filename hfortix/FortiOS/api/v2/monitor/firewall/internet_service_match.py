@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.internet_service_match.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.internet_service_match.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class InternetServiceMatch:
     """
     Internetservicematch Operations.
-    
+
     Provides read-only access for FortiOS internetservicematch data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize InternetServiceMatch endpoint.
 
@@ -63,7 +63,7 @@ class InternetServiceMatch:
     ) -> dict[str, Any]:
         """
         List internet services that exist at a given IP or Subnet.
-        
+
         Args:
             ip: IP (in dot-decimal notation). (required)
             is_ipv6: Whether IP is IPv6. If not provided, will determine IP version based on given IP, but setting is_ipv6 flag is recommended. (optional)
@@ -72,20 +72,22 @@ class InternetServiceMatch:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.internet_service_match.get(ip='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['ip'] = ip
+        params["ip"] = ip
         if is_ipv6 is not None:
-            params['is_ipv6'] = is_ipv6
+            params["is_ipv6"] = is_ipv6
         if ipv4_mask is not None:
-            params['ipv4_mask'] = ipv4_mask
+            params["ipv4_mask"] = ipv4_mask
         if ipv6_prefix is not None:
-            params['ipv6_prefix'] = ipv6_prefix
+            params["ipv6_prefix"] = ipv6_prefix
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-match", params=params)
+        return self._client.get(
+            "monitor", "/firewall/internet-service-match", params=params
+        )

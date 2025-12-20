@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.profile_protocol_options.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.profile_protocol_options.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.profile_protocol_options.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.profile_protocol_options.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.profile_protocol_options.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ProfileProtocolOptions:
     """
     Profileprotocoloptions Operations.
-    
+
     Provides CRUD operations for FortiOS profileprotocoloptions configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ProfileProtocolOptions:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ProfileProtocolOptions:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ProfileProtocolOptions endpoint.
 
@@ -90,7 +90,7 @@ class ProfileProtocolOptions:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ProfileProtocolOptions:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ProfileProtocolOptions:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall/profile-protocol-options/{name}"
         else:
             endpoint = "/firewall/profile-protocol-options"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -158,7 +160,7 @@ class ProfileProtocolOptions:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -184,7 +186,7 @@ class ProfileProtocolOptions:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -192,57 +194,59 @@ class ProfileProtocolOptions:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall/profile-protocol-options/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if oversize_log is not None:
-            data_payload['oversize-log'] = oversize_log
+            data_payload["oversize-log"] = oversize_log
         if switching_protocols_log is not None:
-            data_payload['switching-protocols-log'] = switching_protocols_log
+            data_payload["switching-protocols-log"] = switching_protocols_log
         if http is not None:
-            data_payload['http'] = http
+            data_payload["http"] = http
         if ftp is not None:
-            data_payload['ftp'] = ftp
+            data_payload["ftp"] = ftp
         if imap is not None:
-            data_payload['imap'] = imap
+            data_payload["imap"] = imap
         if mapi is not None:
-            data_payload['mapi'] = mapi
+            data_payload["mapi"] = mapi
         if pop3 is not None:
-            data_payload['pop3'] = pop3
+            data_payload["pop3"] = pop3
         if smtp is not None:
-            data_payload['smtp'] = smtp
+            data_payload["smtp"] = smtp
         if nntp is not None:
-            data_payload['nntp'] = nntp
+            data_payload["nntp"] = nntp
         if ssh is not None:
-            data_payload['ssh'] = ssh
+            data_payload["ssh"] = ssh
         if dns is not None:
-            data_payload['dns'] = dns
+            data_payload["dns"] = dns
         if cifs is not None:
-            data_payload['cifs'] = cifs
+            data_payload["cifs"] = cifs
         if mail_signature is not None:
-            data_payload['mail-signature'] = mail_signature
+            data_payload["mail-signature"] = mail_signature
         if rpc_over_http is not None:
-            data_payload['rpc-over-http'] = rpc_over_http
+            data_payload["rpc-over-http"] = rpc_over_http
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -254,13 +258,13 @@ class ProfileProtocolOptions:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -268,18 +272,20 @@ class ProfileProtocolOptions:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/profile-protocol-options/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -288,37 +294,39 @@ class ProfileProtocolOptions:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -347,7 +355,7 @@ class ProfileProtocolOptions:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -371,7 +379,7 @@ class ProfileProtocolOptions:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -379,7 +387,7 @@ class ProfileProtocolOptions:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -387,40 +395,42 @@ class ProfileProtocolOptions:
         params = {}
         endpoint = "/firewall/profile-protocol-options"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if oversize_log is not None:
-            data_payload['oversize-log'] = oversize_log
+            data_payload["oversize-log"] = oversize_log
         if switching_protocols_log is not None:
-            data_payload['switching-protocols-log'] = switching_protocols_log
+            data_payload["switching-protocols-log"] = switching_protocols_log
         if http is not None:
-            data_payload['http'] = http
+            data_payload["http"] = http
         if ftp is not None:
-            data_payload['ftp'] = ftp
+            data_payload["ftp"] = ftp
         if imap is not None:
-            data_payload['imap'] = imap
+            data_payload["imap"] = imap
         if mapi is not None:
-            data_payload['mapi'] = mapi
+            data_payload["mapi"] = mapi
         if pop3 is not None:
-            data_payload['pop3'] = pop3
+            data_payload["pop3"] = pop3
         if smtp is not None:
-            data_payload['smtp'] = smtp
+            data_payload["smtp"] = smtp
         if nntp is not None:
-            data_payload['nntp'] = nntp
+            data_payload["nntp"] = nntp
         if ssh is not None:
-            data_payload['ssh'] = ssh
+            data_payload["ssh"] = ssh
         if dns is not None:
-            data_payload['dns'] = dns
+            data_payload["dns"] = dns
         if cifs is not None:
-            data_payload['cifs'] = cifs
+            data_payload["cifs"] = cifs
         if mail_signature is not None:
-            data_payload['mail-signature'] = mail_signature
+            data_payload["mail-signature"] = mail_signature
         if rpc_over_http is not None:
-            data_payload['rpc-over-http'] = rpc_over_http
+            data_payload["rpc-over-http"] = rpc_over_http
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

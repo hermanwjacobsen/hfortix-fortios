@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.gtp.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.gtp.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Flush:
     """
     Flush Operations.
-    
+
     Provides read-only access for FortiOS flush data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Flush endpoint.
 
@@ -73,7 +73,7 @@ class Flush:
     ) -> dict[str, Any]:
         """
         Flush GTP tunnels.
-        
+
         Args:
             scope: Scope from which to flush tunnels from [global|*vdom]. (optional)
             gtp_profile: Filter: GTP profile. (optional)
@@ -92,42 +92,42 @@ class Flush:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.gtp.flush.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if scope is not None:
-            data['scope'] = scope
+            data["scope"] = scope
         if gtp_profile is not None:
-            data['gtp_profile'] = gtp_profile
+            data["gtp_profile"] = gtp_profile
         if version is not None:
-            data['version'] = version
+            data["version"] = version
         if imsi is not None:
-            data['imsi'] = imsi
+            data["imsi"] = imsi
         if msisdn is not None:
-            data['msisdn'] = msisdn
+            data["msisdn"] = msisdn
         if ms_addr is not None:
-            data['ms_addr'] = ms_addr
+            data["ms_addr"] = ms_addr
         if ms_addr6 is not None:
-            data['ms_addr6'] = ms_addr6
+            data["ms_addr6"] = ms_addr6
         if cteid is not None:
-            data['cteid'] = cteid
+            data["cteid"] = cteid
         if cteid_addr is not None:
-            data['cteid_addr'] = cteid_addr
+            data["cteid_addr"] = cteid_addr
         if cteid_addr6 is not None:
-            data['cteid_addr6'] = cteid_addr6
+            data["cteid_addr6"] = cteid_addr6
         if fteid is not None:
-            data['fteid'] = fteid
+            data["fteid"] = fteid
         if fteid_addr is not None:
-            data['fteid_addr'] = fteid_addr
+            data["fteid_addr"] = fteid_addr
         if fteid_addr6 is not None:
-            data['fteid_addr6'] = fteid_addr6
+            data["fteid_addr6"] = fteid_addr6
         if apn is not None:
-            data['apn'] = apn
+            data["apn"] = apn
         data.update(kwargs)
         return self._client.post("monitor", "/firewall/gtp/flush", data=data)
 
@@ -135,7 +135,7 @@ class Flush:
 class Gtp:
     """Gtp operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Gtp endpoint.
 
@@ -154,19 +154,19 @@ class Gtp:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Retrieve a list of GTP tunnels
-Access Group: utmgrp.
-        
-        Args:
-            payload_dict: Optional dictionary of parameters
-            raw_json: Return raw JSON response if True
-            **kwargs: Additional parameters as keyword arguments
-        
-        Returns:
-            Dictionary containing API response
-        
-        Example:
-            >>> fgt.api.monitor.firewall.gtp.get()
+                Retrieve a list of GTP tunnels
+        Access Group: utmgrp.
+
+                Args:
+                    payload_dict: Optional dictionary of parameters
+                    raw_json: Return raw JSON response if True
+                    **kwargs: Additional parameters as keyword arguments
+
+                Returns:
+                    Dictionary containing API response
+
+                Example:
+                    >>> fgt.api.monitor.firewall.gtp.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)

@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.vip6.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.vip6.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.vip6.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.vip6.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.vip6.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Vip6:
     """
     Vip6 Operations.
-    
+
     Provides CRUD operations for FortiOS vip6 configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Vip6:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Vip6:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Vip6 endpoint.
 
@@ -90,7 +90,7 @@ class Vip6:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Vip6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Vip6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall/vip6/{name}"
         else:
             endpoint = "/firewall/vip6"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -224,7 +226,7 @@ class Vip6:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -316,7 +318,7 @@ class Vip6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -324,189 +326,213 @@ class Vip6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall/vip6/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if src_filter is not None:
-            data_payload['src-filter'] = src_filter
+            data_payload["src-filter"] = src_filter
         if src_vip_filter is not None:
-            data_payload['src-vip-filter'] = src_vip_filter
+            data_payload["src-vip-filter"] = src_vip_filter
         if extip is not None:
-            data_payload['extip'] = extip
+            data_payload["extip"] = extip
         if mappedip is not None:
-            data_payload['mappedip'] = mappedip
+            data_payload["mappedip"] = mappedip
         if nat_source_vip is not None:
-            data_payload['nat-source-vip'] = nat_source_vip
+            data_payload["nat-source-vip"] = nat_source_vip
         if ndp_reply is not None:
-            data_payload['ndp-reply'] = ndp_reply
+            data_payload["ndp-reply"] = ndp_reply
         if portforward is not None:
-            data_payload['portforward'] = portforward
+            data_payload["portforward"] = portforward
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if extport is not None:
-            data_payload['extport'] = extport
+            data_payload["extport"] = extport
         if mappedport is not None:
-            data_payload['mappedport'] = mappedport
+            data_payload["mappedport"] = mappedport
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if ldb_method is not None:
-            data_payload['ldb-method'] = ldb_method
+            data_payload["ldb-method"] = ldb_method
         if server_type is not None:
-            data_payload['server-type'] = server_type
+            data_payload["server-type"] = server_type
         if http_redirect is not None:
-            data_payload['http-redirect'] = http_redirect
+            data_payload["http-redirect"] = http_redirect
         if persistence is not None:
-            data_payload['persistence'] = persistence
+            data_payload["persistence"] = persistence
         if h2_support is not None:
-            data_payload['h2-support'] = h2_support
+            data_payload["h2-support"] = h2_support
         if h3_support is not None:
-            data_payload['h3-support'] = h3_support
+            data_payload["h3-support"] = h3_support
         if quic is not None:
-            data_payload['quic'] = quic
+            data_payload["quic"] = quic
         if nat66 is not None:
-            data_payload['nat66'] = nat66
+            data_payload["nat66"] = nat66
         if nat64 is not None:
-            data_payload['nat64'] = nat64
+            data_payload["nat64"] = nat64
         if add_nat64_route is not None:
-            data_payload['add-nat64-route'] = add_nat64_route
+            data_payload["add-nat64-route"] = add_nat64_route
         if empty_cert_action is not None:
-            data_payload['empty-cert-action'] = empty_cert_action
+            data_payload["empty-cert-action"] = empty_cert_action
         if user_agent_detect is not None:
-            data_payload['user-agent-detect'] = user_agent_detect
+            data_payload["user-agent-detect"] = user_agent_detect
         if client_cert is not None:
-            data_payload['client-cert'] = client_cert
+            data_payload["client-cert"] = client_cert
         if realservers is not None:
-            data_payload['realservers'] = realservers
+            data_payload["realservers"] = realservers
         if http_cookie_domain_from_host is not None:
-            data_payload['http-cookie-domain-from-host'] = http_cookie_domain_from_host
+            data_payload["http-cookie-domain-from-host"] = (
+                http_cookie_domain_from_host
+            )
         if http_cookie_domain is not None:
-            data_payload['http-cookie-domain'] = http_cookie_domain
+            data_payload["http-cookie-domain"] = http_cookie_domain
         if http_cookie_path is not None:
-            data_payload['http-cookie-path'] = http_cookie_path
+            data_payload["http-cookie-path"] = http_cookie_path
         if http_cookie_generation is not None:
-            data_payload['http-cookie-generation'] = http_cookie_generation
+            data_payload["http-cookie-generation"] = http_cookie_generation
         if http_cookie_age is not None:
-            data_payload['http-cookie-age'] = http_cookie_age
+            data_payload["http-cookie-age"] = http_cookie_age
         if http_cookie_share is not None:
-            data_payload['http-cookie-share'] = http_cookie_share
+            data_payload["http-cookie-share"] = http_cookie_share
         if https_cookie_secure is not None:
-            data_payload['https-cookie-secure'] = https_cookie_secure
+            data_payload["https-cookie-secure"] = https_cookie_secure
         if http_multiplex is not None:
-            data_payload['http-multiplex'] = http_multiplex
+            data_payload["http-multiplex"] = http_multiplex
         if http_ip_header is not None:
-            data_payload['http-ip-header'] = http_ip_header
+            data_payload["http-ip-header"] = http_ip_header
         if http_ip_header_name is not None:
-            data_payload['http-ip-header-name'] = http_ip_header_name
+            data_payload["http-ip-header-name"] = http_ip_header_name
         if outlook_web_access is not None:
-            data_payload['outlook-web-access'] = outlook_web_access
+            data_payload["outlook-web-access"] = outlook_web_access
         if weblogic_server is not None:
-            data_payload['weblogic-server'] = weblogic_server
+            data_payload["weblogic-server"] = weblogic_server
         if websphere_server is not None:
-            data_payload['websphere-server'] = websphere_server
+            data_payload["websphere-server"] = websphere_server
         if ssl_mode is not None:
-            data_payload['ssl-mode'] = ssl_mode
+            data_payload["ssl-mode"] = ssl_mode
         if ssl_certificate is not None:
-            data_payload['ssl-certificate'] = ssl_certificate
+            data_payload["ssl-certificate"] = ssl_certificate
         if ssl_dh_bits is not None:
-            data_payload['ssl-dh-bits'] = ssl_dh_bits
+            data_payload["ssl-dh-bits"] = ssl_dh_bits
         if ssl_algorithm is not None:
-            data_payload['ssl-algorithm'] = ssl_algorithm
+            data_payload["ssl-algorithm"] = ssl_algorithm
         if ssl_cipher_suites is not None:
-            data_payload['ssl-cipher-suites'] = ssl_cipher_suites
+            data_payload["ssl-cipher-suites"] = ssl_cipher_suites
         if ssl_server_renegotiation is not None:
-            data_payload['ssl-server-renegotiation'] = ssl_server_renegotiation
+            data_payload["ssl-server-renegotiation"] = ssl_server_renegotiation
         if ssl_server_algorithm is not None:
-            data_payload['ssl-server-algorithm'] = ssl_server_algorithm
+            data_payload["ssl-server-algorithm"] = ssl_server_algorithm
         if ssl_server_cipher_suites is not None:
-            data_payload['ssl-server-cipher-suites'] = ssl_server_cipher_suites
+            data_payload["ssl-server-cipher-suites"] = ssl_server_cipher_suites
         if ssl_pfs is not None:
-            data_payload['ssl-pfs'] = ssl_pfs
+            data_payload["ssl-pfs"] = ssl_pfs
         if ssl_min_version is not None:
-            data_payload['ssl-min-version'] = ssl_min_version
+            data_payload["ssl-min-version"] = ssl_min_version
         if ssl_max_version is not None:
-            data_payload['ssl-max-version'] = ssl_max_version
+            data_payload["ssl-max-version"] = ssl_max_version
         if ssl_server_min_version is not None:
-            data_payload['ssl-server-min-version'] = ssl_server_min_version
+            data_payload["ssl-server-min-version"] = ssl_server_min_version
         if ssl_server_max_version is not None:
-            data_payload['ssl-server-max-version'] = ssl_server_max_version
+            data_payload["ssl-server-max-version"] = ssl_server_max_version
         if ssl_accept_ffdhe_groups is not None:
-            data_payload['ssl-accept-ffdhe-groups'] = ssl_accept_ffdhe_groups
+            data_payload["ssl-accept-ffdhe-groups"] = ssl_accept_ffdhe_groups
         if ssl_send_empty_frags is not None:
-            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+            data_payload["ssl-send-empty-frags"] = ssl_send_empty_frags
         if ssl_client_fallback is not None:
-            data_payload['ssl-client-fallback'] = ssl_client_fallback
+            data_payload["ssl-client-fallback"] = ssl_client_fallback
         if ssl_client_renegotiation is not None:
-            data_payload['ssl-client-renegotiation'] = ssl_client_renegotiation
+            data_payload["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_client_session_state_type is not None:
-            data_payload['ssl-client-session-state-type'] = ssl_client_session_state_type
+            data_payload["ssl-client-session-state-type"] = (
+                ssl_client_session_state_type
+            )
         if ssl_client_session_state_timeout is not None:
-            data_payload['ssl-client-session-state-timeout'] = ssl_client_session_state_timeout
+            data_payload["ssl-client-session-state-timeout"] = (
+                ssl_client_session_state_timeout
+            )
         if ssl_client_session_state_max is not None:
-            data_payload['ssl-client-session-state-max'] = ssl_client_session_state_max
+            data_payload["ssl-client-session-state-max"] = (
+                ssl_client_session_state_max
+            )
         if ssl_client_rekey_count is not None:
-            data_payload['ssl-client-rekey-count'] = ssl_client_rekey_count
+            data_payload["ssl-client-rekey-count"] = ssl_client_rekey_count
         if ssl_server_session_state_type is not None:
-            data_payload['ssl-server-session-state-type'] = ssl_server_session_state_type
+            data_payload["ssl-server-session-state-type"] = (
+                ssl_server_session_state_type
+            )
         if ssl_server_session_state_timeout is not None:
-            data_payload['ssl-server-session-state-timeout'] = ssl_server_session_state_timeout
+            data_payload["ssl-server-session-state-timeout"] = (
+                ssl_server_session_state_timeout
+            )
         if ssl_server_session_state_max is not None:
-            data_payload['ssl-server-session-state-max'] = ssl_server_session_state_max
+            data_payload["ssl-server-session-state-max"] = (
+                ssl_server_session_state_max
+            )
         if ssl_http_location_conversion is not None:
-            data_payload['ssl-http-location-conversion'] = ssl_http_location_conversion
+            data_payload["ssl-http-location-conversion"] = (
+                ssl_http_location_conversion
+            )
         if ssl_http_match_host is not None:
-            data_payload['ssl-http-match-host'] = ssl_http_match_host
+            data_payload["ssl-http-match-host"] = ssl_http_match_host
         if ssl_hpkp is not None:
-            data_payload['ssl-hpkp'] = ssl_hpkp
+            data_payload["ssl-hpkp"] = ssl_hpkp
         if ssl_hpkp_primary is not None:
-            data_payload['ssl-hpkp-primary'] = ssl_hpkp_primary
+            data_payload["ssl-hpkp-primary"] = ssl_hpkp_primary
         if ssl_hpkp_backup is not None:
-            data_payload['ssl-hpkp-backup'] = ssl_hpkp_backup
+            data_payload["ssl-hpkp-backup"] = ssl_hpkp_backup
         if ssl_hpkp_age is not None:
-            data_payload['ssl-hpkp-age'] = ssl_hpkp_age
+            data_payload["ssl-hpkp-age"] = ssl_hpkp_age
         if ssl_hpkp_report_uri is not None:
-            data_payload['ssl-hpkp-report-uri'] = ssl_hpkp_report_uri
+            data_payload["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
         if ssl_hpkp_include_subdomains is not None:
-            data_payload['ssl-hpkp-include-subdomains'] = ssl_hpkp_include_subdomains
+            data_payload["ssl-hpkp-include-subdomains"] = (
+                ssl_hpkp_include_subdomains
+            )
         if ssl_hsts is not None:
-            data_payload['ssl-hsts'] = ssl_hsts
+            data_payload["ssl-hsts"] = ssl_hsts
         if ssl_hsts_age is not None:
-            data_payload['ssl-hsts-age'] = ssl_hsts_age
+            data_payload["ssl-hsts-age"] = ssl_hsts_age
         if ssl_hsts_include_subdomains is not None:
-            data_payload['ssl-hsts-include-subdomains'] = ssl_hsts_include_subdomains
+            data_payload["ssl-hsts-include-subdomains"] = (
+                ssl_hsts_include_subdomains
+            )
         if monitor is not None:
-            data_payload['monitor'] = monitor
+            data_payload["monitor"] = monitor
         if max_embryonic_connections is not None:
-            data_payload['max-embryonic-connections'] = max_embryonic_connections
+            data_payload["max-embryonic-connections"] = (
+                max_embryonic_connections
+            )
         if embedded_ipv4_address is not None:
-            data_payload['embedded-ipv4-address'] = embedded_ipv4_address
+            data_payload["embedded-ipv4-address"] = embedded_ipv4_address
         if ipv4_mappedip is not None:
-            data_payload['ipv4-mappedip'] = ipv4_mappedip
+            data_payload["ipv4-mappedip"] = ipv4_mappedip
         if ipv4_mappedport is not None:
-            data_payload['ipv4-mappedport'] = ipv4_mappedport
+            data_payload["ipv4-mappedport"] = ipv4_mappedport
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -518,13 +544,13 @@ class Vip6:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -532,18 +558,20 @@ class Vip6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/vip6/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -552,37 +580,39 @@ class Vip6:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -677,7 +707,7 @@ class Vip6:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -767,7 +797,7 @@ class Vip6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -775,7 +805,7 @@ class Vip6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -783,172 +813,196 @@ class Vip6:
         params = {}
         endpoint = "/firewall/vip6"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if src_filter is not None:
-            data_payload['src-filter'] = src_filter
+            data_payload["src-filter"] = src_filter
         if src_vip_filter is not None:
-            data_payload['src-vip-filter'] = src_vip_filter
+            data_payload["src-vip-filter"] = src_vip_filter
         if extip is not None:
-            data_payload['extip'] = extip
+            data_payload["extip"] = extip
         if mappedip is not None:
-            data_payload['mappedip'] = mappedip
+            data_payload["mappedip"] = mappedip
         if nat_source_vip is not None:
-            data_payload['nat-source-vip'] = nat_source_vip
+            data_payload["nat-source-vip"] = nat_source_vip
         if ndp_reply is not None:
-            data_payload['ndp-reply'] = ndp_reply
+            data_payload["ndp-reply"] = ndp_reply
         if portforward is not None:
-            data_payload['portforward'] = portforward
+            data_payload["portforward"] = portforward
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if extport is not None:
-            data_payload['extport'] = extport
+            data_payload["extport"] = extport
         if mappedport is not None:
-            data_payload['mappedport'] = mappedport
+            data_payload["mappedport"] = mappedport
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if ldb_method is not None:
-            data_payload['ldb-method'] = ldb_method
+            data_payload["ldb-method"] = ldb_method
         if server_type is not None:
-            data_payload['server-type'] = server_type
+            data_payload["server-type"] = server_type
         if http_redirect is not None:
-            data_payload['http-redirect'] = http_redirect
+            data_payload["http-redirect"] = http_redirect
         if persistence is not None:
-            data_payload['persistence'] = persistence
+            data_payload["persistence"] = persistence
         if h2_support is not None:
-            data_payload['h2-support'] = h2_support
+            data_payload["h2-support"] = h2_support
         if h3_support is not None:
-            data_payload['h3-support'] = h3_support
+            data_payload["h3-support"] = h3_support
         if quic is not None:
-            data_payload['quic'] = quic
+            data_payload["quic"] = quic
         if nat66 is not None:
-            data_payload['nat66'] = nat66
+            data_payload["nat66"] = nat66
         if nat64 is not None:
-            data_payload['nat64'] = nat64
+            data_payload["nat64"] = nat64
         if add_nat64_route is not None:
-            data_payload['add-nat64-route'] = add_nat64_route
+            data_payload["add-nat64-route"] = add_nat64_route
         if empty_cert_action is not None:
-            data_payload['empty-cert-action'] = empty_cert_action
+            data_payload["empty-cert-action"] = empty_cert_action
         if user_agent_detect is not None:
-            data_payload['user-agent-detect'] = user_agent_detect
+            data_payload["user-agent-detect"] = user_agent_detect
         if client_cert is not None:
-            data_payload['client-cert'] = client_cert
+            data_payload["client-cert"] = client_cert
         if realservers is not None:
-            data_payload['realservers'] = realservers
+            data_payload["realservers"] = realservers
         if http_cookie_domain_from_host is not None:
-            data_payload['http-cookie-domain-from-host'] = http_cookie_domain_from_host
+            data_payload["http-cookie-domain-from-host"] = (
+                http_cookie_domain_from_host
+            )
         if http_cookie_domain is not None:
-            data_payload['http-cookie-domain'] = http_cookie_domain
+            data_payload["http-cookie-domain"] = http_cookie_domain
         if http_cookie_path is not None:
-            data_payload['http-cookie-path'] = http_cookie_path
+            data_payload["http-cookie-path"] = http_cookie_path
         if http_cookie_generation is not None:
-            data_payload['http-cookie-generation'] = http_cookie_generation
+            data_payload["http-cookie-generation"] = http_cookie_generation
         if http_cookie_age is not None:
-            data_payload['http-cookie-age'] = http_cookie_age
+            data_payload["http-cookie-age"] = http_cookie_age
         if http_cookie_share is not None:
-            data_payload['http-cookie-share'] = http_cookie_share
+            data_payload["http-cookie-share"] = http_cookie_share
         if https_cookie_secure is not None:
-            data_payload['https-cookie-secure'] = https_cookie_secure
+            data_payload["https-cookie-secure"] = https_cookie_secure
         if http_multiplex is not None:
-            data_payload['http-multiplex'] = http_multiplex
+            data_payload["http-multiplex"] = http_multiplex
         if http_ip_header is not None:
-            data_payload['http-ip-header'] = http_ip_header
+            data_payload["http-ip-header"] = http_ip_header
         if http_ip_header_name is not None:
-            data_payload['http-ip-header-name'] = http_ip_header_name
+            data_payload["http-ip-header-name"] = http_ip_header_name
         if outlook_web_access is not None:
-            data_payload['outlook-web-access'] = outlook_web_access
+            data_payload["outlook-web-access"] = outlook_web_access
         if weblogic_server is not None:
-            data_payload['weblogic-server'] = weblogic_server
+            data_payload["weblogic-server"] = weblogic_server
         if websphere_server is not None:
-            data_payload['websphere-server'] = websphere_server
+            data_payload["websphere-server"] = websphere_server
         if ssl_mode is not None:
-            data_payload['ssl-mode'] = ssl_mode
+            data_payload["ssl-mode"] = ssl_mode
         if ssl_certificate is not None:
-            data_payload['ssl-certificate'] = ssl_certificate
+            data_payload["ssl-certificate"] = ssl_certificate
         if ssl_dh_bits is not None:
-            data_payload['ssl-dh-bits'] = ssl_dh_bits
+            data_payload["ssl-dh-bits"] = ssl_dh_bits
         if ssl_algorithm is not None:
-            data_payload['ssl-algorithm'] = ssl_algorithm
+            data_payload["ssl-algorithm"] = ssl_algorithm
         if ssl_cipher_suites is not None:
-            data_payload['ssl-cipher-suites'] = ssl_cipher_suites
+            data_payload["ssl-cipher-suites"] = ssl_cipher_suites
         if ssl_server_renegotiation is not None:
-            data_payload['ssl-server-renegotiation'] = ssl_server_renegotiation
+            data_payload["ssl-server-renegotiation"] = ssl_server_renegotiation
         if ssl_server_algorithm is not None:
-            data_payload['ssl-server-algorithm'] = ssl_server_algorithm
+            data_payload["ssl-server-algorithm"] = ssl_server_algorithm
         if ssl_server_cipher_suites is not None:
-            data_payload['ssl-server-cipher-suites'] = ssl_server_cipher_suites
+            data_payload["ssl-server-cipher-suites"] = ssl_server_cipher_suites
         if ssl_pfs is not None:
-            data_payload['ssl-pfs'] = ssl_pfs
+            data_payload["ssl-pfs"] = ssl_pfs
         if ssl_min_version is not None:
-            data_payload['ssl-min-version'] = ssl_min_version
+            data_payload["ssl-min-version"] = ssl_min_version
         if ssl_max_version is not None:
-            data_payload['ssl-max-version'] = ssl_max_version
+            data_payload["ssl-max-version"] = ssl_max_version
         if ssl_server_min_version is not None:
-            data_payload['ssl-server-min-version'] = ssl_server_min_version
+            data_payload["ssl-server-min-version"] = ssl_server_min_version
         if ssl_server_max_version is not None:
-            data_payload['ssl-server-max-version'] = ssl_server_max_version
+            data_payload["ssl-server-max-version"] = ssl_server_max_version
         if ssl_accept_ffdhe_groups is not None:
-            data_payload['ssl-accept-ffdhe-groups'] = ssl_accept_ffdhe_groups
+            data_payload["ssl-accept-ffdhe-groups"] = ssl_accept_ffdhe_groups
         if ssl_send_empty_frags is not None:
-            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+            data_payload["ssl-send-empty-frags"] = ssl_send_empty_frags
         if ssl_client_fallback is not None:
-            data_payload['ssl-client-fallback'] = ssl_client_fallback
+            data_payload["ssl-client-fallback"] = ssl_client_fallback
         if ssl_client_renegotiation is not None:
-            data_payload['ssl-client-renegotiation'] = ssl_client_renegotiation
+            data_payload["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_client_session_state_type is not None:
-            data_payload['ssl-client-session-state-type'] = ssl_client_session_state_type
+            data_payload["ssl-client-session-state-type"] = (
+                ssl_client_session_state_type
+            )
         if ssl_client_session_state_timeout is not None:
-            data_payload['ssl-client-session-state-timeout'] = ssl_client_session_state_timeout
+            data_payload["ssl-client-session-state-timeout"] = (
+                ssl_client_session_state_timeout
+            )
         if ssl_client_session_state_max is not None:
-            data_payload['ssl-client-session-state-max'] = ssl_client_session_state_max
+            data_payload["ssl-client-session-state-max"] = (
+                ssl_client_session_state_max
+            )
         if ssl_client_rekey_count is not None:
-            data_payload['ssl-client-rekey-count'] = ssl_client_rekey_count
+            data_payload["ssl-client-rekey-count"] = ssl_client_rekey_count
         if ssl_server_session_state_type is not None:
-            data_payload['ssl-server-session-state-type'] = ssl_server_session_state_type
+            data_payload["ssl-server-session-state-type"] = (
+                ssl_server_session_state_type
+            )
         if ssl_server_session_state_timeout is not None:
-            data_payload['ssl-server-session-state-timeout'] = ssl_server_session_state_timeout
+            data_payload["ssl-server-session-state-timeout"] = (
+                ssl_server_session_state_timeout
+            )
         if ssl_server_session_state_max is not None:
-            data_payload['ssl-server-session-state-max'] = ssl_server_session_state_max
+            data_payload["ssl-server-session-state-max"] = (
+                ssl_server_session_state_max
+            )
         if ssl_http_location_conversion is not None:
-            data_payload['ssl-http-location-conversion'] = ssl_http_location_conversion
+            data_payload["ssl-http-location-conversion"] = (
+                ssl_http_location_conversion
+            )
         if ssl_http_match_host is not None:
-            data_payload['ssl-http-match-host'] = ssl_http_match_host
+            data_payload["ssl-http-match-host"] = ssl_http_match_host
         if ssl_hpkp is not None:
-            data_payload['ssl-hpkp'] = ssl_hpkp
+            data_payload["ssl-hpkp"] = ssl_hpkp
         if ssl_hpkp_primary is not None:
-            data_payload['ssl-hpkp-primary'] = ssl_hpkp_primary
+            data_payload["ssl-hpkp-primary"] = ssl_hpkp_primary
         if ssl_hpkp_backup is not None:
-            data_payload['ssl-hpkp-backup'] = ssl_hpkp_backup
+            data_payload["ssl-hpkp-backup"] = ssl_hpkp_backup
         if ssl_hpkp_age is not None:
-            data_payload['ssl-hpkp-age'] = ssl_hpkp_age
+            data_payload["ssl-hpkp-age"] = ssl_hpkp_age
         if ssl_hpkp_report_uri is not None:
-            data_payload['ssl-hpkp-report-uri'] = ssl_hpkp_report_uri
+            data_payload["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
         if ssl_hpkp_include_subdomains is not None:
-            data_payload['ssl-hpkp-include-subdomains'] = ssl_hpkp_include_subdomains
+            data_payload["ssl-hpkp-include-subdomains"] = (
+                ssl_hpkp_include_subdomains
+            )
         if ssl_hsts is not None:
-            data_payload['ssl-hsts'] = ssl_hsts
+            data_payload["ssl-hsts"] = ssl_hsts
         if ssl_hsts_age is not None:
-            data_payload['ssl-hsts-age'] = ssl_hsts_age
+            data_payload["ssl-hsts-age"] = ssl_hsts_age
         if ssl_hsts_include_subdomains is not None:
-            data_payload['ssl-hsts-include-subdomains'] = ssl_hsts_include_subdomains
+            data_payload["ssl-hsts-include-subdomains"] = (
+                ssl_hsts_include_subdomains
+            )
         if monitor is not None:
-            data_payload['monitor'] = monitor
+            data_payload["monitor"] = monitor
         if max_embryonic_connections is not None:
-            data_payload['max-embryonic-connections'] = max_embryonic_connections
+            data_payload["max-embryonic-connections"] = (
+                max_embryonic_connections
+            )
         if embedded_ipv4_address is not None:
-            data_payload['embedded-ipv4-address'] = embedded_ipv4_address
+            data_payload["embedded-ipv4-address"] = embedded_ipv4_address
         if ipv4_mappedip is not None:
-            data_payload['ipv4-mappedip'] = ipv4_mappedip
+            data_payload["ipv4-mappedip"] = ipv4_mappedip
         if ipv4_mappedport is not None:
-            data_payload['ipv4-mappedport'] = ipv4_mappedport
+            data_payload["ipv4-mappedport"] = ipv4_mappedport
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

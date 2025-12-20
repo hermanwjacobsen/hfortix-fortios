@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.firmware.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.firmware.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Upgrade:
     """
     Upgrade Operations.
-    
+
     Provides read-only access for FortiOS upgrade data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Upgrade endpoint.
 
@@ -69,7 +69,7 @@ class Upgrade:
     ) -> dict[str, Any]:
         """
         Upgrade firmware image on this device.
-        
+
         Args:
             source: Firmware file data source [upload|usb|fortiguard|url]. (optional)
             url: URL where the image should be retrieved from. (optional)
@@ -84,42 +84,46 @@ class Upgrade:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.firmware.upgrade.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if source is not None:
-            data['source'] = source
+            data["source"] = source
         if url is not None:
-            data['url'] = url
+            data["url"] = url
         if passphrase is not None:
-            data['passphrase'] = passphrase
+            data["passphrase"] = passphrase
         if force is not None:
-            data['force'] = force
+            data["force"] = force
         if filename is not None:
-            data['filename'] = filename
+            data["filename"] = filename
         if format_partition is not None:
-            data['format_partition'] = format_partition
+            data["format_partition"] = format_partition
         if ignore_invalid_signature is not None:
-            data['ignore_invalid_signature'] = ignore_invalid_signature
+            data["ignore_invalid_signature"] = ignore_invalid_signature
         if file_id is not None:
-            data['file_id'] = file_id
+            data["file_id"] = file_id
         if ignore_admin_lockout_upon_downgrade is not None:
-            data['ignore_admin_lockout_upon_downgrade'] = ignore_admin_lockout_upon_downgrade
+            data["ignore_admin_lockout_upon_downgrade"] = (
+                ignore_admin_lockout_upon_downgrade
+            )
         if file_content is not None:
-            data['file_content'] = file_content
+            data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/system/firmware/upgrade", data=data)
+        return self._client.post(
+            "monitor", "/system/firmware/upgrade", data=data
+        )
 
 
 class UpgradePaths:
     """UpgradePaths operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize UpgradePaths endpoint.
 
@@ -136,27 +140,29 @@ class UpgradePaths:
     ) -> dict[str, Any]:
         """
         Retrieve a list of supported firmware upgrade paths.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.firmware.upgrade_paths.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/firmware/upgrade-paths", params=params)
+        return self._client.get(
+            "monitor", "/system/firmware/upgrade-paths", params=params
+        )
 
 
 class Firmware:
     """Firmware operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Firmware endpoint.
 
@@ -177,15 +183,15 @@ class Firmware:
     ) -> dict[str, Any]:
         """
         Retrieve a list of firmware images available to use for upgrade on this device.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.firmware.get()
         """

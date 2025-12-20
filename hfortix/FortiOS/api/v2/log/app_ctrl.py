@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.log.app_ctrl.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.log.app_ctrl.get(
     ...     count=100,
@@ -27,7 +27,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
 
-from .base import ArchiveDownloadResource, ArchiveResource, LogResource, RawResource
+from .base import (ArchiveDownloadResource, ArchiveResource, LogResource,
+                   RawResource)
 
 if TYPE_CHECKING:
     from ....http_client_interface import IHTTPClient
@@ -36,21 +37,23 @@ if TYPE_CHECKING:
 class AppCtrl:
     """
     Appctrl Operations.
-    
+
     Provides read-only access for FortiOS appctrl data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self._storage = storage
         self.archive = ArchiveResource(client, "app-ctrl", storage)
-        self.archive_download = ArchiveDownloadResource(client, "app-ctrl", storage)
+        self.archive_download = ArchiveDownloadResource(
+            client, "app-ctrl", storage
+        )
         self.raw = RawResource(client, "app-ctrl", storage)
         self._resource = LogResource(client, "app-ctrl", storage)
 
@@ -64,15 +67,15 @@ class AppCtrl:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get App Control logs (formatted).
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='app==Facebook')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'app==Facebook'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -83,7 +86,7 @@ class AppCtrl:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -103,7 +106,7 @@ class AppCtrl:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -113,7 +116,19 @@ class AppCtrl:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 

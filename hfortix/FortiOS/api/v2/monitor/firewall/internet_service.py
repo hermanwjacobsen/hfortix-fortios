@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.internet_service.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.internet_service.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class InternetService:
     """
     Internetservice Operations.
-    
+
     Provides read-only access for FortiOS internetservice data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize InternetService endpoint.
 
@@ -84,7 +84,9 @@ class InternetService:
         if country is not None:
             params["country"] = country
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-match", params=params)
+        return self._client.get(
+            "monitor", "/firewall/internet-service-match", params=params
+        )
 
     def details(
         self,
@@ -122,10 +124,15 @@ class InternetService:
         if country is not None:
             params["country"] = country
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-details", params=params)
+        return self._client.get(
+            "monitor", "/firewall/internet-service-details", params=params
+        )
 
     def reputation(
-        self, data_dict: Optional[Dict[str, Any]] = None, ip: Optional[str] = None, **kwargs
+        self,
+        data_dict: Optional[Dict[str, Any]] = None,
+        ip: Optional[str] = None,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         List internet services with reputation information that exist at a given IP.
@@ -145,4 +152,6 @@ class InternetService:
         if ip is not None:
             params["ip"] = ip
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-reputation", params=params)
+        return self._client.get(
+            "monitor", "/firewall/internet-service-reputation", params=params
+        )

@@ -48,21 +48,68 @@ from .traffic_sniffer import TrafficSniffer
 from .virtual_port_pool import VirtualPortPool
 from .vlan_policy import VlanPolicy
 
-__all__ = ['AclGroup', 'AclIngress', 'AutoConfigCustom', 'AutoConfigDefault', 'AutoConfigPolicy', 'CustomCommand', 'DynamicPortPolicy', 'FlowTracking', 'FortilinkSettings', 'Global', 'IgmpSnooping', 'InitialConfigTemplate', 'InitialConfigVlans', 'IpSourceGuardLog', 'LldpProfile', 'LldpSettings', 'Location', 'MacPolicy', 'ManagedSwitch', 'NetworkMonitorSettings', 'PtpInterfacePolicy', 'PtpProfile', 'QosDot1pMap', 'QosIpDscpMap', 'QosQosPolicy', 'QosQueuePolicy', 'RemoteLog', 'SecurityPolicyEight02OneX', 'SecurityPolicyLocalAccess', 'Sflow', 'SnmpCommunity', 'SnmpSysinfo', 'SnmpTrapThreshold', 'SnmpUser', 'StormControl', 'StormControlPolicy', 'StpInstance', 'StpSettings', 'SwitchGroup', 'SwitchInterfaceTag', 'SwitchLog', 'SwitchProfile', 'System', 'TrafficPolicy', 'TrafficSniffer', 'VirtualPortPool', 'VlanPolicy']
-
+__all__ = [
+    "AclGroup",
+    "AclIngress",
+    "AutoConfigCustom",
+    "AutoConfigDefault",
+    "AutoConfigPolicy",
+    "CustomCommand",
+    "DynamicPortPolicy",
+    "FlowTracking",
+    "FortilinkSettings",
+    "Global",
+    "IgmpSnooping",
+    "InitialConfigTemplate",
+    "InitialConfigVlans",
+    "IpSourceGuardLog",
+    "LldpProfile",
+    "LldpSettings",
+    "Location",
+    "MacPolicy",
+    "ManagedSwitch",
+    "NetworkMonitorSettings",
+    "PtpInterfacePolicy",
+    "PtpProfile",
+    "QosDot1pMap",
+    "QosIpDscpMap",
+    "QosQosPolicy",
+    "QosQueuePolicy",
+    "RemoteLog",
+    "SecurityPolicyEight02OneX",
+    "SecurityPolicyLocalAccess",
+    "Sflow",
+    "SnmpCommunity",
+    "SnmpSysinfo",
+    "SnmpTrapThreshold",
+    "SnmpUser",
+    "StormControl",
+    "StormControlPolicy",
+    "StpInstance",
+    "StpSettings",
+    "SwitchGroup",
+    "SwitchInterfaceTag",
+    "SwitchLog",
+    "SwitchProfile",
+    "System",
+    "TrafficPolicy",
+    "TrafficSniffer",
+    "VirtualPortPool",
+    "VlanPolicy",
+]
 
 
 class SwitchController:
     """
     SwitchController category wrapper.
-    
+
     This class provides access to all switch-controller CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize SwitchController with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

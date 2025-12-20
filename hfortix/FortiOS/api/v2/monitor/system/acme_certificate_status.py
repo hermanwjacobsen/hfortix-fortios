@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.acme_certificate_status.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.acme_certificate_status.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class AcmeCertificateStatus:
     """
     Acmecertificatestatus Operations.
-    
+
     Provides read-only access for FortiOS acmecertificatestatus data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize AcmeCertificateStatus endpoint.
 
@@ -61,23 +61,25 @@ class AcmeCertificateStatus:
     ) -> dict[str, Any]:
         """
         Get ACME certificate status.
-        
+
         Args:
             mkey: Check if specific certificate is available. (required)
             scope: Scope of certificate [vdom*|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.acme_certificate_status.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
+        params["mkey"] = mkey
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/system/acme-certificate-status", params=params)
+        return self._client.get(
+            "monitor", "/system/acme-certificate-status", params=params
+        )

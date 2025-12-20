@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.ipconf.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.ipconf.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Ipconf:
     """
     Ipconf Operations.
-    
+
     Provides read-only access for FortiOS ipconf data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ipconf endpoint.
 
@@ -61,22 +61,22 @@ class Ipconf:
     ) -> dict[str, Any]:
         """
         Determine if there is an IP conflict for a specific IP using ARP.
-        
+
         Args:
             devs: List of interfaces to check for conflict. (required)
             ipaddr: IPv4 address to check for conflict. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.ipconf.get(ipaddr='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['devs'] = devs
-        params['ipaddr'] = ipaddr
+        params["devs"] = devs
+        params["ipaddr"] = ipaddr
         params.update(kwargs)
         return self._client.get("monitor", "/system/ipconf", params=params)

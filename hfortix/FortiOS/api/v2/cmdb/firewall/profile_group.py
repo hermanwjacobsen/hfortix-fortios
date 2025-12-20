@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.profile_group.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.profile_group.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.profile_group.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.profile_group.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.profile_group.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ProfileGroup:
     """
     Profilegroup Operations.
-    
+
     Provides CRUD operations for FortiOS profilegroup configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ProfileGroup:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ProfileGroup:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ProfileGroup endpoint.
 
@@ -90,7 +90,7 @@ class ProfileGroup:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ProfileGroup:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ProfileGroup:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall/profile-group/{name}"
         else:
             endpoint = "/firewall/profile-group"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -162,7 +164,7 @@ class ProfileGroup:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -192,7 +194,7 @@ class ProfileGroup:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -200,65 +202,67 @@ class ProfileGroup:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall/profile-group/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if profile_protocol_options is not None:
-            data_payload['profile-protocol-options'] = profile_protocol_options
+            data_payload["profile-protocol-options"] = profile_protocol_options
         if ssl_ssh_profile is not None:
-            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+            data_payload["ssl-ssh-profile"] = ssl_ssh_profile
         if av_profile is not None:
-            data_payload['av-profile'] = av_profile
+            data_payload["av-profile"] = av_profile
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if dnsfilter_profile is not None:
-            data_payload['dnsfilter-profile'] = dnsfilter_profile
+            data_payload["dnsfilter-profile"] = dnsfilter_profile
         if emailfilter_profile is not None:
-            data_payload['emailfilter-profile'] = emailfilter_profile
+            data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile is not None:
-            data_payload['dlp-profile'] = dlp_profile
+            data_payload["dlp-profile"] = dlp_profile
         if file_filter_profile is not None:
-            data_payload['file-filter-profile'] = file_filter_profile
+            data_payload["file-filter-profile"] = file_filter_profile
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if voip_profile is not None:
-            data_payload['voip-profile'] = voip_profile
+            data_payload["voip-profile"] = voip_profile
         if ips_voip_filter is not None:
-            data_payload['ips-voip-filter'] = ips_voip_filter
+            data_payload["ips-voip-filter"] = ips_voip_filter
         if sctp_filter_profile is not None:
-            data_payload['sctp-filter-profile'] = sctp_filter_profile
+            data_payload["sctp-filter-profile"] = sctp_filter_profile
         if diameter_filter_profile is not None:
-            data_payload['diameter-filter-profile'] = diameter_filter_profile
+            data_payload["diameter-filter-profile"] = diameter_filter_profile
         if virtual_patch_profile is not None:
-            data_payload['virtual-patch-profile'] = virtual_patch_profile
+            data_payload["virtual-patch-profile"] = virtual_patch_profile
         if icap_profile is not None:
-            data_payload['icap-profile'] = icap_profile
+            data_payload["icap-profile"] = icap_profile
         if videofilter_profile is not None:
-            data_payload['videofilter-profile'] = videofilter_profile
+            data_payload["videofilter-profile"] = videofilter_profile
         if waf_profile is not None:
-            data_payload['waf-profile'] = waf_profile
+            data_payload["waf-profile"] = waf_profile
         if ssh_filter_profile is not None:
-            data_payload['ssh-filter-profile'] = ssh_filter_profile
+            data_payload["ssh-filter-profile"] = ssh_filter_profile
         if casb_profile is not None:
-            data_payload['casb-profile'] = casb_profile
+            data_payload["casb-profile"] = casb_profile
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -270,13 +274,13 @@ class ProfileGroup:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -284,18 +288,20 @@ class ProfileGroup:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/profile-group/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -304,37 +310,39 @@ class ProfileGroup:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -367,7 +375,7 @@ class ProfileGroup:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -395,7 +403,7 @@ class ProfileGroup:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -403,7 +411,7 @@ class ProfileGroup:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -411,48 +419,50 @@ class ProfileGroup:
         params = {}
         endpoint = "/firewall/profile-group"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if profile_protocol_options is not None:
-            data_payload['profile-protocol-options'] = profile_protocol_options
+            data_payload["profile-protocol-options"] = profile_protocol_options
         if ssl_ssh_profile is not None:
-            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+            data_payload["ssl-ssh-profile"] = ssl_ssh_profile
         if av_profile is not None:
-            data_payload['av-profile'] = av_profile
+            data_payload["av-profile"] = av_profile
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if dnsfilter_profile is not None:
-            data_payload['dnsfilter-profile'] = dnsfilter_profile
+            data_payload["dnsfilter-profile"] = dnsfilter_profile
         if emailfilter_profile is not None:
-            data_payload['emailfilter-profile'] = emailfilter_profile
+            data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile is not None:
-            data_payload['dlp-profile'] = dlp_profile
+            data_payload["dlp-profile"] = dlp_profile
         if file_filter_profile is not None:
-            data_payload['file-filter-profile'] = file_filter_profile
+            data_payload["file-filter-profile"] = file_filter_profile
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if voip_profile is not None:
-            data_payload['voip-profile'] = voip_profile
+            data_payload["voip-profile"] = voip_profile
         if ips_voip_filter is not None:
-            data_payload['ips-voip-filter'] = ips_voip_filter
+            data_payload["ips-voip-filter"] = ips_voip_filter
         if sctp_filter_profile is not None:
-            data_payload['sctp-filter-profile'] = sctp_filter_profile
+            data_payload["sctp-filter-profile"] = sctp_filter_profile
         if diameter_filter_profile is not None:
-            data_payload['diameter-filter-profile'] = diameter_filter_profile
+            data_payload["diameter-filter-profile"] = diameter_filter_profile
         if virtual_patch_profile is not None:
-            data_payload['virtual-patch-profile'] = virtual_patch_profile
+            data_payload["virtual-patch-profile"] = virtual_patch_profile
         if icap_profile is not None:
-            data_payload['icap-profile'] = icap_profile
+            data_payload["icap-profile"] = icap_profile
         if videofilter_profile is not None:
-            data_payload['videofilter-profile'] = videofilter_profile
+            data_payload["videofilter-profile"] = videofilter_profile
         if waf_profile is not None:
-            data_payload['waf-profile'] = waf_profile
+            data_payload["waf-profile"] = waf_profile
         if ssh_filter_profile is not None:
-            data_payload['ssh-filter-profile'] = ssh_filter_profile
+            data_payload["ssh-filter-profile"] = ssh_filter_profile
         if casb_profile is not None:
-            data_payload['casb-profile'] = casb_profile
+            data_payload["casb-profile"] = casb_profile
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

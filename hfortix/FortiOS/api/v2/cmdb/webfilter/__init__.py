@@ -15,21 +15,35 @@ from .profile import Profile
 from .search_engine import SearchEngine
 from .urlfilter import Urlfilter
 
-__all__ = ['Content', 'ContentHeader', 'Fortiguard', 'FtgdLocalCat', 'FtgdLocalRating', 'FtgdLocalRisk', 'FtgdRiskLevel', 'IpsUrlfilterCacheSetting', 'IpsUrlfilterSetting', 'IpsUrlfilterSetting6', 'Override', 'Profile', 'SearchEngine', 'Urlfilter']
-
+__all__ = [
+    "Content",
+    "ContentHeader",
+    "Fortiguard",
+    "FtgdLocalCat",
+    "FtgdLocalRating",
+    "FtgdLocalRisk",
+    "FtgdRiskLevel",
+    "IpsUrlfilterCacheSetting",
+    "IpsUrlfilterSetting",
+    "IpsUrlfilterSetting6",
+    "Override",
+    "Profile",
+    "SearchEngine",
+    "Urlfilter",
+]
 
 
 class Webfilter:
     """
     Webfilter category wrapper.
-    
+
     This class provides access to all webfilter CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Webfilter with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

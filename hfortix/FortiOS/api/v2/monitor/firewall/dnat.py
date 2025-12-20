@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.dnat.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.dnat.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class ClearCounters:
     """
     Clearcounters Operations.
-    
+
     Provides read-only access for FortiOS clearcounters data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ClearCounters endpoint.
 
@@ -61,33 +61,35 @@ class ClearCounters:
     ) -> dict[str, Any]:
         """
         Reset hit count statistics for one or more firewall virtual IP/server by ID.
-        
+
         Args:
             id: Single IDs to reset. (optional)
             is_ipv6: Clear only IPv6 VIP stats. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.dnat.clear_counters.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if id is not None:
-            data['id'] = id
+            data["id"] = id
         if is_ipv6 is not None:
-            data['is_ipv6'] = is_ipv6
+            data["is_ipv6"] = is_ipv6
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/dnat/clear-counters", data=data)
+        return self._client.post(
+            "monitor", "/firewall/dnat/clear-counters", data=data
+        )
 
 
 class Reset:
     """Reset operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Reset endpoint.
 
@@ -104,15 +106,15 @@ class Reset:
     ) -> dict[str, Any]:
         """
         Reset hit count statistics for all firewall virtual IPs/servers.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.dnat.reset.post()
         """
@@ -124,7 +126,7 @@ class Reset:
 class Dnat:
     """Dnat operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Dnat endpoint.
 
@@ -147,24 +149,24 @@ class Dnat:
     ) -> dict[str, Any]:
         """
         List hit count statistics for firewall virtual IP/server.
-        
+
         Args:
             uuid: Filter: Virtual IP UUID. (optional)
             ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left empty, will retrieve data for both IPv4 and IPv6. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.dnat.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if uuid is not None:
-            params['uuid'] = uuid
+            params["uuid"] = uuid
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/dnat", params=params)

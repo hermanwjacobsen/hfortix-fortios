@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.address6.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.address6.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.address6.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.address6.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.address6.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Address6:
     """
     Address6 Operations.
-    
+
     Provides CRUD operations for FortiOS address6 configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Address6:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Address6:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Address6 endpoint.
 
@@ -90,7 +90,7 @@ class Address6:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Address6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Address6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall/address6/{name}"
         else:
             endpoint = "/firewall/address6"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -169,7 +171,7 @@ class Address6:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -206,7 +208,7 @@ class Address6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -214,79 +216,81 @@ class Address6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall/address6/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if route_tag is not None:
-            data_payload['route-tag'] = route_tag
+            data_payload["route-tag"] = route_tag
         if macaddr is not None:
-            data_payload['macaddr'] = macaddr
+            data_payload["macaddr"] = macaddr
         if sdn is not None:
-            data_payload['sdn'] = sdn
+            data_payload["sdn"] = sdn
         if ip6 is not None:
-            data_payload['ip6'] = ip6
+            data_payload["ip6"] = ip6
         if wildcard is not None:
-            data_payload['wildcard'] = wildcard
+            data_payload["wildcard"] = wildcard
         if start_ip is not None:
-            data_payload['start-ip'] = start_ip
+            data_payload["start-ip"] = start_ip
         if end_ip is not None:
-            data_payload['end-ip'] = end_ip
+            data_payload["end-ip"] = end_ip
         if fqdn is not None:
-            data_payload['fqdn'] = fqdn
+            data_payload["fqdn"] = fqdn
         if country is not None:
-            data_payload['country'] = country
+            data_payload["country"] = country
         if cache_ttl is not None:
-            data_payload['cache-ttl'] = cache_ttl
+            data_payload["cache-ttl"] = cache_ttl
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if obj_id is not None:
-            data_payload['obj-id'] = obj_id
+            data_payload["obj-id"] = obj_id
         if tagging is not None:
-            data_payload['tagging'] = tagging
+            data_payload["tagging"] = tagging
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if template is not None:
-            data_payload['template'] = template
+            data_payload["template"] = template
         if subnet_segment is not None:
-            data_payload['subnet-segment'] = subnet_segment
+            data_payload["subnet-segment"] = subnet_segment
         if host_type is not None:
-            data_payload['host-type'] = host_type
+            data_payload["host-type"] = host_type
         if host is not None:
-            data_payload['host'] = host
+            data_payload["host"] = host
         if tenant is not None:
-            data_payload['tenant'] = tenant
+            data_payload["tenant"] = tenant
         if epg_name is not None:
-            data_payload['epg-name'] = epg_name
+            data_payload["epg-name"] = epg_name
         if sdn_tag is not None:
-            data_payload['sdn-tag'] = sdn_tag
+            data_payload["sdn-tag"] = sdn_tag
         if list is not None:
-            data_payload['list'] = list
+            data_payload["list"] = list
         if sdn_addr_type is not None:
-            data_payload['sdn-addr-type'] = sdn_addr_type
+            data_payload["sdn-addr-type"] = sdn_addr_type
         if passive_fqdn_learning is not None:
-            data_payload['passive-fqdn-learning'] = passive_fqdn_learning
+            data_payload["passive-fqdn-learning"] = passive_fqdn_learning
         if fabric_object is not None:
-            data_payload['fabric-object'] = fabric_object
+            data_payload["fabric-object"] = fabric_object
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -298,13 +302,13 @@ class Address6:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -312,18 +316,20 @@ class Address6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/address6/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -332,37 +338,39 @@ class Address6:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -402,7 +410,7 @@ class Address6:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -437,7 +445,7 @@ class Address6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -445,7 +453,7 @@ class Address6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -453,62 +461,64 @@ class Address6:
         params = {}
         endpoint = "/firewall/address6"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if route_tag is not None:
-            data_payload['route-tag'] = route_tag
+            data_payload["route-tag"] = route_tag
         if macaddr is not None:
-            data_payload['macaddr'] = macaddr
+            data_payload["macaddr"] = macaddr
         if sdn is not None:
-            data_payload['sdn'] = sdn
+            data_payload["sdn"] = sdn
         if ip6 is not None:
-            data_payload['ip6'] = ip6
+            data_payload["ip6"] = ip6
         if wildcard is not None:
-            data_payload['wildcard'] = wildcard
+            data_payload["wildcard"] = wildcard
         if start_ip is not None:
-            data_payload['start-ip'] = start_ip
+            data_payload["start-ip"] = start_ip
         if end_ip is not None:
-            data_payload['end-ip'] = end_ip
+            data_payload["end-ip"] = end_ip
         if fqdn is not None:
-            data_payload['fqdn'] = fqdn
+            data_payload["fqdn"] = fqdn
         if country is not None:
-            data_payload['country'] = country
+            data_payload["country"] = country
         if cache_ttl is not None:
-            data_payload['cache-ttl'] = cache_ttl
+            data_payload["cache-ttl"] = cache_ttl
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if obj_id is not None:
-            data_payload['obj-id'] = obj_id
+            data_payload["obj-id"] = obj_id
         if tagging is not None:
-            data_payload['tagging'] = tagging
+            data_payload["tagging"] = tagging
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if template is not None:
-            data_payload['template'] = template
+            data_payload["template"] = template
         if subnet_segment is not None:
-            data_payload['subnet-segment'] = subnet_segment
+            data_payload["subnet-segment"] = subnet_segment
         if host_type is not None:
-            data_payload['host-type'] = host_type
+            data_payload["host-type"] = host_type
         if host is not None:
-            data_payload['host'] = host
+            data_payload["host"] = host
         if tenant is not None:
-            data_payload['tenant'] = tenant
+            data_payload["tenant"] = tenant
         if epg_name is not None:
-            data_payload['epg-name'] = epg_name
+            data_payload["epg-name"] = epg_name
         if sdn_tag is not None:
-            data_payload['sdn-tag'] = sdn_tag
+            data_payload["sdn-tag"] = sdn_tag
         if list is not None:
-            data_payload['list'] = list
+            data_payload["list"] = list
         if sdn_addr_type is not None:
-            data_payload['sdn-addr-type'] = sdn_addr_type
+            data_payload["sdn-addr-type"] = sdn_addr_type
         if passive_fqdn_learning is not None:
-            data_payload['passive-fqdn-learning'] = passive_fqdn_learning
+            data_payload["passive-fqdn-learning"] = passive_fqdn_learning
         if fabric_object is not None:
-            data_payload['fabric-object'] = fabric_object
+            data_payload["fabric-object"] = fabric_object
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

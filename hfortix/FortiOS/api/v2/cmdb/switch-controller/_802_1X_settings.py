@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.switch_controller._802_1X_settings.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.switch_controller._802_1X_settings.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller._802_1X_settings.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.switch_controller._802_1X_settings.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.switch_controller._802_1X_settings.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Eight02OneXSettings:
     """
     Eight02Onexsettings Operations.
-    
+
     Provides CRUD operations for FortiOS eight02onexsettings configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Eight02OneXSettings:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Eight02OneXSettings endpoint.
 
@@ -82,14 +82,14 @@ class Eight02OneXSettings:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Eight02OneXSettings:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/switch-controller/802-1X-settings"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -131,7 +133,7 @@ class Eight02OneXSettings:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -149,7 +151,7 @@ class Eight02OneXSettings:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -157,7 +159,7 @@ class Eight02OneXSettings:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -165,28 +167,34 @@ class Eight02OneXSettings:
         params = {}
         endpoint = "/switch-controller/802-1X-settings"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if link_down_auth is not None:
-            data_payload['link-down-auth'] = link_down_auth
+            data_payload["link-down-auth"] = link_down_auth
         if reauth_period is not None:
-            data_payload['reauth-period'] = reauth_period
+            data_payload["reauth-period"] = reauth_period
         if max_reauth_attempt is not None:
-            data_payload['max-reauth-attempt'] = max_reauth_attempt
+            data_payload["max-reauth-attempt"] = max_reauth_attempt
         if tx_period is not None:
-            data_payload['tx-period'] = tx_period
+            data_payload["tx-period"] = tx_period
         if mab_reauth is not None:
-            data_payload['mab-reauth'] = mab_reauth
+            data_payload["mab-reauth"] = mab_reauth
         if mac_username_delimiter is not None:
-            data_payload['mac-username-delimiter'] = mac_username_delimiter
+            data_payload["mac-username-delimiter"] = mac_username_delimiter
         if mac_password_delimiter is not None:
-            data_payload['mac-password-delimiter'] = mac_password_delimiter
+            data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload['mac-calling-station-delimiter'] = mac_calling_station_delimiter
+            data_payload["mac-calling-station-delimiter"] = (
+                mac_calling_station_delimiter
+            )
         if mac_called_station_delimiter is not None:
-            data_payload['mac-called-station-delimiter'] = mac_called_station_delimiter
+            data_payload["mac-called-station-delimiter"] = (
+                mac_called_station_delimiter
+            )
         if mac_case is not None:
-            data_payload['mac-case'] = mac_case
+            data_payload["mac-case"] = mac_case
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

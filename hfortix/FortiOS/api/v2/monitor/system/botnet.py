@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.botnet.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.botnet.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Stat:
     """
     Stat Operations.
-    
+
     Provides read-only access for FortiOS stat data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Stat endpoint.
 
@@ -59,27 +59,29 @@ class Stat:
     ) -> dict[str, Any]:
         """
         Retrieve statistics for FortiGuard botnet database.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.botnet.stat.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/botnet/stat", params=params)
+        return self._client.get(
+            "monitor", "/system/botnet/stat", params=params
+        )
 
 
 class Botnet:
     """Botnet operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Botnet endpoint.
 
@@ -100,21 +102,21 @@ class Botnet:
     ) -> dict[str, Any]:
         """
         List all known IP-based botnet entries in FortiGuard botnet database.
-        
+
         Args:
             include_hit_only: Include entries with hits only. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.botnet.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if include_hit_only is not None:
-            params['include_hit_only'] = include_hit_only
+            params["include_hit_only"] = include_hit_only
         params.update(kwargs)
         return self._client.get("monitor", "/system/botnet", params=params)

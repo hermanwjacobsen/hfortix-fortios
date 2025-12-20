@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.shaper_traffic_shaper.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.shaper_traffic_shaper.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.shaper_traffic_shaper.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.shaper_traffic_shaper.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.shaper_traffic_shaper.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ShaperTrafficShaper:
     """
     Shapertrafficshaper Operations.
-    
+
     Provides CRUD operations for FortiOS shapertrafficshaper configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ShaperTrafficShaper:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ShaperTrafficShaper:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ShaperTrafficShaper endpoint.
 
@@ -90,7 +90,7 @@ class ShaperTrafficShaper:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ShaperTrafficShaper:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ShaperTrafficShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall.shaper/traffic-shaper/{name}"
         else:
             endpoint = "/firewall.shaper/traffic-shaper"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -160,7 +162,7 @@ class ShaperTrafficShaper:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -188,7 +190,7 @@ class ShaperTrafficShaper:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -196,61 +198,63 @@ class ShaperTrafficShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall.shaper/traffic-shaper/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if guaranteed_bandwidth is not None:
-            data_payload['guaranteed-bandwidth'] = guaranteed_bandwidth
+            data_payload["guaranteed-bandwidth"] = guaranteed_bandwidth
         if maximum_bandwidth is not None:
-            data_payload['maximum-bandwidth'] = maximum_bandwidth
+            data_payload["maximum-bandwidth"] = maximum_bandwidth
         if bandwidth_unit is not None:
-            data_payload['bandwidth-unit'] = bandwidth_unit
+            data_payload["bandwidth-unit"] = bandwidth_unit
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if per_policy is not None:
-            data_payload['per-policy'] = per_policy
+            data_payload["per-policy"] = per_policy
         if diffserv is not None:
-            data_payload['diffserv'] = diffserv
+            data_payload["diffserv"] = diffserv
         if diffservcode is not None:
-            data_payload['diffservcode'] = diffservcode
+            data_payload["diffservcode"] = diffservcode
         if dscp_marking_method is not None:
-            data_payload['dscp-marking-method'] = dscp_marking_method
+            data_payload["dscp-marking-method"] = dscp_marking_method
         if exceed_bandwidth is not None:
-            data_payload['exceed-bandwidth'] = exceed_bandwidth
+            data_payload["exceed-bandwidth"] = exceed_bandwidth
         if exceed_dscp is not None:
-            data_payload['exceed-dscp'] = exceed_dscp
+            data_payload["exceed-dscp"] = exceed_dscp
         if maximum_dscp is not None:
-            data_payload['maximum-dscp'] = maximum_dscp
+            data_payload["maximum-dscp"] = maximum_dscp
         if cos_marking is not None:
-            data_payload['cos-marking'] = cos_marking
+            data_payload["cos-marking"] = cos_marking
         if cos_marking_method is not None:
-            data_payload['cos-marking-method'] = cos_marking_method
+            data_payload["cos-marking-method"] = cos_marking_method
         if cos is not None:
-            data_payload['cos'] = cos
+            data_payload["cos"] = cos
         if exceed_cos is not None:
-            data_payload['exceed-cos'] = exceed_cos
+            data_payload["exceed-cos"] = exceed_cos
         if maximum_cos is not None:
-            data_payload['maximum-cos'] = maximum_cos
+            data_payload["maximum-cos"] = maximum_cos
         if overhead is not None:
-            data_payload['overhead'] = overhead
+            data_payload["overhead"] = overhead
         if exceed_class_id is not None:
-            data_payload['exceed-class-id'] = exceed_class_id
+            data_payload["exceed-class-id"] = exceed_class_id
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -262,13 +266,13 @@ class ShaperTrafficShaper:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -276,18 +280,20 @@ class ShaperTrafficShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall.shaper/traffic-shaper/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -296,37 +302,39 @@ class ShaperTrafficShaper:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -357,7 +365,7 @@ class ShaperTrafficShaper:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -383,7 +391,7 @@ class ShaperTrafficShaper:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -391,7 +399,7 @@ class ShaperTrafficShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -399,44 +407,46 @@ class ShaperTrafficShaper:
         params = {}
         endpoint = "/firewall.shaper/traffic-shaper"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if guaranteed_bandwidth is not None:
-            data_payload['guaranteed-bandwidth'] = guaranteed_bandwidth
+            data_payload["guaranteed-bandwidth"] = guaranteed_bandwidth
         if maximum_bandwidth is not None:
-            data_payload['maximum-bandwidth'] = maximum_bandwidth
+            data_payload["maximum-bandwidth"] = maximum_bandwidth
         if bandwidth_unit is not None:
-            data_payload['bandwidth-unit'] = bandwidth_unit
+            data_payload["bandwidth-unit"] = bandwidth_unit
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if per_policy is not None:
-            data_payload['per-policy'] = per_policy
+            data_payload["per-policy"] = per_policy
         if diffserv is not None:
-            data_payload['diffserv'] = diffserv
+            data_payload["diffserv"] = diffserv
         if diffservcode is not None:
-            data_payload['diffservcode'] = diffservcode
+            data_payload["diffservcode"] = diffservcode
         if dscp_marking_method is not None:
-            data_payload['dscp-marking-method'] = dscp_marking_method
+            data_payload["dscp-marking-method"] = dscp_marking_method
         if exceed_bandwidth is not None:
-            data_payload['exceed-bandwidth'] = exceed_bandwidth
+            data_payload["exceed-bandwidth"] = exceed_bandwidth
         if exceed_dscp is not None:
-            data_payload['exceed-dscp'] = exceed_dscp
+            data_payload["exceed-dscp"] = exceed_dscp
         if maximum_dscp is not None:
-            data_payload['maximum-dscp'] = maximum_dscp
+            data_payload["maximum-dscp"] = maximum_dscp
         if cos_marking is not None:
-            data_payload['cos-marking'] = cos_marking
+            data_payload["cos-marking"] = cos_marking
         if cos_marking_method is not None:
-            data_payload['cos-marking-method'] = cos_marking_method
+            data_payload["cos-marking-method"] = cos_marking_method
         if cos is not None:
-            data_payload['cos'] = cos
+            data_payload["cos"] = cos
         if exceed_cos is not None:
-            data_payload['exceed-cos'] = exceed_cos
+            data_payload["exceed-cos"] = exceed_cos
         if maximum_cos is not None:
-            data_payload['maximum-cos'] = maximum_cos
+            data_payload["maximum-cos"] = maximum_cos
         if overhead is not None:
-            data_payload['overhead'] = overhead
+            data_payload["overhead"] = overhead
         if exceed_class_id is not None:
-            data_payload['exceed-class-id'] = exceed_class_id
+            data_payload["exceed-class-id"] = exceed_class_id
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

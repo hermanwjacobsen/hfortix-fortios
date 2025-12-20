@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.dhcp6_server.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.dhcp6_server.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.dhcp6_server.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.dhcp6_server.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.dhcp6_server.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Dhcp6Server:
     """
     Dhcp6Server Operations.
-    
+
     Provides CRUD operations for FortiOS dhcp6server configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Dhcp6Server:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Dhcp6Server:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Dhcp6Server endpoint.
 
@@ -90,7 +90,7 @@ class Dhcp6Server:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Dhcp6Server:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Dhcp6Server:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if id:
             endpoint = f"/system.dhcp6/server/{id}"
         else:
             endpoint = "/system.dhcp6/server"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -162,7 +164,7 @@ class Dhcp6Server:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             id: Object identifier (required)
@@ -192,7 +194,7 @@ class Dhcp6Server:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -200,65 +202,67 @@ class Dhcp6Server:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for put()")
         endpoint = f"/system.dhcp6/server/{id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if rapid_commit is not None:
-            data_payload['rapid-commit'] = rapid_commit
+            data_payload["rapid-commit"] = rapid_commit
         if lease_time is not None:
-            data_payload['lease-time'] = lease_time
+            data_payload["lease-time"] = lease_time
         if dns_service is not None:
-            data_payload['dns-service'] = dns_service
+            data_payload["dns-service"] = dns_service
         if dns_search_list is not None:
-            data_payload['dns-search-list'] = dns_search_list
+            data_payload["dns-search-list"] = dns_search_list
         if dns_server1 is not None:
-            data_payload['dns-server1'] = dns_server1
+            data_payload["dns-server1"] = dns_server1
         if dns_server2 is not None:
-            data_payload['dns-server2'] = dns_server2
+            data_payload["dns-server2"] = dns_server2
         if dns_server3 is not None:
-            data_payload['dns-server3'] = dns_server3
+            data_payload["dns-server3"] = dns_server3
         if dns_server4 is not None:
-            data_payload['dns-server4'] = dns_server4
+            data_payload["dns-server4"] = dns_server4
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if subnet is not None:
-            data_payload['subnet'] = subnet
+            data_payload["subnet"] = subnet
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if delegated_prefix_route is not None:
-            data_payload['delegated-prefix-route'] = delegated_prefix_route
+            data_payload["delegated-prefix-route"] = delegated_prefix_route
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if upstream_interface is not None:
-            data_payload['upstream-interface'] = upstream_interface
+            data_payload["upstream-interface"] = upstream_interface
         if delegated_prefix_iaid is not None:
-            data_payload['delegated-prefix-iaid'] = delegated_prefix_iaid
+            data_payload["delegated-prefix-iaid"] = delegated_prefix_iaid
         if ip_mode is not None:
-            data_payload['ip-mode'] = ip_mode
+            data_payload["ip-mode"] = ip_mode
         if prefix_mode is not None:
-            data_payload['prefix-mode'] = prefix_mode
+            data_payload["prefix-mode"] = prefix_mode
         if prefix_range is not None:
-            data_payload['prefix-range'] = prefix_range
+            data_payload["prefix-range"] = prefix_range
         if ip_range is not None:
-            data_payload['ip-range'] = ip_range
+            data_payload["ip-range"] = ip_range
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -270,13 +274,13 @@ class Dhcp6Server:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -284,18 +288,20 @@ class Dhcp6Server:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for delete()")
         endpoint = f"/system.dhcp6/server/{id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -304,37 +310,39 @@ class Dhcp6Server:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             id: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(id=id, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -367,7 +375,7 @@ class Dhcp6Server:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -395,7 +403,7 @@ class Dhcp6Server:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -403,7 +411,7 @@ class Dhcp6Server:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -411,48 +419,50 @@ class Dhcp6Server:
         params = {}
         endpoint = "/system.dhcp6/server"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if rapid_commit is not None:
-            data_payload['rapid-commit'] = rapid_commit
+            data_payload["rapid-commit"] = rapid_commit
         if lease_time is not None:
-            data_payload['lease-time'] = lease_time
+            data_payload["lease-time"] = lease_time
         if dns_service is not None:
-            data_payload['dns-service'] = dns_service
+            data_payload["dns-service"] = dns_service
         if dns_search_list is not None:
-            data_payload['dns-search-list'] = dns_search_list
+            data_payload["dns-search-list"] = dns_search_list
         if dns_server1 is not None:
-            data_payload['dns-server1'] = dns_server1
+            data_payload["dns-server1"] = dns_server1
         if dns_server2 is not None:
-            data_payload['dns-server2'] = dns_server2
+            data_payload["dns-server2"] = dns_server2
         if dns_server3 is not None:
-            data_payload['dns-server3'] = dns_server3
+            data_payload["dns-server3"] = dns_server3
         if dns_server4 is not None:
-            data_payload['dns-server4'] = dns_server4
+            data_payload["dns-server4"] = dns_server4
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if subnet is not None:
-            data_payload['subnet'] = subnet
+            data_payload["subnet"] = subnet
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if delegated_prefix_route is not None:
-            data_payload['delegated-prefix-route'] = delegated_prefix_route
+            data_payload["delegated-prefix-route"] = delegated_prefix_route
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if upstream_interface is not None:
-            data_payload['upstream-interface'] = upstream_interface
+            data_payload["upstream-interface"] = upstream_interface
         if delegated_prefix_iaid is not None:
-            data_payload['delegated-prefix-iaid'] = delegated_prefix_iaid
+            data_payload["delegated-prefix-iaid"] = delegated_prefix_iaid
         if ip_mode is not None:
-            data_payload['ip-mode'] = ip_mode
+            data_payload["ip-mode"] = ip_mode
         if prefix_mode is not None:
-            data_payload['prefix-mode'] = prefix_mode
+            data_payload["prefix-mode"] = prefix_mode
         if prefix_range is not None:
-            data_payload['prefix-range'] = prefix_range
+            data_payload["prefix-range"] = prefix_range
         if ip_range is not None:
-            data_payload['ip-range'] = ip_range
+            data_payload["ip-range"] = ip_range
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

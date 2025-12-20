@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.switch_controller.security_policy__802_1X.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.switch_controller.security_policy__802_1X.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.security_policy__802_1X.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.switch_controller.security_policy__802_1X.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.switch_controller.security_policy__802_1X.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class SecurityPolicyEight02OneX:
     """
     Securitypolicyeight02Onex Operations.
-    
+
     Provides CRUD operations for FortiOS securitypolicyeight02onex configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class SecurityPolicyEight02OneX:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class SecurityPolicyEight02OneX:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SecurityPolicyEight02OneX endpoint.
 
@@ -90,7 +90,7 @@ class SecurityPolicyEight02OneX:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class SecurityPolicyEight02OneX:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class SecurityPolicyEight02OneX:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/switch-controller.security-policy/802-1X/{name}"
         else:
             endpoint = "/switch-controller.security-policy/802-1X"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -164,7 +166,7 @@ class SecurityPolicyEight02OneX:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -196,7 +198,7 @@ class SecurityPolicyEight02OneX:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -204,69 +206,79 @@ class SecurityPolicyEight02OneX:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/switch-controller.security-policy/802-1X/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if security_mode is not None:
-            data_payload['security-mode'] = security_mode
+            data_payload["security-mode"] = security_mode
         if user_group is not None:
-            data_payload['user-group'] = user_group
+            data_payload["user-group"] = user_group
         if mac_auth_bypass is not None:
-            data_payload['mac-auth-bypass'] = mac_auth_bypass
+            data_payload["mac-auth-bypass"] = mac_auth_bypass
         if auth_order is not None:
-            data_payload['auth-order'] = auth_order
+            data_payload["auth-order"] = auth_order
         if auth_priority is not None:
-            data_payload['auth-priority'] = auth_priority
+            data_payload["auth-priority"] = auth_priority
         if open_auth is not None:
-            data_payload['open-auth'] = open_auth
+            data_payload["open-auth"] = open_auth
         if eap_passthru is not None:
-            data_payload['eap-passthru'] = eap_passthru
+            data_payload["eap-passthru"] = eap_passthru
         if eap_auto_untagged_vlans is not None:
-            data_payload['eap-auto-untagged-vlans'] = eap_auto_untagged_vlans
+            data_payload["eap-auto-untagged-vlans"] = eap_auto_untagged_vlans
         if guest_vlan is not None:
-            data_payload['guest-vlan'] = guest_vlan
+            data_payload["guest-vlan"] = guest_vlan
         if guest_vlan_id is not None:
-            data_payload['guest-vlan-id'] = guest_vlan_id
+            data_payload["guest-vlan-id"] = guest_vlan_id
         if guest_auth_delay is not None:
-            data_payload['guest-auth-delay'] = guest_auth_delay
+            data_payload["guest-auth-delay"] = guest_auth_delay
         if auth_fail_vlan is not None:
-            data_payload['auth-fail-vlan'] = auth_fail_vlan
+            data_payload["auth-fail-vlan"] = auth_fail_vlan
         if auth_fail_vlan_id is not None:
-            data_payload['auth-fail-vlan-id'] = auth_fail_vlan_id
+            data_payload["auth-fail-vlan-id"] = auth_fail_vlan_id
         if framevid_apply is not None:
-            data_payload['framevid-apply'] = framevid_apply
+            data_payload["framevid-apply"] = framevid_apply
         if radius_timeout_overwrite is not None:
-            data_payload['radius-timeout-overwrite'] = radius_timeout_overwrite
+            data_payload["radius-timeout-overwrite"] = radius_timeout_overwrite
         if policy_type is not None:
-            data_payload['policy-type'] = policy_type
+            data_payload["policy-type"] = policy_type
         if authserver_timeout_period is not None:
-            data_payload['authserver-timeout-period'] = authserver_timeout_period
+            data_payload["authserver-timeout-period"] = (
+                authserver_timeout_period
+            )
         if authserver_timeout_vlan is not None:
-            data_payload['authserver-timeout-vlan'] = authserver_timeout_vlan
+            data_payload["authserver-timeout-vlan"] = authserver_timeout_vlan
         if authserver_timeout_vlanid is not None:
-            data_payload['authserver-timeout-vlanid'] = authserver_timeout_vlanid
+            data_payload["authserver-timeout-vlanid"] = (
+                authserver_timeout_vlanid
+            )
         if authserver_timeout_tagged is not None:
-            data_payload['authserver-timeout-tagged'] = authserver_timeout_tagged
+            data_payload["authserver-timeout-tagged"] = (
+                authserver_timeout_tagged
+            )
         if authserver_timeout_tagged_vlanid is not None:
-            data_payload['authserver-timeout-tagged-vlanid'] = authserver_timeout_tagged_vlanid
+            data_payload["authserver-timeout-tagged-vlanid"] = (
+                authserver_timeout_tagged_vlanid
+            )
         if dacl is not None:
-            data_payload['dacl'] = dacl
+            data_payload["dacl"] = dacl
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -278,13 +290,13 @@ class SecurityPolicyEight02OneX:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -292,18 +304,20 @@ class SecurityPolicyEight02OneX:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/switch-controller.security-policy/802-1X/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -338,7 +352,7 @@ class SecurityPolicyEight02OneX:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -368,7 +382,7 @@ class SecurityPolicyEight02OneX:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -376,7 +390,7 @@ class SecurityPolicyEight02OneX:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -384,52 +398,62 @@ class SecurityPolicyEight02OneX:
         params = {}
         endpoint = "/switch-controller.security-policy/802-1X"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if security_mode is not None:
-            data_payload['security-mode'] = security_mode
+            data_payload["security-mode"] = security_mode
         if user_group is not None:
-            data_payload['user-group'] = user_group
+            data_payload["user-group"] = user_group
         if mac_auth_bypass is not None:
-            data_payload['mac-auth-bypass'] = mac_auth_bypass
+            data_payload["mac-auth-bypass"] = mac_auth_bypass
         if auth_order is not None:
-            data_payload['auth-order'] = auth_order
+            data_payload["auth-order"] = auth_order
         if auth_priority is not None:
-            data_payload['auth-priority'] = auth_priority
+            data_payload["auth-priority"] = auth_priority
         if open_auth is not None:
-            data_payload['open-auth'] = open_auth
+            data_payload["open-auth"] = open_auth
         if eap_passthru is not None:
-            data_payload['eap-passthru'] = eap_passthru
+            data_payload["eap-passthru"] = eap_passthru
         if eap_auto_untagged_vlans is not None:
-            data_payload['eap-auto-untagged-vlans'] = eap_auto_untagged_vlans
+            data_payload["eap-auto-untagged-vlans"] = eap_auto_untagged_vlans
         if guest_vlan is not None:
-            data_payload['guest-vlan'] = guest_vlan
+            data_payload["guest-vlan"] = guest_vlan
         if guest_vlan_id is not None:
-            data_payload['guest-vlan-id'] = guest_vlan_id
+            data_payload["guest-vlan-id"] = guest_vlan_id
         if guest_auth_delay is not None:
-            data_payload['guest-auth-delay'] = guest_auth_delay
+            data_payload["guest-auth-delay"] = guest_auth_delay
         if auth_fail_vlan is not None:
-            data_payload['auth-fail-vlan'] = auth_fail_vlan
+            data_payload["auth-fail-vlan"] = auth_fail_vlan
         if auth_fail_vlan_id is not None:
-            data_payload['auth-fail-vlan-id'] = auth_fail_vlan_id
+            data_payload["auth-fail-vlan-id"] = auth_fail_vlan_id
         if framevid_apply is not None:
-            data_payload['framevid-apply'] = framevid_apply
+            data_payload["framevid-apply"] = framevid_apply
         if radius_timeout_overwrite is not None:
-            data_payload['radius-timeout-overwrite'] = radius_timeout_overwrite
+            data_payload["radius-timeout-overwrite"] = radius_timeout_overwrite
         if policy_type is not None:
-            data_payload['policy-type'] = policy_type
+            data_payload["policy-type"] = policy_type
         if authserver_timeout_period is not None:
-            data_payload['authserver-timeout-period'] = authserver_timeout_period
+            data_payload["authserver-timeout-period"] = (
+                authserver_timeout_period
+            )
         if authserver_timeout_vlan is not None:
-            data_payload['authserver-timeout-vlan'] = authserver_timeout_vlan
+            data_payload["authserver-timeout-vlan"] = authserver_timeout_vlan
         if authserver_timeout_vlanid is not None:
-            data_payload['authserver-timeout-vlanid'] = authserver_timeout_vlanid
+            data_payload["authserver-timeout-vlanid"] = (
+                authserver_timeout_vlanid
+            )
         if authserver_timeout_tagged is not None:
-            data_payload['authserver-timeout-tagged'] = authserver_timeout_tagged
+            data_payload["authserver-timeout-tagged"] = (
+                authserver_timeout_tagged
+            )
         if authserver_timeout_tagged_vlanid is not None:
-            data_payload['authserver-timeout-tagged-vlanid'] = authserver_timeout_tagged_vlanid
+            data_payload["authserver-timeout-tagged-vlanid"] = (
+                authserver_timeout_tagged_vlanid
+            )
         if dacl is not None:
-            data_payload['dacl'] = dacl
+            data_payload["dacl"] = dacl
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

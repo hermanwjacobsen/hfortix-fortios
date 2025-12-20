@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.federated_upgrade.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.federated_upgrade.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.federated_upgrade.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.federated_upgrade.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.federated_upgrade.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class FederatedUpgrade:
     """
     Federatedupgrade Operations.
-    
+
     Provides CRUD operations for FortiOS federatedupgrade configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class FederatedUpgrade:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize FederatedUpgrade endpoint.
 
@@ -82,14 +82,14 @@ class FederatedUpgrade:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class FederatedUpgrade:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/federated-upgrade"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -133,7 +135,7 @@ class FederatedUpgrade:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -153,7 +155,7 @@ class FederatedUpgrade:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -161,7 +163,7 @@ class FederatedUpgrade:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -169,32 +171,34 @@ class FederatedUpgrade:
         params = {}
         endpoint = "/system/federated-upgrade"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if source is not None:
-            data_payload['source'] = source
+            data_payload["source"] = source
         if failure_reason is not None:
-            data_payload['failure-reason'] = failure_reason
+            data_payload["failure-reason"] = failure_reason
         if failure_device is not None:
-            data_payload['failure-device'] = failure_device
+            data_payload["failure-device"] = failure_device
         if upgrade_id is not None:
-            data_payload['upgrade-id'] = upgrade_id
+            data_payload["upgrade-id"] = upgrade_id
         if next_path_index is not None:
-            data_payload['next-path-index'] = next_path_index
+            data_payload["next-path-index"] = next_path_index
         if ignore_signing_errors is not None:
-            data_payload['ignore-signing-errors'] = ignore_signing_errors
+            data_payload["ignore-signing-errors"] = ignore_signing_errors
         if ha_reboot_controller is not None:
-            data_payload['ha-reboot-controller'] = ha_reboot_controller
+            data_payload["ha-reboot-controller"] = ha_reboot_controller
         if known_ha_members is not None:
-            data_payload['known-ha-members'] = known_ha_members
+            data_payload["known-ha-members"] = known_ha_members
         if initial_version is not None:
-            data_payload['initial-version'] = initial_version
+            data_payload["initial-version"] = initial_version
         if starter_admin is not None:
-            data_payload['starter-admin'] = starter_admin
+            data_payload["starter-admin"] = starter_admin
         if node_list is not None:
-            data_payload['node-list'] = node_list
+            data_payload["node-list"] = node_list
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.switch_controller.mclag_icl.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.switch_controller.mclag_icl.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class EligiblePeer:
     """
     Eligiblepeer Operations.
-    
+
     Provides read-only access for FortiOS eligiblepeer data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize EligiblePeer endpoint.
 
@@ -60,29 +60,33 @@ class EligiblePeer:
     ) -> dict[str, Any]:
         """
         Find a pair of FortiSwitches that are eligible to form a tier-1 MC-LAG.
-        
+
         Args:
             fortilink: FortiLink interface name. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.mclag_icl.eligible_peer.get(fortilink='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['fortilink'] = fortilink
+        params["fortilink"] = fortilink
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/mclag-icl/eligible-peer", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/mclag-icl/eligible-peer",
+            params=params,
+        )
 
 
 class SetTierPlus:
     """SetTierPlus operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SetTierPlus endpoint.
 
@@ -105,7 +109,7 @@ class SetTierPlus:
     ) -> dict[str, Any]:
         """
         Setup a tier 2/3 MC-LAG link between a pair of FortiSwitches.
-        
+
         Args:
             fortilink: FortiLink interface name. (optional)
             parent_peer1: FortiSwitch ID for MC-LAG parent peer 1. (optional)
@@ -116,34 +120,36 @@ class SetTierPlus:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.mclag_icl.set_tier_plus.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if fortilink is not None:
-            data['fortilink'] = fortilink
+            data["fortilink"] = fortilink
         if parent_peer1 is not None:
-            data['parent_peer1'] = parent_peer1
+            data["parent_peer1"] = parent_peer1
         if parent_peer2 is not None:
-            data['parent_peer2'] = parent_peer2
+            data["parent_peer2"] = parent_peer2
         if peer1 is not None:
-            data['peer1'] = peer1
+            data["peer1"] = peer1
         if peer2 is not None:
-            data['peer2'] = peer2
+            data["peer2"] = peer2
         if isl_port_group is not None:
-            data['isl_port_group'] = isl_port_group
+            data["isl_port_group"] = isl_port_group
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/mclag-icl/set-tier-plus", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/mclag-icl/set-tier-plus", data=data
+        )
 
 
 class SetTier1:
     """SetTier1 operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SetTier1 endpoint.
 
@@ -163,7 +169,7 @@ class SetTier1:
     ) -> dict[str, Any]:
         """
         Setup a tier-1 MC-LAG link between a pair of FortiSwitches.
-        
+
         Args:
             fortilink: FortiLink interface name. (optional)
             peer1: FortiSwitch ID for MC-LAG peer 1. (optional)
@@ -171,28 +177,30 @@ class SetTier1:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.mclag_icl.set_tier1.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if fortilink is not None:
-            data['fortilink'] = fortilink
+            data["fortilink"] = fortilink
         if peer1 is not None:
-            data['peer1'] = peer1
+            data["peer1"] = peer1
         if peer2 is not None:
-            data['peer2'] = peer2
+            data["peer2"] = peer2
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/mclag-icl/set-tier1", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/mclag-icl/set-tier1", data=data
+        )
 
 
 class TierPlusCandidates:
     """TierPlusCandidates operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize TierPlusCandidates endpoint.
 
@@ -213,7 +221,7 @@ class TierPlusCandidates:
     ) -> dict[str, Any]:
         """
         Find a pair of FortiSwitches that are eligible to form a tier 2/3 MC-LAG.
-        
+
         Args:
             fortilink: FortiLink interface name. (required)
             parent_peer1: FortiSwitch ID for MC-LAG parent peer 1. (required)
@@ -222,26 +230,30 @@ class TierPlusCandidates:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.mclag_icl.tier_plus_candidates.get(fortilink='value', parent_peer1='value', parent_peer2='value', is_tier2=True)
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['fortilink'] = fortilink
-        params['parent_peer1'] = parent_peer1
-        params['parent_peer2'] = parent_peer2
-        params['is_tier2'] = is_tier2
+        params["fortilink"] = fortilink
+        params["parent_peer1"] = parent_peer1
+        params["parent_peer2"] = parent_peer2
+        params["is_tier2"] = is_tier2
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/mclag-icl/tier-plus-candidates", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/mclag-icl/tier-plus-candidates",
+            params=params,
+        )
 
 
 class MclagIcl:
     """MclagIcl operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize MclagIcl endpoint.
 

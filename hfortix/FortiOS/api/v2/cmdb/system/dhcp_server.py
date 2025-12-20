@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.dhcp_server.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.dhcp_server.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.dhcp_server.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.dhcp_server.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.dhcp_server.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class DhcpServer:
     """
     Dhcpserver Operations.
-    
+
     Provides CRUD operations for FortiOS dhcpserver configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class DhcpServer:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class DhcpServer:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DhcpServer endpoint.
 
@@ -90,7 +90,7 @@ class DhcpServer:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class DhcpServer:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class DhcpServer:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if id:
             endpoint = f"/system.dhcp/server/{id}"
         else:
             endpoint = "/system.dhcp/server"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -193,7 +195,7 @@ class DhcpServer:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             id: Object identifier (required)
@@ -254,7 +256,7 @@ class DhcpServer:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -262,127 +264,133 @@ class DhcpServer:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for put()")
         endpoint = f"/system.dhcp/server/{id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if lease_time is not None:
-            data_payload['lease-time'] = lease_time
+            data_payload["lease-time"] = lease_time
         if mac_acl_default_action is not None:
-            data_payload['mac-acl-default-action'] = mac_acl_default_action
+            data_payload["mac-acl-default-action"] = mac_acl_default_action
         if forticlient_on_net_status is not None:
-            data_payload['forticlient-on-net-status'] = forticlient_on_net_status
+            data_payload["forticlient-on-net-status"] = (
+                forticlient_on_net_status
+            )
         if dns_service is not None:
-            data_payload['dns-service'] = dns_service
+            data_payload["dns-service"] = dns_service
         if dns_server1 is not None:
-            data_payload['dns-server1'] = dns_server1
+            data_payload["dns-server1"] = dns_server1
         if dns_server2 is not None:
-            data_payload['dns-server2'] = dns_server2
+            data_payload["dns-server2"] = dns_server2
         if dns_server3 is not None:
-            data_payload['dns-server3'] = dns_server3
+            data_payload["dns-server3"] = dns_server3
         if dns_server4 is not None:
-            data_payload['dns-server4'] = dns_server4
+            data_payload["dns-server4"] = dns_server4
         if wifi_ac_service is not None:
-            data_payload['wifi-ac-service'] = wifi_ac_service
+            data_payload["wifi-ac-service"] = wifi_ac_service
         if wifi_ac1 is not None:
-            data_payload['wifi-ac1'] = wifi_ac1
+            data_payload["wifi-ac1"] = wifi_ac1
         if wifi_ac2 is not None:
-            data_payload['wifi-ac2'] = wifi_ac2
+            data_payload["wifi-ac2"] = wifi_ac2
         if wifi_ac3 is not None:
-            data_payload['wifi-ac3'] = wifi_ac3
+            data_payload["wifi-ac3"] = wifi_ac3
         if ntp_service is not None:
-            data_payload['ntp-service'] = ntp_service
+            data_payload["ntp-service"] = ntp_service
         if ntp_server1 is not None:
-            data_payload['ntp-server1'] = ntp_server1
+            data_payload["ntp-server1"] = ntp_server1
         if ntp_server2 is not None:
-            data_payload['ntp-server2'] = ntp_server2
+            data_payload["ntp-server2"] = ntp_server2
         if ntp_server3 is not None:
-            data_payload['ntp-server3'] = ntp_server3
+            data_payload["ntp-server3"] = ntp_server3
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if wins_server1 is not None:
-            data_payload['wins-server1'] = wins_server1
+            data_payload["wins-server1"] = wins_server1
         if wins_server2 is not None:
-            data_payload['wins-server2'] = wins_server2
+            data_payload["wins-server2"] = wins_server2
         if default_gateway is not None:
-            data_payload['default-gateway'] = default_gateway
+            data_payload["default-gateway"] = default_gateway
         if next_server is not None:
-            data_payload['next-server'] = next_server
+            data_payload["next-server"] = next_server
         if netmask is not None:
-            data_payload['netmask'] = netmask
+            data_payload["netmask"] = netmask
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if ip_range is not None:
-            data_payload['ip-range'] = ip_range
+            data_payload["ip-range"] = ip_range
         if timezone_option is not None:
-            data_payload['timezone-option'] = timezone_option
+            data_payload["timezone-option"] = timezone_option
         if timezone is not None:
-            data_payload['timezone'] = timezone
+            data_payload["timezone"] = timezone
         if tftp_server is not None:
-            data_payload['tftp-server'] = tftp_server
+            data_payload["tftp-server"] = tftp_server
         if filename is not None:
-            data_payload['filename'] = filename
+            data_payload["filename"] = filename
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if server_type is not None:
-            data_payload['server-type'] = server_type
+            data_payload["server-type"] = server_type
         if ip_mode is not None:
-            data_payload['ip-mode'] = ip_mode
+            data_payload["ip-mode"] = ip_mode
         if conflicted_ip_timeout is not None:
-            data_payload['conflicted-ip-timeout'] = conflicted_ip_timeout
+            data_payload["conflicted-ip-timeout"] = conflicted_ip_timeout
         if ipsec_lease_hold is not None:
-            data_payload['ipsec-lease-hold'] = ipsec_lease_hold
+            data_payload["ipsec-lease-hold"] = ipsec_lease_hold
         if auto_configuration is not None:
-            data_payload['auto-configuration'] = auto_configuration
+            data_payload["auto-configuration"] = auto_configuration
         if dhcp_settings_from_fortiipam is not None:
-            data_payload['dhcp-settings-from-fortiipam'] = dhcp_settings_from_fortiipam
+            data_payload["dhcp-settings-from-fortiipam"] = (
+                dhcp_settings_from_fortiipam
+            )
         if auto_managed_status is not None:
-            data_payload['auto-managed-status'] = auto_managed_status
+            data_payload["auto-managed-status"] = auto_managed_status
         if ddns_update is not None:
-            data_payload['ddns-update'] = ddns_update
+            data_payload["ddns-update"] = ddns_update
         if ddns_update_override is not None:
-            data_payload['ddns-update-override'] = ddns_update_override
+            data_payload["ddns-update-override"] = ddns_update_override
         if ddns_server_ip is not None:
-            data_payload['ddns-server-ip'] = ddns_server_ip
+            data_payload["ddns-server-ip"] = ddns_server_ip
         if ddns_zone is not None:
-            data_payload['ddns-zone'] = ddns_zone
+            data_payload["ddns-zone"] = ddns_zone
         if ddns_auth is not None:
-            data_payload['ddns-auth'] = ddns_auth
+            data_payload["ddns-auth"] = ddns_auth
         if ddns_keyname is not None:
-            data_payload['ddns-keyname'] = ddns_keyname
+            data_payload["ddns-keyname"] = ddns_keyname
         if ddns_key is not None:
-            data_payload['ddns-key'] = ddns_key
+            data_payload["ddns-key"] = ddns_key
         if ddns_ttl is not None:
-            data_payload['ddns-ttl'] = ddns_ttl
+            data_payload["ddns-ttl"] = ddns_ttl
         if vci_match is not None:
-            data_payload['vci-match'] = vci_match
+            data_payload["vci-match"] = vci_match
         if vci_string is not None:
-            data_payload['vci-string'] = vci_string
+            data_payload["vci-string"] = vci_string
         if exclude_range is not None:
-            data_payload['exclude-range'] = exclude_range
+            data_payload["exclude-range"] = exclude_range
         if shared_subnet is not None:
-            data_payload['shared-subnet'] = shared_subnet
+            data_payload["shared-subnet"] = shared_subnet
         if relay_agent is not None:
-            data_payload['relay-agent'] = relay_agent
+            data_payload["relay-agent"] = relay_agent
         if reserved_address is not None:
-            data_payload['reserved-address'] = reserved_address
+            data_payload["reserved-address"] = reserved_address
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -394,13 +402,13 @@ class DhcpServer:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -408,18 +416,20 @@ class DhcpServer:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for delete()")
         endpoint = f"/system.dhcp/server/{id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -428,37 +438,39 @@ class DhcpServer:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             id: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(id=id, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -522,7 +534,7 @@ class DhcpServer:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -581,7 +593,7 @@ class DhcpServer:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -589,7 +601,7 @@ class DhcpServer:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -597,110 +609,116 @@ class DhcpServer:
         params = {}
         endpoint = "/system.dhcp/server"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if lease_time is not None:
-            data_payload['lease-time'] = lease_time
+            data_payload["lease-time"] = lease_time
         if mac_acl_default_action is not None:
-            data_payload['mac-acl-default-action'] = mac_acl_default_action
+            data_payload["mac-acl-default-action"] = mac_acl_default_action
         if forticlient_on_net_status is not None:
-            data_payload['forticlient-on-net-status'] = forticlient_on_net_status
+            data_payload["forticlient-on-net-status"] = (
+                forticlient_on_net_status
+            )
         if dns_service is not None:
-            data_payload['dns-service'] = dns_service
+            data_payload["dns-service"] = dns_service
         if dns_server1 is not None:
-            data_payload['dns-server1'] = dns_server1
+            data_payload["dns-server1"] = dns_server1
         if dns_server2 is not None:
-            data_payload['dns-server2'] = dns_server2
+            data_payload["dns-server2"] = dns_server2
         if dns_server3 is not None:
-            data_payload['dns-server3'] = dns_server3
+            data_payload["dns-server3"] = dns_server3
         if dns_server4 is not None:
-            data_payload['dns-server4'] = dns_server4
+            data_payload["dns-server4"] = dns_server4
         if wifi_ac_service is not None:
-            data_payload['wifi-ac-service'] = wifi_ac_service
+            data_payload["wifi-ac-service"] = wifi_ac_service
         if wifi_ac1 is not None:
-            data_payload['wifi-ac1'] = wifi_ac1
+            data_payload["wifi-ac1"] = wifi_ac1
         if wifi_ac2 is not None:
-            data_payload['wifi-ac2'] = wifi_ac2
+            data_payload["wifi-ac2"] = wifi_ac2
         if wifi_ac3 is not None:
-            data_payload['wifi-ac3'] = wifi_ac3
+            data_payload["wifi-ac3"] = wifi_ac3
         if ntp_service is not None:
-            data_payload['ntp-service'] = ntp_service
+            data_payload["ntp-service"] = ntp_service
         if ntp_server1 is not None:
-            data_payload['ntp-server1'] = ntp_server1
+            data_payload["ntp-server1"] = ntp_server1
         if ntp_server2 is not None:
-            data_payload['ntp-server2'] = ntp_server2
+            data_payload["ntp-server2"] = ntp_server2
         if ntp_server3 is not None:
-            data_payload['ntp-server3'] = ntp_server3
+            data_payload["ntp-server3"] = ntp_server3
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if wins_server1 is not None:
-            data_payload['wins-server1'] = wins_server1
+            data_payload["wins-server1"] = wins_server1
         if wins_server2 is not None:
-            data_payload['wins-server2'] = wins_server2
+            data_payload["wins-server2"] = wins_server2
         if default_gateway is not None:
-            data_payload['default-gateway'] = default_gateway
+            data_payload["default-gateway"] = default_gateway
         if next_server is not None:
-            data_payload['next-server'] = next_server
+            data_payload["next-server"] = next_server
         if netmask is not None:
-            data_payload['netmask'] = netmask
+            data_payload["netmask"] = netmask
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if ip_range is not None:
-            data_payload['ip-range'] = ip_range
+            data_payload["ip-range"] = ip_range
         if timezone_option is not None:
-            data_payload['timezone-option'] = timezone_option
+            data_payload["timezone-option"] = timezone_option
         if timezone is not None:
-            data_payload['timezone'] = timezone
+            data_payload["timezone"] = timezone
         if tftp_server is not None:
-            data_payload['tftp-server'] = tftp_server
+            data_payload["tftp-server"] = tftp_server
         if filename is not None:
-            data_payload['filename'] = filename
+            data_payload["filename"] = filename
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if server_type is not None:
-            data_payload['server-type'] = server_type
+            data_payload["server-type"] = server_type
         if ip_mode is not None:
-            data_payload['ip-mode'] = ip_mode
+            data_payload["ip-mode"] = ip_mode
         if conflicted_ip_timeout is not None:
-            data_payload['conflicted-ip-timeout'] = conflicted_ip_timeout
+            data_payload["conflicted-ip-timeout"] = conflicted_ip_timeout
         if ipsec_lease_hold is not None:
-            data_payload['ipsec-lease-hold'] = ipsec_lease_hold
+            data_payload["ipsec-lease-hold"] = ipsec_lease_hold
         if auto_configuration is not None:
-            data_payload['auto-configuration'] = auto_configuration
+            data_payload["auto-configuration"] = auto_configuration
         if dhcp_settings_from_fortiipam is not None:
-            data_payload['dhcp-settings-from-fortiipam'] = dhcp_settings_from_fortiipam
+            data_payload["dhcp-settings-from-fortiipam"] = (
+                dhcp_settings_from_fortiipam
+            )
         if auto_managed_status is not None:
-            data_payload['auto-managed-status'] = auto_managed_status
+            data_payload["auto-managed-status"] = auto_managed_status
         if ddns_update is not None:
-            data_payload['ddns-update'] = ddns_update
+            data_payload["ddns-update"] = ddns_update
         if ddns_update_override is not None:
-            data_payload['ddns-update-override'] = ddns_update_override
+            data_payload["ddns-update-override"] = ddns_update_override
         if ddns_server_ip is not None:
-            data_payload['ddns-server-ip'] = ddns_server_ip
+            data_payload["ddns-server-ip"] = ddns_server_ip
         if ddns_zone is not None:
-            data_payload['ddns-zone'] = ddns_zone
+            data_payload["ddns-zone"] = ddns_zone
         if ddns_auth is not None:
-            data_payload['ddns-auth'] = ddns_auth
+            data_payload["ddns-auth"] = ddns_auth
         if ddns_keyname is not None:
-            data_payload['ddns-keyname'] = ddns_keyname
+            data_payload["ddns-keyname"] = ddns_keyname
         if ddns_key is not None:
-            data_payload['ddns-key'] = ddns_key
+            data_payload["ddns-key"] = ddns_key
         if ddns_ttl is not None:
-            data_payload['ddns-ttl'] = ddns_ttl
+            data_payload["ddns-ttl"] = ddns_ttl
         if vci_match is not None:
-            data_payload['vci-match'] = vci_match
+            data_payload["vci-match"] = vci_match
         if vci_string is not None:
-            data_payload['vci-string'] = vci_string
+            data_payload["vci-string"] = vci_string
         if exclude_range is not None:
-            data_payload['exclude-range'] = exclude_range
+            data_payload["exclude-range"] = exclude_range
         if shared_subnet is not None:
-            data_payload['shared-subnet'] = shared_subnet
+            data_payload["shared-subnet"] = shared_subnet
         if relay_agent is not None:
-            data_payload['relay-agent'] = relay_agent
+            data_payload["relay-agent"] = relay_agent
         if reserved_address is not None:
-            data_payload['reserved-address'] = reserved_address
+            data_payload["reserved-address"] = reserved_address
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

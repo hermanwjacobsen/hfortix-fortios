@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.registration.forticare.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.registration.forticare.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class AddLicense:
     """
     Addlicense Operations.
-    
+
     Provides read-only access for FortiOS addlicense data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize AddLicense endpoint.
 
@@ -60,30 +60,32 @@ class AddLicense:
     ) -> dict[str, Any]:
         """
         Add a FortiCare license.
-        
+
         Args:
             registration_code: FortiCare contract number. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.registration.forticare.add_license.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if registration_code is not None:
-            data['registration_code'] = registration_code
+            data["registration_code"] = registration_code
         data.update(kwargs)
-        return self._client.post("monitor", "/registration/forticare/add-license", data=data)
+        return self._client.post(
+            "monitor", "/registration/forticare/add-license", data=data
+        )
 
 
 class CheckConnectivity:
     """CheckConnectivity operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CheckConnectivity endpoint.
 
@@ -100,27 +102,31 @@ class CheckConnectivity:
     ) -> dict[str, Any]:
         """
         Check connectivity to FortiCare servers.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.registration.forticare.check_connectivity.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/registration/forticare/check-connectivity", params=params)
+        return self._client.get(
+            "monitor",
+            "/registration/forticare/check-connectivity",
+            params=params,
+        )
 
 
 class Create:
     """Create operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Create endpoint.
 
@@ -156,7 +162,7 @@ class Create:
     ) -> dict[str, Any]:
         """
         Create a new FortiCare account.
-        
+
         Args:
             email: Account email. (optional)
             password: Account password. (optional)
@@ -180,60 +186,62 @@ class Create:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.registration.forticare.create.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if email is not None:
-            data['email'] = email
+            data["email"] = email
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         if first_name is not None:
-            data['first_name'] = first_name
+            data["first_name"] = first_name
         if last_name is not None:
-            data['last_name'] = last_name
+            data["last_name"] = last_name
         if title is not None:
-            data['title'] = title
+            data["title"] = title
         if company is not None:
-            data['company'] = company
+            data["company"] = company
         if address is not None:
-            data['address'] = address
+            data["address"] = address
         if city is not None:
-            data['city'] = city
+            data["city"] = city
         if country_code is not None:
-            data['country_code'] = country_code
+            data["country_code"] = country_code
         if state is not None:
-            data['state'] = state
+            data["state"] = state
         if state_code is not None:
-            data['state_code'] = state_code
+            data["state_code"] = state_code
         if postal_code is not None:
-            data['postal_code'] = postal_code
+            data["postal_code"] = postal_code
         if phone is not None:
-            data['phone'] = phone
+            data["phone"] = phone
         if industry is not None:
-            data['industry'] = industry
+            data["industry"] = industry
         if industry_id is not None:
-            data['industry_id'] = industry_id
+            data["industry_id"] = industry_id
         if orgsize_id is not None:
-            data['orgsize_id'] = orgsize_id
+            data["orgsize_id"] = orgsize_id
         if reseller_name is not None:
-            data['reseller_name'] = reseller_name
+            data["reseller_name"] = reseller_name
         if reseller_id is not None:
-            data['reseller_id'] = reseller_id
+            data["reseller_id"] = reseller_id
         if is_government is not None:
-            data['is_government'] = is_government
+            data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post("monitor", "/registration/forticare/create", data=data)
+        return self._client.post(
+            "monitor", "/registration/forticare/create", data=data
+        )
 
 
 class DeregisterDevice:
     """DeregisterDevice operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DeregisterDevice endpoint.
 
@@ -252,33 +260,35 @@ class DeregisterDevice:
     ) -> dict[str, Any]:
         """
         Deregister the FortiGate from a FortiCare account.
-        
+
         Args:
             email: FortiCare email. (optional)
             password: Account password. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.registration.forticare.deregister_device.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if email is not None:
-            data['email'] = email
+            data["email"] = email
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         data.update(kwargs)
-        return self._client.post("monitor", "/registration/forticare/deregister-device", data=data)
+        return self._client.post(
+            "monitor", "/registration/forticare/deregister-device", data=data
+        )
 
 
 class Login:
     """Login operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Login endpoint.
 
@@ -302,7 +312,7 @@ class Login:
     ) -> dict[str, Any]:
         """
         Login to FortiCare.
-        
+
         Args:
             serial: Serial number of an HA cluster member to register to login to FortiCare. Current device will be selected if not set. (optional)
             email: Account email. (optional)
@@ -314,36 +324,38 @@ class Login:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.registration.forticare.login.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if serial is not None:
-            data['serial'] = serial
+            data["serial"] = serial
         if email is not None:
-            data['email'] = email
+            data["email"] = email
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         if reseller_name is not None:
-            data['reseller_name'] = reseller_name
+            data["reseller_name"] = reseller_name
         if reseller_id is not None:
-            data['reseller_id'] = reseller_id
+            data["reseller_id"] = reseller_id
         if agreement_accepted is not None:
-            data['agreement_accepted'] = agreement_accepted
+            data["agreement_accepted"] = agreement_accepted
         if is_government is not None:
-            data['is_government'] = is_government
+            data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post("monitor", "/registration/forticare/login", data=data)
+        return self._client.post(
+            "monitor", "/registration/forticare/login", data=data
+        )
 
 
 class Transfer:
     """Transfer operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Transfer endpoint.
 
@@ -365,7 +377,7 @@ class Transfer:
     ) -> dict[str, Any]:
         """
         Transfer to a new FortiCare account.
-        
+
         Args:
             email: Account email. (optional)
             password: Account password. (optional)
@@ -375,32 +387,34 @@ class Transfer:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.registration.forticare.transfer.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if email is not None:
-            data['email'] = email
+            data["email"] = email
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         if old_email is not None:
-            data['old_email'] = old_email
+            data["old_email"] = old_email
         if old_password is not None:
-            data['old_password'] = old_password
+            data["old_password"] = old_password
         if is_government is not None:
-            data['is_government'] = is_government
+            data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post("monitor", "/registration/forticare/transfer", data=data)
+        return self._client.post(
+            "monitor", "/registration/forticare/transfer", data=data
+        )
 
 
 class Forticare:
     """Forticare operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Forticare endpoint.
 

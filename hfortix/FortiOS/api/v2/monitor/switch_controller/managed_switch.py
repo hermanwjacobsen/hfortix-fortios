@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.switch_controller.managed_switch.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.switch_controller.managed_switch.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Bios:
     """
     Bios Operations.
-    
+
     Provides read-only access for FortiOS bios data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Bios endpoint.
 
@@ -60,30 +60,32 @@ class Bios:
     ) -> dict[str, Any]:
         """
         Get a list of BIOS info by managed FortiSwitches.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.bios.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/bios", params=params)
+        return self._client.get(
+            "monitor", "/switch-controller/managed-switch/bios", params=params
+        )
 
 
 class BouncePort:
     """BouncePort operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize BouncePort endpoint.
 
@@ -104,7 +106,7 @@ class BouncePort:
     ) -> dict[str, Any]:
         """
         Reset the port to force all connected clients to re-request DHCP lease.
-        
+
         Args:
             mkey: FortiSwitch ID. (optional)
             port: FortiSwitch Port ID. (optional)
@@ -113,30 +115,34 @@ class BouncePort:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.bounce_port.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         if port is not None:
-            data['port'] = port
+            data["port"] = port
         if duration is not None:
-            data['duration'] = duration
+            data["duration"] = duration
         if stop is not None:
-            data['stop'] = stop
+            data["stop"] = stop
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/managed-switch/bounce-port", data=data)
+        return self._client.post(
+            "monitor",
+            "/switch-controller/managed-switch/bounce-port",
+            data=data,
+        )
 
 
 class CableStatus:
     """CableStatus operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CableStatus endpoint.
 
@@ -155,31 +161,35 @@ class CableStatus:
     ) -> dict[str, Any]:
         """
         Diagnose cable information for a port.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (required)
             port: Name of managed FortiSwitch port. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.cable_status.get(mkey='value', port='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
-        params['port'] = port
+        params["mkey"] = mkey
+        params["port"] = port
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/cable-status", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/cable-status",
+            params=params,
+        )
 
 
 class DhcpSnooping:
     """DhcpSnooping operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DhcpSnooping endpoint.
 
@@ -196,27 +206,31 @@ class DhcpSnooping:
     ) -> dict[str, Any]:
         """
         Retrieve DHCP servers monitored by FortiSwitches.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.dhcp_snooping.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/dhcp-snooping", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/dhcp-snooping",
+            params=params,
+        )
 
 
 class FaceplateXml:
     """FaceplateXml operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize FaceplateXml endpoint.
 
@@ -234,29 +248,33 @@ class FaceplateXml:
     ) -> dict[str, Any]:
         """
         Retrieve XML for rendering FortiSwitch faceplate widget.
-        
+
         Args:
             mkey: Name of managed FortiSwitch. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.faceplate_xml.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
+        params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/faceplate-xml", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/faceplate-xml",
+            params=params,
+        )
 
 
 class FactoryReset:
     """FactoryReset operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize FactoryReset endpoint.
 
@@ -274,30 +292,34 @@ class FactoryReset:
     ) -> dict[str, Any]:
         """
         Send 'Factory Reset' command to a given FortiSwitch.
-        
+
         Args:
             mkey: Name of managed FortiSwitch. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.factory_reset.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/managed-switch/factory-reset", data=data)
+        return self._client.post(
+            "monitor",
+            "/switch-controller/managed-switch/factory-reset",
+            data=data,
+        )
 
 
 class HealthStatus:
     """HealthStatus operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize HealthStatus endpoint.
 
@@ -316,33 +338,37 @@ class HealthStatus:
     ) -> dict[str, Any]:
         """
         Retrieve health-check statistics for managed FortiSwitches.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (optional)
             serial: Filter: FortiSwitch Serial. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.health_status.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         if serial is not None:
-            params['serial'] = serial
+            params["serial"] = serial
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/health-status", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/health-status",
+            params=params,
+        )
 
 
 class Models:
     """Models operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Models endpoint.
 
@@ -359,27 +385,31 @@ class Models:
     ) -> dict[str, Any]:
         """
         Retrieve a list of FortiSwitch models that may be pre-configured.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.models.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/models", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/models",
+            params=params,
+        )
 
 
 class PoeReset:
     """PoeReset operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PoeReset endpoint.
 
@@ -398,33 +428,35 @@ class PoeReset:
     ) -> dict[str, Any]:
         """
         Reset PoE on a given FortiSwitch's port.
-        
+
         Args:
             mkey: Name of managed FortiSwitch. (optional)
             port: Name of port to reset PoE on. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.poe_reset.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         if port is not None:
-            data['port'] = port
+            data["port"] = port
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/managed-switch/poe-reset", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/managed-switch/poe-reset", data=data
+        )
 
 
 class PortHealth:
     """PortHealth operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PortHealth endpoint.
 
@@ -442,30 +474,34 @@ class PortHealth:
     ) -> dict[str, Any]:
         """
         Retrieve port health statistics for managed FortiSwitches.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.port_health.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/port-health", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/port-health",
+            params=params,
+        )
 
 
 class PortStats:
     """PortStats operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PortStats endpoint.
 
@@ -483,30 +519,34 @@ class PortStats:
     ) -> dict[str, Any]:
         """
         Retrieve port statistics for configured FortiSwitches.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.port_stats.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/port-stats", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/port-stats",
+            params=params,
+        )
 
 
 class PortStatsReset:
     """PortStatsReset operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PortStatsReset endpoint.
 
@@ -525,33 +565,37 @@ class PortStatsReset:
     ) -> dict[str, Any]:
         """
         Reset port statistics for a given FortiSwitch.
-        
+
         Args:
             mkey: FortiSwitch ID. (optional)
             ports: Name of ports to reset statistics on. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.port_stats_reset.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         if ports is not None:
-            data['ports'] = ports
+            data["ports"] = ports
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/managed-switch/port-stats-reset", data=data)
+        return self._client.post(
+            "monitor",
+            "/switch-controller/managed-switch/port-stats-reset",
+            data=data,
+        )
 
 
 class Restart:
     """Restart operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Restart endpoint.
 
@@ -569,30 +613,32 @@ class Restart:
     ) -> dict[str, Any]:
         """
         Restart a given FortiSwitch.
-        
+
         Args:
             mkey: Name of managed FortiSwitch. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.restart.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/managed-switch/restart", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/managed-switch/restart", data=data
+        )
 
 
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Status endpoint.
 
@@ -610,30 +656,34 @@ class Status:
     ) -> dict[str, Any]:
         """
         Retrieve statistics for configured FortiSwitches.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.status.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/status", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/status",
+            params=params,
+        )
 
 
 class Transceivers:
     """Transceivers operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Transceivers endpoint.
 
@@ -650,27 +700,31 @@ class Transceivers:
     ) -> dict[str, Any]:
         """
         Get a list of transceivers being used by managed FortiSwitches.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.transceivers.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/transceivers", params=params)
+        return self._client.get(
+            "monitor",
+            "/switch-controller/managed-switch/transceivers",
+            params=params,
+        )
 
 
 class TxRx:
     """TxRx operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize TxRx endpoint.
 
@@ -689,31 +743,33 @@ class TxRx:
     ) -> dict[str, Any]:
         """
         Retrieve the transceiver Tx and Rx power for a specific port.
-        
+
         Args:
             mkey: Filter: FortiSwitch ID. (required)
             port: Name of the port. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.tx_rx.get(mkey='value', port='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
-        params['port'] = port
+        params["mkey"] = mkey
+        params["port"] = port
         params.update(kwargs)
-        return self._client.get("monitor", "/switch-controller/managed-switch/tx-rx", params=params)
+        return self._client.get(
+            "monitor", "/switch-controller/managed-switch/tx-rx", params=params
+        )
 
 
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Update endpoint.
 
@@ -732,33 +788,35 @@ class Update:
     ) -> dict[str, Any]:
         """
         Update administrative state for a given FortiSwitch (enable or disable authorization).
-        
+
         Args:
             mkey: FortiSwitch name. (optional)
             admin: New FortiSwitch administrative state [enable|disable|discovered]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.managed_switch.update.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         if admin is not None:
-            data['admin'] = admin
+            data["admin"] = admin
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/managed-switch/update", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/managed-switch/update", data=data
+        )
 
 
 class ManagedSwitch:
     """ManagedSwitch operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ManagedSwitch endpoint.
 

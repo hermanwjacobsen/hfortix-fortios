@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.icap.profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.icap.profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.icap.profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.icap.profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.icap.profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Profile:
     """
     Profile Operations.
-    
+
     Provides CRUD operations for FortiOS profile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Profile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Profile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Profile endpoint.
 
@@ -90,7 +90,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Profile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/icap/profile/{name}"
         else:
             endpoint = "/icap/profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -172,7 +174,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -212,7 +214,7 @@ class Profile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -220,85 +222,87 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/icap/profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if request is not None:
-            data_payload['request'] = request
+            data_payload["request"] = request
         if response is not None:
-            data_payload['response'] = response
+            data_payload["response"] = response
         if file_transfer is not None:
-            data_payload['file-transfer'] = file_transfer
+            data_payload["file-transfer"] = file_transfer
         if streaming_content_bypass is not None:
-            data_payload['streaming-content-bypass'] = streaming_content_bypass
+            data_payload["streaming-content-bypass"] = streaming_content_bypass
         if ocr_only is not None:
-            data_payload['ocr-only'] = ocr_only
+            data_payload["ocr-only"] = ocr_only
         if _204_size_limit is not None:
-            data_payload['204-size-limit'] = _204_size_limit
+            data_payload["204-size-limit"] = _204_size_limit
         if _204_response is not None:
-            data_payload['204-response'] = _204_response
+            data_payload["204-response"] = _204_response
         if preview is not None:
-            data_payload['preview'] = preview
+            data_payload["preview"] = preview
         if preview_data_length is not None:
-            data_payload['preview-data-length'] = preview_data_length
+            data_payload["preview-data-length"] = preview_data_length
         if request_server is not None:
-            data_payload['request-server'] = request_server
+            data_payload["request-server"] = request_server
         if response_server is not None:
-            data_payload['response-server'] = response_server
+            data_payload["response-server"] = response_server
         if file_transfer_server is not None:
-            data_payload['file-transfer-server'] = file_transfer_server
+            data_payload["file-transfer-server"] = file_transfer_server
         if request_failure is not None:
-            data_payload['request-failure'] = request_failure
+            data_payload["request-failure"] = request_failure
         if response_failure is not None:
-            data_payload['response-failure'] = response_failure
+            data_payload["response-failure"] = response_failure
         if file_transfer_failure is not None:
-            data_payload['file-transfer-failure'] = file_transfer_failure
+            data_payload["file-transfer-failure"] = file_transfer_failure
         if request_path is not None:
-            data_payload['request-path'] = request_path
+            data_payload["request-path"] = request_path
         if response_path is not None:
-            data_payload['response-path'] = response_path
+            data_payload["response-path"] = response_path
         if file_transfer_path is not None:
-            data_payload['file-transfer-path'] = file_transfer_path
+            data_payload["file-transfer-path"] = file_transfer_path
         if methods is not None:
-            data_payload['methods'] = methods
+            data_payload["methods"] = methods
         if response_req_hdr is not None:
-            data_payload['response-req-hdr'] = response_req_hdr
+            data_payload["response-req-hdr"] = response_req_hdr
         if respmod_default_action is not None:
-            data_payload['respmod-default-action'] = respmod_default_action
+            data_payload["respmod-default-action"] = respmod_default_action
         if icap_block_log is not None:
-            data_payload['icap-block-log'] = icap_block_log
+            data_payload["icap-block-log"] = icap_block_log
         if chunk_encap is not None:
-            data_payload['chunk-encap'] = chunk_encap
+            data_payload["chunk-encap"] = chunk_encap
         if extension_feature is not None:
-            data_payload['extension-feature'] = extension_feature
+            data_payload["extension-feature"] = extension_feature
         if scan_progress_interval is not None:
-            data_payload['scan-progress-interval'] = scan_progress_interval
+            data_payload["scan-progress-interval"] = scan_progress_interval
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if icap_headers is not None:
-            data_payload['icap-headers'] = icap_headers
+            data_payload["icap-headers"] = icap_headers
         if respmod_forward_rules is not None:
-            data_payload['respmod-forward-rules'] = respmod_forward_rules
+            data_payload["respmod-forward-rules"] = respmod_forward_rules
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -310,13 +314,13 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -324,18 +328,20 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/icap/profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -344,37 +350,39 @@ class Profile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -417,7 +425,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -455,7 +463,7 @@ class Profile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -463,7 +471,7 @@ class Profile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -471,68 +479,70 @@ class Profile:
         params = {}
         endpoint = "/icap/profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if request is not None:
-            data_payload['request'] = request
+            data_payload["request"] = request
         if response is not None:
-            data_payload['response'] = response
+            data_payload["response"] = response
         if file_transfer is not None:
-            data_payload['file-transfer'] = file_transfer
+            data_payload["file-transfer"] = file_transfer
         if streaming_content_bypass is not None:
-            data_payload['streaming-content-bypass'] = streaming_content_bypass
+            data_payload["streaming-content-bypass"] = streaming_content_bypass
         if ocr_only is not None:
-            data_payload['ocr-only'] = ocr_only
+            data_payload["ocr-only"] = ocr_only
         if _204_size_limit is not None:
-            data_payload['204-size-limit'] = _204_size_limit
+            data_payload["204-size-limit"] = _204_size_limit
         if _204_response is not None:
-            data_payload['204-response'] = _204_response
+            data_payload["204-response"] = _204_response
         if preview is not None:
-            data_payload['preview'] = preview
+            data_payload["preview"] = preview
         if preview_data_length is not None:
-            data_payload['preview-data-length'] = preview_data_length
+            data_payload["preview-data-length"] = preview_data_length
         if request_server is not None:
-            data_payload['request-server'] = request_server
+            data_payload["request-server"] = request_server
         if response_server is not None:
-            data_payload['response-server'] = response_server
+            data_payload["response-server"] = response_server
         if file_transfer_server is not None:
-            data_payload['file-transfer-server'] = file_transfer_server
+            data_payload["file-transfer-server"] = file_transfer_server
         if request_failure is not None:
-            data_payload['request-failure'] = request_failure
+            data_payload["request-failure"] = request_failure
         if response_failure is not None:
-            data_payload['response-failure'] = response_failure
+            data_payload["response-failure"] = response_failure
         if file_transfer_failure is not None:
-            data_payload['file-transfer-failure'] = file_transfer_failure
+            data_payload["file-transfer-failure"] = file_transfer_failure
         if request_path is not None:
-            data_payload['request-path'] = request_path
+            data_payload["request-path"] = request_path
         if response_path is not None:
-            data_payload['response-path'] = response_path
+            data_payload["response-path"] = response_path
         if file_transfer_path is not None:
-            data_payload['file-transfer-path'] = file_transfer_path
+            data_payload["file-transfer-path"] = file_transfer_path
         if methods is not None:
-            data_payload['methods'] = methods
+            data_payload["methods"] = methods
         if response_req_hdr is not None:
-            data_payload['response-req-hdr'] = response_req_hdr
+            data_payload["response-req-hdr"] = response_req_hdr
         if respmod_default_action is not None:
-            data_payload['respmod-default-action'] = respmod_default_action
+            data_payload["respmod-default-action"] = respmod_default_action
         if icap_block_log is not None:
-            data_payload['icap-block-log'] = icap_block_log
+            data_payload["icap-block-log"] = icap_block_log
         if chunk_encap is not None:
-            data_payload['chunk-encap'] = chunk_encap
+            data_payload["chunk-encap"] = chunk_encap
         if extension_feature is not None:
-            data_payload['extension-feature'] = extension_feature
+            data_payload["extension-feature"] = extension_feature
         if scan_progress_interval is not None:
-            data_payload['scan-progress-interval'] = scan_progress_interval
+            data_payload["scan-progress-interval"] = scan_progress_interval
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if icap_headers is not None:
-            data_payload['icap-headers'] = icap_headers
+            data_payload["icap-headers"] = icap_headers
         if respmod_forward_rules is not None:
-            data_payload['respmod-forward-rules'] = respmod_forward_rules
+            data_payload["respmod-forward-rules"] = respmod_forward_rules
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

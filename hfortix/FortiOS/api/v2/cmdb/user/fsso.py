@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.user.fsso.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.user.fsso.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.user.fsso.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.user.fsso.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.user.fsso.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Fsso:
     """
     Fsso Operations.
-    
+
     Provides CRUD operations for FortiOS fsso configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Fsso:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Fsso:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Fsso endpoint.
 
@@ -90,7 +90,7 @@ class Fsso:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Fsso:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Fsso:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/user/fsso/{name}"
         else:
             endpoint = "/user/fsso"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -174,7 +176,7 @@ class Fsso:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -216,7 +218,7 @@ class Fsso:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -224,89 +226,91 @@ class Fsso:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/user/fsso/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if server is not None:
-            data_payload['server'] = server
+            data_payload["server"] = server
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if server2 is not None:
-            data_payload['server2'] = server2
+            data_payload["server2"] = server2
         if port2 is not None:
-            data_payload['port2'] = port2
+            data_payload["port2"] = port2
         if password2 is not None:
-            data_payload['password2'] = password2
+            data_payload["password2"] = password2
         if server3 is not None:
-            data_payload['server3'] = server3
+            data_payload["server3"] = server3
         if port3 is not None:
-            data_payload['port3'] = port3
+            data_payload["port3"] = port3
         if password3 is not None:
-            data_payload['password3'] = password3
+            data_payload["password3"] = password3
         if server4 is not None:
-            data_payload['server4'] = server4
+            data_payload["server4"] = server4
         if port4 is not None:
-            data_payload['port4'] = port4
+            data_payload["port4"] = port4
         if password4 is not None:
-            data_payload['password4'] = password4
+            data_payload["password4"] = password4
         if server5 is not None:
-            data_payload['server5'] = server5
+            data_payload["server5"] = server5
         if port5 is not None:
-            data_payload['port5'] = port5
+            data_payload["port5"] = port5
         if password5 is not None:
-            data_payload['password5'] = password5
+            data_payload["password5"] = password5
         if logon_timeout is not None:
-            data_payload['logon-timeout'] = logon_timeout
+            data_payload["logon-timeout"] = logon_timeout
         if ldap_server is not None:
-            data_payload['ldap-server'] = ldap_server
+            data_payload["ldap-server"] = ldap_server
         if group_poll_interval is not None:
-            data_payload['group-poll-interval'] = group_poll_interval
+            data_payload["group-poll-interval"] = group_poll_interval
         if ldap_poll is not None:
-            data_payload['ldap-poll'] = ldap_poll
+            data_payload["ldap-poll"] = ldap_poll
         if ldap_poll_interval is not None:
-            data_payload['ldap-poll-interval'] = ldap_poll_interval
+            data_payload["ldap-poll-interval"] = ldap_poll_interval
         if ldap_poll_filter is not None:
-            data_payload['ldap-poll-filter'] = ldap_poll_filter
+            data_payload["ldap-poll-filter"] = ldap_poll_filter
         if user_info_server is not None:
-            data_payload['user-info-server'] = user_info_server
+            data_payload["user-info-server"] = user_info_server
         if ssl is not None:
-            data_payload['ssl'] = ssl
+            data_payload["ssl"] = ssl
         if sni is not None:
-            data_payload['sni'] = sni
+            data_payload["sni"] = sni
         if ssl_server_host_ip_check is not None:
-            data_payload['ssl-server-host-ip-check'] = ssl_server_host_ip_check
+            data_payload["ssl-server-host-ip-check"] = ssl_server_host_ip_check
         if ssl_trusted_cert is not None:
-            data_payload['ssl-trusted-cert'] = ssl_trusted_cert
+            data_payload["ssl-trusted-cert"] = ssl_trusted_cert
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip6 is not None:
-            data_payload['source-ip6'] = source_ip6
+            data_payload["source-ip6"] = source_ip6
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -318,13 +322,13 @@ class Fsso:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -332,18 +336,20 @@ class Fsso:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/fsso/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -352,37 +358,39 @@ class Fsso:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -427,7 +435,7 @@ class Fsso:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -467,7 +475,7 @@ class Fsso:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -475,7 +483,7 @@ class Fsso:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -483,72 +491,74 @@ class Fsso:
         params = {}
         endpoint = "/user/fsso"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if server is not None:
-            data_payload['server'] = server
+            data_payload["server"] = server
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if server2 is not None:
-            data_payload['server2'] = server2
+            data_payload["server2"] = server2
         if port2 is not None:
-            data_payload['port2'] = port2
+            data_payload["port2"] = port2
         if password2 is not None:
-            data_payload['password2'] = password2
+            data_payload["password2"] = password2
         if server3 is not None:
-            data_payload['server3'] = server3
+            data_payload["server3"] = server3
         if port3 is not None:
-            data_payload['port3'] = port3
+            data_payload["port3"] = port3
         if password3 is not None:
-            data_payload['password3'] = password3
+            data_payload["password3"] = password3
         if server4 is not None:
-            data_payload['server4'] = server4
+            data_payload["server4"] = server4
         if port4 is not None:
-            data_payload['port4'] = port4
+            data_payload["port4"] = port4
         if password4 is not None:
-            data_payload['password4'] = password4
+            data_payload["password4"] = password4
         if server5 is not None:
-            data_payload['server5'] = server5
+            data_payload["server5"] = server5
         if port5 is not None:
-            data_payload['port5'] = port5
+            data_payload["port5"] = port5
         if password5 is not None:
-            data_payload['password5'] = password5
+            data_payload["password5"] = password5
         if logon_timeout is not None:
-            data_payload['logon-timeout'] = logon_timeout
+            data_payload["logon-timeout"] = logon_timeout
         if ldap_server is not None:
-            data_payload['ldap-server'] = ldap_server
+            data_payload["ldap-server"] = ldap_server
         if group_poll_interval is not None:
-            data_payload['group-poll-interval'] = group_poll_interval
+            data_payload["group-poll-interval"] = group_poll_interval
         if ldap_poll is not None:
-            data_payload['ldap-poll'] = ldap_poll
+            data_payload["ldap-poll"] = ldap_poll
         if ldap_poll_interval is not None:
-            data_payload['ldap-poll-interval'] = ldap_poll_interval
+            data_payload["ldap-poll-interval"] = ldap_poll_interval
         if ldap_poll_filter is not None:
-            data_payload['ldap-poll-filter'] = ldap_poll_filter
+            data_payload["ldap-poll-filter"] = ldap_poll_filter
         if user_info_server is not None:
-            data_payload['user-info-server'] = user_info_server
+            data_payload["user-info-server"] = user_info_server
         if ssl is not None:
-            data_payload['ssl'] = ssl
+            data_payload["ssl"] = ssl
         if sni is not None:
-            data_payload['sni'] = sni
+            data_payload["sni"] = sni
         if ssl_server_host_ip_check is not None:
-            data_payload['ssl-server-host-ip-check'] = ssl_server_host_ip_check
+            data_payload["ssl-server-host-ip-check"] = ssl_server_host_ip_check
         if ssl_trusted_cert is not None:
-            data_payload['ssl-trusted-cert'] = ssl_trusted_cert
+            data_payload["ssl-trusted-cert"] = ssl_trusted_cert
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip6 is not None:
-            data_payload['source-ip6'] = source_ip6
+            data_payload["source-ip6"] = source_ip6
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

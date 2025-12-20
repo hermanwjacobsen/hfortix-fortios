@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.utm.rating_lookup.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.utm.rating_lookup.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Select:
     """
     Select Operations.
-    
+
     Provides read-only access for FortiOS select data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Select endpoint.
 
@@ -61,33 +61,35 @@ class Select:
     ) -> dict[str, Any]:
         """
         Lookup FortiGuard rating for a specific URL.
-        
+
         Args:
             url: List of URLs to query. (optional)
             lang: Language for the rating response. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.utm.rating_lookup.select.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if url is not None:
-            data['url'] = url
+            data["url"] = url
         if lang is not None:
-            data['lang'] = lang
+            data["lang"] = lang
         data.update(kwargs)
-        return self._client.post("monitor", "/utm/rating-lookup/select", data=data)
+        return self._client.post(
+            "monitor", "/utm/rating-lookup/select", data=data
+        )
 
 
 class RatingLookup:
     """RatingLookup operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize RatingLookup endpoint.
 

@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.vpn.ipsec_phase2_interface.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.vpn.ipsec_phase2_interface.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.vpn.ipsec_phase2_interface.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.vpn.ipsec_phase2_interface.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.vpn.ipsec_phase2_interface.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class IpsecPhase2Interface:
     """
     Ipsecphase2Interface Operations.
-    
+
     Provides CRUD operations for FortiOS ipsecphase2interface configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class IpsecPhase2Interface:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class IpsecPhase2Interface:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize IpsecPhase2Interface endpoint.
 
@@ -90,7 +90,7 @@ class IpsecPhase2Interface:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class IpsecPhase2Interface:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class IpsecPhase2Interface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/vpn.ipsec/phase2-interface/{name}"
         else:
             endpoint = "/vpn.ipsec/phase2-interface"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -193,7 +195,7 @@ class IpsecPhase2Interface:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -254,7 +256,7 @@ class IpsecPhase2Interface:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -262,127 +264,129 @@ class IpsecPhase2Interface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/vpn.ipsec/phase2-interface/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if phase1name is not None:
-            data_payload['phase1name'] = phase1name
+            data_payload["phase1name"] = phase1name
         if dhcp_ipsec is not None:
-            data_payload['dhcp-ipsec'] = dhcp_ipsec
+            data_payload["dhcp-ipsec"] = dhcp_ipsec
         if proposal is not None:
-            data_payload['proposal'] = proposal
+            data_payload["proposal"] = proposal
         if pfs is not None:
-            data_payload['pfs'] = pfs
+            data_payload["pfs"] = pfs
         if dhgrp is not None:
-            data_payload['dhgrp'] = dhgrp
+            data_payload["dhgrp"] = dhgrp
         if addke1 is not None:
-            data_payload['addke1'] = addke1
+            data_payload["addke1"] = addke1
         if addke2 is not None:
-            data_payload['addke2'] = addke2
+            data_payload["addke2"] = addke2
         if addke3 is not None:
-            data_payload['addke3'] = addke3
+            data_payload["addke3"] = addke3
         if addke4 is not None:
-            data_payload['addke4'] = addke4
+            data_payload["addke4"] = addke4
         if addke5 is not None:
-            data_payload['addke5'] = addke5
+            data_payload["addke5"] = addke5
         if addke6 is not None:
-            data_payload['addke6'] = addke6
+            data_payload["addke6"] = addke6
         if addke7 is not None:
-            data_payload['addke7'] = addke7
+            data_payload["addke7"] = addke7
         if replay is not None:
-            data_payload['replay'] = replay
+            data_payload["replay"] = replay
         if keepalive is not None:
-            data_payload['keepalive'] = keepalive
+            data_payload["keepalive"] = keepalive
         if auto_negotiate is not None:
-            data_payload['auto-negotiate'] = auto_negotiate
+            data_payload["auto-negotiate"] = auto_negotiate
         if add_route is not None:
-            data_payload['add-route'] = add_route
+            data_payload["add-route"] = add_route
         if inbound_dscp_copy is not None:
-            data_payload['inbound-dscp-copy'] = inbound_dscp_copy
+            data_payload["inbound-dscp-copy"] = inbound_dscp_copy
         if auto_discovery_sender is not None:
-            data_payload['auto-discovery-sender'] = auto_discovery_sender
+            data_payload["auto-discovery-sender"] = auto_discovery_sender
         if auto_discovery_forwarder is not None:
-            data_payload['auto-discovery-forwarder'] = auto_discovery_forwarder
+            data_payload["auto-discovery-forwarder"] = auto_discovery_forwarder
         if keylifeseconds is not None:
-            data_payload['keylifeseconds'] = keylifeseconds
+            data_payload["keylifeseconds"] = keylifeseconds
         if keylifekbs is not None:
-            data_payload['keylifekbs'] = keylifekbs
+            data_payload["keylifekbs"] = keylifekbs
         if keylife_type is not None:
-            data_payload['keylife-type'] = keylife_type
+            data_payload["keylife-type"] = keylife_type
         if single_source is not None:
-            data_payload['single-source'] = single_source
+            data_payload["single-source"] = single_source
         if route_overlap is not None:
-            data_payload['route-overlap'] = route_overlap
+            data_payload["route-overlap"] = route_overlap
         if encapsulation is not None:
-            data_payload['encapsulation'] = encapsulation
+            data_payload["encapsulation"] = encapsulation
         if l2tp is not None:
-            data_payload['l2tp'] = l2tp
+            data_payload["l2tp"] = l2tp
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if initiator_ts_narrow is not None:
-            data_payload['initiator-ts-narrow'] = initiator_ts_narrow
+            data_payload["initiator-ts-narrow"] = initiator_ts_narrow
         if diffserv is not None:
-            data_payload['diffserv'] = diffserv
+            data_payload["diffserv"] = diffserv
         if diffservcode is not None:
-            data_payload['diffservcode'] = diffservcode
+            data_payload["diffservcode"] = diffservcode
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if src_name is not None:
-            data_payload['src-name'] = src_name
+            data_payload["src-name"] = src_name
         if src_name6 is not None:
-            data_payload['src-name6'] = src_name6
+            data_payload["src-name6"] = src_name6
         if src_addr_type is not None:
-            data_payload['src-addr-type'] = src_addr_type
+            data_payload["src-addr-type"] = src_addr_type
         if src_start_ip is not None:
-            data_payload['src-start-ip'] = src_start_ip
+            data_payload["src-start-ip"] = src_start_ip
         if src_start_ip6 is not None:
-            data_payload['src-start-ip6'] = src_start_ip6
+            data_payload["src-start-ip6"] = src_start_ip6
         if src_end_ip is not None:
-            data_payload['src-end-ip'] = src_end_ip
+            data_payload["src-end-ip"] = src_end_ip
         if src_end_ip6 is not None:
-            data_payload['src-end-ip6'] = src_end_ip6
+            data_payload["src-end-ip6"] = src_end_ip6
         if src_subnet is not None:
-            data_payload['src-subnet'] = src_subnet
+            data_payload["src-subnet"] = src_subnet
         if src_subnet6 is not None:
-            data_payload['src-subnet6'] = src_subnet6
+            data_payload["src-subnet6"] = src_subnet6
         if src_port is not None:
-            data_payload['src-port'] = src_port
+            data_payload["src-port"] = src_port
         if dst_name is not None:
-            data_payload['dst-name'] = dst_name
+            data_payload["dst-name"] = dst_name
         if dst_name6 is not None:
-            data_payload['dst-name6'] = dst_name6
+            data_payload["dst-name6"] = dst_name6
         if dst_addr_type is not None:
-            data_payload['dst-addr-type'] = dst_addr_type
+            data_payload["dst-addr-type"] = dst_addr_type
         if dst_start_ip is not None:
-            data_payload['dst-start-ip'] = dst_start_ip
+            data_payload["dst-start-ip"] = dst_start_ip
         if dst_start_ip6 is not None:
-            data_payload['dst-start-ip6'] = dst_start_ip6
+            data_payload["dst-start-ip6"] = dst_start_ip6
         if dst_end_ip is not None:
-            data_payload['dst-end-ip'] = dst_end_ip
+            data_payload["dst-end-ip"] = dst_end_ip
         if dst_end_ip6 is not None:
-            data_payload['dst-end-ip6'] = dst_end_ip6
+            data_payload["dst-end-ip6"] = dst_end_ip6
         if dst_subnet is not None:
-            data_payload['dst-subnet'] = dst_subnet
+            data_payload["dst-subnet"] = dst_subnet
         if dst_subnet6 is not None:
-            data_payload['dst-subnet6'] = dst_subnet6
+            data_payload["dst-subnet6"] = dst_subnet6
         if dst_port is not None:
-            data_payload['dst-port'] = dst_port
+            data_payload["dst-port"] = dst_port
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -394,13 +398,13 @@ class IpsecPhase2Interface:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -408,18 +412,20 @@ class IpsecPhase2Interface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/vpn.ipsec/phase2-interface/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -428,37 +434,39 @@ class IpsecPhase2Interface:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -522,7 +530,7 @@ class IpsecPhase2Interface:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -581,7 +589,7 @@ class IpsecPhase2Interface:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -589,7 +597,7 @@ class IpsecPhase2Interface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -597,110 +605,112 @@ class IpsecPhase2Interface:
         params = {}
         endpoint = "/vpn.ipsec/phase2-interface"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if phase1name is not None:
-            data_payload['phase1name'] = phase1name
+            data_payload["phase1name"] = phase1name
         if dhcp_ipsec is not None:
-            data_payload['dhcp-ipsec'] = dhcp_ipsec
+            data_payload["dhcp-ipsec"] = dhcp_ipsec
         if proposal is not None:
-            data_payload['proposal'] = proposal
+            data_payload["proposal"] = proposal
         if pfs is not None:
-            data_payload['pfs'] = pfs
+            data_payload["pfs"] = pfs
         if dhgrp is not None:
-            data_payload['dhgrp'] = dhgrp
+            data_payload["dhgrp"] = dhgrp
         if addke1 is not None:
-            data_payload['addke1'] = addke1
+            data_payload["addke1"] = addke1
         if addke2 is not None:
-            data_payload['addke2'] = addke2
+            data_payload["addke2"] = addke2
         if addke3 is not None:
-            data_payload['addke3'] = addke3
+            data_payload["addke3"] = addke3
         if addke4 is not None:
-            data_payload['addke4'] = addke4
+            data_payload["addke4"] = addke4
         if addke5 is not None:
-            data_payload['addke5'] = addke5
+            data_payload["addke5"] = addke5
         if addke6 is not None:
-            data_payload['addke6'] = addke6
+            data_payload["addke6"] = addke6
         if addke7 is not None:
-            data_payload['addke7'] = addke7
+            data_payload["addke7"] = addke7
         if replay is not None:
-            data_payload['replay'] = replay
+            data_payload["replay"] = replay
         if keepalive is not None:
-            data_payload['keepalive'] = keepalive
+            data_payload["keepalive"] = keepalive
         if auto_negotiate is not None:
-            data_payload['auto-negotiate'] = auto_negotiate
+            data_payload["auto-negotiate"] = auto_negotiate
         if add_route is not None:
-            data_payload['add-route'] = add_route
+            data_payload["add-route"] = add_route
         if inbound_dscp_copy is not None:
-            data_payload['inbound-dscp-copy'] = inbound_dscp_copy
+            data_payload["inbound-dscp-copy"] = inbound_dscp_copy
         if auto_discovery_sender is not None:
-            data_payload['auto-discovery-sender'] = auto_discovery_sender
+            data_payload["auto-discovery-sender"] = auto_discovery_sender
         if auto_discovery_forwarder is not None:
-            data_payload['auto-discovery-forwarder'] = auto_discovery_forwarder
+            data_payload["auto-discovery-forwarder"] = auto_discovery_forwarder
         if keylifeseconds is not None:
-            data_payload['keylifeseconds'] = keylifeseconds
+            data_payload["keylifeseconds"] = keylifeseconds
         if keylifekbs is not None:
-            data_payload['keylifekbs'] = keylifekbs
+            data_payload["keylifekbs"] = keylifekbs
         if keylife_type is not None:
-            data_payload['keylife-type'] = keylife_type
+            data_payload["keylife-type"] = keylife_type
         if single_source is not None:
-            data_payload['single-source'] = single_source
+            data_payload["single-source"] = single_source
         if route_overlap is not None:
-            data_payload['route-overlap'] = route_overlap
+            data_payload["route-overlap"] = route_overlap
         if encapsulation is not None:
-            data_payload['encapsulation'] = encapsulation
+            data_payload["encapsulation"] = encapsulation
         if l2tp is not None:
-            data_payload['l2tp'] = l2tp
+            data_payload["l2tp"] = l2tp
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if initiator_ts_narrow is not None:
-            data_payload['initiator-ts-narrow'] = initiator_ts_narrow
+            data_payload["initiator-ts-narrow"] = initiator_ts_narrow
         if diffserv is not None:
-            data_payload['diffserv'] = diffserv
+            data_payload["diffserv"] = diffserv
         if diffservcode is not None:
-            data_payload['diffservcode'] = diffservcode
+            data_payload["diffservcode"] = diffservcode
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if src_name is not None:
-            data_payload['src-name'] = src_name
+            data_payload["src-name"] = src_name
         if src_name6 is not None:
-            data_payload['src-name6'] = src_name6
+            data_payload["src-name6"] = src_name6
         if src_addr_type is not None:
-            data_payload['src-addr-type'] = src_addr_type
+            data_payload["src-addr-type"] = src_addr_type
         if src_start_ip is not None:
-            data_payload['src-start-ip'] = src_start_ip
+            data_payload["src-start-ip"] = src_start_ip
         if src_start_ip6 is not None:
-            data_payload['src-start-ip6'] = src_start_ip6
+            data_payload["src-start-ip6"] = src_start_ip6
         if src_end_ip is not None:
-            data_payload['src-end-ip'] = src_end_ip
+            data_payload["src-end-ip"] = src_end_ip
         if src_end_ip6 is not None:
-            data_payload['src-end-ip6'] = src_end_ip6
+            data_payload["src-end-ip6"] = src_end_ip6
         if src_subnet is not None:
-            data_payload['src-subnet'] = src_subnet
+            data_payload["src-subnet"] = src_subnet
         if src_subnet6 is not None:
-            data_payload['src-subnet6'] = src_subnet6
+            data_payload["src-subnet6"] = src_subnet6
         if src_port is not None:
-            data_payload['src-port'] = src_port
+            data_payload["src-port"] = src_port
         if dst_name is not None:
-            data_payload['dst-name'] = dst_name
+            data_payload["dst-name"] = dst_name
         if dst_name6 is not None:
-            data_payload['dst-name6'] = dst_name6
+            data_payload["dst-name6"] = dst_name6
         if dst_addr_type is not None:
-            data_payload['dst-addr-type'] = dst_addr_type
+            data_payload["dst-addr-type"] = dst_addr_type
         if dst_start_ip is not None:
-            data_payload['dst-start-ip'] = dst_start_ip
+            data_payload["dst-start-ip"] = dst_start_ip
         if dst_start_ip6 is not None:
-            data_payload['dst-start-ip6'] = dst_start_ip6
+            data_payload["dst-start-ip6"] = dst_start_ip6
         if dst_end_ip is not None:
-            data_payload['dst-end-ip'] = dst_end_ip
+            data_payload["dst-end-ip"] = dst_end_ip
         if dst_end_ip6 is not None:
-            data_payload['dst-end-ip6'] = dst_end_ip6
+            data_payload["dst-end-ip6"] = dst_end_ip6
         if dst_subnet is not None:
-            data_payload['dst-subnet'] = dst_subnet
+            data_payload["dst-subnet"] = dst_subnet
         if dst_subnet6 is not None:
-            data_payload['dst-subnet6'] = dst_subnet6
+            data_payload["dst-subnet6"] = dst_subnet6
         if dst_port is not None:
-            data_payload['dst-port'] = dst_port
+            data_payload["dst-port"] = dst_port
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

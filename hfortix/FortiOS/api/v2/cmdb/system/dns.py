@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.dns.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.dns.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.dns.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.dns.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.dns.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Dns:
     """
     Dns Operations.
-    
+
     Provides CRUD operations for FortiOS dns configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Dns:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Dns endpoint.
 
@@ -82,14 +82,14 @@ class Dns:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Dns:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/dns"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -149,7 +151,7 @@ class Dns:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -185,7 +187,7 @@ class Dns:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -193,7 +195,7 @@ class Dns:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -201,64 +203,66 @@ class Dns:
         params = {}
         endpoint = "/system/dns"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if primary is not None:
-            data_payload['primary'] = primary
+            data_payload["primary"] = primary
         if secondary is not None:
-            data_payload['secondary'] = secondary
+            data_payload["secondary"] = secondary
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if ssl_certificate is not None:
-            data_payload['ssl-certificate'] = ssl_certificate
+            data_payload["ssl-certificate"] = ssl_certificate
         if server_hostname is not None:
-            data_payload['server-hostname'] = server_hostname
+            data_payload["server-hostname"] = server_hostname
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if ip6_primary is not None:
-            data_payload['ip6-primary'] = ip6_primary
+            data_payload["ip6-primary"] = ip6_primary
         if ip6_secondary is not None:
-            data_payload['ip6-secondary'] = ip6_secondary
+            data_payload["ip6-secondary"] = ip6_secondary
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if retry is not None:
-            data_payload['retry'] = retry
+            data_payload["retry"] = retry
         if dns_cache_limit is not None:
-            data_payload['dns-cache-limit'] = dns_cache_limit
+            data_payload["dns-cache-limit"] = dns_cache_limit
         if dns_cache_ttl is not None:
-            data_payload['dns-cache-ttl'] = dns_cache_ttl
+            data_payload["dns-cache-ttl"] = dns_cache_ttl
         if cache_notfound_responses is not None:
-            data_payload['cache-notfound-responses'] = cache_notfound_responses
+            data_payload["cache-notfound-responses"] = cache_notfound_responses
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip_interface is not None:
-            data_payload['source-ip-interface'] = source_ip_interface
+            data_payload["source-ip-interface"] = source_ip_interface
         if root_servers is not None:
-            data_payload['root-servers'] = root_servers
+            data_payload["root-servers"] = root_servers
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         if server_select_method is not None:
-            data_payload['server-select-method'] = server_select_method
+            data_payload["server-select-method"] = server_select_method
         if alt_primary is not None:
-            data_payload['alt-primary'] = alt_primary
+            data_payload["alt-primary"] = alt_primary
         if alt_secondary is not None:
-            data_payload['alt-secondary'] = alt_secondary
+            data_payload["alt-secondary"] = alt_secondary
         if log is not None:
-            data_payload['log'] = log
+            data_payload["log"] = log
         if fqdn_cache_ttl is not None:
-            data_payload['fqdn-cache-ttl'] = fqdn_cache_ttl
+            data_payload["fqdn-cache-ttl"] = fqdn_cache_ttl
         if fqdn_max_refresh is not None:
-            data_payload['fqdn-max-refresh'] = fqdn_max_refresh
+            data_payload["fqdn-max-refresh"] = fqdn_max_refresh
         if fqdn_min_refresh is not None:
-            data_payload['fqdn-min-refresh'] = fqdn_min_refresh
+            data_payload["fqdn-min-refresh"] = fqdn_min_refresh
         if hostname_ttl is not None:
-            data_payload['hostname-ttl'] = hostname_ttl
+            data_payload["hostname-ttl"] = hostname_ttl
         if hostname_limit is not None:
-            data_payload['hostname-limit'] = hostname_limit
+            data_payload["hostname-limit"] = hostname_limit
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

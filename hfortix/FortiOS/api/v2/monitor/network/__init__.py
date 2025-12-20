@@ -49,5 +49,5 @@ class Network:
             "dns",
             "fortiguard",
             "lldp",
-            "reverse_ip_lookup"
+            "reverse_ip_lookup",
         ]

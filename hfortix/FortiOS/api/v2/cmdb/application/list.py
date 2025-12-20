@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.application.list.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.application.list.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.application.list.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.application.list.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.application.list.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class List:
     """
     List Operations.
-    
+
     Provides CRUD operations for FortiOS list configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class List:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class List:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize List endpoint.
 
@@ -90,7 +90,7 @@ class List:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class List:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class List:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/application/list/{name}"
         else:
             endpoint = "/application/list"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -158,7 +160,7 @@ class List:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -184,7 +186,7 @@ class List:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -192,57 +194,65 @@ class List:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/application/list/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if extended_log is not None:
-            data_payload['extended-log'] = extended_log
+            data_payload["extended-log"] = extended_log
         if other_application_action is not None:
-            data_payload['other-application-action'] = other_application_action
+            data_payload["other-application-action"] = other_application_action
         if app_replacemsg is not None:
-            data_payload['app-replacemsg'] = app_replacemsg
+            data_payload["app-replacemsg"] = app_replacemsg
         if other_application_log is not None:
-            data_payload['other-application-log'] = other_application_log
+            data_payload["other-application-log"] = other_application_log
         if enforce_default_app_port is not None:
-            data_payload['enforce-default-app-port'] = enforce_default_app_port
+            data_payload["enforce-default-app-port"] = enforce_default_app_port
         if force_inclusion_ssl_di_sigs is not None:
-            data_payload['force-inclusion-ssl-di-sigs'] = force_inclusion_ssl_di_sigs
+            data_payload["force-inclusion-ssl-di-sigs"] = (
+                force_inclusion_ssl_di_sigs
+            )
         if unknown_application_action is not None:
-            data_payload['unknown-application-action'] = unknown_application_action
+            data_payload["unknown-application-action"] = (
+                unknown_application_action
+            )
         if unknown_application_log is not None:
-            data_payload['unknown-application-log'] = unknown_application_log
+            data_payload["unknown-application-log"] = unknown_application_log
         if p2p_block_list is not None:
-            data_payload['p2p-block-list'] = p2p_block_list
+            data_payload["p2p-block-list"] = p2p_block_list
         if deep_app_inspection is not None:
-            data_payload['deep-app-inspection'] = deep_app_inspection
+            data_payload["deep-app-inspection"] = deep_app_inspection
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if entries is not None:
-            data_payload['entries'] = entries
+            data_payload["entries"] = entries
         if control_default_network_services is not None:
-            data_payload['control-default-network-services'] = control_default_network_services
+            data_payload["control-default-network-services"] = (
+                control_default_network_services
+            )
         if default_network_services is not None:
-            data_payload['default-network-services'] = default_network_services
+            data_payload["default-network-services"] = default_network_services
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -254,13 +264,13 @@ class List:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -268,18 +278,20 @@ class List:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/application/list/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -288,37 +300,39 @@ class List:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -347,7 +361,7 @@ class List:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -371,7 +385,7 @@ class List:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -379,7 +393,7 @@ class List:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -387,40 +401,48 @@ class List:
         params = {}
         endpoint = "/application/list"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if extended_log is not None:
-            data_payload['extended-log'] = extended_log
+            data_payload["extended-log"] = extended_log
         if other_application_action is not None:
-            data_payload['other-application-action'] = other_application_action
+            data_payload["other-application-action"] = other_application_action
         if app_replacemsg is not None:
-            data_payload['app-replacemsg'] = app_replacemsg
+            data_payload["app-replacemsg"] = app_replacemsg
         if other_application_log is not None:
-            data_payload['other-application-log'] = other_application_log
+            data_payload["other-application-log"] = other_application_log
         if enforce_default_app_port is not None:
-            data_payload['enforce-default-app-port'] = enforce_default_app_port
+            data_payload["enforce-default-app-port"] = enforce_default_app_port
         if force_inclusion_ssl_di_sigs is not None:
-            data_payload['force-inclusion-ssl-di-sigs'] = force_inclusion_ssl_di_sigs
+            data_payload["force-inclusion-ssl-di-sigs"] = (
+                force_inclusion_ssl_di_sigs
+            )
         if unknown_application_action is not None:
-            data_payload['unknown-application-action'] = unknown_application_action
+            data_payload["unknown-application-action"] = (
+                unknown_application_action
+            )
         if unknown_application_log is not None:
-            data_payload['unknown-application-log'] = unknown_application_log
+            data_payload["unknown-application-log"] = unknown_application_log
         if p2p_block_list is not None:
-            data_payload['p2p-block-list'] = p2p_block_list
+            data_payload["p2p-block-list"] = p2p_block_list
         if deep_app_inspection is not None:
-            data_payload['deep-app-inspection'] = deep_app_inspection
+            data_payload["deep-app-inspection"] = deep_app_inspection
         if options is not None:
-            data_payload['options'] = options
+            data_payload["options"] = options
         if entries is not None:
-            data_payload['entries'] = entries
+            data_payload["entries"] = entries
         if control_default_network_services is not None:
-            data_payload['control-default-network-services'] = control_default_network_services
+            data_payload["control-default-network-services"] = (
+                control_default_network_services
+            )
         if default_network_services is not None:
-            data_payload['default-network-services'] = default_network_services
+            data_payload["default-network-services"] = default_network_services
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

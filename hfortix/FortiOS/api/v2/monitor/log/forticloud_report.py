@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.log.forticloud_report.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.log.forticloud_report.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Download:
     """
     Download Operations.
-    
+
     Provides read-only access for FortiOS download data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Download endpoint.
 
@@ -62,7 +62,7 @@ class Download:
     ) -> dict[str, Any]:
         """
         Download PDF report from FortiCloud.
-        
+
         Args:
             mkey: FortiCloud Report ID. (required)
             report_name: Full filename of the report. (required)
@@ -70,26 +70,28 @@ class Download:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.log.forticloud_report.download.get(mkey=1, report_name='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
-        params['report_name'] = report_name
+        params["mkey"] = mkey
+        params["report_name"] = report_name
         if inline is not None:
-            params['inline'] = inline
+            params["inline"] = inline
         params.update(kwargs)
-        return self._client.get("monitor", "/log/forticloud-report/download", params=params)
+        return self._client.get(
+            "monitor", "/log/forticloud-report/download", params=params
+        )
 
 
 class ForticloudReport:
     """ForticloudReport operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ForticloudReport endpoint.
 

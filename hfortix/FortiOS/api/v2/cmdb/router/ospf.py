@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.router.ospf.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.router.ospf.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.router.ospf.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.router.ospf.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.router.ospf.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Ospf:
     """
     Ospf Operations.
-    
+
     Provides CRUD operations for FortiOS ospf configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Ospf:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ospf endpoint.
 
@@ -82,14 +82,14 @@ class Ospf:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Ospf:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/router/ospf"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -154,7 +156,7 @@ class Ospf:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -195,7 +197,7 @@ class Ospf:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -203,7 +205,7 @@ class Ospf:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -211,74 +213,90 @@ class Ospf:
         params = {}
         endpoint = "/router/ospf"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if abr_type is not None:
-            data_payload['abr-type'] = abr_type
+            data_payload["abr-type"] = abr_type
         if auto_cost_ref_bandwidth is not None:
-            data_payload['auto-cost-ref-bandwidth'] = auto_cost_ref_bandwidth
+            data_payload["auto-cost-ref-bandwidth"] = auto_cost_ref_bandwidth
         if distance_external is not None:
-            data_payload['distance-external'] = distance_external
+            data_payload["distance-external"] = distance_external
         if distance_inter_area is not None:
-            data_payload['distance-inter-area'] = distance_inter_area
+            data_payload["distance-inter-area"] = distance_inter_area
         if distance_intra_area is not None:
-            data_payload['distance-intra-area'] = distance_intra_area
+            data_payload["distance-intra-area"] = distance_intra_area
         if database_overflow is not None:
-            data_payload['database-overflow'] = database_overflow
+            data_payload["database-overflow"] = database_overflow
         if database_overflow_max_lsas is not None:
-            data_payload['database-overflow-max-lsas'] = database_overflow_max_lsas
+            data_payload["database-overflow-max-lsas"] = (
+                database_overflow_max_lsas
+            )
         if database_overflow_time_to_recover is not None:
-            data_payload['database-overflow-time-to-recover'] = database_overflow_time_to_recover
+            data_payload["database-overflow-time-to-recover"] = (
+                database_overflow_time_to_recover
+            )
         if default_information_originate is not None:
-            data_payload['default-information-originate'] = default_information_originate
+            data_payload["default-information-originate"] = (
+                default_information_originate
+            )
         if default_information_metric is not None:
-            data_payload['default-information-metric'] = default_information_metric
+            data_payload["default-information-metric"] = (
+                default_information_metric
+            )
         if default_information_metric_type is not None:
-            data_payload['default-information-metric-type'] = default_information_metric_type
+            data_payload["default-information-metric-type"] = (
+                default_information_metric_type
+            )
         if default_information_route_map is not None:
-            data_payload['default-information-route-map'] = default_information_route_map
+            data_payload["default-information-route-map"] = (
+                default_information_route_map
+            )
         if default_metric is not None:
-            data_payload['default-metric'] = default_metric
+            data_payload["default-metric"] = default_metric
         if distance is not None:
-            data_payload['distance'] = distance
+            data_payload["distance"] = distance
         if lsa_refresh_interval is not None:
-            data_payload['lsa-refresh-interval'] = lsa_refresh_interval
+            data_payload["lsa-refresh-interval"] = lsa_refresh_interval
         if rfc1583_compatible is not None:
-            data_payload['rfc1583-compatible'] = rfc1583_compatible
+            data_payload["rfc1583-compatible"] = rfc1583_compatible
         if router_id is not None:
-            data_payload['router-id'] = router_id
+            data_payload["router-id"] = router_id
         if spf_timers is not None:
-            data_payload['spf-timers'] = spf_timers
+            data_payload["spf-timers"] = spf_timers
         if bfd is not None:
-            data_payload['bfd'] = bfd
+            data_payload["bfd"] = bfd
         if log_neighbour_changes is not None:
-            data_payload['log-neighbour-changes'] = log_neighbour_changes
+            data_payload["log-neighbour-changes"] = log_neighbour_changes
         if distribute_list_in is not None:
-            data_payload['distribute-list-in'] = distribute_list_in
+            data_payload["distribute-list-in"] = distribute_list_in
         if distribute_route_map_in is not None:
-            data_payload['distribute-route-map-in'] = distribute_route_map_in
+            data_payload["distribute-route-map-in"] = distribute_route_map_in
         if restart_mode is not None:
-            data_payload['restart-mode'] = restart_mode
+            data_payload["restart-mode"] = restart_mode
         if restart_period is not None:
-            data_payload['restart-period'] = restart_period
+            data_payload["restart-period"] = restart_period
         if restart_on_topology_change is not None:
-            data_payload['restart-on-topology-change'] = restart_on_topology_change
+            data_payload["restart-on-topology-change"] = (
+                restart_on_topology_change
+            )
         if area is not None:
-            data_payload['area'] = area
+            data_payload["area"] = area
         if ospf_interface is not None:
-            data_payload['ospf-interface'] = ospf_interface
+            data_payload["ospf-interface"] = ospf_interface
         if network is not None:
-            data_payload['network'] = network
+            data_payload["network"] = network
         if neighbor is not None:
-            data_payload['neighbor'] = neighbor
+            data_payload["neighbor"] = neighbor
         if passive_interface is not None:
-            data_payload['passive-interface'] = passive_interface
+            data_payload["passive-interface"] = passive_interface
         if summary_address is not None:
-            data_payload['summary-address'] = summary_address
+            data_payload["summary-address"] = summary_address
         if distribute_list is not None:
-            data_payload['distribute-list'] = distribute_list
+            data_payload["distribute-list"] = distribute_list
         if redistribute is not None:
-            data_payload['redistribute'] = redistribute
+            data_payload["redistribute"] = redistribute
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

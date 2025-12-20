@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.fortiview.realtime_statistics.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.fortiview.realtime_statistics.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class RealtimeStatistics:
     """
     Realtimestatistics Operations.
-    
+
     Provides read-only access for FortiOS realtimestatistics data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize RealtimeStatistics endpoint.
 
@@ -87,7 +87,7 @@ class RealtimeStatistics:
     ) -> dict[str, Any]:
         """
         Retrieve realtime drill-down and summary data for FortiView.
-        
+
         Args:
             srcaddr: Source IPv4 address. (optional)
             dstaddr: Destination IPv4 address. (optional)
@@ -120,69 +120,71 @@ class RealtimeStatistics:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.fortiview.realtime_statistics.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if srcaddr is not None:
-            params['srcaddr'] = srcaddr
+            params["srcaddr"] = srcaddr
         if dstaddr is not None:
-            params['dstaddr'] = dstaddr
+            params["dstaddr"] = dstaddr
         if srcaddr6 is not None:
-            params['srcaddr6'] = srcaddr6
+            params["srcaddr6"] = srcaddr6
         if dstaddr6 is not None:
-            params['dstaddr6'] = dstaddr6
+            params["dstaddr6"] = dstaddr6
         if srcport is not None:
-            params['srcport'] = srcport
+            params["srcport"] = srcport
         if dstport is not None:
-            params['dstport'] = dstport
+            params["dstport"] = dstport
         if srcintf is not None:
-            params['srcintf'] = srcintf
+            params["srcintf"] = srcintf
         if srcintfrole is not None:
-            params['srcintfrole'] = srcintfrole
+            params["srcintfrole"] = srcintfrole
         if dstintf is not None:
-            params['dstintf'] = dstintf
+            params["dstintf"] = dstintf
         if dstintfrole is not None:
-            params['dstintfrole'] = dstintfrole
+            params["dstintfrole"] = dstintfrole
         if policyid is not None:
-            params['policyid'] = policyid
+            params["policyid"] = policyid
         if security_policyid is not None:
-            params['security-policyid'] = security_policyid
+            params["security-policyid"] = security_policyid
         if protocol is not None:
-            params['protocol'] = protocol
+            params["protocol"] = protocol
         if web_category is not None:
-            params['web-category'] = web_category
+            params["web-category"] = web_category
         if web_domain is not None:
-            params['web-domain'] = web_domain
+            params["web-domain"] = web_domain
         if application is not None:
-            params['application'] = application
+            params["application"] = application
         if country is not None:
-            params['country'] = country
+            params["country"] = country
         if seconds is not None:
-            params['seconds'] = seconds
+            params["seconds"] = seconds
         if since is not None:
-            params['since'] = since
+            params["since"] = since
         if owner is not None:
-            params['owner'] = owner
+            params["owner"] = owner
         if username is not None:
-            params['username'] = username
+            params["username"] = username
         if shaper is not None:
-            params['shaper'] = shaper
+            params["shaper"] = shaper
         if srcuuid is not None:
-            params['srcuuid'] = srcuuid
+            params["srcuuid"] = srcuuid
         if dstuuid is not None:
-            params['dstuuid'] = dstuuid
+            params["dstuuid"] = dstuuid
         if sessionid is not None:
-            params['sessionid'] = sessionid
+            params["sessionid"] = sessionid
         if report_by is not None:
-            params['report_by'] = report_by
+            params["report_by"] = report_by
         if sort_by is not None:
-            params['sort_by'] = sort_by
+            params["sort_by"] = sort_by
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/fortiview/realtime-statistics", params=params)
+        return self._client.get(
+            "monitor", "/fortiview/realtime-statistics", params=params
+        )

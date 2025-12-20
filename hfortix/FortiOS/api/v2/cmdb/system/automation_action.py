@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.automation_action.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.automation_action.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.automation_action.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.automation_action.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.automation_action.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class AutomationAction:
     """
     Automationaction Operations.
-    
+
     Provides CRUD operations for FortiOS automationaction configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class AutomationAction:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class AutomationAction:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize AutomationAction endpoint.
 
@@ -90,7 +90,7 @@ class AutomationAction:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class AutomationAction:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class AutomationAction:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/system/automation-action/{name}"
         else:
             endpoint = "/system/automation-action"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -181,7 +183,7 @@ class AutomationAction:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -230,7 +232,7 @@ class AutomationAction:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -238,103 +240,111 @@ class AutomationAction:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/system/automation-action/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if action_type is not None:
-            data_payload['action-type'] = action_type
+            data_payload["action-type"] = action_type
         if system_action is not None:
-            data_payload['system-action'] = system_action
+            data_payload["system-action"] = system_action
         if tls_certificate is not None:
-            data_payload['tls-certificate'] = tls_certificate
+            data_payload["tls-certificate"] = tls_certificate
         if forticare_email is not None:
-            data_payload['forticare-email'] = forticare_email
+            data_payload["forticare-email"] = forticare_email
         if email_to is not None:
-            data_payload['email-to'] = email_to
+            data_payload["email-to"] = email_to
         if email_from is not None:
-            data_payload['email-from'] = email_from
+            data_payload["email-from"] = email_from
         if email_subject is not None:
-            data_payload['email-subject'] = email_subject
+            data_payload["email-subject"] = email_subject
         if minimum_interval is not None:
-            data_payload['minimum-interval'] = minimum_interval
+            data_payload["minimum-interval"] = minimum_interval
         if aws_api_key is not None:
-            data_payload['aws-api-key'] = aws_api_key
+            data_payload["aws-api-key"] = aws_api_key
         if azure_function_authorization is not None:
-            data_payload['azure-function-authorization'] = azure_function_authorization
+            data_payload["azure-function-authorization"] = (
+                azure_function_authorization
+            )
         if azure_api_key is not None:
-            data_payload['azure-api-key'] = azure_api_key
+            data_payload["azure-api-key"] = azure_api_key
         if alicloud_function_authorization is not None:
-            data_payload['alicloud-function-authorization'] = alicloud_function_authorization
+            data_payload["alicloud-function-authorization"] = (
+                alicloud_function_authorization
+            )
         if alicloud_access_key_id is not None:
-            data_payload['alicloud-access-key-id'] = alicloud_access_key_id
+            data_payload["alicloud-access-key-id"] = alicloud_access_key_id
         if alicloud_access_key_secret is not None:
-            data_payload['alicloud-access-key-secret'] = alicloud_access_key_secret
+            data_payload["alicloud-access-key-secret"] = (
+                alicloud_access_key_secret
+            )
         if message_type is not None:
-            data_payload['message-type'] = message_type
+            data_payload["message-type"] = message_type
         if message is not None:
-            data_payload['message'] = message
+            data_payload["message"] = message
         if replacement_message is not None:
-            data_payload['replacement-message'] = replacement_message
+            data_payload["replacement-message"] = replacement_message
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if method is not None:
-            data_payload['method'] = method
+            data_payload["method"] = method
         if uri is not None:
-            data_payload['uri'] = uri
+            data_payload["uri"] = uri
         if http_body is not None:
-            data_payload['http-body'] = http_body
+            data_payload["http-body"] = http_body
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if http_headers is not None:
-            data_payload['http-headers'] = http_headers
+            data_payload["http-headers"] = http_headers
         if form_data is not None:
-            data_payload['form-data'] = form_data
+            data_payload["form-data"] = form_data
         if verify_host_cert is not None:
-            data_payload['verify-host-cert'] = verify_host_cert
+            data_payload["verify-host-cert"] = verify_host_cert
         if script is not None:
-            data_payload['script'] = script
+            data_payload["script"] = script
         if output_size is not None:
-            data_payload['output-size'] = output_size
+            data_payload["output-size"] = output_size
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if duration is not None:
-            data_payload['duration'] = duration
+            data_payload["duration"] = duration
         if output_interval is not None:
-            data_payload['output-interval'] = output_interval
+            data_payload["output-interval"] = output_interval
         if file_only is not None:
-            data_payload['file-only'] = file_only
+            data_payload["file-only"] = file_only
         if execute_security_fabric is not None:
-            data_payload['execute-security-fabric'] = execute_security_fabric
+            data_payload["execute-security-fabric"] = execute_security_fabric
         if accprofile is not None:
-            data_payload['accprofile'] = accprofile
+            data_payload["accprofile"] = accprofile
         if regular_expression is not None:
-            data_payload['regular-expression'] = regular_expression
+            data_payload["regular-expression"] = regular_expression
         if log_debug_print is not None:
-            data_payload['log-debug-print'] = log_debug_print
+            data_payload["log-debug-print"] = log_debug_print
         if security_tag is not None:
-            data_payload['security-tag'] = security_tag
+            data_payload["security-tag"] = security_tag
         if sdn_connector is not None:
-            data_payload['sdn-connector'] = sdn_connector
+            data_payload["sdn-connector"] = sdn_connector
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -346,13 +356,13 @@ class AutomationAction:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -360,18 +370,20 @@ class AutomationAction:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/automation-action/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -380,37 +392,39 @@ class AutomationAction:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -462,7 +476,7 @@ class AutomationAction:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -509,7 +523,7 @@ class AutomationAction:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -517,7 +531,7 @@ class AutomationAction:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -525,86 +539,94 @@ class AutomationAction:
         params = {}
         endpoint = "/system/automation-action"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if action_type is not None:
-            data_payload['action-type'] = action_type
+            data_payload["action-type"] = action_type
         if system_action is not None:
-            data_payload['system-action'] = system_action
+            data_payload["system-action"] = system_action
         if tls_certificate is not None:
-            data_payload['tls-certificate'] = tls_certificate
+            data_payload["tls-certificate"] = tls_certificate
         if forticare_email is not None:
-            data_payload['forticare-email'] = forticare_email
+            data_payload["forticare-email"] = forticare_email
         if email_to is not None:
-            data_payload['email-to'] = email_to
+            data_payload["email-to"] = email_to
         if email_from is not None:
-            data_payload['email-from'] = email_from
+            data_payload["email-from"] = email_from
         if email_subject is not None:
-            data_payload['email-subject'] = email_subject
+            data_payload["email-subject"] = email_subject
         if minimum_interval is not None:
-            data_payload['minimum-interval'] = minimum_interval
+            data_payload["minimum-interval"] = minimum_interval
         if aws_api_key is not None:
-            data_payload['aws-api-key'] = aws_api_key
+            data_payload["aws-api-key"] = aws_api_key
         if azure_function_authorization is not None:
-            data_payload['azure-function-authorization'] = azure_function_authorization
+            data_payload["azure-function-authorization"] = (
+                azure_function_authorization
+            )
         if azure_api_key is not None:
-            data_payload['azure-api-key'] = azure_api_key
+            data_payload["azure-api-key"] = azure_api_key
         if alicloud_function_authorization is not None:
-            data_payload['alicloud-function-authorization'] = alicloud_function_authorization
+            data_payload["alicloud-function-authorization"] = (
+                alicloud_function_authorization
+            )
         if alicloud_access_key_id is not None:
-            data_payload['alicloud-access-key-id'] = alicloud_access_key_id
+            data_payload["alicloud-access-key-id"] = alicloud_access_key_id
         if alicloud_access_key_secret is not None:
-            data_payload['alicloud-access-key-secret'] = alicloud_access_key_secret
+            data_payload["alicloud-access-key-secret"] = (
+                alicloud_access_key_secret
+            )
         if message_type is not None:
-            data_payload['message-type'] = message_type
+            data_payload["message-type"] = message_type
         if message is not None:
-            data_payload['message'] = message
+            data_payload["message"] = message
         if replacement_message is not None:
-            data_payload['replacement-message'] = replacement_message
+            data_payload["replacement-message"] = replacement_message
         if replacemsg_group is not None:
-            data_payload['replacemsg-group'] = replacemsg_group
+            data_payload["replacemsg-group"] = replacemsg_group
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if method is not None:
-            data_payload['method'] = method
+            data_payload["method"] = method
         if uri is not None:
-            data_payload['uri'] = uri
+            data_payload["uri"] = uri
         if http_body is not None:
-            data_payload['http-body'] = http_body
+            data_payload["http-body"] = http_body
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if http_headers is not None:
-            data_payload['http-headers'] = http_headers
+            data_payload["http-headers"] = http_headers
         if form_data is not None:
-            data_payload['form-data'] = form_data
+            data_payload["form-data"] = form_data
         if verify_host_cert is not None:
-            data_payload['verify-host-cert'] = verify_host_cert
+            data_payload["verify-host-cert"] = verify_host_cert
         if script is not None:
-            data_payload['script'] = script
+            data_payload["script"] = script
         if output_size is not None:
-            data_payload['output-size'] = output_size
+            data_payload["output-size"] = output_size
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if duration is not None:
-            data_payload['duration'] = duration
+            data_payload["duration"] = duration
         if output_interval is not None:
-            data_payload['output-interval'] = output_interval
+            data_payload["output-interval"] = output_interval
         if file_only is not None:
-            data_payload['file-only'] = file_only
+            data_payload["file-only"] = file_only
         if execute_security_fabric is not None:
-            data_payload['execute-security-fabric'] = execute_security_fabric
+            data_payload["execute-security-fabric"] = execute_security_fabric
         if accprofile is not None:
-            data_payload['accprofile'] = accprofile
+            data_payload["accprofile"] = accprofile
         if regular_expression is not None:
-            data_payload['regular-expression'] = regular_expression
+            data_payload["regular-expression"] = regular_expression
         if log_debug_print is not None:
-            data_payload['log-debug-print'] = log_debug_print
+            data_payload["log-debug-print"] = log_debug_print
         if security_tag is not None:
-            data_payload['security-tag'] = security_tag
+            data_payload["security-tag"] = security_tag
         if sdn_connector is not None:
-            data_payload['sdn-connector'] = sdn_connector
+            data_payload["sdn-connector"] = sdn_connector
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

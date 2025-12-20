@@ -5,21 +5,20 @@ from .iotd import Iotd
 from .otdt import Otdt
 from .otvp import Otvp
 
-__all__ = ['Fmwp', 'Iotd', 'Otdt', 'Otvp']
-
+__all__ = ["Fmwp", "Iotd", "Otdt", "Otvp"]
 
 
 class Rule:
     """
     Rule category wrapper.
-    
+
     This class provides access to all rule CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Rule with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.shaping_policy.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.shaping_policy.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.shaping_policy.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.shaping_policy.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.shaping_policy.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ShapingPolicy:
     """
     Shapingpolicy Operations.
-    
+
     Provides CRUD operations for FortiOS shapingpolicy configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ShapingPolicy:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ShapingPolicy:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ShapingPolicy endpoint.
 
@@ -90,7 +90,7 @@ class ShapingPolicy:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ShapingPolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ShapingPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if id:
             endpoint = f"/firewall/shaping-policy/{id}"
         else:
             endpoint = "/firewall/shaping-policy"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -187,7 +189,7 @@ class ShapingPolicy:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             id: Object identifier (required)
@@ -242,7 +244,7 @@ class ShapingPolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -250,115 +252,131 @@ class ShapingPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for put()")
         endpoint = f"/firewall/shaping-policy/{id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if ip_version is not None:
-            data_payload['ip-version'] = ip_version
+            data_payload["ip-version"] = ip_version
         if traffic_type is not None:
-            data_payload['traffic-type'] = traffic_type
+            data_payload["traffic-type"] = traffic_type
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if srcaddr6 is not None:
-            data_payload['srcaddr6'] = srcaddr6
+            data_payload["srcaddr6"] = srcaddr6
         if dstaddr6 is not None:
-            data_payload['dstaddr6'] = dstaddr6
+            data_payload["dstaddr6"] = dstaddr6
         if internet_service is not None:
-            data_payload['internet-service'] = internet_service
+            data_payload["internet-service"] = internet_service
         if internet_service_name is not None:
-            data_payload['internet-service-name'] = internet_service_name
+            data_payload["internet-service-name"] = internet_service_name
         if internet_service_group is not None:
-            data_payload['internet-service-group'] = internet_service_group
+            data_payload["internet-service-group"] = internet_service_group
         if internet_service_custom is not None:
-            data_payload['internet-service-custom'] = internet_service_custom
+            data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload['internet-service-custom-group'] = internet_service_custom_group
+            data_payload["internet-service-custom-group"] = (
+                internet_service_custom_group
+            )
         if internet_service_fortiguard is not None:
-            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if internet_service_src is not None:
-            data_payload['internet-service-src'] = internet_service_src
+            data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload['internet-service-src-name'] = internet_service_src_name
+            data_payload["internet-service-src-name"] = (
+                internet_service_src_name
+            )
         if internet_service_src_group is not None:
-            data_payload['internet-service-src-group'] = internet_service_src_group
+            data_payload["internet-service-src-group"] = (
+                internet_service_src_group
+            )
         if internet_service_src_custom is not None:
-            data_payload['internet-service-src-custom'] = internet_service_src_custom
+            data_payload["internet-service-src-custom"] = (
+                internet_service_src_custom
+            )
         if internet_service_src_custom_group is not None:
-            data_payload['internet-service-src-custom-group'] = internet_service_src_custom_group
+            data_payload["internet-service-src-custom-group"] = (
+                internet_service_src_custom_group
+            )
         if internet_service_src_fortiguard is not None:
-            data_payload['internet-service-src-fortiguard'] = internet_service_src_fortiguard
+            data_payload["internet-service-src-fortiguard"] = (
+                internet_service_src_fortiguard
+            )
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if users is not None:
-            data_payload['users'] = users
+            data_payload["users"] = users
         if groups is not None:
-            data_payload['groups'] = groups
+            data_payload["groups"] = groups
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         if app_category is not None:
-            data_payload['app-category'] = app_category
+            data_payload["app-category"] = app_category
         if app_group is not None:
-            data_payload['app-group'] = app_group
+            data_payload["app-group"] = app_group
         if url_category is not None:
-            data_payload['url-category'] = url_category
+            data_payload["url-category"] = url_category
         if srcintf is not None:
-            data_payload['srcintf'] = srcintf
+            data_payload["srcintf"] = srcintf
         if dstintf is not None:
-            data_payload['dstintf'] = dstintf
+            data_payload["dstintf"] = dstintf
         if tos_mask is not None:
-            data_payload['tos-mask'] = tos_mask
+            data_payload["tos-mask"] = tos_mask
         if tos is not None:
-            data_payload['tos'] = tos
+            data_payload["tos"] = tos
         if tos_negate is not None:
-            data_payload['tos-negate'] = tos_negate
+            data_payload["tos-negate"] = tos_negate
         if traffic_shaper is not None:
-            data_payload['traffic-shaper'] = traffic_shaper
+            data_payload["traffic-shaper"] = traffic_shaper
         if traffic_shaper_reverse is not None:
-            data_payload['traffic-shaper-reverse'] = traffic_shaper_reverse
+            data_payload["traffic-shaper-reverse"] = traffic_shaper_reverse
         if per_ip_shaper is not None:
-            data_payload['per-ip-shaper'] = per_ip_shaper
+            data_payload["per-ip-shaper"] = per_ip_shaper
         if class_id is not None:
-            data_payload['class-id'] = class_id
+            data_payload["class-id"] = class_id
         if diffserv_forward is not None:
-            data_payload['diffserv-forward'] = diffserv_forward
+            data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
-            data_payload['diffserv-reverse'] = diffserv_reverse
+            data_payload["diffserv-reverse"] = diffserv_reverse
         if diffservcode_forward is not None:
-            data_payload['diffservcode-forward'] = diffservcode_forward
+            data_payload["diffservcode-forward"] = diffservcode_forward
         if diffservcode_rev is not None:
-            data_payload['diffservcode-rev'] = diffservcode_rev
+            data_payload["diffservcode-rev"] = diffservcode_rev
         if cos_mask is not None:
-            data_payload['cos-mask'] = cos_mask
+            data_payload["cos-mask"] = cos_mask
         if cos is not None:
-            data_payload['cos'] = cos
+            data_payload["cos"] = cos
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -370,13 +388,13 @@ class ShapingPolicy:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -384,18 +402,20 @@ class ShapingPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not id:
             raise ValueError("id is required for delete()")
         endpoint = f"/firewall/shaping-policy/{id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -404,37 +424,39 @@ class ShapingPolicy:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             id: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(id=id, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -492,7 +514,7 @@ class ShapingPolicy:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -545,7 +567,7 @@ class ShapingPolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -553,7 +575,7 @@ class ShapingPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -561,98 +583,114 @@ class ShapingPolicy:
         params = {}
         endpoint = "/firewall/shaping-policy"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if id is not None:
-            data_payload['id'] = id
+            data_payload["id"] = id
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if ip_version is not None:
-            data_payload['ip-version'] = ip_version
+            data_payload["ip-version"] = ip_version
         if traffic_type is not None:
-            data_payload['traffic-type'] = traffic_type
+            data_payload["traffic-type"] = traffic_type
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if srcaddr6 is not None:
-            data_payload['srcaddr6'] = srcaddr6
+            data_payload["srcaddr6"] = srcaddr6
         if dstaddr6 is not None:
-            data_payload['dstaddr6'] = dstaddr6
+            data_payload["dstaddr6"] = dstaddr6
         if internet_service is not None:
-            data_payload['internet-service'] = internet_service
+            data_payload["internet-service"] = internet_service
         if internet_service_name is not None:
-            data_payload['internet-service-name'] = internet_service_name
+            data_payload["internet-service-name"] = internet_service_name
         if internet_service_group is not None:
-            data_payload['internet-service-group'] = internet_service_group
+            data_payload["internet-service-group"] = internet_service_group
         if internet_service_custom is not None:
-            data_payload['internet-service-custom'] = internet_service_custom
+            data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload['internet-service-custom-group'] = internet_service_custom_group
+            data_payload["internet-service-custom-group"] = (
+                internet_service_custom_group
+            )
         if internet_service_fortiguard is not None:
-            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if internet_service_src is not None:
-            data_payload['internet-service-src'] = internet_service_src
+            data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload['internet-service-src-name'] = internet_service_src_name
+            data_payload["internet-service-src-name"] = (
+                internet_service_src_name
+            )
         if internet_service_src_group is not None:
-            data_payload['internet-service-src-group'] = internet_service_src_group
+            data_payload["internet-service-src-group"] = (
+                internet_service_src_group
+            )
         if internet_service_src_custom is not None:
-            data_payload['internet-service-src-custom'] = internet_service_src_custom
+            data_payload["internet-service-src-custom"] = (
+                internet_service_src_custom
+            )
         if internet_service_src_custom_group is not None:
-            data_payload['internet-service-src-custom-group'] = internet_service_src_custom_group
+            data_payload["internet-service-src-custom-group"] = (
+                internet_service_src_custom_group
+            )
         if internet_service_src_fortiguard is not None:
-            data_payload['internet-service-src-fortiguard'] = internet_service_src_fortiguard
+            data_payload["internet-service-src-fortiguard"] = (
+                internet_service_src_fortiguard
+            )
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if users is not None:
-            data_payload['users'] = users
+            data_payload["users"] = users
         if groups is not None:
-            data_payload['groups'] = groups
+            data_payload["groups"] = groups
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         if app_category is not None:
-            data_payload['app-category'] = app_category
+            data_payload["app-category"] = app_category
         if app_group is not None:
-            data_payload['app-group'] = app_group
+            data_payload["app-group"] = app_group
         if url_category is not None:
-            data_payload['url-category'] = url_category
+            data_payload["url-category"] = url_category
         if srcintf is not None:
-            data_payload['srcintf'] = srcintf
+            data_payload["srcintf"] = srcintf
         if dstintf is not None:
-            data_payload['dstintf'] = dstintf
+            data_payload["dstintf"] = dstintf
         if tos_mask is not None:
-            data_payload['tos-mask'] = tos_mask
+            data_payload["tos-mask"] = tos_mask
         if tos is not None:
-            data_payload['tos'] = tos
+            data_payload["tos"] = tos
         if tos_negate is not None:
-            data_payload['tos-negate'] = tos_negate
+            data_payload["tos-negate"] = tos_negate
         if traffic_shaper is not None:
-            data_payload['traffic-shaper'] = traffic_shaper
+            data_payload["traffic-shaper"] = traffic_shaper
         if traffic_shaper_reverse is not None:
-            data_payload['traffic-shaper-reverse'] = traffic_shaper_reverse
+            data_payload["traffic-shaper-reverse"] = traffic_shaper_reverse
         if per_ip_shaper is not None:
-            data_payload['per-ip-shaper'] = per_ip_shaper
+            data_payload["per-ip-shaper"] = per_ip_shaper
         if class_id is not None:
-            data_payload['class-id'] = class_id
+            data_payload["class-id"] = class_id
         if diffserv_forward is not None:
-            data_payload['diffserv-forward'] = diffserv_forward
+            data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
-            data_payload['diffserv-reverse'] = diffserv_reverse
+            data_payload["diffserv-reverse"] = diffserv_reverse
         if diffservcode_forward is not None:
-            data_payload['diffservcode-forward'] = diffservcode_forward
+            data_payload["diffservcode-forward"] = diffservcode_forward
         if diffservcode_rev is not None:
-            data_payload['diffservcode-rev'] = diffservcode_rev
+            data_payload["diffservcode-rev"] = diffservcode_rev
         if cos_mask is not None:
-            data_payload['cos-mask'] = cos_mask
+            data_payload["cos-mask"] = cos_mask
         if cos is not None:
-            data_payload['cos'] = cos
+            data_payload["cos"] = cos
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

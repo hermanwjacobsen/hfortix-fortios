@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.log.local_report.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.log.local_report.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Delete:
     """
     Delete Operations.
-    
+
     Provides read-only access for FortiOS delete data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Delete endpoint.
 
@@ -60,30 +60,32 @@ class Delete:
     ) -> dict[str, Any]:
         """
         Delete a local report.
-        
+
         Args:
             mkeys: Local Report Name. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.log.local_report.delete.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkeys is not None:
-            data['mkeys'] = mkeys
+            data["mkeys"] = mkeys
         data.update(kwargs)
-        return self._client.post("monitor", "/log/local-report/delete", data=data)
+        return self._client.post(
+            "monitor", "/log/local-report/delete", data=data
+        )
 
 
 class Download:
     """Download operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Download endpoint.
 
@@ -101,34 +103,36 @@ class Download:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Download local report
-Access Group: loggrp.
-        
-        Args:
-            mkey: Local report name. (required)
-            layout: Layout name. (optional)
-            payload_dict: Optional dictionary of parameters
-            raw_json: Return raw JSON response if True
-            **kwargs: Additional parameters as keyword arguments
-        
-        Returns:
-            Dictionary containing API response
-        
-        Example:
-            >>> fgt.api.monitor.log.local_report.download.get(mkey='value')
+                Download local report
+        Access Group: loggrp.
+
+                Args:
+                    mkey: Local report name. (required)
+                    layout: Layout name. (optional)
+                    payload_dict: Optional dictionary of parameters
+                    raw_json: Return raw JSON response if True
+                    **kwargs: Additional parameters as keyword arguments
+
+                Returns:
+                    Dictionary containing API response
+
+                Example:
+                    >>> fgt.api.monitor.log.local_report.download.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
+        params["mkey"] = mkey
         if layout is not None:
-            params['layout'] = layout
+            params["layout"] = layout
         params.update(kwargs)
-        return self._client.get("monitor", "/log/local-report/download", params=params)
+        return self._client.get(
+            "monitor", "/log/local-report/download", params=params
+        )
 
 
 class LocalReport:
     """LocalReport operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize LocalReport endpoint.
 

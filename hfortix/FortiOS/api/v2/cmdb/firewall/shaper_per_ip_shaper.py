@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.shaper_per_ip_shaper.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.shaper_per_ip_shaper.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.shaper_per_ip_shaper.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.shaper_per_ip_shaper.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.shaper_per_ip_shaper.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ShaperPerIpShaper:
     """
     Shaperperipshaper Operations.
-    
+
     Provides CRUD operations for FortiOS shaperperipshaper configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ShaperPerIpShaper:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ShaperPerIpShaper:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ShaperPerIpShaper endpoint.
 
@@ -90,7 +90,7 @@ class ShaperPerIpShaper:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ShaperPerIpShaper:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ShaperPerIpShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
         else:
             endpoint = "/firewall.shaper/per-ip-shaper"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -151,7 +153,7 @@ class ShaperPerIpShaper:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -170,7 +172,7 @@ class ShaperPerIpShaper:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -178,43 +180,49 @@ class ShaperPerIpShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if max_bandwidth is not None:
-            data_payload['max-bandwidth'] = max_bandwidth
+            data_payload["max-bandwidth"] = max_bandwidth
         if bandwidth_unit is not None:
-            data_payload['bandwidth-unit'] = bandwidth_unit
+            data_payload["bandwidth-unit"] = bandwidth_unit
         if max_concurrent_session is not None:
-            data_payload['max-concurrent-session'] = max_concurrent_session
+            data_payload["max-concurrent-session"] = max_concurrent_session
         if max_concurrent_tcp_session is not None:
-            data_payload['max-concurrent-tcp-session'] = max_concurrent_tcp_session
+            data_payload["max-concurrent-tcp-session"] = (
+                max_concurrent_tcp_session
+            )
         if max_concurrent_udp_session is not None:
-            data_payload['max-concurrent-udp-session'] = max_concurrent_udp_session
+            data_payload["max-concurrent-udp-session"] = (
+                max_concurrent_udp_session
+            )
         if diffserv_forward is not None:
-            data_payload['diffserv-forward'] = diffserv_forward
+            data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
-            data_payload['diffserv-reverse'] = diffserv_reverse
+            data_payload["diffserv-reverse"] = diffserv_reverse
         if diffservcode_forward is not None:
-            data_payload['diffservcode-forward'] = diffservcode_forward
+            data_payload["diffservcode-forward"] = diffservcode_forward
         if diffservcode_rev is not None:
-            data_payload['diffservcode-rev'] = diffservcode_rev
+            data_payload["diffservcode-rev"] = diffservcode_rev
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -226,13 +234,13 @@ class ShaperPerIpShaper:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -240,18 +248,20 @@ class ShaperPerIpShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -260,37 +270,39 @@ class ShaperPerIpShaper:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -312,7 +324,7 @@ class ShaperPerIpShaper:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -329,7 +341,7 @@ class ShaperPerIpShaper:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -337,7 +349,7 @@ class ShaperPerIpShaper:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -345,26 +357,32 @@ class ShaperPerIpShaper:
         params = {}
         endpoint = "/firewall.shaper/per-ip-shaper"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if max_bandwidth is not None:
-            data_payload['max-bandwidth'] = max_bandwidth
+            data_payload["max-bandwidth"] = max_bandwidth
         if bandwidth_unit is not None:
-            data_payload['bandwidth-unit'] = bandwidth_unit
+            data_payload["bandwidth-unit"] = bandwidth_unit
         if max_concurrent_session is not None:
-            data_payload['max-concurrent-session'] = max_concurrent_session
+            data_payload["max-concurrent-session"] = max_concurrent_session
         if max_concurrent_tcp_session is not None:
-            data_payload['max-concurrent-tcp-session'] = max_concurrent_tcp_session
+            data_payload["max-concurrent-tcp-session"] = (
+                max_concurrent_tcp_session
+            )
         if max_concurrent_udp_session is not None:
-            data_payload['max-concurrent-udp-session'] = max_concurrent_udp_session
+            data_payload["max-concurrent-udp-session"] = (
+                max_concurrent_udp_session
+            )
         if diffserv_forward is not None:
-            data_payload['diffserv-forward'] = diffserv_forward
+            data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
-            data_payload['diffserv-reverse'] = diffserv_reverse
+            data_payload["diffserv-reverse"] = diffserv_reverse
         if diffservcode_forward is not None:
-            data_payload['diffservcode-forward'] = diffservcode_forward
+            data_payload["diffservcode-forward"] = diffservcode_forward
         if diffservcode_rev is not None:
-            data_payload['diffservcode-rev'] = diffservcode_rev
+            data_payload["diffservcode-rev"] = diffservcode_rev
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

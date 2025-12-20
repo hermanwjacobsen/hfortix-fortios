@@ -91,5 +91,5 @@ class Wifi:
             "station_capability",
             "statistics",
             "unassociated_devices",
-            "vlan_probe"
+            "vlan_probe",
         ]

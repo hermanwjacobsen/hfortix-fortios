@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.switch_controller.recommendation.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.switch_controller.recommendation.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class PseConfig:
     """
     Pseconfig Operations.
-    
+
     Provides read-only access for FortiOS pseconfig data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PseConfig endpoint.
 
@@ -60,30 +60,34 @@ class PseConfig:
     ) -> dict[str, Any]:
         """
         Execute switch recommendation for pse-config to prevent PSE-PSE scenarios.
-        
+
         Args:
             fortilink: FortiLink interface name. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.switch_controller.recommendation.pse_config.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if fortilink is not None:
-            data['fortilink'] = fortilink
+            data["fortilink"] = fortilink
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/recommendation/pse-config", data=data)
+        return self._client.post(
+            "monitor",
+            "/switch-controller/recommendation/pse-config",
+            data=data,
+        )
 
 
 class Recommendation:
     """Recommendation operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Recommendation endpoint.
 

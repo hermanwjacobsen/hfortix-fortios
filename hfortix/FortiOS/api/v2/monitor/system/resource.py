@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.resource.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.resource.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Usage:
     """
     Usage Operations.
-    
+
     Provides read-only access for FortiOS usage data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Usage endpoint.
 
@@ -62,7 +62,7 @@ class Usage:
     ) -> dict[str, Any]:
         """
         Retreive current and historical usage data for a provided resource.
-        
+
         Args:
             scope: Scope of resource [vdom|global]. This parameter is only applicable if the FGT is in VDOM mode. (optional)
             resource: Resource to get usage data for [cpu|mem|disk|session|session6|setuprate|setuprate6|disk_lograte|faz_lograte|forticloud_lograte|gtp_tunnel|gtp_tunnel_setup_rate]. Defaults to all resources if not provided. Additionally, [npu_session|npu_session6] data is available for devices that have an NPU and [nturbo_session|nturbo_session6] data is available for NP6 devices that support NTurbo. [gtp_tunnel|gtp_tunnel_setup_rate] data is available for carrier platforms only. (optional)
@@ -70,28 +70,30 @@ class Usage:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.resource.usage.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if resource is not None:
-            params['resource'] = resource
+            params["resource"] = resource
         if interval is not None:
-            params['interval'] = interval
+            params["interval"] = interval
         params.update(kwargs)
-        return self._client.get("monitor", "/system/resource/usage", params=params)
+        return self._client.get(
+            "monitor", "/system/resource/usage", params=params
+        )
 
 
 class Resource:
     """Resource operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Resource endpoint.
 

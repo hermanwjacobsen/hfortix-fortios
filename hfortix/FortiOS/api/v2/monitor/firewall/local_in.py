@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.local_in.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.local_in.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class LocalIn:
     """
     Localin Operations.
-    
+
     Provides read-only access for FortiOS localin data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize LocalIn endpoint.
 
@@ -60,21 +60,21 @@ class LocalIn:
     ) -> dict[str, Any]:
         """
         List implicit and explicit local-in firewall policies.
-        
+
         Args:
             include_ttl: Include TTL local-in policies. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.local_in.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if include_ttl is not None:
-            params['include_ttl'] = include_ttl
+            params["include_ttl"] = include_ttl
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/local-in", params=params)

@@ -11,25 +11,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.vpn.certificate_local.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.vpn.certificate_local.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.vpn.certificate_local.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.vpn.certificate_local.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.vpn.certificate_local.delete(name="item_name")
 
@@ -49,13 +49,13 @@ if TYPE_CHECKING:
 class CertificateLocal:
     """
     Certificatelocal Operations.
-    
+
     Provides CRUD operations for FortiOS certificatelocal configuration.
 
     Methods:
         get(): Retrieve configuration objects
         post(): Create new configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -63,7 +63,7 @@ class CertificateLocal:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CertificateLocal endpoint.
 
@@ -86,7 +86,7 @@ class CertificateLocal:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -96,7 +96,7 @@ class CertificateLocal:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -104,27 +104,29 @@ class CertificateLocal:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/vpn.certificate/local/{name}"
         else:
             endpoint = "/vpn.certificate/local"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -177,7 +179,7 @@ class CertificateLocal:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -225,7 +227,7 @@ class CertificateLocal:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -233,7 +235,7 @@ class CertificateLocal:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -241,88 +243,92 @@ class CertificateLocal:
         params = {}
         endpoint = "/vpn.certificate/local"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if private_key is not None:
-            data_payload['private-key'] = private_key
+            data_payload["private-key"] = private_key
         if certificate is not None:
-            data_payload['certificate'] = certificate
+            data_payload["certificate"] = certificate
         if csr is not None:
-            data_payload['csr'] = csr
+            data_payload["csr"] = csr
         if state is not None:
-            data_payload['state'] = state
+            data_payload["state"] = state
         if scep_url is not None:
-            data_payload['scep-url'] = scep_url
+            data_payload["scep-url"] = scep_url
         if range is not None:
-            data_payload['range'] = range
+            data_payload["range"] = range
         if source is not None:
-            data_payload['source'] = source
+            data_payload["source"] = source
         if auto_regenerate_days is not None:
-            data_payload['auto-regenerate-days'] = auto_regenerate_days
+            data_payload["auto-regenerate-days"] = auto_regenerate_days
         if auto_regenerate_days_warning is not None:
-            data_payload['auto-regenerate-days-warning'] = auto_regenerate_days_warning
+            data_payload["auto-regenerate-days-warning"] = (
+                auto_regenerate_days_warning
+            )
         if scep_password is not None:
-            data_payload['scep-password'] = scep_password
+            data_payload["scep-password"] = scep_password
         if ca_identifier is not None:
-            data_payload['ca-identifier'] = ca_identifier
+            data_payload["ca-identifier"] = ca_identifier
         if name_encoding is not None:
-            data_payload['name-encoding'] = name_encoding
+            data_payload["name-encoding"] = name_encoding
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if ike_localid is not None:
-            data_payload['ike-localid'] = ike_localid
+            data_payload["ike-localid"] = ike_localid
         if ike_localid_type is not None:
-            data_payload['ike-localid-type'] = ike_localid_type
+            data_payload["ike-localid-type"] = ike_localid_type
         if enroll_protocol is not None:
-            data_payload['enroll-protocol'] = enroll_protocol
+            data_payload["enroll-protocol"] = enroll_protocol
         if private_key_retain is not None:
-            data_payload['private-key-retain'] = private_key_retain
+            data_payload["private-key-retain"] = private_key_retain
         if cmp_server is not None:
-            data_payload['cmp-server'] = cmp_server
+            data_payload["cmp-server"] = cmp_server
         if cmp_path is not None:
-            data_payload['cmp-path'] = cmp_path
+            data_payload["cmp-path"] = cmp_path
         if cmp_server_cert is not None:
-            data_payload['cmp-server-cert'] = cmp_server_cert
+            data_payload["cmp-server-cert"] = cmp_server_cert
         if cmp_regeneration_method is not None:
-            data_payload['cmp-regeneration-method'] = cmp_regeneration_method
+            data_payload["cmp-regeneration-method"] = cmp_regeneration_method
         if acme_ca_url is not None:
-            data_payload['acme-ca-url'] = acme_ca_url
+            data_payload["acme-ca-url"] = acme_ca_url
         if acme_domain is not None:
-            data_payload['acme-domain'] = acme_domain
+            data_payload["acme-domain"] = acme_domain
         if acme_email is not None:
-            data_payload['acme-email'] = acme_email
+            data_payload["acme-email"] = acme_email
         if acme_eab_key_id is not None:
-            data_payload['acme-eab-key-id'] = acme_eab_key_id
+            data_payload["acme-eab-key-id"] = acme_eab_key_id
         if acme_eab_key_hmac is not None:
-            data_payload['acme-eab-key-hmac'] = acme_eab_key_hmac
+            data_payload["acme-eab-key-hmac"] = acme_eab_key_hmac
         if acme_rsa_key_size is not None:
-            data_payload['acme-rsa-key-size'] = acme_rsa_key_size
+            data_payload["acme-rsa-key-size"] = acme_rsa_key_size
         if acme_renew_window is not None:
-            data_payload['acme-renew-window'] = acme_renew_window
+            data_payload["acme-renew-window"] = acme_renew_window
         if est_server is not None:
-            data_payload['est-server'] = est_server
+            data_payload["est-server"] = est_server
         if est_ca_id is not None:
-            data_payload['est-ca-id'] = est_ca_id
+            data_payload["est-ca-id"] = est_ca_id
         if est_http_username is not None:
-            data_payload['est-http-username'] = est_http_username
+            data_payload["est-http-username"] = est_http_username
         if est_http_password is not None:
-            data_payload['est-http-password'] = est_http_password
+            data_payload["est-http-password"] = est_http_password
         if est_client_cert is not None:
-            data_payload['est-client-cert'] = est_client_cert
+            data_payload["est-client-cert"] = est_client_cert
         if est_server_cert is not None:
-            data_payload['est-server-cert'] = est_server_cert
+            data_payload["est-server-cert"] = est_server_cert
         if est_srp_username is not None:
-            data_payload['est-srp-username'] = est_srp_username
+            data_payload["est-srp-username"] = est_srp_username
         if est_srp_password is not None:
-            data_payload['est-srp-password'] = est_srp_password
+            data_payload["est-srp-password"] = est_srp_password
         if est_regeneration_method is not None:
-            data_payload['est-regeneration-method'] = est_regeneration_method
+            data_payload["est-regeneration-method"] = est_regeneration_method
         if details is not None:
-            data_payload['details'] = details
+            data_payload["details"] = details
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

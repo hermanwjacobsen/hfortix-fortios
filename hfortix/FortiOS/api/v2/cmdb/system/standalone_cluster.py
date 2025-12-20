@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.standalone_cluster.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.standalone_cluster.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.standalone_cluster.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.standalone_cluster.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.standalone_cluster.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class StandaloneCluster:
     """
     Standalonecluster Operations.
-    
+
     Provides CRUD operations for FortiOS standalonecluster configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class StandaloneCluster:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize StandaloneCluster endpoint.
 
@@ -82,14 +82,14 @@ class StandaloneCluster:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class StandaloneCluster:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/standalone-cluster"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -134,7 +136,7 @@ class StandaloneCluster:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -155,7 +157,7 @@ class StandaloneCluster:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -163,7 +165,7 @@ class StandaloneCluster:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -171,34 +173,40 @@ class StandaloneCluster:
         params = {}
         endpoint = "/system/standalone-cluster"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if standalone_group_id is not None:
-            data_payload['standalone-group-id'] = standalone_group_id
+            data_payload["standalone-group-id"] = standalone_group_id
         if group_member_id is not None:
-            data_payload['group-member-id'] = group_member_id
+            data_payload["group-member-id"] = group_member_id
         if layer2_connection is not None:
-            data_payload['layer2-connection'] = layer2_connection
+            data_payload["layer2-connection"] = layer2_connection
         if session_sync_dev is not None:
-            data_payload['session-sync-dev'] = session_sync_dev
+            data_payload["session-sync-dev"] = session_sync_dev
         if encryption is not None:
-            data_payload['encryption'] = encryption
+            data_payload["encryption"] = encryption
         if psksecret is not None:
-            data_payload['psksecret'] = psksecret
+            data_payload["psksecret"] = psksecret
         if asymmetric_traffic_control is not None:
-            data_payload['asymmetric-traffic-control'] = asymmetric_traffic_control
+            data_payload["asymmetric-traffic-control"] = (
+                asymmetric_traffic_control
+            )
         if cluster_peer is not None:
-            data_payload['cluster-peer'] = cluster_peer
+            data_payload["cluster-peer"] = cluster_peer
         if monitor_interface is not None:
-            data_payload['monitor-interface'] = monitor_interface
+            data_payload["monitor-interface"] = monitor_interface
         if pingsvr_monitor_interface is not None:
-            data_payload['pingsvr-monitor-interface'] = pingsvr_monitor_interface
+            data_payload["pingsvr-monitor-interface"] = (
+                pingsvr_monitor_interface
+            )
         if monitor_prefix is not None:
-            data_payload['monitor-prefix'] = monitor_prefix
+            data_payload["monitor-prefix"] = monitor_prefix
         if helper_traffic_bounce is not None:
-            data_payload['helper-traffic-bounce'] = helper_traffic_bounce
+            data_payload["helper-traffic-bounce"] = helper_traffic_bounce
         if utm_traffic_bounce is not None:
-            data_payload['utm-traffic-bounce'] = utm_traffic_bounce
+            data_payload["utm-traffic-bounce"] = utm_traffic_bounce
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

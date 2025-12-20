@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.network.lldp.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.network.lldp.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Neighbors:
     """
     Neighbors Operations.
-    
+
     Provides read-only access for FortiOS neighbors data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Neighbors endpoint.
 
@@ -61,33 +61,35 @@ class Neighbors:
     ) -> dict[str, Any]:
         """
         List all active LLDP neighbors.
-        
+
         Args:
             scope: Scope of LLDP neighbors [*vdom|global]. (optional)
             port: Filter: specific port name. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.network.lldp.neighbors.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if port is not None:
-            params['port'] = port
+            params["port"] = port
         params.update(kwargs)
-        return self._client.get("monitor", "/network/lldp/neighbors", params=params)
+        return self._client.get(
+            "monitor", "/network/lldp/neighbors", params=params
+        )
 
 
 class Ports:
     """Ports operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ports endpoint.
 
@@ -106,33 +108,35 @@ class Ports:
     ) -> dict[str, Any]:
         """
         List all active LLDP ports.
-        
+
         Args:
             mkey: Filter: specific port name. (optional)
             scope: Scope of LLDP ports [*vdom|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.network.lldp.ports.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/network/lldp/ports", params=params)
+        return self._client.get(
+            "monitor", "/network/lldp/ports", params=params
+        )
 
 
 class Lldp:
     """Lldp operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Lldp endpoint.
 

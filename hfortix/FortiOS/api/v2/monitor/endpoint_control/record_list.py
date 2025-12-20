@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.endpoint_control.record_list.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.endpoint_control.record_list.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class RecordList:
     """
     Recordlist Operations.
-    
+
     Provides read-only access for FortiOS recordlist data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize RecordList endpoint.
 
@@ -60,21 +60,23 @@ class RecordList:
     ) -> dict[str, Any]:
         """
         List endpoint records.
-        
+
         Args:
             intf_name: Filter: Name of interface where the endpoint was detected. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.endpoint_control.record_list.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if intf_name is not None:
-            params['intf_name'] = intf_name
+            params["intf_name"] = intf_name
         params.update(kwargs)
-        return self._client.get("monitor", "/endpoint-control/record-list", params=params)
+        return self._client.get(
+            "monitor", "/endpoint-control/record-list", params=params
+        )

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.vpn.ike.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.vpn.ike.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Clear:
     """
     Clear Operations.
-    
+
     Provides read-only access for FortiOS clear data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Clear endpoint.
 
@@ -60,22 +60,22 @@ class Clear:
     ) -> dict[str, Any]:
         """
         Clear IKE gateways.
-        
+
         Args:
             mkey: Name of the IKE gateway to clear. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn.ike.clear.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         data.update(kwargs)
         return self._client.post("monitor", "/vpn/ike/clear", data=data)
 
@@ -83,7 +83,7 @@ class Clear:
 class Ike:
     """Ike operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ike endpoint.
 

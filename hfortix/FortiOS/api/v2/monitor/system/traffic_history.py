@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.traffic_history.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.traffic_history.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class EnableAppBandwidthTracking:
     """
     Enableappbandwidthtracking Operations.
-    
+
     Provides read-only access for FortiOS enableappbandwidthtracking data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize EnableAppBandwidthTracking endpoint.
 
@@ -59,27 +59,31 @@ class EnableAppBandwidthTracking:
     ) -> dict[str, Any]:
         """
         Enable FortiView application bandwidth tracking.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.traffic_history.enable_app_bandwidth_tracking.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/system/traffic-history/enable-app-bandwidth-tracking", data=data)
+        return self._client.post(
+            "monitor",
+            "/system/traffic-history/enable-app-bandwidth-tracking",
+            data=data,
+        )
 
 
 class Interface:
     """Interface operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Interface endpoint.
 
@@ -98,31 +102,33 @@ class Interface:
     ) -> dict[str, Any]:
         """
         Retrieve history traffic stats for an interface.
-        
+
         Args:
             interface: Interface name. (required)
             time_period: Time period to retrieve data for [hour | day | week]. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.traffic_history.interface.get(interface='value', time_period='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['interface'] = interface
-        params['time_period'] = time_period
+        params["interface"] = interface
+        params["time_period"] = time_period
         params.update(kwargs)
-        return self._client.get("monitor", "/system/traffic-history/interface", params=params)
+        return self._client.get(
+            "monitor", "/system/traffic-history/interface", params=params
+        )
 
 
 class TopApplications:
     """TopApplications operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize TopApplications endpoint.
 
@@ -140,29 +146,33 @@ class TopApplications:
     ) -> dict[str, Any]:
         """
         Retrieve top FortiView applications traffic stats by bandwidth.
-        
+
         Args:
             time_period: Time period to retrieve data for [hour | day | week]. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.traffic_history.top_applications.get(time_period='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['time_period'] = time_period
+        params["time_period"] = time_period
         params.update(kwargs)
-        return self._client.get("monitor", "/system/traffic-history/top-applications", params=params)
+        return self._client.get(
+            "monitor",
+            "/system/traffic-history/top-applications",
+            params=params,
+        )
 
 
 class TrafficHistory:
     """TrafficHistory operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize TrafficHistory endpoint.
 

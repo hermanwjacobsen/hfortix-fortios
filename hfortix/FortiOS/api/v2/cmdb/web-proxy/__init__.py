@@ -11,21 +11,31 @@ from .profile import Profile
 from .url_match import UrlMatch
 from .wisp import Wisp
 
-__all__ = ['DebugUrl', 'Explicit', 'FastFallback', 'ForwardServer', 'ForwardServerGroup', 'Global', 'IsolatorServer', 'Profile', 'UrlMatch', 'Wisp']
-
+__all__ = [
+    "DebugUrl",
+    "Explicit",
+    "FastFallback",
+    "ForwardServer",
+    "ForwardServerGroup",
+    "Global",
+    "IsolatorServer",
+    "Profile",
+    "UrlMatch",
+    "Wisp",
+]
 
 
 class WebProxy:
     """
     WebProxy category wrapper.
-    
+
     This class provides access to all web-proxy CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize WebProxy with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

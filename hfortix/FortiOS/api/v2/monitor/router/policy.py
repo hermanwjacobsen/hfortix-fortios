@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.router.policy.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.router.policy.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Policy:
     """
     Policy Operations.
-    
+
     Provides read-only access for FortiOS policy data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Policy endpoint.
 
@@ -60,21 +60,21 @@ class Policy:
     ) -> dict[str, Any]:
         """
         Retrieve a list of active IPv4 policy routes.
-        
+
         Args:
             count_only: Returns the number of IPv4 policy routes only. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.policy.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if count_only is not None:
-            params['count_only'] = count_only
+            params["count_only"] = count_only
         params.update(kwargs)
         return self._client.get("monitor", "/router/policy", params=params)

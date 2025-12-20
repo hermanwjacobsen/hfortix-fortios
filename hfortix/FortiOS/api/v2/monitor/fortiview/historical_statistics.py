@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.fortiview.historical_statistics.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.fortiview.historical_statistics.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class HistoricalStatistics:
     """
     Historicalstatistics Operations.
-    
+
     Provides read-only access for FortiOS historicalstatistics data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize HistoricalStatistics endpoint.
 
@@ -67,7 +67,7 @@ class HistoricalStatistics:
     ) -> dict[str, Any]:
         """
         Retrieve historical drill-down and summary data for FortiView.
-        
+
         Args:
             filter: A map of filter keys to arrays of values. (optional)
             sessionid: FortiView request Session ID. (optional)
@@ -80,29 +80,31 @@ class HistoricalStatistics:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.fortiview.historical_statistics.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if sessionid is not None:
-            params['sessionid'] = sessionid
+            params["sessionid"] = sessionid
         if device is not None:
-            params['device'] = device
+            params["device"] = device
         if report_by is not None:
-            params['report_by'] = report_by
+            params["report_by"] = report_by
         if sort_by is not None:
-            params['sort_by'] = sort_by
+            params["sort_by"] = sort_by
         if chart_only is not None:
-            params['chart_only'] = chart_only
+            params["chart_only"] = chart_only
         if end is not None:
-            params['end'] = end
+            params["end"] = end
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/fortiview/historical-statistics", params=params)
+        return self._client.get(
+            "monitor", "/fortiview/historical-statistics", params=params
+        )

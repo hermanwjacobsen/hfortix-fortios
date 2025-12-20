@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.wifi.managed_ap.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.wifi.managed_ap.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class LedBlink:
     """
     Ledblink Operations.
-    
+
     Provides read-only access for FortiOS ledblink data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize LedBlink endpoint.
 
@@ -62,7 +62,7 @@ class LedBlink:
     ) -> dict[str, Any]:
         """
         Turn a managed FortiAP's LED blinking on or off.
-        
+
         Args:
             serials: FortiAP IDs to turn LED blink on/off. (optional)
             blink: True to turn on blinking, false to turn off. (optional)
@@ -70,28 +70,30 @@ class LedBlink:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.managed_ap.led_blink.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if serials is not None:
-            data['serials'] = serials
+            data["serials"] = serials
         if blink is not None:
-            data['blink'] = blink
+            data["blink"] = blink
         if duration is not None:
-            data['duration'] = duration
+            data["duration"] = duration
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/managed_ap/led-blink", data=data)
+        return self._client.post(
+            "monitor", "/wifi/managed_ap/led-blink", data=data
+        )
 
 
 class Restart:
     """Restart operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Restart endpoint.
 
@@ -109,30 +111,32 @@ class Restart:
     ) -> dict[str, Any]:
         """
         Restart a given FortiAP.
-        
+
         Args:
             wtpname: FortiAP name. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.managed_ap.restart.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if wtpname is not None:
-            data['wtpname'] = wtpname
+            data["wtpname"] = wtpname
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/managed_ap/restart", data=data)
+        return self._client.post(
+            "monitor", "/wifi/managed_ap/restart", data=data
+        )
 
 
 class SetStatus:
     """SetStatus operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SetStatus endpoint.
 
@@ -151,33 +155,35 @@ class SetStatus:
     ) -> dict[str, Any]:
         """
         Update administrative state for a given FortiAP (enable or disable authorization).
-        
+
         Args:
             wtpname: FortiAP name. (optional)
             admin: New FortiAP administrative state [enable|disable|discovered]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.managed_ap.set_status.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if wtpname is not None:
-            data['wtpname'] = wtpname
+            data["wtpname"] = wtpname
         if admin is not None:
-            data['admin'] = admin
+            data["admin"] = admin
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/managed_ap/set_status", data=data)
+        return self._client.post(
+            "monitor", "/wifi/managed_ap/set_status", data=data
+        )
 
 
 class ManagedAp:
     """ManagedAp operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ManagedAp endpoint.
 
@@ -202,7 +208,7 @@ class ManagedAp:
     ) -> dict[str, Any]:
         """
         Retrieve a list of managed FortiAPs.
-        
+
         Args:
             wtp_id: Filter: single managed FortiAP by ID. (optional)
             incl_local: Enable to include the local FortiWiFi device in the results. (optional)
@@ -210,19 +216,19 @@ class ManagedAp:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.managed_ap.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if wtp_id is not None:
-            params['wtp_id'] = wtp_id
+            params["wtp_id"] = wtp_id
         if incl_local is not None:
-            params['incl_local'] = incl_local
+            params["incl_local"] = incl_local
         if skip_eos is not None:
-            params['skip_eos'] = skip_eos
+            params["skip_eos"] = skip_eos
         params.update(kwargs)
         return self._client.get("monitor", "/wifi/managed_ap", params=params)

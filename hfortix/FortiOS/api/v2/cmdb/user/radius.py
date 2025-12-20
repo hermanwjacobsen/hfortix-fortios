@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.user.radius.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.user.radius.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.user.radius.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.user.radius.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.user.radius.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Radius:
     """
     Radius Operations.
-    
+
     Provides CRUD operations for FortiOS radius configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Radius:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Radius:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Radius endpoint.
 
@@ -90,7 +90,7 @@ class Radius:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Radius:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Radius:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/user/radius/{name}"
         else:
             endpoint = "/user/radius"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -203,7 +205,7 @@ class Radius:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -274,7 +276,7 @@ class Radius:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -282,147 +284,163 @@ class Radius:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/user/radius/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if server is not None:
-            data_payload['server'] = server
+            data_payload["server"] = server
         if secret is not None:
-            data_payload['secret'] = secret
+            data_payload["secret"] = secret
         if secondary_server is not None:
-            data_payload['secondary-server'] = secondary_server
+            data_payload["secondary-server"] = secondary_server
         if secondary_secret is not None:
-            data_payload['secondary-secret'] = secondary_secret
+            data_payload["secondary-secret"] = secondary_secret
         if tertiary_server is not None:
-            data_payload['tertiary-server'] = tertiary_server
+            data_payload["tertiary-server"] = tertiary_server
         if tertiary_secret is not None:
-            data_payload['tertiary-secret'] = tertiary_secret
+            data_payload["tertiary-secret"] = tertiary_secret
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if status_ttl is not None:
-            data_payload['status-ttl'] = status_ttl
+            data_payload["status-ttl"] = status_ttl
         if all_usergroup is not None:
-            data_payload['all-usergroup'] = all_usergroup
+            data_payload["all-usergroup"] = all_usergroup
         if use_management_vdom is not None:
-            data_payload['use-management-vdom'] = use_management_vdom
+            data_payload["use-management-vdom"] = use_management_vdom
         if switch_controller_nas_ip_dynamic is not None:
-            data_payload['switch-controller-nas-ip-dynamic'] = switch_controller_nas_ip_dynamic
+            data_payload["switch-controller-nas-ip-dynamic"] = (
+                switch_controller_nas_ip_dynamic
+            )
         if nas_ip is not None:
-            data_payload['nas-ip'] = nas_ip
+            data_payload["nas-ip"] = nas_ip
         if nas_id_type is not None:
-            data_payload['nas-id-type'] = nas_id_type
+            data_payload["nas-id-type"] = nas_id_type
         if call_station_id_type is not None:
-            data_payload['call-station-id-type'] = call_station_id_type
+            data_payload["call-station-id-type"] = call_station_id_type
         if nas_id is not None:
-            data_payload['nas-id'] = nas_id
+            data_payload["nas-id"] = nas_id
         if acct_interim_interval is not None:
-            data_payload['acct-interim-interval'] = acct_interim_interval
+            data_payload["acct-interim-interval"] = acct_interim_interval
         if radius_coa is not None:
-            data_payload['radius-coa'] = radius_coa
+            data_payload["radius-coa"] = radius_coa
         if radius_port is not None:
-            data_payload['radius-port'] = radius_port
+            data_payload["radius-port"] = radius_port
         if h3c_compatibility is not None:
-            data_payload['h3c-compatibility'] = h3c_compatibility
+            data_payload["h3c-compatibility"] = h3c_compatibility
         if auth_type is not None:
-            data_payload['auth-type'] = auth_type
+            data_payload["auth-type"] = auth_type
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip_interface is not None:
-            data_payload['source-ip-interface'] = source_ip_interface
+            data_payload["source-ip-interface"] = source_ip_interface
         if username_case_sensitive is not None:
-            data_payload['username-case-sensitive'] = username_case_sensitive
+            data_payload["username-case-sensitive"] = username_case_sensitive
         if group_override_attr_type is not None:
-            data_payload['group-override-attr-type'] = group_override_attr_type
+            data_payload["group-override-attr-type"] = group_override_attr_type
         if class_ is not None:
-            data_payload['class'] = class_
+            data_payload["class"] = class_
         if password_renewal is not None:
-            data_payload['password-renewal'] = password_renewal
+            data_payload["password-renewal"] = password_renewal
         if require_message_authenticator is not None:
-            data_payload['require-message-authenticator'] = require_message_authenticator
+            data_payload["require-message-authenticator"] = (
+                require_message_authenticator
+            )
         if password_encoding is not None:
-            data_payload['password-encoding'] = password_encoding
+            data_payload["password-encoding"] = password_encoding
         if mac_username_delimiter is not None:
-            data_payload['mac-username-delimiter'] = mac_username_delimiter
+            data_payload["mac-username-delimiter"] = mac_username_delimiter
         if mac_password_delimiter is not None:
-            data_payload['mac-password-delimiter'] = mac_password_delimiter
+            data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_case is not None:
-            data_payload['mac-case'] = mac_case
+            data_payload["mac-case"] = mac_case
         if acct_all_servers is not None:
-            data_payload['acct-all-servers'] = acct_all_servers
+            data_payload["acct-all-servers"] = acct_all_servers
         if switch_controller_acct_fast_framedip_detect is not None:
-            data_payload['switch-controller-acct-fast-framedip-detect'] = switch_controller_acct_fast_framedip_detect
+            data_payload["switch-controller-acct-fast-framedip-detect"] = (
+                switch_controller_acct_fast_framedip_detect
+            )
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         if switch_controller_service_type is not None:
-            data_payload['switch-controller-service-type'] = switch_controller_service_type
+            data_payload["switch-controller-service-type"] = (
+                switch_controller_service_type
+            )
         if transport_protocol is not None:
-            data_payload['transport-protocol'] = transport_protocol
+            data_payload["transport-protocol"] = transport_protocol
         if tls_min_proto_version is not None:
-            data_payload['tls-min-proto-version'] = tls_min_proto_version
+            data_payload["tls-min-proto-version"] = tls_min_proto_version
         if ca_cert is not None:
-            data_payload['ca-cert'] = ca_cert
+            data_payload["ca-cert"] = ca_cert
         if client_cert is not None:
-            data_payload['client-cert'] = client_cert
+            data_payload["client-cert"] = client_cert
         if server_identity_check is not None:
-            data_payload['server-identity-check'] = server_identity_check
+            data_payload["server-identity-check"] = server_identity_check
         if account_key_processing is not None:
-            data_payload['account-key-processing'] = account_key_processing
+            data_payload["account-key-processing"] = account_key_processing
         if account_key_cert_field is not None:
-            data_payload['account-key-cert-field'] = account_key_cert_field
+            data_payload["account-key-cert-field"] = account_key_cert_field
         if rsso is not None:
-            data_payload['rsso'] = rsso
+            data_payload["rsso"] = rsso
         if rsso_radius_server_port is not None:
-            data_payload['rsso-radius-server-port'] = rsso_radius_server_port
+            data_payload["rsso-radius-server-port"] = rsso_radius_server_port
         if rsso_radius_response is not None:
-            data_payload['rsso-radius-response'] = rsso_radius_response
+            data_payload["rsso-radius-response"] = rsso_radius_response
         if rsso_validate_request_secret is not None:
-            data_payload['rsso-validate-request-secret'] = rsso_validate_request_secret
+            data_payload["rsso-validate-request-secret"] = (
+                rsso_validate_request_secret
+            )
         if rsso_secret is not None:
-            data_payload['rsso-secret'] = rsso_secret
+            data_payload["rsso-secret"] = rsso_secret
         if rsso_endpoint_attribute is not None:
-            data_payload['rsso-endpoint-attribute'] = rsso_endpoint_attribute
+            data_payload["rsso-endpoint-attribute"] = rsso_endpoint_attribute
         if rsso_endpoint_block_attribute is not None:
-            data_payload['rsso-endpoint-block-attribute'] = rsso_endpoint_block_attribute
+            data_payload["rsso-endpoint-block-attribute"] = (
+                rsso_endpoint_block_attribute
+            )
         if sso_attribute is not None:
-            data_payload['sso-attribute'] = sso_attribute
+            data_payload["sso-attribute"] = sso_attribute
         if sso_attribute_key is not None:
-            data_payload['sso-attribute-key'] = sso_attribute_key
+            data_payload["sso-attribute-key"] = sso_attribute_key
         if sso_attribute_value_override is not None:
-            data_payload['sso-attribute-value-override'] = sso_attribute_value_override
+            data_payload["sso-attribute-value-override"] = (
+                sso_attribute_value_override
+            )
         if rsso_context_timeout is not None:
-            data_payload['rsso-context-timeout'] = rsso_context_timeout
+            data_payload["rsso-context-timeout"] = rsso_context_timeout
         if rsso_log_period is not None:
-            data_payload['rsso-log-period'] = rsso_log_period
+            data_payload["rsso-log-period"] = rsso_log_period
         if rsso_log_flags is not None:
-            data_payload['rsso-log-flags'] = rsso_log_flags
+            data_payload["rsso-log-flags"] = rsso_log_flags
         if rsso_flush_ip_session is not None:
-            data_payload['rsso-flush-ip-session'] = rsso_flush_ip_session
+            data_payload["rsso-flush-ip-session"] = rsso_flush_ip_session
         if rsso_ep_one_ip_only is not None:
-            data_payload['rsso-ep-one-ip-only'] = rsso_ep_one_ip_only
+            data_payload["rsso-ep-one-ip-only"] = rsso_ep_one_ip_only
         if delimiter is not None:
-            data_payload['delimiter'] = delimiter
+            data_payload["delimiter"] = delimiter
         if accounting_server is not None:
-            data_payload['accounting-server'] = accounting_server
+            data_payload["accounting-server"] = accounting_server
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -434,13 +452,13 @@ class Radius:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -448,18 +466,20 @@ class Radius:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/radius/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -468,37 +488,39 @@ class Radius:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -572,7 +594,7 @@ class Radius:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -641,7 +663,7 @@ class Radius:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -649,7 +671,7 @@ class Radius:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -657,130 +679,146 @@ class Radius:
         params = {}
         endpoint = "/user/radius"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if server is not None:
-            data_payload['server'] = server
+            data_payload["server"] = server
         if secret is not None:
-            data_payload['secret'] = secret
+            data_payload["secret"] = secret
         if secondary_server is not None:
-            data_payload['secondary-server'] = secondary_server
+            data_payload["secondary-server"] = secondary_server
         if secondary_secret is not None:
-            data_payload['secondary-secret'] = secondary_secret
+            data_payload["secondary-secret"] = secondary_secret
         if tertiary_server is not None:
-            data_payload['tertiary-server'] = tertiary_server
+            data_payload["tertiary-server"] = tertiary_server
         if tertiary_secret is not None:
-            data_payload['tertiary-secret'] = tertiary_secret
+            data_payload["tertiary-secret"] = tertiary_secret
         if timeout is not None:
-            data_payload['timeout'] = timeout
+            data_payload["timeout"] = timeout
         if status_ttl is not None:
-            data_payload['status-ttl'] = status_ttl
+            data_payload["status-ttl"] = status_ttl
         if all_usergroup is not None:
-            data_payload['all-usergroup'] = all_usergroup
+            data_payload["all-usergroup"] = all_usergroup
         if use_management_vdom is not None:
-            data_payload['use-management-vdom'] = use_management_vdom
+            data_payload["use-management-vdom"] = use_management_vdom
         if switch_controller_nas_ip_dynamic is not None:
-            data_payload['switch-controller-nas-ip-dynamic'] = switch_controller_nas_ip_dynamic
+            data_payload["switch-controller-nas-ip-dynamic"] = (
+                switch_controller_nas_ip_dynamic
+            )
         if nas_ip is not None:
-            data_payload['nas-ip'] = nas_ip
+            data_payload["nas-ip"] = nas_ip
         if nas_id_type is not None:
-            data_payload['nas-id-type'] = nas_id_type
+            data_payload["nas-id-type"] = nas_id_type
         if call_station_id_type is not None:
-            data_payload['call-station-id-type'] = call_station_id_type
+            data_payload["call-station-id-type"] = call_station_id_type
         if nas_id is not None:
-            data_payload['nas-id'] = nas_id
+            data_payload["nas-id"] = nas_id
         if acct_interim_interval is not None:
-            data_payload['acct-interim-interval'] = acct_interim_interval
+            data_payload["acct-interim-interval"] = acct_interim_interval
         if radius_coa is not None:
-            data_payload['radius-coa'] = radius_coa
+            data_payload["radius-coa"] = radius_coa
         if radius_port is not None:
-            data_payload['radius-port'] = radius_port
+            data_payload["radius-port"] = radius_port
         if h3c_compatibility is not None:
-            data_payload['h3c-compatibility'] = h3c_compatibility
+            data_payload["h3c-compatibility"] = h3c_compatibility
         if auth_type is not None:
-            data_payload['auth-type'] = auth_type
+            data_payload["auth-type"] = auth_type
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip_interface is not None:
-            data_payload['source-ip-interface'] = source_ip_interface
+            data_payload["source-ip-interface"] = source_ip_interface
         if username_case_sensitive is not None:
-            data_payload['username-case-sensitive'] = username_case_sensitive
+            data_payload["username-case-sensitive"] = username_case_sensitive
         if group_override_attr_type is not None:
-            data_payload['group-override-attr-type'] = group_override_attr_type
+            data_payload["group-override-attr-type"] = group_override_attr_type
         if class_ is not None:
-            data_payload['class'] = class_
+            data_payload["class"] = class_
         if password_renewal is not None:
-            data_payload['password-renewal'] = password_renewal
+            data_payload["password-renewal"] = password_renewal
         if require_message_authenticator is not None:
-            data_payload['require-message-authenticator'] = require_message_authenticator
+            data_payload["require-message-authenticator"] = (
+                require_message_authenticator
+            )
         if password_encoding is not None:
-            data_payload['password-encoding'] = password_encoding
+            data_payload["password-encoding"] = password_encoding
         if mac_username_delimiter is not None:
-            data_payload['mac-username-delimiter'] = mac_username_delimiter
+            data_payload["mac-username-delimiter"] = mac_username_delimiter
         if mac_password_delimiter is not None:
-            data_payload['mac-password-delimiter'] = mac_password_delimiter
+            data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_case is not None:
-            data_payload['mac-case'] = mac_case
+            data_payload["mac-case"] = mac_case
         if acct_all_servers is not None:
-            data_payload['acct-all-servers'] = acct_all_servers
+            data_payload["acct-all-servers"] = acct_all_servers
         if switch_controller_acct_fast_framedip_detect is not None:
-            data_payload['switch-controller-acct-fast-framedip-detect'] = switch_controller_acct_fast_framedip_detect
+            data_payload["switch-controller-acct-fast-framedip-detect"] = (
+                switch_controller_acct_fast_framedip_detect
+            )
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         if switch_controller_service_type is not None:
-            data_payload['switch-controller-service-type'] = switch_controller_service_type
+            data_payload["switch-controller-service-type"] = (
+                switch_controller_service_type
+            )
         if transport_protocol is not None:
-            data_payload['transport-protocol'] = transport_protocol
+            data_payload["transport-protocol"] = transport_protocol
         if tls_min_proto_version is not None:
-            data_payload['tls-min-proto-version'] = tls_min_proto_version
+            data_payload["tls-min-proto-version"] = tls_min_proto_version
         if ca_cert is not None:
-            data_payload['ca-cert'] = ca_cert
+            data_payload["ca-cert"] = ca_cert
         if client_cert is not None:
-            data_payload['client-cert'] = client_cert
+            data_payload["client-cert"] = client_cert
         if server_identity_check is not None:
-            data_payload['server-identity-check'] = server_identity_check
+            data_payload["server-identity-check"] = server_identity_check
         if account_key_processing is not None:
-            data_payload['account-key-processing'] = account_key_processing
+            data_payload["account-key-processing"] = account_key_processing
         if account_key_cert_field is not None:
-            data_payload['account-key-cert-field'] = account_key_cert_field
+            data_payload["account-key-cert-field"] = account_key_cert_field
         if rsso is not None:
-            data_payload['rsso'] = rsso
+            data_payload["rsso"] = rsso
         if rsso_radius_server_port is not None:
-            data_payload['rsso-radius-server-port'] = rsso_radius_server_port
+            data_payload["rsso-radius-server-port"] = rsso_radius_server_port
         if rsso_radius_response is not None:
-            data_payload['rsso-radius-response'] = rsso_radius_response
+            data_payload["rsso-radius-response"] = rsso_radius_response
         if rsso_validate_request_secret is not None:
-            data_payload['rsso-validate-request-secret'] = rsso_validate_request_secret
+            data_payload["rsso-validate-request-secret"] = (
+                rsso_validate_request_secret
+            )
         if rsso_secret is not None:
-            data_payload['rsso-secret'] = rsso_secret
+            data_payload["rsso-secret"] = rsso_secret
         if rsso_endpoint_attribute is not None:
-            data_payload['rsso-endpoint-attribute'] = rsso_endpoint_attribute
+            data_payload["rsso-endpoint-attribute"] = rsso_endpoint_attribute
         if rsso_endpoint_block_attribute is not None:
-            data_payload['rsso-endpoint-block-attribute'] = rsso_endpoint_block_attribute
+            data_payload["rsso-endpoint-block-attribute"] = (
+                rsso_endpoint_block_attribute
+            )
         if sso_attribute is not None:
-            data_payload['sso-attribute'] = sso_attribute
+            data_payload["sso-attribute"] = sso_attribute
         if sso_attribute_key is not None:
-            data_payload['sso-attribute-key'] = sso_attribute_key
+            data_payload["sso-attribute-key"] = sso_attribute_key
         if sso_attribute_value_override is not None:
-            data_payload['sso-attribute-value-override'] = sso_attribute_value_override
+            data_payload["sso-attribute-value-override"] = (
+                sso_attribute_value_override
+            )
         if rsso_context_timeout is not None:
-            data_payload['rsso-context-timeout'] = rsso_context_timeout
+            data_payload["rsso-context-timeout"] = rsso_context_timeout
         if rsso_log_period is not None:
-            data_payload['rsso-log-period'] = rsso_log_period
+            data_payload["rsso-log-period"] = rsso_log_period
         if rsso_log_flags is not None:
-            data_payload['rsso-log-flags'] = rsso_log_flags
+            data_payload["rsso-log-flags"] = rsso_log_flags
         if rsso_flush_ip_session is not None:
-            data_payload['rsso-flush-ip-session'] = rsso_flush_ip_session
+            data_payload["rsso-flush-ip-session"] = rsso_flush_ip_session
         if rsso_ep_one_ip_only is not None:
-            data_payload['rsso-ep-one-ip-only'] = rsso_ep_one_ip_only
+            data_payload["rsso-ep-one-ip-only"] = rsso_ep_one_ip_only
         if delimiter is not None:
-            data_payload['delimiter'] = delimiter
+            data_payload["delimiter"] = delimiter
         if accounting_server is not None:
-            data_payload['accounting-server'] = accounting_server
+            data_payload["accounting-server"] = accounting_server
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

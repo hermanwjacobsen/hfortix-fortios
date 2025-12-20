@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.vap.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.vap.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.vap.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.vap.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.vap.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Vap:
     """
     Vap Operations.
-    
+
     Provides CRUD operations for FortiOS vap configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Vap:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Vap:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Vap endpoint.
 
@@ -90,7 +90,7 @@ class Vap:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Vap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Vap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller/vap/{name}"
         else:
             endpoint = "/wireless-controller/vap"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -312,7 +314,7 @@ class Vap:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -492,7 +494,7 @@ class Vap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -500,365 +502,409 @@ class Vap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller/vap/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if pre_auth is not None:
-            data_payload['pre-auth'] = pre_auth
+            data_payload["pre-auth"] = pre_auth
         if external_pre_auth is not None:
-            data_payload['external-pre-auth'] = external_pre_auth
+            data_payload["external-pre-auth"] = external_pre_auth
         if mesh_backhaul is not None:
-            data_payload['mesh-backhaul'] = mesh_backhaul
+            data_payload["mesh-backhaul"] = mesh_backhaul
         if atf_weight is not None:
-            data_payload['atf-weight'] = atf_weight
+            data_payload["atf-weight"] = atf_weight
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if max_clients_ap is not None:
-            data_payload['max-clients-ap'] = max_clients_ap
+            data_payload["max-clients-ap"] = max_clients_ap
         if ssid is not None:
-            data_payload['ssid'] = ssid
+            data_payload["ssid"] = ssid
         if broadcast_ssid is not None:
-            data_payload['broadcast-ssid'] = broadcast_ssid
+            data_payload["broadcast-ssid"] = broadcast_ssid
         if security is not None:
-            data_payload['security'] = security
+            data_payload["security"] = security
         if pmf is not None:
-            data_payload['pmf'] = pmf
+            data_payload["pmf"] = pmf
         if pmf_assoc_comeback_timeout is not None:
-            data_payload['pmf-assoc-comeback-timeout'] = pmf_assoc_comeback_timeout
+            data_payload["pmf-assoc-comeback-timeout"] = (
+                pmf_assoc_comeback_timeout
+            )
         if pmf_sa_query_retry_timeout is not None:
-            data_payload['pmf-sa-query-retry-timeout'] = pmf_sa_query_retry_timeout
+            data_payload["pmf-sa-query-retry-timeout"] = (
+                pmf_sa_query_retry_timeout
+            )
         if beacon_protection is not None:
-            data_payload['beacon-protection'] = beacon_protection
+            data_payload["beacon-protection"] = beacon_protection
         if okc is not None:
-            data_payload['okc'] = okc
+            data_payload["okc"] = okc
         if mbo is not None:
-            data_payload['mbo'] = mbo
+            data_payload["mbo"] = mbo
         if gas_comeback_delay is not None:
-            data_payload['gas-comeback-delay'] = gas_comeback_delay
+            data_payload["gas-comeback-delay"] = gas_comeback_delay
         if gas_fragmentation_limit is not None:
-            data_payload['gas-fragmentation-limit'] = gas_fragmentation_limit
+            data_payload["gas-fragmentation-limit"] = gas_fragmentation_limit
         if mbo_cell_data_conn_pref is not None:
-            data_payload['mbo-cell-data-conn-pref'] = mbo_cell_data_conn_pref
+            data_payload["mbo-cell-data-conn-pref"] = mbo_cell_data_conn_pref
         if _80211k is not None:
-            data_payload['80211k'] = _80211k
+            data_payload["80211k"] = _80211k
         if _80211v is not None:
-            data_payload['80211v'] = _80211v
+            data_payload["80211v"] = _80211v
         if neighbor_report_dual_band is not None:
-            data_payload['neighbor-report-dual-band'] = neighbor_report_dual_band
+            data_payload["neighbor-report-dual-band"] = (
+                neighbor_report_dual_band
+            )
         if fast_bss_transition is not None:
-            data_payload['fast-bss-transition'] = fast_bss_transition
+            data_payload["fast-bss-transition"] = fast_bss_transition
         if ft_mobility_domain is not None:
-            data_payload['ft-mobility-domain'] = ft_mobility_domain
+            data_payload["ft-mobility-domain"] = ft_mobility_domain
         if ft_r0_key_lifetime is not None:
-            data_payload['ft-r0-key-lifetime'] = ft_r0_key_lifetime
+            data_payload["ft-r0-key-lifetime"] = ft_r0_key_lifetime
         if ft_over_ds is not None:
-            data_payload['ft-over-ds'] = ft_over_ds
+            data_payload["ft-over-ds"] = ft_over_ds
         if sae_groups is not None:
-            data_payload['sae-groups'] = sae_groups
+            data_payload["sae-groups"] = sae_groups
         if owe_groups is not None:
-            data_payload['owe-groups'] = owe_groups
+            data_payload["owe-groups"] = owe_groups
         if owe_transition is not None:
-            data_payload['owe-transition'] = owe_transition
+            data_payload["owe-transition"] = owe_transition
         if owe_transition_ssid is not None:
-            data_payload['owe-transition-ssid'] = owe_transition_ssid
+            data_payload["owe-transition-ssid"] = owe_transition_ssid
         if additional_akms is not None:
-            data_payload['additional-akms'] = additional_akms
+            data_payload["additional-akms"] = additional_akms
         if eapol_key_retries is not None:
-            data_payload['eapol-key-retries'] = eapol_key_retries
+            data_payload["eapol-key-retries"] = eapol_key_retries
         if tkip_counter_measure is not None:
-            data_payload['tkip-counter-measure'] = tkip_counter_measure
+            data_payload["tkip-counter-measure"] = tkip_counter_measure
         if external_web is not None:
-            data_payload['external-web'] = external_web
+            data_payload["external-web"] = external_web
         if external_web_format is not None:
-            data_payload['external-web-format'] = external_web_format
+            data_payload["external-web-format"] = external_web_format
         if external_logout is not None:
-            data_payload['external-logout'] = external_logout
+            data_payload["external-logout"] = external_logout
         if mac_username_delimiter is not None:
-            data_payload['mac-username-delimiter'] = mac_username_delimiter
+            data_payload["mac-username-delimiter"] = mac_username_delimiter
         if mac_password_delimiter is not None:
-            data_payload['mac-password-delimiter'] = mac_password_delimiter
+            data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload['mac-calling-station-delimiter'] = mac_calling_station_delimiter
+            data_payload["mac-calling-station-delimiter"] = (
+                mac_calling_station_delimiter
+            )
         if mac_called_station_delimiter is not None:
-            data_payload['mac-called-station-delimiter'] = mac_called_station_delimiter
+            data_payload["mac-called-station-delimiter"] = (
+                mac_called_station_delimiter
+            )
         if mac_case is not None:
-            data_payload['mac-case'] = mac_case
+            data_payload["mac-case"] = mac_case
         if called_station_id_type is not None:
-            data_payload['called-station-id-type'] = called_station_id_type
+            data_payload["called-station-id-type"] = called_station_id_type
         if mac_auth_bypass is not None:
-            data_payload['mac-auth-bypass'] = mac_auth_bypass
+            data_payload["mac-auth-bypass"] = mac_auth_bypass
         if radius_mac_auth is not None:
-            data_payload['radius-mac-auth'] = radius_mac_auth
+            data_payload["radius-mac-auth"] = radius_mac_auth
         if radius_mac_auth_server is not None:
-            data_payload['radius-mac-auth-server'] = radius_mac_auth_server
+            data_payload["radius-mac-auth-server"] = radius_mac_auth_server
         if radius_mac_auth_block_interval is not None:
-            data_payload['radius-mac-auth-block-interval'] = radius_mac_auth_block_interval
+            data_payload["radius-mac-auth-block-interval"] = (
+                radius_mac_auth_block_interval
+            )
         if radius_mac_mpsk_auth is not None:
-            data_payload['radius-mac-mpsk-auth'] = radius_mac_mpsk_auth
+            data_payload["radius-mac-mpsk-auth"] = radius_mac_mpsk_auth
         if radius_mac_mpsk_timeout is not None:
-            data_payload['radius-mac-mpsk-timeout'] = radius_mac_mpsk_timeout
+            data_payload["radius-mac-mpsk-timeout"] = radius_mac_mpsk_timeout
         if radius_mac_auth_usergroups is not None:
-            data_payload['radius-mac-auth-usergroups'] = radius_mac_auth_usergroups
+            data_payload["radius-mac-auth-usergroups"] = (
+                radius_mac_auth_usergroups
+            )
         if auth is not None:
-            data_payload['auth'] = auth
+            data_payload["auth"] = auth
         if encrypt is not None:
-            data_payload['encrypt'] = encrypt
+            data_payload["encrypt"] = encrypt
         if keyindex is not None:
-            data_payload['keyindex'] = keyindex
+            data_payload["keyindex"] = keyindex
         if passphrase is not None:
-            data_payload['passphrase'] = passphrase
+            data_payload["passphrase"] = passphrase
         if sae_password is not None:
-            data_payload['sae-password'] = sae_password
+            data_payload["sae-password"] = sae_password
         if sae_h2e_only is not None:
-            data_payload['sae-h2e-only'] = sae_h2e_only
+            data_payload["sae-h2e-only"] = sae_h2e_only
         if sae_hnp_only is not None:
-            data_payload['sae-hnp-only'] = sae_hnp_only
+            data_payload["sae-hnp-only"] = sae_hnp_only
         if sae_pk is not None:
-            data_payload['sae-pk'] = sae_pk
+            data_payload["sae-pk"] = sae_pk
         if sae_private_key is not None:
-            data_payload['sae-private-key'] = sae_private_key
+            data_payload["sae-private-key"] = sae_private_key
         if akm24_only is not None:
-            data_payload['akm24-only'] = akm24_only
+            data_payload["akm24-only"] = akm24_only
         if radius_server is not None:
-            data_payload['radius-server'] = radius_server
+            data_payload["radius-server"] = radius_server
         if nas_filter_rule is not None:
-            data_payload['nas-filter-rule'] = nas_filter_rule
+            data_payload["nas-filter-rule"] = nas_filter_rule
         if domain_name_stripping is not None:
-            data_payload['domain-name-stripping'] = domain_name_stripping
+            data_payload["domain-name-stripping"] = domain_name_stripping
         if mlo is not None:
-            data_payload['mlo'] = mlo
+            data_payload["mlo"] = mlo
         if local_standalone is not None:
-            data_payload['local-standalone'] = local_standalone
+            data_payload["local-standalone"] = local_standalone
         if local_standalone_nat is not None:
-            data_payload['local-standalone-nat'] = local_standalone_nat
+            data_payload["local-standalone-nat"] = local_standalone_nat
         if ip is not None:
-            data_payload['ip'] = ip
+            data_payload["ip"] = ip
         if dhcp_lease_time is not None:
-            data_payload['dhcp-lease-time'] = dhcp_lease_time
+            data_payload["dhcp-lease-time"] = dhcp_lease_time
         if local_standalone_dns is not None:
-            data_payload['local-standalone-dns'] = local_standalone_dns
+            data_payload["local-standalone-dns"] = local_standalone_dns
         if local_standalone_dns_ip is not None:
-            data_payload['local-standalone-dns-ip'] = local_standalone_dns_ip
+            data_payload["local-standalone-dns-ip"] = local_standalone_dns_ip
         if local_lan_partition is not None:
-            data_payload['local-lan-partition'] = local_lan_partition
+            data_payload["local-lan-partition"] = local_lan_partition
         if local_bridging is not None:
-            data_payload['local-bridging'] = local_bridging
+            data_payload["local-bridging"] = local_bridging
         if local_lan is not None:
-            data_payload['local-lan'] = local_lan
+            data_payload["local-lan"] = local_lan
         if local_authentication is not None:
-            data_payload['local-authentication'] = local_authentication
+            data_payload["local-authentication"] = local_authentication
         if usergroup is not None:
-            data_payload['usergroup'] = usergroup
+            data_payload["usergroup"] = usergroup
         if captive_portal is not None:
-            data_payload['captive-portal'] = captive_portal
+            data_payload["captive-portal"] = captive_portal
         if captive_network_assistant_bypass is not None:
-            data_payload['captive-network-assistant-bypass'] = captive_network_assistant_bypass
+            data_payload["captive-network-assistant-bypass"] = (
+                captive_network_assistant_bypass
+            )
         if portal_message_override_group is not None:
-            data_payload['portal-message-override-group'] = portal_message_override_group
+            data_payload["portal-message-override-group"] = (
+                portal_message_override_group
+            )
         if portal_message_overrides is not None:
-            data_payload['portal-message-overrides'] = portal_message_overrides
+            data_payload["portal-message-overrides"] = portal_message_overrides
         if portal_type is not None:
-            data_payload['portal-type'] = portal_type
+            data_payload["portal-type"] = portal_type
         if selected_usergroups is not None:
-            data_payload['selected-usergroups'] = selected_usergroups
+            data_payload["selected-usergroups"] = selected_usergroups
         if security_exempt_list is not None:
-            data_payload['security-exempt-list'] = security_exempt_list
+            data_payload["security-exempt-list"] = security_exempt_list
         if security_redirect_url is not None:
-            data_payload['security-redirect-url'] = security_redirect_url
+            data_payload["security-redirect-url"] = security_redirect_url
         if auth_cert is not None:
-            data_payload['auth-cert'] = auth_cert
+            data_payload["auth-cert"] = auth_cert
         if auth_portal_addr is not None:
-            data_payload['auth-portal-addr'] = auth_portal_addr
+            data_payload["auth-portal-addr"] = auth_portal_addr
         if intra_vap_privacy is not None:
-            data_payload['intra-vap-privacy'] = intra_vap_privacy
+            data_payload["intra-vap-privacy"] = intra_vap_privacy
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if ldpc is not None:
-            data_payload['ldpc'] = ldpc
+            data_payload["ldpc"] = ldpc
         if high_efficiency is not None:
-            data_payload['high-efficiency'] = high_efficiency
+            data_payload["high-efficiency"] = high_efficiency
         if target_wake_time is not None:
-            data_payload['target-wake-time'] = target_wake_time
+            data_payload["target-wake-time"] = target_wake_time
         if port_macauth is not None:
-            data_payload['port-macauth'] = port_macauth
+            data_payload["port-macauth"] = port_macauth
         if port_macauth_timeout is not None:
-            data_payload['port-macauth-timeout'] = port_macauth_timeout
+            data_payload["port-macauth-timeout"] = port_macauth_timeout
         if port_macauth_reauth_timeout is not None:
-            data_payload['port-macauth-reauth-timeout'] = port_macauth_reauth_timeout
+            data_payload["port-macauth-reauth-timeout"] = (
+                port_macauth_reauth_timeout
+            )
         if bss_color_partial is not None:
-            data_payload['bss-color-partial'] = bss_color_partial
+            data_payload["bss-color-partial"] = bss_color_partial
         if mpsk_profile is not None:
-            data_payload['mpsk-profile'] = mpsk_profile
+            data_payload["mpsk-profile"] = mpsk_profile
         if split_tunneling is not None:
-            data_payload['split-tunneling'] = split_tunneling
+            data_payload["split-tunneling"] = split_tunneling
         if nac is not None:
-            data_payload['nac'] = nac
+            data_payload["nac"] = nac
         if nac_profile is not None:
-            data_payload['nac-profile'] = nac_profile
+            data_payload["nac-profile"] = nac_profile
         if vlanid is not None:
-            data_payload['vlanid'] = vlanid
+            data_payload["vlanid"] = vlanid
         if vlan_auto is not None:
-            data_payload['vlan-auto'] = vlan_auto
+            data_payload["vlan-auto"] = vlan_auto
         if dynamic_vlan is not None:
-            data_payload['dynamic-vlan'] = dynamic_vlan
+            data_payload["dynamic-vlan"] = dynamic_vlan
         if captive_portal_fw_accounting is not None:
-            data_payload['captive-portal-fw-accounting'] = captive_portal_fw_accounting
+            data_payload["captive-portal-fw-accounting"] = (
+                captive_portal_fw_accounting
+            )
         if captive_portal_ac_name is not None:
-            data_payload['captive-portal-ac-name'] = captive_portal_ac_name
+            data_payload["captive-portal-ac-name"] = captive_portal_ac_name
         if captive_portal_auth_timeout is not None:
-            data_payload['captive-portal-auth-timeout'] = captive_portal_auth_timeout
+            data_payload["captive-portal-auth-timeout"] = (
+                captive_portal_auth_timeout
+            )
         if multicast_rate is not None:
-            data_payload['multicast-rate'] = multicast_rate
+            data_payload["multicast-rate"] = multicast_rate
         if multicast_enhance is not None:
-            data_payload['multicast-enhance'] = multicast_enhance
+            data_payload["multicast-enhance"] = multicast_enhance
         if igmp_snooping is not None:
-            data_payload['igmp-snooping'] = igmp_snooping
+            data_payload["igmp-snooping"] = igmp_snooping
         if dhcp_address_enforcement is not None:
-            data_payload['dhcp-address-enforcement'] = dhcp_address_enforcement
+            data_payload["dhcp-address-enforcement"] = dhcp_address_enforcement
         if broadcast_suppression is not None:
-            data_payload['broadcast-suppression'] = broadcast_suppression
+            data_payload["broadcast-suppression"] = broadcast_suppression
         if ipv6_rules is not None:
-            data_payload['ipv6-rules'] = ipv6_rules
+            data_payload["ipv6-rules"] = ipv6_rules
         if me_disable_thresh is not None:
-            data_payload['me-disable-thresh'] = me_disable_thresh
+            data_payload["me-disable-thresh"] = me_disable_thresh
         if mu_mimo is not None:
-            data_payload['mu-mimo'] = mu_mimo
+            data_payload["mu-mimo"] = mu_mimo
         if probe_resp_suppression is not None:
-            data_payload['probe-resp-suppression'] = probe_resp_suppression
+            data_payload["probe-resp-suppression"] = probe_resp_suppression
         if probe_resp_threshold is not None:
-            data_payload['probe-resp-threshold'] = probe_resp_threshold
+            data_payload["probe-resp-threshold"] = probe_resp_threshold
         if radio_sensitivity is not None:
-            data_payload['radio-sensitivity'] = radio_sensitivity
+            data_payload["radio-sensitivity"] = radio_sensitivity
         if quarantine is not None:
-            data_payload['quarantine'] = quarantine
+            data_payload["quarantine"] = quarantine
         if radio_5g_threshold is not None:
-            data_payload['radio-5g-threshold'] = radio_5g_threshold
+            data_payload["radio-5g-threshold"] = radio_5g_threshold
         if radio_2g_threshold is not None:
-            data_payload['radio-2g-threshold'] = radio_2g_threshold
+            data_payload["radio-2g-threshold"] = radio_2g_threshold
         if vlan_name is not None:
-            data_payload['vlan-name'] = vlan_name
+            data_payload["vlan-name"] = vlan_name
         if vlan_pooling is not None:
-            data_payload['vlan-pooling'] = vlan_pooling
+            data_payload["vlan-pooling"] = vlan_pooling
         if vlan_pool is not None:
-            data_payload['vlan-pool'] = vlan_pool
+            data_payload["vlan-pool"] = vlan_pool
         if dhcp_option43_insertion is not None:
-            data_payload['dhcp-option43-insertion'] = dhcp_option43_insertion
+            data_payload["dhcp-option43-insertion"] = dhcp_option43_insertion
         if dhcp_option82_insertion is not None:
-            data_payload['dhcp-option82-insertion'] = dhcp_option82_insertion
+            data_payload["dhcp-option82-insertion"] = dhcp_option82_insertion
         if dhcp_option82_circuit_id_insertion is not None:
-            data_payload['dhcp-option82-circuit-id-insertion'] = dhcp_option82_circuit_id_insertion
+            data_payload["dhcp-option82-circuit-id-insertion"] = (
+                dhcp_option82_circuit_id_insertion
+            )
         if dhcp_option82_remote_id_insertion is not None:
-            data_payload['dhcp-option82-remote-id-insertion'] = dhcp_option82_remote_id_insertion
+            data_payload["dhcp-option82-remote-id-insertion"] = (
+                dhcp_option82_remote_id_insertion
+            )
         if ptk_rekey is not None:
-            data_payload['ptk-rekey'] = ptk_rekey
+            data_payload["ptk-rekey"] = ptk_rekey
         if ptk_rekey_intv is not None:
-            data_payload['ptk-rekey-intv'] = ptk_rekey_intv
+            data_payload["ptk-rekey-intv"] = ptk_rekey_intv
         if gtk_rekey is not None:
-            data_payload['gtk-rekey'] = gtk_rekey
+            data_payload["gtk-rekey"] = gtk_rekey
         if gtk_rekey_intv is not None:
-            data_payload['gtk-rekey-intv'] = gtk_rekey_intv
+            data_payload["gtk-rekey-intv"] = gtk_rekey_intv
         if eap_reauth is not None:
-            data_payload['eap-reauth'] = eap_reauth
+            data_payload["eap-reauth"] = eap_reauth
         if eap_reauth_intv is not None:
-            data_payload['eap-reauth-intv'] = eap_reauth_intv
+            data_payload["eap-reauth-intv"] = eap_reauth_intv
         if roaming_acct_interim_update is not None:
-            data_payload['roaming-acct-interim-update'] = roaming_acct_interim_update
+            data_payload["roaming-acct-interim-update"] = (
+                roaming_acct_interim_update
+            )
         if qos_profile is not None:
-            data_payload['qos-profile'] = qos_profile
+            data_payload["qos-profile"] = qos_profile
         if hotspot20_profile is not None:
-            data_payload['hotspot20-profile'] = hotspot20_profile
+            data_payload["hotspot20-profile"] = hotspot20_profile
         if access_control_list is not None:
-            data_payload['access-control-list'] = access_control_list
+            data_payload["access-control-list"] = access_control_list
         if primary_wag_profile is not None:
-            data_payload['primary-wag-profile'] = primary_wag_profile
+            data_payload["primary-wag-profile"] = primary_wag_profile
         if secondary_wag_profile is not None:
-            data_payload['secondary-wag-profile'] = secondary_wag_profile
+            data_payload["secondary-wag-profile"] = secondary_wag_profile
         if tunnel_echo_interval is not None:
-            data_payload['tunnel-echo-interval'] = tunnel_echo_interval
+            data_payload["tunnel-echo-interval"] = tunnel_echo_interval
         if tunnel_fallback_interval is not None:
-            data_payload['tunnel-fallback-interval'] = tunnel_fallback_interval
+            data_payload["tunnel-fallback-interval"] = tunnel_fallback_interval
         if rates_11a is not None:
-            data_payload['rates-11a'] = rates_11a
+            data_payload["rates-11a"] = rates_11a
         if rates_11bg is not None:
-            data_payload['rates-11bg'] = rates_11bg
+            data_payload["rates-11bg"] = rates_11bg
         if rates_11n_ss12 is not None:
-            data_payload['rates-11n-ss12'] = rates_11n_ss12
+            data_payload["rates-11n-ss12"] = rates_11n_ss12
         if rates_11n_ss34 is not None:
-            data_payload['rates-11n-ss34'] = rates_11n_ss34
+            data_payload["rates-11n-ss34"] = rates_11n_ss34
         if rates_11ac_mcs_map is not None:
-            data_payload['rates-11ac-mcs-map'] = rates_11ac_mcs_map
+            data_payload["rates-11ac-mcs-map"] = rates_11ac_mcs_map
         if rates_11ax_mcs_map is not None:
-            data_payload['rates-11ax-mcs-map'] = rates_11ax_mcs_map
+            data_payload["rates-11ax-mcs-map"] = rates_11ax_mcs_map
         if rates_11be_mcs_map is not None:
-            data_payload['rates-11be-mcs-map'] = rates_11be_mcs_map
+            data_payload["rates-11be-mcs-map"] = rates_11be_mcs_map
         if rates_11be_mcs_map_160 is not None:
-            data_payload['rates-11be-mcs-map-160'] = rates_11be_mcs_map_160
+            data_payload["rates-11be-mcs-map-160"] = rates_11be_mcs_map_160
         if rates_11be_mcs_map_320 is not None:
-            data_payload['rates-11be-mcs-map-320'] = rates_11be_mcs_map_320
+            data_payload["rates-11be-mcs-map-320"] = rates_11be_mcs_map_320
         if utm_profile is not None:
-            data_payload['utm-profile'] = utm_profile
+            data_payload["utm-profile"] = utm_profile
         if utm_status is not None:
-            data_payload['utm-status'] = utm_status
+            data_payload["utm-status"] = utm_status
         if utm_log is not None:
-            data_payload['utm-log'] = utm_log
+            data_payload["utm-log"] = utm_log
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if antivirus_profile is not None:
-            data_payload['antivirus-profile'] = antivirus_profile
+            data_payload["antivirus-profile"] = antivirus_profile
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if scan_botnet_connections is not None:
-            data_payload['scan-botnet-connections'] = scan_botnet_connections
+            data_payload["scan-botnet-connections"] = scan_botnet_connections
         if address_group is not None:
-            data_payload['address-group'] = address_group
+            data_payload["address-group"] = address_group
         if address_group_policy is not None:
-            data_payload['address-group-policy'] = address_group_policy
+            data_payload["address-group-policy"] = address_group_policy
         if sticky_client_remove is not None:
-            data_payload['sticky-client-remove'] = sticky_client_remove
+            data_payload["sticky-client-remove"] = sticky_client_remove
         if sticky_client_threshold_5g is not None:
-            data_payload['sticky-client-threshold-5g'] = sticky_client_threshold_5g
+            data_payload["sticky-client-threshold-5g"] = (
+                sticky_client_threshold_5g
+            )
         if sticky_client_threshold_2g is not None:
-            data_payload['sticky-client-threshold-2g'] = sticky_client_threshold_2g
+            data_payload["sticky-client-threshold-2g"] = (
+                sticky_client_threshold_2g
+            )
         if sticky_client_threshold_6g is not None:
-            data_payload['sticky-client-threshold-6g'] = sticky_client_threshold_6g
+            data_payload["sticky-client-threshold-6g"] = (
+                sticky_client_threshold_6g
+            )
         if bstm_rssi_disassoc_timer is not None:
-            data_payload['bstm-rssi-disassoc-timer'] = bstm_rssi_disassoc_timer
+            data_payload["bstm-rssi-disassoc-timer"] = bstm_rssi_disassoc_timer
         if bstm_load_balancing_disassoc_timer is not None:
-            data_payload['bstm-load-balancing-disassoc-timer'] = bstm_load_balancing_disassoc_timer
+            data_payload["bstm-load-balancing-disassoc-timer"] = (
+                bstm_load_balancing_disassoc_timer
+            )
         if bstm_disassociation_imminent is not None:
-            data_payload['bstm-disassociation-imminent'] = bstm_disassociation_imminent
+            data_payload["bstm-disassociation-imminent"] = (
+                bstm_disassociation_imminent
+            )
         if beacon_advertising is not None:
-            data_payload['beacon-advertising'] = beacon_advertising
+            data_payload["beacon-advertising"] = beacon_advertising
         if osen is not None:
-            data_payload['osen'] = osen
+            data_payload["osen"] = osen
         if application_detection_engine is not None:
-            data_payload['application-detection-engine'] = application_detection_engine
+            data_payload["application-detection-engine"] = (
+                application_detection_engine
+            )
         if application_dscp_marking is not None:
-            data_payload['application-dscp-marking'] = application_dscp_marking
+            data_payload["application-dscp-marking"] = application_dscp_marking
         if application_report_intv is not None:
-            data_payload['application-report-intv'] = application_report_intv
+            data_payload["application-report-intv"] = application_report_intv
         if l3_roaming is not None:
-            data_payload['l3-roaming'] = l3_roaming
+            data_payload["l3-roaming"] = l3_roaming
         if l3_roaming_mode is not None:
-            data_payload['l3-roaming-mode'] = l3_roaming_mode
+            data_payload["l3-roaming-mode"] = l3_roaming_mode
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -870,13 +916,13 @@ class Vap:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -884,18 +930,20 @@ class Vap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/vap/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -904,37 +952,39 @@ class Vap:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -1117,7 +1167,7 @@ class Vap:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -1295,7 +1345,7 @@ class Vap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -1303,7 +1353,7 @@ class Vap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -1311,348 +1361,392 @@ class Vap:
         params = {}
         endpoint = "/wireless-controller/vap"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if pre_auth is not None:
-            data_payload['pre-auth'] = pre_auth
+            data_payload["pre-auth"] = pre_auth
         if external_pre_auth is not None:
-            data_payload['external-pre-auth'] = external_pre_auth
+            data_payload["external-pre-auth"] = external_pre_auth
         if mesh_backhaul is not None:
-            data_payload['mesh-backhaul'] = mesh_backhaul
+            data_payload["mesh-backhaul"] = mesh_backhaul
         if atf_weight is not None:
-            data_payload['atf-weight'] = atf_weight
+            data_payload["atf-weight"] = atf_weight
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if max_clients_ap is not None:
-            data_payload['max-clients-ap'] = max_clients_ap
+            data_payload["max-clients-ap"] = max_clients_ap
         if ssid is not None:
-            data_payload['ssid'] = ssid
+            data_payload["ssid"] = ssid
         if broadcast_ssid is not None:
-            data_payload['broadcast-ssid'] = broadcast_ssid
+            data_payload["broadcast-ssid"] = broadcast_ssid
         if security is not None:
-            data_payload['security'] = security
+            data_payload["security"] = security
         if pmf is not None:
-            data_payload['pmf'] = pmf
+            data_payload["pmf"] = pmf
         if pmf_assoc_comeback_timeout is not None:
-            data_payload['pmf-assoc-comeback-timeout'] = pmf_assoc_comeback_timeout
+            data_payload["pmf-assoc-comeback-timeout"] = (
+                pmf_assoc_comeback_timeout
+            )
         if pmf_sa_query_retry_timeout is not None:
-            data_payload['pmf-sa-query-retry-timeout'] = pmf_sa_query_retry_timeout
+            data_payload["pmf-sa-query-retry-timeout"] = (
+                pmf_sa_query_retry_timeout
+            )
         if beacon_protection is not None:
-            data_payload['beacon-protection'] = beacon_protection
+            data_payload["beacon-protection"] = beacon_protection
         if okc is not None:
-            data_payload['okc'] = okc
+            data_payload["okc"] = okc
         if mbo is not None:
-            data_payload['mbo'] = mbo
+            data_payload["mbo"] = mbo
         if gas_comeback_delay is not None:
-            data_payload['gas-comeback-delay'] = gas_comeback_delay
+            data_payload["gas-comeback-delay"] = gas_comeback_delay
         if gas_fragmentation_limit is not None:
-            data_payload['gas-fragmentation-limit'] = gas_fragmentation_limit
+            data_payload["gas-fragmentation-limit"] = gas_fragmentation_limit
         if mbo_cell_data_conn_pref is not None:
-            data_payload['mbo-cell-data-conn-pref'] = mbo_cell_data_conn_pref
+            data_payload["mbo-cell-data-conn-pref"] = mbo_cell_data_conn_pref
         if _80211k is not None:
-            data_payload['80211k'] = _80211k
+            data_payload["80211k"] = _80211k
         if _80211v is not None:
-            data_payload['80211v'] = _80211v
+            data_payload["80211v"] = _80211v
         if neighbor_report_dual_band is not None:
-            data_payload['neighbor-report-dual-band'] = neighbor_report_dual_band
+            data_payload["neighbor-report-dual-band"] = (
+                neighbor_report_dual_band
+            )
         if fast_bss_transition is not None:
-            data_payload['fast-bss-transition'] = fast_bss_transition
+            data_payload["fast-bss-transition"] = fast_bss_transition
         if ft_mobility_domain is not None:
-            data_payload['ft-mobility-domain'] = ft_mobility_domain
+            data_payload["ft-mobility-domain"] = ft_mobility_domain
         if ft_r0_key_lifetime is not None:
-            data_payload['ft-r0-key-lifetime'] = ft_r0_key_lifetime
+            data_payload["ft-r0-key-lifetime"] = ft_r0_key_lifetime
         if ft_over_ds is not None:
-            data_payload['ft-over-ds'] = ft_over_ds
+            data_payload["ft-over-ds"] = ft_over_ds
         if sae_groups is not None:
-            data_payload['sae-groups'] = sae_groups
+            data_payload["sae-groups"] = sae_groups
         if owe_groups is not None:
-            data_payload['owe-groups'] = owe_groups
+            data_payload["owe-groups"] = owe_groups
         if owe_transition is not None:
-            data_payload['owe-transition'] = owe_transition
+            data_payload["owe-transition"] = owe_transition
         if owe_transition_ssid is not None:
-            data_payload['owe-transition-ssid'] = owe_transition_ssid
+            data_payload["owe-transition-ssid"] = owe_transition_ssid
         if additional_akms is not None:
-            data_payload['additional-akms'] = additional_akms
+            data_payload["additional-akms"] = additional_akms
         if eapol_key_retries is not None:
-            data_payload['eapol-key-retries'] = eapol_key_retries
+            data_payload["eapol-key-retries"] = eapol_key_retries
         if tkip_counter_measure is not None:
-            data_payload['tkip-counter-measure'] = tkip_counter_measure
+            data_payload["tkip-counter-measure"] = tkip_counter_measure
         if external_web is not None:
-            data_payload['external-web'] = external_web
+            data_payload["external-web"] = external_web
         if external_web_format is not None:
-            data_payload['external-web-format'] = external_web_format
+            data_payload["external-web-format"] = external_web_format
         if external_logout is not None:
-            data_payload['external-logout'] = external_logout
+            data_payload["external-logout"] = external_logout
         if mac_username_delimiter is not None:
-            data_payload['mac-username-delimiter'] = mac_username_delimiter
+            data_payload["mac-username-delimiter"] = mac_username_delimiter
         if mac_password_delimiter is not None:
-            data_payload['mac-password-delimiter'] = mac_password_delimiter
+            data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload['mac-calling-station-delimiter'] = mac_calling_station_delimiter
+            data_payload["mac-calling-station-delimiter"] = (
+                mac_calling_station_delimiter
+            )
         if mac_called_station_delimiter is not None:
-            data_payload['mac-called-station-delimiter'] = mac_called_station_delimiter
+            data_payload["mac-called-station-delimiter"] = (
+                mac_called_station_delimiter
+            )
         if mac_case is not None:
-            data_payload['mac-case'] = mac_case
+            data_payload["mac-case"] = mac_case
         if called_station_id_type is not None:
-            data_payload['called-station-id-type'] = called_station_id_type
+            data_payload["called-station-id-type"] = called_station_id_type
         if mac_auth_bypass is not None:
-            data_payload['mac-auth-bypass'] = mac_auth_bypass
+            data_payload["mac-auth-bypass"] = mac_auth_bypass
         if radius_mac_auth is not None:
-            data_payload['radius-mac-auth'] = radius_mac_auth
+            data_payload["radius-mac-auth"] = radius_mac_auth
         if radius_mac_auth_server is not None:
-            data_payload['radius-mac-auth-server'] = radius_mac_auth_server
+            data_payload["radius-mac-auth-server"] = radius_mac_auth_server
         if radius_mac_auth_block_interval is not None:
-            data_payload['radius-mac-auth-block-interval'] = radius_mac_auth_block_interval
+            data_payload["radius-mac-auth-block-interval"] = (
+                radius_mac_auth_block_interval
+            )
         if radius_mac_mpsk_auth is not None:
-            data_payload['radius-mac-mpsk-auth'] = radius_mac_mpsk_auth
+            data_payload["radius-mac-mpsk-auth"] = radius_mac_mpsk_auth
         if radius_mac_mpsk_timeout is not None:
-            data_payload['radius-mac-mpsk-timeout'] = radius_mac_mpsk_timeout
+            data_payload["radius-mac-mpsk-timeout"] = radius_mac_mpsk_timeout
         if radius_mac_auth_usergroups is not None:
-            data_payload['radius-mac-auth-usergroups'] = radius_mac_auth_usergroups
+            data_payload["radius-mac-auth-usergroups"] = (
+                radius_mac_auth_usergroups
+            )
         if auth is not None:
-            data_payload['auth'] = auth
+            data_payload["auth"] = auth
         if encrypt is not None:
-            data_payload['encrypt'] = encrypt
+            data_payload["encrypt"] = encrypt
         if keyindex is not None:
-            data_payload['keyindex'] = keyindex
+            data_payload["keyindex"] = keyindex
         if passphrase is not None:
-            data_payload['passphrase'] = passphrase
+            data_payload["passphrase"] = passphrase
         if sae_password is not None:
-            data_payload['sae-password'] = sae_password
+            data_payload["sae-password"] = sae_password
         if sae_h2e_only is not None:
-            data_payload['sae-h2e-only'] = sae_h2e_only
+            data_payload["sae-h2e-only"] = sae_h2e_only
         if sae_hnp_only is not None:
-            data_payload['sae-hnp-only'] = sae_hnp_only
+            data_payload["sae-hnp-only"] = sae_hnp_only
         if sae_pk is not None:
-            data_payload['sae-pk'] = sae_pk
+            data_payload["sae-pk"] = sae_pk
         if sae_private_key is not None:
-            data_payload['sae-private-key'] = sae_private_key
+            data_payload["sae-private-key"] = sae_private_key
         if akm24_only is not None:
-            data_payload['akm24-only'] = akm24_only
+            data_payload["akm24-only"] = akm24_only
         if radius_server is not None:
-            data_payload['radius-server'] = radius_server
+            data_payload["radius-server"] = radius_server
         if nas_filter_rule is not None:
-            data_payload['nas-filter-rule'] = nas_filter_rule
+            data_payload["nas-filter-rule"] = nas_filter_rule
         if domain_name_stripping is not None:
-            data_payload['domain-name-stripping'] = domain_name_stripping
+            data_payload["domain-name-stripping"] = domain_name_stripping
         if mlo is not None:
-            data_payload['mlo'] = mlo
+            data_payload["mlo"] = mlo
         if local_standalone is not None:
-            data_payload['local-standalone'] = local_standalone
+            data_payload["local-standalone"] = local_standalone
         if local_standalone_nat is not None:
-            data_payload['local-standalone-nat'] = local_standalone_nat
+            data_payload["local-standalone-nat"] = local_standalone_nat
         if ip is not None:
-            data_payload['ip'] = ip
+            data_payload["ip"] = ip
         if dhcp_lease_time is not None:
-            data_payload['dhcp-lease-time'] = dhcp_lease_time
+            data_payload["dhcp-lease-time"] = dhcp_lease_time
         if local_standalone_dns is not None:
-            data_payload['local-standalone-dns'] = local_standalone_dns
+            data_payload["local-standalone-dns"] = local_standalone_dns
         if local_standalone_dns_ip is not None:
-            data_payload['local-standalone-dns-ip'] = local_standalone_dns_ip
+            data_payload["local-standalone-dns-ip"] = local_standalone_dns_ip
         if local_lan_partition is not None:
-            data_payload['local-lan-partition'] = local_lan_partition
+            data_payload["local-lan-partition"] = local_lan_partition
         if local_bridging is not None:
-            data_payload['local-bridging'] = local_bridging
+            data_payload["local-bridging"] = local_bridging
         if local_lan is not None:
-            data_payload['local-lan'] = local_lan
+            data_payload["local-lan"] = local_lan
         if local_authentication is not None:
-            data_payload['local-authentication'] = local_authentication
+            data_payload["local-authentication"] = local_authentication
         if usergroup is not None:
-            data_payload['usergroup'] = usergroup
+            data_payload["usergroup"] = usergroup
         if captive_portal is not None:
-            data_payload['captive-portal'] = captive_portal
+            data_payload["captive-portal"] = captive_portal
         if captive_network_assistant_bypass is not None:
-            data_payload['captive-network-assistant-bypass'] = captive_network_assistant_bypass
+            data_payload["captive-network-assistant-bypass"] = (
+                captive_network_assistant_bypass
+            )
         if portal_message_override_group is not None:
-            data_payload['portal-message-override-group'] = portal_message_override_group
+            data_payload["portal-message-override-group"] = (
+                portal_message_override_group
+            )
         if portal_message_overrides is not None:
-            data_payload['portal-message-overrides'] = portal_message_overrides
+            data_payload["portal-message-overrides"] = portal_message_overrides
         if portal_type is not None:
-            data_payload['portal-type'] = portal_type
+            data_payload["portal-type"] = portal_type
         if selected_usergroups is not None:
-            data_payload['selected-usergroups'] = selected_usergroups
+            data_payload["selected-usergroups"] = selected_usergroups
         if security_exempt_list is not None:
-            data_payload['security-exempt-list'] = security_exempt_list
+            data_payload["security-exempt-list"] = security_exempt_list
         if security_redirect_url is not None:
-            data_payload['security-redirect-url'] = security_redirect_url
+            data_payload["security-redirect-url"] = security_redirect_url
         if auth_cert is not None:
-            data_payload['auth-cert'] = auth_cert
+            data_payload["auth-cert"] = auth_cert
         if auth_portal_addr is not None:
-            data_payload['auth-portal-addr'] = auth_portal_addr
+            data_payload["auth-portal-addr"] = auth_portal_addr
         if intra_vap_privacy is not None:
-            data_payload['intra-vap-privacy'] = intra_vap_privacy
+            data_payload["intra-vap-privacy"] = intra_vap_privacy
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if ldpc is not None:
-            data_payload['ldpc'] = ldpc
+            data_payload["ldpc"] = ldpc
         if high_efficiency is not None:
-            data_payload['high-efficiency'] = high_efficiency
+            data_payload["high-efficiency"] = high_efficiency
         if target_wake_time is not None:
-            data_payload['target-wake-time'] = target_wake_time
+            data_payload["target-wake-time"] = target_wake_time
         if port_macauth is not None:
-            data_payload['port-macauth'] = port_macauth
+            data_payload["port-macauth"] = port_macauth
         if port_macauth_timeout is not None:
-            data_payload['port-macauth-timeout'] = port_macauth_timeout
+            data_payload["port-macauth-timeout"] = port_macauth_timeout
         if port_macauth_reauth_timeout is not None:
-            data_payload['port-macauth-reauth-timeout'] = port_macauth_reauth_timeout
+            data_payload["port-macauth-reauth-timeout"] = (
+                port_macauth_reauth_timeout
+            )
         if bss_color_partial is not None:
-            data_payload['bss-color-partial'] = bss_color_partial
+            data_payload["bss-color-partial"] = bss_color_partial
         if mpsk_profile is not None:
-            data_payload['mpsk-profile'] = mpsk_profile
+            data_payload["mpsk-profile"] = mpsk_profile
         if split_tunneling is not None:
-            data_payload['split-tunneling'] = split_tunneling
+            data_payload["split-tunneling"] = split_tunneling
         if nac is not None:
-            data_payload['nac'] = nac
+            data_payload["nac"] = nac
         if nac_profile is not None:
-            data_payload['nac-profile'] = nac_profile
+            data_payload["nac-profile"] = nac_profile
         if vlanid is not None:
-            data_payload['vlanid'] = vlanid
+            data_payload["vlanid"] = vlanid
         if vlan_auto is not None:
-            data_payload['vlan-auto'] = vlan_auto
+            data_payload["vlan-auto"] = vlan_auto
         if dynamic_vlan is not None:
-            data_payload['dynamic-vlan'] = dynamic_vlan
+            data_payload["dynamic-vlan"] = dynamic_vlan
         if captive_portal_fw_accounting is not None:
-            data_payload['captive-portal-fw-accounting'] = captive_portal_fw_accounting
+            data_payload["captive-portal-fw-accounting"] = (
+                captive_portal_fw_accounting
+            )
         if captive_portal_ac_name is not None:
-            data_payload['captive-portal-ac-name'] = captive_portal_ac_name
+            data_payload["captive-portal-ac-name"] = captive_portal_ac_name
         if captive_portal_auth_timeout is not None:
-            data_payload['captive-portal-auth-timeout'] = captive_portal_auth_timeout
+            data_payload["captive-portal-auth-timeout"] = (
+                captive_portal_auth_timeout
+            )
         if multicast_rate is not None:
-            data_payload['multicast-rate'] = multicast_rate
+            data_payload["multicast-rate"] = multicast_rate
         if multicast_enhance is not None:
-            data_payload['multicast-enhance'] = multicast_enhance
+            data_payload["multicast-enhance"] = multicast_enhance
         if igmp_snooping is not None:
-            data_payload['igmp-snooping'] = igmp_snooping
+            data_payload["igmp-snooping"] = igmp_snooping
         if dhcp_address_enforcement is not None:
-            data_payload['dhcp-address-enforcement'] = dhcp_address_enforcement
+            data_payload["dhcp-address-enforcement"] = dhcp_address_enforcement
         if broadcast_suppression is not None:
-            data_payload['broadcast-suppression'] = broadcast_suppression
+            data_payload["broadcast-suppression"] = broadcast_suppression
         if ipv6_rules is not None:
-            data_payload['ipv6-rules'] = ipv6_rules
+            data_payload["ipv6-rules"] = ipv6_rules
         if me_disable_thresh is not None:
-            data_payload['me-disable-thresh'] = me_disable_thresh
+            data_payload["me-disable-thresh"] = me_disable_thresh
         if mu_mimo is not None:
-            data_payload['mu-mimo'] = mu_mimo
+            data_payload["mu-mimo"] = mu_mimo
         if probe_resp_suppression is not None:
-            data_payload['probe-resp-suppression'] = probe_resp_suppression
+            data_payload["probe-resp-suppression"] = probe_resp_suppression
         if probe_resp_threshold is not None:
-            data_payload['probe-resp-threshold'] = probe_resp_threshold
+            data_payload["probe-resp-threshold"] = probe_resp_threshold
         if radio_sensitivity is not None:
-            data_payload['radio-sensitivity'] = radio_sensitivity
+            data_payload["radio-sensitivity"] = radio_sensitivity
         if quarantine is not None:
-            data_payload['quarantine'] = quarantine
+            data_payload["quarantine"] = quarantine
         if radio_5g_threshold is not None:
-            data_payload['radio-5g-threshold'] = radio_5g_threshold
+            data_payload["radio-5g-threshold"] = radio_5g_threshold
         if radio_2g_threshold is not None:
-            data_payload['radio-2g-threshold'] = radio_2g_threshold
+            data_payload["radio-2g-threshold"] = radio_2g_threshold
         if vlan_name is not None:
-            data_payload['vlan-name'] = vlan_name
+            data_payload["vlan-name"] = vlan_name
         if vlan_pooling is not None:
-            data_payload['vlan-pooling'] = vlan_pooling
+            data_payload["vlan-pooling"] = vlan_pooling
         if vlan_pool is not None:
-            data_payload['vlan-pool'] = vlan_pool
+            data_payload["vlan-pool"] = vlan_pool
         if dhcp_option43_insertion is not None:
-            data_payload['dhcp-option43-insertion'] = dhcp_option43_insertion
+            data_payload["dhcp-option43-insertion"] = dhcp_option43_insertion
         if dhcp_option82_insertion is not None:
-            data_payload['dhcp-option82-insertion'] = dhcp_option82_insertion
+            data_payload["dhcp-option82-insertion"] = dhcp_option82_insertion
         if dhcp_option82_circuit_id_insertion is not None:
-            data_payload['dhcp-option82-circuit-id-insertion'] = dhcp_option82_circuit_id_insertion
+            data_payload["dhcp-option82-circuit-id-insertion"] = (
+                dhcp_option82_circuit_id_insertion
+            )
         if dhcp_option82_remote_id_insertion is not None:
-            data_payload['dhcp-option82-remote-id-insertion'] = dhcp_option82_remote_id_insertion
+            data_payload["dhcp-option82-remote-id-insertion"] = (
+                dhcp_option82_remote_id_insertion
+            )
         if ptk_rekey is not None:
-            data_payload['ptk-rekey'] = ptk_rekey
+            data_payload["ptk-rekey"] = ptk_rekey
         if ptk_rekey_intv is not None:
-            data_payload['ptk-rekey-intv'] = ptk_rekey_intv
+            data_payload["ptk-rekey-intv"] = ptk_rekey_intv
         if gtk_rekey is not None:
-            data_payload['gtk-rekey'] = gtk_rekey
+            data_payload["gtk-rekey"] = gtk_rekey
         if gtk_rekey_intv is not None:
-            data_payload['gtk-rekey-intv'] = gtk_rekey_intv
+            data_payload["gtk-rekey-intv"] = gtk_rekey_intv
         if eap_reauth is not None:
-            data_payload['eap-reauth'] = eap_reauth
+            data_payload["eap-reauth"] = eap_reauth
         if eap_reauth_intv is not None:
-            data_payload['eap-reauth-intv'] = eap_reauth_intv
+            data_payload["eap-reauth-intv"] = eap_reauth_intv
         if roaming_acct_interim_update is not None:
-            data_payload['roaming-acct-interim-update'] = roaming_acct_interim_update
+            data_payload["roaming-acct-interim-update"] = (
+                roaming_acct_interim_update
+            )
         if qos_profile is not None:
-            data_payload['qos-profile'] = qos_profile
+            data_payload["qos-profile"] = qos_profile
         if hotspot20_profile is not None:
-            data_payload['hotspot20-profile'] = hotspot20_profile
+            data_payload["hotspot20-profile"] = hotspot20_profile
         if access_control_list is not None:
-            data_payload['access-control-list'] = access_control_list
+            data_payload["access-control-list"] = access_control_list
         if primary_wag_profile is not None:
-            data_payload['primary-wag-profile'] = primary_wag_profile
+            data_payload["primary-wag-profile"] = primary_wag_profile
         if secondary_wag_profile is not None:
-            data_payload['secondary-wag-profile'] = secondary_wag_profile
+            data_payload["secondary-wag-profile"] = secondary_wag_profile
         if tunnel_echo_interval is not None:
-            data_payload['tunnel-echo-interval'] = tunnel_echo_interval
+            data_payload["tunnel-echo-interval"] = tunnel_echo_interval
         if tunnel_fallback_interval is not None:
-            data_payload['tunnel-fallback-interval'] = tunnel_fallback_interval
+            data_payload["tunnel-fallback-interval"] = tunnel_fallback_interval
         if rates_11a is not None:
-            data_payload['rates-11a'] = rates_11a
+            data_payload["rates-11a"] = rates_11a
         if rates_11bg is not None:
-            data_payload['rates-11bg'] = rates_11bg
+            data_payload["rates-11bg"] = rates_11bg
         if rates_11n_ss12 is not None:
-            data_payload['rates-11n-ss12'] = rates_11n_ss12
+            data_payload["rates-11n-ss12"] = rates_11n_ss12
         if rates_11n_ss34 is not None:
-            data_payload['rates-11n-ss34'] = rates_11n_ss34
+            data_payload["rates-11n-ss34"] = rates_11n_ss34
         if rates_11ac_mcs_map is not None:
-            data_payload['rates-11ac-mcs-map'] = rates_11ac_mcs_map
+            data_payload["rates-11ac-mcs-map"] = rates_11ac_mcs_map
         if rates_11ax_mcs_map is not None:
-            data_payload['rates-11ax-mcs-map'] = rates_11ax_mcs_map
+            data_payload["rates-11ax-mcs-map"] = rates_11ax_mcs_map
         if rates_11be_mcs_map is not None:
-            data_payload['rates-11be-mcs-map'] = rates_11be_mcs_map
+            data_payload["rates-11be-mcs-map"] = rates_11be_mcs_map
         if rates_11be_mcs_map_160 is not None:
-            data_payload['rates-11be-mcs-map-160'] = rates_11be_mcs_map_160
+            data_payload["rates-11be-mcs-map-160"] = rates_11be_mcs_map_160
         if rates_11be_mcs_map_320 is not None:
-            data_payload['rates-11be-mcs-map-320'] = rates_11be_mcs_map_320
+            data_payload["rates-11be-mcs-map-320"] = rates_11be_mcs_map_320
         if utm_profile is not None:
-            data_payload['utm-profile'] = utm_profile
+            data_payload["utm-profile"] = utm_profile
         if utm_status is not None:
-            data_payload['utm-status'] = utm_status
+            data_payload["utm-status"] = utm_status
         if utm_log is not None:
-            data_payload['utm-log'] = utm_log
+            data_payload["utm-log"] = utm_log
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if antivirus_profile is not None:
-            data_payload['antivirus-profile'] = antivirus_profile
+            data_payload["antivirus-profile"] = antivirus_profile
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if scan_botnet_connections is not None:
-            data_payload['scan-botnet-connections'] = scan_botnet_connections
+            data_payload["scan-botnet-connections"] = scan_botnet_connections
         if address_group is not None:
-            data_payload['address-group'] = address_group
+            data_payload["address-group"] = address_group
         if address_group_policy is not None:
-            data_payload['address-group-policy'] = address_group_policy
+            data_payload["address-group-policy"] = address_group_policy
         if sticky_client_remove is not None:
-            data_payload['sticky-client-remove'] = sticky_client_remove
+            data_payload["sticky-client-remove"] = sticky_client_remove
         if sticky_client_threshold_5g is not None:
-            data_payload['sticky-client-threshold-5g'] = sticky_client_threshold_5g
+            data_payload["sticky-client-threshold-5g"] = (
+                sticky_client_threshold_5g
+            )
         if sticky_client_threshold_2g is not None:
-            data_payload['sticky-client-threshold-2g'] = sticky_client_threshold_2g
+            data_payload["sticky-client-threshold-2g"] = (
+                sticky_client_threshold_2g
+            )
         if sticky_client_threshold_6g is not None:
-            data_payload['sticky-client-threshold-6g'] = sticky_client_threshold_6g
+            data_payload["sticky-client-threshold-6g"] = (
+                sticky_client_threshold_6g
+            )
         if bstm_rssi_disassoc_timer is not None:
-            data_payload['bstm-rssi-disassoc-timer'] = bstm_rssi_disassoc_timer
+            data_payload["bstm-rssi-disassoc-timer"] = bstm_rssi_disassoc_timer
         if bstm_load_balancing_disassoc_timer is not None:
-            data_payload['bstm-load-balancing-disassoc-timer'] = bstm_load_balancing_disassoc_timer
+            data_payload["bstm-load-balancing-disassoc-timer"] = (
+                bstm_load_balancing_disassoc_timer
+            )
         if bstm_disassociation_imminent is not None:
-            data_payload['bstm-disassociation-imminent'] = bstm_disassociation_imminent
+            data_payload["bstm-disassociation-imminent"] = (
+                bstm_disassociation_imminent
+            )
         if beacon_advertising is not None:
-            data_payload['beacon-advertising'] = beacon_advertising
+            data_payload["beacon-advertising"] = beacon_advertising
         if osen is not None:
-            data_payload['osen'] = osen
+            data_payload["osen"] = osen
         if application_detection_engine is not None:
-            data_payload['application-detection-engine'] = application_detection_engine
+            data_payload["application-detection-engine"] = (
+                application_detection_engine
+            )
         if application_dscp_marking is not None:
-            data_payload['application-dscp-marking'] = application_dscp_marking
+            data_payload["application-dscp-marking"] = application_dscp_marking
         if application_report_intv is not None:
-            data_payload['application-report-intv'] = application_report_intv
+            data_payload["application-report-intv"] = application_report_intv
         if l3_roaming is not None:
-            data_payload['l3-roaming'] = l3_roaming
+            data_payload["l3-roaming"] = l3_roaming
         if l3_roaming_mode is not None:
-            data_payload['l3-roaming-mode'] = l3_roaming_mode
+            data_payload["l3-roaming-mode"] = l3_roaming_mode
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

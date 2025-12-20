@@ -20,21 +20,40 @@ from .l2tp import L2tp
 from .pptp import Pptp
 from .qkd import Qkd
 
-__all__ = ['CertificateCa', 'CertificateCrl', 'CertificateHsmLocal', 'CertificateLocal', 'CertificateOcspServer', 'CertificateRemote', 'CertificateSetting', 'IpsecConcentrator', 'IpsecFec', 'IpsecManualkey', 'IpsecManualkeyInterface', 'IpsecPhase1', 'IpsecPhase1Interface', 'IpsecPhase2', 'IpsecPhase2Interface', 'KmipServer', 'L2tp', 'Pptp', 'Qkd']
-
+__all__ = [
+    "CertificateCa",
+    "CertificateCrl",
+    "CertificateHsmLocal",
+    "CertificateLocal",
+    "CertificateOcspServer",
+    "CertificateRemote",
+    "CertificateSetting",
+    "IpsecConcentrator",
+    "IpsecFec",
+    "IpsecManualkey",
+    "IpsecManualkeyInterface",
+    "IpsecPhase1",
+    "IpsecPhase1Interface",
+    "IpsecPhase2",
+    "IpsecPhase2Interface",
+    "KmipServer",
+    "L2tp",
+    "Pptp",
+    "Qkd",
+]
 
 
 class Vpn:
     """
     Vpn category wrapper.
-    
+
     This class provides access to all vpn CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Vpn with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

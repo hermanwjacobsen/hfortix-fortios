@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.wifi.network.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.wifi.network.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Connect:
     """
     Connect Operations.
-    
+
     Provides read-only access for FortiOS connect data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Connect endpoint.
 
@@ -60,22 +60,22 @@ class Connect:
     ) -> dict[str, Any]:
         """
         When FortiWiFi is in client mode, connect to the specified network, if configured in the 'wifi' interface.
-        
+
         Args:
             ssid: SSID of network to connect to. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.network.connect.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if ssid is not None:
-            data['ssid'] = ssid
+            data["ssid"] = ssid
         data.update(kwargs)
         return self._client.post("monitor", "/wifi/network/connect", data=data)
 
@@ -83,7 +83,7 @@ class Connect:
 class List:
     """List operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize List endpoint.
 
@@ -100,15 +100,15 @@ class List:
     ) -> dict[str, Any]:
         """
         When FortiWiFi is in client mode, retrieve list of local WiFi networks.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.network.list.get()
         """
@@ -120,7 +120,7 @@ class List:
 class Scan:
     """Scan operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Scan endpoint.
 
@@ -137,15 +137,15 @@ class Scan:
     ) -> dict[str, Any]:
         """
         When FortiWiFi is in client mode, start a scan for local WiFi networks.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.network.scan.post()
         """
@@ -157,7 +157,7 @@ class Scan:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Status endpoint.
 
@@ -174,27 +174,29 @@ class Status:
     ) -> dict[str, Any]:
         """
         When FortiWiFi is in client mode, retrieve status of currently connected WiFi network, if any.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.network.status.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/wifi/network/status", params=params)
+        return self._client.get(
+            "monitor", "/wifi/network/status", params=params
+        )
 
 
 class Network:
     """Network operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Network endpoint.
 

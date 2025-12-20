@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.pppoe_interface.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.pppoe_interface.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.pppoe_interface.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.pppoe_interface.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.pppoe_interface.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class PppoeInterface:
     """
     Pppoeinterface Operations.
-    
+
     Provides CRUD operations for FortiOS pppoeinterface configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class PppoeInterface:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class PppoeInterface:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PppoeInterface endpoint.
 
@@ -90,7 +90,7 @@ class PppoeInterface:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class PppoeInterface:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class PppoeInterface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/system/pppoe-interface/{name}"
         else:
             endpoint = "/system/pppoe-interface"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -160,7 +162,7 @@ class PppoeInterface:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -188,7 +190,7 @@ class PppoeInterface:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -196,61 +198,65 @@ class PppoeInterface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/system/pppoe-interface/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if dial_on_demand is not None:
-            data_payload['dial-on-demand'] = dial_on_demand
+            data_payload["dial-on-demand"] = dial_on_demand
         if ipv6 is not None:
-            data_payload['ipv6'] = ipv6
+            data_payload["ipv6"] = ipv6
         if device is not None:
-            data_payload['device'] = device
+            data_payload["device"] = device
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if pppoe_egress_cos is not None:
-            data_payload['pppoe-egress-cos'] = pppoe_egress_cos
+            data_payload["pppoe-egress-cos"] = pppoe_egress_cos
         if auth_type is not None:
-            data_payload['auth-type'] = auth_type
+            data_payload["auth-type"] = auth_type
         if ipunnumbered is not None:
-            data_payload['ipunnumbered'] = ipunnumbered
+            data_payload["ipunnumbered"] = ipunnumbered
         if pppoe_unnumbered_negotiate is not None:
-            data_payload['pppoe-unnumbered-negotiate'] = pppoe_unnumbered_negotiate
+            data_payload["pppoe-unnumbered-negotiate"] = (
+                pppoe_unnumbered_negotiate
+            )
         if idle_timeout is not None:
-            data_payload['idle-timeout'] = idle_timeout
+            data_payload["idle-timeout"] = idle_timeout
         if multilink is not None:
-            data_payload['multilink'] = multilink
+            data_payload["multilink"] = multilink
         if mrru is not None:
-            data_payload['mrru'] = mrru
+            data_payload["mrru"] = mrru
         if disc_retry_timeout is not None:
-            data_payload['disc-retry-timeout'] = disc_retry_timeout
+            data_payload["disc-retry-timeout"] = disc_retry_timeout
         if padt_retry_timeout is not None:
-            data_payload['padt-retry-timeout'] = padt_retry_timeout
+            data_payload["padt-retry-timeout"] = padt_retry_timeout
         if service_name is not None:
-            data_payload['service-name'] = service_name
+            data_payload["service-name"] = service_name
         if ac_name is not None:
-            data_payload['ac-name'] = ac_name
+            data_payload["ac-name"] = ac_name
         if lcp_echo_interval is not None:
-            data_payload['lcp-echo-interval'] = lcp_echo_interval
+            data_payload["lcp-echo-interval"] = lcp_echo_interval
         if lcp_max_echo_fails is not None:
-            data_payload['lcp-max-echo-fails'] = lcp_max_echo_fails
+            data_payload["lcp-max-echo-fails"] = lcp_max_echo_fails
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -262,13 +268,13 @@ class PppoeInterface:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -276,18 +282,20 @@ class PppoeInterface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/pppoe-interface/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -296,37 +304,39 @@ class PppoeInterface:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -357,7 +367,7 @@ class PppoeInterface:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -383,7 +393,7 @@ class PppoeInterface:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -391,7 +401,7 @@ class PppoeInterface:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -399,44 +409,48 @@ class PppoeInterface:
         params = {}
         endpoint = "/system/pppoe-interface"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if dial_on_demand is not None:
-            data_payload['dial-on-demand'] = dial_on_demand
+            data_payload["dial-on-demand"] = dial_on_demand
         if ipv6 is not None:
-            data_payload['ipv6'] = ipv6
+            data_payload["ipv6"] = ipv6
         if device is not None:
-            data_payload['device'] = device
+            data_payload["device"] = device
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if pppoe_egress_cos is not None:
-            data_payload['pppoe-egress-cos'] = pppoe_egress_cos
+            data_payload["pppoe-egress-cos"] = pppoe_egress_cos
         if auth_type is not None:
-            data_payload['auth-type'] = auth_type
+            data_payload["auth-type"] = auth_type
         if ipunnumbered is not None:
-            data_payload['ipunnumbered'] = ipunnumbered
+            data_payload["ipunnumbered"] = ipunnumbered
         if pppoe_unnumbered_negotiate is not None:
-            data_payload['pppoe-unnumbered-negotiate'] = pppoe_unnumbered_negotiate
+            data_payload["pppoe-unnumbered-negotiate"] = (
+                pppoe_unnumbered_negotiate
+            )
         if idle_timeout is not None:
-            data_payload['idle-timeout'] = idle_timeout
+            data_payload["idle-timeout"] = idle_timeout
         if multilink is not None:
-            data_payload['multilink'] = multilink
+            data_payload["multilink"] = multilink
         if mrru is not None:
-            data_payload['mrru'] = mrru
+            data_payload["mrru"] = mrru
         if disc_retry_timeout is not None:
-            data_payload['disc-retry-timeout'] = disc_retry_timeout
+            data_payload["disc-retry-timeout"] = disc_retry_timeout
         if padt_retry_timeout is not None:
-            data_payload['padt-retry-timeout'] = padt_retry_timeout
+            data_payload["padt-retry-timeout"] = padt_retry_timeout
         if service_name is not None:
-            data_payload['service-name'] = service_name
+            data_payload["service-name"] = service_name
         if ac_name is not None:
-            data_payload['ac-name'] = ac_name
+            data_payload["ac-name"] = ac_name
         if lcp_echo_interval is not None:
-            data_payload['lcp-echo-interval'] = lcp_echo_interval
+            data_payload["lcp-echo-interval"] = lcp_echo_interval
         if lcp_max_echo_fails is not None:
-            data_payload['lcp-max-echo-fails'] = lcp_max_echo_fails
+            data_payload["lcp-max-echo-fails"] = lcp_max_echo_fails
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

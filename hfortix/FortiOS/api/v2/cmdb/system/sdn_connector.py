@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.sdn_connector.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.sdn_connector.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.sdn_connector.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.sdn_connector.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.sdn_connector.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class SdnConnector:
     """
     Sdnconnector Operations.
-    
+
     Provides CRUD operations for FortiOS sdnconnector configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class SdnConnector:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class SdnConnector:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SdnConnector endpoint.
 
@@ -90,7 +90,7 @@ class SdnConnector:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class SdnConnector:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class SdnConnector:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/system/sdn-connector/{name}"
         else:
             endpoint = "/system/sdn-connector"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -195,7 +197,7 @@ class SdnConnector:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -258,7 +260,7 @@ class SdnConnector:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -266,131 +268,133 @@ class SdnConnector:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/system/sdn-connector/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if use_metadata_iam is not None:
-            data_payload['use-metadata-iam'] = use_metadata_iam
+            data_payload["use-metadata-iam"] = use_metadata_iam
         if microsoft_365 is not None:
-            data_payload['microsoft-365'] = microsoft_365
+            data_payload["microsoft-365"] = microsoft_365
         if ha_status is not None:
-            data_payload['ha-status'] = ha_status
+            data_payload["ha-status"] = ha_status
         if verify_certificate is not None:
-            data_payload['verify-certificate'] = verify_certificate
+            data_payload["verify-certificate"] = verify_certificate
         if server is not None:
-            data_payload['server'] = server
+            data_payload["server"] = server
         if server_list is not None:
-            data_payload['server-list'] = server_list
+            data_payload["server-list"] = server_list
         if server_port is not None:
-            data_payload['server-port'] = server_port
+            data_payload["server-port"] = server_port
         if message_server_port is not None:
-            data_payload['message-server-port'] = message_server_port
+            data_payload["message-server-port"] = message_server_port
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if vcenter_server is not None:
-            data_payload['vcenter-server'] = vcenter_server
+            data_payload["vcenter-server"] = vcenter_server
         if vcenter_username is not None:
-            data_payload['vcenter-username'] = vcenter_username
+            data_payload["vcenter-username"] = vcenter_username
         if vcenter_password is not None:
-            data_payload['vcenter-password'] = vcenter_password
+            data_payload["vcenter-password"] = vcenter_password
         if access_key is not None:
-            data_payload['access-key'] = access_key
+            data_payload["access-key"] = access_key
         if secret_key is not None:
-            data_payload['secret-key'] = secret_key
+            data_payload["secret-key"] = secret_key
         if region is not None:
-            data_payload['region'] = region
+            data_payload["region"] = region
         if vpc_id is not None:
-            data_payload['vpc-id'] = vpc_id
+            data_payload["vpc-id"] = vpc_id
         if alt_resource_ip is not None:
-            data_payload['alt-resource-ip'] = alt_resource_ip
+            data_payload["alt-resource-ip"] = alt_resource_ip
         if external_account_list is not None:
-            data_payload['external-account-list'] = external_account_list
+            data_payload["external-account-list"] = external_account_list
         if tenant_id is not None:
-            data_payload['tenant-id'] = tenant_id
+            data_payload["tenant-id"] = tenant_id
         if client_id is not None:
-            data_payload['client-id'] = client_id
+            data_payload["client-id"] = client_id
         if client_secret is not None:
-            data_payload['client-secret'] = client_secret
+            data_payload["client-secret"] = client_secret
         if subscription_id is not None:
-            data_payload['subscription-id'] = subscription_id
+            data_payload["subscription-id"] = subscription_id
         if resource_group is not None:
-            data_payload['resource-group'] = resource_group
+            data_payload["resource-group"] = resource_group
         if login_endpoint is not None:
-            data_payload['login-endpoint'] = login_endpoint
+            data_payload["login-endpoint"] = login_endpoint
         if resource_url is not None:
-            data_payload['resource-url'] = resource_url
+            data_payload["resource-url"] = resource_url
         if azure_region is not None:
-            data_payload['azure-region'] = azure_region
+            data_payload["azure-region"] = azure_region
         if nic is not None:
-            data_payload['nic'] = nic
+            data_payload["nic"] = nic
         if route_table is not None:
-            data_payload['route-table'] = route_table
+            data_payload["route-table"] = route_table
         if user_id is not None:
-            data_payload['user-id'] = user_id
+            data_payload["user-id"] = user_id
         if compartment_list is not None:
-            data_payload['compartment-list'] = compartment_list
+            data_payload["compartment-list"] = compartment_list
         if oci_region_list is not None:
-            data_payload['oci-region-list'] = oci_region_list
+            data_payload["oci-region-list"] = oci_region_list
         if oci_region_type is not None:
-            data_payload['oci-region-type'] = oci_region_type
+            data_payload["oci-region-type"] = oci_region_type
         if oci_cert is not None:
-            data_payload['oci-cert'] = oci_cert
+            data_payload["oci-cert"] = oci_cert
         if oci_fingerprint is not None:
-            data_payload['oci-fingerprint'] = oci_fingerprint
+            data_payload["oci-fingerprint"] = oci_fingerprint
         if external_ip is not None:
-            data_payload['external-ip'] = external_ip
+            data_payload["external-ip"] = external_ip
         if route is not None:
-            data_payload['route'] = route
+            data_payload["route"] = route
         if gcp_project_list is not None:
-            data_payload['gcp-project-list'] = gcp_project_list
+            data_payload["gcp-project-list"] = gcp_project_list
         if forwarding_rule is not None:
-            data_payload['forwarding-rule'] = forwarding_rule
+            data_payload["forwarding-rule"] = forwarding_rule
         if service_account is not None:
-            data_payload['service-account'] = service_account
+            data_payload["service-account"] = service_account
         if private_key is not None:
-            data_payload['private-key'] = private_key
+            data_payload["private-key"] = private_key
         if secret_token is not None:
-            data_payload['secret-token'] = secret_token
+            data_payload["secret-token"] = secret_token
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if group_name is not None:
-            data_payload['group-name'] = group_name
+            data_payload["group-name"] = group_name
         if server_cert is not None:
-            data_payload['server-cert'] = server_cert
+            data_payload["server-cert"] = server_cert
         if server_ca_cert is not None:
-            data_payload['server-ca-cert'] = server_ca_cert
+            data_payload["server-ca-cert"] = server_ca_cert
         if api_key is not None:
-            data_payload['api-key'] = api_key
+            data_payload["api-key"] = api_key
         if ibm_region is not None:
-            data_payload['ibm-region'] = ibm_region
+            data_payload["ibm-region"] = ibm_region
         if par_id is not None:
-            data_payload['par-id'] = par_id
+            data_payload["par-id"] = par_id
         if update_interval is not None:
-            data_payload['update-interval'] = update_interval
+            data_payload["update-interval"] = update_interval
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -402,13 +406,13 @@ class SdnConnector:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -416,18 +420,20 @@ class SdnConnector:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/sdn-connector/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -436,37 +442,39 @@ class SdnConnector:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -532,7 +540,7 @@ class SdnConnector:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -593,7 +601,7 @@ class SdnConnector:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -601,7 +609,7 @@ class SdnConnector:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -609,114 +617,116 @@ class SdnConnector:
         params = {}
         endpoint = "/system/sdn-connector"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if use_metadata_iam is not None:
-            data_payload['use-metadata-iam'] = use_metadata_iam
+            data_payload["use-metadata-iam"] = use_metadata_iam
         if microsoft_365 is not None:
-            data_payload['microsoft-365'] = microsoft_365
+            data_payload["microsoft-365"] = microsoft_365
         if ha_status is not None:
-            data_payload['ha-status'] = ha_status
+            data_payload["ha-status"] = ha_status
         if verify_certificate is not None:
-            data_payload['verify-certificate'] = verify_certificate
+            data_payload["verify-certificate"] = verify_certificate
         if server is not None:
-            data_payload['server'] = server
+            data_payload["server"] = server
         if server_list is not None:
-            data_payload['server-list'] = server_list
+            data_payload["server-list"] = server_list
         if server_port is not None:
-            data_payload['server-port'] = server_port
+            data_payload["server-port"] = server_port
         if message_server_port is not None:
-            data_payload['message-server-port'] = message_server_port
+            data_payload["message-server-port"] = message_server_port
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if vcenter_server is not None:
-            data_payload['vcenter-server'] = vcenter_server
+            data_payload["vcenter-server"] = vcenter_server
         if vcenter_username is not None:
-            data_payload['vcenter-username'] = vcenter_username
+            data_payload["vcenter-username"] = vcenter_username
         if vcenter_password is not None:
-            data_payload['vcenter-password'] = vcenter_password
+            data_payload["vcenter-password"] = vcenter_password
         if access_key is not None:
-            data_payload['access-key'] = access_key
+            data_payload["access-key"] = access_key
         if secret_key is not None:
-            data_payload['secret-key'] = secret_key
+            data_payload["secret-key"] = secret_key
         if region is not None:
-            data_payload['region'] = region
+            data_payload["region"] = region
         if vpc_id is not None:
-            data_payload['vpc-id'] = vpc_id
+            data_payload["vpc-id"] = vpc_id
         if alt_resource_ip is not None:
-            data_payload['alt-resource-ip'] = alt_resource_ip
+            data_payload["alt-resource-ip"] = alt_resource_ip
         if external_account_list is not None:
-            data_payload['external-account-list'] = external_account_list
+            data_payload["external-account-list"] = external_account_list
         if tenant_id is not None:
-            data_payload['tenant-id'] = tenant_id
+            data_payload["tenant-id"] = tenant_id
         if client_id is not None:
-            data_payload['client-id'] = client_id
+            data_payload["client-id"] = client_id
         if client_secret is not None:
-            data_payload['client-secret'] = client_secret
+            data_payload["client-secret"] = client_secret
         if subscription_id is not None:
-            data_payload['subscription-id'] = subscription_id
+            data_payload["subscription-id"] = subscription_id
         if resource_group is not None:
-            data_payload['resource-group'] = resource_group
+            data_payload["resource-group"] = resource_group
         if login_endpoint is not None:
-            data_payload['login-endpoint'] = login_endpoint
+            data_payload["login-endpoint"] = login_endpoint
         if resource_url is not None:
-            data_payload['resource-url'] = resource_url
+            data_payload["resource-url"] = resource_url
         if azure_region is not None:
-            data_payload['azure-region'] = azure_region
+            data_payload["azure-region"] = azure_region
         if nic is not None:
-            data_payload['nic'] = nic
+            data_payload["nic"] = nic
         if route_table is not None:
-            data_payload['route-table'] = route_table
+            data_payload["route-table"] = route_table
         if user_id is not None:
-            data_payload['user-id'] = user_id
+            data_payload["user-id"] = user_id
         if compartment_list is not None:
-            data_payload['compartment-list'] = compartment_list
+            data_payload["compartment-list"] = compartment_list
         if oci_region_list is not None:
-            data_payload['oci-region-list'] = oci_region_list
+            data_payload["oci-region-list"] = oci_region_list
         if oci_region_type is not None:
-            data_payload['oci-region-type'] = oci_region_type
+            data_payload["oci-region-type"] = oci_region_type
         if oci_cert is not None:
-            data_payload['oci-cert'] = oci_cert
+            data_payload["oci-cert"] = oci_cert
         if oci_fingerprint is not None:
-            data_payload['oci-fingerprint'] = oci_fingerprint
+            data_payload["oci-fingerprint"] = oci_fingerprint
         if external_ip is not None:
-            data_payload['external-ip'] = external_ip
+            data_payload["external-ip"] = external_ip
         if route is not None:
-            data_payload['route'] = route
+            data_payload["route"] = route
         if gcp_project_list is not None:
-            data_payload['gcp-project-list'] = gcp_project_list
+            data_payload["gcp-project-list"] = gcp_project_list
         if forwarding_rule is not None:
-            data_payload['forwarding-rule'] = forwarding_rule
+            data_payload["forwarding-rule"] = forwarding_rule
         if service_account is not None:
-            data_payload['service-account'] = service_account
+            data_payload["service-account"] = service_account
         if private_key is not None:
-            data_payload['private-key'] = private_key
+            data_payload["private-key"] = private_key
         if secret_token is not None:
-            data_payload['secret-token'] = secret_token
+            data_payload["secret-token"] = secret_token
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if group_name is not None:
-            data_payload['group-name'] = group_name
+            data_payload["group-name"] = group_name
         if server_cert is not None:
-            data_payload['server-cert'] = server_cert
+            data_payload["server-cert"] = server_cert
         if server_ca_cert is not None:
-            data_payload['server-ca-cert'] = server_ca_cert
+            data_payload["server-ca-cert"] = server_ca_cert
         if api_key is not None:
-            data_payload['api-key'] = api_key
+            data_payload["api-key"] = api_key
         if ibm_region is not None:
-            data_payload['ibm-region'] = ibm_region
+            data_payload["ibm-region"] = ibm_region
         if par_id is not None:
-            data_payload['par-id'] = par_id
+            data_payload["par-id"] = par_id
         if update_interval is not None:
-            data_payload['update-interval'] = update_interval
+            data_payload["update-interval"] = update_interval
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

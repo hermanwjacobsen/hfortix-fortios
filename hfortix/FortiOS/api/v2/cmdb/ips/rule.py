@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.ips.rule.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.ips.rule.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.ips.rule.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.ips.rule.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.ips.rule.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Rule:
     """
     Rule Operations.
-    
+
     Provides CRUD operations for FortiOS rule configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Rule:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Rule:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Rule endpoint.
 
@@ -90,7 +90,7 @@ class Rule:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Rule:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Rule:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/ips/rule/{name}"
         else:
             endpoint = "/ips/rule"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -155,7 +157,7 @@ class Rule:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -178,7 +180,7 @@ class Rule:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -186,51 +188,53 @@ class Rule:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/ips/rule/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if log is not None:
-            data_payload['log'] = log
+            data_payload["log"] = log
         if log_packet is not None:
-            data_payload['log-packet'] = log_packet
+            data_payload["log-packet"] = log_packet
         if group is not None:
-            data_payload['group'] = group
+            data_payload["group"] = group
         if severity is not None:
-            data_payload['severity'] = severity
+            data_payload["severity"] = severity
         if location is not None:
-            data_payload['location'] = location
+            data_payload["location"] = location
         if os is not None:
-            data_payload['os'] = os
+            data_payload["os"] = os
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if rule_id is not None:
-            data_payload['rule-id'] = rule_id
+            data_payload["rule-id"] = rule_id
         if rev is not None:
-            data_payload['rev'] = rev
+            data_payload["rev"] = rev
         if date is not None:
-            data_payload['date'] = date
+            data_payload["date"] = date
         if metadata is not None:
-            data_payload['metadata'] = metadata
+            data_payload["metadata"] = metadata
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -242,13 +246,13 @@ class Rule:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -256,18 +260,20 @@ class Rule:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/ips/rule/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -293,7 +299,7 @@ class Rule:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -314,7 +320,7 @@ class Rule:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -322,7 +328,7 @@ class Rule:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -330,34 +336,36 @@ class Rule:
         params = {}
         endpoint = "/ips/rule"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if log is not None:
-            data_payload['log'] = log
+            data_payload["log"] = log
         if log_packet is not None:
-            data_payload['log-packet'] = log_packet
+            data_payload["log-packet"] = log_packet
         if group is not None:
-            data_payload['group'] = group
+            data_payload["group"] = group
         if severity is not None:
-            data_payload['severity'] = severity
+            data_payload["severity"] = severity
         if location is not None:
-            data_payload['location'] = location
+            data_payload["location"] = location
         if os is not None:
-            data_payload['os'] = os
+            data_payload["os"] = os
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if rule_id is not None:
-            data_payload['rule-id'] = rule_id
+            data_payload["rule-id"] = rule_id
         if rev is not None:
-            data_payload['rev'] = rev
+            data_payload["rev"] = rev
         if date is not None:
-            data_payload['date'] = date
+            data_payload["date"] = date
         if metadata is not None:
-            data_payload['metadata'] = metadata
+            data_payload["metadata"] = metadata
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

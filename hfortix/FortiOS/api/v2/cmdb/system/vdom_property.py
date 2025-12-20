@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.vdom_property.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.vdom_property.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.vdom_property.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.vdom_property.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.vdom_property.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class VdomProperty:
     """
     Vdomproperty Operations.
-    
+
     Provides CRUD operations for FortiOS vdomproperty configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class VdomProperty:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class VdomProperty:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize VdomProperty endpoint.
 
@@ -90,7 +90,7 @@ class VdomProperty:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class VdomProperty:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class VdomProperty:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/system/vdom-property/{name}"
         else:
             endpoint = "/system/vdom-property"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -160,7 +162,7 @@ class VdomProperty:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -188,7 +190,7 @@ class VdomProperty:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -196,61 +198,63 @@ class VdomProperty:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/system/vdom-property/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if snmp_index is not None:
-            data_payload['snmp-index'] = snmp_index
+            data_payload["snmp-index"] = snmp_index
         if session is not None:
-            data_payload['session'] = session
+            data_payload["session"] = session
         if ipsec_phase1 is not None:
-            data_payload['ipsec-phase1'] = ipsec_phase1
+            data_payload["ipsec-phase1"] = ipsec_phase1
         if ipsec_phase2 is not None:
-            data_payload['ipsec-phase2'] = ipsec_phase2
+            data_payload["ipsec-phase2"] = ipsec_phase2
         if ipsec_phase1_interface is not None:
-            data_payload['ipsec-phase1-interface'] = ipsec_phase1_interface
+            data_payload["ipsec-phase1-interface"] = ipsec_phase1_interface
         if ipsec_phase2_interface is not None:
-            data_payload['ipsec-phase2-interface'] = ipsec_phase2_interface
+            data_payload["ipsec-phase2-interface"] = ipsec_phase2_interface
         if dialup_tunnel is not None:
-            data_payload['dialup-tunnel'] = dialup_tunnel
+            data_payload["dialup-tunnel"] = dialup_tunnel
         if firewall_policy is not None:
-            data_payload['firewall-policy'] = firewall_policy
+            data_payload["firewall-policy"] = firewall_policy
         if firewall_address is not None:
-            data_payload['firewall-address'] = firewall_address
+            data_payload["firewall-address"] = firewall_address
         if firewall_addrgrp is not None:
-            data_payload['firewall-addrgrp'] = firewall_addrgrp
+            data_payload["firewall-addrgrp"] = firewall_addrgrp
         if custom_service is not None:
-            data_payload['custom-service'] = custom_service
+            data_payload["custom-service"] = custom_service
         if service_group is not None:
-            data_payload['service-group'] = service_group
+            data_payload["service-group"] = service_group
         if onetime_schedule is not None:
-            data_payload['onetime-schedule'] = onetime_schedule
+            data_payload["onetime-schedule"] = onetime_schedule
         if recurring_schedule is not None:
-            data_payload['recurring-schedule'] = recurring_schedule
+            data_payload["recurring-schedule"] = recurring_schedule
         if user is not None:
-            data_payload['user'] = user
+            data_payload["user"] = user
         if user_group is not None:
-            data_payload['user-group'] = user_group
+            data_payload["user-group"] = user_group
         if log_disk_quota is not None:
-            data_payload['log-disk-quota'] = log_disk_quota
+            data_payload["log-disk-quota"] = log_disk_quota
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -262,13 +266,13 @@ class VdomProperty:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -276,18 +280,20 @@ class VdomProperty:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/vdom-property/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -296,37 +302,39 @@ class VdomProperty:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -357,7 +365,7 @@ class VdomProperty:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -383,7 +391,7 @@ class VdomProperty:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -391,7 +399,7 @@ class VdomProperty:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -399,44 +407,46 @@ class VdomProperty:
         params = {}
         endpoint = "/system/vdom-property"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if snmp_index is not None:
-            data_payload['snmp-index'] = snmp_index
+            data_payload["snmp-index"] = snmp_index
         if session is not None:
-            data_payload['session'] = session
+            data_payload["session"] = session
         if ipsec_phase1 is not None:
-            data_payload['ipsec-phase1'] = ipsec_phase1
+            data_payload["ipsec-phase1"] = ipsec_phase1
         if ipsec_phase2 is not None:
-            data_payload['ipsec-phase2'] = ipsec_phase2
+            data_payload["ipsec-phase2"] = ipsec_phase2
         if ipsec_phase1_interface is not None:
-            data_payload['ipsec-phase1-interface'] = ipsec_phase1_interface
+            data_payload["ipsec-phase1-interface"] = ipsec_phase1_interface
         if ipsec_phase2_interface is not None:
-            data_payload['ipsec-phase2-interface'] = ipsec_phase2_interface
+            data_payload["ipsec-phase2-interface"] = ipsec_phase2_interface
         if dialup_tunnel is not None:
-            data_payload['dialup-tunnel'] = dialup_tunnel
+            data_payload["dialup-tunnel"] = dialup_tunnel
         if firewall_policy is not None:
-            data_payload['firewall-policy'] = firewall_policy
+            data_payload["firewall-policy"] = firewall_policy
         if firewall_address is not None:
-            data_payload['firewall-address'] = firewall_address
+            data_payload["firewall-address"] = firewall_address
         if firewall_addrgrp is not None:
-            data_payload['firewall-addrgrp'] = firewall_addrgrp
+            data_payload["firewall-addrgrp"] = firewall_addrgrp
         if custom_service is not None:
-            data_payload['custom-service'] = custom_service
+            data_payload["custom-service"] = custom_service
         if service_group is not None:
-            data_payload['service-group'] = service_group
+            data_payload["service-group"] = service_group
         if onetime_schedule is not None:
-            data_payload['onetime-schedule'] = onetime_schedule
+            data_payload["onetime-schedule"] = onetime_schedule
         if recurring_schedule is not None:
-            data_payload['recurring-schedule'] = recurring_schedule
+            data_payload["recurring-schedule"] = recurring_schedule
         if user is not None:
-            data_payload['user'] = user
+            data_payload["user"] = user
         if user_group is not None:
-            data_payload['user-group'] = user_group
+            data_payload["user-group"] = user_group
         if log_disk_quota is not None:
-            data_payload['log-disk-quota'] = log_disk_quota
+            data_payload["log-disk-quota"] = log_disk_quota
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

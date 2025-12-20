@@ -73,5 +73,5 @@ class Log:
             "local_report",
             "local_report_list",
             "policy_archive",
-            "stats"
+            "stats",
         ]

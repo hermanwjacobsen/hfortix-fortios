@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.ha.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.ha.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.ha.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.ha.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.ha.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Ha:
     """
     Ha Operations.
-    
+
     Provides CRUD operations for FortiOS ha configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Ha:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ha endpoint.
 
@@ -82,14 +82,14 @@ class Ha:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Ha:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/ha"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -196,7 +198,7 @@ class Ha:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -279,7 +281,7 @@ class Ha:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -287,7 +289,7 @@ class Ha:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -295,158 +297,188 @@ class Ha:
         params = {}
         endpoint = "/system/ha"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if group_id is not None:
-            data_payload['group-id'] = group_id
+            data_payload["group-id"] = group_id
         if group_name is not None:
-            data_payload['group-name'] = group_name
+            data_payload["group-name"] = group_name
         if mode is not None:
-            data_payload['mode'] = mode
+            data_payload["mode"] = mode
         if sync_packet_balance is not None:
-            data_payload['sync-packet-balance'] = sync_packet_balance
+            data_payload["sync-packet-balance"] = sync_packet_balance
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if hbdev is not None:
-            data_payload['hbdev'] = hbdev
+            data_payload["hbdev"] = hbdev
         if auto_virtual_mac_interface is not None:
-            data_payload['auto-virtual-mac-interface'] = auto_virtual_mac_interface
+            data_payload["auto-virtual-mac-interface"] = (
+                auto_virtual_mac_interface
+            )
         if backup_hbdev is not None:
-            data_payload['backup-hbdev'] = backup_hbdev
+            data_payload["backup-hbdev"] = backup_hbdev
         if session_sync_dev is not None:
-            data_payload['session-sync-dev'] = session_sync_dev
+            data_payload["session-sync-dev"] = session_sync_dev
         if route_ttl is not None:
-            data_payload['route-ttl'] = route_ttl
+            data_payload["route-ttl"] = route_ttl
         if route_wait is not None:
-            data_payload['route-wait'] = route_wait
+            data_payload["route-wait"] = route_wait
         if route_hold is not None:
-            data_payload['route-hold'] = route_hold
+            data_payload["route-hold"] = route_hold
         if multicast_ttl is not None:
-            data_payload['multicast-ttl'] = multicast_ttl
+            data_payload["multicast-ttl"] = multicast_ttl
         if evpn_ttl is not None:
-            data_payload['evpn-ttl'] = evpn_ttl
+            data_payload["evpn-ttl"] = evpn_ttl
         if load_balance_all is not None:
-            data_payload['load-balance-all'] = load_balance_all
+            data_payload["load-balance-all"] = load_balance_all
         if sync_config is not None:
-            data_payload['sync-config'] = sync_config
+            data_payload["sync-config"] = sync_config
         if encryption is not None:
-            data_payload['encryption'] = encryption
+            data_payload["encryption"] = encryption
         if authentication is not None:
-            data_payload['authentication'] = authentication
+            data_payload["authentication"] = authentication
         if hb_interval is not None:
-            data_payload['hb-interval'] = hb_interval
+            data_payload["hb-interval"] = hb_interval
         if hb_interval_in_milliseconds is not None:
-            data_payload['hb-interval-in-milliseconds'] = hb_interval_in_milliseconds
+            data_payload["hb-interval-in-milliseconds"] = (
+                hb_interval_in_milliseconds
+            )
         if hb_lost_threshold is not None:
-            data_payload['hb-lost-threshold'] = hb_lost_threshold
+            data_payload["hb-lost-threshold"] = hb_lost_threshold
         if hello_holddown is not None:
-            data_payload['hello-holddown'] = hello_holddown
+            data_payload["hello-holddown"] = hello_holddown
         if gratuitous_arps is not None:
-            data_payload['gratuitous-arps'] = gratuitous_arps
+            data_payload["gratuitous-arps"] = gratuitous_arps
         if arps is not None:
-            data_payload['arps'] = arps
+            data_payload["arps"] = arps
         if arps_interval is not None:
-            data_payload['arps-interval'] = arps_interval
+            data_payload["arps-interval"] = arps_interval
         if session_pickup is not None:
-            data_payload['session-pickup'] = session_pickup
+            data_payload["session-pickup"] = session_pickup
         if session_pickup_connectionless is not None:
-            data_payload['session-pickup-connectionless'] = session_pickup_connectionless
+            data_payload["session-pickup-connectionless"] = (
+                session_pickup_connectionless
+            )
         if session_pickup_expectation is not None:
-            data_payload['session-pickup-expectation'] = session_pickup_expectation
+            data_payload["session-pickup-expectation"] = (
+                session_pickup_expectation
+            )
         if session_pickup_nat is not None:
-            data_payload['session-pickup-nat'] = session_pickup_nat
+            data_payload["session-pickup-nat"] = session_pickup_nat
         if session_pickup_delay is not None:
-            data_payload['session-pickup-delay'] = session_pickup_delay
+            data_payload["session-pickup-delay"] = session_pickup_delay
         if link_failed_signal is not None:
-            data_payload['link-failed-signal'] = link_failed_signal
+            data_payload["link-failed-signal"] = link_failed_signal
         if upgrade_mode is not None:
-            data_payload['upgrade-mode'] = upgrade_mode
+            data_payload["upgrade-mode"] = upgrade_mode
         if uninterruptible_primary_wait is not None:
-            data_payload['uninterruptible-primary-wait'] = uninterruptible_primary_wait
+            data_payload["uninterruptible-primary-wait"] = (
+                uninterruptible_primary_wait
+            )
         if standalone_mgmt_vdom is not None:
-            data_payload['standalone-mgmt-vdom'] = standalone_mgmt_vdom
+            data_payload["standalone-mgmt-vdom"] = standalone_mgmt_vdom
         if ha_mgmt_status is not None:
-            data_payload['ha-mgmt-status'] = ha_mgmt_status
+            data_payload["ha-mgmt-status"] = ha_mgmt_status
         if ha_mgmt_interfaces is not None:
-            data_payload['ha-mgmt-interfaces'] = ha_mgmt_interfaces
+            data_payload["ha-mgmt-interfaces"] = ha_mgmt_interfaces
         if ha_eth_type is not None:
-            data_payload['ha-eth-type'] = ha_eth_type
+            data_payload["ha-eth-type"] = ha_eth_type
         if hc_eth_type is not None:
-            data_payload['hc-eth-type'] = hc_eth_type
+            data_payload["hc-eth-type"] = hc_eth_type
         if l2ep_eth_type is not None:
-            data_payload['l2ep-eth-type'] = l2ep_eth_type
+            data_payload["l2ep-eth-type"] = l2ep_eth_type
         if ha_uptime_diff_margin is not None:
-            data_payload['ha-uptime-diff-margin'] = ha_uptime_diff_margin
+            data_payload["ha-uptime-diff-margin"] = ha_uptime_diff_margin
         if standalone_config_sync is not None:
-            data_payload['standalone-config-sync'] = standalone_config_sync
+            data_payload["standalone-config-sync"] = standalone_config_sync
         if logical_sn is not None:
-            data_payload['logical-sn'] = logical_sn
+            data_payload["logical-sn"] = logical_sn
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if weight is not None:
-            data_payload['weight'] = weight
+            data_payload["weight"] = weight
         if cpu_threshold is not None:
-            data_payload['cpu-threshold'] = cpu_threshold
+            data_payload["cpu-threshold"] = cpu_threshold
         if memory_threshold is not None:
-            data_payload['memory-threshold'] = memory_threshold
+            data_payload["memory-threshold"] = memory_threshold
         if http_proxy_threshold is not None:
-            data_payload['http-proxy-threshold'] = http_proxy_threshold
+            data_payload["http-proxy-threshold"] = http_proxy_threshold
         if ftp_proxy_threshold is not None:
-            data_payload['ftp-proxy-threshold'] = ftp_proxy_threshold
+            data_payload["ftp-proxy-threshold"] = ftp_proxy_threshold
         if imap_proxy_threshold is not None:
-            data_payload['imap-proxy-threshold'] = imap_proxy_threshold
+            data_payload["imap-proxy-threshold"] = imap_proxy_threshold
         if nntp_proxy_threshold is not None:
-            data_payload['nntp-proxy-threshold'] = nntp_proxy_threshold
+            data_payload["nntp-proxy-threshold"] = nntp_proxy_threshold
         if pop3_proxy_threshold is not None:
-            data_payload['pop3-proxy-threshold'] = pop3_proxy_threshold
+            data_payload["pop3-proxy-threshold"] = pop3_proxy_threshold
         if smtp_proxy_threshold is not None:
-            data_payload['smtp-proxy-threshold'] = smtp_proxy_threshold
+            data_payload["smtp-proxy-threshold"] = smtp_proxy_threshold
         if override is not None:
-            data_payload['override'] = override
+            data_payload["override"] = override
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if override_wait_time is not None:
-            data_payload['override-wait-time'] = override_wait_time
+            data_payload["override-wait-time"] = override_wait_time
         if monitor is not None:
-            data_payload['monitor'] = monitor
+            data_payload["monitor"] = monitor
         if pingserver_monitor_interface is not None:
-            data_payload['pingserver-monitor-interface'] = pingserver_monitor_interface
+            data_payload["pingserver-monitor-interface"] = (
+                pingserver_monitor_interface
+            )
         if pingserver_failover_threshold is not None:
-            data_payload['pingserver-failover-threshold'] = pingserver_failover_threshold
+            data_payload["pingserver-failover-threshold"] = (
+                pingserver_failover_threshold
+            )
         if pingserver_secondary_force_reset is not None:
-            data_payload['pingserver-secondary-force-reset'] = pingserver_secondary_force_reset
+            data_payload["pingserver-secondary-force-reset"] = (
+                pingserver_secondary_force_reset
+            )
         if pingserver_flip_timeout is not None:
-            data_payload['pingserver-flip-timeout'] = pingserver_flip_timeout
+            data_payload["pingserver-flip-timeout"] = pingserver_flip_timeout
         if vcluster_status is not None:
-            data_payload['vcluster-status'] = vcluster_status
+            data_payload["vcluster-status"] = vcluster_status
         if vcluster is not None:
-            data_payload['vcluster'] = vcluster
+            data_payload["vcluster"] = vcluster
         if ha_direct is not None:
-            data_payload['ha-direct'] = ha_direct
+            data_payload["ha-direct"] = ha_direct
         if ssd_failover is not None:
-            data_payload['ssd-failover'] = ssd_failover
+            data_payload["ssd-failover"] = ssd_failover
         if memory_compatible_mode is not None:
-            data_payload['memory-compatible-mode'] = memory_compatible_mode
+            data_payload["memory-compatible-mode"] = memory_compatible_mode
         if memory_based_failover is not None:
-            data_payload['memory-based-failover'] = memory_based_failover
+            data_payload["memory-based-failover"] = memory_based_failover
         if memory_failover_threshold is not None:
-            data_payload['memory-failover-threshold'] = memory_failover_threshold
+            data_payload["memory-failover-threshold"] = (
+                memory_failover_threshold
+            )
         if memory_failover_monitor_period is not None:
-            data_payload['memory-failover-monitor-period'] = memory_failover_monitor_period
+            data_payload["memory-failover-monitor-period"] = (
+                memory_failover_monitor_period
+            )
         if memory_failover_sample_rate is not None:
-            data_payload['memory-failover-sample-rate'] = memory_failover_sample_rate
+            data_payload["memory-failover-sample-rate"] = (
+                memory_failover_sample_rate
+            )
         if memory_failover_flip_timeout is not None:
-            data_payload['memory-failover-flip-timeout'] = memory_failover_flip_timeout
+            data_payload["memory-failover-flip-timeout"] = (
+                memory_failover_flip_timeout
+            )
         if failover_hold_time is not None:
-            data_payload['failover-hold-time'] = failover_hold_time
+            data_payload["failover-hold-time"] = failover_hold_time
         if check_secondary_dev_health is not None:
-            data_payload['check-secondary-dev-health'] = check_secondary_dev_health
+            data_payload["check-secondary-dev-health"] = (
+                check_secondary_dev_health
+            )
         if ipsec_phase2_proposal is not None:
-            data_payload['ipsec-phase2-proposal'] = ipsec_phase2_proposal
+            data_payload["ipsec-phase2-proposal"] = ipsec_phase2_proposal
         if bounce_intf_upon_failover is not None:
-            data_payload['bounce-intf-upon-failover'] = bounce_intf_upon_failover
+            data_payload["bounce-intf-upon-failover"] = (
+                bounce_intf_upon_failover
+            )
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.ssl_setting.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.ssl_setting.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.ssl_setting.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.ssl_setting.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.ssl_setting.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class SslSetting:
     """
     Sslsetting Operations.
-    
+
     Provides CRUD operations for FortiOS sslsetting configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class SslSetting:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SslSetting endpoint.
 
@@ -82,14 +82,14 @@ class SslSetting:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class SslSetting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/firewall.ssl/setting"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -134,7 +136,7 @@ class SslSetting:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -155,7 +157,7 @@ class SslSetting:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -163,7 +165,7 @@ class SslSetting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -171,34 +173,42 @@ class SslSetting:
         params = {}
         endpoint = "/firewall.ssl/setting"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if proxy_connect_timeout is not None:
-            data_payload['proxy-connect-timeout'] = proxy_connect_timeout
+            data_payload["proxy-connect-timeout"] = proxy_connect_timeout
         if ssl_dh_bits is not None:
-            data_payload['ssl-dh-bits'] = ssl_dh_bits
+            data_payload["ssl-dh-bits"] = ssl_dh_bits
         if ssl_send_empty_frags is not None:
-            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+            data_payload["ssl-send-empty-frags"] = ssl_send_empty_frags
         if no_matching_cipher_action is not None:
-            data_payload['no-matching-cipher-action'] = no_matching_cipher_action
+            data_payload["no-matching-cipher-action"] = (
+                no_matching_cipher_action
+            )
         if cert_manager_cache_timeout is not None:
-            data_payload['cert-manager-cache-timeout'] = cert_manager_cache_timeout
+            data_payload["cert-manager-cache-timeout"] = (
+                cert_manager_cache_timeout
+            )
         if resigned_short_lived_certificate is not None:
-            data_payload['resigned-short-lived-certificate'] = resigned_short_lived_certificate
+            data_payload["resigned-short-lived-certificate"] = (
+                resigned_short_lived_certificate
+            )
         if cert_cache_capacity is not None:
-            data_payload['cert-cache-capacity'] = cert_cache_capacity
+            data_payload["cert-cache-capacity"] = cert_cache_capacity
         if cert_cache_timeout is not None:
-            data_payload['cert-cache-timeout'] = cert_cache_timeout
+            data_payload["cert-cache-timeout"] = cert_cache_timeout
         if session_cache_capacity is not None:
-            data_payload['session-cache-capacity'] = session_cache_capacity
+            data_payload["session-cache-capacity"] = session_cache_capacity
         if session_cache_timeout is not None:
-            data_payload['session-cache-timeout'] = session_cache_timeout
+            data_payload["session-cache-timeout"] = session_cache_timeout
         if kxp_queue_threshold is not None:
-            data_payload['kxp-queue-threshold'] = kxp_queue_threshold
+            data_payload["kxp-queue-threshold"] = kxp_queue_threshold
         if ssl_queue_threshold is not None:
-            data_payload['ssl-queue-threshold'] = ssl_queue_threshold
+            data_payload["ssl-queue-threshold"] = ssl_queue_threshold
         if abbreviate_handshake is not None:
-            data_payload['abbreviate-handshake'] = abbreviate_handshake
+            data_payload["abbreviate-handshake"] = abbreviate_handshake
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.fortiview.session.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.fortiview.session.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Cancel:
     """
     Cancel Operations.
-    
+
     Provides read-only access for FortiOS cancel data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Cancel endpoint.
 
@@ -63,7 +63,7 @@ class Cancel:
     ) -> dict[str, Any]:
         """
         Cancel a FortiView request session.
-        
+
         Args:
             sessionid: Session ID to cancel. (optional)
             device: FortiView request session's device. [disk|faz] (optional)
@@ -72,30 +72,32 @@ class Cancel:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.fortiview.session.cancel.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if sessionid is not None:
-            data['sessionid'] = sessionid
+            data["sessionid"] = sessionid
         if device is not None:
-            data['device'] = device
+            data["device"] = device
         if report_by is not None:
-            data['report_by'] = report_by
+            data["report_by"] = report_by
         if view_level is not None:
-            data['view_level'] = view_level
+            data["view_level"] = view_level
         data.update(kwargs)
-        return self._client.post("monitor", "/fortiview/session/cancel", data=data)
+        return self._client.post(
+            "monitor", "/fortiview/session/cancel", data=data
+        )
 
 
 class Session:
     """Session operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Session endpoint.
 

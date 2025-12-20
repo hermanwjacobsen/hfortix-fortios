@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.user.guest.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.user.guest.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Email:
     """
     Email Operations.
-    
+
     Provides read-only access for FortiOS email data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Email endpoint.
 
@@ -61,25 +61,25 @@ class Email:
     ) -> dict[str, Any]:
         """
         Sent guest login details via email.
-        
+
         Args:
             group: Guest group name. (optional)
             guest: Guest user IDs. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.guest.email.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if group is not None:
-            data['group'] = group
+            data["group"] = group
         if guest is not None:
-            data['guest'] = guest
+            data["guest"] = guest
         data.update(kwargs)
         return self._client.post("monitor", "/user/guest/email", data=data)
 
@@ -87,7 +87,7 @@ class Email:
 class Sms:
     """Sms operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Sms endpoint.
 
@@ -106,25 +106,25 @@ class Sms:
     ) -> dict[str, Any]:
         """
         Sent guest login details via SMS.
-        
+
         Args:
             group: Guest group name. (optional)
             guest: Guest user IDs. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.guest.sms.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if group is not None:
-            data['group'] = group
+            data["group"] = group
         if guest is not None:
-            data['guest'] = guest
+            data["guest"] = guest
         data.update(kwargs)
         return self._client.post("monitor", "/user/guest/sms", data=data)
 
@@ -132,7 +132,7 @@ class Sms:
 class Guest:
     """Guest operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Guest endpoint.
 

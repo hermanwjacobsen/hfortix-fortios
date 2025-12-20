@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.admin.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.admin.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class ChangeVdomMode:
     """
     Changevdommode Operations.
-    
+
     Provides read-only access for FortiOS changevdommode data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ChangeVdomMode endpoint.
 
@@ -60,30 +60,32 @@ class ChangeVdomMode:
     ) -> dict[str, Any]:
         """
         Switch between VDOM modes.
-        
+
         Args:
             vdom_mode: VDOM mode [no-vdom|split-vdom|multi-vdom] (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.admin.change_vdom_mode.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if vdom_mode is not None:
-            data['vdom-mode'] = vdom_mode
+            data["vdom-mode"] = vdom_mode
         data.update(kwargs)
-        return self._client.post("monitor", "/system/admin/change-vdom-mode", data=data)
+        return self._client.post(
+            "monitor", "/system/admin/change-vdom-mode", data=data
+        )
 
 
 class Admin:
     """Admin operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Admin endpoint.
 

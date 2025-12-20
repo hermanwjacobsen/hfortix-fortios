@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.router.lookup.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.router.lookup.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class HaPeer:
     """
     Hapeer Operations.
-    
+
     Provides read-only access for FortiOS hapeer data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize HaPeer endpoint.
 
@@ -62,7 +62,7 @@ class HaPeer:
     ) -> dict[str, Any]:
         """
         Performs a route lookup by querying the routing table of an HA peer.
-        
+
         Args:
             serial: HA peer serial number. (required)
             destination: Destination IP/FQDN. (required)
@@ -70,26 +70,28 @@ class HaPeer:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.lookup.ha_peer.get(serial='value', destination='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['serial'] = serial
-        params['destination'] = destination
+        params["serial"] = serial
+        params["destination"] = destination
         if ipv6 is not None:
-            params['ipv6'] = ipv6
+            params["ipv6"] = ipv6
         params.update(kwargs)
-        return self._client.get("monitor", "/router/lookup/ha-peer", params=params)
+        return self._client.get(
+            "monitor", "/router/lookup/ha-peer", params=params
+        )
 
 
 class Lookup:
     """Lookup operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Lookup endpoint.
 
@@ -111,23 +113,23 @@ class Lookup:
     ) -> dict[str, Any]:
         """
         Performs a route lookup by querying the routing table.
-        
+
         Args:
             destination: Destination IP/FQDN. (required)
             ipv6: Perform an IPv6 lookup. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.lookup.get(destination='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['destination'] = destination
+        params["destination"] = destination
         if ipv6 is not None:
-            params['ipv6'] = ipv6
+            params["ipv6"] = ipv6
         params.update(kwargs)
         return self._client.get("monitor", "/router/lookup", params=params)

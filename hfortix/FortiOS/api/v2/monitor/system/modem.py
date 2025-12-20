@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.modem.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.modem.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Connect:
     """
     Connect Operations.
-    
+
     Provides read-only access for FortiOS connect data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Connect endpoint.
 
@@ -59,15 +59,15 @@ class Connect:
     ) -> dict[str, Any]:
         """
         Trigger a connect for the configured modem.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.modem.connect.post()
         """
@@ -79,7 +79,7 @@ class Connect:
 class Disconnect:
     """Disconnect operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Disconnect endpoint.
 
@@ -96,27 +96,29 @@ class Disconnect:
     ) -> dict[str, Any]:
         """
         Trigger a disconnect for the configured modem.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.modem.disconnect.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/system/modem/disconnect", data=data)
+        return self._client.post(
+            "monitor", "/system/modem/disconnect", data=data
+        )
 
 
 class Reset:
     """Reset operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Reset endpoint.
 
@@ -133,15 +135,15 @@ class Reset:
     ) -> dict[str, Any]:
         """
         Reset statistics for internal/external configured modem.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.modem.reset.post()
         """
@@ -153,7 +155,7 @@ class Reset:
 class Update:
     """Update operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Update endpoint.
 
@@ -170,15 +172,15 @@ class Update:
     ) -> dict[str, Any]:
         """
         Update supported modem list from FortiGuard.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.modem.update.post()
         """
@@ -190,7 +192,7 @@ class Update:
 class Modem:
     """Modem operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Modem endpoint.
 
@@ -213,15 +215,15 @@ class Modem:
     ) -> dict[str, Any]:
         """
         Retrieve statistics for internal/external configured modem.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.modem.get()
         """

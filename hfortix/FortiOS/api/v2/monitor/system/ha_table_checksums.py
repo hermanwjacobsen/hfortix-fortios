@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.ha_table_checksums.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.ha_table_checksums.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class HaTableChecksums:
     """
     Hatablechecksums Operations.
-    
+
     Provides read-only access for FortiOS hatablechecksums data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize HaTableChecksums endpoint.
 
@@ -61,23 +61,25 @@ class HaTableChecksums:
     ) -> dict[str, Any]:
         """
         List of table checksums for members of HA cluster.
-        
+
         Args:
             serial_no: Serial number of the HA member. (required)
             vdom_name: VDOM name of the HA member. If not specified, fetch table checksums for global. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.ha_table_checksums.get(serial_no='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['serial_no'] = serial_no
+        params["serial_no"] = serial_no
         if vdom_name is not None:
-            params['vdom_name'] = vdom_name
+            params["vdom_name"] = vdom_name
         params.update(kwargs)
-        return self._client.get("monitor", "/system/ha-table-checksums", params=params)
+        return self._client.get(
+            "monitor", "/system/ha-table-checksums", params=params
+        )

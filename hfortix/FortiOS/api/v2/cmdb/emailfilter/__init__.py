@@ -9,21 +9,29 @@ from .mheader import Mheader
 from .options import Options
 from .profile import Profile
 
-__all__ = ['BlockAllowList', 'Bword', 'Dnsbl', 'Fortishield', 'Iptrust', 'Mheader', 'Options', 'Profile']
-
+__all__ = [
+    "BlockAllowList",
+    "Bword",
+    "Dnsbl",
+    "Fortishield",
+    "Iptrust",
+    "Mheader",
+    "Options",
+    "Profile",
+]
 
 
 class Emailfilter:
     """
     Emailfilter category wrapper.
-    
+
     This class provides access to all emailfilter CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Emailfilter with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

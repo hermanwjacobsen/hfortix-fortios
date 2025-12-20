@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.user.domain_controller.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.user.domain_controller.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.user.domain_controller.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.user.domain_controller.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.user.domain_controller.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class DomainController:
     """
     Domaincontroller Operations.
-    
+
     Provides CRUD operations for FortiOS domaincontroller configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class DomainController:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class DomainController:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DomainController endpoint.
 
@@ -90,7 +90,7 @@ class DomainController:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class DomainController:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class DomainController:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/user/domain-controller/{name}"
         else:
             endpoint = "/user/domain-controller"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -165,7 +167,7 @@ class DomainController:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -198,7 +200,7 @@ class DomainController:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -206,71 +208,73 @@ class DomainController:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/user/domain-controller/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if ad_mode is not None:
-            data_payload['ad-mode'] = ad_mode
+            data_payload["ad-mode"] = ad_mode
         if hostname is not None:
-            data_payload['hostname'] = hostname
+            data_payload["hostname"] = hostname
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if ip_address is not None:
-            data_payload['ip-address'] = ip_address
+            data_payload["ip-address"] = ip_address
         if ip6 is not None:
-            data_payload['ip6'] = ip6
+            data_payload["ip6"] = ip6
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if source_ip_address is not None:
-            data_payload['source-ip-address'] = source_ip_address
+            data_payload["source-ip-address"] = source_ip_address
         if source_ip6 is not None:
-            data_payload['source-ip6'] = source_ip6
+            data_payload["source-ip6"] = source_ip6
         if source_port is not None:
-            data_payload['source-port'] = source_port
+            data_payload["source-port"] = source_port
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if extra_server is not None:
-            data_payload['extra-server'] = extra_server
+            data_payload["extra-server"] = extra_server
         if domain_name is not None:
-            data_payload['domain-name'] = domain_name
+            data_payload["domain-name"] = domain_name
         if replication_port is not None:
-            data_payload['replication-port'] = replication_port
+            data_payload["replication-port"] = replication_port
         if ldap_server is not None:
-            data_payload['ldap-server'] = ldap_server
+            data_payload["ldap-server"] = ldap_server
         if change_detection is not None:
-            data_payload['change-detection'] = change_detection
+            data_payload["change-detection"] = change_detection
         if change_detection_period is not None:
-            data_payload['change-detection-period'] = change_detection_period
+            data_payload["change-detection-period"] = change_detection_period
         if dns_srv_lookup is not None:
-            data_payload['dns-srv-lookup'] = dns_srv_lookup
+            data_payload["dns-srv-lookup"] = dns_srv_lookup
         if adlds_dn is not None:
-            data_payload['adlds-dn'] = adlds_dn
+            data_payload["adlds-dn"] = adlds_dn
         if adlds_ip_address is not None:
-            data_payload['adlds-ip-address'] = adlds_ip_address
+            data_payload["adlds-ip-address"] = adlds_ip_address
         if adlds_ip6 is not None:
-            data_payload['adlds-ip6'] = adlds_ip6
+            data_payload["adlds-ip6"] = adlds_ip6
         if adlds_port is not None:
-            data_payload['adlds-port'] = adlds_port
+            data_payload["adlds-port"] = adlds_port
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -282,13 +286,13 @@ class DomainController:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -296,18 +300,20 @@ class DomainController:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/domain-controller/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -316,37 +322,39 @@ class DomainController:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -382,7 +390,7 @@ class DomainController:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -413,7 +421,7 @@ class DomainController:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -421,7 +429,7 @@ class DomainController:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -429,54 +437,56 @@ class DomainController:
         params = {}
         endpoint = "/user/domain-controller"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if ad_mode is not None:
-            data_payload['ad-mode'] = ad_mode
+            data_payload["ad-mode"] = ad_mode
         if hostname is not None:
-            data_payload['hostname'] = hostname
+            data_payload["hostname"] = hostname
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if ip_address is not None:
-            data_payload['ip-address'] = ip_address
+            data_payload["ip-address"] = ip_address
         if ip6 is not None:
-            data_payload['ip6'] = ip6
+            data_payload["ip6"] = ip6
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if source_ip_address is not None:
-            data_payload['source-ip-address'] = source_ip_address
+            data_payload["source-ip-address"] = source_ip_address
         if source_ip6 is not None:
-            data_payload['source-ip6'] = source_ip6
+            data_payload["source-ip6"] = source_ip6
         if source_port is not None:
-            data_payload['source-port'] = source_port
+            data_payload["source-port"] = source_port
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if extra_server is not None:
-            data_payload['extra-server'] = extra_server
+            data_payload["extra-server"] = extra_server
         if domain_name is not None:
-            data_payload['domain-name'] = domain_name
+            data_payload["domain-name"] = domain_name
         if replication_port is not None:
-            data_payload['replication-port'] = replication_port
+            data_payload["replication-port"] = replication_port
         if ldap_server is not None:
-            data_payload['ldap-server'] = ldap_server
+            data_payload["ldap-server"] = ldap_server
         if change_detection is not None:
-            data_payload['change-detection'] = change_detection
+            data_payload["change-detection"] = change_detection
         if change_detection_period is not None:
-            data_payload['change-detection-period'] = change_detection_period
+            data_payload["change-detection-period"] = change_detection_period
         if dns_srv_lookup is not None:
-            data_payload['dns-srv-lookup'] = dns_srv_lookup
+            data_payload["dns-srv-lookup"] = dns_srv_lookup
         if adlds_dn is not None:
-            data_payload['adlds-dn'] = adlds_dn
+            data_payload["adlds-dn"] = adlds_dn
         if adlds_ip_address is not None:
-            data_payload['adlds-ip-address'] = adlds_ip_address
+            data_payload["adlds-ip-address"] = adlds_ip_address
         if adlds_ip6 is not None:
-            data_payload['adlds-ip6'] = adlds_ip6
+            data_payload["adlds-ip6"] = adlds_ip6
         if adlds_port is not None:
-            data_payload['adlds-port'] = adlds_port
+            data_payload["adlds-port"] = adlds_port
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

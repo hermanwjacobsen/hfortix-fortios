@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.authentication.setting.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.authentication.setting.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.authentication.setting.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.authentication.setting.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.authentication.setting.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Setting:
     """
     Setting Operations.
-    
+
     Provides CRUD operations for FortiOS setting configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Setting:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Setting endpoint.
 
@@ -82,14 +82,14 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Setting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/authentication/setting"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -142,7 +144,7 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -171,7 +173,7 @@ class Setting:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -179,7 +181,7 @@ class Setting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -187,50 +189,52 @@ class Setting:
         params = {}
         endpoint = "/authentication/setting"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if active_auth_scheme is not None:
-            data_payload['active-auth-scheme'] = active_auth_scheme
+            data_payload["active-auth-scheme"] = active_auth_scheme
         if sso_auth_scheme is not None:
-            data_payload['sso-auth-scheme'] = sso_auth_scheme
+            data_payload["sso-auth-scheme"] = sso_auth_scheme
         if update_time is not None:
-            data_payload['update-time'] = update_time
+            data_payload["update-time"] = update_time
         if persistent_cookie is not None:
-            data_payload['persistent-cookie'] = persistent_cookie
+            data_payload["persistent-cookie"] = persistent_cookie
         if ip_auth_cookie is not None:
-            data_payload['ip-auth-cookie'] = ip_auth_cookie
+            data_payload["ip-auth-cookie"] = ip_auth_cookie
         if cookie_max_age is not None:
-            data_payload['cookie-max-age'] = cookie_max_age
+            data_payload["cookie-max-age"] = cookie_max_age
         if cookie_refresh_div is not None:
-            data_payload['cookie-refresh-div'] = cookie_refresh_div
+            data_payload["cookie-refresh-div"] = cookie_refresh_div
         if captive_portal_type is not None:
-            data_payload['captive-portal-type'] = captive_portal_type
+            data_payload["captive-portal-type"] = captive_portal_type
         if captive_portal_ip is not None:
-            data_payload['captive-portal-ip'] = captive_portal_ip
+            data_payload["captive-portal-ip"] = captive_portal_ip
         if captive_portal_ip6 is not None:
-            data_payload['captive-portal-ip6'] = captive_portal_ip6
+            data_payload["captive-portal-ip6"] = captive_portal_ip6
         if captive_portal is not None:
-            data_payload['captive-portal'] = captive_portal
+            data_payload["captive-portal"] = captive_portal
         if captive_portal6 is not None:
-            data_payload['captive-portal6'] = captive_portal6
+            data_payload["captive-portal6"] = captive_portal6
         if cert_auth is not None:
-            data_payload['cert-auth'] = cert_auth
+            data_payload["cert-auth"] = cert_auth
         if cert_captive_portal is not None:
-            data_payload['cert-captive-portal'] = cert_captive_portal
+            data_payload["cert-captive-portal"] = cert_captive_portal
         if cert_captive_portal_ip is not None:
-            data_payload['cert-captive-portal-ip'] = cert_captive_portal_ip
+            data_payload["cert-captive-portal-ip"] = cert_captive_portal_ip
         if cert_captive_portal_port is not None:
-            data_payload['cert-captive-portal-port'] = cert_captive_portal_port
+            data_payload["cert-captive-portal-port"] = cert_captive_portal_port
         if captive_portal_port is not None:
-            data_payload['captive-portal-port'] = captive_portal_port
+            data_payload["captive-portal-port"] = captive_portal_port
         if auth_https is not None:
-            data_payload['auth-https'] = auth_https
+            data_payload["auth-https"] = auth_https
         if captive_portal_ssl_port is not None:
-            data_payload['captive-portal-ssl-port'] = captive_portal_ssl_port
+            data_payload["captive-portal-ssl-port"] = captive_portal_ssl_port
         if user_cert_ca is not None:
-            data_payload['user-cert-ca'] = user_cert_ca
+            data_payload["user-cert-ca"] = user_cert_ca
         if dev_range is not None:
-            data_payload['dev-range'] = dev_range
+            data_payload["dev-range"] = dev_range
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -43,5 +43,5 @@ class License:
             "fortianalyzer_status",
             "forticare_org_list",
             "forticare_resellers",
-            "status"
+            "status",
         ]

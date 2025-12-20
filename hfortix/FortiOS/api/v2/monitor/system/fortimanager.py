@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.fortimanager.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.fortimanager.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class BackupAction:
     """
     Backupaction Operations.
-    
+
     Provides read-only access for FortiOS backupaction data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize BackupAction endpoint.
 
@@ -61,33 +61,35 @@ class BackupAction:
     ) -> dict[str, Any]:
         """
         Import or update from FortiManager objects.
-        
+
         Args:
             operation: Operation to perform on the given CMDB objects [import|update]. (optional)
             objects: Array of CMDB tables and mkeys. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.fortimanager.backup_action.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if operation is not None:
-            data['operation'] = operation
+            data["operation"] = operation
         if objects is not None:
-            data['objects'] = objects
+            data["objects"] = objects
         data.update(kwargs)
-        return self._client.post("monitor", "/system/fortimanager/backup-action", data=data)
+        return self._client.post(
+            "monitor", "/system/fortimanager/backup-action", data=data
+        )
 
 
 class BackupDetails:
     """BackupDetails operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize BackupDetails endpoint.
 
@@ -106,31 +108,33 @@ class BackupDetails:
     ) -> dict[str, Any]:
         """
         Get the properties of a FortiManager object.
-        
+
         Args:
             mkey: Object name. (required)
             datasource: Object datasource. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.fortimanager.backup_details.get(mkey='value', datasource='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
-        params['datasource'] = datasource
+        params["mkey"] = mkey
+        params["datasource"] = datasource
         params.update(kwargs)
-        return self._client.get("monitor", "/system/fortimanager/backup-details", params=params)
+        return self._client.get(
+            "monitor", "/system/fortimanager/backup-details", params=params
+        )
 
 
 class BackupSummary:
     """BackupSummary operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize BackupSummary endpoint.
 
@@ -147,27 +151,29 @@ class BackupSummary:
     ) -> dict[str, Any]:
         """
         Get FortiManager backup summary.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.fortimanager.backup_summary.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/fortimanager/backup-summary", params=params)
+        return self._client.get(
+            "monitor", "/system/fortimanager/backup-summary", params=params
+        )
 
 
 class Fortimanager:
     """Fortimanager operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Fortimanager endpoint.
 

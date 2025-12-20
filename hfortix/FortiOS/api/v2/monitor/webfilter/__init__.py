@@ -38,4 +38,10 @@ class Webfilter:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ["category_quota", "fortiguard_categories", "malicious_urls", "override", "trusted_urls"]
+        return [
+            "category_quota",
+            "fortiguard_categories",
+            "malicious_urls",
+            "override",
+            "trusted_urls",
+        ]

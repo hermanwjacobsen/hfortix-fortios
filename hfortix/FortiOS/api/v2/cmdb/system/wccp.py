@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.wccp.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.wccp.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.wccp.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.wccp.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.wccp.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Wccp:
     """
     Wccp Operations.
-    
+
     Provides CRUD operations for FortiOS wccp configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Wccp:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Wccp:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Wccp endpoint.
 
@@ -90,7 +90,7 @@ class Wccp:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             service_id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Wccp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Wccp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if service_id:
             endpoint = f"/system/wccp/{service_id}"
         else:
             endpoint = "/system/wccp"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -164,7 +166,7 @@ class Wccp:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             service_id: Object identifier (required)
@@ -196,7 +198,7 @@ class Wccp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -204,69 +206,71 @@ class Wccp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not service_id:
             raise ValueError("service_id is required for put()")
         endpoint = f"/system/wccp/{service_id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if service_id is not None:
-            data_payload['service-id'] = service_id
+            data_payload["service-id"] = service_id
         if router_id is not None:
-            data_payload['router-id'] = router_id
+            data_payload["router-id"] = router_id
         if cache_id is not None:
-            data_payload['cache-id'] = cache_id
+            data_payload["cache-id"] = cache_id
         if group_address is not None:
-            data_payload['group-address'] = group_address
+            data_payload["group-address"] = group_address
         if server_list is not None:
-            data_payload['server-list'] = server_list
+            data_payload["server-list"] = server_list
         if router_list is not None:
-            data_payload['router-list'] = router_list
+            data_payload["router-list"] = router_list
         if ports_defined is not None:
-            data_payload['ports-defined'] = ports_defined
+            data_payload["ports-defined"] = ports_defined
         if server_type is not None:
-            data_payload['server-type'] = server_type
+            data_payload["server-type"] = server_type
         if ports is not None:
-            data_payload['ports'] = ports
+            data_payload["ports"] = ports
         if authentication is not None:
-            data_payload['authentication'] = authentication
+            data_payload["authentication"] = authentication
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if forward_method is not None:
-            data_payload['forward-method'] = forward_method
+            data_payload["forward-method"] = forward_method
         if cache_engine_method is not None:
-            data_payload['cache-engine-method'] = cache_engine_method
+            data_payload["cache-engine-method"] = cache_engine_method
         if service_type is not None:
-            data_payload['service-type'] = service_type
+            data_payload["service-type"] = service_type
         if primary_hash is not None:
-            data_payload['primary-hash'] = primary_hash
+            data_payload["primary-hash"] = primary_hash
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if assignment_weight is not None:
-            data_payload['assignment-weight'] = assignment_weight
+            data_payload["assignment-weight"] = assignment_weight
         if assignment_bucket_format is not None:
-            data_payload['assignment-bucket-format'] = assignment_bucket_format
+            data_payload["assignment-bucket-format"] = assignment_bucket_format
         if return_method is not None:
-            data_payload['return-method'] = return_method
+            data_payload["return-method"] = return_method
         if assignment_method is not None:
-            data_payload['assignment-method'] = assignment_method
+            data_payload["assignment-method"] = assignment_method
         if assignment_srcaddr_mask is not None:
-            data_payload['assignment-srcaddr-mask'] = assignment_srcaddr_mask
+            data_payload["assignment-srcaddr-mask"] = assignment_srcaddr_mask
         if assignment_dstaddr_mask is not None:
-            data_payload['assignment-dstaddr-mask'] = assignment_dstaddr_mask
+            data_payload["assignment-dstaddr-mask"] = assignment_dstaddr_mask
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -278,13 +282,13 @@ class Wccp:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             service_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -292,18 +296,20 @@ class Wccp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not service_id:
             raise ValueError("service_id is required for delete()")
         endpoint = f"/system/wccp/{service_id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -338,7 +344,7 @@ class Wccp:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -368,7 +374,7 @@ class Wccp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -376,7 +382,7 @@ class Wccp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -384,52 +390,54 @@ class Wccp:
         params = {}
         endpoint = "/system/wccp"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if service_id is not None:
-            data_payload['service-id'] = service_id
+            data_payload["service-id"] = service_id
         if router_id is not None:
-            data_payload['router-id'] = router_id
+            data_payload["router-id"] = router_id
         if cache_id is not None:
-            data_payload['cache-id'] = cache_id
+            data_payload["cache-id"] = cache_id
         if group_address is not None:
-            data_payload['group-address'] = group_address
+            data_payload["group-address"] = group_address
         if server_list is not None:
-            data_payload['server-list'] = server_list
+            data_payload["server-list"] = server_list
         if router_list is not None:
-            data_payload['router-list'] = router_list
+            data_payload["router-list"] = router_list
         if ports_defined is not None:
-            data_payload['ports-defined'] = ports_defined
+            data_payload["ports-defined"] = ports_defined
         if server_type is not None:
-            data_payload['server-type'] = server_type
+            data_payload["server-type"] = server_type
         if ports is not None:
-            data_payload['ports'] = ports
+            data_payload["ports"] = ports
         if authentication is not None:
-            data_payload['authentication'] = authentication
+            data_payload["authentication"] = authentication
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if forward_method is not None:
-            data_payload['forward-method'] = forward_method
+            data_payload["forward-method"] = forward_method
         if cache_engine_method is not None:
-            data_payload['cache-engine-method'] = cache_engine_method
+            data_payload["cache-engine-method"] = cache_engine_method
         if service_type is not None:
-            data_payload['service-type'] = service_type
+            data_payload["service-type"] = service_type
         if primary_hash is not None:
-            data_payload['primary-hash'] = primary_hash
+            data_payload["primary-hash"] = primary_hash
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if assignment_weight is not None:
-            data_payload['assignment-weight'] = assignment_weight
+            data_payload["assignment-weight"] = assignment_weight
         if assignment_bucket_format is not None:
-            data_payload['assignment-bucket-format'] = assignment_bucket_format
+            data_payload["assignment-bucket-format"] = assignment_bucket_format
         if return_method is not None:
-            data_payload['return-method'] = return_method
+            data_payload["return-method"] = return_method
         if assignment_method is not None:
-            data_payload['assignment-method'] = assignment_method
+            data_payload["assignment-method"] = assignment_method
         if assignment_srcaddr_mask is not None:
-            data_payload['assignment-srcaddr-mask'] = assignment_srcaddr_mask
+            data_payload["assignment-srcaddr-mask"] = assignment_srcaddr_mask
         if assignment_dstaddr_mask is not None:
-            data_payload['assignment-dstaddr-mask'] = assignment_dstaddr_mask
+            data_payload["assignment-dstaddr-mask"] = assignment_dstaddr_mask
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

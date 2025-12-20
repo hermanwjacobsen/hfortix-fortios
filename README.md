@@ -42,8 +42,34 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **API Coverage**: [API_COVERAGE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/API_COVERAGE.md) - Implementation status by category
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.15):**
-- ✨ **Async/Await Support**: Full dual-mode support for async operations (NEW!)
+**Latest Features (v0.3.16):**
+- ✨ **Read-Only Mode**: Block all write operations for safe testing and CI/CD
+  - Enable with `read_only=True` parameter
+  - Raises `ReadOnlyModeError` on POST/PUT/DELETE attempts
+  - GET requests execute normally
+  - Perfect for testing, dry-run, training environments
+- ✨ **Operation Tracking**: Complete audit logging of all API calls
+  - Enable with `track_operations=True` parameter
+  - Records timestamp, method, URL, data, status code, VDOM
+  - Access via `get_operations()` and `get_write_operations()` methods
+  - Useful for debugging, auditing, change logs, documentation
+- ✨ **Comprehensive Filter Documentation**: Complete guide to FortiOS filtering
+  - New [FILTERING_GUIDE.md](FILTERING_GUIDE.md) with 8 operators
+  - 50+ practical examples for addresses, policies, interfaces, routes
+  - Advanced patterns: ranges, exclusions, combined filters, pagination
+- ✨ **Username/Password Authentication**: Session-based authentication support
+  - Alternative to API token authentication
+  - Automatic session management with proactive re-authentication
+  - Configurable idle timeout (default: 5 minutes)
+  - Context manager support for auto-logout
+  - ⚠️ Works in FortiOS ≤7.4.x, removed in 7.6.x+ (use API tokens for new deployments)
+- ✨ **Firewall Policy Convenience Wrapper**: Intuitive interface for policy management
+  - Access via `fgt.firewall.policy` with explicit parameters
+  - Simplified syntax instead of complex REST API calls
+  - Full CRUD + `.enable()`, `.disable()`, `.move()`, `.clone()`
+
+**Also in v0.3.16:**
+- ✨ **Async/Await Support**: Full dual-mode support for async operations
   - Single `FortiOS` class works in both sync and async modes
   - All 750+ API methods support async with `mode="async"` parameter
   - All helper methods (`.exists()`) work transparently in both modes
@@ -236,7 +262,145 @@ fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
 - Request/response logging with timing
 - Hierarchical loggers for fine-grained control
 
-### Advanced HTTP Features ✨ NEW in v0.3.15
+### Read-Only Mode & Operation Tracking ✨ NEW in v0.3.16
+
+Safe testing and comprehensive audit logging:
+
+```python
+from hfortix import FortiOS
+from hfortix.FortiOS.exceptions_forti import ReadOnlyModeError
+
+# 1. Read-Only Mode - Block all write operations
+fgt = FortiOS('192.168.1.99', token='your-token', read_only=True)
+
+# GET requests work normally
+status = fgt.api.monitor.system.status.get()  # ✅ Works
+
+try:
+    # POST/PUT/DELETE requests are blocked
+    fgt.api.cmdb.firewall.address.post(data={"name": "test", "subnet": "10.0.0.1/32"})
+except ReadOnlyModeError as e:
+    print(f"Blocked: {e}")  # ❌ Raises ReadOnlyModeError
+
+# Perfect for: testing, CI/CD pipelines, dry-run, training environments
+
+# 2. Operation Tracking - Audit logging of all API calls
+fgt = FortiOS('192.168.1.99', token='your-token', track_operations=True)
+
+# Make some API calls
+fgt.api.monitor.system.status.get()
+fgt.api.cmdb.firewall.address.get(filter="name=@web")
+
+# Get complete audit log
+operations = fgt.get_operations()
+for op in operations:
+    print(f"{op['timestamp']} {op['method']} {op['path']} - Status: {op['status_code']}")
+
+# Get only write operations (POST/PUT/DELETE)
+write_ops = fgt.get_write_operations()
+for op in write_ops:
+    print(f"{op['method']} {op['path']}")
+    if op['data']:
+        print(f"  Data: {op['data']}")
+
+# 3. Combine both features
+fgt = FortiOS('192.168.1.99', token='your-token', 
+              read_only=True, track_operations=True)
+
+# Test your automation script safely while logging everything
+try:
+    # Your automation code here
+    fgt.api.cmdb.firewall.policy.post(data={...})  # Blocked
+except ReadOnlyModeError:
+    pass
+
+# Review what would have been executed
+blocked_ops = [op for op in fgt.get_operations() if op.get('blocked_by_read_only')]
+print(f"Would have executed {len(blocked_ops)} write operations")
+```
+
+**Use Cases:**
+- **Testing**: Test automation scripts without affecting production
+- **CI/CD**: Validate configuration changes in pipelines
+- **Auditing**: Track all API operations for compliance
+- **Documentation**: Auto-generate change logs from operations
+- **Debugging**: See exact API call sequence
+- **Training**: Safe environment for learning
+
+### Advanced Filtering ✨ Enhanced in v0.3.16
+
+Complete guide to FortiOS native filter operators:
+
+```python
+from hfortix import FortiOS
+
+fgt = FortiOS('192.168.1.99', token='your-token')
+
+# All 8 FortiOS filter operators:
+addresses = fgt.api.cmdb.firewall.address.get(filter="name==web-server")      # Equals
+addresses = fgt.api.cmdb.firewall.address.get(filter="name!=test")            # Not equals
+addresses = fgt.api.cmdb.firewall.address.get(filter="subnet=@10.0")          # Contains
+addresses = fgt.api.cmdb.firewall.address.get(filter="subnet!@192.168")       # Not contains
+policies = fgt.api.cmdb.firewall.policy.get(filter="policyid<100")            # Less than
+policies = fgt.api.cmdb.firewall.policy.get(filter="policyid<=100")           # Less than or equal
+policies = fgt.api.cmdb.firewall.policy.get(filter="policyid>100")            # Greater than
+policies = fgt.api.cmdb.firewall.policy.get(filter="policyid>=100")           # Greater than or equal
+
+# Combine multiple filters (AND logic)
+policies = fgt.api.cmdb.firewall.policy.get(
+    filter="status==enable&action==accept&policyid>=100&policyid<=200"
+)
+
+# Range queries
+addresses = fgt.api.cmdb.firewall.address.get(
+    filter="subnet=@10.&comment=@production"
+)
+
+# See FILTERING_GUIDE.md for 50+ examples
+```
+
+**Documentation**: [FILTERING_GUIDE.md](FILTERING_GUIDE.md)
+
+### Username/Password Authentication ✨ NEW in v0.3.16
+
+Session-based authentication with automatic session management:
+
+```python
+from hfortix import FortiOS
+
+# Context manager - recommended (auto-logout)
+with FortiOS('192.168.1.99', username='admin', password='password', 
+             verify=False) as fgt:
+    # Session automatically created
+    addresses = fgt.api.cmdb.firewall.address.get()
+    # Session automatically cleaned up on exit
+
+# Manual session management
+fgt = FortiOS('192.168.1.99', username='admin', password='password')
+# Login happens automatically
+addresses = fgt.api.cmdb.firewall.address.get()
+fgt.close()  # Manual logout
+
+# Configure session timeout (default: 5 minutes)
+with FortiOS('192.168.1.99', username='admin', password='password',
+             session_idle_timeout=600) as fgt:  # 10 minutes
+    # Proactive re-auth at 80% of timeout (8 minutes)
+    # Timer resets on each request (idle timer)
+    addresses = fgt.api.cmdb.firewall.address.get()
+
+# Disable proactive re-auth
+fgt = FortiOS('192.168.1.99', username='admin', password='password',
+              session_idle_timeout=None)
+```
+
+**Important Notes:**
+- ⚠️ Username/password works in FortiOS ≤7.4.x but **removed in 7.6.x+**
+- 🔒 Use API token authentication for production deployments
+- ⏱️ Idle timer resets on each API request
+- 🔄 Proactive re-auth at 80% of idle timeout
+- 📌 Context manager required for proactive re-auth
+
+### Advanced HTTP Features ✨ v0.3.15
 
 Enterprise-grade reliability and observability features:
 
@@ -280,8 +444,6 @@ fgt._client.configure_endpoint_timeout('cmdb/firewall/policy', read=600.0)
 - **Metrics**: Monitor connection pool health and performance
 - **Fine-tuned Timeouts**: Different timeouts for fast/slow endpoints
 - **Structured Logs**: Machine-readable for log aggregation tools
-
-📖 **Full documentation**: [docs/ADVANCED_HTTP_FEATURES.md](docs/ADVANCED_HTTP_FEATURES.md)
 
 ### Dual-Pattern Interface ✨
 
@@ -721,7 +883,7 @@ Exception
 
 ## 📝 Version
 
-Current version: **0.3.12** (See [CHANGELOG.md](CHANGELOG.md) for release notes)
+Current version: **0.3.16** (See [CHANGELOG.md](CHANGELOG.md) for release notes)
 
 ```python
 from hfortix import get_version

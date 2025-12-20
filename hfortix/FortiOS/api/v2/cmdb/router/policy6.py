@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.router.policy6.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.router.policy6.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.router.policy6.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.router.policy6.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.router.policy6.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Policy6:
     """
     Policy6 Operations.
-    
+
     Provides CRUD operations for FortiOS policy6 configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Policy6:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Policy6:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Policy6 endpoint.
 
@@ -90,7 +90,7 @@ class Policy6:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             seq_num: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Policy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Policy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if seq_num:
             endpoint = f"/router/policy6/{seq_num}"
         else:
             endpoint = "/router/policy6"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -166,7 +168,7 @@ class Policy6:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             seq_num: Object identifier (required)
@@ -200,7 +202,7 @@ class Policy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -208,73 +210,77 @@ class Policy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not seq_num:
             raise ValueError("seq_num is required for put()")
         endpoint = f"/router/policy6/{seq_num}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if seq_num is not None:
-            data_payload['seq-num'] = seq_num
+            data_payload["seq-num"] = seq_num
         if input_device is not None:
-            data_payload['input-device'] = input_device
+            data_payload["input-device"] = input_device
         if input_device_negate is not None:
-            data_payload['input-device-negate'] = input_device_negate
+            data_payload["input-device-negate"] = input_device_negate
         if src is not None:
-            data_payload['src'] = src
+            data_payload["src"] = src
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if src_negate is not None:
-            data_payload['src-negate'] = src_negate
+            data_payload["src-negate"] = src_negate
         if dst is not None:
-            data_payload['dst'] = dst
+            data_payload["dst"] = dst
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if dst_negate is not None:
-            data_payload['dst-negate'] = dst_negate
+            data_payload["dst-negate"] = dst_negate
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if start_port is not None:
-            data_payload['start-port'] = start_port
+            data_payload["start-port"] = start_port
         if end_port is not None:
-            data_payload['end-port'] = end_port
+            data_payload["end-port"] = end_port
         if start_source_port is not None:
-            data_payload['start-source-port'] = start_source_port
+            data_payload["start-source-port"] = start_source_port
         if end_source_port is not None:
-            data_payload['end-source-port'] = end_source_port
+            data_payload["end-source-port"] = end_source_port
         if gateway is not None:
-            data_payload['gateway'] = gateway
+            data_payload["gateway"] = gateway
         if output_device is not None:
-            data_payload['output-device'] = output_device
+            data_payload["output-device"] = output_device
         if tos is not None:
-            data_payload['tos'] = tos
+            data_payload["tos"] = tos
         if tos_mask is not None:
-            data_payload['tos-mask'] = tos_mask
+            data_payload["tos-mask"] = tos_mask
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if internet_service_id is not None:
-            data_payload['internet-service-id'] = internet_service_id
+            data_payload["internet-service-id"] = internet_service_id
         if internet_service_custom is not None:
-            data_payload['internet-service-custom'] = internet_service_custom
+            data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if users is not None:
-            data_payload['users'] = users
+            data_payload["users"] = users
         if groups is not None:
-            data_payload['groups'] = groups
+            data_payload["groups"] = groups
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -286,13 +292,13 @@ class Policy6:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             seq_num: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -300,18 +306,20 @@ class Policy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not seq_num:
             raise ValueError("seq_num is required for delete()")
         endpoint = f"/router/policy6/{seq_num}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -320,37 +328,39 @@ class Policy6:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             seq_num: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(seq_num=seq_num, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -387,7 +397,7 @@ class Policy6:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -419,7 +429,7 @@ class Policy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -427,7 +437,7 @@ class Policy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -435,56 +445,60 @@ class Policy6:
         params = {}
         endpoint = "/router/policy6"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if seq_num is not None:
-            data_payload['seq-num'] = seq_num
+            data_payload["seq-num"] = seq_num
         if input_device is not None:
-            data_payload['input-device'] = input_device
+            data_payload["input-device"] = input_device
         if input_device_negate is not None:
-            data_payload['input-device-negate'] = input_device_negate
+            data_payload["input-device-negate"] = input_device_negate
         if src is not None:
-            data_payload['src'] = src
+            data_payload["src"] = src
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if src_negate is not None:
-            data_payload['src-negate'] = src_negate
+            data_payload["src-negate"] = src_negate
         if dst is not None:
-            data_payload['dst'] = dst
+            data_payload["dst"] = dst
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if dst_negate is not None:
-            data_payload['dst-negate'] = dst_negate
+            data_payload["dst-negate"] = dst_negate
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if start_port is not None:
-            data_payload['start-port'] = start_port
+            data_payload["start-port"] = start_port
         if end_port is not None:
-            data_payload['end-port'] = end_port
+            data_payload["end-port"] = end_port
         if start_source_port is not None:
-            data_payload['start-source-port'] = start_source_port
+            data_payload["start-source-port"] = start_source_port
         if end_source_port is not None:
-            data_payload['end-source-port'] = end_source_port
+            data_payload["end-source-port"] = end_source_port
         if gateway is not None:
-            data_payload['gateway'] = gateway
+            data_payload["gateway"] = gateway
         if output_device is not None:
-            data_payload['output-device'] = output_device
+            data_payload["output-device"] = output_device
         if tos is not None:
-            data_payload['tos'] = tos
+            data_payload["tos"] = tos
         if tos_mask is not None:
-            data_payload['tos-mask'] = tos_mask
+            data_payload["tos-mask"] = tos_mask
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if internet_service_id is not None:
-            data_payload['internet-service-id'] = internet_service_id
+            data_payload["internet-service-id"] = internet_service_id
         if internet_service_custom is not None:
-            data_payload['internet-service-custom'] = internet_service_custom
+            data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if users is not None:
-            data_payload['users'] = users
+            data_payload["users"] = users
         if groups is not None:
-            data_payload['groups'] = groups
+            data_payload["groups"] = groups
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

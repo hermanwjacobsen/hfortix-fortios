@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.wifi.client.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.wifi.client.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Disassociate:
     """
     Disassociate Operations.
-    
+
     Provides read-only access for FortiOS disassociate data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Disassociate endpoint.
 
@@ -60,30 +60,32 @@ class Disassociate:
     ) -> dict[str, Any]:
         """
         Disassociate a WiFi client from the FortiAP it's currently connected to.
-        
+
         Args:
             mac: MAC address. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.client.disassociate.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mac is not None:
-            data['mac'] = mac
+            data["mac"] = mac
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/client/disassociate", data=data)
+        return self._client.post(
+            "monitor", "/wifi/client/disassociate", data=data
+        )
 
 
 class Client:
     """Client operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Client endpoint.
 
@@ -107,7 +109,7 @@ class Client:
     ) -> dict[str, Any]:
         """
         Retrieve a list of connected WiFi clients.
-        
+
         Args:
             type: Request type [all*|fail-login]. (optional)
             with_triangulation: Enable to include regions of FortiAP detecting the client. (optional)
@@ -116,21 +118,21 @@ class Client:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.wifi.client.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if type is not None:
-            params['type'] = type
+            params["type"] = type
         if with_triangulation is not None:
-            params['with_triangulation'] = with_triangulation
+            params["with_triangulation"] = with_triangulation
         if with_stats is not None:
-            params['with_stats'] = with_stats
+            params["with_stats"] = with_stats
         if mac is not None:
-            params['mac'] = mac
+            params["mac"] = mac
         params.update(kwargs)
         return self._client.get("monitor", "/wifi/client", params=params)

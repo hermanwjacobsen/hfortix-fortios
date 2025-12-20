@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.csf.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.csf.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.csf.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.csf.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.csf.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Csf:
     """
     Csf Operations.
-    
+
     Provides CRUD operations for FortiOS csf configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Csf:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Csf endpoint.
 
@@ -82,14 +82,14 @@ class Csf:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Csf:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/csf"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -147,7 +149,7 @@ class Csf:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -181,7 +183,7 @@ class Csf:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -189,7 +191,7 @@ class Csf:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -197,60 +199,70 @@ class Csf:
         params = {}
         endpoint = "/system/csf"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if uid is not None:
-            data_payload['uid'] = uid
+            data_payload["uid"] = uid
         if upstream is not None:
-            data_payload['upstream'] = upstream
+            data_payload["upstream"] = upstream
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if upstream_interface_select_method is not None:
-            data_payload['upstream-interface-select-method'] = upstream_interface_select_method
+            data_payload["upstream-interface-select-method"] = (
+                upstream_interface_select_method
+            )
         if upstream_interface is not None:
-            data_payload['upstream-interface'] = upstream_interface
+            data_payload["upstream-interface"] = upstream_interface
         if upstream_port is not None:
-            data_payload['upstream-port'] = upstream_port
+            data_payload["upstream-port"] = upstream_port
         if group_name is not None:
-            data_payload['group-name'] = group_name
+            data_payload["group-name"] = group_name
         if group_password is not None:
-            data_payload['group-password'] = group_password
+            data_payload["group-password"] = group_password
         if accept_auth_by_cert is not None:
-            data_payload['accept-auth-by-cert'] = accept_auth_by_cert
+            data_payload["accept-auth-by-cert"] = accept_auth_by_cert
         if log_unification is not None:
-            data_payload['log-unification'] = log_unification
+            data_payload["log-unification"] = log_unification
         if authorization_request_type is not None:
-            data_payload['authorization-request-type'] = authorization_request_type
+            data_payload["authorization-request-type"] = (
+                authorization_request_type
+            )
         if certificate is not None:
-            data_payload['certificate'] = certificate
+            data_payload["certificate"] = certificate
         if fabric_workers is not None:
-            data_payload['fabric-workers'] = fabric_workers
+            data_payload["fabric-workers"] = fabric_workers
         if downstream_access is not None:
-            data_payload['downstream-access'] = downstream_access
+            data_payload["downstream-access"] = downstream_access
         if legacy_authentication is not None:
-            data_payload['legacy-authentication'] = legacy_authentication
+            data_payload["legacy-authentication"] = legacy_authentication
         if downstream_accprofile is not None:
-            data_payload['downstream-accprofile'] = downstream_accprofile
+            data_payload["downstream-accprofile"] = downstream_accprofile
         if configuration_sync is not None:
-            data_payload['configuration-sync'] = configuration_sync
+            data_payload["configuration-sync"] = configuration_sync
         if fabric_object_unification is not None:
-            data_payload['fabric-object-unification'] = fabric_object_unification
+            data_payload["fabric-object-unification"] = (
+                fabric_object_unification
+            )
         if saml_configuration_sync is not None:
-            data_payload['saml-configuration-sync'] = saml_configuration_sync
+            data_payload["saml-configuration-sync"] = saml_configuration_sync
         if trusted_list is not None:
-            data_payload['trusted-list'] = trusted_list
+            data_payload["trusted-list"] = trusted_list
         if fabric_connector is not None:
-            data_payload['fabric-connector'] = fabric_connector
+            data_payload["fabric-connector"] = fabric_connector
         if forticloud_account_enforcement is not None:
-            data_payload['forticloud-account-enforcement'] = forticloud_account_enforcement
+            data_payload["forticloud-account-enforcement"] = (
+                forticloud_account_enforcement
+            )
         if file_mgmt is not None:
-            data_payload['file-mgmt'] = file_mgmt
+            data_payload["file-mgmt"] = file_mgmt
         if file_quota is not None:
-            data_payload['file-quota'] = file_quota
+            data_payload["file-quota"] = file_quota
         if file_quota_warning is not None:
-            data_payload['file-quota-warning'] = file_quota_warning
+            data_payload["file-quota-warning"] = file_quota_warning
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

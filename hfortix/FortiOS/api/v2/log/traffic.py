@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.log.traffic.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.log.traffic.get(
     ...     count=100,
@@ -37,17 +37,17 @@ if TYPE_CHECKING:
 class TrafficForward:
     """
     Trafficforward Operations.
-    
+
     Provides read-only access for FortiOS trafficforward data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/forward", storage)
         self._resource = LogResource(client, "traffic/forward", storage)
@@ -62,15 +62,15 @@ class TrafficForward:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get forward traffic logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -81,7 +81,7 @@ class TrafficForward:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -101,7 +101,7 @@ class TrafficForward:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -111,14 +111,26 @@ class TrafficForward:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class TrafficLocal:
     """Local traffic - /disk/traffic/local"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/local", storage)
         self._resource = LogResource(client, "traffic/local", storage)
@@ -133,15 +145,15 @@ class TrafficLocal:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get local traffic logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -152,7 +164,7 @@ class TrafficLocal:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -172,7 +184,7 @@ class TrafficLocal:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -182,14 +194,26 @@ class TrafficLocal:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class TrafficMulticast:
     """Multicast traffic - /disk/traffic/multicast"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/multicast", storage)
         self._resource = LogResource(client, "traffic/multicast", storage)
@@ -204,15 +228,15 @@ class TrafficMulticast:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get multicast traffic logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -223,7 +247,7 @@ class TrafficMulticast:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -243,7 +267,7 @@ class TrafficMulticast:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -253,14 +277,26 @@ class TrafficMulticast:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class TrafficSniffer:
     """Sniffer traffic - /disk/traffic/sniffer"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/sniffer", storage)
         self._resource = LogResource(client, "traffic/sniffer", storage)
@@ -275,15 +311,15 @@ class TrafficSniffer:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get sniffer traffic logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -294,7 +330,7 @@ class TrafficSniffer:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -314,7 +350,7 @@ class TrafficSniffer:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -324,14 +360,26 @@ class TrafficSniffer:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class TrafficFortiview:
     """Fortiview traffic - /disk/traffic/fortiview"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/fortiview", storage)
         self._resource = LogResource(client, "traffic/fortiview", storage)
@@ -346,15 +394,15 @@ class TrafficFortiview:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get fortiview traffic logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -365,7 +413,7 @@ class TrafficFortiview:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -385,7 +433,7 @@ class TrafficFortiview:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -395,14 +443,26 @@ class TrafficFortiview:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class TrafficThreat:
     """Threat traffic - /disk/traffic/threat"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.raw = RawResource(client, "traffic/threat", storage)
         self._resource = LogResource(client, "traffic/threat", storage)
@@ -417,15 +477,15 @@ class TrafficThreat:
         extra: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get threat traffic logs.
-        
+
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
         2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
-        
+
         Args:
             rows: Maximum number of log entries to return
             session_id: Session ID for pagination
@@ -436,7 +496,7 @@ class TrafficThreat:
             payload_dict: Alternative to individual parameters - pass all params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
-            
+
         Returns:
             Dictionary containing log entries and metadata
         """
@@ -456,7 +516,7 @@ class TrafficThreat:
                 params["filter"] = filter
             if extra is not None:
                 params["extra"] = extra
-        
+
         params.update(kwargs)
         return self._resource.get(
             rows=params.get("rows"),
@@ -466,14 +526,26 @@ class TrafficThreat:
             filter=params.get("filter"),
             extra=params.get("extra"),
             raw_json=raw_json,
-            **{k: v for k, v in params.items() if k not in ["rows", "session_id", "serial_no", "is_ha_member", "filter", "extra"]}
+            **{
+                k: v
+                for k, v in params.items()
+                if k
+                not in [
+                    "rows",
+                    "session_id",
+                    "serial_no",
+                    "is_ha_member",
+                    "filter",
+                    "extra",
+                ]
+            },
         )
 
 
 class Traffic:
     """Traffic container - /disk/traffic/{subtype}"""
 
-    def __init__(self, client: 'IHTTPClient', storage: str = "disk") -> None:
+    def __init__(self, client: "IHTTPClient", storage: str = "disk") -> None:
         self._client = client
         self.forward = TrafficForward(client, storage)
         self.local = TrafficLocal(client, storage)
@@ -481,6 +553,7 @@ class Traffic:
         self.sniffer = TrafficSniffer(client, storage)
         self.fortiview = TrafficFortiview(client, storage)
         self.threat = TrafficThreat(client, storage)
+
 
 __all__ = [
     "TrafficForward",

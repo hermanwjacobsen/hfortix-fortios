@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.wtp_profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.wtp_profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.wtp_profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.wtp_profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.wtp_profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class WtpProfile:
     """
     Wtpprofile Operations.
-    
+
     Provides CRUD operations for FortiOS wtpprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class WtpProfile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class WtpProfile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize WtpProfile endpoint.
 
@@ -90,7 +90,7 @@ class WtpProfile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class WtpProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class WtpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller/wtp-profile/{name}"
         else:
             endpoint = "/wireless-controller/wtp-profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -219,7 +221,7 @@ class WtpProfile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -306,7 +308,7 @@ class WtpProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -314,179 +316,223 @@ class WtpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller/wtp-profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if platform is not None:
-            data_payload['platform'] = platform
+            data_payload["platform"] = platform
         if control_message_offload is not None:
-            data_payload['control-message-offload'] = control_message_offload
+            data_payload["control-message-offload"] = control_message_offload
         if bonjour_profile is not None:
-            data_payload['bonjour-profile'] = bonjour_profile
+            data_payload["bonjour-profile"] = bonjour_profile
         if apcfg_profile is not None:
-            data_payload['apcfg-profile'] = apcfg_profile
+            data_payload["apcfg-profile"] = apcfg_profile
         if apcfg_mesh is not None:
-            data_payload['apcfg-mesh'] = apcfg_mesh
+            data_payload["apcfg-mesh"] = apcfg_mesh
         if apcfg_mesh_ap_type is not None:
-            data_payload['apcfg-mesh-ap-type'] = apcfg_mesh_ap_type
+            data_payload["apcfg-mesh-ap-type"] = apcfg_mesh_ap_type
         if apcfg_mesh_ssid is not None:
-            data_payload['apcfg-mesh-ssid'] = apcfg_mesh_ssid
+            data_payload["apcfg-mesh-ssid"] = apcfg_mesh_ssid
         if apcfg_mesh_eth_bridge is not None:
-            data_payload['apcfg-mesh-eth-bridge'] = apcfg_mesh_eth_bridge
+            data_payload["apcfg-mesh-eth-bridge"] = apcfg_mesh_eth_bridge
         if ble_profile is not None:
-            data_payload['ble-profile'] = ble_profile
+            data_payload["ble-profile"] = ble_profile
         if lw_profile is not None:
-            data_payload['lw-profile'] = lw_profile
+            data_payload["lw-profile"] = lw_profile
         if syslog_profile is not None:
-            data_payload['syslog-profile'] = syslog_profile
+            data_payload["syslog-profile"] = syslog_profile
         if wan_port_mode is not None:
-            data_payload['wan-port-mode'] = wan_port_mode
+            data_payload["wan-port-mode"] = wan_port_mode
         if lan is not None:
-            data_payload['lan'] = lan
+            data_payload["lan"] = lan
         if energy_efficient_ethernet is not None:
-            data_payload['energy-efficient-ethernet'] = energy_efficient_ethernet
+            data_payload["energy-efficient-ethernet"] = (
+                energy_efficient_ethernet
+            )
         if led_state is not None:
-            data_payload['led-state'] = led_state
+            data_payload["led-state"] = led_state
         if led_schedules is not None:
-            data_payload['led-schedules'] = led_schedules
+            data_payload["led-schedules"] = led_schedules
         if dtls_policy is not None:
-            data_payload['dtls-policy'] = dtls_policy
+            data_payload["dtls-policy"] = dtls_policy
         if dtls_in_kernel is not None:
-            data_payload['dtls-in-kernel'] = dtls_in_kernel
+            data_payload["dtls-in-kernel"] = dtls_in_kernel
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if handoff_rssi is not None:
-            data_payload['handoff-rssi'] = handoff_rssi
+            data_payload["handoff-rssi"] = handoff_rssi
         if handoff_sta_thresh is not None:
-            data_payload['handoff-sta-thresh'] = handoff_sta_thresh
+            data_payload["handoff-sta-thresh"] = handoff_sta_thresh
         if handoff_roaming is not None:
-            data_payload['handoff-roaming'] = handoff_roaming
+            data_payload["handoff-roaming"] = handoff_roaming
         if deny_mac_list is not None:
-            data_payload['deny-mac-list'] = deny_mac_list
+            data_payload["deny-mac-list"] = deny_mac_list
         if ap_country is not None:
-            data_payload['ap-country'] = ap_country
+            data_payload["ap-country"] = ap_country
         if ip_fragment_preventing is not None:
-            data_payload['ip-fragment-preventing'] = ip_fragment_preventing
+            data_payload["ip-fragment-preventing"] = ip_fragment_preventing
         if tun_mtu_uplink is not None:
-            data_payload['tun-mtu-uplink'] = tun_mtu_uplink
+            data_payload["tun-mtu-uplink"] = tun_mtu_uplink
         if tun_mtu_downlink is not None:
-            data_payload['tun-mtu-downlink'] = tun_mtu_downlink
+            data_payload["tun-mtu-downlink"] = tun_mtu_downlink
         if split_tunneling_acl_path is not None:
-            data_payload['split-tunneling-acl-path'] = split_tunneling_acl_path
+            data_payload["split-tunneling-acl-path"] = split_tunneling_acl_path
         if split_tunneling_acl_local_ap_subnet is not None:
-            data_payload['split-tunneling-acl-local-ap-subnet'] = split_tunneling_acl_local_ap_subnet
+            data_payload["split-tunneling-acl-local-ap-subnet"] = (
+                split_tunneling_acl_local_ap_subnet
+            )
         if split_tunneling_acl is not None:
-            data_payload['split-tunneling-acl'] = split_tunneling_acl
+            data_payload["split-tunneling-acl"] = split_tunneling_acl
         if allowaccess is not None:
-            data_payload['allowaccess'] = allowaccess
+            data_payload["allowaccess"] = allowaccess
         if login_passwd_change is not None:
-            data_payload['login-passwd-change'] = login_passwd_change
+            data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
-            data_payload['login-passwd'] = login_passwd
+            data_payload["login-passwd"] = login_passwd
         if lldp is not None:
-            data_payload['lldp'] = lldp
+            data_payload["lldp"] = lldp
         if poe_mode is not None:
-            data_payload['poe-mode'] = poe_mode
+            data_payload["poe-mode"] = poe_mode
         if usb_port is not None:
-            data_payload['usb-port'] = usb_port
+            data_payload["usb-port"] = usb_port
         if frequency_handoff is not None:
-            data_payload['frequency-handoff'] = frequency_handoff
+            data_payload["frequency-handoff"] = frequency_handoff
         if ap_handoff is not None:
-            data_payload['ap-handoff'] = ap_handoff
+            data_payload["ap-handoff"] = ap_handoff
         if default_mesh_root is not None:
-            data_payload['default-mesh-root'] = default_mesh_root
+            data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
-            data_payload['radio-1'] = radio_1
+            data_payload["radio-1"] = radio_1
         if radio_2 is not None:
-            data_payload['radio-2'] = radio_2
+            data_payload["radio-2"] = radio_2
         if radio_3 is not None:
-            data_payload['radio-3'] = radio_3
+            data_payload["radio-3"] = radio_3
         if radio_4 is not None:
-            data_payload['radio-4'] = radio_4
+            data_payload["radio-4"] = radio_4
         if lbs is not None:
-            data_payload['lbs'] = lbs
+            data_payload["lbs"] = lbs
         if ext_info_enable is not None:
-            data_payload['ext-info-enable'] = ext_info_enable
+            data_payload["ext-info-enable"] = ext_info_enable
         if indoor_outdoor_deployment is not None:
-            data_payload['indoor-outdoor-deployment'] = indoor_outdoor_deployment
+            data_payload["indoor-outdoor-deployment"] = (
+                indoor_outdoor_deployment
+            )
         if esl_ses_dongle is not None:
-            data_payload['esl-ses-dongle'] = esl_ses_dongle
+            data_payload["esl-ses-dongle"] = esl_ses_dongle
         if console_login is not None:
-            data_payload['console-login'] = console_login
+            data_payload["console-login"] = console_login
         if wan_port_auth is not None:
-            data_payload['wan-port-auth'] = wan_port_auth
+            data_payload["wan-port-auth"] = wan_port_auth
         if wan_port_auth_usrname is not None:
-            data_payload['wan-port-auth-usrname'] = wan_port_auth_usrname
+            data_payload["wan-port-auth-usrname"] = wan_port_auth_usrname
         if wan_port_auth_password is not None:
-            data_payload['wan-port-auth-password'] = wan_port_auth_password
+            data_payload["wan-port-auth-password"] = wan_port_auth_password
         if wan_port_auth_methods is not None:
-            data_payload['wan-port-auth-methods'] = wan_port_auth_methods
+            data_payload["wan-port-auth-methods"] = wan_port_auth_methods
         if wan_port_auth_macsec is not None:
-            data_payload['wan-port-auth-macsec'] = wan_port_auth_macsec
+            data_payload["wan-port-auth-macsec"] = wan_port_auth_macsec
         if apcfg_auto_cert is not None:
-            data_payload['apcfg-auto-cert'] = apcfg_auto_cert
+            data_payload["apcfg-auto-cert"] = apcfg_auto_cert
         if apcfg_auto_cert_enroll_protocol is not None:
-            data_payload['apcfg-auto-cert-enroll-protocol'] = apcfg_auto_cert_enroll_protocol
+            data_payload["apcfg-auto-cert-enroll-protocol"] = (
+                apcfg_auto_cert_enroll_protocol
+            )
         if apcfg_auto_cert_crypto_algo is not None:
-            data_payload['apcfg-auto-cert-crypto-algo'] = apcfg_auto_cert_crypto_algo
+            data_payload["apcfg-auto-cert-crypto-algo"] = (
+                apcfg_auto_cert_crypto_algo
+            )
         if apcfg_auto_cert_est_server is not None:
-            data_payload['apcfg-auto-cert-est-server'] = apcfg_auto_cert_est_server
+            data_payload["apcfg-auto-cert-est-server"] = (
+                apcfg_auto_cert_est_server
+            )
         if apcfg_auto_cert_est_ca_id is not None:
-            data_payload['apcfg-auto-cert-est-ca-id'] = apcfg_auto_cert_est_ca_id
+            data_payload["apcfg-auto-cert-est-ca-id"] = (
+                apcfg_auto_cert_est_ca_id
+            )
         if apcfg_auto_cert_est_http_username is not None:
-            data_payload['apcfg-auto-cert-est-http-username'] = apcfg_auto_cert_est_http_username
+            data_payload["apcfg-auto-cert-est-http-username"] = (
+                apcfg_auto_cert_est_http_username
+            )
         if apcfg_auto_cert_est_http_password is not None:
-            data_payload['apcfg-auto-cert-est-http-password'] = apcfg_auto_cert_est_http_password
+            data_payload["apcfg-auto-cert-est-http-password"] = (
+                apcfg_auto_cert_est_http_password
+            )
         if apcfg_auto_cert_est_subject is not None:
-            data_payload['apcfg-auto-cert-est-subject'] = apcfg_auto_cert_est_subject
+            data_payload["apcfg-auto-cert-est-subject"] = (
+                apcfg_auto_cert_est_subject
+            )
         if apcfg_auto_cert_est_subject_alt_name is not None:
-            data_payload['apcfg-auto-cert-est-subject-alt-name'] = apcfg_auto_cert_est_subject_alt_name
+            data_payload["apcfg-auto-cert-est-subject-alt-name"] = (
+                apcfg_auto_cert_est_subject_alt_name
+            )
         if apcfg_auto_cert_auto_regen_days is not None:
-            data_payload['apcfg-auto-cert-auto-regen-days'] = apcfg_auto_cert_auto_regen_days
+            data_payload["apcfg-auto-cert-auto-regen-days"] = (
+                apcfg_auto_cert_auto_regen_days
+            )
         if apcfg_auto_cert_est_https_ca is not None:
-            data_payload['apcfg-auto-cert-est-https-ca'] = apcfg_auto_cert_est_https_ca
+            data_payload["apcfg-auto-cert-est-https-ca"] = (
+                apcfg_auto_cert_est_https_ca
+            )
         if apcfg_auto_cert_scep_keytype is not None:
-            data_payload['apcfg-auto-cert-scep-keytype'] = apcfg_auto_cert_scep_keytype
+            data_payload["apcfg-auto-cert-scep-keytype"] = (
+                apcfg_auto_cert_scep_keytype
+            )
         if apcfg_auto_cert_scep_keysize is not None:
-            data_payload['apcfg-auto-cert-scep-keysize'] = apcfg_auto_cert_scep_keysize
+            data_payload["apcfg-auto-cert-scep-keysize"] = (
+                apcfg_auto_cert_scep_keysize
+            )
         if apcfg_auto_cert_scep_ec_name is not None:
-            data_payload['apcfg-auto-cert-scep-ec-name'] = apcfg_auto_cert_scep_ec_name
+            data_payload["apcfg-auto-cert-scep-ec-name"] = (
+                apcfg_auto_cert_scep_ec_name
+            )
         if apcfg_auto_cert_scep_sub_fully_dn is not None:
-            data_payload['apcfg-auto-cert-scep-sub-fully-dn'] = apcfg_auto_cert_scep_sub_fully_dn
+            data_payload["apcfg-auto-cert-scep-sub-fully-dn"] = (
+                apcfg_auto_cert_scep_sub_fully_dn
+            )
         if apcfg_auto_cert_scep_url is not None:
-            data_payload['apcfg-auto-cert-scep-url'] = apcfg_auto_cert_scep_url
+            data_payload["apcfg-auto-cert-scep-url"] = apcfg_auto_cert_scep_url
         if apcfg_auto_cert_scep_password is not None:
-            data_payload['apcfg-auto-cert-scep-password'] = apcfg_auto_cert_scep_password
+            data_payload["apcfg-auto-cert-scep-password"] = (
+                apcfg_auto_cert_scep_password
+            )
         if apcfg_auto_cert_scep_ca_id is not None:
-            data_payload['apcfg-auto-cert-scep-ca-id'] = apcfg_auto_cert_scep_ca_id
+            data_payload["apcfg-auto-cert-scep-ca-id"] = (
+                apcfg_auto_cert_scep_ca_id
+            )
         if apcfg_auto_cert_scep_subject_alt_name is not None:
-            data_payload['apcfg-auto-cert-scep-subject-alt-name'] = apcfg_auto_cert_scep_subject_alt_name
+            data_payload["apcfg-auto-cert-scep-subject-alt-name"] = (
+                apcfg_auto_cert_scep_subject_alt_name
+            )
         if apcfg_auto_cert_scep_https_ca is not None:
-            data_payload['apcfg-auto-cert-scep-https-ca'] = apcfg_auto_cert_scep_https_ca
+            data_payload["apcfg-auto-cert-scep-https-ca"] = (
+                apcfg_auto_cert_scep_https_ca
+            )
         if unii_4_5ghz_band is not None:
-            data_payload['unii-4-5ghz-band'] = unii_4_5ghz_band
+            data_payload["unii-4-5ghz-band"] = unii_4_5ghz_band
         if admin_auth_tacacs_plus_ is not None:
-            data_payload['admin-auth-tacacs+'] = admin_auth_tacacs_plus_
+            data_payload["admin-auth-tacacs+"] = admin_auth_tacacs_plus_
         if admin_restrict_local is not None:
-            data_payload['admin-restrict-local'] = admin_restrict_local
+            data_payload["admin-restrict-local"] = admin_restrict_local
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -498,13 +544,13 @@ class WtpProfile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -512,18 +558,20 @@ class WtpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/wtp-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -532,37 +580,39 @@ class WtpProfile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -652,7 +702,7 @@ class WtpProfile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -737,7 +787,7 @@ class WtpProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -745,7 +795,7 @@ class WtpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -753,162 +803,206 @@ class WtpProfile:
         params = {}
         endpoint = "/wireless-controller/wtp-profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if platform is not None:
-            data_payload['platform'] = platform
+            data_payload["platform"] = platform
         if control_message_offload is not None:
-            data_payload['control-message-offload'] = control_message_offload
+            data_payload["control-message-offload"] = control_message_offload
         if bonjour_profile is not None:
-            data_payload['bonjour-profile'] = bonjour_profile
+            data_payload["bonjour-profile"] = bonjour_profile
         if apcfg_profile is not None:
-            data_payload['apcfg-profile'] = apcfg_profile
+            data_payload["apcfg-profile"] = apcfg_profile
         if apcfg_mesh is not None:
-            data_payload['apcfg-mesh'] = apcfg_mesh
+            data_payload["apcfg-mesh"] = apcfg_mesh
         if apcfg_mesh_ap_type is not None:
-            data_payload['apcfg-mesh-ap-type'] = apcfg_mesh_ap_type
+            data_payload["apcfg-mesh-ap-type"] = apcfg_mesh_ap_type
         if apcfg_mesh_ssid is not None:
-            data_payload['apcfg-mesh-ssid'] = apcfg_mesh_ssid
+            data_payload["apcfg-mesh-ssid"] = apcfg_mesh_ssid
         if apcfg_mesh_eth_bridge is not None:
-            data_payload['apcfg-mesh-eth-bridge'] = apcfg_mesh_eth_bridge
+            data_payload["apcfg-mesh-eth-bridge"] = apcfg_mesh_eth_bridge
         if ble_profile is not None:
-            data_payload['ble-profile'] = ble_profile
+            data_payload["ble-profile"] = ble_profile
         if lw_profile is not None:
-            data_payload['lw-profile'] = lw_profile
+            data_payload["lw-profile"] = lw_profile
         if syslog_profile is not None:
-            data_payload['syslog-profile'] = syslog_profile
+            data_payload["syslog-profile"] = syslog_profile
         if wan_port_mode is not None:
-            data_payload['wan-port-mode'] = wan_port_mode
+            data_payload["wan-port-mode"] = wan_port_mode
         if lan is not None:
-            data_payload['lan'] = lan
+            data_payload["lan"] = lan
         if energy_efficient_ethernet is not None:
-            data_payload['energy-efficient-ethernet'] = energy_efficient_ethernet
+            data_payload["energy-efficient-ethernet"] = (
+                energy_efficient_ethernet
+            )
         if led_state is not None:
-            data_payload['led-state'] = led_state
+            data_payload["led-state"] = led_state
         if led_schedules is not None:
-            data_payload['led-schedules'] = led_schedules
+            data_payload["led-schedules"] = led_schedules
         if dtls_policy is not None:
-            data_payload['dtls-policy'] = dtls_policy
+            data_payload["dtls-policy"] = dtls_policy
         if dtls_in_kernel is not None:
-            data_payload['dtls-in-kernel'] = dtls_in_kernel
+            data_payload["dtls-in-kernel"] = dtls_in_kernel
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if handoff_rssi is not None:
-            data_payload['handoff-rssi'] = handoff_rssi
+            data_payload["handoff-rssi"] = handoff_rssi
         if handoff_sta_thresh is not None:
-            data_payload['handoff-sta-thresh'] = handoff_sta_thresh
+            data_payload["handoff-sta-thresh"] = handoff_sta_thresh
         if handoff_roaming is not None:
-            data_payload['handoff-roaming'] = handoff_roaming
+            data_payload["handoff-roaming"] = handoff_roaming
         if deny_mac_list is not None:
-            data_payload['deny-mac-list'] = deny_mac_list
+            data_payload["deny-mac-list"] = deny_mac_list
         if ap_country is not None:
-            data_payload['ap-country'] = ap_country
+            data_payload["ap-country"] = ap_country
         if ip_fragment_preventing is not None:
-            data_payload['ip-fragment-preventing'] = ip_fragment_preventing
+            data_payload["ip-fragment-preventing"] = ip_fragment_preventing
         if tun_mtu_uplink is not None:
-            data_payload['tun-mtu-uplink'] = tun_mtu_uplink
+            data_payload["tun-mtu-uplink"] = tun_mtu_uplink
         if tun_mtu_downlink is not None:
-            data_payload['tun-mtu-downlink'] = tun_mtu_downlink
+            data_payload["tun-mtu-downlink"] = tun_mtu_downlink
         if split_tunneling_acl_path is not None:
-            data_payload['split-tunneling-acl-path'] = split_tunneling_acl_path
+            data_payload["split-tunneling-acl-path"] = split_tunneling_acl_path
         if split_tunneling_acl_local_ap_subnet is not None:
-            data_payload['split-tunneling-acl-local-ap-subnet'] = split_tunneling_acl_local_ap_subnet
+            data_payload["split-tunneling-acl-local-ap-subnet"] = (
+                split_tunneling_acl_local_ap_subnet
+            )
         if split_tunneling_acl is not None:
-            data_payload['split-tunneling-acl'] = split_tunneling_acl
+            data_payload["split-tunneling-acl"] = split_tunneling_acl
         if allowaccess is not None:
-            data_payload['allowaccess'] = allowaccess
+            data_payload["allowaccess"] = allowaccess
         if login_passwd_change is not None:
-            data_payload['login-passwd-change'] = login_passwd_change
+            data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
-            data_payload['login-passwd'] = login_passwd
+            data_payload["login-passwd"] = login_passwd
         if lldp is not None:
-            data_payload['lldp'] = lldp
+            data_payload["lldp"] = lldp
         if poe_mode is not None:
-            data_payload['poe-mode'] = poe_mode
+            data_payload["poe-mode"] = poe_mode
         if usb_port is not None:
-            data_payload['usb-port'] = usb_port
+            data_payload["usb-port"] = usb_port
         if frequency_handoff is not None:
-            data_payload['frequency-handoff'] = frequency_handoff
+            data_payload["frequency-handoff"] = frequency_handoff
         if ap_handoff is not None:
-            data_payload['ap-handoff'] = ap_handoff
+            data_payload["ap-handoff"] = ap_handoff
         if default_mesh_root is not None:
-            data_payload['default-mesh-root'] = default_mesh_root
+            data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
-            data_payload['radio-1'] = radio_1
+            data_payload["radio-1"] = radio_1
         if radio_2 is not None:
-            data_payload['radio-2'] = radio_2
+            data_payload["radio-2"] = radio_2
         if radio_3 is not None:
-            data_payload['radio-3'] = radio_3
+            data_payload["radio-3"] = radio_3
         if radio_4 is not None:
-            data_payload['radio-4'] = radio_4
+            data_payload["radio-4"] = radio_4
         if lbs is not None:
-            data_payload['lbs'] = lbs
+            data_payload["lbs"] = lbs
         if ext_info_enable is not None:
-            data_payload['ext-info-enable'] = ext_info_enable
+            data_payload["ext-info-enable"] = ext_info_enable
         if indoor_outdoor_deployment is not None:
-            data_payload['indoor-outdoor-deployment'] = indoor_outdoor_deployment
+            data_payload["indoor-outdoor-deployment"] = (
+                indoor_outdoor_deployment
+            )
         if esl_ses_dongle is not None:
-            data_payload['esl-ses-dongle'] = esl_ses_dongle
+            data_payload["esl-ses-dongle"] = esl_ses_dongle
         if console_login is not None:
-            data_payload['console-login'] = console_login
+            data_payload["console-login"] = console_login
         if wan_port_auth is not None:
-            data_payload['wan-port-auth'] = wan_port_auth
+            data_payload["wan-port-auth"] = wan_port_auth
         if wan_port_auth_usrname is not None:
-            data_payload['wan-port-auth-usrname'] = wan_port_auth_usrname
+            data_payload["wan-port-auth-usrname"] = wan_port_auth_usrname
         if wan_port_auth_password is not None:
-            data_payload['wan-port-auth-password'] = wan_port_auth_password
+            data_payload["wan-port-auth-password"] = wan_port_auth_password
         if wan_port_auth_methods is not None:
-            data_payload['wan-port-auth-methods'] = wan_port_auth_methods
+            data_payload["wan-port-auth-methods"] = wan_port_auth_methods
         if wan_port_auth_macsec is not None:
-            data_payload['wan-port-auth-macsec'] = wan_port_auth_macsec
+            data_payload["wan-port-auth-macsec"] = wan_port_auth_macsec
         if apcfg_auto_cert is not None:
-            data_payload['apcfg-auto-cert'] = apcfg_auto_cert
+            data_payload["apcfg-auto-cert"] = apcfg_auto_cert
         if apcfg_auto_cert_enroll_protocol is not None:
-            data_payload['apcfg-auto-cert-enroll-protocol'] = apcfg_auto_cert_enroll_protocol
+            data_payload["apcfg-auto-cert-enroll-protocol"] = (
+                apcfg_auto_cert_enroll_protocol
+            )
         if apcfg_auto_cert_crypto_algo is not None:
-            data_payload['apcfg-auto-cert-crypto-algo'] = apcfg_auto_cert_crypto_algo
+            data_payload["apcfg-auto-cert-crypto-algo"] = (
+                apcfg_auto_cert_crypto_algo
+            )
         if apcfg_auto_cert_est_server is not None:
-            data_payload['apcfg-auto-cert-est-server'] = apcfg_auto_cert_est_server
+            data_payload["apcfg-auto-cert-est-server"] = (
+                apcfg_auto_cert_est_server
+            )
         if apcfg_auto_cert_est_ca_id is not None:
-            data_payload['apcfg-auto-cert-est-ca-id'] = apcfg_auto_cert_est_ca_id
+            data_payload["apcfg-auto-cert-est-ca-id"] = (
+                apcfg_auto_cert_est_ca_id
+            )
         if apcfg_auto_cert_est_http_username is not None:
-            data_payload['apcfg-auto-cert-est-http-username'] = apcfg_auto_cert_est_http_username
+            data_payload["apcfg-auto-cert-est-http-username"] = (
+                apcfg_auto_cert_est_http_username
+            )
         if apcfg_auto_cert_est_http_password is not None:
-            data_payload['apcfg-auto-cert-est-http-password'] = apcfg_auto_cert_est_http_password
+            data_payload["apcfg-auto-cert-est-http-password"] = (
+                apcfg_auto_cert_est_http_password
+            )
         if apcfg_auto_cert_est_subject is not None:
-            data_payload['apcfg-auto-cert-est-subject'] = apcfg_auto_cert_est_subject
+            data_payload["apcfg-auto-cert-est-subject"] = (
+                apcfg_auto_cert_est_subject
+            )
         if apcfg_auto_cert_est_subject_alt_name is not None:
-            data_payload['apcfg-auto-cert-est-subject-alt-name'] = apcfg_auto_cert_est_subject_alt_name
+            data_payload["apcfg-auto-cert-est-subject-alt-name"] = (
+                apcfg_auto_cert_est_subject_alt_name
+            )
         if apcfg_auto_cert_auto_regen_days is not None:
-            data_payload['apcfg-auto-cert-auto-regen-days'] = apcfg_auto_cert_auto_regen_days
+            data_payload["apcfg-auto-cert-auto-regen-days"] = (
+                apcfg_auto_cert_auto_regen_days
+            )
         if apcfg_auto_cert_est_https_ca is not None:
-            data_payload['apcfg-auto-cert-est-https-ca'] = apcfg_auto_cert_est_https_ca
+            data_payload["apcfg-auto-cert-est-https-ca"] = (
+                apcfg_auto_cert_est_https_ca
+            )
         if apcfg_auto_cert_scep_keytype is not None:
-            data_payload['apcfg-auto-cert-scep-keytype'] = apcfg_auto_cert_scep_keytype
+            data_payload["apcfg-auto-cert-scep-keytype"] = (
+                apcfg_auto_cert_scep_keytype
+            )
         if apcfg_auto_cert_scep_keysize is not None:
-            data_payload['apcfg-auto-cert-scep-keysize'] = apcfg_auto_cert_scep_keysize
+            data_payload["apcfg-auto-cert-scep-keysize"] = (
+                apcfg_auto_cert_scep_keysize
+            )
         if apcfg_auto_cert_scep_ec_name is not None:
-            data_payload['apcfg-auto-cert-scep-ec-name'] = apcfg_auto_cert_scep_ec_name
+            data_payload["apcfg-auto-cert-scep-ec-name"] = (
+                apcfg_auto_cert_scep_ec_name
+            )
         if apcfg_auto_cert_scep_sub_fully_dn is not None:
-            data_payload['apcfg-auto-cert-scep-sub-fully-dn'] = apcfg_auto_cert_scep_sub_fully_dn
+            data_payload["apcfg-auto-cert-scep-sub-fully-dn"] = (
+                apcfg_auto_cert_scep_sub_fully_dn
+            )
         if apcfg_auto_cert_scep_url is not None:
-            data_payload['apcfg-auto-cert-scep-url'] = apcfg_auto_cert_scep_url
+            data_payload["apcfg-auto-cert-scep-url"] = apcfg_auto_cert_scep_url
         if apcfg_auto_cert_scep_password is not None:
-            data_payload['apcfg-auto-cert-scep-password'] = apcfg_auto_cert_scep_password
+            data_payload["apcfg-auto-cert-scep-password"] = (
+                apcfg_auto_cert_scep_password
+            )
         if apcfg_auto_cert_scep_ca_id is not None:
-            data_payload['apcfg-auto-cert-scep-ca-id'] = apcfg_auto_cert_scep_ca_id
+            data_payload["apcfg-auto-cert-scep-ca-id"] = (
+                apcfg_auto_cert_scep_ca_id
+            )
         if apcfg_auto_cert_scep_subject_alt_name is not None:
-            data_payload['apcfg-auto-cert-scep-subject-alt-name'] = apcfg_auto_cert_scep_subject_alt_name
+            data_payload["apcfg-auto-cert-scep-subject-alt-name"] = (
+                apcfg_auto_cert_scep_subject_alt_name
+            )
         if apcfg_auto_cert_scep_https_ca is not None:
-            data_payload['apcfg-auto-cert-scep-https-ca'] = apcfg_auto_cert_scep_https_ca
+            data_payload["apcfg-auto-cert-scep-https-ca"] = (
+                apcfg_auto_cert_scep_https_ca
+            )
         if unii_4_5ghz_band is not None:
-            data_payload['unii-4-5ghz-band'] = unii_4_5ghz_band
+            data_payload["unii-4-5ghz-band"] = unii_4_5ghz_band
         if admin_auth_tacacs_plus_ is not None:
-            data_payload['admin-auth-tacacs+'] = admin_auth_tacacs_plus_
+            data_payload["admin-auth-tacacs+"] = admin_auth_tacacs_plus_
         if admin_restrict_local is not None:
-            data_payload['admin-restrict-local'] = admin_restrict_local
+            data_payload["admin-restrict-local"] = admin_restrict_local
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

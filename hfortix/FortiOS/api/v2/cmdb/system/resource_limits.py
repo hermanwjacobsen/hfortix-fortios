@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.resource_limits.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.resource_limits.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.resource_limits.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.resource_limits.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.resource_limits.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class ResourceLimits:
     """
     Resourcelimits Operations.
-    
+
     Provides CRUD operations for FortiOS resourcelimits configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class ResourceLimits:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ResourceLimits endpoint.
 
@@ -82,14 +82,14 @@ class ResourceLimits:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class ResourceLimits:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/resource-limits"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -137,7 +139,7 @@ class ResourceLimits:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -161,7 +163,7 @@ class ResourceLimits:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -169,7 +171,7 @@ class ResourceLimits:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -177,40 +179,42 @@ class ResourceLimits:
         params = {}
         endpoint = "/system/resource-limits"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if session is not None:
-            data_payload['session'] = session
+            data_payload["session"] = session
         if ipsec_phase1 is not None:
-            data_payload['ipsec-phase1'] = ipsec_phase1
+            data_payload["ipsec-phase1"] = ipsec_phase1
         if ipsec_phase2 is not None:
-            data_payload['ipsec-phase2'] = ipsec_phase2
+            data_payload["ipsec-phase2"] = ipsec_phase2
         if ipsec_phase1_interface is not None:
-            data_payload['ipsec-phase1-interface'] = ipsec_phase1_interface
+            data_payload["ipsec-phase1-interface"] = ipsec_phase1_interface
         if ipsec_phase2_interface is not None:
-            data_payload['ipsec-phase2-interface'] = ipsec_phase2_interface
+            data_payload["ipsec-phase2-interface"] = ipsec_phase2_interface
         if dialup_tunnel is not None:
-            data_payload['dialup-tunnel'] = dialup_tunnel
+            data_payload["dialup-tunnel"] = dialup_tunnel
         if firewall_policy is not None:
-            data_payload['firewall-policy'] = firewall_policy
+            data_payload["firewall-policy"] = firewall_policy
         if firewall_address is not None:
-            data_payload['firewall-address'] = firewall_address
+            data_payload["firewall-address"] = firewall_address
         if firewall_addrgrp is not None:
-            data_payload['firewall-addrgrp'] = firewall_addrgrp
+            data_payload["firewall-addrgrp"] = firewall_addrgrp
         if custom_service is not None:
-            data_payload['custom-service'] = custom_service
+            data_payload["custom-service"] = custom_service
         if service_group is not None:
-            data_payload['service-group'] = service_group
+            data_payload["service-group"] = service_group
         if onetime_schedule is not None:
-            data_payload['onetime-schedule'] = onetime_schedule
+            data_payload["onetime-schedule"] = onetime_schedule
         if recurring_schedule is not None:
-            data_payload['recurring-schedule'] = recurring_schedule
+            data_payload["recurring-schedule"] = recurring_schedule
         if user is not None:
-            data_payload['user'] = user
+            data_payload["user"] = user
         if user_group is not None:
-            data_payload['user-group'] = user_group
+            data_payload["user-group"] = user_group
         if log_disk_quota is not None:
-            data_payload['log-disk-quota'] = log_disk_quota
+            data_payload["log-disk-quota"] = log_disk_quota
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

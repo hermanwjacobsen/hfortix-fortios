@@ -11,25 +11,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.vpn.certificate_crl.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.vpn.certificate_crl.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.vpn.certificate_crl.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.vpn.certificate_crl.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.vpn.certificate_crl.delete(name="item_name")
 
@@ -49,13 +49,13 @@ if TYPE_CHECKING:
 class CertificateCrl:
     """
     Certificatecrl Operations.
-    
+
     Provides CRUD operations for FortiOS certificatecrl configuration.
 
     Methods:
         get(): Retrieve configuration objects
         post(): Create new configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -63,7 +63,7 @@ class CertificateCrl:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CertificateCrl endpoint.
 
@@ -86,7 +86,7 @@ class CertificateCrl:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -96,7 +96,7 @@ class CertificateCrl:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -104,27 +104,29 @@ class CertificateCrl:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/vpn.certificate/crl/{name}"
         else:
             endpoint = "/vpn.certificate/crl"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -149,7 +151,7 @@ class CertificateCrl:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -169,7 +171,7 @@ class CertificateCrl:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -177,7 +179,7 @@ class CertificateCrl:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -185,32 +187,34 @@ class CertificateCrl:
         params = {}
         endpoint = "/vpn.certificate/crl"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if crl is not None:
-            data_payload['crl'] = crl
+            data_payload["crl"] = crl
         if range is not None:
-            data_payload['range'] = range
+            data_payload["range"] = range
         if source is not None:
-            data_payload['source'] = source
+            data_payload["source"] = source
         if update_vdom is not None:
-            data_payload['update-vdom'] = update_vdom
+            data_payload["update-vdom"] = update_vdom
         if ldap_server is not None:
-            data_payload['ldap-server'] = ldap_server
+            data_payload["ldap-server"] = ldap_server
         if ldap_username is not None:
-            data_payload['ldap-username'] = ldap_username
+            data_payload["ldap-username"] = ldap_username
         if ldap_password is not None:
-            data_payload['ldap-password'] = ldap_password
+            data_payload["ldap-password"] = ldap_password
         if http_url is not None:
-            data_payload['http-url'] = http_url
+            data_payload["http-url"] = http_url
         if scep_url is not None:
-            data_payload['scep-url'] = scep_url
+            data_payload["scep-url"] = scep_url
         if scep_cert is not None:
-            data_payload['scep-cert'] = scep_cert
+            data_payload["scep-cert"] = scep_cert
         if update_interval is not None:
-            data_payload['update-interval'] = update_interval
+            data_payload["update-interval"] = update_interval
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

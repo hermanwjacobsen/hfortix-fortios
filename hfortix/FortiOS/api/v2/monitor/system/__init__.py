@@ -10,8 +10,6 @@ if TYPE_CHECKING:
 
 __all__ = ["System"]
 
-from .modem_3g import Modem3g
-from .modem_5g import Modem5g
 from .acme_certificate_status import AcmeCertificateStatus
 from .acquired_dns import AcquiredDns
 from .admin import Admin
@@ -64,6 +62,8 @@ from .link_monitor import LinkMonitor
 from .logdisk import Logdisk
 from .lte_modem import LteModem
 from .modem import Modem
+from .modem_3g import Modem3g
+from .modem_5g import Modem5g
 from .monitor_sensor import MonitorSensor
 from .ntp import Ntp
 from .object import Object
@@ -153,7 +153,9 @@ class System:
         self.ha_table_checksums = HaTableChecksums(client)
         self.hscalefw_license = HscalefwLicense(client)
         self.interface = Interface(client)
-        self.interface_connected_admins_info = InterfaceConnectedAdminsInfo(client)
+        self.interface_connected_admins_info = InterfaceConnectedAdminsInfo(
+            client
+        )
         self.ipam = Ipam(client)
         self.ipconf = Ipconf(client)
         self.link_monitor = LinkMonitor(client)
@@ -271,5 +273,5 @@ class System:
             "vdom_link",
             "vdom_resource",
             "vm_information",
-            "vmlicense"
+            "vmlicense",
         ]

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.service.security_rating.security_rating.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.service.security_rating.security_rating.get(
     ...     count=100,
@@ -34,12 +34,12 @@ if TYPE_CHECKING:
 class Recommendations:
     """
     Recommendations Operations.
-    
+
     Provides CRUD operations for FortiOS recommendations configuration.
 
     Methods:
         get(): Retrieve configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -47,7 +47,7 @@ class Recommendations:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient') -> None:
+    def __init__(self, client: "IHTTPClient") -> None:
         self._client = client
 
     def get(
@@ -57,44 +57,44 @@ class Recommendations:
         vdom: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Retrieve recommendations for Security Rating tests. 
- Access Group: secfabgrp.csfsys
+               Retrieve recommendations for Security Rating tests.
+        Access Group: secfabgrp.csfsys
 
-        Supports dual approach:
-        1. Individual parameters: get(param='value')
-        2. Payload dict: get(payload_dict={'param': 'value'})
+               Supports dual approach:
+               1. Individual parameters: get(param='value')
+               2. Payload dict: get(payload_dict={'param': 'value'})
 
-        Args:
-            checks: Retrieve the recommendations for the given Security Rating checks.
-            scope: Scope of the request [global | vdom*].
-            vdom: Virtual Domain name
-            payload_dict: Alternative to individual parameters - pass all params as dict
-            raw_json: Return raw JSON response without parsing
-            **kwargs: Additional parameters to pass to the API
+               Args:
+                   checks: Retrieve the recommendations for the given Security Rating checks.
+                   scope: Scope of the request [global | vdom*].
+                   vdom: Virtual Domain name
+                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   raw_json: Return raw JSON response without parsing
+                   **kwargs: Additional parameters to pass to the API
 
-        Returns:
-            Dictionary containing response data
+               Returns:
+                   Dictionary containing response data
 
-        Examples:
-            # Using individual parameters
-            result = fgt.api.service.security-rating.recommendations.get()
-            
-            # Using payload_dict
-            result = fgt.api.service.security-rating.recommendations.get(
-                payload_dict={'param': 'value'}
-            )
+               Examples:
+                   # Using individual parameters
+                   result = fgt.api.service.security-rating.recommendations.get()
+
+                   # Using payload_dict
+                   result = fgt.api.service.security-rating.recommendations.get(
+                       payload_dict={'param': 'value'}
+                   )
         """
         if payload_dict:
             params = payload_dict.copy()
         else:
             params = {}
         if checks is not None:
-            params['checks'] = checks
+            params["checks"] = checks
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
         params.update(kwargs)
 
@@ -110,7 +110,7 @@ class Recommendations:
 class Report:
     """Report resource"""
 
-    def __init__(self, client: 'IHTTPClient') -> None:
+    def __init__(self, client: "IHTTPClient") -> None:
         self._client = client
 
     def get(
@@ -123,53 +123,53 @@ class Report:
         vdom: Optional[str] = None,
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Retrieve full report of all Security Rating tests. 
- Access Group: secfabgrp.csfsys
+               Retrieve full report of all Security Rating tests.
+        Access Group: secfabgrp.csfsys
 
-        Supports dual approach:
-        1. Individual parameters: get(param='value')
-        2. Payload dict: get(payload_dict={'param': 'value'})
+               Supports dual approach:
+               1. Individual parameters: get(param='value')
+               2. Payload dict: get(payload_dict={'param': 'value'})
 
-        Args:
-            type: The report sub-type to fetch ['psirt', 'insight'].
-            scope: Scope of the request [global | vdom*].
-            standalone: If enabled this will only return a report with checks for the current FortiGate.
-            checks: Retrieve a report with only the given Security Rating checks.
-            show_hidden: Show hidden Security Rating controls in the report.
-            vdom: Virtual Domain name
-            payload_dict: Alternative to individual parameters - pass all params as dict
-            raw_json: Return raw JSON response without parsing
-            **kwargs: Additional parameters to pass to the API
+               Args:
+                   type: The report sub-type to fetch ['psirt', 'insight'].
+                   scope: Scope of the request [global | vdom*].
+                   standalone: If enabled this will only return a report with checks for the current FortiGate.
+                   checks: Retrieve a report with only the given Security Rating checks.
+                   show_hidden: Show hidden Security Rating controls in the report.
+                   vdom: Virtual Domain name
+                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   raw_json: Return raw JSON response without parsing
+                   **kwargs: Additional parameters to pass to the API
 
-        Returns:
-            Dictionary containing response data
+               Returns:
+                   Dictionary containing response data
 
-        Examples:
-            # Using individual parameters
-            result = fgt.api.service.security-rating.report.get()
-            
-            # Using payload_dict
-            result = fgt.api.service.security-rating.report.get(
-                payload_dict={'param': 'value'}
-            )
+               Examples:
+                   # Using individual parameters
+                   result = fgt.api.service.security-rating.report.get()
+
+                   # Using payload_dict
+                   result = fgt.api.service.security-rating.report.get(
+                       payload_dict={'param': 'value'}
+                   )
         """
         if payload_dict:
             params = payload_dict.copy()
         else:
             params = {}
         if type is not None:
-            params['type'] = type
+            params["type"] = type
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if standalone is not None:
-            params['standalone'] = standalone
+            params["standalone"] = standalone
         if checks is not None:
-            params['checks'] = checks
+            params["checks"] = checks
         if show_hidden is not None:
-            params['show-hidden'] = show_hidden
+            params["show-hidden"] = show_hidden
 
         params.update(kwargs)
 
@@ -182,11 +182,10 @@ class Report:
         )
 
 
-
 class SecurityRating:
     """Main Security Rating service class"""
 
-    def __init__(self, client: 'IHTTPClient') -> None:
+    def __init__(self, client: "IHTTPClient") -> None:
         self._client = client
         self._recommendations = None
         self._report = None
@@ -204,4 +203,3 @@ class SecurityRating:
         if self._report is None:
             self._report = Report(self._client)
         return self._report
-

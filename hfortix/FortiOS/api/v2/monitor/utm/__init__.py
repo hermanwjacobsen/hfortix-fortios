@@ -38,4 +38,10 @@ class Utm:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ["antivirus", "app_lookup", "application_categories", "blacklisted_certificates", "rating_lookup"]
+        return [
+            "antivirus",
+            "app_lookup",
+            "application_categories",
+            "blacklisted_certificates",
+            "rating_lookup",
+        ]

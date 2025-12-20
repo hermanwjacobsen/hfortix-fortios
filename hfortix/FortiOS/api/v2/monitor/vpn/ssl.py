@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.vpn.ssl.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.vpn.ssl.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class ClearTunnel:
     """
     Cleartunnel Operations.
-    
+
     Provides read-only access for FortiOS cleartunnel data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ClearTunnel endpoint.
 
@@ -59,15 +59,15 @@ class ClearTunnel:
     ) -> dict[str, Any]:
         """
         Remove all active tunnel sessions in current virtual domain.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn.ssl.clear_tunnel.post()
         """
@@ -79,7 +79,7 @@ class ClearTunnel:
 class Delete:
     """Delete operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Delete endpoint.
 
@@ -98,25 +98,25 @@ class Delete:
     ) -> dict[str, Any]:
         """
         Terminate the provided Agentless VPN session.
-        
+
         Args:
             type: The session type [websession|subsession]. (optional)
             index: The session index. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn.ssl.delete.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if type is not None:
-            data['type'] = type
+            data["type"] = type
         if index is not None:
-            data['index'] = index
+            data["index"] = index
         data.update(kwargs)
         return self._client.post("monitor", "/vpn/ssl/delete", data=data)
 
@@ -124,7 +124,7 @@ class Delete:
 class Stats:
     """Stats operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Stats endpoint.
 
@@ -141,15 +141,15 @@ class Stats:
     ) -> dict[str, Any]:
         """
         Return statistics about the Agentless VPN.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn.ssl.stats.get()
         """
@@ -161,7 +161,7 @@ class Stats:
 class Ssl:
     """Ssl operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ssl endpoint.
 
@@ -183,15 +183,15 @@ class Ssl:
     ) -> dict[str, Any]:
         """
         Retrieve a list of all Agentless VPN sessions and sub-sessions.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn.ssl.get()
         """

@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.wtp.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.wtp.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.wtp.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.wtp.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.wtp.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Wtp:
     """
     Wtp Operations.
-    
+
     Provides CRUD operations for FortiOS wtp configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Wtp:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Wtp:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Wtp endpoint.
 
@@ -90,7 +90,7 @@ class Wtp:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             wtp_id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Wtp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Wtp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if wtp_id:
             endpoint = f"/wireless-controller/wtp/{wtp_id}"
         else:
             endpoint = "/wireless-controller/wtp"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -188,7 +190,7 @@ class Wtp:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             wtp_id: Object identifier (required)
@@ -244,7 +246,7 @@ class Wtp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -252,117 +254,127 @@ class Wtp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not wtp_id:
             raise ValueError("wtp_id is required for put()")
         endpoint = f"/wireless-controller/wtp/{wtp_id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if wtp_id is not None:
-            data_payload['wtp-id'] = wtp_id
+            data_payload["wtp-id"] = wtp_id
         if index is not None:
-            data_payload['index'] = index
+            data_payload["index"] = index
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if admin is not None:
-            data_payload['admin'] = admin
+            data_payload["admin"] = admin
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if location is not None:
-            data_payload['location'] = location
+            data_payload["location"] = location
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if region is not None:
-            data_payload['region'] = region
+            data_payload["region"] = region
         if region_x is not None:
-            data_payload['region-x'] = region_x
+            data_payload["region-x"] = region_x
         if region_y is not None:
-            data_payload['region-y'] = region_y
+            data_payload["region-y"] = region_y
         if firmware_provision is not None:
-            data_payload['firmware-provision'] = firmware_provision
+            data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_latest is not None:
-            data_payload['firmware-provision-latest'] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         if wtp_profile is not None:
-            data_payload['wtp-profile'] = wtp_profile
+            data_payload["wtp-profile"] = wtp_profile
         if apcfg_profile is not None:
-            data_payload['apcfg-profile'] = apcfg_profile
+            data_payload["apcfg-profile"] = apcfg_profile
         if bonjour_profile is not None:
-            data_payload['bonjour-profile'] = bonjour_profile
+            data_payload["bonjour-profile"] = bonjour_profile
         if ble_major_id is not None:
-            data_payload['ble-major-id'] = ble_major_id
+            data_payload["ble-major-id"] = ble_major_id
         if ble_minor_id is not None:
-            data_payload['ble-minor-id'] = ble_minor_id
+            data_payload["ble-minor-id"] = ble_minor_id
         if override_led_state is not None:
-            data_payload['override-led-state'] = override_led_state
+            data_payload["override-led-state"] = override_led_state
         if led_state is not None:
-            data_payload['led-state'] = led_state
+            data_payload["led-state"] = led_state
         if override_wan_port_mode is not None:
-            data_payload['override-wan-port-mode'] = override_wan_port_mode
+            data_payload["override-wan-port-mode"] = override_wan_port_mode
         if wan_port_mode is not None:
-            data_payload['wan-port-mode'] = wan_port_mode
+            data_payload["wan-port-mode"] = wan_port_mode
         if override_ip_fragment is not None:
-            data_payload['override-ip-fragment'] = override_ip_fragment
+            data_payload["override-ip-fragment"] = override_ip_fragment
         if ip_fragment_preventing is not None:
-            data_payload['ip-fragment-preventing'] = ip_fragment_preventing
+            data_payload["ip-fragment-preventing"] = ip_fragment_preventing
         if tun_mtu_uplink is not None:
-            data_payload['tun-mtu-uplink'] = tun_mtu_uplink
+            data_payload["tun-mtu-uplink"] = tun_mtu_uplink
         if tun_mtu_downlink is not None:
-            data_payload['tun-mtu-downlink'] = tun_mtu_downlink
+            data_payload["tun-mtu-downlink"] = tun_mtu_downlink
         if override_split_tunnel is not None:
-            data_payload['override-split-tunnel'] = override_split_tunnel
+            data_payload["override-split-tunnel"] = override_split_tunnel
         if split_tunneling_acl_path is not None:
-            data_payload['split-tunneling-acl-path'] = split_tunneling_acl_path
+            data_payload["split-tunneling-acl-path"] = split_tunneling_acl_path
         if split_tunneling_acl_local_ap_subnet is not None:
-            data_payload['split-tunneling-acl-local-ap-subnet'] = split_tunneling_acl_local_ap_subnet
+            data_payload["split-tunneling-acl-local-ap-subnet"] = (
+                split_tunneling_acl_local_ap_subnet
+            )
         if split_tunneling_acl is not None:
-            data_payload['split-tunneling-acl'] = split_tunneling_acl
+            data_payload["split-tunneling-acl"] = split_tunneling_acl
         if override_lan is not None:
-            data_payload['override-lan'] = override_lan
+            data_payload["override-lan"] = override_lan
         if lan is not None:
-            data_payload['lan'] = lan
+            data_payload["lan"] = lan
         if override_allowaccess is not None:
-            data_payload['override-allowaccess'] = override_allowaccess
+            data_payload["override-allowaccess"] = override_allowaccess
         if allowaccess is not None:
-            data_payload['allowaccess'] = allowaccess
+            data_payload["allowaccess"] = allowaccess
         if override_login_passwd_change is not None:
-            data_payload['override-login-passwd-change'] = override_login_passwd_change
+            data_payload["override-login-passwd-change"] = (
+                override_login_passwd_change
+            )
         if login_passwd_change is not None:
-            data_payload['login-passwd-change'] = login_passwd_change
+            data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
-            data_payload['login-passwd'] = login_passwd
+            data_payload["login-passwd"] = login_passwd
         if override_default_mesh_root is not None:
-            data_payload['override-default-mesh-root'] = override_default_mesh_root
+            data_payload["override-default-mesh-root"] = (
+                override_default_mesh_root
+            )
         if default_mesh_root is not None:
-            data_payload['default-mesh-root'] = default_mesh_root
+            data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
-            data_payload['radio-1'] = radio_1
+            data_payload["radio-1"] = radio_1
         if radio_2 is not None:
-            data_payload['radio-2'] = radio_2
+            data_payload["radio-2"] = radio_2
         if radio_3 is not None:
-            data_payload['radio-3'] = radio_3
+            data_payload["radio-3"] = radio_3
         if radio_4 is not None:
-            data_payload['radio-4'] = radio_4
+            data_payload["radio-4"] = radio_4
         if image_download is not None:
-            data_payload['image-download'] = image_download
+            data_payload["image-download"] = image_download
         if mesh_bridge_enable is not None:
-            data_payload['mesh-bridge-enable'] = mesh_bridge_enable
+            data_payload["mesh-bridge-enable"] = mesh_bridge_enable
         if purdue_level is not None:
-            data_payload['purdue-level'] = purdue_level
+            data_payload["purdue-level"] = purdue_level
         if coordinate_latitude is not None:
-            data_payload['coordinate-latitude'] = coordinate_latitude
+            data_payload["coordinate-latitude"] = coordinate_latitude
         if coordinate_longitude is not None:
-            data_payload['coordinate-longitude'] = coordinate_longitude
+            data_payload["coordinate-longitude"] = coordinate_longitude
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -374,13 +386,13 @@ class Wtp:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             wtp_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -388,18 +400,20 @@ class Wtp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not wtp_id:
             raise ValueError("wtp_id is required for delete()")
         endpoint = f"/wireless-controller/wtp/{wtp_id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -408,37 +422,39 @@ class Wtp:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             wtp_id: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(wtp_id=wtp_id, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -497,7 +513,7 @@ class Wtp:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -551,7 +567,7 @@ class Wtp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -559,7 +575,7 @@ class Wtp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -567,100 +583,110 @@ class Wtp:
         params = {}
         endpoint = "/wireless-controller/wtp"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if wtp_id is not None:
-            data_payload['wtp-id'] = wtp_id
+            data_payload["wtp-id"] = wtp_id
         if index is not None:
-            data_payload['index'] = index
+            data_payload["index"] = index
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if admin is not None:
-            data_payload['admin'] = admin
+            data_payload["admin"] = admin
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if location is not None:
-            data_payload['location'] = location
+            data_payload["location"] = location
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if region is not None:
-            data_payload['region'] = region
+            data_payload["region"] = region
         if region_x is not None:
-            data_payload['region-x'] = region_x
+            data_payload["region-x"] = region_x
         if region_y is not None:
-            data_payload['region-y'] = region_y
+            data_payload["region-y"] = region_y
         if firmware_provision is not None:
-            data_payload['firmware-provision'] = firmware_provision
+            data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_latest is not None:
-            data_payload['firmware-provision-latest'] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         if wtp_profile is not None:
-            data_payload['wtp-profile'] = wtp_profile
+            data_payload["wtp-profile"] = wtp_profile
         if apcfg_profile is not None:
-            data_payload['apcfg-profile'] = apcfg_profile
+            data_payload["apcfg-profile"] = apcfg_profile
         if bonjour_profile is not None:
-            data_payload['bonjour-profile'] = bonjour_profile
+            data_payload["bonjour-profile"] = bonjour_profile
         if ble_major_id is not None:
-            data_payload['ble-major-id'] = ble_major_id
+            data_payload["ble-major-id"] = ble_major_id
         if ble_minor_id is not None:
-            data_payload['ble-minor-id'] = ble_minor_id
+            data_payload["ble-minor-id"] = ble_minor_id
         if override_led_state is not None:
-            data_payload['override-led-state'] = override_led_state
+            data_payload["override-led-state"] = override_led_state
         if led_state is not None:
-            data_payload['led-state'] = led_state
+            data_payload["led-state"] = led_state
         if override_wan_port_mode is not None:
-            data_payload['override-wan-port-mode'] = override_wan_port_mode
+            data_payload["override-wan-port-mode"] = override_wan_port_mode
         if wan_port_mode is not None:
-            data_payload['wan-port-mode'] = wan_port_mode
+            data_payload["wan-port-mode"] = wan_port_mode
         if override_ip_fragment is not None:
-            data_payload['override-ip-fragment'] = override_ip_fragment
+            data_payload["override-ip-fragment"] = override_ip_fragment
         if ip_fragment_preventing is not None:
-            data_payload['ip-fragment-preventing'] = ip_fragment_preventing
+            data_payload["ip-fragment-preventing"] = ip_fragment_preventing
         if tun_mtu_uplink is not None:
-            data_payload['tun-mtu-uplink'] = tun_mtu_uplink
+            data_payload["tun-mtu-uplink"] = tun_mtu_uplink
         if tun_mtu_downlink is not None:
-            data_payload['tun-mtu-downlink'] = tun_mtu_downlink
+            data_payload["tun-mtu-downlink"] = tun_mtu_downlink
         if override_split_tunnel is not None:
-            data_payload['override-split-tunnel'] = override_split_tunnel
+            data_payload["override-split-tunnel"] = override_split_tunnel
         if split_tunneling_acl_path is not None:
-            data_payload['split-tunneling-acl-path'] = split_tunneling_acl_path
+            data_payload["split-tunneling-acl-path"] = split_tunneling_acl_path
         if split_tunneling_acl_local_ap_subnet is not None:
-            data_payload['split-tunneling-acl-local-ap-subnet'] = split_tunneling_acl_local_ap_subnet
+            data_payload["split-tunneling-acl-local-ap-subnet"] = (
+                split_tunneling_acl_local_ap_subnet
+            )
         if split_tunneling_acl is not None:
-            data_payload['split-tunneling-acl'] = split_tunneling_acl
+            data_payload["split-tunneling-acl"] = split_tunneling_acl
         if override_lan is not None:
-            data_payload['override-lan'] = override_lan
+            data_payload["override-lan"] = override_lan
         if lan is not None:
-            data_payload['lan'] = lan
+            data_payload["lan"] = lan
         if override_allowaccess is not None:
-            data_payload['override-allowaccess'] = override_allowaccess
+            data_payload["override-allowaccess"] = override_allowaccess
         if allowaccess is not None:
-            data_payload['allowaccess'] = allowaccess
+            data_payload["allowaccess"] = allowaccess
         if override_login_passwd_change is not None:
-            data_payload['override-login-passwd-change'] = override_login_passwd_change
+            data_payload["override-login-passwd-change"] = (
+                override_login_passwd_change
+            )
         if login_passwd_change is not None:
-            data_payload['login-passwd-change'] = login_passwd_change
+            data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
-            data_payload['login-passwd'] = login_passwd
+            data_payload["login-passwd"] = login_passwd
         if override_default_mesh_root is not None:
-            data_payload['override-default-mesh-root'] = override_default_mesh_root
+            data_payload["override-default-mesh-root"] = (
+                override_default_mesh_root
+            )
         if default_mesh_root is not None:
-            data_payload['default-mesh-root'] = default_mesh_root
+            data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
-            data_payload['radio-1'] = radio_1
+            data_payload["radio-1"] = radio_1
         if radio_2 is not None:
-            data_payload['radio-2'] = radio_2
+            data_payload["radio-2"] = radio_2
         if radio_3 is not None:
-            data_payload['radio-3'] = radio_3
+            data_payload["radio-3"] = radio_3
         if radio_4 is not None:
-            data_payload['radio-4'] = radio_4
+            data_payload["radio-4"] = radio_4
         if image_download is not None:
-            data_payload['image-download'] = image_download
+            data_payload["image-download"] = image_download
         if mesh_bridge_enable is not None:
-            data_payload['mesh-bridge-enable'] = mesh_bridge_enable
+            data_payload["mesh-bridge-enable"] = mesh_bridge_enable
         if purdue_level is not None:
-            data_payload['purdue-level'] = purdue_level
+            data_payload["purdue-level"] = purdue_level
         if coordinate_latitude is not None:
-            data_payload['coordinate-latitude'] = coordinate_latitude
+            data_payload["coordinate-latitude"] = coordinate_latitude
         if coordinate_longitude is not None:
-            data_payload['coordinate-longitude'] = coordinate_longitude
+            data_payload["coordinate-longitude"] = coordinate_longitude
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -2,4 +2,4 @@
 
 from .firewallPolicy import FirewallPolicy
 
-__all__ = ['FirewallPolicy']
+__all__ = ["FirewallPolicy"]

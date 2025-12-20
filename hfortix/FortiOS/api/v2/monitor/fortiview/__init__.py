@@ -40,5 +40,5 @@ class Fortiview:
             "historical_statistics",
             "realtime_proxy_statistics",
             "realtime_statistics",
-            "session"
+            "session",
         ]

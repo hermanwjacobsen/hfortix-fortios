@@ -30,6 +30,4 @@ class Geoip:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return [
-            "geoip_query"
-        ]
+        return ["geoip_query"]

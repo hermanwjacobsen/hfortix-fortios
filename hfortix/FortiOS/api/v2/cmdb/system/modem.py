@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.modem.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.modem.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.modem.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.modem.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.modem.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Modem:
     """
     Modem Operations.
-    
+
     Provides CRUD operations for FortiOS modem configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Modem:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Modem endpoint.
 
@@ -82,14 +82,14 @@ class Modem:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Modem:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/modem"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -166,7 +168,7 @@ class Modem:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -219,7 +221,7 @@ class Modem:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -227,7 +229,7 @@ class Modem:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -235,98 +237,100 @@ class Modem:
         params = {}
         endpoint = "/system/modem"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if pin_init is not None:
-            data_payload['pin-init'] = pin_init
+            data_payload["pin-init"] = pin_init
         if network_init is not None:
-            data_payload['network-init'] = network_init
+            data_payload["network-init"] = network_init
         if lockdown_lac is not None:
-            data_payload['lockdown-lac'] = lockdown_lac
+            data_payload["lockdown-lac"] = lockdown_lac
         if mode is not None:
-            data_payload['mode'] = mode
+            data_payload["mode"] = mode
         if auto_dial is not None:
-            data_payload['auto-dial'] = auto_dial
+            data_payload["auto-dial"] = auto_dial
         if dial_on_demand is not None:
-            data_payload['dial-on-demand'] = dial_on_demand
+            data_payload["dial-on-demand"] = dial_on_demand
         if idle_timer is not None:
-            data_payload['idle-timer'] = idle_timer
+            data_payload["idle-timer"] = idle_timer
         if redial is not None:
-            data_payload['redial'] = redial
+            data_payload["redial"] = redial
         if reset is not None:
-            data_payload['reset'] = reset
+            data_payload["reset"] = reset
         if holddown_timer is not None:
-            data_payload['holddown-timer'] = holddown_timer
+            data_payload["holddown-timer"] = holddown_timer
         if connect_timeout is not None:
-            data_payload['connect-timeout'] = connect_timeout
+            data_payload["connect-timeout"] = connect_timeout
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if wireless_port is not None:
-            data_payload['wireless-port'] = wireless_port
+            data_payload["wireless-port"] = wireless_port
         if dont_send_CR1 is not None:
-            data_payload['dont-send-CR1'] = dont_send_CR1
+            data_payload["dont-send-CR1"] = dont_send_CR1
         if phone1 is not None:
-            data_payload['phone1'] = phone1
+            data_payload["phone1"] = phone1
         if dial_cmd1 is not None:
-            data_payload['dial-cmd1'] = dial_cmd1
+            data_payload["dial-cmd1"] = dial_cmd1
         if username1 is not None:
-            data_payload['username1'] = username1
+            data_payload["username1"] = username1
         if passwd1 is not None:
-            data_payload['passwd1'] = passwd1
+            data_payload["passwd1"] = passwd1
         if extra_init1 is not None:
-            data_payload['extra-init1'] = extra_init1
+            data_payload["extra-init1"] = extra_init1
         if peer_modem1 is not None:
-            data_payload['peer-modem1'] = peer_modem1
+            data_payload["peer-modem1"] = peer_modem1
         if ppp_echo_request1 is not None:
-            data_payload['ppp-echo-request1'] = ppp_echo_request1
+            data_payload["ppp-echo-request1"] = ppp_echo_request1
         if authtype1 is not None:
-            data_payload['authtype1'] = authtype1
+            data_payload["authtype1"] = authtype1
         if dont_send_CR2 is not None:
-            data_payload['dont-send-CR2'] = dont_send_CR2
+            data_payload["dont-send-CR2"] = dont_send_CR2
         if phone2 is not None:
-            data_payload['phone2'] = phone2
+            data_payload["phone2"] = phone2
         if dial_cmd2 is not None:
-            data_payload['dial-cmd2'] = dial_cmd2
+            data_payload["dial-cmd2"] = dial_cmd2
         if username2 is not None:
-            data_payload['username2'] = username2
+            data_payload["username2"] = username2
         if passwd2 is not None:
-            data_payload['passwd2'] = passwd2
+            data_payload["passwd2"] = passwd2
         if extra_init2 is not None:
-            data_payload['extra-init2'] = extra_init2
+            data_payload["extra-init2"] = extra_init2
         if peer_modem2 is not None:
-            data_payload['peer-modem2'] = peer_modem2
+            data_payload["peer-modem2"] = peer_modem2
         if ppp_echo_request2 is not None:
-            data_payload['ppp-echo-request2'] = ppp_echo_request2
+            data_payload["ppp-echo-request2"] = ppp_echo_request2
         if authtype2 is not None:
-            data_payload['authtype2'] = authtype2
+            data_payload["authtype2"] = authtype2
         if dont_send_CR3 is not None:
-            data_payload['dont-send-CR3'] = dont_send_CR3
+            data_payload["dont-send-CR3"] = dont_send_CR3
         if phone3 is not None:
-            data_payload['phone3'] = phone3
+            data_payload["phone3"] = phone3
         if dial_cmd3 is not None:
-            data_payload['dial-cmd3'] = dial_cmd3
+            data_payload["dial-cmd3"] = dial_cmd3
         if username3 is not None:
-            data_payload['username3'] = username3
+            data_payload["username3"] = username3
         if passwd3 is not None:
-            data_payload['passwd3'] = passwd3
+            data_payload["passwd3"] = passwd3
         if extra_init3 is not None:
-            data_payload['extra-init3'] = extra_init3
+            data_payload["extra-init3"] = extra_init3
         if peer_modem3 is not None:
-            data_payload['peer-modem3'] = peer_modem3
+            data_payload["peer-modem3"] = peer_modem3
         if ppp_echo_request3 is not None:
-            data_payload['ppp-echo-request3'] = ppp_echo_request3
+            data_payload["ppp-echo-request3"] = ppp_echo_request3
         if altmode is not None:
-            data_payload['altmode'] = altmode
+            data_payload["altmode"] = altmode
         if authtype3 is not None:
-            data_payload['authtype3'] = authtype3
+            data_payload["authtype3"] = authtype3
         if traffic_check is not None:
-            data_payload['traffic-check'] = traffic_check
+            data_payload["traffic-check"] = traffic_check
         if distance is not None:
-            data_payload['distance'] = distance
+            data_payload["distance"] = distance
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

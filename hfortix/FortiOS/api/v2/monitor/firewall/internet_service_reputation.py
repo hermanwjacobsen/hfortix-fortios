@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.internet_service_reputation.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.internet_service_reputation.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class InternetServiceReputation:
     """
     Internetservicereputation Operations.
-    
+
     Provides read-only access for FortiOS internetservicereputation data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize InternetServiceReputation endpoint.
 
@@ -61,23 +61,25 @@ class InternetServiceReputation:
     ) -> dict[str, Any]:
         """
         List internet services with reputation information that exist at a given IP.
-        
+
         Args:
             ip: IP (in dot-decimal notation). (required)
             is_ipv6: Whether IP is IPv6. If not provided, will determine IP version based on given IP, but setting is_ipv6 flag is recommended. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.internet_service_reputation.get(ip='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['ip'] = ip
+        params["ip"] = ip
         if is_ipv6 is not None:
-            params['is_ipv6'] = is_ipv6
+            params["is_ipv6"] = is_ipv6
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-reputation", params=params)
+        return self._client.get(
+            "monitor", "/firewall/internet-service-reputation", params=params
+        )

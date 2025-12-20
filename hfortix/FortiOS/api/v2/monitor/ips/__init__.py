@@ -43,5 +43,5 @@ class Ips:
             "hold_signatures",
             "metadata",
             "rate_based",
-            "session"
+            "session",
         ]

@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.admin.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.admin.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.admin.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.admin.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.admin.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Admin:
     """
     Admin Operations.
-    
+
     Provides CRUD operations for FortiOS admin configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Admin:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Admin:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Admin endpoint.
 
@@ -90,7 +90,7 @@ class Admin:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Admin:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Admin:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/system/admin/{name}"
         else:
             endpoint = "/system/admin"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -193,7 +195,7 @@ class Admin:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -254,7 +256,7 @@ class Admin:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -262,127 +264,133 @@ class Admin:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/system/admin/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if remote_auth is not None:
-            data_payload['remote-auth'] = remote_auth
+            data_payload["remote-auth"] = remote_auth
         if remote_group is not None:
-            data_payload['remote-group'] = remote_group
+            data_payload["remote-group"] = remote_group
         if wildcard is not None:
-            data_payload['wildcard'] = wildcard
+            data_payload["wildcard"] = wildcard
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if peer_auth is not None:
-            data_payload['peer-auth'] = peer_auth
+            data_payload["peer-auth"] = peer_auth
         if peer_group is not None:
-            data_payload['peer-group'] = peer_group
+            data_payload["peer-group"] = peer_group
         if trusthost1 is not None:
-            data_payload['trusthost1'] = trusthost1
+            data_payload["trusthost1"] = trusthost1
         if trusthost2 is not None:
-            data_payload['trusthost2'] = trusthost2
+            data_payload["trusthost2"] = trusthost2
         if trusthost3 is not None:
-            data_payload['trusthost3'] = trusthost3
+            data_payload["trusthost3"] = trusthost3
         if trusthost4 is not None:
-            data_payload['trusthost4'] = trusthost4
+            data_payload["trusthost4"] = trusthost4
         if trusthost5 is not None:
-            data_payload['trusthost5'] = trusthost5
+            data_payload["trusthost5"] = trusthost5
         if trusthost6 is not None:
-            data_payload['trusthost6'] = trusthost6
+            data_payload["trusthost6"] = trusthost6
         if trusthost7 is not None:
-            data_payload['trusthost7'] = trusthost7
+            data_payload["trusthost7"] = trusthost7
         if trusthost8 is not None:
-            data_payload['trusthost8'] = trusthost8
+            data_payload["trusthost8"] = trusthost8
         if trusthost9 is not None:
-            data_payload['trusthost9'] = trusthost9
+            data_payload["trusthost9"] = trusthost9
         if trusthost10 is not None:
-            data_payload['trusthost10'] = trusthost10
+            data_payload["trusthost10"] = trusthost10
         if ip6_trusthost1 is not None:
-            data_payload['ip6-trusthost1'] = ip6_trusthost1
+            data_payload["ip6-trusthost1"] = ip6_trusthost1
         if ip6_trusthost2 is not None:
-            data_payload['ip6-trusthost2'] = ip6_trusthost2
+            data_payload["ip6-trusthost2"] = ip6_trusthost2
         if ip6_trusthost3 is not None:
-            data_payload['ip6-trusthost3'] = ip6_trusthost3
+            data_payload["ip6-trusthost3"] = ip6_trusthost3
         if ip6_trusthost4 is not None:
-            data_payload['ip6-trusthost4'] = ip6_trusthost4
+            data_payload["ip6-trusthost4"] = ip6_trusthost4
         if ip6_trusthost5 is not None:
-            data_payload['ip6-trusthost5'] = ip6_trusthost5
+            data_payload["ip6-trusthost5"] = ip6_trusthost5
         if ip6_trusthost6 is not None:
-            data_payload['ip6-trusthost6'] = ip6_trusthost6
+            data_payload["ip6-trusthost6"] = ip6_trusthost6
         if ip6_trusthost7 is not None:
-            data_payload['ip6-trusthost7'] = ip6_trusthost7
+            data_payload["ip6-trusthost7"] = ip6_trusthost7
         if ip6_trusthost8 is not None:
-            data_payload['ip6-trusthost8'] = ip6_trusthost8
+            data_payload["ip6-trusthost8"] = ip6_trusthost8
         if ip6_trusthost9 is not None:
-            data_payload['ip6-trusthost9'] = ip6_trusthost9
+            data_payload["ip6-trusthost9"] = ip6_trusthost9
         if ip6_trusthost10 is not None:
-            data_payload['ip6-trusthost10'] = ip6_trusthost10
+            data_payload["ip6-trusthost10"] = ip6_trusthost10
         if accprofile is not None:
-            data_payload['accprofile'] = accprofile
+            data_payload["accprofile"] = accprofile
         if allow_remove_admin_session is not None:
-            data_payload['allow-remove-admin-session'] = allow_remove_admin_session
+            data_payload["allow-remove-admin-session"] = (
+                allow_remove_admin_session
+            )
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if ssh_public_key1 is not None:
-            data_payload['ssh-public-key1'] = ssh_public_key1
+            data_payload["ssh-public-key1"] = ssh_public_key1
         if ssh_public_key2 is not None:
-            data_payload['ssh-public-key2'] = ssh_public_key2
+            data_payload["ssh-public-key2"] = ssh_public_key2
         if ssh_public_key3 is not None:
-            data_payload['ssh-public-key3'] = ssh_public_key3
+            data_payload["ssh-public-key3"] = ssh_public_key3
         if ssh_certificate is not None:
-            data_payload['ssh-certificate'] = ssh_certificate
+            data_payload["ssh-certificate"] = ssh_certificate
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if accprofile_override is not None:
-            data_payload['accprofile-override'] = accprofile_override
+            data_payload["accprofile-override"] = accprofile_override
         if vdom_override is not None:
-            data_payload['vdom-override'] = vdom_override
+            data_payload["vdom-override"] = vdom_override
         if password_expire is not None:
-            data_payload['password-expire'] = password_expire
+            data_payload["password-expire"] = password_expire
         if force_password_change is not None:
-            data_payload['force-password-change'] = force_password_change
+            data_payload["force-password-change"] = force_password_change
         if two_factor is not None:
-            data_payload['two-factor'] = two_factor
+            data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload['two-factor-authentication'] = two_factor_authentication
+            data_payload["two-factor-authentication"] = (
+                two_factor_authentication
+            )
         if two_factor_notification is not None:
-            data_payload['two-factor-notification'] = two_factor_notification
+            data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:
-            data_payload['fortitoken'] = fortitoken
+            data_payload["fortitoken"] = fortitoken
         if email_to is not None:
-            data_payload['email-to'] = email_to
+            data_payload["email-to"] = email_to
         if sms_server is not None:
-            data_payload['sms-server'] = sms_server
+            data_payload["sms-server"] = sms_server
         if sms_custom_server is not None:
-            data_payload['sms-custom-server'] = sms_custom_server
+            data_payload["sms-custom-server"] = sms_custom_server
         if sms_phone is not None:
-            data_payload['sms-phone'] = sms_phone
+            data_payload["sms-phone"] = sms_phone
         if guest_auth is not None:
-            data_payload['guest-auth'] = guest_auth
+            data_payload["guest-auth"] = guest_auth
         if guest_usergroups is not None:
-            data_payload['guest-usergroups'] = guest_usergroups
+            data_payload["guest-usergroups"] = guest_usergroups
         if guest_lang is not None:
-            data_payload['guest-lang'] = guest_lang
+            data_payload["guest-lang"] = guest_lang
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if list is not None:
-            data_payload['list'] = list
+            data_payload["list"] = list
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -394,13 +402,13 @@ class Admin:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -408,18 +416,20 @@ class Admin:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/admin/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -428,37 +438,39 @@ class Admin:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -522,7 +534,7 @@ class Admin:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -581,7 +593,7 @@ class Admin:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -589,7 +601,7 @@ class Admin:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -597,110 +609,116 @@ class Admin:
         params = {}
         endpoint = "/system/admin"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if remote_auth is not None:
-            data_payload['remote-auth'] = remote_auth
+            data_payload["remote-auth"] = remote_auth
         if remote_group is not None:
-            data_payload['remote-group'] = remote_group
+            data_payload["remote-group"] = remote_group
         if wildcard is not None:
-            data_payload['wildcard'] = wildcard
+            data_payload["wildcard"] = wildcard
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if peer_auth is not None:
-            data_payload['peer-auth'] = peer_auth
+            data_payload["peer-auth"] = peer_auth
         if peer_group is not None:
-            data_payload['peer-group'] = peer_group
+            data_payload["peer-group"] = peer_group
         if trusthost1 is not None:
-            data_payload['trusthost1'] = trusthost1
+            data_payload["trusthost1"] = trusthost1
         if trusthost2 is not None:
-            data_payload['trusthost2'] = trusthost2
+            data_payload["trusthost2"] = trusthost2
         if trusthost3 is not None:
-            data_payload['trusthost3'] = trusthost3
+            data_payload["trusthost3"] = trusthost3
         if trusthost4 is not None:
-            data_payload['trusthost4'] = trusthost4
+            data_payload["trusthost4"] = trusthost4
         if trusthost5 is not None:
-            data_payload['trusthost5'] = trusthost5
+            data_payload["trusthost5"] = trusthost5
         if trusthost6 is not None:
-            data_payload['trusthost6'] = trusthost6
+            data_payload["trusthost6"] = trusthost6
         if trusthost7 is not None:
-            data_payload['trusthost7'] = trusthost7
+            data_payload["trusthost7"] = trusthost7
         if trusthost8 is not None:
-            data_payload['trusthost8'] = trusthost8
+            data_payload["trusthost8"] = trusthost8
         if trusthost9 is not None:
-            data_payload['trusthost9'] = trusthost9
+            data_payload["trusthost9"] = trusthost9
         if trusthost10 is not None:
-            data_payload['trusthost10'] = trusthost10
+            data_payload["trusthost10"] = trusthost10
         if ip6_trusthost1 is not None:
-            data_payload['ip6-trusthost1'] = ip6_trusthost1
+            data_payload["ip6-trusthost1"] = ip6_trusthost1
         if ip6_trusthost2 is not None:
-            data_payload['ip6-trusthost2'] = ip6_trusthost2
+            data_payload["ip6-trusthost2"] = ip6_trusthost2
         if ip6_trusthost3 is not None:
-            data_payload['ip6-trusthost3'] = ip6_trusthost3
+            data_payload["ip6-trusthost3"] = ip6_trusthost3
         if ip6_trusthost4 is not None:
-            data_payload['ip6-trusthost4'] = ip6_trusthost4
+            data_payload["ip6-trusthost4"] = ip6_trusthost4
         if ip6_trusthost5 is not None:
-            data_payload['ip6-trusthost5'] = ip6_trusthost5
+            data_payload["ip6-trusthost5"] = ip6_trusthost5
         if ip6_trusthost6 is not None:
-            data_payload['ip6-trusthost6'] = ip6_trusthost6
+            data_payload["ip6-trusthost6"] = ip6_trusthost6
         if ip6_trusthost7 is not None:
-            data_payload['ip6-trusthost7'] = ip6_trusthost7
+            data_payload["ip6-trusthost7"] = ip6_trusthost7
         if ip6_trusthost8 is not None:
-            data_payload['ip6-trusthost8'] = ip6_trusthost8
+            data_payload["ip6-trusthost8"] = ip6_trusthost8
         if ip6_trusthost9 is not None:
-            data_payload['ip6-trusthost9'] = ip6_trusthost9
+            data_payload["ip6-trusthost9"] = ip6_trusthost9
         if ip6_trusthost10 is not None:
-            data_payload['ip6-trusthost10'] = ip6_trusthost10
+            data_payload["ip6-trusthost10"] = ip6_trusthost10
         if accprofile is not None:
-            data_payload['accprofile'] = accprofile
+            data_payload["accprofile"] = accprofile
         if allow_remove_admin_session is not None:
-            data_payload['allow-remove-admin-session'] = allow_remove_admin_session
+            data_payload["allow-remove-admin-session"] = (
+                allow_remove_admin_session
+            )
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if ssh_public_key1 is not None:
-            data_payload['ssh-public-key1'] = ssh_public_key1
+            data_payload["ssh-public-key1"] = ssh_public_key1
         if ssh_public_key2 is not None:
-            data_payload['ssh-public-key2'] = ssh_public_key2
+            data_payload["ssh-public-key2"] = ssh_public_key2
         if ssh_public_key3 is not None:
-            data_payload['ssh-public-key3'] = ssh_public_key3
+            data_payload["ssh-public-key3"] = ssh_public_key3
         if ssh_certificate is not None:
-            data_payload['ssh-certificate'] = ssh_certificate
+            data_payload["ssh-certificate"] = ssh_certificate
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if accprofile_override is not None:
-            data_payload['accprofile-override'] = accprofile_override
+            data_payload["accprofile-override"] = accprofile_override
         if vdom_override is not None:
-            data_payload['vdom-override'] = vdom_override
+            data_payload["vdom-override"] = vdom_override
         if password_expire is not None:
-            data_payload['password-expire'] = password_expire
+            data_payload["password-expire"] = password_expire
         if force_password_change is not None:
-            data_payload['force-password-change'] = force_password_change
+            data_payload["force-password-change"] = force_password_change
         if two_factor is not None:
-            data_payload['two-factor'] = two_factor
+            data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload['two-factor-authentication'] = two_factor_authentication
+            data_payload["two-factor-authentication"] = (
+                two_factor_authentication
+            )
         if two_factor_notification is not None:
-            data_payload['two-factor-notification'] = two_factor_notification
+            data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:
-            data_payload['fortitoken'] = fortitoken
+            data_payload["fortitoken"] = fortitoken
         if email_to is not None:
-            data_payload['email-to'] = email_to
+            data_payload["email-to"] = email_to
         if sms_server is not None:
-            data_payload['sms-server'] = sms_server
+            data_payload["sms-server"] = sms_server
         if sms_custom_server is not None:
-            data_payload['sms-custom-server'] = sms_custom_server
+            data_payload["sms-custom-server"] = sms_custom_server
         if sms_phone is not None:
-            data_payload['sms-phone'] = sms_phone
+            data_payload["sms-phone"] = sms_phone
         if guest_auth is not None:
-            data_payload['guest-auth'] = guest_auth
+            data_payload["guest-auth"] = guest_auth
         if guest_usergroups is not None:
-            data_payload['guest-usergroups'] = guest_usergroups
+            data_payload["guest-usergroups"] = guest_usergroups
         if guest_lang is not None:
-            data_payload['guest-lang'] = guest_lang
+            data_payload["guest-lang"] = guest_lang
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if list is not None:
-            data_payload['list'] = list
+            data_payload["list"] = list
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

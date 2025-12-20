@@ -1,7 +1,5 @@
 """FortiOS CMDB - Firewall category"""
 
-from .DoS_policy import DosPolicy
-from .DoS_policy6 import DosPolicy6
 from .access_proxy import AccessProxy
 from .access_proxy6 import AccessProxy6
 from .access_proxy_ssh_client_cert import AccessProxySshClientCert
@@ -17,6 +15,8 @@ from .city import City
 from .country import Country
 from .decrypted_traffic_mirror import DecryptedTrafficMirror
 from .dnstranslation import Dnstranslation
+from .DoS_policy import DosPolicy
+from .DoS_policy6 import DosPolicy6
 from .global_ import Global
 from .identity_based_route import IdentityBasedRoute
 from .interface_policy import InterfacePolicy
@@ -67,10 +67,17 @@ from .security_policy import SecurityPolicy
 from .service_category import ServiceCategory
 from .service_custom import ServiceCustom
 from .service_group import ServiceGroup
+from .shaper_per_ip_shaper import ShaperPerIpShaper
+from .shaper_traffic_shaper import ShaperTrafficShaper
 from .shaping_policy import ShapingPolicy
 from .shaping_profile import ShapingProfile
 from .sniffer import Sniffer
+from .ssh_host_key import SshHostKey
+from .ssh_local_ca import SshLocalCa
+from .ssh_local_key import SshLocalKey
+from .ssh_setting import SshSetting
 from .ssl_server import SslServer
+from .ssl_setting import SslSetting
 from .ssl_ssh_profile import SslSshProfile
 from .traffic_class import TrafficClass
 from .ttl_policy import TtlPolicy
@@ -80,22 +87,105 @@ from .vip import Vip
 from .vip6 import Vip6
 from .vipgrp import Vipgrp
 from .vipgrp6 import Vipgrp6
-from .shaper_per_ip_shaper import ShaperPerIpShaper
-from .shaper_traffic_shaper import ShaperTrafficShaper
-from .ssh_host_key import SshHostKey
-from .ssh_local_ca import SshLocalCa
-from .ssh_local_key import SshLocalKey
-from .ssh_setting import SshSetting
-from .ssl_setting import SslSetting
 from .wildcard_fqdn_custom import WildcardFqdnCustom
 from .wildcard_fqdn_group import WildcardFqdnGroup
 
-__all__ = ['DosPolicy', 'DosPolicy6', 'AccessProxy', 'AccessProxy6', 'AccessProxySshClientCert', 'AccessProxyVirtualHost', 'Address', 'Address6', 'Address6Template', 'Addrgrp', 'Addrgrp6', 'AuthPortal', 'CentralSnatMap', 'City', 'Country', 'DecryptedTrafficMirror', 'Dnstranslation', 'Global', 'IdentityBasedRoute', 'InterfacePolicy', 'InterfacePolicy6', 'InternetService', 'InternetServiceAddition', 'InternetServiceAppend', 'InternetServiceBotnet', 'InternetServiceCustom', 'InternetServiceCustomGroup', 'InternetServiceDefinition', 'InternetServiceExtension', 'InternetServiceFortiguard', 'InternetServiceGroup', 'InternetServiceIpblReason', 'InternetServiceIpblVendor', 'InternetServiceList', 'InternetServiceName', 'InternetServiceOwner', 'InternetServiceReputation', 'InternetServiceSld', 'InternetServiceSubapp', 'IpTranslation', 'IpmacbindingSetting', 'IpmacbindingTable', 'Ippool', 'Ippool6', 'LdbMonitor', 'LocalInPolicy', 'LocalInPolicy6', 'MulticastAddress', 'MulticastAddress6', 'MulticastPolicy', 'MulticastPolicy6', 'NetworkServiceDynamic', 'OnDemandSniffer', 'Policy', 'ProfileGroup', 'ProfileProtocolOptions', 'ProxyAddress', 'ProxyAddrgrp', 'ProxyPolicy', 'Region', 'ScheduleGroup', 'ScheduleOnetime', 'ScheduleRecurring', 'SecurityPolicy', 'ServiceCategory', 'ServiceCustom', 'ServiceGroup', 'ShapingPolicy', 'ShapingProfile', 'Sniffer', 'SslServer', 'SslSshProfile', 'TrafficClass', 'TtlPolicy', 'VendorMac', 'VendorMacSummary', 'Vip', 'Vip6', 'Vipgrp', 'Vipgrp6', 'ShaperPerIpShaper', 'ShaperTrafficShaper', 'SshHostKey', 'SshLocalCa', 'SshLocalKey', 'SshSetting', 'SslSetting', 'WildcardFqdnCustom', 'WildcardFqdnGroup']
+__all__ = [
+    "DosPolicy",
+    "DosPolicy6",
+    "AccessProxy",
+    "AccessProxy6",
+    "AccessProxySshClientCert",
+    "AccessProxyVirtualHost",
+    "Address",
+    "Address6",
+    "Address6Template",
+    "Addrgrp",
+    "Addrgrp6",
+    "AuthPortal",
+    "CentralSnatMap",
+    "City",
+    "Country",
+    "DecryptedTrafficMirror",
+    "Dnstranslation",
+    "Global",
+    "IdentityBasedRoute",
+    "InterfacePolicy",
+    "InterfacePolicy6",
+    "InternetService",
+    "InternetServiceAddition",
+    "InternetServiceAppend",
+    "InternetServiceBotnet",
+    "InternetServiceCustom",
+    "InternetServiceCustomGroup",
+    "InternetServiceDefinition",
+    "InternetServiceExtension",
+    "InternetServiceFortiguard",
+    "InternetServiceGroup",
+    "InternetServiceIpblReason",
+    "InternetServiceIpblVendor",
+    "InternetServiceList",
+    "InternetServiceName",
+    "InternetServiceOwner",
+    "InternetServiceReputation",
+    "InternetServiceSld",
+    "InternetServiceSubapp",
+    "IpTranslation",
+    "IpmacbindingSetting",
+    "IpmacbindingTable",
+    "Ippool",
+    "Ippool6",
+    "LdbMonitor",
+    "LocalInPolicy",
+    "LocalInPolicy6",
+    "MulticastAddress",
+    "MulticastAddress6",
+    "MulticastPolicy",
+    "MulticastPolicy6",
+    "NetworkServiceDynamic",
+    "OnDemandSniffer",
+    "Policy",
+    "ProfileGroup",
+    "ProfileProtocolOptions",
+    "ProxyAddress",
+    "ProxyAddrgrp",
+    "ProxyPolicy",
+    "Region",
+    "ScheduleGroup",
+    "ScheduleOnetime",
+    "ScheduleRecurring",
+    "SecurityPolicy",
+    "ServiceCategory",
+    "ServiceCustom",
+    "ServiceGroup",
+    "ShapingPolicy",
+    "ShapingProfile",
+    "Sniffer",
+    "SslServer",
+    "SslSshProfile",
+    "TrafficClass",
+    "TtlPolicy",
+    "VendorMac",
+    "VendorMacSummary",
+    "Vip",
+    "Vip6",
+    "Vipgrp",
+    "Vipgrp6",
+    "ShaperPerIpShaper",
+    "ShaperTrafficShaper",
+    "SshHostKey",
+    "SshLocalCa",
+    "SshLocalKey",
+    "SshSetting",
+    "SslSetting",
+    "WildcardFqdnCustom",
+    "WildcardFqdnGroup",
+]
 
 
 class Shaper:
     """Wrapper for shaper.* endpoints."""
-    
+
     def __init__(self, client):
         """Initialize Shaper endpoints."""
         self.per_ip_shaper = ShaperPerIpShaper(client)
@@ -104,7 +194,7 @@ class Shaper:
 
 class Ssh:
     """Wrapper for ssh.* endpoints."""
-    
+
     def __init__(self, client):
         """Initialize Ssh endpoints."""
         self.host_key = SshHostKey(client)
@@ -115,7 +205,7 @@ class Ssh:
 
 class Ssl:
     """Wrapper for ssl.* endpoints."""
-    
+
     def __init__(self, client):
         """Initialize Ssl endpoints."""
         self.setting = SslSetting(client)
@@ -123,7 +213,7 @@ class Ssl:
 
 class WildcardFqdn:
     """Wrapper for wildcard_fqdn.* endpoints."""
-    
+
     def __init__(self, client):
         """Initialize WildcardFqdn endpoints."""
         self.custom = WildcardFqdnCustom(client)
@@ -133,14 +223,14 @@ class WildcardFqdn:
 class Firewall:
     """
     Firewall category wrapper.
-    
+
     This class provides access to all firewall CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Firewall with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

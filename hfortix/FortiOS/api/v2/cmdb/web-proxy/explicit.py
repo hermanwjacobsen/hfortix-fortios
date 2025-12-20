@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.web_proxy.explicit.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.web_proxy.explicit.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.web_proxy.explicit.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.web_proxy.explicit.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.web_proxy.explicit.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Explicit:
     """
     Explicit Operations.
-    
+
     Provides CRUD operations for FortiOS explicit configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Explicit:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Explicit endpoint.
 
@@ -82,14 +82,14 @@ class Explicit:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Explicit:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/web-proxy/explicit"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -159,7 +161,7 @@ class Explicit:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -205,7 +207,7 @@ class Explicit:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -213,7 +215,7 @@ class Explicit:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -221,84 +223,90 @@ class Explicit:
         params = {}
         endpoint = "/web-proxy/explicit"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if secure_web_proxy is not None:
-            data_payload['secure-web-proxy'] = secure_web_proxy
+            data_payload["secure-web-proxy"] = secure_web_proxy
         if ftp_over_http is not None:
-            data_payload['ftp-over-http'] = ftp_over_http
+            data_payload["ftp-over-http"] = ftp_over_http
         if socks is not None:
-            data_payload['socks'] = socks
+            data_payload["socks"] = socks
         if http_incoming_port is not None:
-            data_payload['http-incoming-port'] = http_incoming_port
+            data_payload["http-incoming-port"] = http_incoming_port
         if http_connection_mode is not None:
-            data_payload['http-connection-mode'] = http_connection_mode
+            data_payload["http-connection-mode"] = http_connection_mode
         if https_incoming_port is not None:
-            data_payload['https-incoming-port'] = https_incoming_port
+            data_payload["https-incoming-port"] = https_incoming_port
         if secure_web_proxy_cert is not None:
-            data_payload['secure-web-proxy-cert'] = secure_web_proxy_cert
+            data_payload["secure-web-proxy-cert"] = secure_web_proxy_cert
         if client_cert is not None:
-            data_payload['client-cert'] = client_cert
+            data_payload["client-cert"] = client_cert
         if user_agent_detect is not None:
-            data_payload['user-agent-detect'] = user_agent_detect
+            data_payload["user-agent-detect"] = user_agent_detect
         if empty_cert_action is not None:
-            data_payload['empty-cert-action'] = empty_cert_action
+            data_payload["empty-cert-action"] = empty_cert_action
         if ssl_dh_bits is not None:
-            data_payload['ssl-dh-bits'] = ssl_dh_bits
+            data_payload["ssl-dh-bits"] = ssl_dh_bits
         if ftp_incoming_port is not None:
-            data_payload['ftp-incoming-port'] = ftp_incoming_port
+            data_payload["ftp-incoming-port"] = ftp_incoming_port
         if socks_incoming_port is not None:
-            data_payload['socks-incoming-port'] = socks_incoming_port
+            data_payload["socks-incoming-port"] = socks_incoming_port
         if incoming_ip is not None:
-            data_payload['incoming-ip'] = incoming_ip
+            data_payload["incoming-ip"] = incoming_ip
         if outgoing_ip is not None:
-            data_payload['outgoing-ip'] = outgoing_ip
+            data_payload["outgoing-ip"] = outgoing_ip
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         if ipv6_status is not None:
-            data_payload['ipv6-status'] = ipv6_status
+            data_payload["ipv6-status"] = ipv6_status
         if incoming_ip6 is not None:
-            data_payload['incoming-ip6'] = incoming_ip6
+            data_payload["incoming-ip6"] = incoming_ip6
         if outgoing_ip6 is not None:
-            data_payload['outgoing-ip6'] = outgoing_ip6
+            data_payload["outgoing-ip6"] = outgoing_ip6
         if strict_guest is not None:
-            data_payload['strict-guest'] = strict_guest
+            data_payload["strict-guest"] = strict_guest
         if pref_dns_result is not None:
-            data_payload['pref-dns-result'] = pref_dns_result
+            data_payload["pref-dns-result"] = pref_dns_result
         if unknown_http_version is not None:
-            data_payload['unknown-http-version'] = unknown_http_version
+            data_payload["unknown-http-version"] = unknown_http_version
         if realm is not None:
-            data_payload['realm'] = realm
+            data_payload["realm"] = realm
         if sec_default_action is not None:
-            data_payload['sec-default-action'] = sec_default_action
+            data_payload["sec-default-action"] = sec_default_action
         if https_replacement_message is not None:
-            data_payload['https-replacement-message'] = https_replacement_message
+            data_payload["https-replacement-message"] = (
+                https_replacement_message
+            )
         if message_upon_server_error is not None:
-            data_payload['message-upon-server-error'] = message_upon_server_error
+            data_payload["message-upon-server-error"] = (
+                message_upon_server_error
+            )
         if pac_file_server_status is not None:
-            data_payload['pac-file-server-status'] = pac_file_server_status
+            data_payload["pac-file-server-status"] = pac_file_server_status
         if pac_file_url is not None:
-            data_payload['pac-file-url'] = pac_file_url
+            data_payload["pac-file-url"] = pac_file_url
         if pac_file_server_port is not None:
-            data_payload['pac-file-server-port'] = pac_file_server_port
+            data_payload["pac-file-server-port"] = pac_file_server_port
         if pac_file_through_https is not None:
-            data_payload['pac-file-through-https'] = pac_file_through_https
+            data_payload["pac-file-through-https"] = pac_file_through_https
         if pac_file_name is not None:
-            data_payload['pac-file-name'] = pac_file_name
+            data_payload["pac-file-name"] = pac_file_name
         if pac_file_data is not None:
-            data_payload['pac-file-data'] = pac_file_data
+            data_payload["pac-file-data"] = pac_file_data
         if pac_policy is not None:
-            data_payload['pac-policy'] = pac_policy
+            data_payload["pac-policy"] = pac_policy
         if ssl_algorithm is not None:
-            data_payload['ssl-algorithm'] = ssl_algorithm
+            data_payload["ssl-algorithm"] = ssl_algorithm
         if trace_auth_no_rsp is not None:
-            data_payload['trace-auth-no-rsp'] = trace_auth_no_rsp
+            data_payload["trace-auth-no-rsp"] = trace_auth_no_rsp
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

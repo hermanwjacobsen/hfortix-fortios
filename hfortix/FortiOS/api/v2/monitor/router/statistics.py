@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.router.statistics.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.router.statistics.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Statistics:
     """
     Statistics Operations.
-    
+
     Provides read-only access for FortiOS statistics data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Statistics endpoint.
 
@@ -66,7 +66,7 @@ class Statistics:
     ) -> dict[str, Any]:
         """
         Retrieve routing table statistics, including number of matched routes.
-        
+
         Args:
             operator: Filter logic [*and|or]. (optional)
             ip_version: IP version (4|6). If not present, IPv4 and IPv6 will be returned. (optional)
@@ -78,27 +78,27 @@ class Statistics:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.statistics.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if operator is not None:
-            params['operator'] = operator
+            params["operator"] = operator
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         if ip_mask is not None:
-            params['ip_mask'] = ip_mask
+            params["ip_mask"] = ip_mask
         if gateway is not None:
-            params['gateway'] = gateway
+            params["gateway"] = gateway
         if type is not None:
-            params['type'] = type
+            params["type"] = type
         if origin is not None:
-            params['origin'] = origin
+            params["origin"] = origin
         if interface is not None:
-            params['interface'] = interface
+            params["interface"] = interface
         params.update(kwargs)
         return self._client.get("monitor", "/router/statistics", params=params)

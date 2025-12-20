@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.user.firewall.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.user.firewall.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Auth:
     """
     Auth Operations.
-    
+
     Provides read-only access for FortiOS auth data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Auth endpoint.
 
@@ -62,7 +62,7 @@ class Auth:
     ) -> dict[str, Any]:
         """
         Trigger authentication for a single firewall user.
-        
+
         Args:
             username: User name. (optional)
             ip: User IP address. (optional)
@@ -70,20 +70,20 @@ class Auth:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.firewall.auth.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if username is not None:
-            data['username'] = username
+            data["username"] = username
         if ip is not None:
-            data['ip'] = ip
+            data["ip"] = ip
         if server is not None:
-            data['server'] = server
+            data["server"] = server
         data.update(kwargs)
         return self._client.post("monitor", "/user/firewall/auth", data=data)
 
@@ -91,7 +91,7 @@ class Auth:
 class Count:
     """Count operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Count endpoint.
 
@@ -111,7 +111,7 @@ class Count:
     ) -> dict[str, Any]:
         """
         Get the number of authenticated firewall users.
-        
+
         Args:
             ipv4: Include IPv4 users (default=true). (optional)
             ipv6: Include IPv6 users (default=false). (optional)
@@ -119,28 +119,30 @@ class Count:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.firewall.count.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if ipv4 is not None:
-            params['ipv4'] = ipv4
+            params["ipv4"] = ipv4
         if ipv6 is not None:
-            params['ipv6'] = ipv6
+            params["ipv6"] = ipv6
         if include_fsso is not None:
-            params['include_fsso'] = include_fsso
+            params["include_fsso"] = include_fsso
         params.update(kwargs)
-        return self._client.get("monitor", "/user/firewall/count", params=params)
+        return self._client.get(
+            "monitor", "/user/firewall/count", params=params
+        )
 
 
 class Deauth:
     """Deauth operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Deauth endpoint.
 
@@ -164,7 +166,7 @@ class Deauth:
     ) -> dict[str, Any]:
         """
         Deauthenticate single, multiple, or all firewall users.
-        
+
         Args:
             user_type: User type [proxy|firewall]. Required for both proxy and firewall users. (optional)
             id: User ID. Required for both proxy and firewall users. (optional)
@@ -176,28 +178,28 @@ class Deauth:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.firewall.deauth.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if user_type is not None:
-            data['user_type'] = user_type
+            data["user_type"] = user_type
         if id is not None:
-            data['id'] = id
+            data["id"] = id
         if ip is not None:
-            data['ip'] = ip
+            data["ip"] = ip
         if ip_version is not None:
-            data['ip_version'] = ip_version
+            data["ip_version"] = ip_version
         if method is not None:
-            data['method'] = method
+            data["method"] = method
         if all is not None:
-            data['all'] = all
+            data["all"] = all
         if users is not None:
-            data['users'] = users
+            data["users"] = users
         data.update(kwargs)
         return self._client.post("monitor", "/user/firewall/deauth", data=data)
 
@@ -205,7 +207,7 @@ class Deauth:
 class Firewall:
     """Firewall operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Firewall endpoint.
 
@@ -230,7 +232,7 @@ class Firewall:
     ) -> dict[str, Any]:
         """
         List authenticated firewall users.
-        
+
         Args:
             ipv4: Include IPv4 users (default=true). (optional)
             ipv6: Include IPv6 users (default=false). (optional)
@@ -238,19 +240,19 @@ class Firewall:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.firewall.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if ipv4 is not None:
-            params['ipv4'] = ipv4
+            params["ipv4"] = ipv4
         if ipv6 is not None:
-            params['ipv6'] = ipv6
+            params["ipv6"] = ipv6
         if include_fsso is not None:
-            params['include_fsso'] = include_fsso
+            params["include_fsso"] = include_fsso
         params.update(kwargs)
         return self._client.get("monitor", "/user/firewall", params=params)

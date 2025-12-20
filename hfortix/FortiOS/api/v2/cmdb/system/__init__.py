@@ -145,21 +145,165 @@ from .vxlan import Vxlan
 from .wccp import Wccp
 from .zone import Zone
 
-__all__ = ['Accprofile', 'Acme', 'Admin', 'AffinityInterrupt', 'AffinityPacketRedistribution', 'Alarm', 'Alias', 'ApiUser', 'ArpTable', 'AutoInstall', 'AutoScript', 'AutomationAction', 'AutomationCondition', 'AutomationDestination', 'AutomationStitch', 'AutomationTrigger', 'AutoupdateSchedule', 'CentralManagement', 'CloudService', 'Console', 'Csf', 'CustomLanguage', 'Ddns', 'DedicatedMgmt', 'DeviceUpgrade', 'DeviceUpgradeExemptions', 'Dhcp6Server', 'DhcpServer', 'Dns', 'Dns64', 'DnsDatabase', 'DnsServer', 'DscpBasedPriority', 'EmailServer', 'Evpn', 'ExternalResource', 'FabricVpn', 'FederatedUpgrade', 'FipsCc', 'Fortiguard', 'Fortisandbox', 'FssoPolling', 'FtmPush', 'Geneve', 'GeoipCountry', 'GeoipOverride', 'Global', 'GreTunnel', 'Ha', 'HaMonitor', 'HealthCheckFortiguard', 'Ike', 'Interface', 'Ipam', 'IpipTunnel', 'Ips', 'IpsUrlfilterDns', 'IpsUrlfilterDns6', 'IpsecAggregate', 'Ipv6NeighborCache', 'Ipv6Tunnel', 'LinkMonitor', 'LldpNetworkPolicy', 'LteModem', 'MacAddressTable', 'MobileTunnel', 'Modem', 'NdProxy', 'Netflow', 'NetworkVisibility', 'NgfwSettings', 'Np6xlite', 'Npu', 'Ntp', 'ObjectTagging', 'PasswordPolicy', 'PasswordPolicyGuestAdmin', 'PcpServer', 'PhysicalSwitch', 'PppoeInterface', 'ProbeResponse', 'ProxyArp', 'Ptp', 'ReplacemsgAdmin', 'ReplacemsgAlertmail', 'ReplacemsgAuth', 'ReplacemsgAutomation', 'ReplacemsgFortiguardWf', 'ReplacemsgGroup', 'ReplacemsgHttp', 'ReplacemsgImage', 'ReplacemsgMail', 'ReplacemsgNacQuar', 'ReplacemsgSpam', 'ReplacemsgSslvpn', 'ReplacemsgTrafficQuota', 'ReplacemsgUtm', 'ResourceLimits', 'Saml', 'SdnConnector', 'SdnProxy', 'SdnVpn', 'Sdwan', 'SecurityRatingControls', 'SecurityRatingSettings', 'SessionHelper', 'SessionTtl', 'Settings', 'Sflow', 'SitTunnel', 'SmsServer', 'SnmpCommunity', 'SnmpMibView', 'SnmpRmonStat', 'SnmpSysinfo', 'SnmpUser', 'SovSase', 'SpeedTestSchedule', 'SpeedTestServer', 'SpeedTestSetting', 'SshConfig', 'SsoAdmin', 'SsoForticloudAdmin', 'SsoFortigateCloudAdmin', 'StandaloneCluster', 'Storage', 'Stp', 'SwitchInterface', 'Timezone', 'TosBasedPriority', 'Vdom', 'VdomDns', 'VdomException', 'VdomLink', 'VdomNetflow', 'VdomProperty', 'VdomRadiusServer', 'VdomSflow', 'VirtualSwitch', 'VirtualWirePair', 'VneInterface', 'Vxlan', 'Wccp', 'Zone']
-
+__all__ = [
+    "Accprofile",
+    "Acme",
+    "Admin",
+    "AffinityInterrupt",
+    "AffinityPacketRedistribution",
+    "Alarm",
+    "Alias",
+    "ApiUser",
+    "ArpTable",
+    "AutoInstall",
+    "AutoScript",
+    "AutomationAction",
+    "AutomationCondition",
+    "AutomationDestination",
+    "AutomationStitch",
+    "AutomationTrigger",
+    "AutoupdateSchedule",
+    "CentralManagement",
+    "CloudService",
+    "Console",
+    "Csf",
+    "CustomLanguage",
+    "Ddns",
+    "DedicatedMgmt",
+    "DeviceUpgrade",
+    "DeviceUpgradeExemptions",
+    "Dhcp6Server",
+    "DhcpServer",
+    "Dns",
+    "Dns64",
+    "DnsDatabase",
+    "DnsServer",
+    "DscpBasedPriority",
+    "EmailServer",
+    "Evpn",
+    "ExternalResource",
+    "FabricVpn",
+    "FederatedUpgrade",
+    "FipsCc",
+    "Fortiguard",
+    "Fortisandbox",
+    "FssoPolling",
+    "FtmPush",
+    "Geneve",
+    "GeoipCountry",
+    "GeoipOverride",
+    "Global",
+    "GreTunnel",
+    "Ha",
+    "HaMonitor",
+    "HealthCheckFortiguard",
+    "Ike",
+    "Interface",
+    "Ipam",
+    "IpipTunnel",
+    "Ips",
+    "IpsUrlfilterDns",
+    "IpsUrlfilterDns6",
+    "IpsecAggregate",
+    "Ipv6NeighborCache",
+    "Ipv6Tunnel",
+    "LinkMonitor",
+    "LldpNetworkPolicy",
+    "LteModem",
+    "MacAddressTable",
+    "MobileTunnel",
+    "Modem",
+    "NdProxy",
+    "Netflow",
+    "NetworkVisibility",
+    "NgfwSettings",
+    "Np6xlite",
+    "Npu",
+    "Ntp",
+    "ObjectTagging",
+    "PasswordPolicy",
+    "PasswordPolicyGuestAdmin",
+    "PcpServer",
+    "PhysicalSwitch",
+    "PppoeInterface",
+    "ProbeResponse",
+    "ProxyArp",
+    "Ptp",
+    "ReplacemsgAdmin",
+    "ReplacemsgAlertmail",
+    "ReplacemsgAuth",
+    "ReplacemsgAutomation",
+    "ReplacemsgFortiguardWf",
+    "ReplacemsgGroup",
+    "ReplacemsgHttp",
+    "ReplacemsgImage",
+    "ReplacemsgMail",
+    "ReplacemsgNacQuar",
+    "ReplacemsgSpam",
+    "ReplacemsgSslvpn",
+    "ReplacemsgTrafficQuota",
+    "ReplacemsgUtm",
+    "ResourceLimits",
+    "Saml",
+    "SdnConnector",
+    "SdnProxy",
+    "SdnVpn",
+    "Sdwan",
+    "SecurityRatingControls",
+    "SecurityRatingSettings",
+    "SessionHelper",
+    "SessionTtl",
+    "Settings",
+    "Sflow",
+    "SitTunnel",
+    "SmsServer",
+    "SnmpCommunity",
+    "SnmpMibView",
+    "SnmpRmonStat",
+    "SnmpSysinfo",
+    "SnmpUser",
+    "SovSase",
+    "SpeedTestSchedule",
+    "SpeedTestServer",
+    "SpeedTestSetting",
+    "SshConfig",
+    "SsoAdmin",
+    "SsoForticloudAdmin",
+    "SsoFortigateCloudAdmin",
+    "StandaloneCluster",
+    "Storage",
+    "Stp",
+    "SwitchInterface",
+    "Timezone",
+    "TosBasedPriority",
+    "Vdom",
+    "VdomDns",
+    "VdomException",
+    "VdomLink",
+    "VdomNetflow",
+    "VdomProperty",
+    "VdomRadiusServer",
+    "VdomSflow",
+    "VirtualSwitch",
+    "VirtualWirePair",
+    "VneInterface",
+    "Vxlan",
+    "Wccp",
+    "Zone",
+]
 
 
 class System:
     """
     System category wrapper.
-    
+
     This class provides access to all system CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize System with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """
@@ -167,7 +311,9 @@ class System:
         self.acme = Acme(client)
         self.admin = Admin(client)
         self.affinity_interrupt = AffinityInterrupt(client)
-        self.affinity_packet_redistribution = AffinityPacketRedistribution(client)
+        self.affinity_packet_redistribution = AffinityPacketRedistribution(
+            client
+        )
         self.alarm = Alarm(client)
         self.alias = Alias(client)
         self.api_user = ApiUser(client)

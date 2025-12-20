@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.network.fortiguard.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.network.fortiguard.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class LiveServicesLatency:
     """
     Liveserviceslatency Operations.
-    
+
     Provides read-only access for FortiOS liveserviceslatency data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize LiveServicesLatency endpoint.
 
@@ -59,27 +59,31 @@ class LiveServicesLatency:
     ) -> dict[str, Any]:
         """
         Get latency information for live FortiGuard services.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.network.fortiguard.live_services_latency.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/network/fortiguard/live-services-latency", params=params)
+        return self._client.get(
+            "monitor",
+            "/network/fortiguard/live-services-latency",
+            params=params,
+        )
 
 
 class Fortiguard:
     """Fortiguard operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Fortiguard endpoint.
 

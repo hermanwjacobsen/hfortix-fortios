@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.global_.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.global_.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.global_.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.global_.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.global_.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Global:
     """
     Global Operations.
-    
+
     Provides CRUD operations for FortiOS global configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Global:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Global endpoint.
 
@@ -82,14 +82,14 @@ class Global:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/wireless-controller/global"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -155,7 +157,7 @@ class Global:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -197,7 +199,7 @@ class Global:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -205,7 +207,7 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -213,76 +215,80 @@ class Global:
         params = {}
         endpoint = "/wireless-controller/global"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if location is not None:
-            data_payload['location'] = location
+            data_payload["location"] = location
         if acd_process_count is not None:
-            data_payload['acd-process-count'] = acd_process_count
+            data_payload["acd-process-count"] = acd_process_count
         if wpad_process_count is not None:
-            data_payload['wpad-process-count'] = wpad_process_count
+            data_payload["wpad-process-count"] = wpad_process_count
         if image_download is not None:
-            data_payload['image-download'] = image_download
+            data_payload["image-download"] = image_download
         if rolling_wtp_upgrade is not None:
-            data_payload['rolling-wtp-upgrade'] = rolling_wtp_upgrade
+            data_payload["rolling-wtp-upgrade"] = rolling_wtp_upgrade
         if rolling_wtp_upgrade_threshold is not None:
-            data_payload['rolling-wtp-upgrade-threshold'] = rolling_wtp_upgrade_threshold
+            data_payload["rolling-wtp-upgrade-threshold"] = (
+                rolling_wtp_upgrade_threshold
+            )
         if max_retransmit is not None:
-            data_payload['max-retransmit'] = max_retransmit
+            data_payload["max-retransmit"] = max_retransmit
         if control_message_offload is not None:
-            data_payload['control-message-offload'] = control_message_offload
+            data_payload["control-message-offload"] = control_message_offload
         if data_ethernet_II is not None:
-            data_payload['data-ethernet-II'] = data_ethernet_II
+            data_payload["data-ethernet-II"] = data_ethernet_II
         if link_aggregation is not None:
-            data_payload['link-aggregation'] = link_aggregation
+            data_payload["link-aggregation"] = link_aggregation
         if mesh_eth_type is not None:
-            data_payload['mesh-eth-type'] = mesh_eth_type
+            data_payload["mesh-eth-type"] = mesh_eth_type
         if fiapp_eth_type is not None:
-            data_payload['fiapp-eth-type'] = fiapp_eth_type
+            data_payload["fiapp-eth-type"] = fiapp_eth_type
         if discovery_mc_addr is not None:
-            data_payload['discovery-mc-addr'] = discovery_mc_addr
+            data_payload["discovery-mc-addr"] = discovery_mc_addr
         if discovery_mc_addr6 is not None:
-            data_payload['discovery-mc-addr6'] = discovery_mc_addr6
+            data_payload["discovery-mc-addr6"] = discovery_mc_addr6
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if rogue_scan_mac_adjacency is not None:
-            data_payload['rogue-scan-mac-adjacency'] = rogue_scan_mac_adjacency
+            data_payload["rogue-scan-mac-adjacency"] = rogue_scan_mac_adjacency
         if ipsec_base_ip is not None:
-            data_payload['ipsec-base-ip'] = ipsec_base_ip
+            data_payload["ipsec-base-ip"] = ipsec_base_ip
         if wtp_share is not None:
-            data_payload['wtp-share'] = wtp_share
+            data_payload["wtp-share"] = wtp_share
         if tunnel_mode is not None:
-            data_payload['tunnel-mode'] = tunnel_mode
+            data_payload["tunnel-mode"] = tunnel_mode
         if nac_interval is not None:
-            data_payload['nac-interval'] = nac_interval
+            data_payload["nac-interval"] = nac_interval
         if ap_log_server is not None:
-            data_payload['ap-log-server'] = ap_log_server
+            data_payload["ap-log-server"] = ap_log_server
         if ap_log_server_ip is not None:
-            data_payload['ap-log-server-ip'] = ap_log_server_ip
+            data_payload["ap-log-server-ip"] = ap_log_server_ip
         if ap_log_server_port is not None:
-            data_payload['ap-log-server-port'] = ap_log_server_port
+            data_payload["ap-log-server-port"] = ap_log_server_port
         if max_sta_offline is not None:
-            data_payload['max-sta-offline'] = max_sta_offline
+            data_payload["max-sta-offline"] = max_sta_offline
         if max_sta_offline_ip2mac is not None:
-            data_payload['max-sta-offline-ip2mac'] = max_sta_offline_ip2mac
+            data_payload["max-sta-offline-ip2mac"] = max_sta_offline_ip2mac
         if max_sta_cap is not None:
-            data_payload['max-sta-cap'] = max_sta_cap
+            data_payload["max-sta-cap"] = max_sta_cap
         if max_sta_cap_wtp is not None:
-            data_payload['max-sta-cap-wtp'] = max_sta_cap_wtp
+            data_payload["max-sta-cap-wtp"] = max_sta_cap_wtp
         if max_rogue_ap is not None:
-            data_payload['max-rogue-ap'] = max_rogue_ap
+            data_payload["max-rogue-ap"] = max_rogue_ap
         if max_rogue_ap_wtp is not None:
-            data_payload['max-rogue-ap-wtp'] = max_rogue_ap_wtp
+            data_payload["max-rogue-ap-wtp"] = max_rogue_ap_wtp
         if max_rogue_sta is not None:
-            data_payload['max-rogue-sta'] = max_rogue_sta
+            data_payload["max-rogue-sta"] = max_rogue_sta
         if max_wids_entry is not None:
-            data_payload['max-wids-entry'] = max_wids_entry
+            data_payload["max-wids-entry"] = max_wids_entry
         if max_ble_device is not None:
-            data_payload['max-ble-device'] = max_ble_device
+            data_payload["max-ble-device"] = max_ble_device
         if dfs_lab_test is not None:
-            data_payload['dfs-lab-test'] = dfs_lab_test
+            data_payload["dfs-lab-test"] = dfs_lab_test
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.router.isis.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.router.isis.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.router.isis.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.router.isis.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.router.isis.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Isis:
     """
     Isis Operations.
-    
+
     Provides CRUD operations for FortiOS isis configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Isis:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Isis endpoint.
 
@@ -82,14 +82,14 @@ class Isis:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Isis:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/router/isis"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -162,7 +164,7 @@ class Isis:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -211,7 +213,7 @@ class Isis:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -219,7 +221,7 @@ class Isis:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -227,90 +229,92 @@ class Isis:
         params = {}
         endpoint = "/router/isis"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if is_type is not None:
-            data_payload['is-type'] = is_type
+            data_payload["is-type"] = is_type
         if adv_passive_only is not None:
-            data_payload['adv-passive-only'] = adv_passive_only
+            data_payload["adv-passive-only"] = adv_passive_only
         if adv_passive_only6 is not None:
-            data_payload['adv-passive-only6'] = adv_passive_only6
+            data_payload["adv-passive-only6"] = adv_passive_only6
         if auth_mode_l1 is not None:
-            data_payload['auth-mode-l1'] = auth_mode_l1
+            data_payload["auth-mode-l1"] = auth_mode_l1
         if auth_mode_l2 is not None:
-            data_payload['auth-mode-l2'] = auth_mode_l2
+            data_payload["auth-mode-l2"] = auth_mode_l2
         if auth_password_l1 is not None:
-            data_payload['auth-password-l1'] = auth_password_l1
+            data_payload["auth-password-l1"] = auth_password_l1
         if auth_password_l2 is not None:
-            data_payload['auth-password-l2'] = auth_password_l2
+            data_payload["auth-password-l2"] = auth_password_l2
         if auth_keychain_l1 is not None:
-            data_payload['auth-keychain-l1'] = auth_keychain_l1
+            data_payload["auth-keychain-l1"] = auth_keychain_l1
         if auth_keychain_l2 is not None:
-            data_payload['auth-keychain-l2'] = auth_keychain_l2
+            data_payload["auth-keychain-l2"] = auth_keychain_l2
         if auth_sendonly_l1 is not None:
-            data_payload['auth-sendonly-l1'] = auth_sendonly_l1
+            data_payload["auth-sendonly-l1"] = auth_sendonly_l1
         if auth_sendonly_l2 is not None:
-            data_payload['auth-sendonly-l2'] = auth_sendonly_l2
+            data_payload["auth-sendonly-l2"] = auth_sendonly_l2
         if ignore_lsp_errors is not None:
-            data_payload['ignore-lsp-errors'] = ignore_lsp_errors
+            data_payload["ignore-lsp-errors"] = ignore_lsp_errors
         if lsp_gen_interval_l1 is not None:
-            data_payload['lsp-gen-interval-l1'] = lsp_gen_interval_l1
+            data_payload["lsp-gen-interval-l1"] = lsp_gen_interval_l1
         if lsp_gen_interval_l2 is not None:
-            data_payload['lsp-gen-interval-l2'] = lsp_gen_interval_l2
+            data_payload["lsp-gen-interval-l2"] = lsp_gen_interval_l2
         if lsp_refresh_interval is not None:
-            data_payload['lsp-refresh-interval'] = lsp_refresh_interval
+            data_payload["lsp-refresh-interval"] = lsp_refresh_interval
         if max_lsp_lifetime is not None:
-            data_payload['max-lsp-lifetime'] = max_lsp_lifetime
+            data_payload["max-lsp-lifetime"] = max_lsp_lifetime
         if spf_interval_exp_l1 is not None:
-            data_payload['spf-interval-exp-l1'] = spf_interval_exp_l1
+            data_payload["spf-interval-exp-l1"] = spf_interval_exp_l1
         if spf_interval_exp_l2 is not None:
-            data_payload['spf-interval-exp-l2'] = spf_interval_exp_l2
+            data_payload["spf-interval-exp-l2"] = spf_interval_exp_l2
         if dynamic_hostname is not None:
-            data_payload['dynamic-hostname'] = dynamic_hostname
+            data_payload["dynamic-hostname"] = dynamic_hostname
         if adjacency_check is not None:
-            data_payload['adjacency-check'] = adjacency_check
+            data_payload["adjacency-check"] = adjacency_check
         if adjacency_check6 is not None:
-            data_payload['adjacency-check6'] = adjacency_check6
+            data_payload["adjacency-check6"] = adjacency_check6
         if overload_bit is not None:
-            data_payload['overload-bit'] = overload_bit
+            data_payload["overload-bit"] = overload_bit
         if overload_bit_suppress is not None:
-            data_payload['overload-bit-suppress'] = overload_bit_suppress
+            data_payload["overload-bit-suppress"] = overload_bit_suppress
         if overload_bit_on_startup is not None:
-            data_payload['overload-bit-on-startup'] = overload_bit_on_startup
+            data_payload["overload-bit-on-startup"] = overload_bit_on_startup
         if default_originate is not None:
-            data_payload['default-originate'] = default_originate
+            data_payload["default-originate"] = default_originate
         if default_originate6 is not None:
-            data_payload['default-originate6'] = default_originate6
+            data_payload["default-originate6"] = default_originate6
         if metric_style is not None:
-            data_payload['metric-style'] = metric_style
+            data_payload["metric-style"] = metric_style
         if redistribute_l1 is not None:
-            data_payload['redistribute-l1'] = redistribute_l1
+            data_payload["redistribute-l1"] = redistribute_l1
         if redistribute_l1_list is not None:
-            data_payload['redistribute-l1-list'] = redistribute_l1_list
+            data_payload["redistribute-l1-list"] = redistribute_l1_list
         if redistribute_l2 is not None:
-            data_payload['redistribute-l2'] = redistribute_l2
+            data_payload["redistribute-l2"] = redistribute_l2
         if redistribute_l2_list is not None:
-            data_payload['redistribute-l2-list'] = redistribute_l2_list
+            data_payload["redistribute-l2-list"] = redistribute_l2_list
         if redistribute6_l1 is not None:
-            data_payload['redistribute6-l1'] = redistribute6_l1
+            data_payload["redistribute6-l1"] = redistribute6_l1
         if redistribute6_l1_list is not None:
-            data_payload['redistribute6-l1-list'] = redistribute6_l1_list
+            data_payload["redistribute6-l1-list"] = redistribute6_l1_list
         if redistribute6_l2 is not None:
-            data_payload['redistribute6-l2'] = redistribute6_l2
+            data_payload["redistribute6-l2"] = redistribute6_l2
         if redistribute6_l2_list is not None:
-            data_payload['redistribute6-l2-list'] = redistribute6_l2_list
+            data_payload["redistribute6-l2-list"] = redistribute6_l2_list
         if isis_net is not None:
-            data_payload['isis-net'] = isis_net
+            data_payload["isis-net"] = isis_net
         if isis_interface is not None:
-            data_payload['isis-interface'] = isis_interface
+            data_payload["isis-interface"] = isis_interface
         if summary_address is not None:
-            data_payload['summary-address'] = summary_address
+            data_payload["summary-address"] = summary_address
         if summary_address6 is not None:
-            data_payload['summary-address6'] = summary_address6
+            data_payload["summary-address6"] = summary_address6
         if redistribute is not None:
-            data_payload['redistribute'] = redistribute
+            data_payload["redistribute"] = redistribute
         if redistribute6 is not None:
-            data_payload['redistribute6'] = redistribute6
+            data_payload["redistribute6"] = redistribute6
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

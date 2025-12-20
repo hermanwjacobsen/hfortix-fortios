@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.DoS_policy6.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.DoS_policy6.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.DoS_policy6.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.DoS_policy6.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.DoS_policy6.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class DosPolicy6:
     """
     Dospolicy6 Operations.
-    
+
     Provides CRUD operations for FortiOS dospolicy6 configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class DosPolicy6:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class DosPolicy6:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DosPolicy6 endpoint.
 
@@ -90,7 +90,7 @@ class DosPolicy6:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             policyid: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class DosPolicy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class DosPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if policyid:
             endpoint = f"/firewall/DoS-policy6/{policyid}"
         else:
             endpoint = "/firewall/DoS-policy6"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -150,7 +152,7 @@ class DosPolicy6:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             policyid: Object identifier (required)
@@ -168,7 +170,7 @@ class DosPolicy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -176,41 +178,43 @@ class DosPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/DoS-policy6/{policyid}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if anomaly is not None:
-            data_payload['anomaly'] = anomaly
+            data_payload["anomaly"] = anomaly
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -222,13 +226,13 @@ class DosPolicy6:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -236,18 +240,20 @@ class DosPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/DoS-policy6/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -268,7 +274,7 @@ class DosPolicy6:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -284,7 +290,7 @@ class DosPolicy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -292,7 +298,7 @@ class DosPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -300,24 +306,26 @@ class DosPolicy6:
         params = {}
         endpoint = "/firewall/DoS-policy6"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if anomaly is not None:
-            data_payload['anomaly'] = anomaly
+            data_payload["anomaly"] = anomaly
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

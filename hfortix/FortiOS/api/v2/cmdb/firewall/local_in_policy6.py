@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.local_in_policy6.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.local_in_policy6.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.local_in_policy6.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.local_in_policy6.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.local_in_policy6.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class LocalInPolicy6:
     """
     Localinpolicy6 Operations.
-    
+
     Provides CRUD operations for FortiOS localinpolicy6 configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class LocalInPolicy6:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class LocalInPolicy6:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize LocalInPolicy6 endpoint.
 
@@ -90,7 +90,7 @@ class LocalInPolicy6:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             policyid: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class LocalInPolicy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class LocalInPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if policyid:
             endpoint = f"/firewall/local-in-policy6/{policyid}"
         else:
             endpoint = "/firewall/local-in-policy6"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -162,7 +164,7 @@ class LocalInPolicy6:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             policyid: Object identifier (required)
@@ -192,7 +194,7 @@ class LocalInPolicy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -200,65 +202,79 @@ class LocalInPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/local-in-policy6/{policyid}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if intf is not None:
-            data_payload['intf'] = intf
+            data_payload["intf"] = intf
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
-            data_payload['srcaddr-negate'] = srcaddr_negate
+            data_payload["srcaddr-negate"] = srcaddr_negate
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if internet_service6_src is not None:
-            data_payload['internet-service6-src'] = internet_service6_src
+            data_payload["internet-service6-src"] = internet_service6_src
         if internet_service6_src_name is not None:
-            data_payload['internet-service6-src-name'] = internet_service6_src_name
+            data_payload["internet-service6-src-name"] = (
+                internet_service6_src_name
+            )
         if internet_service6_src_group is not None:
-            data_payload['internet-service6-src-group'] = internet_service6_src_group
+            data_payload["internet-service6-src-group"] = (
+                internet_service6_src_group
+            )
         if internet_service6_src_custom is not None:
-            data_payload['internet-service6-src-custom'] = internet_service6_src_custom
+            data_payload["internet-service6-src-custom"] = (
+                internet_service6_src_custom
+            )
         if internet_service6_src_custom_group is not None:
-            data_payload['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+            data_payload["internet-service6-src-custom-group"] = (
+                internet_service6_src_custom_group
+            )
         if internet_service6_src_fortiguard is not None:
-            data_payload['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+            data_payload["internet-service6-src-fortiguard"] = (
+                internet_service6_src_fortiguard
+            )
         if dstaddr_negate is not None:
-            data_payload['dstaddr-negate'] = dstaddr_negate
+            data_payload["dstaddr-negate"] = dstaddr_negate
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if service_negate is not None:
-            data_payload['service-negate'] = service_negate
+            data_payload["service-negate"] = service_negate
         if internet_service6_src_negate is not None:
-            data_payload['internet-service6-src-negate'] = internet_service6_src_negate
+            data_payload["internet-service6-src-negate"] = (
+                internet_service6_src_negate
+            )
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if virtual_patch is not None:
-            data_payload['virtual-patch'] = virtual_patch
+            data_payload["virtual-patch"] = virtual_patch
         if logtraffic is not None:
-            data_payload['logtraffic'] = logtraffic
+            data_payload["logtraffic"] = logtraffic
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -270,13 +286,13 @@ class LocalInPolicy6:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -284,18 +300,20 @@ class LocalInPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/local-in-policy6/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -304,37 +322,39 @@ class LocalInPolicy6:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             policyid: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(policyid=policyid, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -367,7 +387,7 @@ class LocalInPolicy6:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -395,7 +415,7 @@ class LocalInPolicy6:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -403,7 +423,7 @@ class LocalInPolicy6:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -411,48 +431,62 @@ class LocalInPolicy6:
         params = {}
         endpoint = "/firewall/local-in-policy6"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if intf is not None:
-            data_payload['intf'] = intf
+            data_payload["intf"] = intf
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
-            data_payload['srcaddr-negate'] = srcaddr_negate
+            data_payload["srcaddr-negate"] = srcaddr_negate
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if internet_service6_src is not None:
-            data_payload['internet-service6-src'] = internet_service6_src
+            data_payload["internet-service6-src"] = internet_service6_src
         if internet_service6_src_name is not None:
-            data_payload['internet-service6-src-name'] = internet_service6_src_name
+            data_payload["internet-service6-src-name"] = (
+                internet_service6_src_name
+            )
         if internet_service6_src_group is not None:
-            data_payload['internet-service6-src-group'] = internet_service6_src_group
+            data_payload["internet-service6-src-group"] = (
+                internet_service6_src_group
+            )
         if internet_service6_src_custom is not None:
-            data_payload['internet-service6-src-custom'] = internet_service6_src_custom
+            data_payload["internet-service6-src-custom"] = (
+                internet_service6_src_custom
+            )
         if internet_service6_src_custom_group is not None:
-            data_payload['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+            data_payload["internet-service6-src-custom-group"] = (
+                internet_service6_src_custom_group
+            )
         if internet_service6_src_fortiguard is not None:
-            data_payload['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+            data_payload["internet-service6-src-fortiguard"] = (
+                internet_service6_src_fortiguard
+            )
         if dstaddr_negate is not None:
-            data_payload['dstaddr-negate'] = dstaddr_negate
+            data_payload["dstaddr-negate"] = dstaddr_negate
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if service_negate is not None:
-            data_payload['service-negate'] = service_negate
+            data_payload["service-negate"] = service_negate
         if internet_service6_src_negate is not None:
-            data_payload['internet-service6-src-negate'] = internet_service6_src_negate
+            data_payload["internet-service6-src-negate"] = (
+                internet_service6_src_negate
+            )
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if virtual_patch is not None:
-            data_payload['virtual-patch'] = virtual_patch
+            data_payload["virtual-patch"] = virtual_patch
         if logtraffic is not None:
-            data_payload['logtraffic'] = logtraffic
+            data_payload["logtraffic"] = logtraffic
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

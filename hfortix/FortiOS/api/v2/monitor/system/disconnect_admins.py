@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.disconnect_admins.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.disconnect_admins.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Select:
     """
     Select Operations.
-    
+
     Provides read-only access for FortiOS select data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Select endpoint.
 
@@ -62,7 +62,7 @@ class Select:
     ) -> dict[str, Any]:
         """
         Disconnects logged in administrators.
-        
+
         Args:
             id: Admin ID (optional)
             method: Login method used to connect admin to FortiGate. (optional)
@@ -70,28 +70,30 @@ class Select:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.disconnect_admins.select.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if id is not None:
-            data['id'] = id
+            data["id"] = id
         if method is not None:
-            data['method'] = method
+            data["method"] = method
         if admins is not None:
-            data['admins'] = admins
+            data["admins"] = admins
         data.update(kwargs)
-        return self._client.post("monitor", "/system/disconnect-admins/select", data=data)
+        return self._client.post(
+            "monitor", "/system/disconnect-admins/select", data=data
+        )
 
 
 class DisconnectAdmins:
     """DisconnectAdmins operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DisconnectAdmins endpoint.
 

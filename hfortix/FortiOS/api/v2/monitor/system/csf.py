@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.csf.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.csf.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class PendingAuthorizations:
     """
     Pendingauthorizations Operations.
-    
+
     Provides read-only access for FortiOS pendingauthorizations data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PendingAuthorizations endpoint.
 
@@ -59,27 +59,29 @@ class PendingAuthorizations:
     ) -> dict[str, Any]:
         """
         Retrieve fabric devices with pending authorizations for joining the Security Fabric.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.csf.pending_authorizations.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/csf/pending-authorizations", params=params)
+        return self._client.get(
+            "monitor", "/system/csf/pending-authorizations", params=params
+        )
 
 
 class RegisterAppliance:
     """RegisterAppliance operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize RegisterAppliance endpoint.
 
@@ -102,7 +104,7 @@ class RegisterAppliance:
     ) -> dict[str, Any]:
         """
         Register appliance to Security Fabric.
-        
+
         Args:
             type: Appliance type (Example: 'faz'). (optional)
             mgmt_ip: Management IP or FQDN. (optional)
@@ -113,34 +115,36 @@ class RegisterAppliance:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.csf.register_appliance.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if type is not None:
-            data['type'] = type
+            data["type"] = type
         if mgmt_ip is not None:
-            data['mgmt_ip'] = mgmt_ip
+            data["mgmt_ip"] = mgmt_ip
         if mgmt_port is not None:
-            data['mgmt_port'] = mgmt_port
+            data["mgmt_port"] = mgmt_port
         if mgmt_url_parameters is not None:
-            data['mgmt_url_parameters'] = mgmt_url_parameters
+            data["mgmt_url_parameters"] = mgmt_url_parameters
         if serial is not None:
-            data['serial'] = serial
+            data["serial"] = serial
         if hostname is not None:
-            data['hostname'] = hostname
+            data["hostname"] = hostname
         data.update(kwargs)
-        return self._client.post("monitor", "/system/csf/register-appliance", data=data)
+        return self._client.post(
+            "monitor", "/system/csf/register-appliance", data=data
+        )
 
 
 class Csf:
     """Csf operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Csf endpoint.
 
@@ -163,24 +167,24 @@ class Csf:
     ) -> dict[str, Any]:
         """
         Retrieve a full tree of downstream FortiGates registered to the Security Fabric.
-        
+
         Args:
             scope: Scope from which to retrieve the Security Fabric tree [vdom*|global]. (optional)
             all_vdoms: Include information from all VDOMs that the admin can access. Only applies for scope=vdom (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.csf.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if all_vdoms is not None:
-            params['all_vdoms'] = all_vdoms
+            params["all_vdoms"] = all_vdoms
         params.update(kwargs)
         return self._client.get("monitor", "/system/csf", params=params)

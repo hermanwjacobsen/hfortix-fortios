@@ -26,7 +26,7 @@ __all__ = ["BaseHTTPClient", "HTTPResponse"]
 class BaseHTTPClient:
     """
     Base class for HTTP clients with shared logic.
-    
+
     Provides:
     - Parameter validation
     - URL building
@@ -36,7 +36,7 @@ class BaseHTTPClient:
     - Path normalization and encoding
     - Data sanitization
     """
-    
+
     def __init__(
         self,
         url: str,
@@ -75,7 +75,7 @@ class BaseHTTPClient:
                 f"max_keepalive_connections ({max_keepalive_connections}) "
                 f"cannot exceed max_connections ({max_connections})"
             )
-        
+
         # Store configuration
         self._url = url.rstrip("/")
         self._verify = verify
@@ -83,7 +83,7 @@ class BaseHTTPClient:
         self._max_retries = max_retries
         self._connect_timeout = connect_timeout
         self._read_timeout = read_timeout
-        
+
         # Initialize retry statistics
         self._retry_stats = {
             "total_retries": 0,
@@ -94,7 +94,7 @@ class BaseHTTPClient:
             "retry_by_endpoint": {},
             "last_retry_time": None,
         }
-        
+
         # Initialize circuit breaker state
         self._circuit_breaker = {
             "consecutive_failures": 0,
@@ -103,14 +103,14 @@ class BaseHTTPClient:
             "failure_threshold": circuit_breaker_threshold,
             "timeout": circuit_breaker_timeout,
         }
-        
+
         # Initialize per-endpoint timeout configuration
         self._endpoint_timeouts: dict[str, httpx.Timeout] = {}
-    
+
     # ========================================================================
     # Shared Utility Methods
     # ========================================================================
-    
+
     @staticmethod
     def _sanitize_data(data: Optional[dict[str, Any]]) -> dict[str, Any]:
         """
@@ -167,51 +167,51 @@ class BaseHTTPClient:
                 return obj
 
         return sanitize_recursive(data)
-    
+
     @staticmethod
     def _normalize_path(path: str) -> str:
         """Normalize API path by removing leading slashes"""
         if isinstance(path, str):
             return path.lstrip("/")
         return path
-    
+
     def _build_url(self, api_type: str, path: str) -> str:
         """Build complete API URL from components"""
         path = self._normalize_path(path)
         encoded_path = quote(str(path), safe="/%")
         return f"{self._url}/api/v2/{api_type}/{encoded_path}"
-    
+
     # ========================================================================
     # Statistics Methods
     # ========================================================================
-    
+
     def get_retry_stats(self) -> dict[str, Any]:
         """Get retry statistics"""
         return self._retry_stats.copy()
-    
+
     def get_circuit_breaker_state(self) -> dict[str, Any]:
         """Get current circuit breaker state"""
         return self._circuit_breaker.copy()
-    
+
     def _record_retry(self, reason: str, endpoint: str) -> None:
         """Record retry attempt in statistics"""
         self._retry_stats["total_retries"] += 1
         self._retry_stats["last_retry_time"] = time.time()
-        
+
         # Track by reason
         if reason not in self._retry_stats["retry_by_reason"]:
             self._retry_stats["retry_by_reason"][reason] = 0
         self._retry_stats["retry_by_reason"][reason] += 1
-        
+
         # Track by endpoint
         if endpoint not in self._retry_stats["retry_by_endpoint"]:
             self._retry_stats["retry_by_endpoint"][endpoint] = 0
         self._retry_stats["retry_by_endpoint"][endpoint] += 1
-    
+
     # ========================================================================
     # Endpoint Timeout Configuration
     # ========================================================================
-    
+
     def configure_endpoint_timeout(
         self,
         endpoint_pattern: str,
@@ -232,29 +232,32 @@ class BaseHTTPClient:
             timeout.connect,
             timeout.read,
         )
-    
+
     def _get_endpoint_timeout(self, endpoint: str) -> Optional[httpx.Timeout]:
         """Get custom timeout for specific endpoint if configured"""
         for pattern, timeout in self._endpoint_timeouts.items():
             if fnmatch.fnmatch(endpoint, pattern):
                 return timeout
         return None
-    
+
     # ========================================================================
     # Circuit Breaker Methods
     # ========================================================================
-    
+
     def _check_circuit_breaker(self, endpoint: str) -> None:
         """Check circuit breaker state before making request"""
         if self._circuit_breaker["state"] == "open":
-            elapsed = time.time() - (self._circuit_breaker["last_failure_time"] or 0)
+            elapsed = time.time() - (
+                self._circuit_breaker["last_failure_time"] or 0
+            )
             if elapsed < self._circuit_breaker["timeout"]:
                 remaining = self._circuit_breaker["timeout"] - elapsed
                 logger.error(
-                    "Circuit breaker is OPEN - service unavailable (retry in %.1fs)", remaining
+                    "Circuit breaker is OPEN - service unavailable (retry in %.1fs)",
+                    remaining,
                 )
                 from .exceptions import CircuitBreakerOpenError
-                
+
                 raise CircuitBreakerOpenError(
                     f"Circuit breaker is OPEN for {endpoint}. "
                     f"Service appears to be down. Retry in {remaining:.1f}s"
@@ -262,7 +265,7 @@ class BaseHTTPClient:
             else:
                 self._circuit_breaker["state"] = "half_open"
                 logger.info("Circuit breaker transitioning to HALF_OPEN state")
-    
+
     def _record_circuit_breaker_success(self) -> None:
         """Record successful request in circuit breaker"""
         if self._circuit_breaker["state"] == "half_open":
@@ -271,15 +274,15 @@ class BaseHTTPClient:
             logger.info("Circuit breaker CLOSED after successful request")
         elif self._circuit_breaker["state"] == "closed":
             self._circuit_breaker["consecutive_failures"] = 0
-    
+
     def _record_circuit_breaker_failure(self, endpoint: str) -> None:
         """Record failed request in circuit breaker"""
         self._circuit_breaker["consecutive_failures"] += 1
         self._circuit_breaker["last_failure_time"] = time.time()
-        
+
         failures = self._circuit_breaker["consecutive_failures"]
         threshold = self._circuit_breaker["failure_threshold"]
-        
+
         if failures >= threshold and self._circuit_breaker["state"] != "open":
             self._circuit_breaker["state"] = "open"
             logger.error(
@@ -287,23 +290,25 @@ class BaseHTTPClient:
                 failures,
                 endpoint,
             )
-    
+
     def reset_circuit_breaker(self) -> None:
         """Reset circuit breaker to closed state"""
         self._circuit_breaker["state"] = "closed"
         self._circuit_breaker["consecutive_failures"] = 0
         self._circuit_breaker["last_failure_time"] = None
         logger.info("Circuit breaker manually reset to CLOSED state")
-    
+
     # ========================================================================
     # Retry Logic
     # ========================================================================
-    
-    def _should_retry(self, error: Exception, attempt: int, endpoint: str = "") -> bool:
+
+    def _should_retry(
+        self, error: Exception, attempt: int, endpoint: str = ""
+    ) -> bool:
         """Determine if a request should be retried"""
         if attempt >= self._max_retries:
             return False
-        
+
         # Retry on connection errors and timeouts
         if isinstance(error, (httpx.ConnectError, httpx.NetworkError)):
             self._record_retry("connection_error", endpoint)
@@ -315,8 +320,10 @@ class BaseHTTPClient:
                 error,
             )
             return True
-        
-        if isinstance(error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)):
+
+        if isinstance(
+            error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)
+        ):
             self._record_retry("timeout", endpoint)
             logger.warning(
                 "Timeout on attempt %d/%d for %s: %s",
@@ -326,13 +333,18 @@ class BaseHTTPClient:
                 error,
             )
             return True
-        
+
         # Retry on HTTP status errors (429, 500-504)
         if isinstance(error, httpx.HTTPStatusError):
             status = error.response.status_code
             if status == 429:  # Rate limit
                 self._record_retry("rate_limit", endpoint)
-                logger.warning("Rate limit hit on attempt %d/%d for %s", attempt + 1, self._max_retries, endpoint)
+                logger.warning(
+                    "Rate limit hit on attempt %d/%d for %s",
+                    attempt + 1,
+                    self._max_retries,
+                    endpoint,
+                )
                 return True
             elif 500 <= status <= 504:  # Server errors
                 self._record_retry("server_error", endpoint)
@@ -344,10 +356,12 @@ class BaseHTTPClient:
                     endpoint,
                 )
                 return True
-        
+
         return False
-    
-    def _get_retry_delay(self, attempt: int, response: Optional[httpx.Response] = None) -> float:
+
+    def _get_retry_delay(
+        self, attempt: int, response: Optional[httpx.Response] = None
+    ) -> float:
         """Calculate exponential backoff delay"""
         # Check for Retry-After header
         if response and "Retry-After" in response.headers:
@@ -355,15 +369,15 @@ class BaseHTTPClient:
                 return float(response.headers["Retry-After"])
             except ValueError:
                 pass
-        
+
         # Exponential backoff: 1s, 2s, 4s, 8s, max 30s
-        delay = min(2 ** attempt, 30)
+        delay = min(2**attempt, 30)
         return delay
-    
+
     # ========================================================================
     # Validation Helper Methods
     # ========================================================================
-    
+
     @staticmethod
     def _validate_api_type(api_type: str) -> None:
         """Validate API type parameter"""
@@ -372,27 +386,33 @@ class BaseHTTPClient:
             raise ValueError(
                 f"Invalid api_type '{api_type}'. Must be one of: {', '.join(sorted(valid_types))}"
             )
-    
+
     @staticmethod
     def _validate_path(path: str) -> None:
         """Validate path parameter"""
         if not path or not isinstance(path, str):
             raise ValueError("path must be a non-empty string")
-    
+
     @staticmethod
     def _validate_data(data: Any) -> None:
         """Validate data parameter for POST/PUT"""
         if not isinstance(data, dict):
-            raise TypeError(f"data must be a dictionary, got {type(data).__name__}")
-    
+            raise TypeError(
+                f"data must be a dictionary, got {type(data).__name__}"
+            )
+
     @staticmethod
     def _validate_vdom(vdom: Optional[Union[str, bool]]) -> None:
         """Validate vdom parameter"""
         if vdom is not None and not isinstance(vdom, (str, bool)):
-            raise TypeError(f"vdom must be str, bool, or None, got {type(vdom).__name__}")
-    
+            raise TypeError(
+                f"vdom must be str, bool, or None, got {type(vdom).__name__}"
+            )
+
     @staticmethod
     def _validate_params(params: Optional[dict[str, Any]]) -> None:
         """Validate params parameter"""
         if params is not None and not isinstance(params, dict):
-            raise TypeError(f"params must be a dictionary or None, got {type(params).__name__}")
+            raise TypeError(
+                f"params must be a dictionary or None, got {type(params).__name__}"
+            )

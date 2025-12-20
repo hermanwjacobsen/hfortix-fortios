@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.3.15"
+version = "0.3.16"
 description = "HFortix - Python SDK for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)"
 readme = "README.md"
 authors = [
@@ -59,7 +59,7 @@ zip-safe = false
 include-package-data = true
 
 [tool.black]
-line-length = 100
+line-length = 79
 target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 extend-exclude = '''
@@ -79,7 +79,7 @@ extend-exclude = '''
 '''
 
 [tool.flake8]
-max-line-length = 100
+max-line-length = 79
 extend-ignore = ["E203", "W503"]
 exclude = [
     ".git",

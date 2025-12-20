@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.sdwan.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.sdwan.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.sdwan.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.sdwan.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.sdwan.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Sdwan:
     """
     Sdwan Operations.
-    
+
     Provides CRUD operations for FortiOS sdwan configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Sdwan:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Sdwan endpoint.
 
@@ -82,14 +82,14 @@ class Sdwan:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Sdwan:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/sdwan"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -138,7 +140,7 @@ class Sdwan:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -163,7 +165,7 @@ class Sdwan:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -171,7 +173,7 @@ class Sdwan:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -179,42 +181,46 @@ class Sdwan:
         params = {}
         endpoint = "/system/sdwan"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if load_balance_mode is not None:
-            data_payload['load-balance-mode'] = load_balance_mode
+            data_payload["load-balance-mode"] = load_balance_mode
         if speedtest_bypass_routing is not None:
-            data_payload['speedtest-bypass-routing'] = speedtest_bypass_routing
+            data_payload["speedtest-bypass-routing"] = speedtest_bypass_routing
         if duplication_max_num is not None:
-            data_payload['duplication-max-num'] = duplication_max_num
+            data_payload["duplication-max-num"] = duplication_max_num
         if duplication_max_discrepancy is not None:
-            data_payload['duplication-max-discrepancy'] = duplication_max_discrepancy
+            data_payload["duplication-max-discrepancy"] = (
+                duplication_max_discrepancy
+            )
         if neighbor_hold_down is not None:
-            data_payload['neighbor-hold-down'] = neighbor_hold_down
+            data_payload["neighbor-hold-down"] = neighbor_hold_down
         if neighbor_hold_down_time is not None:
-            data_payload['neighbor-hold-down-time'] = neighbor_hold_down_time
+            data_payload["neighbor-hold-down-time"] = neighbor_hold_down_time
         if app_perf_log_period is not None:
-            data_payload['app-perf-log-period'] = app_perf_log_period
+            data_payload["app-perf-log-period"] = app_perf_log_period
         if neighbor_hold_boot_time is not None:
-            data_payload['neighbor-hold-boot-time'] = neighbor_hold_boot_time
+            data_payload["neighbor-hold-boot-time"] = neighbor_hold_boot_time
         if fail_detect is not None:
-            data_payload['fail-detect'] = fail_detect
+            data_payload["fail-detect"] = fail_detect
         if fail_alert_interfaces is not None:
-            data_payload['fail-alert-interfaces'] = fail_alert_interfaces
+            data_payload["fail-alert-interfaces"] = fail_alert_interfaces
         if zone is not None:
-            data_payload['zone'] = zone
+            data_payload["zone"] = zone
         if members is not None:
-            data_payload['members'] = members
+            data_payload["members"] = members
         if health_check is not None:
-            data_payload['health-check'] = health_check
+            data_payload["health-check"] = health_check
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if neighbor is not None:
-            data_payload['neighbor'] = neighbor
+            data_payload["neighbor"] = neighbor
         if duplication is not None:
-            data_payload['duplication'] = duplication
+            data_payload["duplication"] = duplication
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

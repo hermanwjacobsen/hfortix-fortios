@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firmware.extension_device.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firmware.extension_device.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class ExtensionDevice:
     """
     Extensiondevice Operations.
-    
+
     Provides read-only access for FortiOS extensiondevice data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ExtensionDevice endpoint.
 
@@ -62,7 +62,7 @@ class ExtensionDevice:
     ) -> dict[str, Any]:
         """
         Retrieve a list of recommended firmwares for the specified extension device type.
-        
+
         Args:
             type: Extension device type to get recommended firmwares for. [fortiswitch|fortiap|fortiextender] (required)
             timeout: FortiGuard connection timeout. (optional)
@@ -70,18 +70,20 @@ class ExtensionDevice:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firmware.extension_device.get(type='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['type'] = type
+        params["type"] = type
         if timeout is not None:
-            params['timeout'] = timeout
+            params["timeout"] = timeout
         if version is not None:
-            params['version'] = version
+            params["version"] = version
         params.update(kwargs)
-        return self._client.get("monitor", "/firmware/extension-device", params=params)
+        return self._client.get(
+            "monitor", "/firmware/extension-device", params=params
+        )

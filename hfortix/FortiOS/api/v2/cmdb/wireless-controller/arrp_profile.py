@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.arrp_profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.arrp_profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.arrp_profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.arrp_profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.arrp_profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ArrpProfile:
     """
     Arrpprofile Operations.
-    
+
     Provides CRUD operations for FortiOS arrpprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ArrpProfile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ArrpProfile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ArrpProfile endpoint.
 
@@ -90,7 +90,7 @@ class ArrpProfile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ArrpProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ArrpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller/arrp-profile/{name}"
         else:
             endpoint = "/wireless-controller/arrp-profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -163,7 +165,7 @@ class ArrpProfile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -194,7 +196,7 @@ class ArrpProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -202,67 +204,69 @@ class ArrpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller/arrp-profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if selection_period is not None:
-            data_payload['selection-period'] = selection_period
+            data_payload["selection-period"] = selection_period
         if monitor_period is not None:
-            data_payload['monitor-period'] = monitor_period
+            data_payload["monitor-period"] = monitor_period
         if weight_managed_ap is not None:
-            data_payload['weight-managed-ap'] = weight_managed_ap
+            data_payload["weight-managed-ap"] = weight_managed_ap
         if weight_rogue_ap is not None:
-            data_payload['weight-rogue-ap'] = weight_rogue_ap
+            data_payload["weight-rogue-ap"] = weight_rogue_ap
         if weight_noise_floor is not None:
-            data_payload['weight-noise-floor'] = weight_noise_floor
+            data_payload["weight-noise-floor"] = weight_noise_floor
         if weight_channel_load is not None:
-            data_payload['weight-channel-load'] = weight_channel_load
+            data_payload["weight-channel-load"] = weight_channel_load
         if weight_spectral_rssi is not None:
-            data_payload['weight-spectral-rssi'] = weight_spectral_rssi
+            data_payload["weight-spectral-rssi"] = weight_spectral_rssi
         if weight_weather_channel is not None:
-            data_payload['weight-weather-channel'] = weight_weather_channel
+            data_payload["weight-weather-channel"] = weight_weather_channel
         if weight_dfs_channel is not None:
-            data_payload['weight-dfs-channel'] = weight_dfs_channel
+            data_payload["weight-dfs-channel"] = weight_dfs_channel
         if threshold_ap is not None:
-            data_payload['threshold-ap'] = threshold_ap
+            data_payload["threshold-ap"] = threshold_ap
         if threshold_noise_floor is not None:
-            data_payload['threshold-noise-floor'] = threshold_noise_floor
+            data_payload["threshold-noise-floor"] = threshold_noise_floor
         if threshold_channel_load is not None:
-            data_payload['threshold-channel-load'] = threshold_channel_load
+            data_payload["threshold-channel-load"] = threshold_channel_load
         if threshold_spectral_rssi is not None:
-            data_payload['threshold-spectral-rssi'] = threshold_spectral_rssi
+            data_payload["threshold-spectral-rssi"] = threshold_spectral_rssi
         if threshold_tx_retries is not None:
-            data_payload['threshold-tx-retries'] = threshold_tx_retries
+            data_payload["threshold-tx-retries"] = threshold_tx_retries
         if threshold_rx_errors is not None:
-            data_payload['threshold-rx-errors'] = threshold_rx_errors
+            data_payload["threshold-rx-errors"] = threshold_rx_errors
         if include_weather_channel is not None:
-            data_payload['include-weather-channel'] = include_weather_channel
+            data_payload["include-weather-channel"] = include_weather_channel
         if include_dfs_channel is not None:
-            data_payload['include-dfs-channel'] = include_dfs_channel
+            data_payload["include-dfs-channel"] = include_dfs_channel
         if override_darrp_optimize is not None:
-            data_payload['override-darrp-optimize'] = override_darrp_optimize
+            data_payload["override-darrp-optimize"] = override_darrp_optimize
         if darrp_optimize is not None:
-            data_payload['darrp-optimize'] = darrp_optimize
+            data_payload["darrp-optimize"] = darrp_optimize
         if darrp_optimize_schedules is not None:
-            data_payload['darrp-optimize-schedules'] = darrp_optimize_schedules
+            data_payload["darrp-optimize-schedules"] = darrp_optimize_schedules
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -274,13 +278,13 @@ class ArrpProfile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -288,18 +292,20 @@ class ArrpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/arrp-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -308,37 +314,39 @@ class ArrpProfile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -372,7 +380,7 @@ class ArrpProfile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -401,7 +409,7 @@ class ArrpProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -409,7 +417,7 @@ class ArrpProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -417,50 +425,52 @@ class ArrpProfile:
         params = {}
         endpoint = "/wireless-controller/arrp-profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if selection_period is not None:
-            data_payload['selection-period'] = selection_period
+            data_payload["selection-period"] = selection_period
         if monitor_period is not None:
-            data_payload['monitor-period'] = monitor_period
+            data_payload["monitor-period"] = monitor_period
         if weight_managed_ap is not None:
-            data_payload['weight-managed-ap'] = weight_managed_ap
+            data_payload["weight-managed-ap"] = weight_managed_ap
         if weight_rogue_ap is not None:
-            data_payload['weight-rogue-ap'] = weight_rogue_ap
+            data_payload["weight-rogue-ap"] = weight_rogue_ap
         if weight_noise_floor is not None:
-            data_payload['weight-noise-floor'] = weight_noise_floor
+            data_payload["weight-noise-floor"] = weight_noise_floor
         if weight_channel_load is not None:
-            data_payload['weight-channel-load'] = weight_channel_load
+            data_payload["weight-channel-load"] = weight_channel_load
         if weight_spectral_rssi is not None:
-            data_payload['weight-spectral-rssi'] = weight_spectral_rssi
+            data_payload["weight-spectral-rssi"] = weight_spectral_rssi
         if weight_weather_channel is not None:
-            data_payload['weight-weather-channel'] = weight_weather_channel
+            data_payload["weight-weather-channel"] = weight_weather_channel
         if weight_dfs_channel is not None:
-            data_payload['weight-dfs-channel'] = weight_dfs_channel
+            data_payload["weight-dfs-channel"] = weight_dfs_channel
         if threshold_ap is not None:
-            data_payload['threshold-ap'] = threshold_ap
+            data_payload["threshold-ap"] = threshold_ap
         if threshold_noise_floor is not None:
-            data_payload['threshold-noise-floor'] = threshold_noise_floor
+            data_payload["threshold-noise-floor"] = threshold_noise_floor
         if threshold_channel_load is not None:
-            data_payload['threshold-channel-load'] = threshold_channel_load
+            data_payload["threshold-channel-load"] = threshold_channel_load
         if threshold_spectral_rssi is not None:
-            data_payload['threshold-spectral-rssi'] = threshold_spectral_rssi
+            data_payload["threshold-spectral-rssi"] = threshold_spectral_rssi
         if threshold_tx_retries is not None:
-            data_payload['threshold-tx-retries'] = threshold_tx_retries
+            data_payload["threshold-tx-retries"] = threshold_tx_retries
         if threshold_rx_errors is not None:
-            data_payload['threshold-rx-errors'] = threshold_rx_errors
+            data_payload["threshold-rx-errors"] = threshold_rx_errors
         if include_weather_channel is not None:
-            data_payload['include-weather-channel'] = include_weather_channel
+            data_payload["include-weather-channel"] = include_weather_channel
         if include_dfs_channel is not None:
-            data_payload['include-dfs-channel'] = include_dfs_channel
+            data_payload["include-dfs-channel"] = include_dfs_channel
         if override_darrp_optimize is not None:
-            data_payload['override-darrp-optimize'] = override_darrp_optimize
+            data_payload["override-darrp-optimize"] = override_darrp_optimize
         if darrp_optimize is not None:
-            data_payload['darrp-optimize'] = darrp_optimize
+            data_payload["darrp-optimize"] = darrp_optimize
         if darrp_optimize_schedules is not None:
-            data_payload['darrp-optimize-schedules'] = darrp_optimize_schedules
+            data_payload["darrp-optimize-schedules"] = darrp_optimize_schedules
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

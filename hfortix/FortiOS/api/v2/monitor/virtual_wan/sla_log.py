@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.virtual_wan.sla_log.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.virtual_wan.sla_log.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class SlaLog:
     """
     Slalog Operations.
-    
+
     Provides read-only access for FortiOS slalog data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SlaLog endpoint.
 
@@ -68,7 +68,7 @@ class SlaLog:
     ) -> dict[str, Any]:
         """
         Retrieve logs of SLA probe results for the specified SD-WAN SLA or health check name.
-        
+
         Args:
             sla: Filter: SLA name. (optional)
             interface: Filter: Interface name. (optional)
@@ -82,31 +82,33 @@ class SlaLog:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.virtual_wan.sla_log.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if sla is not None:
-            params['sla'] = sla
+            params["sla"] = sla
         if interface is not None:
-            params['interface'] = interface
+            params["interface"] = interface
         if since is not None:
-            params['since'] = since
+            params["since"] = since
         if seconds is not None:
-            params['seconds'] = seconds
+            params["seconds"] = seconds
         if latest is not None:
-            params['latest'] = latest
+            params["latest"] = latest
         if min_sample_interval is not None:
-            params['min_sample_interval'] = min_sample_interval
+            params["min_sample_interval"] = min_sample_interval
         if sampling_interval is not None:
-            params['sampling_interval'] = sampling_interval
+            params["sampling_interval"] = sampling_interval
         if skip_vpn_child is not None:
-            params['skip_vpn_child'] = skip_vpn_child
+            params["skip_vpn_child"] = skip_vpn_child
         if include_sla_targets_met is not None:
-            params['include_sla_targets_met'] = include_sla_targets_met
+            params["include_sla_targets_met"] = include_sla_targets_met
         params.update(kwargs)
-        return self._client.get("monitor", "/virtual-wan/sla-log", params=params)
+        return self._client.get(
+            "monitor", "/virtual-wan/sla-log", params=params
+        )

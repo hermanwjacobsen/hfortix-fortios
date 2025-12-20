@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.log.setting.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.log.setting.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.log.setting.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.log.setting.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.log.setting.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Setting:
     """
     Setting Operations.
-    
+
     Provides CRUD operations for FortiOS setting configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Setting:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Setting endpoint.
 
@@ -82,14 +82,14 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Setting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/log/setting"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -150,7 +152,7 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -187,7 +189,7 @@ class Setting:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -195,7 +197,7 @@ class Setting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -203,66 +205,68 @@ class Setting:
         params = {}
         endpoint = "/log/setting"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if resolve_ip is not None:
-            data_payload['resolve-ip'] = resolve_ip
+            data_payload["resolve-ip"] = resolve_ip
         if resolve_port is not None:
-            data_payload['resolve-port'] = resolve_port
+            data_payload["resolve-port"] = resolve_port
         if log_user_in_upper is not None:
-            data_payload['log-user-in-upper'] = log_user_in_upper
+            data_payload["log-user-in-upper"] = log_user_in_upper
         if fwpolicy_implicit_log is not None:
-            data_payload['fwpolicy-implicit-log'] = fwpolicy_implicit_log
+            data_payload["fwpolicy-implicit-log"] = fwpolicy_implicit_log
         if fwpolicy6_implicit_log is not None:
-            data_payload['fwpolicy6-implicit-log'] = fwpolicy6_implicit_log
+            data_payload["fwpolicy6-implicit-log"] = fwpolicy6_implicit_log
         if extended_log is not None:
-            data_payload['extended-log'] = extended_log
+            data_payload["extended-log"] = extended_log
         if local_in_allow is not None:
-            data_payload['local-in-allow'] = local_in_allow
+            data_payload["local-in-allow"] = local_in_allow
         if local_in_deny_unicast is not None:
-            data_payload['local-in-deny-unicast'] = local_in_deny_unicast
+            data_payload["local-in-deny-unicast"] = local_in_deny_unicast
         if local_in_deny_broadcast is not None:
-            data_payload['local-in-deny-broadcast'] = local_in_deny_broadcast
+            data_payload["local-in-deny-broadcast"] = local_in_deny_broadcast
         if local_in_policy_log is not None:
-            data_payload['local-in-policy-log'] = local_in_policy_log
+            data_payload["local-in-policy-log"] = local_in_policy_log
         if local_out is not None:
-            data_payload['local-out'] = local_out
+            data_payload["local-out"] = local_out
         if local_out_ioc_detection is not None:
-            data_payload['local-out-ioc-detection'] = local_out_ioc_detection
+            data_payload["local-out-ioc-detection"] = local_out_ioc_detection
         if daemon_log is not None:
-            data_payload['daemon-log'] = daemon_log
+            data_payload["daemon-log"] = daemon_log
         if neighbor_event is not None:
-            data_payload['neighbor-event'] = neighbor_event
+            data_payload["neighbor-event"] = neighbor_event
         if brief_traffic_format is not None:
-            data_payload['brief-traffic-format'] = brief_traffic_format
+            data_payload["brief-traffic-format"] = brief_traffic_format
         if user_anonymize is not None:
-            data_payload['user-anonymize'] = user_anonymize
+            data_payload["user-anonymize"] = user_anonymize
         if expolicy_implicit_log is not None:
-            data_payload['expolicy-implicit-log'] = expolicy_implicit_log
+            data_payload["expolicy-implicit-log"] = expolicy_implicit_log
         if log_policy_comment is not None:
-            data_payload['log-policy-comment'] = log_policy_comment
+            data_payload["log-policy-comment"] = log_policy_comment
         if faz_override is not None:
-            data_payload['faz-override'] = faz_override
+            data_payload["faz-override"] = faz_override
         if syslog_override is not None:
-            data_payload['syslog-override'] = syslog_override
+            data_payload["syslog-override"] = syslog_override
         if rest_api_set is not None:
-            data_payload['rest-api-set'] = rest_api_set
+            data_payload["rest-api-set"] = rest_api_set
         if rest_api_get is not None:
-            data_payload['rest-api-get'] = rest_api_get
+            data_payload["rest-api-get"] = rest_api_get
         if rest_api_performance is not None:
-            data_payload['rest-api-performance'] = rest_api_performance
+            data_payload["rest-api-performance"] = rest_api_performance
         if long_live_session_stat is not None:
-            data_payload['long-live-session-stat'] = long_live_session_stat
+            data_payload["long-live-session-stat"] = long_live_session_stat
         if extended_utm_log is not None:
-            data_payload['extended-utm-log'] = extended_utm_log
+            data_payload["extended-utm-log"] = extended_utm_log
         if zone_name is not None:
-            data_payload['zone-name'] = zone_name
+            data_payload["zone-name"] = zone_name
         if web_svc_perf is not None:
-            data_payload['web-svc-perf'] = web_svc_perf
+            data_payload["web-svc-perf"] = web_svc_perf
         if custom_log_fields is not None:
-            data_payload['custom-log-fields'] = custom_log_fields
+            data_payload["custom-log-fields"] = custom_log_fields
         if anonymization_hash is not None:
-            data_payload['anonymization-hash'] = anonymization_hash
+            data_payload["anonymization-hash"] = anonymization_hash
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

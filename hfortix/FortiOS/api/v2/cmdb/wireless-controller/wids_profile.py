@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.wids_profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.wids_profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.wids_profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.wids_profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.wids_profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class WidsProfile:
     """
     Widsprofile Operations.
-    
+
     Provides CRUD operations for FortiOS widsprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class WidsProfile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class WidsProfile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize WidsProfile endpoint.
 
@@ -90,7 +90,7 @@ class WidsProfile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class WidsProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class WidsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller/wids-profile/{name}"
         else:
             endpoint = "/wireless-controller/wids-profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -251,7 +253,7 @@ class WidsProfile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -370,7 +372,7 @@ class WidsProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -378,243 +380,253 @@ class WidsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller/wids-profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if sensor_mode is not None:
-            data_payload['sensor-mode'] = sensor_mode
+            data_payload["sensor-mode"] = sensor_mode
         if ap_scan is not None:
-            data_payload['ap-scan'] = ap_scan
+            data_payload["ap-scan"] = ap_scan
         if ap_scan_channel_list_2G_5G is not None:
-            data_payload['ap-scan-channel-list-2G-5G'] = ap_scan_channel_list_2G_5G
+            data_payload["ap-scan-channel-list-2G-5G"] = (
+                ap_scan_channel_list_2G_5G
+            )
         if ap_scan_channel_list_6G is not None:
-            data_payload['ap-scan-channel-list-6G'] = ap_scan_channel_list_6G
+            data_payload["ap-scan-channel-list-6G"] = ap_scan_channel_list_6G
         if ap_bgscan_period is not None:
-            data_payload['ap-bgscan-period'] = ap_bgscan_period
+            data_payload["ap-bgscan-period"] = ap_bgscan_period
         if ap_bgscan_intv is not None:
-            data_payload['ap-bgscan-intv'] = ap_bgscan_intv
+            data_payload["ap-bgscan-intv"] = ap_bgscan_intv
         if ap_bgscan_duration is not None:
-            data_payload['ap-bgscan-duration'] = ap_bgscan_duration
+            data_payload["ap-bgscan-duration"] = ap_bgscan_duration
         if ap_bgscan_idle is not None:
-            data_payload['ap-bgscan-idle'] = ap_bgscan_idle
+            data_payload["ap-bgscan-idle"] = ap_bgscan_idle
         if ap_bgscan_report_intv is not None:
-            data_payload['ap-bgscan-report-intv'] = ap_bgscan_report_intv
+            data_payload["ap-bgscan-report-intv"] = ap_bgscan_report_intv
         if ap_bgscan_disable_schedules is not None:
-            data_payload['ap-bgscan-disable-schedules'] = ap_bgscan_disable_schedules
+            data_payload["ap-bgscan-disable-schedules"] = (
+                ap_bgscan_disable_schedules
+            )
         if ap_fgscan_report_intv is not None:
-            data_payload['ap-fgscan-report-intv'] = ap_fgscan_report_intv
+            data_payload["ap-fgscan-report-intv"] = ap_fgscan_report_intv
         if ap_scan_passive is not None:
-            data_payload['ap-scan-passive'] = ap_scan_passive
+            data_payload["ap-scan-passive"] = ap_scan_passive
         if ap_scan_threshold is not None:
-            data_payload['ap-scan-threshold'] = ap_scan_threshold
+            data_payload["ap-scan-threshold"] = ap_scan_threshold
         if ap_auto_suppress is not None:
-            data_payload['ap-auto-suppress'] = ap_auto_suppress
+            data_payload["ap-auto-suppress"] = ap_auto_suppress
         if wireless_bridge is not None:
-            data_payload['wireless-bridge'] = wireless_bridge
+            data_payload["wireless-bridge"] = wireless_bridge
         if deauth_broadcast is not None:
-            data_payload['deauth-broadcast'] = deauth_broadcast
+            data_payload["deauth-broadcast"] = deauth_broadcast
         if null_ssid_probe_resp is not None:
-            data_payload['null-ssid-probe-resp'] = null_ssid_probe_resp
+            data_payload["null-ssid-probe-resp"] = null_ssid_probe_resp
         if long_duration_attack is not None:
-            data_payload['long-duration-attack'] = long_duration_attack
+            data_payload["long-duration-attack"] = long_duration_attack
         if long_duration_thresh is not None:
-            data_payload['long-duration-thresh'] = long_duration_thresh
+            data_payload["long-duration-thresh"] = long_duration_thresh
         if invalid_mac_oui is not None:
-            data_payload['invalid-mac-oui'] = invalid_mac_oui
+            data_payload["invalid-mac-oui"] = invalid_mac_oui
         if weak_wep_iv is not None:
-            data_payload['weak-wep-iv'] = weak_wep_iv
+            data_payload["weak-wep-iv"] = weak_wep_iv
         if auth_frame_flood is not None:
-            data_payload['auth-frame-flood'] = auth_frame_flood
+            data_payload["auth-frame-flood"] = auth_frame_flood
         if auth_flood_time is not None:
-            data_payload['auth-flood-time'] = auth_flood_time
+            data_payload["auth-flood-time"] = auth_flood_time
         if auth_flood_thresh is not None:
-            data_payload['auth-flood-thresh'] = auth_flood_thresh
+            data_payload["auth-flood-thresh"] = auth_flood_thresh
         if assoc_frame_flood is not None:
-            data_payload['assoc-frame-flood'] = assoc_frame_flood
+            data_payload["assoc-frame-flood"] = assoc_frame_flood
         if assoc_flood_time is not None:
-            data_payload['assoc-flood-time'] = assoc_flood_time
+            data_payload["assoc-flood-time"] = assoc_flood_time
         if assoc_flood_thresh is not None:
-            data_payload['assoc-flood-thresh'] = assoc_flood_thresh
+            data_payload["assoc-flood-thresh"] = assoc_flood_thresh
         if reassoc_flood is not None:
-            data_payload['reassoc-flood'] = reassoc_flood
+            data_payload["reassoc-flood"] = reassoc_flood
         if reassoc_flood_time is not None:
-            data_payload['reassoc-flood-time'] = reassoc_flood_time
+            data_payload["reassoc-flood-time"] = reassoc_flood_time
         if reassoc_flood_thresh is not None:
-            data_payload['reassoc-flood-thresh'] = reassoc_flood_thresh
+            data_payload["reassoc-flood-thresh"] = reassoc_flood_thresh
         if probe_flood is not None:
-            data_payload['probe-flood'] = probe_flood
+            data_payload["probe-flood"] = probe_flood
         if probe_flood_time is not None:
-            data_payload['probe-flood-time'] = probe_flood_time
+            data_payload["probe-flood-time"] = probe_flood_time
         if probe_flood_thresh is not None:
-            data_payload['probe-flood-thresh'] = probe_flood_thresh
+            data_payload["probe-flood-thresh"] = probe_flood_thresh
         if bcn_flood is not None:
-            data_payload['bcn-flood'] = bcn_flood
+            data_payload["bcn-flood"] = bcn_flood
         if bcn_flood_time is not None:
-            data_payload['bcn-flood-time'] = bcn_flood_time
+            data_payload["bcn-flood-time"] = bcn_flood_time
         if bcn_flood_thresh is not None:
-            data_payload['bcn-flood-thresh'] = bcn_flood_thresh
+            data_payload["bcn-flood-thresh"] = bcn_flood_thresh
         if rts_flood is not None:
-            data_payload['rts-flood'] = rts_flood
+            data_payload["rts-flood"] = rts_flood
         if rts_flood_time is not None:
-            data_payload['rts-flood-time'] = rts_flood_time
+            data_payload["rts-flood-time"] = rts_flood_time
         if rts_flood_thresh is not None:
-            data_payload['rts-flood-thresh'] = rts_flood_thresh
+            data_payload["rts-flood-thresh"] = rts_flood_thresh
         if cts_flood is not None:
-            data_payload['cts-flood'] = cts_flood
+            data_payload["cts-flood"] = cts_flood
         if cts_flood_time is not None:
-            data_payload['cts-flood-time'] = cts_flood_time
+            data_payload["cts-flood-time"] = cts_flood_time
         if cts_flood_thresh is not None:
-            data_payload['cts-flood-thresh'] = cts_flood_thresh
+            data_payload["cts-flood-thresh"] = cts_flood_thresh
         if client_flood is not None:
-            data_payload['client-flood'] = client_flood
+            data_payload["client-flood"] = client_flood
         if client_flood_time is not None:
-            data_payload['client-flood-time'] = client_flood_time
+            data_payload["client-flood-time"] = client_flood_time
         if client_flood_thresh is not None:
-            data_payload['client-flood-thresh'] = client_flood_thresh
+            data_payload["client-flood-thresh"] = client_flood_thresh
         if block_ack_flood is not None:
-            data_payload['block_ack-flood'] = block_ack_flood
+            data_payload["block_ack-flood"] = block_ack_flood
         if block_ack_flood_time is not None:
-            data_payload['block_ack-flood-time'] = block_ack_flood_time
+            data_payload["block_ack-flood-time"] = block_ack_flood_time
         if block_ack_flood_thresh is not None:
-            data_payload['block_ack-flood-thresh'] = block_ack_flood_thresh
+            data_payload["block_ack-flood-thresh"] = block_ack_flood_thresh
         if pspoll_flood is not None:
-            data_payload['pspoll-flood'] = pspoll_flood
+            data_payload["pspoll-flood"] = pspoll_flood
         if pspoll_flood_time is not None:
-            data_payload['pspoll-flood-time'] = pspoll_flood_time
+            data_payload["pspoll-flood-time"] = pspoll_flood_time
         if pspoll_flood_thresh is not None:
-            data_payload['pspoll-flood-thresh'] = pspoll_flood_thresh
+            data_payload["pspoll-flood-thresh"] = pspoll_flood_thresh
         if netstumbler is not None:
-            data_payload['netstumbler'] = netstumbler
+            data_payload["netstumbler"] = netstumbler
         if netstumbler_time is not None:
-            data_payload['netstumbler-time'] = netstumbler_time
+            data_payload["netstumbler-time"] = netstumbler_time
         if netstumbler_thresh is not None:
-            data_payload['netstumbler-thresh'] = netstumbler_thresh
+            data_payload["netstumbler-thresh"] = netstumbler_thresh
         if wellenreiter is not None:
-            data_payload['wellenreiter'] = wellenreiter
+            data_payload["wellenreiter"] = wellenreiter
         if wellenreiter_time is not None:
-            data_payload['wellenreiter-time'] = wellenreiter_time
+            data_payload["wellenreiter-time"] = wellenreiter_time
         if wellenreiter_thresh is not None:
-            data_payload['wellenreiter-thresh'] = wellenreiter_thresh
+            data_payload["wellenreiter-thresh"] = wellenreiter_thresh
         if spoofed_deauth is not None:
-            data_payload['spoofed-deauth'] = spoofed_deauth
+            data_payload["spoofed-deauth"] = spoofed_deauth
         if asleap_attack is not None:
-            data_payload['asleap-attack'] = asleap_attack
+            data_payload["asleap-attack"] = asleap_attack
         if eapol_start_flood is not None:
-            data_payload['eapol-start-flood'] = eapol_start_flood
+            data_payload["eapol-start-flood"] = eapol_start_flood
         if eapol_start_thresh is not None:
-            data_payload['eapol-start-thresh'] = eapol_start_thresh
+            data_payload["eapol-start-thresh"] = eapol_start_thresh
         if eapol_start_intv is not None:
-            data_payload['eapol-start-intv'] = eapol_start_intv
+            data_payload["eapol-start-intv"] = eapol_start_intv
         if eapol_logoff_flood is not None:
-            data_payload['eapol-logoff-flood'] = eapol_logoff_flood
+            data_payload["eapol-logoff-flood"] = eapol_logoff_flood
         if eapol_logoff_thresh is not None:
-            data_payload['eapol-logoff-thresh'] = eapol_logoff_thresh
+            data_payload["eapol-logoff-thresh"] = eapol_logoff_thresh
         if eapol_logoff_intv is not None:
-            data_payload['eapol-logoff-intv'] = eapol_logoff_intv
+            data_payload["eapol-logoff-intv"] = eapol_logoff_intv
         if eapol_succ_flood is not None:
-            data_payload['eapol-succ-flood'] = eapol_succ_flood
+            data_payload["eapol-succ-flood"] = eapol_succ_flood
         if eapol_succ_thresh is not None:
-            data_payload['eapol-succ-thresh'] = eapol_succ_thresh
+            data_payload["eapol-succ-thresh"] = eapol_succ_thresh
         if eapol_succ_intv is not None:
-            data_payload['eapol-succ-intv'] = eapol_succ_intv
+            data_payload["eapol-succ-intv"] = eapol_succ_intv
         if eapol_fail_flood is not None:
-            data_payload['eapol-fail-flood'] = eapol_fail_flood
+            data_payload["eapol-fail-flood"] = eapol_fail_flood
         if eapol_fail_thresh is not None:
-            data_payload['eapol-fail-thresh'] = eapol_fail_thresh
+            data_payload["eapol-fail-thresh"] = eapol_fail_thresh
         if eapol_fail_intv is not None:
-            data_payload['eapol-fail-intv'] = eapol_fail_intv
+            data_payload["eapol-fail-intv"] = eapol_fail_intv
         if eapol_pre_succ_flood is not None:
-            data_payload['eapol-pre-succ-flood'] = eapol_pre_succ_flood
+            data_payload["eapol-pre-succ-flood"] = eapol_pre_succ_flood
         if eapol_pre_succ_thresh is not None:
-            data_payload['eapol-pre-succ-thresh'] = eapol_pre_succ_thresh
+            data_payload["eapol-pre-succ-thresh"] = eapol_pre_succ_thresh
         if eapol_pre_succ_intv is not None:
-            data_payload['eapol-pre-succ-intv'] = eapol_pre_succ_intv
+            data_payload["eapol-pre-succ-intv"] = eapol_pre_succ_intv
         if eapol_pre_fail_flood is not None:
-            data_payload['eapol-pre-fail-flood'] = eapol_pre_fail_flood
+            data_payload["eapol-pre-fail-flood"] = eapol_pre_fail_flood
         if eapol_pre_fail_thresh is not None:
-            data_payload['eapol-pre-fail-thresh'] = eapol_pre_fail_thresh
+            data_payload["eapol-pre-fail-thresh"] = eapol_pre_fail_thresh
         if eapol_pre_fail_intv is not None:
-            data_payload['eapol-pre-fail-intv'] = eapol_pre_fail_intv
+            data_payload["eapol-pre-fail-intv"] = eapol_pre_fail_intv
         if deauth_unknown_src_thresh is not None:
-            data_payload['deauth-unknown-src-thresh'] = deauth_unknown_src_thresh
+            data_payload["deauth-unknown-src-thresh"] = (
+                deauth_unknown_src_thresh
+            )
         if windows_bridge is not None:
-            data_payload['windows-bridge'] = windows_bridge
+            data_payload["windows-bridge"] = windows_bridge
         if disassoc_broadcast is not None:
-            data_payload['disassoc-broadcast'] = disassoc_broadcast
+            data_payload["disassoc-broadcast"] = disassoc_broadcast
         if ap_spoofing is not None:
-            data_payload['ap-spoofing'] = ap_spoofing
+            data_payload["ap-spoofing"] = ap_spoofing
         if chan_based_mitm is not None:
-            data_payload['chan-based-mitm'] = chan_based_mitm
+            data_payload["chan-based-mitm"] = chan_based_mitm
         if adhoc_valid_ssid is not None:
-            data_payload['adhoc-valid-ssid'] = adhoc_valid_ssid
+            data_payload["adhoc-valid-ssid"] = adhoc_valid_ssid
         if adhoc_network is not None:
-            data_payload['adhoc-network'] = adhoc_network
+            data_payload["adhoc-network"] = adhoc_network
         if eapol_key_overflow is not None:
-            data_payload['eapol-key-overflow'] = eapol_key_overflow
+            data_payload["eapol-key-overflow"] = eapol_key_overflow
         if ap_impersonation is not None:
-            data_payload['ap-impersonation'] = ap_impersonation
+            data_payload["ap-impersonation"] = ap_impersonation
         if invalid_addr_combination is not None:
-            data_payload['invalid-addr-combination'] = invalid_addr_combination
+            data_payload["invalid-addr-combination"] = invalid_addr_combination
         if beacon_wrong_channel is not None:
-            data_payload['beacon-wrong-channel'] = beacon_wrong_channel
+            data_payload["beacon-wrong-channel"] = beacon_wrong_channel
         if ht_greenfield is not None:
-            data_payload['ht-greenfield'] = ht_greenfield
+            data_payload["ht-greenfield"] = ht_greenfield
         if overflow_ie is not None:
-            data_payload['overflow-ie'] = overflow_ie
+            data_payload["overflow-ie"] = overflow_ie
         if malformed_ht_ie is not None:
-            data_payload['malformed-ht-ie'] = malformed_ht_ie
+            data_payload["malformed-ht-ie"] = malformed_ht_ie
         if malformed_auth is not None:
-            data_payload['malformed-auth'] = malformed_auth
+            data_payload["malformed-auth"] = malformed_auth
         if malformed_association is not None:
-            data_payload['malformed-association'] = malformed_association
+            data_payload["malformed-association"] = malformed_association
         if ht_40mhz_intolerance is not None:
-            data_payload['ht-40mhz-intolerance'] = ht_40mhz_intolerance
+            data_payload["ht-40mhz-intolerance"] = ht_40mhz_intolerance
         if valid_ssid_misuse is not None:
-            data_payload['valid-ssid-misuse'] = valid_ssid_misuse
+            data_payload["valid-ssid-misuse"] = valid_ssid_misuse
         if valid_client_misassociation is not None:
-            data_payload['valid-client-misassociation'] = valid_client_misassociation
+            data_payload["valid-client-misassociation"] = (
+                valid_client_misassociation
+            )
         if hotspotter_attack is not None:
-            data_payload['hotspotter-attack'] = hotspotter_attack
+            data_payload["hotspotter-attack"] = hotspotter_attack
         if pwsave_dos_attack is not None:
-            data_payload['pwsave-dos-attack'] = pwsave_dos_attack
+            data_payload["pwsave-dos-attack"] = pwsave_dos_attack
         if omerta_attack is not None:
-            data_payload['omerta-attack'] = omerta_attack
+            data_payload["omerta-attack"] = omerta_attack
         if disconnect_station is not None:
-            data_payload['disconnect-station'] = disconnect_station
+            data_payload["disconnect-station"] = disconnect_station
         if unencrypted_valid is not None:
-            data_payload['unencrypted-valid'] = unencrypted_valid
+            data_payload["unencrypted-valid"] = unencrypted_valid
         if fata_jack is not None:
-            data_payload['fata-jack'] = fata_jack
+            data_payload["fata-jack"] = fata_jack
         if risky_encryption is not None:
-            data_payload['risky-encryption'] = risky_encryption
+            data_payload["risky-encryption"] = risky_encryption
         if fuzzed_beacon is not None:
-            data_payload['fuzzed-beacon'] = fuzzed_beacon
+            data_payload["fuzzed-beacon"] = fuzzed_beacon
         if fuzzed_probe_request is not None:
-            data_payload['fuzzed-probe-request'] = fuzzed_probe_request
+            data_payload["fuzzed-probe-request"] = fuzzed_probe_request
         if fuzzed_probe_response is not None:
-            data_payload['fuzzed-probe-response'] = fuzzed_probe_response
+            data_payload["fuzzed-probe-response"] = fuzzed_probe_response
         if air_jack is not None:
-            data_payload['air-jack'] = air_jack
+            data_payload["air-jack"] = air_jack
         if wpa_ft_attack is not None:
-            data_payload['wpa-ft-attack'] = wpa_ft_attack
+            data_payload["wpa-ft-attack"] = wpa_ft_attack
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -626,13 +638,13 @@ class WidsProfile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -640,18 +652,20 @@ class WidsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/wids-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -660,37 +674,39 @@ class WidsProfile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -812,7 +828,7 @@ class WidsProfile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -929,7 +945,7 @@ class WidsProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -937,7 +953,7 @@ class WidsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -945,226 +961,236 @@ class WidsProfile:
         params = {}
         endpoint = "/wireless-controller/wids-profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if sensor_mode is not None:
-            data_payload['sensor-mode'] = sensor_mode
+            data_payload["sensor-mode"] = sensor_mode
         if ap_scan is not None:
-            data_payload['ap-scan'] = ap_scan
+            data_payload["ap-scan"] = ap_scan
         if ap_scan_channel_list_2G_5G is not None:
-            data_payload['ap-scan-channel-list-2G-5G'] = ap_scan_channel_list_2G_5G
+            data_payload["ap-scan-channel-list-2G-5G"] = (
+                ap_scan_channel_list_2G_5G
+            )
         if ap_scan_channel_list_6G is not None:
-            data_payload['ap-scan-channel-list-6G'] = ap_scan_channel_list_6G
+            data_payload["ap-scan-channel-list-6G"] = ap_scan_channel_list_6G
         if ap_bgscan_period is not None:
-            data_payload['ap-bgscan-period'] = ap_bgscan_period
+            data_payload["ap-bgscan-period"] = ap_bgscan_period
         if ap_bgscan_intv is not None:
-            data_payload['ap-bgscan-intv'] = ap_bgscan_intv
+            data_payload["ap-bgscan-intv"] = ap_bgscan_intv
         if ap_bgscan_duration is not None:
-            data_payload['ap-bgscan-duration'] = ap_bgscan_duration
+            data_payload["ap-bgscan-duration"] = ap_bgscan_duration
         if ap_bgscan_idle is not None:
-            data_payload['ap-bgscan-idle'] = ap_bgscan_idle
+            data_payload["ap-bgscan-idle"] = ap_bgscan_idle
         if ap_bgscan_report_intv is not None:
-            data_payload['ap-bgscan-report-intv'] = ap_bgscan_report_intv
+            data_payload["ap-bgscan-report-intv"] = ap_bgscan_report_intv
         if ap_bgscan_disable_schedules is not None:
-            data_payload['ap-bgscan-disable-schedules'] = ap_bgscan_disable_schedules
+            data_payload["ap-bgscan-disable-schedules"] = (
+                ap_bgscan_disable_schedules
+            )
         if ap_fgscan_report_intv is not None:
-            data_payload['ap-fgscan-report-intv'] = ap_fgscan_report_intv
+            data_payload["ap-fgscan-report-intv"] = ap_fgscan_report_intv
         if ap_scan_passive is not None:
-            data_payload['ap-scan-passive'] = ap_scan_passive
+            data_payload["ap-scan-passive"] = ap_scan_passive
         if ap_scan_threshold is not None:
-            data_payload['ap-scan-threshold'] = ap_scan_threshold
+            data_payload["ap-scan-threshold"] = ap_scan_threshold
         if ap_auto_suppress is not None:
-            data_payload['ap-auto-suppress'] = ap_auto_suppress
+            data_payload["ap-auto-suppress"] = ap_auto_suppress
         if wireless_bridge is not None:
-            data_payload['wireless-bridge'] = wireless_bridge
+            data_payload["wireless-bridge"] = wireless_bridge
         if deauth_broadcast is not None:
-            data_payload['deauth-broadcast'] = deauth_broadcast
+            data_payload["deauth-broadcast"] = deauth_broadcast
         if null_ssid_probe_resp is not None:
-            data_payload['null-ssid-probe-resp'] = null_ssid_probe_resp
+            data_payload["null-ssid-probe-resp"] = null_ssid_probe_resp
         if long_duration_attack is not None:
-            data_payload['long-duration-attack'] = long_duration_attack
+            data_payload["long-duration-attack"] = long_duration_attack
         if long_duration_thresh is not None:
-            data_payload['long-duration-thresh'] = long_duration_thresh
+            data_payload["long-duration-thresh"] = long_duration_thresh
         if invalid_mac_oui is not None:
-            data_payload['invalid-mac-oui'] = invalid_mac_oui
+            data_payload["invalid-mac-oui"] = invalid_mac_oui
         if weak_wep_iv is not None:
-            data_payload['weak-wep-iv'] = weak_wep_iv
+            data_payload["weak-wep-iv"] = weak_wep_iv
         if auth_frame_flood is not None:
-            data_payload['auth-frame-flood'] = auth_frame_flood
+            data_payload["auth-frame-flood"] = auth_frame_flood
         if auth_flood_time is not None:
-            data_payload['auth-flood-time'] = auth_flood_time
+            data_payload["auth-flood-time"] = auth_flood_time
         if auth_flood_thresh is not None:
-            data_payload['auth-flood-thresh'] = auth_flood_thresh
+            data_payload["auth-flood-thresh"] = auth_flood_thresh
         if assoc_frame_flood is not None:
-            data_payload['assoc-frame-flood'] = assoc_frame_flood
+            data_payload["assoc-frame-flood"] = assoc_frame_flood
         if assoc_flood_time is not None:
-            data_payload['assoc-flood-time'] = assoc_flood_time
+            data_payload["assoc-flood-time"] = assoc_flood_time
         if assoc_flood_thresh is not None:
-            data_payload['assoc-flood-thresh'] = assoc_flood_thresh
+            data_payload["assoc-flood-thresh"] = assoc_flood_thresh
         if reassoc_flood is not None:
-            data_payload['reassoc-flood'] = reassoc_flood
+            data_payload["reassoc-flood"] = reassoc_flood
         if reassoc_flood_time is not None:
-            data_payload['reassoc-flood-time'] = reassoc_flood_time
+            data_payload["reassoc-flood-time"] = reassoc_flood_time
         if reassoc_flood_thresh is not None:
-            data_payload['reassoc-flood-thresh'] = reassoc_flood_thresh
+            data_payload["reassoc-flood-thresh"] = reassoc_flood_thresh
         if probe_flood is not None:
-            data_payload['probe-flood'] = probe_flood
+            data_payload["probe-flood"] = probe_flood
         if probe_flood_time is not None:
-            data_payload['probe-flood-time'] = probe_flood_time
+            data_payload["probe-flood-time"] = probe_flood_time
         if probe_flood_thresh is not None:
-            data_payload['probe-flood-thresh'] = probe_flood_thresh
+            data_payload["probe-flood-thresh"] = probe_flood_thresh
         if bcn_flood is not None:
-            data_payload['bcn-flood'] = bcn_flood
+            data_payload["bcn-flood"] = bcn_flood
         if bcn_flood_time is not None:
-            data_payload['bcn-flood-time'] = bcn_flood_time
+            data_payload["bcn-flood-time"] = bcn_flood_time
         if bcn_flood_thresh is not None:
-            data_payload['bcn-flood-thresh'] = bcn_flood_thresh
+            data_payload["bcn-flood-thresh"] = bcn_flood_thresh
         if rts_flood is not None:
-            data_payload['rts-flood'] = rts_flood
+            data_payload["rts-flood"] = rts_flood
         if rts_flood_time is not None:
-            data_payload['rts-flood-time'] = rts_flood_time
+            data_payload["rts-flood-time"] = rts_flood_time
         if rts_flood_thresh is not None:
-            data_payload['rts-flood-thresh'] = rts_flood_thresh
+            data_payload["rts-flood-thresh"] = rts_flood_thresh
         if cts_flood is not None:
-            data_payload['cts-flood'] = cts_flood
+            data_payload["cts-flood"] = cts_flood
         if cts_flood_time is not None:
-            data_payload['cts-flood-time'] = cts_flood_time
+            data_payload["cts-flood-time"] = cts_flood_time
         if cts_flood_thresh is not None:
-            data_payload['cts-flood-thresh'] = cts_flood_thresh
+            data_payload["cts-flood-thresh"] = cts_flood_thresh
         if client_flood is not None:
-            data_payload['client-flood'] = client_flood
+            data_payload["client-flood"] = client_flood
         if client_flood_time is not None:
-            data_payload['client-flood-time'] = client_flood_time
+            data_payload["client-flood-time"] = client_flood_time
         if client_flood_thresh is not None:
-            data_payload['client-flood-thresh'] = client_flood_thresh
+            data_payload["client-flood-thresh"] = client_flood_thresh
         if block_ack_flood is not None:
-            data_payload['block_ack-flood'] = block_ack_flood
+            data_payload["block_ack-flood"] = block_ack_flood
         if block_ack_flood_time is not None:
-            data_payload['block_ack-flood-time'] = block_ack_flood_time
+            data_payload["block_ack-flood-time"] = block_ack_flood_time
         if block_ack_flood_thresh is not None:
-            data_payload['block_ack-flood-thresh'] = block_ack_flood_thresh
+            data_payload["block_ack-flood-thresh"] = block_ack_flood_thresh
         if pspoll_flood is not None:
-            data_payload['pspoll-flood'] = pspoll_flood
+            data_payload["pspoll-flood"] = pspoll_flood
         if pspoll_flood_time is not None:
-            data_payload['pspoll-flood-time'] = pspoll_flood_time
+            data_payload["pspoll-flood-time"] = pspoll_flood_time
         if pspoll_flood_thresh is not None:
-            data_payload['pspoll-flood-thresh'] = pspoll_flood_thresh
+            data_payload["pspoll-flood-thresh"] = pspoll_flood_thresh
         if netstumbler is not None:
-            data_payload['netstumbler'] = netstumbler
+            data_payload["netstumbler"] = netstumbler
         if netstumbler_time is not None:
-            data_payload['netstumbler-time'] = netstumbler_time
+            data_payload["netstumbler-time"] = netstumbler_time
         if netstumbler_thresh is not None:
-            data_payload['netstumbler-thresh'] = netstumbler_thresh
+            data_payload["netstumbler-thresh"] = netstumbler_thresh
         if wellenreiter is not None:
-            data_payload['wellenreiter'] = wellenreiter
+            data_payload["wellenreiter"] = wellenreiter
         if wellenreiter_time is not None:
-            data_payload['wellenreiter-time'] = wellenreiter_time
+            data_payload["wellenreiter-time"] = wellenreiter_time
         if wellenreiter_thresh is not None:
-            data_payload['wellenreiter-thresh'] = wellenreiter_thresh
+            data_payload["wellenreiter-thresh"] = wellenreiter_thresh
         if spoofed_deauth is not None:
-            data_payload['spoofed-deauth'] = spoofed_deauth
+            data_payload["spoofed-deauth"] = spoofed_deauth
         if asleap_attack is not None:
-            data_payload['asleap-attack'] = asleap_attack
+            data_payload["asleap-attack"] = asleap_attack
         if eapol_start_flood is not None:
-            data_payload['eapol-start-flood'] = eapol_start_flood
+            data_payload["eapol-start-flood"] = eapol_start_flood
         if eapol_start_thresh is not None:
-            data_payload['eapol-start-thresh'] = eapol_start_thresh
+            data_payload["eapol-start-thresh"] = eapol_start_thresh
         if eapol_start_intv is not None:
-            data_payload['eapol-start-intv'] = eapol_start_intv
+            data_payload["eapol-start-intv"] = eapol_start_intv
         if eapol_logoff_flood is not None:
-            data_payload['eapol-logoff-flood'] = eapol_logoff_flood
+            data_payload["eapol-logoff-flood"] = eapol_logoff_flood
         if eapol_logoff_thresh is not None:
-            data_payload['eapol-logoff-thresh'] = eapol_logoff_thresh
+            data_payload["eapol-logoff-thresh"] = eapol_logoff_thresh
         if eapol_logoff_intv is not None:
-            data_payload['eapol-logoff-intv'] = eapol_logoff_intv
+            data_payload["eapol-logoff-intv"] = eapol_logoff_intv
         if eapol_succ_flood is not None:
-            data_payload['eapol-succ-flood'] = eapol_succ_flood
+            data_payload["eapol-succ-flood"] = eapol_succ_flood
         if eapol_succ_thresh is not None:
-            data_payload['eapol-succ-thresh'] = eapol_succ_thresh
+            data_payload["eapol-succ-thresh"] = eapol_succ_thresh
         if eapol_succ_intv is not None:
-            data_payload['eapol-succ-intv'] = eapol_succ_intv
+            data_payload["eapol-succ-intv"] = eapol_succ_intv
         if eapol_fail_flood is not None:
-            data_payload['eapol-fail-flood'] = eapol_fail_flood
+            data_payload["eapol-fail-flood"] = eapol_fail_flood
         if eapol_fail_thresh is not None:
-            data_payload['eapol-fail-thresh'] = eapol_fail_thresh
+            data_payload["eapol-fail-thresh"] = eapol_fail_thresh
         if eapol_fail_intv is not None:
-            data_payload['eapol-fail-intv'] = eapol_fail_intv
+            data_payload["eapol-fail-intv"] = eapol_fail_intv
         if eapol_pre_succ_flood is not None:
-            data_payload['eapol-pre-succ-flood'] = eapol_pre_succ_flood
+            data_payload["eapol-pre-succ-flood"] = eapol_pre_succ_flood
         if eapol_pre_succ_thresh is not None:
-            data_payload['eapol-pre-succ-thresh'] = eapol_pre_succ_thresh
+            data_payload["eapol-pre-succ-thresh"] = eapol_pre_succ_thresh
         if eapol_pre_succ_intv is not None:
-            data_payload['eapol-pre-succ-intv'] = eapol_pre_succ_intv
+            data_payload["eapol-pre-succ-intv"] = eapol_pre_succ_intv
         if eapol_pre_fail_flood is not None:
-            data_payload['eapol-pre-fail-flood'] = eapol_pre_fail_flood
+            data_payload["eapol-pre-fail-flood"] = eapol_pre_fail_flood
         if eapol_pre_fail_thresh is not None:
-            data_payload['eapol-pre-fail-thresh'] = eapol_pre_fail_thresh
+            data_payload["eapol-pre-fail-thresh"] = eapol_pre_fail_thresh
         if eapol_pre_fail_intv is not None:
-            data_payload['eapol-pre-fail-intv'] = eapol_pre_fail_intv
+            data_payload["eapol-pre-fail-intv"] = eapol_pre_fail_intv
         if deauth_unknown_src_thresh is not None:
-            data_payload['deauth-unknown-src-thresh'] = deauth_unknown_src_thresh
+            data_payload["deauth-unknown-src-thresh"] = (
+                deauth_unknown_src_thresh
+            )
         if windows_bridge is not None:
-            data_payload['windows-bridge'] = windows_bridge
+            data_payload["windows-bridge"] = windows_bridge
         if disassoc_broadcast is not None:
-            data_payload['disassoc-broadcast'] = disassoc_broadcast
+            data_payload["disassoc-broadcast"] = disassoc_broadcast
         if ap_spoofing is not None:
-            data_payload['ap-spoofing'] = ap_spoofing
+            data_payload["ap-spoofing"] = ap_spoofing
         if chan_based_mitm is not None:
-            data_payload['chan-based-mitm'] = chan_based_mitm
+            data_payload["chan-based-mitm"] = chan_based_mitm
         if adhoc_valid_ssid is not None:
-            data_payload['adhoc-valid-ssid'] = adhoc_valid_ssid
+            data_payload["adhoc-valid-ssid"] = adhoc_valid_ssid
         if adhoc_network is not None:
-            data_payload['adhoc-network'] = adhoc_network
+            data_payload["adhoc-network"] = adhoc_network
         if eapol_key_overflow is not None:
-            data_payload['eapol-key-overflow'] = eapol_key_overflow
+            data_payload["eapol-key-overflow"] = eapol_key_overflow
         if ap_impersonation is not None:
-            data_payload['ap-impersonation'] = ap_impersonation
+            data_payload["ap-impersonation"] = ap_impersonation
         if invalid_addr_combination is not None:
-            data_payload['invalid-addr-combination'] = invalid_addr_combination
+            data_payload["invalid-addr-combination"] = invalid_addr_combination
         if beacon_wrong_channel is not None:
-            data_payload['beacon-wrong-channel'] = beacon_wrong_channel
+            data_payload["beacon-wrong-channel"] = beacon_wrong_channel
         if ht_greenfield is not None:
-            data_payload['ht-greenfield'] = ht_greenfield
+            data_payload["ht-greenfield"] = ht_greenfield
         if overflow_ie is not None:
-            data_payload['overflow-ie'] = overflow_ie
+            data_payload["overflow-ie"] = overflow_ie
         if malformed_ht_ie is not None:
-            data_payload['malformed-ht-ie'] = malformed_ht_ie
+            data_payload["malformed-ht-ie"] = malformed_ht_ie
         if malformed_auth is not None:
-            data_payload['malformed-auth'] = malformed_auth
+            data_payload["malformed-auth"] = malformed_auth
         if malformed_association is not None:
-            data_payload['malformed-association'] = malformed_association
+            data_payload["malformed-association"] = malformed_association
         if ht_40mhz_intolerance is not None:
-            data_payload['ht-40mhz-intolerance'] = ht_40mhz_intolerance
+            data_payload["ht-40mhz-intolerance"] = ht_40mhz_intolerance
         if valid_ssid_misuse is not None:
-            data_payload['valid-ssid-misuse'] = valid_ssid_misuse
+            data_payload["valid-ssid-misuse"] = valid_ssid_misuse
         if valid_client_misassociation is not None:
-            data_payload['valid-client-misassociation'] = valid_client_misassociation
+            data_payload["valid-client-misassociation"] = (
+                valid_client_misassociation
+            )
         if hotspotter_attack is not None:
-            data_payload['hotspotter-attack'] = hotspotter_attack
+            data_payload["hotspotter-attack"] = hotspotter_attack
         if pwsave_dos_attack is not None:
-            data_payload['pwsave-dos-attack'] = pwsave_dos_attack
+            data_payload["pwsave-dos-attack"] = pwsave_dos_attack
         if omerta_attack is not None:
-            data_payload['omerta-attack'] = omerta_attack
+            data_payload["omerta-attack"] = omerta_attack
         if disconnect_station is not None:
-            data_payload['disconnect-station'] = disconnect_station
+            data_payload["disconnect-station"] = disconnect_station
         if unencrypted_valid is not None:
-            data_payload['unencrypted-valid'] = unencrypted_valid
+            data_payload["unencrypted-valid"] = unencrypted_valid
         if fata_jack is not None:
-            data_payload['fata-jack'] = fata_jack
+            data_payload["fata-jack"] = fata_jack
         if risky_encryption is not None:
-            data_payload['risky-encryption'] = risky_encryption
+            data_payload["risky-encryption"] = risky_encryption
         if fuzzed_beacon is not None:
-            data_payload['fuzzed-beacon'] = fuzzed_beacon
+            data_payload["fuzzed-beacon"] = fuzzed_beacon
         if fuzzed_probe_request is not None:
-            data_payload['fuzzed-probe-request'] = fuzzed_probe_request
+            data_payload["fuzzed-probe-request"] = fuzzed_probe_request
         if fuzzed_probe_response is not None:
-            data_payload['fuzzed-probe-response'] = fuzzed_probe_response
+            data_payload["fuzzed-probe-response"] = fuzzed_probe_response
         if air_jack is not None:
-            data_payload['air-jack'] = air_jack
+            data_payload["air-jack"] = air_jack
         if wpa_ft_attack is not None:
-            data_payload['wpa-ft-attack'] = wpa_ft_attack
+            data_payload["wpa-ft-attack"] = wpa_ft_attack
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.proxy_policy.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.proxy_policy.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.proxy_policy.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.proxy_policy.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.proxy_policy.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ProxyPolicy:
     """
     Proxypolicy Operations.
-    
+
     Provides CRUD operations for FortiOS proxypolicy configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ProxyPolicy:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ProxyPolicy:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ProxyPolicy endpoint.
 
@@ -90,7 +90,7 @@ class ProxyPolicy:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             policyid: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ProxyPolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ProxyPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if policyid:
             endpoint = f"/firewall/proxy-policy/{policyid}"
         else:
             endpoint = "/firewall/proxy-policy"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -221,7 +223,7 @@ class ProxyPolicy:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             policyid: Object identifier (required)
@@ -310,7 +312,7 @@ class ProxyPolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -318,183 +320,197 @@ class ProxyPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/proxy-policy/{policyid}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if access_proxy is not None:
-            data_payload['access-proxy'] = access_proxy
+            data_payload["access-proxy"] = access_proxy
         if access_proxy6 is not None:
-            data_payload['access-proxy6'] = access_proxy6
+            data_payload["access-proxy6"] = access_proxy6
         if ztna_proxy is not None:
-            data_payload['ztna-proxy'] = ztna_proxy
+            data_payload["ztna-proxy"] = ztna_proxy
         if srcintf is not None:
-            data_payload['srcintf'] = srcintf
+            data_payload["srcintf"] = srcintf
         if dstintf is not None:
-            data_payload['dstintf'] = dstintf
+            data_payload["dstintf"] = dstintf
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if poolname is not None:
-            data_payload['poolname'] = poolname
+            data_payload["poolname"] = poolname
         if poolname6 is not None:
-            data_payload['poolname6'] = poolname6
+            data_payload["poolname6"] = poolname6
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if ztna_ems_tag is not None:
-            data_payload['ztna-ems-tag'] = ztna_ems_tag
+            data_payload["ztna-ems-tag"] = ztna_ems_tag
         if ztna_tags_match_logic is not None:
-            data_payload['ztna-tags-match-logic'] = ztna_tags_match_logic
+            data_payload["ztna-tags-match-logic"] = ztna_tags_match_logic
         if device_ownership is not None:
-            data_payload['device-ownership'] = device_ownership
+            data_payload["device-ownership"] = device_ownership
         if url_risk is not None:
-            data_payload['url-risk'] = url_risk
+            data_payload["url-risk"] = url_risk
         if internet_service is not None:
-            data_payload['internet-service'] = internet_service
+            data_payload["internet-service"] = internet_service
         if internet_service_negate is not None:
-            data_payload['internet-service-negate'] = internet_service_negate
+            data_payload["internet-service-negate"] = internet_service_negate
         if internet_service_name is not None:
-            data_payload['internet-service-name'] = internet_service_name
+            data_payload["internet-service-name"] = internet_service_name
         if internet_service_group is not None:
-            data_payload['internet-service-group'] = internet_service_group
+            data_payload["internet-service-group"] = internet_service_group
         if internet_service_custom is not None:
-            data_payload['internet-service-custom'] = internet_service_custom
+            data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload['internet-service-custom-group'] = internet_service_custom_group
+            data_payload["internet-service-custom-group"] = (
+                internet_service_custom_group
+            )
         if internet_service_fortiguard is not None:
-            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if internet_service6 is not None:
-            data_payload['internet-service6'] = internet_service6
+            data_payload["internet-service6"] = internet_service6
         if internet_service6_negate is not None:
-            data_payload['internet-service6-negate'] = internet_service6_negate
+            data_payload["internet-service6-negate"] = internet_service6_negate
         if internet_service6_name is not None:
-            data_payload['internet-service6-name'] = internet_service6_name
+            data_payload["internet-service6-name"] = internet_service6_name
         if internet_service6_group is not None:
-            data_payload['internet-service6-group'] = internet_service6_group
+            data_payload["internet-service6-group"] = internet_service6_group
         if internet_service6_custom is not None:
-            data_payload['internet-service6-custom'] = internet_service6_custom
+            data_payload["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data_payload['internet-service6-custom-group'] = internet_service6_custom_group
+            data_payload["internet-service6-custom-group"] = (
+                internet_service6_custom_group
+            )
         if internet_service6_fortiguard is not None:
-            data_payload['internet-service6-fortiguard'] = internet_service6_fortiguard
+            data_payload["internet-service6-fortiguard"] = (
+                internet_service6_fortiguard
+            )
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if srcaddr_negate is not None:
-            data_payload['srcaddr-negate'] = srcaddr_negate
+            data_payload["srcaddr-negate"] = srcaddr_negate
         if dstaddr_negate is not None:
-            data_payload['dstaddr-negate'] = dstaddr_negate
+            data_payload["dstaddr-negate"] = dstaddr_negate
         if ztna_ems_tag_negate is not None:
-            data_payload['ztna-ems-tag-negate'] = ztna_ems_tag_negate
+            data_payload["ztna-ems-tag-negate"] = ztna_ems_tag_negate
         if service_negate is not None:
-            data_payload['service-negate'] = service_negate
+            data_payload["service-negate"] = service_negate
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if logtraffic is not None:
-            data_payload['logtraffic'] = logtraffic
+            data_payload["logtraffic"] = logtraffic
         if session_ttl is not None:
-            data_payload['session-ttl'] = session_ttl
+            data_payload["session-ttl"] = session_ttl
         if srcaddr6 is not None:
-            data_payload['srcaddr6'] = srcaddr6
+            data_payload["srcaddr6"] = srcaddr6
         if dstaddr6 is not None:
-            data_payload['dstaddr6'] = dstaddr6
+            data_payload["dstaddr6"] = dstaddr6
         if groups is not None:
-            data_payload['groups'] = groups
+            data_payload["groups"] = groups
         if users is not None:
-            data_payload['users'] = users
+            data_payload["users"] = users
         if http_tunnel_auth is not None:
-            data_payload['http-tunnel-auth'] = http_tunnel_auth
+            data_payload["http-tunnel-auth"] = http_tunnel_auth
         if ssh_policy_redirect is not None:
-            data_payload['ssh-policy-redirect'] = ssh_policy_redirect
+            data_payload["ssh-policy-redirect"] = ssh_policy_redirect
         if webproxy_forward_server is not None:
-            data_payload['webproxy-forward-server'] = webproxy_forward_server
+            data_payload["webproxy-forward-server"] = webproxy_forward_server
         if isolator_server is not None:
-            data_payload['isolator-server'] = isolator_server
+            data_payload["isolator-server"] = isolator_server
         if webproxy_profile is not None:
-            data_payload['webproxy-profile'] = webproxy_profile
+            data_payload["webproxy-profile"] = webproxy_profile
         if transparent is not None:
-            data_payload['transparent'] = transparent
+            data_payload["transparent"] = transparent
         if disclaimer is not None:
-            data_payload['disclaimer'] = disclaimer
+            data_payload["disclaimer"] = disclaimer
         if utm_status is not None:
-            data_payload['utm-status'] = utm_status
+            data_payload["utm-status"] = utm_status
         if profile_type is not None:
-            data_payload['profile-type'] = profile_type
+            data_payload["profile-type"] = profile_type
         if profile_group is not None:
-            data_payload['profile-group'] = profile_group
+            data_payload["profile-group"] = profile_group
         if profile_protocol_options is not None:
-            data_payload['profile-protocol-options'] = profile_protocol_options
+            data_payload["profile-protocol-options"] = profile_protocol_options
         if ssl_ssh_profile is not None:
-            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+            data_payload["ssl-ssh-profile"] = ssl_ssh_profile
         if av_profile is not None:
-            data_payload['av-profile'] = av_profile
+            data_payload["av-profile"] = av_profile
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if dnsfilter_profile is not None:
-            data_payload['dnsfilter-profile'] = dnsfilter_profile
+            data_payload["dnsfilter-profile"] = dnsfilter_profile
         if emailfilter_profile is not None:
-            data_payload['emailfilter-profile'] = emailfilter_profile
+            data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile is not None:
-            data_payload['dlp-profile'] = dlp_profile
+            data_payload["dlp-profile"] = dlp_profile
         if file_filter_profile is not None:
-            data_payload['file-filter-profile'] = file_filter_profile
+            data_payload["file-filter-profile"] = file_filter_profile
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if ips_voip_filter is not None:
-            data_payload['ips-voip-filter'] = ips_voip_filter
+            data_payload["ips-voip-filter"] = ips_voip_filter
         if sctp_filter_profile is not None:
-            data_payload['sctp-filter-profile'] = sctp_filter_profile
+            data_payload["sctp-filter-profile"] = sctp_filter_profile
         if icap_profile is not None:
-            data_payload['icap-profile'] = icap_profile
+            data_payload["icap-profile"] = icap_profile
         if videofilter_profile is not None:
-            data_payload['videofilter-profile'] = videofilter_profile
+            data_payload["videofilter-profile"] = videofilter_profile
         if waf_profile is not None:
-            data_payload['waf-profile'] = waf_profile
+            data_payload["waf-profile"] = waf_profile
         if ssh_filter_profile is not None:
-            data_payload['ssh-filter-profile'] = ssh_filter_profile
+            data_payload["ssh-filter-profile"] = ssh_filter_profile
         if casb_profile is not None:
-            data_payload['casb-profile'] = casb_profile
+            data_payload["casb-profile"] = casb_profile
         if replacemsg_override_group is not None:
-            data_payload['replacemsg-override-group'] = replacemsg_override_group
+            data_payload["replacemsg-override-group"] = (
+                replacemsg_override_group
+            )
         if logtraffic_start is not None:
-            data_payload['logtraffic-start'] = logtraffic_start
+            data_payload["logtraffic-start"] = logtraffic_start
         if log_http_transaction is not None:
-            data_payload['log-http-transaction'] = log_http_transaction
+            data_payload["log-http-transaction"] = log_http_transaction
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if block_notification is not None:
-            data_payload['block-notification'] = block_notification
+            data_payload["block-notification"] = block_notification
         if redirect_url is not None:
-            data_payload['redirect-url'] = redirect_url
+            data_payload["redirect-url"] = redirect_url
         if https_sub_category is not None:
-            data_payload['https-sub-category'] = https_sub_category
+            data_payload["https-sub-category"] = https_sub_category
         if decrypted_traffic_mirror is not None:
-            data_payload['decrypted-traffic-mirror'] = decrypted_traffic_mirror
+            data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if detect_https_in_http_request is not None:
-            data_payload['detect-https-in-http-request'] = detect_https_in_http_request
+            data_payload["detect-https-in-http-request"] = (
+                detect_https_in_http_request
+            )
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -506,13 +522,13 @@ class ProxyPolicy:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -520,18 +536,20 @@ class ProxyPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/proxy-policy/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -540,37 +558,39 @@ class ProxyPolicy:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             policyid: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(policyid=policyid, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -662,7 +682,7 @@ class ProxyPolicy:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -749,7 +769,7 @@ class ProxyPolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -757,7 +777,7 @@ class ProxyPolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -765,166 +785,180 @@ class ProxyPolicy:
         params = {}
         endpoint = "/firewall/proxy-policy"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if access_proxy is not None:
-            data_payload['access-proxy'] = access_proxy
+            data_payload["access-proxy"] = access_proxy
         if access_proxy6 is not None:
-            data_payload['access-proxy6'] = access_proxy6
+            data_payload["access-proxy6"] = access_proxy6
         if ztna_proxy is not None:
-            data_payload['ztna-proxy'] = ztna_proxy
+            data_payload["ztna-proxy"] = ztna_proxy
         if srcintf is not None:
-            data_payload['srcintf'] = srcintf
+            data_payload["srcintf"] = srcintf
         if dstintf is not None:
-            data_payload['dstintf'] = dstintf
+            data_payload["dstintf"] = dstintf
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if poolname is not None:
-            data_payload['poolname'] = poolname
+            data_payload["poolname"] = poolname
         if poolname6 is not None:
-            data_payload['poolname6'] = poolname6
+            data_payload["poolname6"] = poolname6
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if ztna_ems_tag is not None:
-            data_payload['ztna-ems-tag'] = ztna_ems_tag
+            data_payload["ztna-ems-tag"] = ztna_ems_tag
         if ztna_tags_match_logic is not None:
-            data_payload['ztna-tags-match-logic'] = ztna_tags_match_logic
+            data_payload["ztna-tags-match-logic"] = ztna_tags_match_logic
         if device_ownership is not None:
-            data_payload['device-ownership'] = device_ownership
+            data_payload["device-ownership"] = device_ownership
         if url_risk is not None:
-            data_payload['url-risk'] = url_risk
+            data_payload["url-risk"] = url_risk
         if internet_service is not None:
-            data_payload['internet-service'] = internet_service
+            data_payload["internet-service"] = internet_service
         if internet_service_negate is not None:
-            data_payload['internet-service-negate'] = internet_service_negate
+            data_payload["internet-service-negate"] = internet_service_negate
         if internet_service_name is not None:
-            data_payload['internet-service-name'] = internet_service_name
+            data_payload["internet-service-name"] = internet_service_name
         if internet_service_group is not None:
-            data_payload['internet-service-group'] = internet_service_group
+            data_payload["internet-service-group"] = internet_service_group
         if internet_service_custom is not None:
-            data_payload['internet-service-custom'] = internet_service_custom
+            data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload['internet-service-custom-group'] = internet_service_custom_group
+            data_payload["internet-service-custom-group"] = (
+                internet_service_custom_group
+            )
         if internet_service_fortiguard is not None:
-            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if internet_service6 is not None:
-            data_payload['internet-service6'] = internet_service6
+            data_payload["internet-service6"] = internet_service6
         if internet_service6_negate is not None:
-            data_payload['internet-service6-negate'] = internet_service6_negate
+            data_payload["internet-service6-negate"] = internet_service6_negate
         if internet_service6_name is not None:
-            data_payload['internet-service6-name'] = internet_service6_name
+            data_payload["internet-service6-name"] = internet_service6_name
         if internet_service6_group is not None:
-            data_payload['internet-service6-group'] = internet_service6_group
+            data_payload["internet-service6-group"] = internet_service6_group
         if internet_service6_custom is not None:
-            data_payload['internet-service6-custom'] = internet_service6_custom
+            data_payload["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data_payload['internet-service6-custom-group'] = internet_service6_custom_group
+            data_payload["internet-service6-custom-group"] = (
+                internet_service6_custom_group
+            )
         if internet_service6_fortiguard is not None:
-            data_payload['internet-service6-fortiguard'] = internet_service6_fortiguard
+            data_payload["internet-service6-fortiguard"] = (
+                internet_service6_fortiguard
+            )
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if srcaddr_negate is not None:
-            data_payload['srcaddr-negate'] = srcaddr_negate
+            data_payload["srcaddr-negate"] = srcaddr_negate
         if dstaddr_negate is not None:
-            data_payload['dstaddr-negate'] = dstaddr_negate
+            data_payload["dstaddr-negate"] = dstaddr_negate
         if ztna_ems_tag_negate is not None:
-            data_payload['ztna-ems-tag-negate'] = ztna_ems_tag_negate
+            data_payload["ztna-ems-tag-negate"] = ztna_ems_tag_negate
         if service_negate is not None:
-            data_payload['service-negate'] = service_negate
+            data_payload["service-negate"] = service_negate
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if schedule is not None:
-            data_payload['schedule'] = schedule
+            data_payload["schedule"] = schedule
         if logtraffic is not None:
-            data_payload['logtraffic'] = logtraffic
+            data_payload["logtraffic"] = logtraffic
         if session_ttl is not None:
-            data_payload['session-ttl'] = session_ttl
+            data_payload["session-ttl"] = session_ttl
         if srcaddr6 is not None:
-            data_payload['srcaddr6'] = srcaddr6
+            data_payload["srcaddr6"] = srcaddr6
         if dstaddr6 is not None:
-            data_payload['dstaddr6'] = dstaddr6
+            data_payload["dstaddr6"] = dstaddr6
         if groups is not None:
-            data_payload['groups'] = groups
+            data_payload["groups"] = groups
         if users is not None:
-            data_payload['users'] = users
+            data_payload["users"] = users
         if http_tunnel_auth is not None:
-            data_payload['http-tunnel-auth'] = http_tunnel_auth
+            data_payload["http-tunnel-auth"] = http_tunnel_auth
         if ssh_policy_redirect is not None:
-            data_payload['ssh-policy-redirect'] = ssh_policy_redirect
+            data_payload["ssh-policy-redirect"] = ssh_policy_redirect
         if webproxy_forward_server is not None:
-            data_payload['webproxy-forward-server'] = webproxy_forward_server
+            data_payload["webproxy-forward-server"] = webproxy_forward_server
         if isolator_server is not None:
-            data_payload['isolator-server'] = isolator_server
+            data_payload["isolator-server"] = isolator_server
         if webproxy_profile is not None:
-            data_payload['webproxy-profile'] = webproxy_profile
+            data_payload["webproxy-profile"] = webproxy_profile
         if transparent is not None:
-            data_payload['transparent'] = transparent
+            data_payload["transparent"] = transparent
         if disclaimer is not None:
-            data_payload['disclaimer'] = disclaimer
+            data_payload["disclaimer"] = disclaimer
         if utm_status is not None:
-            data_payload['utm-status'] = utm_status
+            data_payload["utm-status"] = utm_status
         if profile_type is not None:
-            data_payload['profile-type'] = profile_type
+            data_payload["profile-type"] = profile_type
         if profile_group is not None:
-            data_payload['profile-group'] = profile_group
+            data_payload["profile-group"] = profile_group
         if profile_protocol_options is not None:
-            data_payload['profile-protocol-options'] = profile_protocol_options
+            data_payload["profile-protocol-options"] = profile_protocol_options
         if ssl_ssh_profile is not None:
-            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+            data_payload["ssl-ssh-profile"] = ssl_ssh_profile
         if av_profile is not None:
-            data_payload['av-profile'] = av_profile
+            data_payload["av-profile"] = av_profile
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if dnsfilter_profile is not None:
-            data_payload['dnsfilter-profile'] = dnsfilter_profile
+            data_payload["dnsfilter-profile"] = dnsfilter_profile
         if emailfilter_profile is not None:
-            data_payload['emailfilter-profile'] = emailfilter_profile
+            data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile is not None:
-            data_payload['dlp-profile'] = dlp_profile
+            data_payload["dlp-profile"] = dlp_profile
         if file_filter_profile is not None:
-            data_payload['file-filter-profile'] = file_filter_profile
+            data_payload["file-filter-profile"] = file_filter_profile
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if ips_voip_filter is not None:
-            data_payload['ips-voip-filter'] = ips_voip_filter
+            data_payload["ips-voip-filter"] = ips_voip_filter
         if sctp_filter_profile is not None:
-            data_payload['sctp-filter-profile'] = sctp_filter_profile
+            data_payload["sctp-filter-profile"] = sctp_filter_profile
         if icap_profile is not None:
-            data_payload['icap-profile'] = icap_profile
+            data_payload["icap-profile"] = icap_profile
         if videofilter_profile is not None:
-            data_payload['videofilter-profile'] = videofilter_profile
+            data_payload["videofilter-profile"] = videofilter_profile
         if waf_profile is not None:
-            data_payload['waf-profile'] = waf_profile
+            data_payload["waf-profile"] = waf_profile
         if ssh_filter_profile is not None:
-            data_payload['ssh-filter-profile'] = ssh_filter_profile
+            data_payload["ssh-filter-profile"] = ssh_filter_profile
         if casb_profile is not None:
-            data_payload['casb-profile'] = casb_profile
+            data_payload["casb-profile"] = casb_profile
         if replacemsg_override_group is not None:
-            data_payload['replacemsg-override-group'] = replacemsg_override_group
+            data_payload["replacemsg-override-group"] = (
+                replacemsg_override_group
+            )
         if logtraffic_start is not None:
-            data_payload['logtraffic-start'] = logtraffic_start
+            data_payload["logtraffic-start"] = logtraffic_start
         if log_http_transaction is not None:
-            data_payload['log-http-transaction'] = log_http_transaction
+            data_payload["log-http-transaction"] = log_http_transaction
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if block_notification is not None:
-            data_payload['block-notification'] = block_notification
+            data_payload["block-notification"] = block_notification
         if redirect_url is not None:
-            data_payload['redirect-url'] = redirect_url
+            data_payload["redirect-url"] = redirect_url
         if https_sub_category is not None:
-            data_payload['https-sub-category'] = https_sub_category
+            data_payload["https-sub-category"] = https_sub_category
         if decrypted_traffic_mirror is not None:
-            data_payload['decrypted-traffic-mirror'] = decrypted_traffic_mirror
+            data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if detect_https_in_http_request is not None:
-            data_payload['detect-https-in-http-request'] = detect_https_in_http_request
+            data_payload["detect-https-in-http-request"] = (
+                detect_https_in_http_request
+            )
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

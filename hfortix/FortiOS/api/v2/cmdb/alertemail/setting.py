@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.alertemail.setting.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.alertemail.setting.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.alertemail.setting.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.alertemail.setting.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.alertemail.setting.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Setting:
     """
     Setting Operations.
-    
+
     Provides CRUD operations for FortiOS setting configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Setting:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Setting endpoint.
 
@@ -82,14 +82,14 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Setting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/alertemail/setting"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -155,7 +157,7 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -197,7 +199,7 @@ class Setting:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -205,7 +207,7 @@ class Setting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -213,76 +215,88 @@ class Setting:
         params = {}
         endpoint = "/alertemail/setting"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if mailto1 is not None:
-            data_payload['mailto1'] = mailto1
+            data_payload["mailto1"] = mailto1
         if mailto2 is not None:
-            data_payload['mailto2'] = mailto2
+            data_payload["mailto2"] = mailto2
         if mailto3 is not None:
-            data_payload['mailto3'] = mailto3
+            data_payload["mailto3"] = mailto3
         if filter_mode is not None:
-            data_payload['filter-mode'] = filter_mode
+            data_payload["filter-mode"] = filter_mode
         if email_interval is not None:
-            data_payload['email-interval'] = email_interval
+            data_payload["email-interval"] = email_interval
         if IPS_logs is not None:
-            data_payload['IPS-logs'] = IPS_logs
+            data_payload["IPS-logs"] = IPS_logs
         if firewall_authentication_failure_logs is not None:
-            data_payload['firewall-authentication-failure-logs'] = firewall_authentication_failure_logs
+            data_payload["firewall-authentication-failure-logs"] = (
+                firewall_authentication_failure_logs
+            )
         if HA_logs is not None:
-            data_payload['HA-logs'] = HA_logs
+            data_payload["HA-logs"] = HA_logs
         if IPsec_errors_logs is not None:
-            data_payload['IPsec-errors-logs'] = IPsec_errors_logs
+            data_payload["IPsec-errors-logs"] = IPsec_errors_logs
         if FDS_update_logs is not None:
-            data_payload['FDS-update-logs'] = FDS_update_logs
+            data_payload["FDS-update-logs"] = FDS_update_logs
         if PPP_errors_logs is not None:
-            data_payload['PPP-errors-logs'] = PPP_errors_logs
+            data_payload["PPP-errors-logs"] = PPP_errors_logs
         if antivirus_logs is not None:
-            data_payload['antivirus-logs'] = antivirus_logs
+            data_payload["antivirus-logs"] = antivirus_logs
         if webfilter_logs is not None:
-            data_payload['webfilter-logs'] = webfilter_logs
+            data_payload["webfilter-logs"] = webfilter_logs
         if configuration_changes_logs is not None:
-            data_payload['configuration-changes-logs'] = configuration_changes_logs
+            data_payload["configuration-changes-logs"] = (
+                configuration_changes_logs
+            )
         if violation_traffic_logs is not None:
-            data_payload['violation-traffic-logs'] = violation_traffic_logs
+            data_payload["violation-traffic-logs"] = violation_traffic_logs
         if admin_login_logs is not None:
-            data_payload['admin-login-logs'] = admin_login_logs
+            data_payload["admin-login-logs"] = admin_login_logs
         if FDS_license_expiring_warning is not None:
-            data_payload['FDS-license-expiring-warning'] = FDS_license_expiring_warning
+            data_payload["FDS-license-expiring-warning"] = (
+                FDS_license_expiring_warning
+            )
         if log_disk_usage_warning is not None:
-            data_payload['log-disk-usage-warning'] = log_disk_usage_warning
+            data_payload["log-disk-usage-warning"] = log_disk_usage_warning
         if fortiguard_log_quota_warning is not None:
-            data_payload['fortiguard-log-quota-warning'] = fortiguard_log_quota_warning
+            data_payload["fortiguard-log-quota-warning"] = (
+                fortiguard_log_quota_warning
+            )
         if amc_interface_bypass_mode is not None:
-            data_payload['amc-interface-bypass-mode'] = amc_interface_bypass_mode
+            data_payload["amc-interface-bypass-mode"] = (
+                amc_interface_bypass_mode
+            )
         if FIPS_CC_errors is not None:
-            data_payload['FIPS-CC-errors'] = FIPS_CC_errors
+            data_payload["FIPS-CC-errors"] = FIPS_CC_errors
         if FSSO_disconnect_logs is not None:
-            data_payload['FSSO-disconnect-logs'] = FSSO_disconnect_logs
+            data_payload["FSSO-disconnect-logs"] = FSSO_disconnect_logs
         if ssh_logs is not None:
-            data_payload['ssh-logs'] = ssh_logs
+            data_payload["ssh-logs"] = ssh_logs
         if local_disk_usage is not None:
-            data_payload['local-disk-usage'] = local_disk_usage
+            data_payload["local-disk-usage"] = local_disk_usage
         if emergency_interval is not None:
-            data_payload['emergency-interval'] = emergency_interval
+            data_payload["emergency-interval"] = emergency_interval
         if alert_interval is not None:
-            data_payload['alert-interval'] = alert_interval
+            data_payload["alert-interval"] = alert_interval
         if critical_interval is not None:
-            data_payload['critical-interval'] = critical_interval
+            data_payload["critical-interval"] = critical_interval
         if error_interval is not None:
-            data_payload['error-interval'] = error_interval
+            data_payload["error-interval"] = error_interval
         if warning_interval is not None:
-            data_payload['warning-interval'] = warning_interval
+            data_payload["warning-interval"] = warning_interval
         if notification_interval is not None:
-            data_payload['notification-interval'] = notification_interval
+            data_payload["notification-interval"] = notification_interval
         if information_interval is not None:
-            data_payload['information-interval'] = information_interval
+            data_payload["information-interval"] = information_interval
         if debug_interval is not None:
-            data_payload['debug-interval'] = debug_interval
+            data_payload["debug-interval"] = debug_interval
         if severity is not None:
-            data_payload['severity'] = severity
+            data_payload["severity"] = severity
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

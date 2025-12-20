@@ -198,7 +198,7 @@ class FortiOS:
                             (default: False). When enabled, all requests (GET/POST/PUT/DELETE) are
                             recorded with timestamp, method, URL, and data. Access via get_operations()
                             or get_write_operations(). Useful for debugging, auditing, and documentation.
-                       
+
         Important:
             Username/password authentication still works in FortiOS 7.4.x but is removed in
             FortiOS 7.6.x and later. Use API token authentication for production deployments.
@@ -214,7 +214,7 @@ class FortiOS:
                 # Auto-logout on exit
 
             # Username/Password authentication with context manager (async)
-            async with FortiOS("192.0.2.10", username="admin", password="password", 
+            async with FortiOS("192.0.2.10", username="admin", password="password",
                               mode="async", verify=False) as fgt:
                 status = await fgt.api.monitor.system.status.get()
                 # Auto-logout on exit
@@ -231,7 +231,7 @@ class FortiOS:
                 def post(self, api_type, path, data, **kwargs):
                     ...
                 # ... put, delete
-            
+
             fgt = FortiOS(client=MyHTTPClient())
             addresses = fgt.api.cmdb.firewall.address.get("test-host")
 
@@ -277,7 +277,7 @@ class FortiOS:
 
         # Initialize HTTP client
         self._client: Union[HTTPClient, AsyncHTTPClient, IHTTPClient]
-        
+
         # If custom client provided, use it directly
         if client is not None:
             self._client = client
@@ -294,7 +294,9 @@ class FortiOS:
                 else:
                     url = f"https://{host}"
             else:
-                raise ValueError("host parameter is required when not providing a custom client")
+                raise ValueError(
+                    "host parameter is required when not providing a custom client"
+                )
 
             # Create default client based on mode
             if mode == "async":
@@ -347,9 +349,15 @@ class FortiOS:
 
         # Log initialization
         logger = logging.getLogger("hfortix.client")
-        logger.info("Initialized FortiOS client for %s (mode=%s)", host or "unknown", mode)
+        logger.info(
+            "Initialized FortiOS client for %s (mode=%s)",
+            host or "unknown",
+            mode,
+        )
         if not verify:
-            logger.warning("SSL verification disabled - not recommended for production")
+            logger.warning(
+                "SSL verification disabled - not recommended for production"
+            )
         if vdom:
             logger.debug("Using VDOM: %s", vdom)
 
@@ -464,7 +472,7 @@ class FortiOS:
             >>> fgt = FortiOS("192.0.2.10", token="...", track_operations=True)
             >>> fgt.api.cmdb.firewall.address.create(name="test", subnet="10.0.0.1/32")
             >>> fgt.api.cmdb.firewall.policy.update("10", action="deny")
-            >>> 
+            >>>
             >>> operations = fgt.get_operations()
             >>> for op in operations:
             ...     print(f"{op['timestamp']} {op['method']} {op['path']}")
@@ -474,7 +482,7 @@ class FortiOS:
         Note:
             Use get_write_operations() to filter only write operations (POST/PUT/DELETE).
         """
-        if not hasattr(self._client, 'get_operations'):
+        if not hasattr(self._client, "get_operations"):
             raise RuntimeError(
                 "Operation tracking is not enabled. "
                 "Initialize FortiOS with track_operations=True to use this feature."
@@ -499,7 +507,7 @@ class FortiOS:
             >>> fgt.api.cmdb.firewall.address.get("test")  # GET - not included
             >>> fgt.api.cmdb.firewall.address.create(name="test2", subnet="10.0.0.2/32")  # POST
             >>> fgt.api.cmdb.firewall.address.delete("test")  # DELETE
-            >>> 
+            >>>
             >>> write_ops = fgt.get_write_operations()
             >>> # Only POST and DELETE are returned, GET is excluded
             >>> for op in write_ops:
@@ -510,13 +518,12 @@ class FortiOS:
         Note:
             Useful for generating change logs, rollback scripts, and audit reports.
         """
-        if not hasattr(self._client, 'get_write_operations'):
+        if not hasattr(self._client, "get_write_operations"):
             raise RuntimeError(
                 "Operation tracking is not enabled. "
                 "Initialize FortiOS with track_operations=True to use this feature."
             )
         return self._client.get_write_operations()  # type: ignore[attr-defined]
-
 
     def close(self) -> None:
         """
@@ -581,7 +588,9 @@ class FortiOS:
             )
         return self
 
-    async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
+    async def __aexit__(
+        self, exc_type: Any, exc_val: Any, exc_tb: Any
+    ) -> bool:
         """Async context manager exit - automatically closes session (async mode only)"""
         if self._mode != "async":
             raise RuntimeError(

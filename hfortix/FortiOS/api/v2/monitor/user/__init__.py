@@ -76,5 +76,5 @@ class User:
             "query",
             "radius",
             "scim",
-            "tacacs_plus"
+            "tacacs_plus",
         ]

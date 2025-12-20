@@ -34,8 +34,4 @@ class Registration:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return [
-            "forticare",
-            "forticloud",
-            "vdom"
-        ]
+        return ["forticare", "forticloud", "vdom"]

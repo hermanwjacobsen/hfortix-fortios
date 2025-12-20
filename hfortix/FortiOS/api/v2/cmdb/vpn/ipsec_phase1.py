@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.vpn.ipsec_phase1.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.vpn.ipsec_phase1.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.vpn.ipsec_phase1.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.vpn.ipsec_phase1.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.vpn.ipsec_phase1.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class IpsecPhase1:
     """
     Ipsecphase1 Operations.
-    
+
     Provides CRUD operations for FortiOS ipsecphase1 configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class IpsecPhase1:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class IpsecPhase1:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize IpsecPhase1 endpoint.
 
@@ -90,7 +90,7 @@ class IpsecPhase1:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class IpsecPhase1:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class IpsecPhase1:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/vpn.ipsec/phase1/{name}"
         else:
             endpoint = "/vpn.ipsec/phase1"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -302,7 +304,7 @@ class IpsecPhase1:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -472,7 +474,7 @@ class IpsecPhase1:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -480,345 +482,355 @@ class IpsecPhase1:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/vpn.ipsec/phase1/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if ike_version is not None:
-            data_payload['ike-version'] = ike_version
+            data_payload["ike-version"] = ike_version
         if remote_gw is not None:
-            data_payload['remote-gw'] = remote_gw
+            data_payload["remote-gw"] = remote_gw
         if local_gw is not None:
-            data_payload['local-gw'] = local_gw
+            data_payload["local-gw"] = local_gw
         if remotegw_ddns is not None:
-            data_payload['remotegw-ddns'] = remotegw_ddns
+            data_payload["remotegw-ddns"] = remotegw_ddns
         if keylife is not None:
-            data_payload['keylife'] = keylife
+            data_payload["keylife"] = keylife
         if certificate is not None:
-            data_payload['certificate'] = certificate
+            data_payload["certificate"] = certificate
         if authmethod is not None:
-            data_payload['authmethod'] = authmethod
+            data_payload["authmethod"] = authmethod
         if authmethod_remote is not None:
-            data_payload['authmethod-remote'] = authmethod_remote
+            data_payload["authmethod-remote"] = authmethod_remote
         if mode is not None:
-            data_payload['mode'] = mode
+            data_payload["mode"] = mode
         if peertype is not None:
-            data_payload['peertype'] = peertype
+            data_payload["peertype"] = peertype
         if peerid is not None:
-            data_payload['peerid'] = peerid
+            data_payload["peerid"] = peerid
         if usrgrp is not None:
-            data_payload['usrgrp'] = usrgrp
+            data_payload["usrgrp"] = usrgrp
         if peer is not None:
-            data_payload['peer'] = peer
+            data_payload["peer"] = peer
         if peergrp is not None:
-            data_payload['peergrp'] = peergrp
+            data_payload["peergrp"] = peergrp
         if mode_cfg is not None:
-            data_payload['mode-cfg'] = mode_cfg
+            data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload['mode-cfg-allow-client-selector'] = mode_cfg_allow_client_selector
+            data_payload["mode-cfg-allow-client-selector"] = (
+                mode_cfg_allow_client_selector
+            )
         if assign_ip is not None:
-            data_payload['assign-ip'] = assign_ip
+            data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
-            data_payload['assign-ip-from'] = assign_ip_from
+            data_payload["assign-ip-from"] = assign_ip_from
         if ipv4_start_ip is not None:
-            data_payload['ipv4-start-ip'] = ipv4_start_ip
+            data_payload["ipv4-start-ip"] = ipv4_start_ip
         if ipv4_end_ip is not None:
-            data_payload['ipv4-end-ip'] = ipv4_end_ip
+            data_payload["ipv4-end-ip"] = ipv4_end_ip
         if ipv4_netmask is not None:
-            data_payload['ipv4-netmask'] = ipv4_netmask
+            data_payload["ipv4-netmask"] = ipv4_netmask
         if dhcp_ra_giaddr is not None:
-            data_payload['dhcp-ra-giaddr'] = dhcp_ra_giaddr
+            data_payload["dhcp-ra-giaddr"] = dhcp_ra_giaddr
         if dhcp6_ra_linkaddr is not None:
-            data_payload['dhcp6-ra-linkaddr'] = dhcp6_ra_linkaddr
+            data_payload["dhcp6-ra-linkaddr"] = dhcp6_ra_linkaddr
         if dns_mode is not None:
-            data_payload['dns-mode'] = dns_mode
+            data_payload["dns-mode"] = dns_mode
         if ipv4_dns_server1 is not None:
-            data_payload['ipv4-dns-server1'] = ipv4_dns_server1
+            data_payload["ipv4-dns-server1"] = ipv4_dns_server1
         if ipv4_dns_server2 is not None:
-            data_payload['ipv4-dns-server2'] = ipv4_dns_server2
+            data_payload["ipv4-dns-server2"] = ipv4_dns_server2
         if ipv4_dns_server3 is not None:
-            data_payload['ipv4-dns-server3'] = ipv4_dns_server3
+            data_payload["ipv4-dns-server3"] = ipv4_dns_server3
         if internal_domain_list is not None:
-            data_payload['internal-domain-list'] = internal_domain_list
+            data_payload["internal-domain-list"] = internal_domain_list
         if dns_suffix_search is not None:
-            data_payload['dns-suffix-search'] = dns_suffix_search
+            data_payload["dns-suffix-search"] = dns_suffix_search
         if ipv4_wins_server1 is not None:
-            data_payload['ipv4-wins-server1'] = ipv4_wins_server1
+            data_payload["ipv4-wins-server1"] = ipv4_wins_server1
         if ipv4_wins_server2 is not None:
-            data_payload['ipv4-wins-server2'] = ipv4_wins_server2
+            data_payload["ipv4-wins-server2"] = ipv4_wins_server2
         if ipv4_exclude_range is not None:
-            data_payload['ipv4-exclude-range'] = ipv4_exclude_range
+            data_payload["ipv4-exclude-range"] = ipv4_exclude_range
         if ipv4_split_include is not None:
-            data_payload['ipv4-split-include'] = ipv4_split_include
+            data_payload["ipv4-split-include"] = ipv4_split_include
         if split_include_service is not None:
-            data_payload['split-include-service'] = split_include_service
+            data_payload["split-include-service"] = split_include_service
         if ipv4_name is not None:
-            data_payload['ipv4-name'] = ipv4_name
+            data_payload["ipv4-name"] = ipv4_name
         if ipv6_start_ip is not None:
-            data_payload['ipv6-start-ip'] = ipv6_start_ip
+            data_payload["ipv6-start-ip"] = ipv6_start_ip
         if ipv6_end_ip is not None:
-            data_payload['ipv6-end-ip'] = ipv6_end_ip
+            data_payload["ipv6-end-ip"] = ipv6_end_ip
         if ipv6_prefix is not None:
-            data_payload['ipv6-prefix'] = ipv6_prefix
+            data_payload["ipv6-prefix"] = ipv6_prefix
         if ipv6_dns_server1 is not None:
-            data_payload['ipv6-dns-server1'] = ipv6_dns_server1
+            data_payload["ipv6-dns-server1"] = ipv6_dns_server1
         if ipv6_dns_server2 is not None:
-            data_payload['ipv6-dns-server2'] = ipv6_dns_server2
+            data_payload["ipv6-dns-server2"] = ipv6_dns_server2
         if ipv6_dns_server3 is not None:
-            data_payload['ipv6-dns-server3'] = ipv6_dns_server3
+            data_payload["ipv6-dns-server3"] = ipv6_dns_server3
         if ipv6_exclude_range is not None:
-            data_payload['ipv6-exclude-range'] = ipv6_exclude_range
+            data_payload["ipv6-exclude-range"] = ipv6_exclude_range
         if ipv6_split_include is not None:
-            data_payload['ipv6-split-include'] = ipv6_split_include
+            data_payload["ipv6-split-include"] = ipv6_split_include
         if ipv6_name is not None:
-            data_payload['ipv6-name'] = ipv6_name
+            data_payload["ipv6-name"] = ipv6_name
         if ip_delay_interval is not None:
-            data_payload['ip-delay-interval'] = ip_delay_interval
+            data_payload["ip-delay-interval"] = ip_delay_interval
         if unity_support is not None:
-            data_payload['unity-support'] = unity_support
+            data_payload["unity-support"] = unity_support
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if banner is not None:
-            data_payload['banner'] = banner
+            data_payload["banner"] = banner
         if include_local_lan is not None:
-            data_payload['include-local-lan'] = include_local_lan
+            data_payload["include-local-lan"] = include_local_lan
         if ipv4_split_exclude is not None:
-            data_payload['ipv4-split-exclude'] = ipv4_split_exclude
+            data_payload["ipv4-split-exclude"] = ipv4_split_exclude
         if ipv6_split_exclude is not None:
-            data_payload['ipv6-split-exclude'] = ipv6_split_exclude
+            data_payload["ipv6-split-exclude"] = ipv6_split_exclude
         if save_password is not None:
-            data_payload['save-password'] = save_password
+            data_payload["save-password"] = save_password
         if client_auto_negotiate is not None:
-            data_payload['client-auto-negotiate'] = client_auto_negotiate
+            data_payload["client-auto-negotiate"] = client_auto_negotiate
         if client_keep_alive is not None:
-            data_payload['client-keep-alive'] = client_keep_alive
+            data_payload["client-keep-alive"] = client_keep_alive
         if backup_gateway is not None:
-            data_payload['backup-gateway'] = backup_gateway
+            data_payload["backup-gateway"] = backup_gateway
         if proposal is not None:
-            data_payload['proposal'] = proposal
+            data_payload["proposal"] = proposal
         if add_route is not None:
-            data_payload['add-route'] = add_route
+            data_payload["add-route"] = add_route
         if add_gw_route is not None:
-            data_payload['add-gw-route'] = add_gw_route
+            data_payload["add-gw-route"] = add_gw_route
         if psksecret is not None:
-            data_payload['psksecret'] = psksecret
+            data_payload["psksecret"] = psksecret
         if psksecret_remote is not None:
-            data_payload['psksecret-remote'] = psksecret_remote
+            data_payload["psksecret-remote"] = psksecret_remote
         if keepalive is not None:
-            data_payload['keepalive'] = keepalive
+            data_payload["keepalive"] = keepalive
         if distance is not None:
-            data_payload['distance'] = distance
+            data_payload["distance"] = distance
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if localid is not None:
-            data_payload['localid'] = localid
+            data_payload["localid"] = localid
         if localid_type is not None:
-            data_payload['localid-type'] = localid_type
+            data_payload["localid-type"] = localid_type
         if auto_negotiate is not None:
-            data_payload['auto-negotiate'] = auto_negotiate
+            data_payload["auto-negotiate"] = auto_negotiate
         if negotiate_timeout is not None:
-            data_payload['negotiate-timeout'] = negotiate_timeout
+            data_payload["negotiate-timeout"] = negotiate_timeout
         if fragmentation is not None:
-            data_payload['fragmentation'] = fragmentation
+            data_payload["fragmentation"] = fragmentation
         if dpd is not None:
-            data_payload['dpd'] = dpd
+            data_payload["dpd"] = dpd
         if dpd_retrycount is not None:
-            data_payload['dpd-retrycount'] = dpd_retrycount
+            data_payload["dpd-retrycount"] = dpd_retrycount
         if dpd_retryinterval is not None:
-            data_payload['dpd-retryinterval'] = dpd_retryinterval
+            data_payload["dpd-retryinterval"] = dpd_retryinterval
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if npu_offload is not None:
-            data_payload['npu-offload'] = npu_offload
+            data_payload["npu-offload"] = npu_offload
         if send_cert_chain is not None:
-            data_payload['send-cert-chain'] = send_cert_chain
+            data_payload["send-cert-chain"] = send_cert_chain
         if dhgrp is not None:
-            data_payload['dhgrp'] = dhgrp
+            data_payload["dhgrp"] = dhgrp
         if addke1 is not None:
-            data_payload['addke1'] = addke1
+            data_payload["addke1"] = addke1
         if addke2 is not None:
-            data_payload['addke2'] = addke2
+            data_payload["addke2"] = addke2
         if addke3 is not None:
-            data_payload['addke3'] = addke3
+            data_payload["addke3"] = addke3
         if addke4 is not None:
-            data_payload['addke4'] = addke4
+            data_payload["addke4"] = addke4
         if addke5 is not None:
-            data_payload['addke5'] = addke5
+            data_payload["addke5"] = addke5
         if addke6 is not None:
-            data_payload['addke6'] = addke6
+            data_payload["addke6"] = addke6
         if addke7 is not None:
-            data_payload['addke7'] = addke7
+            data_payload["addke7"] = addke7
         if suite_b is not None:
-            data_payload['suite-b'] = suite_b
+            data_payload["suite-b"] = suite_b
         if eap is not None:
-            data_payload['eap'] = eap
+            data_payload["eap"] = eap
         if eap_identity is not None:
-            data_payload['eap-identity'] = eap_identity
+            data_payload["eap-identity"] = eap_identity
         if eap_exclude_peergrp is not None:
-            data_payload['eap-exclude-peergrp'] = eap_exclude_peergrp
+            data_payload["eap-exclude-peergrp"] = eap_exclude_peergrp
         if eap_cert_auth is not None:
-            data_payload['eap-cert-auth'] = eap_cert_auth
+            data_payload["eap-cert-auth"] = eap_cert_auth
         if acct_verify is not None:
-            data_payload['acct-verify'] = acct_verify
+            data_payload["acct-verify"] = acct_verify
         if ppk is not None:
-            data_payload['ppk'] = ppk
+            data_payload["ppk"] = ppk
         if ppk_secret is not None:
-            data_payload['ppk-secret'] = ppk_secret
+            data_payload["ppk-secret"] = ppk_secret
         if ppk_identity is not None:
-            data_payload['ppk-identity'] = ppk_identity
+            data_payload["ppk-identity"] = ppk_identity
         if wizard_type is not None:
-            data_payload['wizard-type'] = wizard_type
+            data_payload["wizard-type"] = wizard_type
         if xauthtype is not None:
-            data_payload['xauthtype'] = xauthtype
+            data_payload["xauthtype"] = xauthtype
         if reauth is not None:
-            data_payload['reauth'] = reauth
+            data_payload["reauth"] = reauth
         if authusr is not None:
-            data_payload['authusr'] = authusr
+            data_payload["authusr"] = authusr
         if authpasswd is not None:
-            data_payload['authpasswd'] = authpasswd
+            data_payload["authpasswd"] = authpasswd
         if group_authentication is not None:
-            data_payload['group-authentication'] = group_authentication
+            data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload['group-authentication-secret'] = group_authentication_secret
+            data_payload["group-authentication-secret"] = (
+                group_authentication_secret
+            )
         if authusrgrp is not None:
-            data_payload['authusrgrp'] = authusrgrp
+            data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
-            data_payload['mesh-selector-type'] = mesh_selector_type
+            data_payload["mesh-selector-type"] = mesh_selector_type
         if idle_timeout is not None:
-            data_payload['idle-timeout'] = idle_timeout
+            data_payload["idle-timeout"] = idle_timeout
         if shared_idle_timeout is not None:
-            data_payload['shared-idle-timeout'] = shared_idle_timeout
+            data_payload["shared-idle-timeout"] = shared_idle_timeout
         if idle_timeoutinterval is not None:
-            data_payload['idle-timeoutinterval'] = idle_timeoutinterval
+            data_payload["idle-timeoutinterval"] = idle_timeoutinterval
         if ha_sync_esp_seqno is not None:
-            data_payload['ha-sync-esp-seqno'] = ha_sync_esp_seqno
+            data_payload["ha-sync-esp-seqno"] = ha_sync_esp_seqno
         if fgsp_sync is not None:
-            data_payload['fgsp-sync'] = fgsp_sync
+            data_payload["fgsp-sync"] = fgsp_sync
         if inbound_dscp_copy is not None:
-            data_payload['inbound-dscp-copy'] = inbound_dscp_copy
+            data_payload["inbound-dscp-copy"] = inbound_dscp_copy
         if nattraversal is not None:
-            data_payload['nattraversal'] = nattraversal
+            data_payload["nattraversal"] = nattraversal
         if fragmentation_mtu is not None:
-            data_payload['fragmentation-mtu'] = fragmentation_mtu
+            data_payload["fragmentation-mtu"] = fragmentation_mtu
         if childless_ike is not None:
-            data_payload['childless-ike'] = childless_ike
+            data_payload["childless-ike"] = childless_ike
         if azure_ad_autoconnect is not None:
-            data_payload['azure-ad-autoconnect'] = azure_ad_autoconnect
+            data_payload["azure-ad-autoconnect"] = azure_ad_autoconnect
         if client_resume is not None:
-            data_payload['client-resume'] = client_resume
+            data_payload["client-resume"] = client_resume
         if client_resume_interval is not None:
-            data_payload['client-resume-interval'] = client_resume_interval
+            data_payload["client-resume-interval"] = client_resume_interval
         if rekey is not None:
-            data_payload['rekey'] = rekey
+            data_payload["rekey"] = rekey
         if digital_signature_auth is not None:
-            data_payload['digital-signature-auth'] = digital_signature_auth
+            data_payload["digital-signature-auth"] = digital_signature_auth
         if signature_hash_alg is not None:
-            data_payload['signature-hash-alg'] = signature_hash_alg
+            data_payload["signature-hash-alg"] = signature_hash_alg
         if rsa_signature_format is not None:
-            data_payload['rsa-signature-format'] = rsa_signature_format
+            data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload['rsa-signature-hash-override'] = rsa_signature_hash_override
+            data_payload["rsa-signature-hash-override"] = (
+                rsa_signature_hash_override
+            )
         if enforce_unique_id is not None:
-            data_payload['enforce-unique-id'] = enforce_unique_id
+            data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
-            data_payload['cert-id-validation'] = cert_id_validation
+            data_payload["cert-id-validation"] = cert_id_validation
         if fec_egress is not None:
-            data_payload['fec-egress'] = fec_egress
+            data_payload["fec-egress"] = fec_egress
         if fec_send_timeout is not None:
-            data_payload['fec-send-timeout'] = fec_send_timeout
+            data_payload["fec-send-timeout"] = fec_send_timeout
         if fec_base is not None:
-            data_payload['fec-base'] = fec_base
+            data_payload["fec-base"] = fec_base
         if fec_codec is not None:
-            data_payload['fec-codec'] = fec_codec
+            data_payload["fec-codec"] = fec_codec
         if fec_redundant is not None:
-            data_payload['fec-redundant'] = fec_redundant
+            data_payload["fec-redundant"] = fec_redundant
         if fec_ingress is not None:
-            data_payload['fec-ingress'] = fec_ingress
+            data_payload["fec-ingress"] = fec_ingress
         if fec_receive_timeout is not None:
-            data_payload['fec-receive-timeout'] = fec_receive_timeout
+            data_payload["fec-receive-timeout"] = fec_receive_timeout
         if fec_health_check is not None:
-            data_payload['fec-health-check'] = fec_health_check
+            data_payload["fec-health-check"] = fec_health_check
         if fec_mapping_profile is not None:
-            data_payload['fec-mapping-profile'] = fec_mapping_profile
+            data_payload["fec-mapping-profile"] = fec_mapping_profile
         if network_overlay is not None:
-            data_payload['network-overlay'] = network_overlay
+            data_payload["network-overlay"] = network_overlay
         if network_id is not None:
-            data_payload['network-id'] = network_id
+            data_payload["network-id"] = network_id
         if dev_id_notification is not None:
-            data_payload['dev-id-notification'] = dev_id_notification
+            data_payload["dev-id-notification"] = dev_id_notification
         if dev_id is not None:
-            data_payload['dev-id'] = dev_id
+            data_payload["dev-id"] = dev_id
         if loopback_asymroute is not None:
-            data_payload['loopback-asymroute'] = loopback_asymroute
+            data_payload["loopback-asymroute"] = loopback_asymroute
         if link_cost is not None:
-            data_payload['link-cost'] = link_cost
+            data_payload["link-cost"] = link_cost
         if kms is not None:
-            data_payload['kms'] = kms
+            data_payload["kms"] = kms
         if exchange_fgt_device_id is not None:
-            data_payload['exchange-fgt-device-id'] = exchange_fgt_device_id
+            data_payload["exchange-fgt-device-id"] = exchange_fgt_device_id
         if ipv6_auto_linklocal is not None:
-            data_payload['ipv6-auto-linklocal'] = ipv6_auto_linklocal
+            data_payload["ipv6-auto-linklocal"] = ipv6_auto_linklocal
         if ems_sn_check is not None:
-            data_payload['ems-sn-check'] = ems_sn_check
+            data_payload["ems-sn-check"] = ems_sn_check
         if cert_trust_store is not None:
-            data_payload['cert-trust-store'] = cert_trust_store
+            data_payload["cert-trust-store"] = cert_trust_store
         if qkd is not None:
-            data_payload['qkd'] = qkd
+            data_payload["qkd"] = qkd
         if qkd_hybrid is not None:
-            data_payload['qkd-hybrid'] = qkd_hybrid
+            data_payload["qkd-hybrid"] = qkd_hybrid
         if qkd_profile is not None:
-            data_payload['qkd-profile'] = qkd_profile
+            data_payload["qkd-profile"] = qkd_profile
         if transport is not None:
-            data_payload['transport'] = transport
+            data_payload["transport"] = transport
         if fortinet_esp is not None:
-            data_payload['fortinet-esp'] = fortinet_esp
+            data_payload["fortinet-esp"] = fortinet_esp
         if auto_transport_threshold is not None:
-            data_payload['auto-transport-threshold'] = auto_transport_threshold
+            data_payload["auto-transport-threshold"] = auto_transport_threshold
         if remote_gw_match is not None:
-            data_payload['remote-gw-match'] = remote_gw_match
+            data_payload["remote-gw-match"] = remote_gw_match
         if remote_gw_subnet is not None:
-            data_payload['remote-gw-subnet'] = remote_gw_subnet
+            data_payload["remote-gw-subnet"] = remote_gw_subnet
         if remote_gw_start_ip is not None:
-            data_payload['remote-gw-start-ip'] = remote_gw_start_ip
+            data_payload["remote-gw-start-ip"] = remote_gw_start_ip
         if remote_gw_end_ip is not None:
-            data_payload['remote-gw-end-ip'] = remote_gw_end_ip
+            data_payload["remote-gw-end-ip"] = remote_gw_end_ip
         if remote_gw_country is not None:
-            data_payload['remote-gw-country'] = remote_gw_country
+            data_payload["remote-gw-country"] = remote_gw_country
         if remote_gw_ztna_tags is not None:
-            data_payload['remote-gw-ztna-tags'] = remote_gw_ztna_tags
+            data_payload["remote-gw-ztna-tags"] = remote_gw_ztna_tags
         if remote_gw6_match is not None:
-            data_payload['remote-gw6-match'] = remote_gw6_match
+            data_payload["remote-gw6-match"] = remote_gw6_match
         if remote_gw6_subnet is not None:
-            data_payload['remote-gw6-subnet'] = remote_gw6_subnet
+            data_payload["remote-gw6-subnet"] = remote_gw6_subnet
         if remote_gw6_start_ip is not None:
-            data_payload['remote-gw6-start-ip'] = remote_gw6_start_ip
+            data_payload["remote-gw6-start-ip"] = remote_gw6_start_ip
         if remote_gw6_end_ip is not None:
-            data_payload['remote-gw6-end-ip'] = remote_gw6_end_ip
+            data_payload["remote-gw6-end-ip"] = remote_gw6_end_ip
         if remote_gw6_country is not None:
-            data_payload['remote-gw6-country'] = remote_gw6_country
+            data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload['cert-peer-username-validation'] = cert_peer_username_validation
+            data_payload["cert-peer-username-validation"] = (
+                cert_peer_username_validation
+            )
         if cert_peer_username_strip is not None:
-            data_payload['cert-peer-username-strip'] = cert_peer_username_strip
+            data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -830,13 +842,13 @@ class IpsecPhase1:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -844,18 +856,20 @@ class IpsecPhase1:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/vpn.ipsec/phase1/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -864,37 +878,39 @@ class IpsecPhase1:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -1067,7 +1083,7 @@ class IpsecPhase1:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -1235,7 +1251,7 @@ class IpsecPhase1:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -1243,7 +1259,7 @@ class IpsecPhase1:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -1251,328 +1267,338 @@ class IpsecPhase1:
         params = {}
         endpoint = "/vpn.ipsec/phase1"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if ike_version is not None:
-            data_payload['ike-version'] = ike_version
+            data_payload["ike-version"] = ike_version
         if remote_gw is not None:
-            data_payload['remote-gw'] = remote_gw
+            data_payload["remote-gw"] = remote_gw
         if local_gw is not None:
-            data_payload['local-gw'] = local_gw
+            data_payload["local-gw"] = local_gw
         if remotegw_ddns is not None:
-            data_payload['remotegw-ddns'] = remotegw_ddns
+            data_payload["remotegw-ddns"] = remotegw_ddns
         if keylife is not None:
-            data_payload['keylife'] = keylife
+            data_payload["keylife"] = keylife
         if certificate is not None:
-            data_payload['certificate'] = certificate
+            data_payload["certificate"] = certificate
         if authmethod is not None:
-            data_payload['authmethod'] = authmethod
+            data_payload["authmethod"] = authmethod
         if authmethod_remote is not None:
-            data_payload['authmethod-remote'] = authmethod_remote
+            data_payload["authmethod-remote"] = authmethod_remote
         if mode is not None:
-            data_payload['mode'] = mode
+            data_payload["mode"] = mode
         if peertype is not None:
-            data_payload['peertype'] = peertype
+            data_payload["peertype"] = peertype
         if peerid is not None:
-            data_payload['peerid'] = peerid
+            data_payload["peerid"] = peerid
         if usrgrp is not None:
-            data_payload['usrgrp'] = usrgrp
+            data_payload["usrgrp"] = usrgrp
         if peer is not None:
-            data_payload['peer'] = peer
+            data_payload["peer"] = peer
         if peergrp is not None:
-            data_payload['peergrp'] = peergrp
+            data_payload["peergrp"] = peergrp
         if mode_cfg is not None:
-            data_payload['mode-cfg'] = mode_cfg
+            data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload['mode-cfg-allow-client-selector'] = mode_cfg_allow_client_selector
+            data_payload["mode-cfg-allow-client-selector"] = (
+                mode_cfg_allow_client_selector
+            )
         if assign_ip is not None:
-            data_payload['assign-ip'] = assign_ip
+            data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
-            data_payload['assign-ip-from'] = assign_ip_from
+            data_payload["assign-ip-from"] = assign_ip_from
         if ipv4_start_ip is not None:
-            data_payload['ipv4-start-ip'] = ipv4_start_ip
+            data_payload["ipv4-start-ip"] = ipv4_start_ip
         if ipv4_end_ip is not None:
-            data_payload['ipv4-end-ip'] = ipv4_end_ip
+            data_payload["ipv4-end-ip"] = ipv4_end_ip
         if ipv4_netmask is not None:
-            data_payload['ipv4-netmask'] = ipv4_netmask
+            data_payload["ipv4-netmask"] = ipv4_netmask
         if dhcp_ra_giaddr is not None:
-            data_payload['dhcp-ra-giaddr'] = dhcp_ra_giaddr
+            data_payload["dhcp-ra-giaddr"] = dhcp_ra_giaddr
         if dhcp6_ra_linkaddr is not None:
-            data_payload['dhcp6-ra-linkaddr'] = dhcp6_ra_linkaddr
+            data_payload["dhcp6-ra-linkaddr"] = dhcp6_ra_linkaddr
         if dns_mode is not None:
-            data_payload['dns-mode'] = dns_mode
+            data_payload["dns-mode"] = dns_mode
         if ipv4_dns_server1 is not None:
-            data_payload['ipv4-dns-server1'] = ipv4_dns_server1
+            data_payload["ipv4-dns-server1"] = ipv4_dns_server1
         if ipv4_dns_server2 is not None:
-            data_payload['ipv4-dns-server2'] = ipv4_dns_server2
+            data_payload["ipv4-dns-server2"] = ipv4_dns_server2
         if ipv4_dns_server3 is not None:
-            data_payload['ipv4-dns-server3'] = ipv4_dns_server3
+            data_payload["ipv4-dns-server3"] = ipv4_dns_server3
         if internal_domain_list is not None:
-            data_payload['internal-domain-list'] = internal_domain_list
+            data_payload["internal-domain-list"] = internal_domain_list
         if dns_suffix_search is not None:
-            data_payload['dns-suffix-search'] = dns_suffix_search
+            data_payload["dns-suffix-search"] = dns_suffix_search
         if ipv4_wins_server1 is not None:
-            data_payload['ipv4-wins-server1'] = ipv4_wins_server1
+            data_payload["ipv4-wins-server1"] = ipv4_wins_server1
         if ipv4_wins_server2 is not None:
-            data_payload['ipv4-wins-server2'] = ipv4_wins_server2
+            data_payload["ipv4-wins-server2"] = ipv4_wins_server2
         if ipv4_exclude_range is not None:
-            data_payload['ipv4-exclude-range'] = ipv4_exclude_range
+            data_payload["ipv4-exclude-range"] = ipv4_exclude_range
         if ipv4_split_include is not None:
-            data_payload['ipv4-split-include'] = ipv4_split_include
+            data_payload["ipv4-split-include"] = ipv4_split_include
         if split_include_service is not None:
-            data_payload['split-include-service'] = split_include_service
+            data_payload["split-include-service"] = split_include_service
         if ipv4_name is not None:
-            data_payload['ipv4-name'] = ipv4_name
+            data_payload["ipv4-name"] = ipv4_name
         if ipv6_start_ip is not None:
-            data_payload['ipv6-start-ip'] = ipv6_start_ip
+            data_payload["ipv6-start-ip"] = ipv6_start_ip
         if ipv6_end_ip is not None:
-            data_payload['ipv6-end-ip'] = ipv6_end_ip
+            data_payload["ipv6-end-ip"] = ipv6_end_ip
         if ipv6_prefix is not None:
-            data_payload['ipv6-prefix'] = ipv6_prefix
+            data_payload["ipv6-prefix"] = ipv6_prefix
         if ipv6_dns_server1 is not None:
-            data_payload['ipv6-dns-server1'] = ipv6_dns_server1
+            data_payload["ipv6-dns-server1"] = ipv6_dns_server1
         if ipv6_dns_server2 is not None:
-            data_payload['ipv6-dns-server2'] = ipv6_dns_server2
+            data_payload["ipv6-dns-server2"] = ipv6_dns_server2
         if ipv6_dns_server3 is not None:
-            data_payload['ipv6-dns-server3'] = ipv6_dns_server3
+            data_payload["ipv6-dns-server3"] = ipv6_dns_server3
         if ipv6_exclude_range is not None:
-            data_payload['ipv6-exclude-range'] = ipv6_exclude_range
+            data_payload["ipv6-exclude-range"] = ipv6_exclude_range
         if ipv6_split_include is not None:
-            data_payload['ipv6-split-include'] = ipv6_split_include
+            data_payload["ipv6-split-include"] = ipv6_split_include
         if ipv6_name is not None:
-            data_payload['ipv6-name'] = ipv6_name
+            data_payload["ipv6-name"] = ipv6_name
         if ip_delay_interval is not None:
-            data_payload['ip-delay-interval'] = ip_delay_interval
+            data_payload["ip-delay-interval"] = ip_delay_interval
         if unity_support is not None:
-            data_payload['unity-support'] = unity_support
+            data_payload["unity-support"] = unity_support
         if domain is not None:
-            data_payload['domain'] = domain
+            data_payload["domain"] = domain
         if banner is not None:
-            data_payload['banner'] = banner
+            data_payload["banner"] = banner
         if include_local_lan is not None:
-            data_payload['include-local-lan'] = include_local_lan
+            data_payload["include-local-lan"] = include_local_lan
         if ipv4_split_exclude is not None:
-            data_payload['ipv4-split-exclude'] = ipv4_split_exclude
+            data_payload["ipv4-split-exclude"] = ipv4_split_exclude
         if ipv6_split_exclude is not None:
-            data_payload['ipv6-split-exclude'] = ipv6_split_exclude
+            data_payload["ipv6-split-exclude"] = ipv6_split_exclude
         if save_password is not None:
-            data_payload['save-password'] = save_password
+            data_payload["save-password"] = save_password
         if client_auto_negotiate is not None:
-            data_payload['client-auto-negotiate'] = client_auto_negotiate
+            data_payload["client-auto-negotiate"] = client_auto_negotiate
         if client_keep_alive is not None:
-            data_payload['client-keep-alive'] = client_keep_alive
+            data_payload["client-keep-alive"] = client_keep_alive
         if backup_gateway is not None:
-            data_payload['backup-gateway'] = backup_gateway
+            data_payload["backup-gateway"] = backup_gateway
         if proposal is not None:
-            data_payload['proposal'] = proposal
+            data_payload["proposal"] = proposal
         if add_route is not None:
-            data_payload['add-route'] = add_route
+            data_payload["add-route"] = add_route
         if add_gw_route is not None:
-            data_payload['add-gw-route'] = add_gw_route
+            data_payload["add-gw-route"] = add_gw_route
         if psksecret is not None:
-            data_payload['psksecret'] = psksecret
+            data_payload["psksecret"] = psksecret
         if psksecret_remote is not None:
-            data_payload['psksecret-remote'] = psksecret_remote
+            data_payload["psksecret-remote"] = psksecret_remote
         if keepalive is not None:
-            data_payload['keepalive'] = keepalive
+            data_payload["keepalive"] = keepalive
         if distance is not None:
-            data_payload['distance'] = distance
+            data_payload["distance"] = distance
         if priority is not None:
-            data_payload['priority'] = priority
+            data_payload["priority"] = priority
         if localid is not None:
-            data_payload['localid'] = localid
+            data_payload["localid"] = localid
         if localid_type is not None:
-            data_payload['localid-type'] = localid_type
+            data_payload["localid-type"] = localid_type
         if auto_negotiate is not None:
-            data_payload['auto-negotiate'] = auto_negotiate
+            data_payload["auto-negotiate"] = auto_negotiate
         if negotiate_timeout is not None:
-            data_payload['negotiate-timeout'] = negotiate_timeout
+            data_payload["negotiate-timeout"] = negotiate_timeout
         if fragmentation is not None:
-            data_payload['fragmentation'] = fragmentation
+            data_payload["fragmentation"] = fragmentation
         if dpd is not None:
-            data_payload['dpd'] = dpd
+            data_payload["dpd"] = dpd
         if dpd_retrycount is not None:
-            data_payload['dpd-retrycount'] = dpd_retrycount
+            data_payload["dpd-retrycount"] = dpd_retrycount
         if dpd_retryinterval is not None:
-            data_payload['dpd-retryinterval'] = dpd_retryinterval
+            data_payload["dpd-retryinterval"] = dpd_retryinterval
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if npu_offload is not None:
-            data_payload['npu-offload'] = npu_offload
+            data_payload["npu-offload"] = npu_offload
         if send_cert_chain is not None:
-            data_payload['send-cert-chain'] = send_cert_chain
+            data_payload["send-cert-chain"] = send_cert_chain
         if dhgrp is not None:
-            data_payload['dhgrp'] = dhgrp
+            data_payload["dhgrp"] = dhgrp
         if addke1 is not None:
-            data_payload['addke1'] = addke1
+            data_payload["addke1"] = addke1
         if addke2 is not None:
-            data_payload['addke2'] = addke2
+            data_payload["addke2"] = addke2
         if addke3 is not None:
-            data_payload['addke3'] = addke3
+            data_payload["addke3"] = addke3
         if addke4 is not None:
-            data_payload['addke4'] = addke4
+            data_payload["addke4"] = addke4
         if addke5 is not None:
-            data_payload['addke5'] = addke5
+            data_payload["addke5"] = addke5
         if addke6 is not None:
-            data_payload['addke6'] = addke6
+            data_payload["addke6"] = addke6
         if addke7 is not None:
-            data_payload['addke7'] = addke7
+            data_payload["addke7"] = addke7
         if suite_b is not None:
-            data_payload['suite-b'] = suite_b
+            data_payload["suite-b"] = suite_b
         if eap is not None:
-            data_payload['eap'] = eap
+            data_payload["eap"] = eap
         if eap_identity is not None:
-            data_payload['eap-identity'] = eap_identity
+            data_payload["eap-identity"] = eap_identity
         if eap_exclude_peergrp is not None:
-            data_payload['eap-exclude-peergrp'] = eap_exclude_peergrp
+            data_payload["eap-exclude-peergrp"] = eap_exclude_peergrp
         if eap_cert_auth is not None:
-            data_payload['eap-cert-auth'] = eap_cert_auth
+            data_payload["eap-cert-auth"] = eap_cert_auth
         if acct_verify is not None:
-            data_payload['acct-verify'] = acct_verify
+            data_payload["acct-verify"] = acct_verify
         if ppk is not None:
-            data_payload['ppk'] = ppk
+            data_payload["ppk"] = ppk
         if ppk_secret is not None:
-            data_payload['ppk-secret'] = ppk_secret
+            data_payload["ppk-secret"] = ppk_secret
         if ppk_identity is not None:
-            data_payload['ppk-identity'] = ppk_identity
+            data_payload["ppk-identity"] = ppk_identity
         if wizard_type is not None:
-            data_payload['wizard-type'] = wizard_type
+            data_payload["wizard-type"] = wizard_type
         if xauthtype is not None:
-            data_payload['xauthtype'] = xauthtype
+            data_payload["xauthtype"] = xauthtype
         if reauth is not None:
-            data_payload['reauth'] = reauth
+            data_payload["reauth"] = reauth
         if authusr is not None:
-            data_payload['authusr'] = authusr
+            data_payload["authusr"] = authusr
         if authpasswd is not None:
-            data_payload['authpasswd'] = authpasswd
+            data_payload["authpasswd"] = authpasswd
         if group_authentication is not None:
-            data_payload['group-authentication'] = group_authentication
+            data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload['group-authentication-secret'] = group_authentication_secret
+            data_payload["group-authentication-secret"] = (
+                group_authentication_secret
+            )
         if authusrgrp is not None:
-            data_payload['authusrgrp'] = authusrgrp
+            data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
-            data_payload['mesh-selector-type'] = mesh_selector_type
+            data_payload["mesh-selector-type"] = mesh_selector_type
         if idle_timeout is not None:
-            data_payload['idle-timeout'] = idle_timeout
+            data_payload["idle-timeout"] = idle_timeout
         if shared_idle_timeout is not None:
-            data_payload['shared-idle-timeout'] = shared_idle_timeout
+            data_payload["shared-idle-timeout"] = shared_idle_timeout
         if idle_timeoutinterval is not None:
-            data_payload['idle-timeoutinterval'] = idle_timeoutinterval
+            data_payload["idle-timeoutinterval"] = idle_timeoutinterval
         if ha_sync_esp_seqno is not None:
-            data_payload['ha-sync-esp-seqno'] = ha_sync_esp_seqno
+            data_payload["ha-sync-esp-seqno"] = ha_sync_esp_seqno
         if fgsp_sync is not None:
-            data_payload['fgsp-sync'] = fgsp_sync
+            data_payload["fgsp-sync"] = fgsp_sync
         if inbound_dscp_copy is not None:
-            data_payload['inbound-dscp-copy'] = inbound_dscp_copy
+            data_payload["inbound-dscp-copy"] = inbound_dscp_copy
         if nattraversal is not None:
-            data_payload['nattraversal'] = nattraversal
+            data_payload["nattraversal"] = nattraversal
         if fragmentation_mtu is not None:
-            data_payload['fragmentation-mtu'] = fragmentation_mtu
+            data_payload["fragmentation-mtu"] = fragmentation_mtu
         if childless_ike is not None:
-            data_payload['childless-ike'] = childless_ike
+            data_payload["childless-ike"] = childless_ike
         if azure_ad_autoconnect is not None:
-            data_payload['azure-ad-autoconnect'] = azure_ad_autoconnect
+            data_payload["azure-ad-autoconnect"] = azure_ad_autoconnect
         if client_resume is not None:
-            data_payload['client-resume'] = client_resume
+            data_payload["client-resume"] = client_resume
         if client_resume_interval is not None:
-            data_payload['client-resume-interval'] = client_resume_interval
+            data_payload["client-resume-interval"] = client_resume_interval
         if rekey is not None:
-            data_payload['rekey'] = rekey
+            data_payload["rekey"] = rekey
         if digital_signature_auth is not None:
-            data_payload['digital-signature-auth'] = digital_signature_auth
+            data_payload["digital-signature-auth"] = digital_signature_auth
         if signature_hash_alg is not None:
-            data_payload['signature-hash-alg'] = signature_hash_alg
+            data_payload["signature-hash-alg"] = signature_hash_alg
         if rsa_signature_format is not None:
-            data_payload['rsa-signature-format'] = rsa_signature_format
+            data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload['rsa-signature-hash-override'] = rsa_signature_hash_override
+            data_payload["rsa-signature-hash-override"] = (
+                rsa_signature_hash_override
+            )
         if enforce_unique_id is not None:
-            data_payload['enforce-unique-id'] = enforce_unique_id
+            data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
-            data_payload['cert-id-validation'] = cert_id_validation
+            data_payload["cert-id-validation"] = cert_id_validation
         if fec_egress is not None:
-            data_payload['fec-egress'] = fec_egress
+            data_payload["fec-egress"] = fec_egress
         if fec_send_timeout is not None:
-            data_payload['fec-send-timeout'] = fec_send_timeout
+            data_payload["fec-send-timeout"] = fec_send_timeout
         if fec_base is not None:
-            data_payload['fec-base'] = fec_base
+            data_payload["fec-base"] = fec_base
         if fec_codec is not None:
-            data_payload['fec-codec'] = fec_codec
+            data_payload["fec-codec"] = fec_codec
         if fec_redundant is not None:
-            data_payload['fec-redundant'] = fec_redundant
+            data_payload["fec-redundant"] = fec_redundant
         if fec_ingress is not None:
-            data_payload['fec-ingress'] = fec_ingress
+            data_payload["fec-ingress"] = fec_ingress
         if fec_receive_timeout is not None:
-            data_payload['fec-receive-timeout'] = fec_receive_timeout
+            data_payload["fec-receive-timeout"] = fec_receive_timeout
         if fec_health_check is not None:
-            data_payload['fec-health-check'] = fec_health_check
+            data_payload["fec-health-check"] = fec_health_check
         if fec_mapping_profile is not None:
-            data_payload['fec-mapping-profile'] = fec_mapping_profile
+            data_payload["fec-mapping-profile"] = fec_mapping_profile
         if network_overlay is not None:
-            data_payload['network-overlay'] = network_overlay
+            data_payload["network-overlay"] = network_overlay
         if network_id is not None:
-            data_payload['network-id'] = network_id
+            data_payload["network-id"] = network_id
         if dev_id_notification is not None:
-            data_payload['dev-id-notification'] = dev_id_notification
+            data_payload["dev-id-notification"] = dev_id_notification
         if dev_id is not None:
-            data_payload['dev-id'] = dev_id
+            data_payload["dev-id"] = dev_id
         if loopback_asymroute is not None:
-            data_payload['loopback-asymroute'] = loopback_asymroute
+            data_payload["loopback-asymroute"] = loopback_asymroute
         if link_cost is not None:
-            data_payload['link-cost'] = link_cost
+            data_payload["link-cost"] = link_cost
         if kms is not None:
-            data_payload['kms'] = kms
+            data_payload["kms"] = kms
         if exchange_fgt_device_id is not None:
-            data_payload['exchange-fgt-device-id'] = exchange_fgt_device_id
+            data_payload["exchange-fgt-device-id"] = exchange_fgt_device_id
         if ipv6_auto_linklocal is not None:
-            data_payload['ipv6-auto-linklocal'] = ipv6_auto_linklocal
+            data_payload["ipv6-auto-linklocal"] = ipv6_auto_linklocal
         if ems_sn_check is not None:
-            data_payload['ems-sn-check'] = ems_sn_check
+            data_payload["ems-sn-check"] = ems_sn_check
         if cert_trust_store is not None:
-            data_payload['cert-trust-store'] = cert_trust_store
+            data_payload["cert-trust-store"] = cert_trust_store
         if qkd is not None:
-            data_payload['qkd'] = qkd
+            data_payload["qkd"] = qkd
         if qkd_hybrid is not None:
-            data_payload['qkd-hybrid'] = qkd_hybrid
+            data_payload["qkd-hybrid"] = qkd_hybrid
         if qkd_profile is not None:
-            data_payload['qkd-profile'] = qkd_profile
+            data_payload["qkd-profile"] = qkd_profile
         if transport is not None:
-            data_payload['transport'] = transport
+            data_payload["transport"] = transport
         if fortinet_esp is not None:
-            data_payload['fortinet-esp'] = fortinet_esp
+            data_payload["fortinet-esp"] = fortinet_esp
         if auto_transport_threshold is not None:
-            data_payload['auto-transport-threshold'] = auto_transport_threshold
+            data_payload["auto-transport-threshold"] = auto_transport_threshold
         if remote_gw_match is not None:
-            data_payload['remote-gw-match'] = remote_gw_match
+            data_payload["remote-gw-match"] = remote_gw_match
         if remote_gw_subnet is not None:
-            data_payload['remote-gw-subnet'] = remote_gw_subnet
+            data_payload["remote-gw-subnet"] = remote_gw_subnet
         if remote_gw_start_ip is not None:
-            data_payload['remote-gw-start-ip'] = remote_gw_start_ip
+            data_payload["remote-gw-start-ip"] = remote_gw_start_ip
         if remote_gw_end_ip is not None:
-            data_payload['remote-gw-end-ip'] = remote_gw_end_ip
+            data_payload["remote-gw-end-ip"] = remote_gw_end_ip
         if remote_gw_country is not None:
-            data_payload['remote-gw-country'] = remote_gw_country
+            data_payload["remote-gw-country"] = remote_gw_country
         if remote_gw_ztna_tags is not None:
-            data_payload['remote-gw-ztna-tags'] = remote_gw_ztna_tags
+            data_payload["remote-gw-ztna-tags"] = remote_gw_ztna_tags
         if remote_gw6_match is not None:
-            data_payload['remote-gw6-match'] = remote_gw6_match
+            data_payload["remote-gw6-match"] = remote_gw6_match
         if remote_gw6_subnet is not None:
-            data_payload['remote-gw6-subnet'] = remote_gw6_subnet
+            data_payload["remote-gw6-subnet"] = remote_gw6_subnet
         if remote_gw6_start_ip is not None:
-            data_payload['remote-gw6-start-ip'] = remote_gw6_start_ip
+            data_payload["remote-gw6-start-ip"] = remote_gw6_start_ip
         if remote_gw6_end_ip is not None:
-            data_payload['remote-gw6-end-ip'] = remote_gw6_end_ip
+            data_payload["remote-gw6-end-ip"] = remote_gw6_end_ip
         if remote_gw6_country is not None:
-            data_payload['remote-gw6-country'] = remote_gw6_country
+            data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload['cert-peer-username-validation'] = cert_peer_username_validation
+            data_payload["cert-peer-username-validation"] = (
+                cert_peer_username_validation
+            )
         if cert_peer_username_strip is not None:
-            data_payload['cert-peer-username-strip'] = cert_peer_username_strip
+            data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

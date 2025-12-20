@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.snmp_sysinfo.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.snmp_sysinfo.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.snmp_sysinfo.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.snmp_sysinfo.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.snmp_sysinfo.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class SnmpSysinfo:
     """
     Snmpsysinfo Operations.
-    
+
     Provides CRUD operations for FortiOS snmpsysinfo configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class SnmpSysinfo:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SnmpSysinfo endpoint.
 
@@ -82,14 +82,14 @@ class SnmpSysinfo:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class SnmpSysinfo:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system.snmp/sysinfo"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -134,7 +136,7 @@ class SnmpSysinfo:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -155,7 +157,7 @@ class SnmpSysinfo:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -163,7 +165,7 @@ class SnmpSysinfo:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -171,34 +173,42 @@ class SnmpSysinfo:
         params = {}
         endpoint = "/system.snmp/sysinfo"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if engine_id_type is not None:
-            data_payload['engine-id-type'] = engine_id_type
+            data_payload["engine-id-type"] = engine_id_type
         if engine_id is not None:
-            data_payload['engine-id'] = engine_id
+            data_payload["engine-id"] = engine_id
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if contact_info is not None:
-            data_payload['contact-info'] = contact_info
+            data_payload["contact-info"] = contact_info
         if location is not None:
-            data_payload['location'] = location
+            data_payload["location"] = location
         if trap_high_cpu_threshold is not None:
-            data_payload['trap-high-cpu-threshold'] = trap_high_cpu_threshold
+            data_payload["trap-high-cpu-threshold"] = trap_high_cpu_threshold
         if trap_low_memory_threshold is not None:
-            data_payload['trap-low-memory-threshold'] = trap_low_memory_threshold
+            data_payload["trap-low-memory-threshold"] = (
+                trap_low_memory_threshold
+            )
         if trap_log_full_threshold is not None:
-            data_payload['trap-log-full-threshold'] = trap_log_full_threshold
+            data_payload["trap-log-full-threshold"] = trap_log_full_threshold
         if trap_free_memory_threshold is not None:
-            data_payload['trap-free-memory-threshold'] = trap_free_memory_threshold
+            data_payload["trap-free-memory-threshold"] = (
+                trap_free_memory_threshold
+            )
         if trap_freeable_memory_threshold is not None:
-            data_payload['trap-freeable-memory-threshold'] = trap_freeable_memory_threshold
+            data_payload["trap-freeable-memory-threshold"] = (
+                trap_freeable_memory_threshold
+            )
         if append_index is not None:
-            data_payload['append-index'] = append_index
+            data_payload["append-index"] = append_index
         if non_mgmt_vdom_query is not None:
-            data_payload['non-mgmt-vdom-query'] = non_mgmt_vdom_query
+            data_payload["non-mgmt-vdom-query"] = non_mgmt_vdom_query
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

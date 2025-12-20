@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.router.bgp.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.router.bgp.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class ClearSoftIn:
     """
     Clearsoftin Operations.
-    
+
     Provides read-only access for FortiOS clearsoftin data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ClearSoftIn endpoint.
 
@@ -59,27 +59,29 @@ class ClearSoftIn:
     ) -> dict[str, Any]:
         """
         Inbound soft-reconfiguration for BGP peers.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.clear_soft_in.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/router/bgp/clear-soft-in", data=data)
+        return self._client.post(
+            "monitor", "/router/bgp/clear-soft-in", data=data
+        )
 
 
 class ClearSoftOut:
     """ClearSoftOut operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ClearSoftOut endpoint.
 
@@ -96,27 +98,29 @@ class ClearSoftOut:
     ) -> dict[str, Any]:
         """
         Outbound soft-reconfiguration for BGP peers.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.clear_soft_out.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/router/bgp/clear-soft-out", data=data)
+        return self._client.post(
+            "monitor", "/router/bgp/clear-soft-out", data=data
+        )
 
 
 class Neighbors:
     """Neighbors operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Neighbors endpoint.
 
@@ -133,27 +137,29 @@ class Neighbors:
     ) -> dict[str, Any]:
         """
         List all discovered BGP neighbors.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.neighbors.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/router/bgp/neighbors", params=params)
+        return self._client.get(
+            "monitor", "/router/bgp/neighbors", params=params
+        )
 
 
 class NeighborsStatistics:
     """NeighborsStatistics operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize NeighborsStatistics endpoint.
 
@@ -171,30 +177,32 @@ class NeighborsStatistics:
     ) -> dict[str, Any]:
         """
         Retrieve BGP neighbors statistics, including number of IPv4 or IPv6 BGP neighbors.
-        
+
         Args:
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.neighbors_statistics.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/router/bgp/neighbors-statistics", params=params)
+        return self._client.get(
+            "monitor", "/router/bgp/neighbors-statistics", params=params
+        )
 
 
 class Neighbors6:
     """Neighbors6 operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Neighbors6 endpoint.
 
@@ -211,27 +219,29 @@ class Neighbors6:
     ) -> dict[str, Any]:
         """
         List all discovered IPv6 BGP neighbors.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.neighbors6.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/router/bgp/neighbors6", params=params)
+        return self._client.get(
+            "monitor", "/router/bgp/neighbors6", params=params
+        )
 
 
 class Paths:
     """Paths operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Paths endpoint.
 
@@ -248,15 +258,15 @@ class Paths:
     ) -> dict[str, Any]:
         """
         List all discovered BGP paths.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.paths.get()
         """
@@ -268,7 +278,7 @@ class Paths:
 class PathsStatistics:
     """PathsStatistics operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PathsStatistics endpoint.
 
@@ -286,30 +296,32 @@ class PathsStatistics:
     ) -> dict[str, Any]:
         """
         Retrieve BGP paths statistics, including number of IPv4 or IPv6 BGP paths.
-        
+
         Args:
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.paths_statistics.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/router/bgp/paths-statistics", params=params)
+        return self._client.get(
+            "monitor", "/router/bgp/paths-statistics", params=params
+        )
 
 
 class Paths6:
     """Paths6 operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Paths6 endpoint.
 
@@ -326,15 +338,15 @@ class Paths6:
     ) -> dict[str, Any]:
         """
         List all discovered IPv6 BGP paths.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.paths6.get()
         """
@@ -346,7 +358,7 @@ class Paths6:
 class SoftResetNeighbor:
     """SoftResetNeighbor operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize SoftResetNeighbor endpoint.
 
@@ -364,30 +376,32 @@ class SoftResetNeighbor:
     ) -> dict[str, Any]:
         """
         BGP Neighbor soft reset.
-        
+
         Args:
             ip: IPv4 or IPv6 address of neighbor to perform soft reset on. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.router.bgp.soft_reset_neighbor.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if ip is not None:
-            data['ip'] = ip
+            data["ip"] = ip
         data.update(kwargs)
-        return self._client.post("monitor", "/router/bgp/soft-reset-neighbor", data=data)
+        return self._client.post(
+            "monitor", "/router/bgp/soft-reset-neighbor", data=data
+        )
 
 
 class Bgp:
     """Bgp operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Bgp endpoint.
 

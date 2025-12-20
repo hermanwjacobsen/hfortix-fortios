@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.global_.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.global_.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.global_.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.global_.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.global_.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Global:
     """
     Global Operations.
-    
+
     Provides CRUD operations for FortiOS global configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Global:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Global endpoint.
 
@@ -82,14 +82,14 @@ class Global:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/global"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -371,7 +373,7 @@ class Global:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -629,7 +631,7 @@ class Global:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -637,7 +639,7 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -645,508 +647,610 @@ class Global:
         params = {}
         endpoint = "/system/global"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if language is not None:
-            data_payload['language'] = language
+            data_payload["language"] = language
         if gui_allow_incompatible_fabric_fgt is not None:
-            data_payload['gui-allow-incompatible-fabric-fgt'] = gui_allow_incompatible_fabric_fgt
+            data_payload["gui-allow-incompatible-fabric-fgt"] = (
+                gui_allow_incompatible_fabric_fgt
+            )
         if gui_ipv6 is not None:
-            data_payload['gui-ipv6'] = gui_ipv6
+            data_payload["gui-ipv6"] = gui_ipv6
         if gui_replacement_message_groups is not None:
-            data_payload['gui-replacement-message-groups'] = gui_replacement_message_groups
+            data_payload["gui-replacement-message-groups"] = (
+                gui_replacement_message_groups
+            )
         if gui_local_out is not None:
-            data_payload['gui-local-out'] = gui_local_out
+            data_payload["gui-local-out"] = gui_local_out
         if gui_certificates is not None:
-            data_payload['gui-certificates'] = gui_certificates
+            data_payload["gui-certificates"] = gui_certificates
         if gui_custom_language is not None:
-            data_payload['gui-custom-language'] = gui_custom_language
+            data_payload["gui-custom-language"] = gui_custom_language
         if gui_wireless_opensecurity is not None:
-            data_payload['gui-wireless-opensecurity'] = gui_wireless_opensecurity
+            data_payload["gui-wireless-opensecurity"] = (
+                gui_wireless_opensecurity
+            )
         if gui_app_detection_sdwan is not None:
-            data_payload['gui-app-detection-sdwan'] = gui_app_detection_sdwan
+            data_payload["gui-app-detection-sdwan"] = gui_app_detection_sdwan
         if gui_display_hostname is not None:
-            data_payload['gui-display-hostname'] = gui_display_hostname
+            data_payload["gui-display-hostname"] = gui_display_hostname
         if gui_fortigate_cloud_sandbox is not None:
-            data_payload['gui-fortigate-cloud-sandbox'] = gui_fortigate_cloud_sandbox
+            data_payload["gui-fortigate-cloud-sandbox"] = (
+                gui_fortigate_cloud_sandbox
+            )
         if gui_firmware_upgrade_warning is not None:
-            data_payload['gui-firmware-upgrade-warning'] = gui_firmware_upgrade_warning
+            data_payload["gui-firmware-upgrade-warning"] = (
+                gui_firmware_upgrade_warning
+            )
         if gui_forticare_registration_setup_warning is not None:
-            data_payload['gui-forticare-registration-setup-warning'] = gui_forticare_registration_setup_warning
+            data_payload["gui-forticare-registration-setup-warning"] = (
+                gui_forticare_registration_setup_warning
+            )
         if gui_auto_upgrade_setup_warning is not None:
-            data_payload['gui-auto-upgrade-setup-warning'] = gui_auto_upgrade_setup_warning
+            data_payload["gui-auto-upgrade-setup-warning"] = (
+                gui_auto_upgrade_setup_warning
+            )
         if gui_workflow_management is not None:
-            data_payload['gui-workflow-management'] = gui_workflow_management
+            data_payload["gui-workflow-management"] = gui_workflow_management
         if gui_cdn_usage is not None:
-            data_payload['gui-cdn-usage'] = gui_cdn_usage
+            data_payload["gui-cdn-usage"] = gui_cdn_usage
         if admin_https_ssl_versions is not None:
-            data_payload['admin-https-ssl-versions'] = admin_https_ssl_versions
+            data_payload["admin-https-ssl-versions"] = admin_https_ssl_versions
         if admin_https_ssl_ciphersuites is not None:
-            data_payload['admin-https-ssl-ciphersuites'] = admin_https_ssl_ciphersuites
+            data_payload["admin-https-ssl-ciphersuites"] = (
+                admin_https_ssl_ciphersuites
+            )
         if admin_https_ssl_banned_ciphers is not None:
-            data_payload['admin-https-ssl-banned-ciphers'] = admin_https_ssl_banned_ciphers
+            data_payload["admin-https-ssl-banned-ciphers"] = (
+                admin_https_ssl_banned_ciphers
+            )
         if admintimeout is not None:
-            data_payload['admintimeout'] = admintimeout
+            data_payload["admintimeout"] = admintimeout
         if admin_console_timeout is not None:
-            data_payload['admin-console-timeout'] = admin_console_timeout
+            data_payload["admin-console-timeout"] = admin_console_timeout
         if ssd_trim_freq is not None:
-            data_payload['ssd-trim-freq'] = ssd_trim_freq
+            data_payload["ssd-trim-freq"] = ssd_trim_freq
         if ssd_trim_hour is not None:
-            data_payload['ssd-trim-hour'] = ssd_trim_hour
+            data_payload["ssd-trim-hour"] = ssd_trim_hour
         if ssd_trim_min is not None:
-            data_payload['ssd-trim-min'] = ssd_trim_min
+            data_payload["ssd-trim-min"] = ssd_trim_min
         if ssd_trim_weekday is not None:
-            data_payload['ssd-trim-weekday'] = ssd_trim_weekday
+            data_payload["ssd-trim-weekday"] = ssd_trim_weekday
         if ssd_trim_date is not None:
-            data_payload['ssd-trim-date'] = ssd_trim_date
+            data_payload["ssd-trim-date"] = ssd_trim_date
         if admin_concurrent is not None:
-            data_payload['admin-concurrent'] = admin_concurrent
+            data_payload["admin-concurrent"] = admin_concurrent
         if admin_lockout_threshold is not None:
-            data_payload['admin-lockout-threshold'] = admin_lockout_threshold
+            data_payload["admin-lockout-threshold"] = admin_lockout_threshold
         if admin_lockout_duration is not None:
-            data_payload['admin-lockout-duration'] = admin_lockout_duration
+            data_payload["admin-lockout-duration"] = admin_lockout_duration
         if refresh is not None:
-            data_payload['refresh'] = refresh
+            data_payload["refresh"] = refresh
         if interval is not None:
-            data_payload['interval'] = interval
+            data_payload["interval"] = interval
         if failtime is not None:
-            data_payload['failtime'] = failtime
+            data_payload["failtime"] = failtime
         if purdue_level is not None:
-            data_payload['purdue-level'] = purdue_level
+            data_payload["purdue-level"] = purdue_level
         if daily_restart is not None:
-            data_payload['daily-restart'] = daily_restart
+            data_payload["daily-restart"] = daily_restart
         if restart_time is not None:
-            data_payload['restart-time'] = restart_time
+            data_payload["restart-time"] = restart_time
         if wad_restart_mode is not None:
-            data_payload['wad-restart-mode'] = wad_restart_mode
+            data_payload["wad-restart-mode"] = wad_restart_mode
         if wad_restart_start_time is not None:
-            data_payload['wad-restart-start-time'] = wad_restart_start_time
+            data_payload["wad-restart-start-time"] = wad_restart_start_time
         if wad_restart_end_time is not None:
-            data_payload['wad-restart-end-time'] = wad_restart_end_time
+            data_payload["wad-restart-end-time"] = wad_restart_end_time
         if wad_p2s_max_body_size is not None:
-            data_payload['wad-p2s-max-body-size'] = wad_p2s_max_body_size
+            data_payload["wad-p2s-max-body-size"] = wad_p2s_max_body_size
         if radius_port is not None:
-            data_payload['radius-port'] = radius_port
+            data_payload["radius-port"] = radius_port
         if speedtestd_server_port is not None:
-            data_payload['speedtestd-server-port'] = speedtestd_server_port
+            data_payload["speedtestd-server-port"] = speedtestd_server_port
         if speedtestd_ctrl_port is not None:
-            data_payload['speedtestd-ctrl-port'] = speedtestd_ctrl_port
+            data_payload["speedtestd-ctrl-port"] = speedtestd_ctrl_port
         if admin_login_max is not None:
-            data_payload['admin-login-max'] = admin_login_max
+            data_payload["admin-login-max"] = admin_login_max
         if remoteauthtimeout is not None:
-            data_payload['remoteauthtimeout'] = remoteauthtimeout
+            data_payload["remoteauthtimeout"] = remoteauthtimeout
         if ldapconntimeout is not None:
-            data_payload['ldapconntimeout'] = ldapconntimeout
+            data_payload["ldapconntimeout"] = ldapconntimeout
         if batch_cmdb is not None:
-            data_payload['batch-cmdb'] = batch_cmdb
+            data_payload["batch-cmdb"] = batch_cmdb
         if multi_factor_authentication is not None:
-            data_payload['multi-factor-authentication'] = multi_factor_authentication
+            data_payload["multi-factor-authentication"] = (
+                multi_factor_authentication
+            )
         if ssl_min_proto_version is not None:
-            data_payload['ssl-min-proto-version'] = ssl_min_proto_version
+            data_payload["ssl-min-proto-version"] = ssl_min_proto_version
         if autorun_log_fsck is not None:
-            data_payload['autorun-log-fsck'] = autorun_log_fsck
+            data_payload["autorun-log-fsck"] = autorun_log_fsck
         if timezone is not None:
-            data_payload['timezone'] = timezone
+            data_payload["timezone"] = timezone
         if traffic_priority is not None:
-            data_payload['traffic-priority'] = traffic_priority
+            data_payload["traffic-priority"] = traffic_priority
         if traffic_priority_level is not None:
-            data_payload['traffic-priority-level'] = traffic_priority_level
+            data_payload["traffic-priority-level"] = traffic_priority_level
         if quic_congestion_control_algo is not None:
-            data_payload['quic-congestion-control-algo'] = quic_congestion_control_algo
+            data_payload["quic-congestion-control-algo"] = (
+                quic_congestion_control_algo
+            )
         if quic_max_datagram_size is not None:
-            data_payload['quic-max-datagram-size'] = quic_max_datagram_size
+            data_payload["quic-max-datagram-size"] = quic_max_datagram_size
         if quic_udp_payload_size_shaping_per_cid is not None:
-            data_payload['quic-udp-payload-size-shaping-per-cid'] = quic_udp_payload_size_shaping_per_cid
+            data_payload["quic-udp-payload-size-shaping-per-cid"] = (
+                quic_udp_payload_size_shaping_per_cid
+            )
         if quic_ack_thresold is not None:
-            data_payload['quic-ack-thresold'] = quic_ack_thresold
+            data_payload["quic-ack-thresold"] = quic_ack_thresold
         if quic_pmtud is not None:
-            data_payload['quic-pmtud'] = quic_pmtud
+            data_payload["quic-pmtud"] = quic_pmtud
         if quic_tls_handshake_timeout is not None:
-            data_payload['quic-tls-handshake-timeout'] = quic_tls_handshake_timeout
+            data_payload["quic-tls-handshake-timeout"] = (
+                quic_tls_handshake_timeout
+            )
         if anti_replay is not None:
-            data_payload['anti-replay'] = anti_replay
+            data_payload["anti-replay"] = anti_replay
         if send_pmtu_icmp is not None:
-            data_payload['send-pmtu-icmp'] = send_pmtu_icmp
+            data_payload["send-pmtu-icmp"] = send_pmtu_icmp
         if honor_df is not None:
-            data_payload['honor-df'] = honor_df
+            data_payload["honor-df"] = honor_df
         if pmtu_discovery is not None:
-            data_payload['pmtu-discovery'] = pmtu_discovery
+            data_payload["pmtu-discovery"] = pmtu_discovery
         if virtual_switch_vlan is not None:
-            data_payload['virtual-switch-vlan'] = virtual_switch_vlan
+            data_payload["virtual-switch-vlan"] = virtual_switch_vlan
         if revision_image_auto_backup is not None:
-            data_payload['revision-image-auto-backup'] = revision_image_auto_backup
+            data_payload["revision-image-auto-backup"] = (
+                revision_image_auto_backup
+            )
         if revision_backup_on_logout is not None:
-            data_payload['revision-backup-on-logout'] = revision_backup_on_logout
+            data_payload["revision-backup-on-logout"] = (
+                revision_backup_on_logout
+            )
         if management_vdom is not None:
-            data_payload['management-vdom'] = management_vdom
+            data_payload["management-vdom"] = management_vdom
         if hostname is not None:
-            data_payload['hostname'] = hostname
+            data_payload["hostname"] = hostname
         if alias is not None:
-            data_payload['alias'] = alias
+            data_payload["alias"] = alias
         if strong_crypto is not None:
-            data_payload['strong-crypto'] = strong_crypto
+            data_payload["strong-crypto"] = strong_crypto
         if ssl_static_key_ciphers is not None:
-            data_payload['ssl-static-key-ciphers'] = ssl_static_key_ciphers
+            data_payload["ssl-static-key-ciphers"] = ssl_static_key_ciphers
         if snat_route_change is not None:
-            data_payload['snat-route-change'] = snat_route_change
+            data_payload["snat-route-change"] = snat_route_change
         if ipv6_snat_route_change is not None:
-            data_payload['ipv6-snat-route-change'] = ipv6_snat_route_change
+            data_payload["ipv6-snat-route-change"] = ipv6_snat_route_change
         if speedtest_server is not None:
-            data_payload['speedtest-server'] = speedtest_server
+            data_payload["speedtest-server"] = speedtest_server
         if cli_audit_log is not None:
-            data_payload['cli-audit-log'] = cli_audit_log
+            data_payload["cli-audit-log"] = cli_audit_log
         if dh_params is not None:
-            data_payload['dh-params'] = dh_params
+            data_payload["dh-params"] = dh_params
         if fds_statistics is not None:
-            data_payload['fds-statistics'] = fds_statistics
+            data_payload["fds-statistics"] = fds_statistics
         if fds_statistics_period is not None:
-            data_payload['fds-statistics-period'] = fds_statistics_period
+            data_payload["fds-statistics-period"] = fds_statistics_period
         if tcp_option is not None:
-            data_payload['tcp-option'] = tcp_option
+            data_payload["tcp-option"] = tcp_option
         if lldp_transmission is not None:
-            data_payload['lldp-transmission'] = lldp_transmission
+            data_payload["lldp-transmission"] = lldp_transmission
         if lldp_reception is not None:
-            data_payload['lldp-reception'] = lldp_reception
+            data_payload["lldp-reception"] = lldp_reception
         if proxy_auth_timeout is not None:
-            data_payload['proxy-auth-timeout'] = proxy_auth_timeout
+            data_payload["proxy-auth-timeout"] = proxy_auth_timeout
         if proxy_keep_alive_mode is not None:
-            data_payload['proxy-keep-alive-mode'] = proxy_keep_alive_mode
+            data_payload["proxy-keep-alive-mode"] = proxy_keep_alive_mode
         if proxy_re_authentication_time is not None:
-            data_payload['proxy-re-authentication-time'] = proxy_re_authentication_time
+            data_payload["proxy-re-authentication-time"] = (
+                proxy_re_authentication_time
+            )
         if proxy_auth_lifetime is not None:
-            data_payload['proxy-auth-lifetime'] = proxy_auth_lifetime
+            data_payload["proxy-auth-lifetime"] = proxy_auth_lifetime
         if proxy_auth_lifetime_timeout is not None:
-            data_payload['proxy-auth-lifetime-timeout'] = proxy_auth_lifetime_timeout
+            data_payload["proxy-auth-lifetime-timeout"] = (
+                proxy_auth_lifetime_timeout
+            )
         if proxy_resource_mode is not None:
-            data_payload['proxy-resource-mode'] = proxy_resource_mode
+            data_payload["proxy-resource-mode"] = proxy_resource_mode
         if proxy_cert_use_mgmt_vdom is not None:
-            data_payload['proxy-cert-use-mgmt-vdom'] = proxy_cert_use_mgmt_vdom
+            data_payload["proxy-cert-use-mgmt-vdom"] = proxy_cert_use_mgmt_vdom
         if sys_perf_log_interval is not None:
-            data_payload['sys-perf-log-interval'] = sys_perf_log_interval
+            data_payload["sys-perf-log-interval"] = sys_perf_log_interval
         if check_protocol_header is not None:
-            data_payload['check-protocol-header'] = check_protocol_header
+            data_payload["check-protocol-header"] = check_protocol_header
         if vip_arp_range is not None:
-            data_payload['vip-arp-range'] = vip_arp_range
+            data_payload["vip-arp-range"] = vip_arp_range
         if reset_sessionless_tcp is not None:
-            data_payload['reset-sessionless-tcp'] = reset_sessionless_tcp
+            data_payload["reset-sessionless-tcp"] = reset_sessionless_tcp
         if allow_traffic_redirect is not None:
-            data_payload['allow-traffic-redirect'] = allow_traffic_redirect
+            data_payload["allow-traffic-redirect"] = allow_traffic_redirect
         if ipv6_allow_traffic_redirect is not None:
-            data_payload['ipv6-allow-traffic-redirect'] = ipv6_allow_traffic_redirect
+            data_payload["ipv6-allow-traffic-redirect"] = (
+                ipv6_allow_traffic_redirect
+            )
         if strict_dirty_session_check is not None:
-            data_payload['strict-dirty-session-check'] = strict_dirty_session_check
+            data_payload["strict-dirty-session-check"] = (
+                strict_dirty_session_check
+            )
         if tcp_halfclose_timer is not None:
-            data_payload['tcp-halfclose-timer'] = tcp_halfclose_timer
+            data_payload["tcp-halfclose-timer"] = tcp_halfclose_timer
         if tcp_halfopen_timer is not None:
-            data_payload['tcp-halfopen-timer'] = tcp_halfopen_timer
+            data_payload["tcp-halfopen-timer"] = tcp_halfopen_timer
         if tcp_timewait_timer is not None:
-            data_payload['tcp-timewait-timer'] = tcp_timewait_timer
+            data_payload["tcp-timewait-timer"] = tcp_timewait_timer
         if tcp_rst_timer is not None:
-            data_payload['tcp-rst-timer'] = tcp_rst_timer
+            data_payload["tcp-rst-timer"] = tcp_rst_timer
         if udp_idle_timer is not None:
-            data_payload['udp-idle-timer'] = udp_idle_timer
+            data_payload["udp-idle-timer"] = udp_idle_timer
         if block_session_timer is not None:
-            data_payload['block-session-timer'] = block_session_timer
+            data_payload["block-session-timer"] = block_session_timer
         if ip_src_port_range is not None:
-            data_payload['ip-src-port-range'] = ip_src_port_range
+            data_payload["ip-src-port-range"] = ip_src_port_range
         if pre_login_banner is not None:
-            data_payload['pre-login-banner'] = pre_login_banner
+            data_payload["pre-login-banner"] = pre_login_banner
         if post_login_banner is not None:
-            data_payload['post-login-banner'] = post_login_banner
+            data_payload["post-login-banner"] = post_login_banner
         if tftp is not None:
-            data_payload['tftp'] = tftp
+            data_payload["tftp"] = tftp
         if av_failopen is not None:
-            data_payload['av-failopen'] = av_failopen
+            data_payload["av-failopen"] = av_failopen
         if av_failopen_session is not None:
-            data_payload['av-failopen-session'] = av_failopen_session
+            data_payload["av-failopen-session"] = av_failopen_session
         if memory_use_threshold_extreme is not None:
-            data_payload['memory-use-threshold-extreme'] = memory_use_threshold_extreme
+            data_payload["memory-use-threshold-extreme"] = (
+                memory_use_threshold_extreme
+            )
         if memory_use_threshold_red is not None:
-            data_payload['memory-use-threshold-red'] = memory_use_threshold_red
+            data_payload["memory-use-threshold-red"] = memory_use_threshold_red
         if memory_use_threshold_green is not None:
-            data_payload['memory-use-threshold-green'] = memory_use_threshold_green
+            data_payload["memory-use-threshold-green"] = (
+                memory_use_threshold_green
+            )
         if ip_fragment_mem_thresholds is not None:
-            data_payload['ip-fragment-mem-thresholds'] = ip_fragment_mem_thresholds
+            data_payload["ip-fragment-mem-thresholds"] = (
+                ip_fragment_mem_thresholds
+            )
         if ip_fragment_timeout is not None:
-            data_payload['ip-fragment-timeout'] = ip_fragment_timeout
+            data_payload["ip-fragment-timeout"] = ip_fragment_timeout
         if ipv6_fragment_timeout is not None:
-            data_payload['ipv6-fragment-timeout'] = ipv6_fragment_timeout
+            data_payload["ipv6-fragment-timeout"] = ipv6_fragment_timeout
         if cpu_use_threshold is not None:
-            data_payload['cpu-use-threshold'] = cpu_use_threshold
+            data_payload["cpu-use-threshold"] = cpu_use_threshold
         if log_single_cpu_high is not None:
-            data_payload['log-single-cpu-high'] = log_single_cpu_high
+            data_payload["log-single-cpu-high"] = log_single_cpu_high
         if check_reset_range is not None:
-            data_payload['check-reset-range'] = check_reset_range
+            data_payload["check-reset-range"] = check_reset_range
         if single_vdom_npuvlink is not None:
-            data_payload['single-vdom-npuvlink'] = single_vdom_npuvlink
+            data_payload["single-vdom-npuvlink"] = single_vdom_npuvlink
         if vdom_mode is not None:
-            data_payload['vdom-mode'] = vdom_mode
+            data_payload["vdom-mode"] = vdom_mode
         if long_vdom_name is not None:
-            data_payload['long-vdom-name'] = long_vdom_name
+            data_payload["long-vdom-name"] = long_vdom_name
         if upgrade_report is not None:
-            data_payload['upgrade-report'] = upgrade_report
+            data_payload["upgrade-report"] = upgrade_report
         if edit_vdom_prompt is not None:
-            data_payload['edit-vdom-prompt'] = edit_vdom_prompt
+            data_payload["edit-vdom-prompt"] = edit_vdom_prompt
         if admin_port is not None:
-            data_payload['admin-port'] = admin_port
+            data_payload["admin-port"] = admin_port
         if admin_sport is not None:
-            data_payload['admin-sport'] = admin_sport
+            data_payload["admin-sport"] = admin_sport
         if admin_host is not None:
-            data_payload['admin-host'] = admin_host
+            data_payload["admin-host"] = admin_host
         if admin_https_redirect is not None:
-            data_payload['admin-https-redirect'] = admin_https_redirect
+            data_payload["admin-https-redirect"] = admin_https_redirect
         if admin_hsts_max_age is not None:
-            data_payload['admin-hsts-max-age'] = admin_hsts_max_age
+            data_payload["admin-hsts-max-age"] = admin_hsts_max_age
         if admin_ssh_password is not None:
-            data_payload['admin-ssh-password'] = admin_ssh_password
+            data_payload["admin-ssh-password"] = admin_ssh_password
         if admin_restrict_local is not None:
-            data_payload['admin-restrict-local'] = admin_restrict_local
+            data_payload["admin-restrict-local"] = admin_restrict_local
         if admin_ssh_port is not None:
-            data_payload['admin-ssh-port'] = admin_ssh_port
+            data_payload["admin-ssh-port"] = admin_ssh_port
         if admin_ssh_grace_time is not None:
-            data_payload['admin-ssh-grace-time'] = admin_ssh_grace_time
+            data_payload["admin-ssh-grace-time"] = admin_ssh_grace_time
         if admin_ssh_v1 is not None:
-            data_payload['admin-ssh-v1'] = admin_ssh_v1
+            data_payload["admin-ssh-v1"] = admin_ssh_v1
         if admin_telnet is not None:
-            data_payload['admin-telnet'] = admin_telnet
+            data_payload["admin-telnet"] = admin_telnet
         if admin_telnet_port is not None:
-            data_payload['admin-telnet-port'] = admin_telnet_port
+            data_payload["admin-telnet-port"] = admin_telnet_port
         if admin_forticloud_sso_login is not None:
-            data_payload['admin-forticloud-sso-login'] = admin_forticloud_sso_login
+            data_payload["admin-forticloud-sso-login"] = (
+                admin_forticloud_sso_login
+            )
         if admin_forticloud_sso_default_profile is not None:
-            data_payload['admin-forticloud-sso-default-profile'] = admin_forticloud_sso_default_profile
+            data_payload["admin-forticloud-sso-default-profile"] = (
+                admin_forticloud_sso_default_profile
+            )
         if default_service_source_port is not None:
-            data_payload['default-service-source-port'] = default_service_source_port
+            data_payload["default-service-source-port"] = (
+                default_service_source_port
+            )
         if admin_reset_button is not None:
-            data_payload['admin-reset-button'] = admin_reset_button
+            data_payload["admin-reset-button"] = admin_reset_button
         if admin_server_cert is not None:
-            data_payload['admin-server-cert'] = admin_server_cert
+            data_payload["admin-server-cert"] = admin_server_cert
         if admin_https_pki_required is not None:
-            data_payload['admin-https-pki-required'] = admin_https_pki_required
+            data_payload["admin-https-pki-required"] = admin_https_pki_required
         if wifi_certificate is not None:
-            data_payload['wifi-certificate'] = wifi_certificate
+            data_payload["wifi-certificate"] = wifi_certificate
         if dhcp_lease_backup_interval is not None:
-            data_payload['dhcp-lease-backup-interval'] = dhcp_lease_backup_interval
+            data_payload["dhcp-lease-backup-interval"] = (
+                dhcp_lease_backup_interval
+            )
         if wifi_ca_certificate is not None:
-            data_payload['wifi-ca-certificate'] = wifi_ca_certificate
+            data_payload["wifi-ca-certificate"] = wifi_ca_certificate
         if auth_http_port is not None:
-            data_payload['auth-http-port'] = auth_http_port
+            data_payload["auth-http-port"] = auth_http_port
         if auth_https_port is not None:
-            data_payload['auth-https-port'] = auth_https_port
+            data_payload["auth-https-port"] = auth_https_port
         if auth_ike_saml_port is not None:
-            data_payload['auth-ike-saml-port'] = auth_ike_saml_port
+            data_payload["auth-ike-saml-port"] = auth_ike_saml_port
         if auth_keepalive is not None:
-            data_payload['auth-keepalive'] = auth_keepalive
+            data_payload["auth-keepalive"] = auth_keepalive
         if policy_auth_concurrent is not None:
-            data_payload['policy-auth-concurrent'] = policy_auth_concurrent
+            data_payload["policy-auth-concurrent"] = policy_auth_concurrent
         if auth_session_limit is not None:
-            data_payload['auth-session-limit'] = auth_session_limit
+            data_payload["auth-session-limit"] = auth_session_limit
         if auth_cert is not None:
-            data_payload['auth-cert'] = auth_cert
+            data_payload["auth-cert"] = auth_cert
         if clt_cert_req is not None:
-            data_payload['clt-cert-req'] = clt_cert_req
+            data_payload["clt-cert-req"] = clt_cert_req
         if fortiservice_port is not None:
-            data_payload['fortiservice-port'] = fortiservice_port
+            data_payload["fortiservice-port"] = fortiservice_port
         if cfg_save is not None:
-            data_payload['cfg-save'] = cfg_save
+            data_payload["cfg-save"] = cfg_save
         if cfg_revert_timeout is not None:
-            data_payload['cfg-revert-timeout'] = cfg_revert_timeout
+            data_payload["cfg-revert-timeout"] = cfg_revert_timeout
         if reboot_upon_config_restore is not None:
-            data_payload['reboot-upon-config-restore'] = reboot_upon_config_restore
+            data_payload["reboot-upon-config-restore"] = (
+                reboot_upon_config_restore
+            )
         if admin_scp is not None:
-            data_payload['admin-scp'] = admin_scp
+            data_payload["admin-scp"] = admin_scp
         if wireless_controller is not None:
-            data_payload['wireless-controller'] = wireless_controller
+            data_payload["wireless-controller"] = wireless_controller
         if wireless_controller_port is not None:
-            data_payload['wireless-controller-port'] = wireless_controller_port
+            data_payload["wireless-controller-port"] = wireless_controller_port
         if fortiextender_data_port is not None:
-            data_payload['fortiextender-data-port'] = fortiextender_data_port
+            data_payload["fortiextender-data-port"] = fortiextender_data_port
         if fortiextender is not None:
-            data_payload['fortiextender'] = fortiextender
+            data_payload["fortiextender"] = fortiextender
         if extender_controller_reserved_network is not None:
-            data_payload['extender-controller-reserved-network'] = extender_controller_reserved_network
+            data_payload["extender-controller-reserved-network"] = (
+                extender_controller_reserved_network
+            )
         if fortiextender_discovery_lockdown is not None:
-            data_payload['fortiextender-discovery-lockdown'] = fortiextender_discovery_lockdown
+            data_payload["fortiextender-discovery-lockdown"] = (
+                fortiextender_discovery_lockdown
+            )
         if fortiextender_vlan_mode is not None:
-            data_payload['fortiextender-vlan-mode'] = fortiextender_vlan_mode
+            data_payload["fortiextender-vlan-mode"] = fortiextender_vlan_mode
         if fortiextender_provision_on_authorization is not None:
-            data_payload['fortiextender-provision-on-authorization'] = fortiextender_provision_on_authorization
+            data_payload["fortiextender-provision-on-authorization"] = (
+                fortiextender_provision_on_authorization
+            )
         if switch_controller is not None:
-            data_payload['switch-controller'] = switch_controller
+            data_payload["switch-controller"] = switch_controller
         if switch_controller_reserved_network is not None:
-            data_payload['switch-controller-reserved-network'] = switch_controller_reserved_network
+            data_payload["switch-controller-reserved-network"] = (
+                switch_controller_reserved_network
+            )
         if dnsproxy_worker_count is not None:
-            data_payload['dnsproxy-worker-count'] = dnsproxy_worker_count
+            data_payload["dnsproxy-worker-count"] = dnsproxy_worker_count
         if url_filter_count is not None:
-            data_payload['url-filter-count'] = url_filter_count
+            data_payload["url-filter-count"] = url_filter_count
         if httpd_max_worker_count is not None:
-            data_payload['httpd-max-worker-count'] = httpd_max_worker_count
+            data_payload["httpd-max-worker-count"] = httpd_max_worker_count
         if proxy_worker_count is not None:
-            data_payload['proxy-worker-count'] = proxy_worker_count
+            data_payload["proxy-worker-count"] = proxy_worker_count
         if scanunit_count is not None:
-            data_payload['scanunit-count'] = scanunit_count
+            data_payload["scanunit-count"] = scanunit_count
         if proxy_hardware_acceleration is not None:
-            data_payload['proxy-hardware-acceleration'] = proxy_hardware_acceleration
+            data_payload["proxy-hardware-acceleration"] = (
+                proxy_hardware_acceleration
+            )
         if fgd_alert_subscription is not None:
-            data_payload['fgd-alert-subscription'] = fgd_alert_subscription
+            data_payload["fgd-alert-subscription"] = fgd_alert_subscription
         if ipsec_hmac_offload is not None:
-            data_payload['ipsec-hmac-offload'] = ipsec_hmac_offload
+            data_payload["ipsec-hmac-offload"] = ipsec_hmac_offload
         if ipv6_accept_dad is not None:
-            data_payload['ipv6-accept-dad'] = ipv6_accept_dad
+            data_payload["ipv6-accept-dad"] = ipv6_accept_dad
         if ipv6_allow_anycast_probe is not None:
-            data_payload['ipv6-allow-anycast-probe'] = ipv6_allow_anycast_probe
+            data_payload["ipv6-allow-anycast-probe"] = ipv6_allow_anycast_probe
         if ipv6_allow_multicast_probe is not None:
-            data_payload['ipv6-allow-multicast-probe'] = ipv6_allow_multicast_probe
+            data_payload["ipv6-allow-multicast-probe"] = (
+                ipv6_allow_multicast_probe
+            )
         if ipv6_allow_local_in_silent_drop is not None:
-            data_payload['ipv6-allow-local-in-silent-drop'] = ipv6_allow_local_in_silent_drop
+            data_payload["ipv6-allow-local-in-silent-drop"] = (
+                ipv6_allow_local_in_silent_drop
+            )
         if csr_ca_attribute is not None:
-            data_payload['csr-ca-attribute'] = csr_ca_attribute
+            data_payload["csr-ca-attribute"] = csr_ca_attribute
         if wimax_4g_usb is not None:
-            data_payload['wimax-4g-usb'] = wimax_4g_usb
+            data_payload["wimax-4g-usb"] = wimax_4g_usb
         if cert_chain_max is not None:
-            data_payload['cert-chain-max'] = cert_chain_max
+            data_payload["cert-chain-max"] = cert_chain_max
         if two_factor_ftk_expiry is not None:
-            data_payload['two-factor-ftk-expiry'] = two_factor_ftk_expiry
+            data_payload["two-factor-ftk-expiry"] = two_factor_ftk_expiry
         if two_factor_email_expiry is not None:
-            data_payload['two-factor-email-expiry'] = two_factor_email_expiry
+            data_payload["two-factor-email-expiry"] = two_factor_email_expiry
         if two_factor_sms_expiry is not None:
-            data_payload['two-factor-sms-expiry'] = two_factor_sms_expiry
+            data_payload["two-factor-sms-expiry"] = two_factor_sms_expiry
         if two_factor_fac_expiry is not None:
-            data_payload['two-factor-fac-expiry'] = two_factor_fac_expiry
+            data_payload["two-factor-fac-expiry"] = two_factor_fac_expiry
         if two_factor_ftm_expiry is not None:
-            data_payload['two-factor-ftm-expiry'] = two_factor_ftm_expiry
+            data_payload["two-factor-ftm-expiry"] = two_factor_ftm_expiry
         if wad_worker_count is not None:
-            data_payload['wad-worker-count'] = wad_worker_count
+            data_payload["wad-worker-count"] = wad_worker_count
         if wad_worker_dev_cache is not None:
-            data_payload['wad-worker-dev-cache'] = wad_worker_dev_cache
+            data_payload["wad-worker-dev-cache"] = wad_worker_dev_cache
         if wad_csvc_cs_count is not None:
-            data_payload['wad-csvc-cs-count'] = wad_csvc_cs_count
+            data_payload["wad-csvc-cs-count"] = wad_csvc_cs_count
         if wad_csvc_db_count is not None:
-            data_payload['wad-csvc-db-count'] = wad_csvc_db_count
+            data_payload["wad-csvc-db-count"] = wad_csvc_db_count
         if wad_source_affinity is not None:
-            data_payload['wad-source-affinity'] = wad_source_affinity
+            data_payload["wad-source-affinity"] = wad_source_affinity
         if wad_memory_change_granularity is not None:
-            data_payload['wad-memory-change-granularity'] = wad_memory_change_granularity
+            data_payload["wad-memory-change-granularity"] = (
+                wad_memory_change_granularity
+            )
         if login_timestamp is not None:
-            data_payload['login-timestamp'] = login_timestamp
+            data_payload["login-timestamp"] = login_timestamp
         if ip_conflict_detection is not None:
-            data_payload['ip-conflict-detection'] = ip_conflict_detection
+            data_payload["ip-conflict-detection"] = ip_conflict_detection
         if miglogd_children is not None:
-            data_payload['miglogd-children'] = miglogd_children
+            data_payload["miglogd-children"] = miglogd_children
         if log_daemon_cpu_threshold is not None:
-            data_payload['log-daemon-cpu-threshold'] = log_daemon_cpu_threshold
+            data_payload["log-daemon-cpu-threshold"] = log_daemon_cpu_threshold
         if special_file_23_support is not None:
-            data_payload['special-file-23-support'] = special_file_23_support
+            data_payload["special-file-23-support"] = special_file_23_support
         if log_uuid_address is not None:
-            data_payload['log-uuid-address'] = log_uuid_address
+            data_payload["log-uuid-address"] = log_uuid_address
         if log_ssl_connection is not None:
-            data_payload['log-ssl-connection'] = log_ssl_connection
+            data_payload["log-ssl-connection"] = log_ssl_connection
         if rest_api_key_url_query is not None:
-            data_payload['rest-api-key-url-query'] = rest_api_key_url_query
+            data_payload["rest-api-key-url-query"] = rest_api_key_url_query
         if gui_cdn_domain_override is not None:
-            data_payload['gui-cdn-domain-override'] = gui_cdn_domain_override
+            data_payload["gui-cdn-domain-override"] = gui_cdn_domain_override
         if arp_max_entry is not None:
-            data_payload['arp-max-entry'] = arp_max_entry
+            data_payload["arp-max-entry"] = arp_max_entry
         if ha_affinity is not None:
-            data_payload['ha-affinity'] = ha_affinity
+            data_payload["ha-affinity"] = ha_affinity
         if bfd_affinity is not None:
-            data_payload['bfd-affinity'] = bfd_affinity
+            data_payload["bfd-affinity"] = bfd_affinity
         if cmdbsvr_affinity is not None:
-            data_payload['cmdbsvr-affinity'] = cmdbsvr_affinity
+            data_payload["cmdbsvr-affinity"] = cmdbsvr_affinity
         if ndp_max_entry is not None:
-            data_payload['ndp-max-entry'] = ndp_max_entry
+            data_payload["ndp-max-entry"] = ndp_max_entry
         if br_fdb_max_entry is not None:
-            data_payload['br-fdb-max-entry'] = br_fdb_max_entry
+            data_payload["br-fdb-max-entry"] = br_fdb_max_entry
         if max_route_cache_size is not None:
-            data_payload['max-route-cache-size'] = max_route_cache_size
+            data_payload["max-route-cache-size"] = max_route_cache_size
         if ipsec_asic_offload is not None:
-            data_payload['ipsec-asic-offload'] = ipsec_asic_offload
+            data_payload["ipsec-asic-offload"] = ipsec_asic_offload
         if device_idle_timeout is not None:
-            data_payload['device-idle-timeout'] = device_idle_timeout
+            data_payload["device-idle-timeout"] = device_idle_timeout
         if user_device_store_max_devices is not None:
-            data_payload['user-device-store-max-devices'] = user_device_store_max_devices
+            data_payload["user-device-store-max-devices"] = (
+                user_device_store_max_devices
+            )
         if user_device_store_max_device_mem is not None:
-            data_payload['user-device-store-max-device-mem'] = user_device_store_max_device_mem
+            data_payload["user-device-store-max-device-mem"] = (
+                user_device_store_max_device_mem
+            )
         if user_device_store_max_users is not None:
-            data_payload['user-device-store-max-users'] = user_device_store_max_users
+            data_payload["user-device-store-max-users"] = (
+                user_device_store_max_users
+            )
         if user_device_store_max_unified_mem is not None:
-            data_payload['user-device-store-max-unified-mem'] = user_device_store_max_unified_mem
+            data_payload["user-device-store-max-unified-mem"] = (
+                user_device_store_max_unified_mem
+            )
         if gui_device_latitude is not None:
-            data_payload['gui-device-latitude'] = gui_device_latitude
+            data_payload["gui-device-latitude"] = gui_device_latitude
         if gui_device_longitude is not None:
-            data_payload['gui-device-longitude'] = gui_device_longitude
+            data_payload["gui-device-longitude"] = gui_device_longitude
         if private_data_encryption is not None:
-            data_payload['private-data-encryption'] = private_data_encryption
+            data_payload["private-data-encryption"] = private_data_encryption
         if auto_auth_extension_device is not None:
-            data_payload['auto-auth-extension-device'] = auto_auth_extension_device
+            data_payload["auto-auth-extension-device"] = (
+                auto_auth_extension_device
+            )
         if gui_theme is not None:
-            data_payload['gui-theme'] = gui_theme
+            data_payload["gui-theme"] = gui_theme
         if gui_date_format is not None:
-            data_payload['gui-date-format'] = gui_date_format
+            data_payload["gui-date-format"] = gui_date_format
         if gui_date_time_source is not None:
-            data_payload['gui-date-time-source'] = gui_date_time_source
+            data_payload["gui-date-time-source"] = gui_date_time_source
         if igmp_state_limit is not None:
-            data_payload['igmp-state-limit'] = igmp_state_limit
+            data_payload["igmp-state-limit"] = igmp_state_limit
         if cloud_communication is not None:
-            data_payload['cloud-communication'] = cloud_communication
+            data_payload["cloud-communication"] = cloud_communication
         if ipsec_ha_seqjump_rate is not None:
-            data_payload['ipsec-ha-seqjump-rate'] = ipsec_ha_seqjump_rate
+            data_payload["ipsec-ha-seqjump-rate"] = ipsec_ha_seqjump_rate
         if fortitoken_cloud is not None:
-            data_payload['fortitoken-cloud'] = fortitoken_cloud
+            data_payload["fortitoken-cloud"] = fortitoken_cloud
         if fortitoken_cloud_push_status is not None:
-            data_payload['fortitoken-cloud-push-status'] = fortitoken_cloud_push_status
+            data_payload["fortitoken-cloud-push-status"] = (
+                fortitoken_cloud_push_status
+            )
         if fortitoken_cloud_region is not None:
-            data_payload['fortitoken-cloud-region'] = fortitoken_cloud_region
+            data_payload["fortitoken-cloud-region"] = fortitoken_cloud_region
         if fortitoken_cloud_sync_interval is not None:
-            data_payload['fortitoken-cloud-sync-interval'] = fortitoken_cloud_sync_interval
+            data_payload["fortitoken-cloud-sync-interval"] = (
+                fortitoken_cloud_sync_interval
+            )
         if faz_disk_buffer_size is not None:
-            data_payload['faz-disk-buffer-size'] = faz_disk_buffer_size
+            data_payload["faz-disk-buffer-size"] = faz_disk_buffer_size
         if irq_time_accounting is not None:
-            data_payload['irq-time-accounting'] = irq_time_accounting
+            data_payload["irq-time-accounting"] = irq_time_accounting
         if management_ip is not None:
-            data_payload['management-ip'] = management_ip
+            data_payload["management-ip"] = management_ip
         if management_port is not None:
-            data_payload['management-port'] = management_port
+            data_payload["management-port"] = management_port
         if management_port_use_admin_sport is not None:
-            data_payload['management-port-use-admin-sport'] = management_port_use_admin_sport
+            data_payload["management-port-use-admin-sport"] = (
+                management_port_use_admin_sport
+            )
         if forticonverter_integration is not None:
-            data_payload['forticonverter-integration'] = forticonverter_integration
+            data_payload["forticonverter-integration"] = (
+                forticonverter_integration
+            )
         if forticonverter_config_upload is not None:
-            data_payload['forticonverter-config-upload'] = forticonverter_config_upload
+            data_payload["forticonverter-config-upload"] = (
+                forticonverter_config_upload
+            )
         if internet_service_database is not None:
-            data_payload['internet-service-database'] = internet_service_database
+            data_payload["internet-service-database"] = (
+                internet_service_database
+            )
         if internet_service_download_list is not None:
-            data_payload['internet-service-download-list'] = internet_service_download_list
+            data_payload["internet-service-download-list"] = (
+                internet_service_download_list
+            )
         if geoip_full_db is not None:
-            data_payload['geoip-full-db'] = geoip_full_db
+            data_payload["geoip-full-db"] = geoip_full_db
         if early_tcp_npu_session is not None:
-            data_payload['early-tcp-npu-session'] = early_tcp_npu_session
+            data_payload["early-tcp-npu-session"] = early_tcp_npu_session
         if npu_neighbor_update is not None:
-            data_payload['npu-neighbor-update'] = npu_neighbor_update
+            data_payload["npu-neighbor-update"] = npu_neighbor_update
         if delay_tcp_npu_session is not None:
-            data_payload['delay-tcp-npu-session'] = delay_tcp_npu_session
+            data_payload["delay-tcp-npu-session"] = delay_tcp_npu_session
         if interface_subnet_usage is not None:
-            data_payload['interface-subnet-usage'] = interface_subnet_usage
+            data_payload["interface-subnet-usage"] = interface_subnet_usage
         if sflowd_max_children_num is not None:
-            data_payload['sflowd-max-children-num'] = sflowd_max_children_num
+            data_payload["sflowd-max-children-num"] = sflowd_max_children_num
         if fortigslb_integration is not None:
-            data_payload['fortigslb-integration'] = fortigslb_integration
+            data_payload["fortigslb-integration"] = fortigslb_integration
         if user_history_password_threshold is not None:
-            data_payload['user-history-password-threshold'] = user_history_password_threshold
+            data_payload["user-history-password-threshold"] = (
+                user_history_password_threshold
+            )
         if auth_session_auto_backup is not None:
-            data_payload['auth-session-auto-backup'] = auth_session_auto_backup
+            data_payload["auth-session-auto-backup"] = auth_session_auto_backup
         if auth_session_auto_backup_interval is not None:
-            data_payload['auth-session-auto-backup-interval'] = auth_session_auto_backup_interval
+            data_payload["auth-session-auto-backup-interval"] = (
+                auth_session_auto_backup_interval
+            )
         if scim_https_port is not None:
-            data_payload['scim-https-port'] = scim_https_port
+            data_payload["scim-https-port"] = scim_https_port
         if scim_http_port is not None:
-            data_payload['scim-http-port'] = scim_http_port
+            data_payload["scim-http-port"] = scim_http_port
         if scim_server_cert is not None:
-            data_payload['scim-server-cert'] = scim_server_cert
+            data_payload["scim-server-cert"] = scim_server_cert
         if application_bandwidth_tracking is not None:
-            data_payload['application-bandwidth-tracking'] = application_bandwidth_tracking
+            data_payload["application-bandwidth-tracking"] = (
+                application_bandwidth_tracking
+            )
         if tls_session_cache is not None:
-            data_payload['tls-session-cache'] = tls_session_cache
+            data_payload["tls-session-cache"] = tls_session_cache
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

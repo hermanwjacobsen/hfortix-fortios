@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.proxy_address.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.proxy_address.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.proxy_address.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.proxy_address.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.proxy_address.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ProxyAddress:
     """
     Proxyaddress Operations.
-    
+
     Provides CRUD operations for FortiOS proxyaddress configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ProxyAddress:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ProxyAddress:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ProxyAddress endpoint.
 
@@ -90,7 +90,7 @@ class ProxyAddress:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ProxyAddress:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ProxyAddress:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall/proxy-address/{name}"
         else:
             endpoint = "/firewall/proxy-address"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -162,7 +164,7 @@ class ProxyAddress:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -192,7 +194,7 @@ class ProxyAddress:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -200,65 +202,67 @@ class ProxyAddress:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall/proxy-address/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if host is not None:
-            data_payload['host'] = host
+            data_payload["host"] = host
         if host_regex is not None:
-            data_payload['host-regex'] = host_regex
+            data_payload["host-regex"] = host_regex
         if path is not None:
-            data_payload['path'] = path
+            data_payload["path"] = path
         if query is not None:
-            data_payload['query'] = query
+            data_payload["query"] = query
         if referrer is not None:
-            data_payload['referrer'] = referrer
+            data_payload["referrer"] = referrer
         if category is not None:
-            data_payload['category'] = category
+            data_payload["category"] = category
         if method is not None:
-            data_payload['method'] = method
+            data_payload["method"] = method
         if ua is not None:
-            data_payload['ua'] = ua
+            data_payload["ua"] = ua
         if ua_min_ver is not None:
-            data_payload['ua-min-ver'] = ua_min_ver
+            data_payload["ua-min-ver"] = ua_min_ver
         if ua_max_ver is not None:
-            data_payload['ua-max-ver'] = ua_max_ver
+            data_payload["ua-max-ver"] = ua_max_ver
         if header_name is not None:
-            data_payload['header-name'] = header_name
+            data_payload["header-name"] = header_name
         if header is not None:
-            data_payload['header'] = header
+            data_payload["header"] = header
         if case_sensitivity is not None:
-            data_payload['case-sensitivity'] = case_sensitivity
+            data_payload["case-sensitivity"] = case_sensitivity
         if header_group is not None:
-            data_payload['header-group'] = header_group
+            data_payload["header-group"] = header_group
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if tagging is not None:
-            data_payload['tagging'] = tagging
+            data_payload["tagging"] = tagging
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -270,13 +274,13 @@ class ProxyAddress:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -284,18 +288,20 @@ class ProxyAddress:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/proxy-address/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -304,37 +310,39 @@ class ProxyAddress:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -367,7 +375,7 @@ class ProxyAddress:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -395,7 +403,7 @@ class ProxyAddress:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -403,7 +411,7 @@ class ProxyAddress:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -411,48 +419,50 @@ class ProxyAddress:
         params = {}
         endpoint = "/firewall/proxy-address"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if host is not None:
-            data_payload['host'] = host
+            data_payload["host"] = host
         if host_regex is not None:
-            data_payload['host-regex'] = host_regex
+            data_payload["host-regex"] = host_regex
         if path is not None:
-            data_payload['path'] = path
+            data_payload["path"] = path
         if query is not None:
-            data_payload['query'] = query
+            data_payload["query"] = query
         if referrer is not None:
-            data_payload['referrer'] = referrer
+            data_payload["referrer"] = referrer
         if category is not None:
-            data_payload['category'] = category
+            data_payload["category"] = category
         if method is not None:
-            data_payload['method'] = method
+            data_payload["method"] = method
         if ua is not None:
-            data_payload['ua'] = ua
+            data_payload["ua"] = ua
         if ua_min_ver is not None:
-            data_payload['ua-min-ver'] = ua_min_ver
+            data_payload["ua-min-ver"] = ua_min_ver
         if ua_max_ver is not None:
-            data_payload['ua-max-ver'] = ua_max_ver
+            data_payload["ua-max-ver"] = ua_max_ver
         if header_name is not None:
-            data_payload['header-name'] = header_name
+            data_payload["header-name"] = header_name
         if header is not None:
-            data_payload['header'] = header
+            data_payload["header"] = header
         if case_sensitivity is not None:
-            data_payload['case-sensitivity'] = case_sensitivity
+            data_payload["case-sensitivity"] = case_sensitivity
         if header_group is not None:
-            data_payload['header-group'] = header_group
+            data_payload["header-group"] = header_group
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if tagging is not None:
-            data_payload['tagging'] = tagging
+            data_payload["tagging"] = tagging
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

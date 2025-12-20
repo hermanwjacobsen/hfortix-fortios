@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.user.saml.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.user.saml.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.user.saml.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.user.saml.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.user.saml.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Saml:
     """
     Saml Operations.
-    
+
     Provides CRUD operations for FortiOS saml configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Saml:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Saml:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Saml endpoint.
 
@@ -90,7 +90,7 @@ class Saml:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Saml:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Saml:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/user/saml/{name}"
         else:
             endpoint = "/user/saml"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -163,7 +165,7 @@ class Saml:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -194,7 +196,7 @@ class Saml:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -202,67 +204,71 @@ class Saml:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/user/saml/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if cert is not None:
-            data_payload['cert'] = cert
+            data_payload["cert"] = cert
         if entity_id is not None:
-            data_payload['entity-id'] = entity_id
+            data_payload["entity-id"] = entity_id
         if single_sign_on_url is not None:
-            data_payload['single-sign-on-url'] = single_sign_on_url
+            data_payload["single-sign-on-url"] = single_sign_on_url
         if single_logout_url is not None:
-            data_payload['single-logout-url'] = single_logout_url
+            data_payload["single-logout-url"] = single_logout_url
         if idp_entity_id is not None:
-            data_payload['idp-entity-id'] = idp_entity_id
+            data_payload["idp-entity-id"] = idp_entity_id
         if idp_single_sign_on_url is not None:
-            data_payload['idp-single-sign-on-url'] = idp_single_sign_on_url
+            data_payload["idp-single-sign-on-url"] = idp_single_sign_on_url
         if idp_single_logout_url is not None:
-            data_payload['idp-single-logout-url'] = idp_single_logout_url
+            data_payload["idp-single-logout-url"] = idp_single_logout_url
         if idp_cert is not None:
-            data_payload['idp-cert'] = idp_cert
+            data_payload["idp-cert"] = idp_cert
         if scim_client is not None:
-            data_payload['scim-client'] = scim_client
+            data_payload["scim-client"] = scim_client
         if scim_user_attr_type is not None:
-            data_payload['scim-user-attr-type'] = scim_user_attr_type
+            data_payload["scim-user-attr-type"] = scim_user_attr_type
         if scim_group_attr_type is not None:
-            data_payload['scim-group-attr-type'] = scim_group_attr_type
+            data_payload["scim-group-attr-type"] = scim_group_attr_type
         if user_name is not None:
-            data_payload['user-name'] = user_name
+            data_payload["user-name"] = user_name
         if group_name is not None:
-            data_payload['group-name'] = group_name
+            data_payload["group-name"] = group_name
         if digest_method is not None:
-            data_payload['digest-method'] = digest_method
+            data_payload["digest-method"] = digest_method
         if require_signed_resp_and_asrt is not None:
-            data_payload['require-signed-resp-and-asrt'] = require_signed_resp_and_asrt
+            data_payload["require-signed-resp-and-asrt"] = (
+                require_signed_resp_and_asrt
+            )
         if limit_relaystate is not None:
-            data_payload['limit-relaystate'] = limit_relaystate
+            data_payload["limit-relaystate"] = limit_relaystate
         if clock_tolerance is not None:
-            data_payload['clock-tolerance'] = clock_tolerance
+            data_payload["clock-tolerance"] = clock_tolerance
         if adfs_claim is not None:
-            data_payload['adfs-claim'] = adfs_claim
+            data_payload["adfs-claim"] = adfs_claim
         if user_claim_type is not None:
-            data_payload['user-claim-type'] = user_claim_type
+            data_payload["user-claim-type"] = user_claim_type
         if group_claim_type is not None:
-            data_payload['group-claim-type'] = group_claim_type
+            data_payload["group-claim-type"] = group_claim_type
         if reauth is not None:
-            data_payload['reauth'] = reauth
+            data_payload["reauth"] = reauth
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -274,13 +280,13 @@ class Saml:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -288,18 +294,20 @@ class Saml:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/saml/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -308,37 +316,39 @@ class Saml:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -372,7 +382,7 @@ class Saml:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -401,7 +411,7 @@ class Saml:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -409,7 +419,7 @@ class Saml:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -417,50 +427,54 @@ class Saml:
         params = {}
         endpoint = "/user/saml"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if cert is not None:
-            data_payload['cert'] = cert
+            data_payload["cert"] = cert
         if entity_id is not None:
-            data_payload['entity-id'] = entity_id
+            data_payload["entity-id"] = entity_id
         if single_sign_on_url is not None:
-            data_payload['single-sign-on-url'] = single_sign_on_url
+            data_payload["single-sign-on-url"] = single_sign_on_url
         if single_logout_url is not None:
-            data_payload['single-logout-url'] = single_logout_url
+            data_payload["single-logout-url"] = single_logout_url
         if idp_entity_id is not None:
-            data_payload['idp-entity-id'] = idp_entity_id
+            data_payload["idp-entity-id"] = idp_entity_id
         if idp_single_sign_on_url is not None:
-            data_payload['idp-single-sign-on-url'] = idp_single_sign_on_url
+            data_payload["idp-single-sign-on-url"] = idp_single_sign_on_url
         if idp_single_logout_url is not None:
-            data_payload['idp-single-logout-url'] = idp_single_logout_url
+            data_payload["idp-single-logout-url"] = idp_single_logout_url
         if idp_cert is not None:
-            data_payload['idp-cert'] = idp_cert
+            data_payload["idp-cert"] = idp_cert
         if scim_client is not None:
-            data_payload['scim-client'] = scim_client
+            data_payload["scim-client"] = scim_client
         if scim_user_attr_type is not None:
-            data_payload['scim-user-attr-type'] = scim_user_attr_type
+            data_payload["scim-user-attr-type"] = scim_user_attr_type
         if scim_group_attr_type is not None:
-            data_payload['scim-group-attr-type'] = scim_group_attr_type
+            data_payload["scim-group-attr-type"] = scim_group_attr_type
         if user_name is not None:
-            data_payload['user-name'] = user_name
+            data_payload["user-name"] = user_name
         if group_name is not None:
-            data_payload['group-name'] = group_name
+            data_payload["group-name"] = group_name
         if digest_method is not None:
-            data_payload['digest-method'] = digest_method
+            data_payload["digest-method"] = digest_method
         if require_signed_resp_and_asrt is not None:
-            data_payload['require-signed-resp-and-asrt'] = require_signed_resp_and_asrt
+            data_payload["require-signed-resp-and-asrt"] = (
+                require_signed_resp_and_asrt
+            )
         if limit_relaystate is not None:
-            data_payload['limit-relaystate'] = limit_relaystate
+            data_payload["limit-relaystate"] = limit_relaystate
         if clock_tolerance is not None:
-            data_payload['clock-tolerance'] = clock_tolerance
+            data_payload["clock-tolerance"] = clock_tolerance
         if adfs_claim is not None:
-            data_payload['adfs-claim'] = adfs_claim
+            data_payload["adfs-claim"] = adfs_claim
         if user_claim_type is not None:
-            data_payload['user-claim-type'] = user_claim_type
+            data_payload["user-claim-type"] = user_claim_type
         if group_claim_type is not None:
-            data_payload['group-claim-type'] = group_claim_type
+            data_payload["group-claim-type"] = group_claim_type
         if reauth is not None:
-            data_payload['reauth'] = reauth
+            data_payload["reauth"] = reauth
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

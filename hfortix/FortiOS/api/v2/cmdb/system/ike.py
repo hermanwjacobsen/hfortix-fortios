@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.ike.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.ike.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.ike.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.ike.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.ike.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Ike:
     """
     Ike Operations.
-    
+
     Provides CRUD operations for FortiOS ike configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Ike:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ike endpoint.
 
@@ -82,14 +82,14 @@ class Ike:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Ike:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/ike"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -145,7 +147,7 @@ class Ike:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -177,7 +179,7 @@ class Ike:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -185,7 +187,7 @@ class Ike:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -193,56 +195,58 @@ class Ike:
         params = {}
         endpoint = "/system/ike"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if embryonic_limit is not None:
-            data_payload['embryonic-limit'] = embryonic_limit
+            data_payload["embryonic-limit"] = embryonic_limit
         if dh_multiprocess is not None:
-            data_payload['dh-multiprocess'] = dh_multiprocess
+            data_payload["dh-multiprocess"] = dh_multiprocess
         if dh_worker_count is not None:
-            data_payload['dh-worker-count'] = dh_worker_count
+            data_payload["dh-worker-count"] = dh_worker_count
         if dh_mode is not None:
-            data_payload['dh-mode'] = dh_mode
+            data_payload["dh-mode"] = dh_mode
         if dh_keypair_cache is not None:
-            data_payload['dh-keypair-cache'] = dh_keypair_cache
+            data_payload["dh-keypair-cache"] = dh_keypair_cache
         if dh_keypair_count is not None:
-            data_payload['dh-keypair-count'] = dh_keypair_count
+            data_payload["dh-keypair-count"] = dh_keypair_count
         if dh_keypair_throttle is not None:
-            data_payload['dh-keypair-throttle'] = dh_keypair_throttle
+            data_payload["dh-keypair-throttle"] = dh_keypair_throttle
         if dh_group_1 is not None:
-            data_payload['dh-group-1'] = dh_group_1
+            data_payload["dh-group-1"] = dh_group_1
         if dh_group_2 is not None:
-            data_payload['dh-group-2'] = dh_group_2
+            data_payload["dh-group-2"] = dh_group_2
         if dh_group_5 is not None:
-            data_payload['dh-group-5'] = dh_group_5
+            data_payload["dh-group-5"] = dh_group_5
         if dh_group_14 is not None:
-            data_payload['dh-group-14'] = dh_group_14
+            data_payload["dh-group-14"] = dh_group_14
         if dh_group_15 is not None:
-            data_payload['dh-group-15'] = dh_group_15
+            data_payload["dh-group-15"] = dh_group_15
         if dh_group_16 is not None:
-            data_payload['dh-group-16'] = dh_group_16
+            data_payload["dh-group-16"] = dh_group_16
         if dh_group_17 is not None:
-            data_payload['dh-group-17'] = dh_group_17
+            data_payload["dh-group-17"] = dh_group_17
         if dh_group_18 is not None:
-            data_payload['dh-group-18'] = dh_group_18
+            data_payload["dh-group-18"] = dh_group_18
         if dh_group_19 is not None:
-            data_payload['dh-group-19'] = dh_group_19
+            data_payload["dh-group-19"] = dh_group_19
         if dh_group_20 is not None:
-            data_payload['dh-group-20'] = dh_group_20
+            data_payload["dh-group-20"] = dh_group_20
         if dh_group_21 is not None:
-            data_payload['dh-group-21'] = dh_group_21
+            data_payload["dh-group-21"] = dh_group_21
         if dh_group_27 is not None:
-            data_payload['dh-group-27'] = dh_group_27
+            data_payload["dh-group-27"] = dh_group_27
         if dh_group_28 is not None:
-            data_payload['dh-group-28'] = dh_group_28
+            data_payload["dh-group-28"] = dh_group_28
         if dh_group_29 is not None:
-            data_payload['dh-group-29'] = dh_group_29
+            data_payload["dh-group-29"] = dh_group_29
         if dh_group_30 is not None:
-            data_payload['dh-group-30'] = dh_group_30
+            data_payload["dh-group-30"] = dh_group_30
         if dh_group_31 is not None:
-            data_payload['dh-group-31'] = dh_group_31
+            data_payload["dh-group-31"] = dh_group_31
         if dh_group_32 is not None:
-            data_payload['dh-group-32'] = dh_group_32
+            data_payload["dh-group-32"] = dh_group_32
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

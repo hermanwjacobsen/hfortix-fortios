@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.ipam.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.ipam.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class List:
     """
     List Operations.
-    
+
     Provides read-only access for FortiOS list data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize List endpoint.
 
@@ -59,15 +59,15 @@ class List:
     ) -> dict[str, Any]:
         """
         List IP address allocated by IPAM.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.ipam.list.get()
         """
@@ -79,7 +79,7 @@ class List:
 class Status:
     """Status operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Status endpoint.
 
@@ -96,27 +96,29 @@ class Status:
     ) -> dict[str, Any]:
         """
         Retrieve the status of IPAM.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.ipam.status.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/ipam/status", params=params)
+        return self._client.get(
+            "monitor", "/system/ipam/status", params=params
+        )
 
 
 class Utilization:
     """Utilization operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Utilization endpoint.
 
@@ -133,27 +135,29 @@ class Utilization:
     ) -> dict[str, Any]:
         """
         Retrieve IP utilization for IPAM.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.ipam.utilization.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/ipam/utilization", params=params)
+        return self._client.get(
+            "monitor", "/system/ipam/utilization", params=params
+        )
 
 
 class Ipam:
     """Ipam operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ipam endpoint.
 

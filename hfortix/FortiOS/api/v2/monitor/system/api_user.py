@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.api_user.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.api_user.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class GenerateKey:
     """
     Generatekey Operations.
-    
+
     Provides read-only access for FortiOS generatekey data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize GenerateKey endpoint.
 
@@ -61,33 +61,35 @@ class GenerateKey:
     ) -> dict[str, Any]:
         """
         Generate a new api-key for the specified api-key-auth admin.
-        
+
         Args:
             api_user: Generate a new token for this api-user. (optional)
             expiry: Expiry of API key in minutes from now (valid range: 1 - 10080). This can only be set for Fortinet Support Tool user. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.api_user.generate_key.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if api_user is not None:
-            data['api-user'] = api_user
+            data["api-user"] = api_user
         if expiry is not None:
-            data['expiry'] = expiry
+            data["expiry"] = expiry
         data.update(kwargs)
-        return self._client.post("monitor", "/system/api-user/generate-key", data=data)
+        return self._client.post(
+            "monitor", "/system/api-user/generate-key", data=data
+        )
 
 
 class ApiUser:
     """ApiUser operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ApiUser endpoint.
 

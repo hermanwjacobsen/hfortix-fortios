@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.fortiguard.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.fortiguard.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.fortiguard.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.fortiguard.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.fortiguard.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Fortiguard:
     """
     Fortiguard Operations.
-    
+
     Provides CRUD operations for FortiOS fortiguard configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Fortiguard:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Fortiguard endpoint.
 
@@ -82,14 +82,14 @@ class Fortiguard:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Fortiguard:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/fortiguard"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -180,7 +182,7 @@ class Fortiguard:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -247,7 +249,7 @@ class Fortiguard:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -255,7 +257,7 @@ class Fortiguard:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -263,126 +265,156 @@ class Fortiguard:
         params = {}
         endpoint = "/system/fortiguard"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if fortiguard_anycast is not None:
-            data_payload['fortiguard-anycast'] = fortiguard_anycast
+            data_payload["fortiguard-anycast"] = fortiguard_anycast
         if fortiguard_anycast_source is not None:
-            data_payload['fortiguard-anycast-source'] = fortiguard_anycast_source
+            data_payload["fortiguard-anycast-source"] = (
+                fortiguard_anycast_source
+            )
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if port is not None:
-            data_payload['port'] = port
+            data_payload["port"] = port
         if service_account_id is not None:
-            data_payload['service-account-id'] = service_account_id
+            data_payload["service-account-id"] = service_account_id
         if load_balance_servers is not None:
-            data_payload['load-balance-servers'] = load_balance_servers
+            data_payload["load-balance-servers"] = load_balance_servers
         if auto_join_forticloud is not None:
-            data_payload['auto-join-forticloud'] = auto_join_forticloud
+            data_payload["auto-join-forticloud"] = auto_join_forticloud
         if update_server_location is not None:
-            data_payload['update-server-location'] = update_server_location
+            data_payload["update-server-location"] = update_server_location
         if sandbox_region is not None:
-            data_payload['sandbox-region'] = sandbox_region
+            data_payload["sandbox-region"] = sandbox_region
         if update_ffdb is not None:
-            data_payload['update-ffdb'] = update_ffdb
+            data_payload["update-ffdb"] = update_ffdb
         if update_uwdb is not None:
-            data_payload['update-uwdb'] = update_uwdb
+            data_payload["update-uwdb"] = update_uwdb
         if update_dldb is not None:
-            data_payload['update-dldb'] = update_dldb
+            data_payload["update-dldb"] = update_dldb
         if update_extdb is not None:
-            data_payload['update-extdb'] = update_extdb
+            data_payload["update-extdb"] = update_extdb
         if update_build_proxy is not None:
-            data_payload['update-build-proxy'] = update_build_proxy
+            data_payload["update-build-proxy"] = update_build_proxy
         if persistent_connection is not None:
-            data_payload['persistent-connection'] = persistent_connection
+            data_payload["persistent-connection"] = persistent_connection
         if auto_firmware_upgrade is not None:
-            data_payload['auto-firmware-upgrade'] = auto_firmware_upgrade
+            data_payload["auto-firmware-upgrade"] = auto_firmware_upgrade
         if auto_firmware_upgrade_day is not None:
-            data_payload['auto-firmware-upgrade-day'] = auto_firmware_upgrade_day
+            data_payload["auto-firmware-upgrade-day"] = (
+                auto_firmware_upgrade_day
+            )
         if auto_firmware_upgrade_delay is not None:
-            data_payload['auto-firmware-upgrade-delay'] = auto_firmware_upgrade_delay
+            data_payload["auto-firmware-upgrade-delay"] = (
+                auto_firmware_upgrade_delay
+            )
         if auto_firmware_upgrade_start_hour is not None:
-            data_payload['auto-firmware-upgrade-start-hour'] = auto_firmware_upgrade_start_hour
+            data_payload["auto-firmware-upgrade-start-hour"] = (
+                auto_firmware_upgrade_start_hour
+            )
         if auto_firmware_upgrade_end_hour is not None:
-            data_payload['auto-firmware-upgrade-end-hour'] = auto_firmware_upgrade_end_hour
+            data_payload["auto-firmware-upgrade-end-hour"] = (
+                auto_firmware_upgrade_end_hour
+            )
         if FDS_license_expiring_days is not None:
-            data_payload['FDS-license-expiring-days'] = FDS_license_expiring_days
+            data_payload["FDS-license-expiring-days"] = (
+                FDS_license_expiring_days
+            )
         if subscribe_update_notification is not None:
-            data_payload['subscribe-update-notification'] = subscribe_update_notification
+            data_payload["subscribe-update-notification"] = (
+                subscribe_update_notification
+            )
         if antispam_force_off is not None:
-            data_payload['antispam-force-off'] = antispam_force_off
+            data_payload["antispam-force-off"] = antispam_force_off
         if antispam_cache is not None:
-            data_payload['antispam-cache'] = antispam_cache
+            data_payload["antispam-cache"] = antispam_cache
         if antispam_cache_ttl is not None:
-            data_payload['antispam-cache-ttl'] = antispam_cache_ttl
+            data_payload["antispam-cache-ttl"] = antispam_cache_ttl
         if antispam_cache_mpermille is not None:
-            data_payload['antispam-cache-mpermille'] = antispam_cache_mpermille
+            data_payload["antispam-cache-mpermille"] = antispam_cache_mpermille
         if antispam_license is not None:
-            data_payload['antispam-license'] = antispam_license
+            data_payload["antispam-license"] = antispam_license
         if antispam_expiration is not None:
-            data_payload['antispam-expiration'] = antispam_expiration
+            data_payload["antispam-expiration"] = antispam_expiration
         if antispam_timeout is not None:
-            data_payload['antispam-timeout'] = antispam_timeout
+            data_payload["antispam-timeout"] = antispam_timeout
         if outbreak_prevention_force_off is not None:
-            data_payload['outbreak-prevention-force-off'] = outbreak_prevention_force_off
+            data_payload["outbreak-prevention-force-off"] = (
+                outbreak_prevention_force_off
+            )
         if outbreak_prevention_cache is not None:
-            data_payload['outbreak-prevention-cache'] = outbreak_prevention_cache
+            data_payload["outbreak-prevention-cache"] = (
+                outbreak_prevention_cache
+            )
         if outbreak_prevention_cache_ttl is not None:
-            data_payload['outbreak-prevention-cache-ttl'] = outbreak_prevention_cache_ttl
+            data_payload["outbreak-prevention-cache-ttl"] = (
+                outbreak_prevention_cache_ttl
+            )
         if outbreak_prevention_cache_mpermille is not None:
-            data_payload['outbreak-prevention-cache-mpermille'] = outbreak_prevention_cache_mpermille
+            data_payload["outbreak-prevention-cache-mpermille"] = (
+                outbreak_prevention_cache_mpermille
+            )
         if outbreak_prevention_license is not None:
-            data_payload['outbreak-prevention-license'] = outbreak_prevention_license
+            data_payload["outbreak-prevention-license"] = (
+                outbreak_prevention_license
+            )
         if outbreak_prevention_expiration is not None:
-            data_payload['outbreak-prevention-expiration'] = outbreak_prevention_expiration
+            data_payload["outbreak-prevention-expiration"] = (
+                outbreak_prevention_expiration
+            )
         if outbreak_prevention_timeout is not None:
-            data_payload['outbreak-prevention-timeout'] = outbreak_prevention_timeout
+            data_payload["outbreak-prevention-timeout"] = (
+                outbreak_prevention_timeout
+            )
         if webfilter_force_off is not None:
-            data_payload['webfilter-force-off'] = webfilter_force_off
+            data_payload["webfilter-force-off"] = webfilter_force_off
         if webfilter_cache is not None:
-            data_payload['webfilter-cache'] = webfilter_cache
+            data_payload["webfilter-cache"] = webfilter_cache
         if webfilter_cache_ttl is not None:
-            data_payload['webfilter-cache-ttl'] = webfilter_cache_ttl
+            data_payload["webfilter-cache-ttl"] = webfilter_cache_ttl
         if webfilter_license is not None:
-            data_payload['webfilter-license'] = webfilter_license
+            data_payload["webfilter-license"] = webfilter_license
         if webfilter_expiration is not None:
-            data_payload['webfilter-expiration'] = webfilter_expiration
+            data_payload["webfilter-expiration"] = webfilter_expiration
         if webfilter_timeout is not None:
-            data_payload['webfilter-timeout'] = webfilter_timeout
+            data_payload["webfilter-timeout"] = webfilter_timeout
         if sdns_server_ip is not None:
-            data_payload['sdns-server-ip'] = sdns_server_ip
+            data_payload["sdns-server-ip"] = sdns_server_ip
         if sdns_server_port is not None:
-            data_payload['sdns-server-port'] = sdns_server_port
+            data_payload["sdns-server-port"] = sdns_server_port
         if anycast_sdns_server_ip is not None:
-            data_payload['anycast-sdns-server-ip'] = anycast_sdns_server_ip
+            data_payload["anycast-sdns-server-ip"] = anycast_sdns_server_ip
         if anycast_sdns_server_port is not None:
-            data_payload['anycast-sdns-server-port'] = anycast_sdns_server_port
+            data_payload["anycast-sdns-server-port"] = anycast_sdns_server_port
         if sdns_options is not None:
-            data_payload['sdns-options'] = sdns_options
+            data_payload["sdns-options"] = sdns_options
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip6 is not None:
-            data_payload['source-ip6'] = source_ip6
+            data_payload["source-ip6"] = source_ip6
         if proxy_server_ip is not None:
-            data_payload['proxy-server-ip'] = proxy_server_ip
+            data_payload["proxy-server-ip"] = proxy_server_ip
         if proxy_server_port is not None:
-            data_payload['proxy-server-port'] = proxy_server_port
+            data_payload["proxy-server-port"] = proxy_server_port
         if proxy_username is not None:
-            data_payload['proxy-username'] = proxy_username
+            data_payload["proxy-username"] = proxy_username
         if proxy_password is not None:
-            data_payload['proxy-password'] = proxy_password
+            data_payload["proxy-password"] = proxy_password
         if ddns_server_ip is not None:
-            data_payload['ddns-server-ip'] = ddns_server_ip
+            data_payload["ddns-server-ip"] = ddns_server_ip
         if ddns_server_ip6 is not None:
-            data_payload['ddns-server-ip6'] = ddns_server_ip6
+            data_payload["ddns-server-ip6"] = ddns_server_ip6
         if ddns_server_port is not None:
-            data_payload['ddns-server-port'] = ddns_server_port
+            data_payload["ddns-server-port"] = ddns_server_port
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

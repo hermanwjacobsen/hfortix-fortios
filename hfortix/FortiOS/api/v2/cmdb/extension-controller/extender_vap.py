@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.extension_controller.extender_vap.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.extension_controller.extender_vap.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.extension_controller.extender_vap.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.extension_controller.extender_vap.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.extension_controller.extender_vap.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ExtenderVap:
     """
     Extendervap Operations.
-    
+
     Provides CRUD operations for FortiOS extendervap configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ExtenderVap:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ExtenderVap:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ExtenderVap endpoint.
 
@@ -90,7 +90,7 @@ class ExtenderVap:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ExtenderVap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ExtenderVap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/extension-controller/extender-vap/{name}"
         else:
             endpoint = "/extension-controller/extender-vap"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -162,7 +164,7 @@ class ExtenderVap:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -192,7 +194,7 @@ class ExtenderVap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -200,65 +202,67 @@ class ExtenderVap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/extension-controller/extender-vap/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if ssid is not None:
-            data_payload['ssid'] = ssid
+            data_payload["ssid"] = ssid
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if broadcast_ssid is not None:
-            data_payload['broadcast-ssid'] = broadcast_ssid
+            data_payload["broadcast-ssid"] = broadcast_ssid
         if security is not None:
-            data_payload['security'] = security
+            data_payload["security"] = security
         if dtim is not None:
-            data_payload['dtim'] = dtim
+            data_payload["dtim"] = dtim
         if rts_threshold is not None:
-            data_payload['rts-threshold'] = rts_threshold
+            data_payload["rts-threshold"] = rts_threshold
         if pmf is not None:
-            data_payload['pmf'] = pmf
+            data_payload["pmf"] = pmf
         if target_wake_time is not None:
-            data_payload['target-wake-time'] = target_wake_time
+            data_payload["target-wake-time"] = target_wake_time
         if bss_color_partial is not None:
-            data_payload['bss-color-partial'] = bss_color_partial
+            data_payload["bss-color-partial"] = bss_color_partial
         if mu_mimo is not None:
-            data_payload['mu-mimo'] = mu_mimo
+            data_payload["mu-mimo"] = mu_mimo
         if passphrase is not None:
-            data_payload['passphrase'] = passphrase
+            data_payload["passphrase"] = passphrase
         if sae_password is not None:
-            data_payload['sae-password'] = sae_password
+            data_payload["sae-password"] = sae_password
         if auth_server_address is not None:
-            data_payload['auth-server-address'] = auth_server_address
+            data_payload["auth-server-address"] = auth_server_address
         if auth_server_port is not None:
-            data_payload['auth-server-port'] = auth_server_port
+            data_payload["auth-server-port"] = auth_server_port
         if auth_server_secret is not None:
-            data_payload['auth-server-secret'] = auth_server_secret
+            data_payload["auth-server-secret"] = auth_server_secret
         if ip_address is not None:
-            data_payload['ip-address'] = ip_address
+            data_payload["ip-address"] = ip_address
         if start_ip is not None:
-            data_payload['start-ip'] = start_ip
+            data_payload["start-ip"] = start_ip
         if end_ip is not None:
-            data_payload['end-ip'] = end_ip
+            data_payload["end-ip"] = end_ip
         if allowaccess is not None:
-            data_payload['allowaccess'] = allowaccess
+            data_payload["allowaccess"] = allowaccess
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -270,13 +274,13 @@ class ExtenderVap:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -284,18 +288,20 @@ class ExtenderVap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/extension-controller/extender-vap/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -304,37 +310,39 @@ class ExtenderVap:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -367,7 +375,7 @@ class ExtenderVap:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -395,7 +403,7 @@ class ExtenderVap:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -403,7 +411,7 @@ class ExtenderVap:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -411,48 +419,50 @@ class ExtenderVap:
         params = {}
         endpoint = "/extension-controller/extender-vap"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if ssid is not None:
-            data_payload['ssid'] = ssid
+            data_payload["ssid"] = ssid
         if max_clients is not None:
-            data_payload['max-clients'] = max_clients
+            data_payload["max-clients"] = max_clients
         if broadcast_ssid is not None:
-            data_payload['broadcast-ssid'] = broadcast_ssid
+            data_payload["broadcast-ssid"] = broadcast_ssid
         if security is not None:
-            data_payload['security'] = security
+            data_payload["security"] = security
         if dtim is not None:
-            data_payload['dtim'] = dtim
+            data_payload["dtim"] = dtim
         if rts_threshold is not None:
-            data_payload['rts-threshold'] = rts_threshold
+            data_payload["rts-threshold"] = rts_threshold
         if pmf is not None:
-            data_payload['pmf'] = pmf
+            data_payload["pmf"] = pmf
         if target_wake_time is not None:
-            data_payload['target-wake-time'] = target_wake_time
+            data_payload["target-wake-time"] = target_wake_time
         if bss_color_partial is not None:
-            data_payload['bss-color-partial'] = bss_color_partial
+            data_payload["bss-color-partial"] = bss_color_partial
         if mu_mimo is not None:
-            data_payload['mu-mimo'] = mu_mimo
+            data_payload["mu-mimo"] = mu_mimo
         if passphrase is not None:
-            data_payload['passphrase'] = passphrase
+            data_payload["passphrase"] = passphrase
         if sae_password is not None:
-            data_payload['sae-password'] = sae_password
+            data_payload["sae-password"] = sae_password
         if auth_server_address is not None:
-            data_payload['auth-server-address'] = auth_server_address
+            data_payload["auth-server-address"] = auth_server_address
         if auth_server_port is not None:
-            data_payload['auth-server-port'] = auth_server_port
+            data_payload["auth-server-port"] = auth_server_port
         if auth_server_secret is not None:
-            data_payload['auth-server-secret'] = auth_server_secret
+            data_payload["auth-server-secret"] = auth_server_secret
         if ip_address is not None:
-            data_payload['ip-address'] = ip_address
+            data_payload["ip-address"] = ip_address
         if start_ip is not None:
-            data_payload['start-ip'] = start_ip
+            data_payload["start-ip"] = start_ip
         if end_ip is not None:
-            data_payload['end-ip'] = end_ip
+            data_payload["end-ip"] = end_ip
         if allowaccess is not None:
-            data_payload['allowaccess'] = allowaccess
+            data_payload["allowaccess"] = allowaccess
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -17,10 +17,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.log.disk.disk.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.log.disk.disk.get(
     ...     count=100,
@@ -60,28 +60,28 @@ if TYPE_CHECKING:
 class Disk:
     """
     Disk Operations.
-    
+
     Provides read-only access for FortiOS disk data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient') -> None:
+    def __init__(self, client: "IHTTPClient") -> None:
         """Initialize Disk log endpoint."""
         self._client = client
-        
+
         # Log types with archive support
         self.ips = IPS(client, "disk")
         self.app_ctrl = AppCtrl(client, "disk")
-        
+
         # Virus (special archive endpoint)
         self.virus = Virus(client, "disk")
         self.virus_archive = VirusArchive(client, "disk")
-        
+
         # All other log types
         self.webfilter = Webfilter(client, "disk")
         self.waf = WAF(client, "disk")
@@ -95,10 +95,10 @@ class Disk:
         self.ssl = SSL(client, "disk")
         self.cifs = CIFS(client, "disk")
         self.file_filter = FileFilter(client, "disk")
-        
+
         # Traffic subtypes
         self.traffic = Traffic(client, "disk")
-        
+
         # Event subtypes
         self.event = Event(client, "disk")
 

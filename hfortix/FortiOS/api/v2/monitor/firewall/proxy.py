@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.proxy.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.proxy.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Sessions:
     """
     Sessions Operations.
-    
+
     Provides read-only access for FortiOS sessions data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Sessions endpoint.
 
@@ -81,7 +81,7 @@ class Sessions:
     ) -> dict[str, Any]:
         """
         List all active proxy sessions (optionally filtered).
-        
+
         Args:
             count: Maximum number of entries to return. Valid range is [20, 1000]; if a value is specified out of that range, it will be rounded up or down. (required)
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
@@ -108,65 +108,67 @@ class Sessions:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.proxy.sessions.get(count=1)
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['count'] = count
+        params["count"] = count
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         if summary is not None:
-            params['summary'] = summary
+            params["summary"] = summary
         if srcaddr is not None:
-            params['srcaddr'] = srcaddr
+            params["srcaddr"] = srcaddr
         if dstaddr is not None:
-            params['dstaddr'] = dstaddr
+            params["dstaddr"] = dstaddr
         if srcaddr6 is not None:
-            params['srcaddr6'] = srcaddr6
+            params["srcaddr6"] = srcaddr6
         if dstaddr6 is not None:
-            params['dstaddr6'] = dstaddr6
+            params["dstaddr6"] = dstaddr6
         if srcport is not None:
-            params['srcport'] = srcport
+            params["srcport"] = srcport
         if dstport is not None:
-            params['dstport'] = dstport
+            params["dstport"] = dstport
         if srcintf is not None:
-            params['srcintf'] = srcintf
+            params["srcintf"] = srcintf
         if dstintf is not None:
-            params['dstintf'] = dstintf
+            params["dstintf"] = dstintf
         if policyid is not None:
-            params['policyid'] = policyid
+            params["policyid"] = policyid
         if proxy_policyid is not None:
-            params['proxy-policyid'] = proxy_policyid
+            params["proxy-policyid"] = proxy_policyid
         if protocol is not None:
-            params['protocol'] = protocol
+            params["protocol"] = protocol
         if application is not None:
-            params['application'] = application
+            params["application"] = application
         if country is not None:
-            params['country'] = country
+            params["country"] = country
         if seconds is not None:
-            params['seconds'] = seconds
+            params["seconds"] = seconds
         if since is not None:
-            params['since'] = since
+            params["since"] = since
         if owner is not None:
-            params['owner'] = owner
+            params["owner"] = owner
         if username is not None:
-            params['username'] = username
+            params["username"] = username
         if src_uuid is not None:
-            params['src_uuid'] = src_uuid
+            params["src_uuid"] = src_uuid
         if dst_uuid is not None:
-            params['dst_uuid'] = dst_uuid
+            params["dst_uuid"] = dst_uuid
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/proxy/sessions", params=params)
+        return self._client.get(
+            "monitor", "/firewall/proxy/sessions", params=params
+        )
 
 
 class Proxy:
     """Proxy operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Proxy endpoint.
 

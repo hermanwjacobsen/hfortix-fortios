@@ -34,8 +34,4 @@ class Fortiguard:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return [
-            "answers",
-            "redirect_portal",
-            "service_communication_stats"
-        ]
+        return ["answers", "redirect_portal", "service_communication_stats"]

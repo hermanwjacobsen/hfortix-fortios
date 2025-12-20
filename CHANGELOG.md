@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.16] - 2025-12-20
+
 ### Added
 
 - **Read-Only Mode**: Protect production environments by blocking write operations
@@ -77,7 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ```
 
 - **Extended Filter Documentation**: Comprehensive guide to FortiOS filter operators
-  - New `docs/filtering_guide.md` with complete documentation of all FortiOS native filter operators
+  - New `FILTERING_GUIDE.md` with complete documentation of all FortiOS native filter operators
   - Covers all 8 operators: `==`, `!=`, `=@`, `!@`, `<`, `<=`, `>`, `>=`
   - 50+ practical examples for firewall addresses, policies, interfaces, and routes
   - Advanced patterns: range queries, exclusions, combined filters, pagination
@@ -139,6 +141,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Proactive re-auth triggered at 80% of idle timeout (before expiration)
     - Fallback re-auth on 401 Unauthorized responses
     - Session timestamps: `_session_created_at`, `_session_last_activity`
+
+- **Firewall Policy Convenience Wrapper**: Intuitive, GUI-like interface for managing firewall policies
+  - Access via `fgt.firewall.policy` namespace with explicit parameter names
+  - Simplified syntax: `fgt.firewall.policy.create(name='MyPolicy', srcintf=['port1'], ...)` instead of complex REST API calls
+  - Auto-normalizes inputs: accepts strings or lists, converts to FortiOS format automatically
+  - Full CRUD operations: `.create()`, `.update()`, `.get()`, `.delete()`, `.exists()`
+  - Convenience methods: `.enable()`, `.disable()`, `.move()`, `.clone()`
+  - Supports all 100+ firewall policy parameters from FortiOS 7.6.5 API
+  - Works with both sync and async modes
+  - Examples:
+    ```python
+    # Create policy with intuitive syntax
+    fgt.firewall.policy.create(
+        name='Allow-Web',
+        srcintf=['port1'],
+        dstintf=['port2'],
+        srcaddr=['internal-net'],
+        dstaddr=['all'],
+        service=['HTTP', 'HTTPS'],
+        action='accept',
+        nat='enable'
+    )
+    
+    # Enable/disable policies
+    fgt.firewall.policy.disable(policy_id=10)
+    fgt.firewall.policy.enable(policy_id=10)
+    
+    # Move policy
+    fgt.firewall.policy.move(policy_id=5, position='before', reference_id=3)
+    
+    # Clone policy with modifications
+    fgt.firewall.policy.clone(policy_id=1, new_name='Cloned-Policy')
+    ```
 
 ## [0.3.15] - 2025-12-20
 
@@ -485,7 +520,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - All features are **100% backwards compatible** - no breaking changes
 - Comprehensive test coverage: 13 new tests in `test_advanced_features.py`
 - Total test suite: 24 tests (4 retry + 7 improvements + 13 advanced)
-- Documentation: See `docs/ADVANCED_HTTP_FEATURES.md` for complete usage guide
 - Performance: Minimal overhead (~0.001ms per request for circuit breaker)
 
 ## [0.3.12] - 2025-12-17

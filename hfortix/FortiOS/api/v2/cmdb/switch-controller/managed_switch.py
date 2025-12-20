@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.switch_controller.managed_switch.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.switch_controller.managed_switch.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.managed_switch.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.switch_controller.managed_switch.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.switch_controller.managed_switch.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ManagedSwitch:
     """
     Managedswitch Operations.
-    
+
     Provides CRUD operations for FortiOS managedswitch configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ManagedSwitch:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ManagedSwitch:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ManagedSwitch endpoint.
 
@@ -90,7 +90,7 @@ class ManagedSwitch:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             switch_id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ManagedSwitch:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ManagedSwitch:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if switch_id:
             endpoint = f"/switch-controller/managed-switch/{switch_id}"
         else:
             endpoint = "/switch-controller/managed-switch"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -209,7 +211,7 @@ class ManagedSwitch:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             switch_id: Object identifier (required)
@@ -286,7 +288,7 @@ class ManagedSwitch:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -294,159 +296,175 @@ class ManagedSwitch:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not switch_id:
             raise ValueError("switch_id is required for put()")
         endpoint = f"/switch-controller/managed-switch/{switch_id}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if switch_id is not None:
-            data_payload['switch-id'] = switch_id
+            data_payload["switch-id"] = switch_id
         if sn is not None:
-            data_payload['sn'] = sn
+            data_payload["sn"] = sn
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if switch_profile is not None:
-            data_payload['switch-profile'] = switch_profile
+            data_payload["switch-profile"] = switch_profile
         if access_profile is not None:
-            data_payload['access-profile'] = access_profile
+            data_payload["access-profile"] = access_profile
         if purdue_level is not None:
-            data_payload['purdue-level'] = purdue_level
+            data_payload["purdue-level"] = purdue_level
         if fsw_wan1_peer is not None:
-            data_payload['fsw-wan1-peer'] = fsw_wan1_peer
+            data_payload["fsw-wan1-peer"] = fsw_wan1_peer
         if fsw_wan1_admin is not None:
-            data_payload['fsw-wan1-admin'] = fsw_wan1_admin
+            data_payload["fsw-wan1-admin"] = fsw_wan1_admin
         if poe_pre_standard_detection is not None:
-            data_payload['poe-pre-standard-detection'] = poe_pre_standard_detection
+            data_payload["poe-pre-standard-detection"] = (
+                poe_pre_standard_detection
+            )
         if dhcp_server_access_list is not None:
-            data_payload['dhcp-server-access-list'] = dhcp_server_access_list
+            data_payload["dhcp-server-access-list"] = dhcp_server_access_list
         if poe_detection_type is not None:
-            data_payload['poe-detection-type'] = poe_detection_type
+            data_payload["poe-detection-type"] = poe_detection_type
         if max_poe_budget is not None:
-            data_payload['max-poe-budget'] = max_poe_budget
+            data_payload["max-poe-budget"] = max_poe_budget
         if directly_connected is not None:
-            data_payload['directly-connected'] = directly_connected
+            data_payload["directly-connected"] = directly_connected
         if version is not None:
-            data_payload['version'] = version
+            data_payload["version"] = version
         if max_allowed_trunk_members is not None:
-            data_payload['max-allowed-trunk-members'] = max_allowed_trunk_members
+            data_payload["max-allowed-trunk-members"] = (
+                max_allowed_trunk_members
+            )
         if pre_provisioned is not None:
-            data_payload['pre-provisioned'] = pre_provisioned
+            data_payload["pre-provisioned"] = pre_provisioned
         if l3_discovered is not None:
-            data_payload['l3-discovered'] = l3_discovered
+            data_payload["l3-discovered"] = l3_discovered
         if mgmt_mode is not None:
-            data_payload['mgmt-mode'] = mgmt_mode
+            data_payload["mgmt-mode"] = mgmt_mode
         if tunnel_discovered is not None:
-            data_payload['tunnel-discovered'] = tunnel_discovered
+            data_payload["tunnel-discovered"] = tunnel_discovered
         if tdr_supported is not None:
-            data_payload['tdr-supported'] = tdr_supported
+            data_payload["tdr-supported"] = tdr_supported
         if dynamic_capability is not None:
-            data_payload['dynamic-capability'] = dynamic_capability
+            data_payload["dynamic-capability"] = dynamic_capability
         if switch_device_tag is not None:
-            data_payload['switch-device-tag'] = switch_device_tag
+            data_payload["switch-device-tag"] = switch_device_tag
         if switch_dhcp_opt43_key is not None:
-            data_payload['switch-dhcp_opt43_key'] = switch_dhcp_opt43_key
+            data_payload["switch-dhcp_opt43_key"] = switch_dhcp_opt43_key
         if mclag_igmp_snooping_aware is not None:
-            data_payload['mclag-igmp-snooping-aware'] = mclag_igmp_snooping_aware
+            data_payload["mclag-igmp-snooping-aware"] = (
+                mclag_igmp_snooping_aware
+            )
         if dynamically_discovered is not None:
-            data_payload['dynamically-discovered'] = dynamically_discovered
+            data_payload["dynamically-discovered"] = dynamically_discovered
         if ptp_status is not None:
-            data_payload['ptp-status'] = ptp_status
+            data_payload["ptp-status"] = ptp_status
         if ptp_profile is not None:
-            data_payload['ptp-profile'] = ptp_profile
+            data_payload["ptp-profile"] = ptp_profile
         if radius_nas_ip_override is not None:
-            data_payload['radius-nas-ip-override'] = radius_nas_ip_override
+            data_payload["radius-nas-ip-override"] = radius_nas_ip_override
         if radius_nas_ip is not None:
-            data_payload['radius-nas-ip'] = radius_nas_ip
+            data_payload["radius-nas-ip"] = radius_nas_ip
         if route_offload is not None:
-            data_payload['route-offload'] = route_offload
+            data_payload["route-offload"] = route_offload
         if route_offload_mclag is not None:
-            data_payload['route-offload-mclag'] = route_offload_mclag
+            data_payload["route-offload-mclag"] = route_offload_mclag
         if route_offload_router is not None:
-            data_payload['route-offload-router'] = route_offload_router
+            data_payload["route-offload-router"] = route_offload_router
         if vlan is not None:
-            data_payload['vlan'] = vlan
+            data_payload["vlan"] = vlan
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if owner_vdom is not None:
-            data_payload['owner-vdom'] = owner_vdom
+            data_payload["owner-vdom"] = owner_vdom
         if flow_identity is not None:
-            data_payload['flow-identity'] = flow_identity
+            data_payload["flow-identity"] = flow_identity
         if staged_image_version is not None:
-            data_payload['staged-image-version'] = staged_image_version
+            data_payload["staged-image-version"] = staged_image_version
         if delayed_restart_trigger is not None:
-            data_payload['delayed-restart-trigger'] = delayed_restart_trigger
+            data_payload["delayed-restart-trigger"] = delayed_restart_trigger
         if firmware_provision is not None:
-            data_payload['firmware-provision'] = firmware_provision
+            data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_version is not None:
-            data_payload['firmware-provision-version'] = firmware_provision_version
+            data_payload["firmware-provision-version"] = (
+                firmware_provision_version
+            )
         if firmware_provision_latest is not None:
-            data_payload['firmware-provision-latest'] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         if ports is not None:
-            data_payload['ports'] = ports
+            data_payload["ports"] = ports
         if ip_source_guard is not None:
-            data_payload['ip-source-guard'] = ip_source_guard
+            data_payload["ip-source-guard"] = ip_source_guard
         if stp_settings is not None:
-            data_payload['stp-settings'] = stp_settings
+            data_payload["stp-settings"] = stp_settings
         if stp_instance is not None:
-            data_payload['stp-instance'] = stp_instance
+            data_payload["stp-instance"] = stp_instance
         if override_snmp_sysinfo is not None:
-            data_payload['override-snmp-sysinfo'] = override_snmp_sysinfo
+            data_payload["override-snmp-sysinfo"] = override_snmp_sysinfo
         if snmp_sysinfo is not None:
-            data_payload['snmp-sysinfo'] = snmp_sysinfo
+            data_payload["snmp-sysinfo"] = snmp_sysinfo
         if override_snmp_trap_threshold is not None:
-            data_payload['override-snmp-trap-threshold'] = override_snmp_trap_threshold
+            data_payload["override-snmp-trap-threshold"] = (
+                override_snmp_trap_threshold
+            )
         if snmp_trap_threshold is not None:
-            data_payload['snmp-trap-threshold'] = snmp_trap_threshold
+            data_payload["snmp-trap-threshold"] = snmp_trap_threshold
         if override_snmp_community is not None:
-            data_payload['override-snmp-community'] = override_snmp_community
+            data_payload["override-snmp-community"] = override_snmp_community
         if snmp_community is not None:
-            data_payload['snmp-community'] = snmp_community
+            data_payload["snmp-community"] = snmp_community
         if override_snmp_user is not None:
-            data_payload['override-snmp-user'] = override_snmp_user
+            data_payload["override-snmp-user"] = override_snmp_user
         if snmp_user is not None:
-            data_payload['snmp-user'] = snmp_user
+            data_payload["snmp-user"] = snmp_user
         if qos_drop_policy is not None:
-            data_payload['qos-drop-policy'] = qos_drop_policy
+            data_payload["qos-drop-policy"] = qos_drop_policy
         if qos_red_probability is not None:
-            data_payload['qos-red-probability'] = qos_red_probability
+            data_payload["qos-red-probability"] = qos_red_probability
         if switch_log is not None:
-            data_payload['switch-log'] = switch_log
+            data_payload["switch-log"] = switch_log
         if remote_log is not None:
-            data_payload['remote-log'] = remote_log
+            data_payload["remote-log"] = remote_log
         if storm_control is not None:
-            data_payload['storm-control'] = storm_control
+            data_payload["storm-control"] = storm_control
         if mirror is not None:
-            data_payload['mirror'] = mirror
+            data_payload["mirror"] = mirror
         if static_mac is not None:
-            data_payload['static-mac'] = static_mac
+            data_payload["static-mac"] = static_mac
         if custom_command is not None:
-            data_payload['custom-command'] = custom_command
+            data_payload["custom-command"] = custom_command
         if dhcp_snooping_static_client is not None:
-            data_payload['dhcp-snooping-static-client'] = dhcp_snooping_static_client
+            data_payload["dhcp-snooping-static-client"] = (
+                dhcp_snooping_static_client
+            )
         if igmp_snooping is not None:
-            data_payload['igmp-snooping'] = igmp_snooping
+            data_payload["igmp-snooping"] = igmp_snooping
         if _802_1X_settings is not None:
-            data_payload['802-1X-settings'] = _802_1X_settings
+            data_payload["802-1X-settings"] = _802_1X_settings
         if router_vrf is not None:
-            data_payload['router-vrf'] = router_vrf
+            data_payload["router-vrf"] = router_vrf
         if system_interface is not None:
-            data_payload['system-interface'] = system_interface
+            data_payload["system-interface"] = system_interface
         if router_static is not None:
-            data_payload['router-static'] = router_static
+            data_payload["router-static"] = router_static
         if system_dhcp_server is not None:
-            data_payload['system-dhcp-server'] = system_dhcp_server
+            data_payload["system-dhcp-server"] = system_dhcp_server
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -458,13 +476,13 @@ class ManagedSwitch:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             switch_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -472,18 +490,20 @@ class ManagedSwitch:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not switch_id:
             raise ValueError("switch_id is required for delete()")
         endpoint = f"/switch-controller/managed-switch/{switch_id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -492,37 +512,39 @@ class ManagedSwitch:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             switch_id: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(switch_id=switch_id, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -602,7 +624,7 @@ class ManagedSwitch:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -677,7 +699,7 @@ class ManagedSwitch:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -685,7 +707,7 @@ class ManagedSwitch:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -693,142 +715,158 @@ class ManagedSwitch:
         params = {}
         endpoint = "/switch-controller/managed-switch"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if switch_id is not None:
-            data_payload['switch-id'] = switch_id
+            data_payload["switch-id"] = switch_id
         if sn is not None:
-            data_payload['sn'] = sn
+            data_payload["sn"] = sn
         if description is not None:
-            data_payload['description'] = description
+            data_payload["description"] = description
         if switch_profile is not None:
-            data_payload['switch-profile'] = switch_profile
+            data_payload["switch-profile"] = switch_profile
         if access_profile is not None:
-            data_payload['access-profile'] = access_profile
+            data_payload["access-profile"] = access_profile
         if purdue_level is not None:
-            data_payload['purdue-level'] = purdue_level
+            data_payload["purdue-level"] = purdue_level
         if fsw_wan1_peer is not None:
-            data_payload['fsw-wan1-peer'] = fsw_wan1_peer
+            data_payload["fsw-wan1-peer"] = fsw_wan1_peer
         if fsw_wan1_admin is not None:
-            data_payload['fsw-wan1-admin'] = fsw_wan1_admin
+            data_payload["fsw-wan1-admin"] = fsw_wan1_admin
         if poe_pre_standard_detection is not None:
-            data_payload['poe-pre-standard-detection'] = poe_pre_standard_detection
+            data_payload["poe-pre-standard-detection"] = (
+                poe_pre_standard_detection
+            )
         if dhcp_server_access_list is not None:
-            data_payload['dhcp-server-access-list'] = dhcp_server_access_list
+            data_payload["dhcp-server-access-list"] = dhcp_server_access_list
         if poe_detection_type is not None:
-            data_payload['poe-detection-type'] = poe_detection_type
+            data_payload["poe-detection-type"] = poe_detection_type
         if max_poe_budget is not None:
-            data_payload['max-poe-budget'] = max_poe_budget
+            data_payload["max-poe-budget"] = max_poe_budget
         if directly_connected is not None:
-            data_payload['directly-connected'] = directly_connected
+            data_payload["directly-connected"] = directly_connected
         if version is not None:
-            data_payload['version'] = version
+            data_payload["version"] = version
         if max_allowed_trunk_members is not None:
-            data_payload['max-allowed-trunk-members'] = max_allowed_trunk_members
+            data_payload["max-allowed-trunk-members"] = (
+                max_allowed_trunk_members
+            )
         if pre_provisioned is not None:
-            data_payload['pre-provisioned'] = pre_provisioned
+            data_payload["pre-provisioned"] = pre_provisioned
         if l3_discovered is not None:
-            data_payload['l3-discovered'] = l3_discovered
+            data_payload["l3-discovered"] = l3_discovered
         if mgmt_mode is not None:
-            data_payload['mgmt-mode'] = mgmt_mode
+            data_payload["mgmt-mode"] = mgmt_mode
         if tunnel_discovered is not None:
-            data_payload['tunnel-discovered'] = tunnel_discovered
+            data_payload["tunnel-discovered"] = tunnel_discovered
         if tdr_supported is not None:
-            data_payload['tdr-supported'] = tdr_supported
+            data_payload["tdr-supported"] = tdr_supported
         if dynamic_capability is not None:
-            data_payload['dynamic-capability'] = dynamic_capability
+            data_payload["dynamic-capability"] = dynamic_capability
         if switch_device_tag is not None:
-            data_payload['switch-device-tag'] = switch_device_tag
+            data_payload["switch-device-tag"] = switch_device_tag
         if switch_dhcp_opt43_key is not None:
-            data_payload['switch-dhcp_opt43_key'] = switch_dhcp_opt43_key
+            data_payload["switch-dhcp_opt43_key"] = switch_dhcp_opt43_key
         if mclag_igmp_snooping_aware is not None:
-            data_payload['mclag-igmp-snooping-aware'] = mclag_igmp_snooping_aware
+            data_payload["mclag-igmp-snooping-aware"] = (
+                mclag_igmp_snooping_aware
+            )
         if dynamically_discovered is not None:
-            data_payload['dynamically-discovered'] = dynamically_discovered
+            data_payload["dynamically-discovered"] = dynamically_discovered
         if ptp_status is not None:
-            data_payload['ptp-status'] = ptp_status
+            data_payload["ptp-status"] = ptp_status
         if ptp_profile is not None:
-            data_payload['ptp-profile'] = ptp_profile
+            data_payload["ptp-profile"] = ptp_profile
         if radius_nas_ip_override is not None:
-            data_payload['radius-nas-ip-override'] = radius_nas_ip_override
+            data_payload["radius-nas-ip-override"] = radius_nas_ip_override
         if radius_nas_ip is not None:
-            data_payload['radius-nas-ip'] = radius_nas_ip
+            data_payload["radius-nas-ip"] = radius_nas_ip
         if route_offload is not None:
-            data_payload['route-offload'] = route_offload
+            data_payload["route-offload"] = route_offload
         if route_offload_mclag is not None:
-            data_payload['route-offload-mclag'] = route_offload_mclag
+            data_payload["route-offload-mclag"] = route_offload_mclag
         if route_offload_router is not None:
-            data_payload['route-offload-router'] = route_offload_router
+            data_payload["route-offload-router"] = route_offload_router
         if vlan is not None:
-            data_payload['vlan'] = vlan
+            data_payload["vlan"] = vlan
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if owner_vdom is not None:
-            data_payload['owner-vdom'] = owner_vdom
+            data_payload["owner-vdom"] = owner_vdom
         if flow_identity is not None:
-            data_payload['flow-identity'] = flow_identity
+            data_payload["flow-identity"] = flow_identity
         if staged_image_version is not None:
-            data_payload['staged-image-version'] = staged_image_version
+            data_payload["staged-image-version"] = staged_image_version
         if delayed_restart_trigger is not None:
-            data_payload['delayed-restart-trigger'] = delayed_restart_trigger
+            data_payload["delayed-restart-trigger"] = delayed_restart_trigger
         if firmware_provision is not None:
-            data_payload['firmware-provision'] = firmware_provision
+            data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_version is not None:
-            data_payload['firmware-provision-version'] = firmware_provision_version
+            data_payload["firmware-provision-version"] = (
+                firmware_provision_version
+            )
         if firmware_provision_latest is not None:
-            data_payload['firmware-provision-latest'] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         if ports is not None:
-            data_payload['ports'] = ports
+            data_payload["ports"] = ports
         if ip_source_guard is not None:
-            data_payload['ip-source-guard'] = ip_source_guard
+            data_payload["ip-source-guard"] = ip_source_guard
         if stp_settings is not None:
-            data_payload['stp-settings'] = stp_settings
+            data_payload["stp-settings"] = stp_settings
         if stp_instance is not None:
-            data_payload['stp-instance'] = stp_instance
+            data_payload["stp-instance"] = stp_instance
         if override_snmp_sysinfo is not None:
-            data_payload['override-snmp-sysinfo'] = override_snmp_sysinfo
+            data_payload["override-snmp-sysinfo"] = override_snmp_sysinfo
         if snmp_sysinfo is not None:
-            data_payload['snmp-sysinfo'] = snmp_sysinfo
+            data_payload["snmp-sysinfo"] = snmp_sysinfo
         if override_snmp_trap_threshold is not None:
-            data_payload['override-snmp-trap-threshold'] = override_snmp_trap_threshold
+            data_payload["override-snmp-trap-threshold"] = (
+                override_snmp_trap_threshold
+            )
         if snmp_trap_threshold is not None:
-            data_payload['snmp-trap-threshold'] = snmp_trap_threshold
+            data_payload["snmp-trap-threshold"] = snmp_trap_threshold
         if override_snmp_community is not None:
-            data_payload['override-snmp-community'] = override_snmp_community
+            data_payload["override-snmp-community"] = override_snmp_community
         if snmp_community is not None:
-            data_payload['snmp-community'] = snmp_community
+            data_payload["snmp-community"] = snmp_community
         if override_snmp_user is not None:
-            data_payload['override-snmp-user'] = override_snmp_user
+            data_payload["override-snmp-user"] = override_snmp_user
         if snmp_user is not None:
-            data_payload['snmp-user'] = snmp_user
+            data_payload["snmp-user"] = snmp_user
         if qos_drop_policy is not None:
-            data_payload['qos-drop-policy'] = qos_drop_policy
+            data_payload["qos-drop-policy"] = qos_drop_policy
         if qos_red_probability is not None:
-            data_payload['qos-red-probability'] = qos_red_probability
+            data_payload["qos-red-probability"] = qos_red_probability
         if switch_log is not None:
-            data_payload['switch-log'] = switch_log
+            data_payload["switch-log"] = switch_log
         if remote_log is not None:
-            data_payload['remote-log'] = remote_log
+            data_payload["remote-log"] = remote_log
         if storm_control is not None:
-            data_payload['storm-control'] = storm_control
+            data_payload["storm-control"] = storm_control
         if mirror is not None:
-            data_payload['mirror'] = mirror
+            data_payload["mirror"] = mirror
         if static_mac is not None:
-            data_payload['static-mac'] = static_mac
+            data_payload["static-mac"] = static_mac
         if custom_command is not None:
-            data_payload['custom-command'] = custom_command
+            data_payload["custom-command"] = custom_command
         if dhcp_snooping_static_client is not None:
-            data_payload['dhcp-snooping-static-client'] = dhcp_snooping_static_client
+            data_payload["dhcp-snooping-static-client"] = (
+                dhcp_snooping_static_client
+            )
         if igmp_snooping is not None:
-            data_payload['igmp-snooping'] = igmp_snooping
+            data_payload["igmp-snooping"] = igmp_snooping
         if _802_1X_settings is not None:
-            data_payload['802-1X-settings'] = _802_1X_settings
+            data_payload["802-1X-settings"] = _802_1X_settings
         if router_vrf is not None:
-            data_payload['router-vrf'] = router_vrf
+            data_payload["router-vrf"] = router_vrf
         if system_interface is not None:
-            data_payload['system-interface'] = system_interface
+            data_payload["system-interface"] = system_interface
         if router_static is not None:
-            data_payload['router-static'] = router_static
+            data_payload["router-static"] = router_static
         if system_dhcp_server is not None:
-            data_payload['system-dhcp-server'] = system_dhcp_server
+            data_payload["system-dhcp-server"] = system_dhcp_server
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

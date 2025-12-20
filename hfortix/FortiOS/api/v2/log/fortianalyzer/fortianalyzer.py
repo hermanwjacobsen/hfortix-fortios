@@ -17,10 +17,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.log.fortianalyzer.fortianalyzer.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.log.fortianalyzer.fortianalyzer.get(
     ...     count=100,
@@ -61,28 +61,28 @@ if TYPE_CHECKING:
 class FortiAnalyzer:
     """
     Fortianalyzer Operations.
-    
+
     Provides read-only access for FortiOS fortianalyzer data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient') -> None:
+    def __init__(self, client: "IHTTPClient") -> None:
         """Initialize FortiAnalyzer log endpoint."""
         self._client = client
-        
+
         # Log types with archive support (pass "fortianalyzer" as storage)
         self.ips = IPS(client, "fortianalyzer")
         self.app_ctrl = AppCtrl(client, "fortianalyzer")
-        
+
         # Virus (special archive endpoint)
         self.virus = Virus(client, "fortianalyzer")
         self.virus_archive = VirusArchive(client, "fortianalyzer")
-        
+
         # All other log types
         self.webfilter = Webfilter(client, "fortianalyzer")
         self.waf = WAF(client, "fortianalyzer")
@@ -96,10 +96,10 @@ class FortiAnalyzer:
         self.ssl = SSL(client, "fortianalyzer")
         self.cifs = CIFS(client, "fortianalyzer")
         self.file_filter = FileFilter(client, "fortianalyzer")
-        
+
         # Traffic subtypes
         self.traffic = Traffic(client, "fortianalyzer")
-        
+
         # Event subtypes
         self.event = Event(client, "fortianalyzer")
 

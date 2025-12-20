@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.log.disk_setting.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.log.disk_setting.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.log.disk_setting.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.log.disk_setting.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.log.disk_setting.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class DiskSetting:
     """
     Disksetting Operations.
-    
+
     Provides CRUD operations for FortiOS disksetting configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class DiskSetting:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize DiskSetting endpoint.
 
@@ -82,14 +82,14 @@ class DiskSetting:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class DiskSetting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/log.disk/setting"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -152,7 +154,7 @@ class DiskSetting:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -191,7 +193,7 @@ class DiskSetting:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -199,7 +201,7 @@ class DiskSetting:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -207,70 +209,80 @@ class DiskSetting:
         params = {}
         endpoint = "/log.disk/setting"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if ips_archive is not None:
-            data_payload['ips-archive'] = ips_archive
+            data_payload["ips-archive"] = ips_archive
         if max_log_file_size is not None:
-            data_payload['max-log-file-size'] = max_log_file_size
+            data_payload["max-log-file-size"] = max_log_file_size
         if max_policy_packet_capture_size is not None:
-            data_payload['max-policy-packet-capture-size'] = max_policy_packet_capture_size
+            data_payload["max-policy-packet-capture-size"] = (
+                max_policy_packet_capture_size
+            )
         if roll_schedule is not None:
-            data_payload['roll-schedule'] = roll_schedule
+            data_payload["roll-schedule"] = roll_schedule
         if roll_day is not None:
-            data_payload['roll-day'] = roll_day
+            data_payload["roll-day"] = roll_day
         if roll_time is not None:
-            data_payload['roll-time'] = roll_time
+            data_payload["roll-time"] = roll_time
         if diskfull is not None:
-            data_payload['diskfull'] = diskfull
+            data_payload["diskfull"] = diskfull
         if log_quota is not None:
-            data_payload['log-quota'] = log_quota
+            data_payload["log-quota"] = log_quota
         if dlp_archive_quota is not None:
-            data_payload['dlp-archive-quota'] = dlp_archive_quota
+            data_payload["dlp-archive-quota"] = dlp_archive_quota
         if report_quota is not None:
-            data_payload['report-quota'] = report_quota
+            data_payload["report-quota"] = report_quota
         if maximum_log_age is not None:
-            data_payload['maximum-log-age'] = maximum_log_age
+            data_payload["maximum-log-age"] = maximum_log_age
         if upload is not None:
-            data_payload['upload'] = upload
+            data_payload["upload"] = upload
         if upload_destination is not None:
-            data_payload['upload-destination'] = upload_destination
+            data_payload["upload-destination"] = upload_destination
         if uploadip is not None:
-            data_payload['uploadip'] = uploadip
+            data_payload["uploadip"] = uploadip
         if uploadport is not None:
-            data_payload['uploadport'] = uploadport
+            data_payload["uploadport"] = uploadport
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if uploaduser is not None:
-            data_payload['uploaduser'] = uploaduser
+            data_payload["uploaduser"] = uploaduser
         if uploadpass is not None:
-            data_payload['uploadpass'] = uploadpass
+            data_payload["uploadpass"] = uploadpass
         if uploaddir is not None:
-            data_payload['uploaddir'] = uploaddir
+            data_payload["uploaddir"] = uploaddir
         if uploadtype is not None:
-            data_payload['uploadtype'] = uploadtype
+            data_payload["uploadtype"] = uploadtype
         if uploadsched is not None:
-            data_payload['uploadsched'] = uploadsched
+            data_payload["uploadsched"] = uploadsched
         if uploadtime is not None:
-            data_payload['uploadtime'] = uploadtime
+            data_payload["uploadtime"] = uploadtime
         if upload_delete_files is not None:
-            data_payload['upload-delete-files'] = upload_delete_files
+            data_payload["upload-delete-files"] = upload_delete_files
         if upload_ssl_conn is not None:
-            data_payload['upload-ssl-conn'] = upload_ssl_conn
+            data_payload["upload-ssl-conn"] = upload_ssl_conn
         if full_first_warning_threshold is not None:
-            data_payload['full-first-warning-threshold'] = full_first_warning_threshold
+            data_payload["full-first-warning-threshold"] = (
+                full_first_warning_threshold
+            )
         if full_second_warning_threshold is not None:
-            data_payload['full-second-warning-threshold'] = full_second_warning_threshold
+            data_payload["full-second-warning-threshold"] = (
+                full_second_warning_threshold
+            )
         if full_final_warning_threshold is not None:
-            data_payload['full-final-warning-threshold'] = full_final_warning_threshold
+            data_payload["full-final-warning-threshold"] = (
+                full_final_warning_threshold
+            )
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -17,20 +17,21 @@ Example:
         def get(self, api_type: str, path: str, **kwargs) -> dict[str, Any]:
             # Custom implementation with logging, auth, etc.
             ...
-        
+
         def post(self, api_type: str, path: str, data: dict, **kwargs) -> dict[str, Any]:
             # Custom implementation
             ...
-        
+
         # ... put, delete
-    
+
     # Use custom client
     fgt = FortiOS(host='...', token='...', client=CustomHTTPClient())
 """
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Protocol, Union, runtime_checkable
+from typing import (TYPE_CHECKING, Any, Optional, Protocol, Union,
+                    runtime_checkable)
 
 if TYPE_CHECKING:
     from typing import Coroutine
@@ -42,22 +43,22 @@ __all__ = ["IHTTPClient"]
 class IHTTPClient(Protocol):
     """
     Protocol defining the interface for HTTP clients used by FortiOS endpoints.
-    
+
     This protocol allows any class implementing these methods to be used as an
     HTTP client, enabling:
     - Custom HTTP client implementations
     - Easier testing with mock/fake clients
     - Support for both sync and async clients
     - Extension by library users
-    
+
     Method signatures support both synchronous (returning dict) and asynchronous
     (returning Coroutine) implementations. The return type is Union to accommodate
     both modes.
-    
+
     Implementations:
     - HTTPClient: Synchronous implementation using httpx.Client
     - AsyncHTTPClient: Asynchronous implementation using httpx.AsyncClient
-    
+
     Note:
         All methods should handle vdom=False to skip VDOM parameter in requests.
         The raw_json parameter controls whether full API response is returned (True)
@@ -74,20 +75,20 @@ class IHTTPClient(Protocol):
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Perform GET request to retrieve resource(s) from the API.
-        
+
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
             path: Endpoint path (e.g., 'firewall/address', 'firewall/address/web-server')
             params: Optional query parameters (filters, pagination, etc.)
             vdom: Virtual domain name, or False to skip VDOM parameter
             raw_json: If True, return full API response with metadata; if False, return only results
-        
+
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
-        
+
         Example (Sync):
             result = client.get("cmdb", "firewall/address/web-server")
-        
+
         Example (Async):
             result = await client.get("cmdb", "firewall/address/web-server")
         """
@@ -104,7 +105,7 @@ class IHTTPClient(Protocol):
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Perform POST request to create new resource(s) in the API.
-        
+
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
             path: Endpoint path (e.g., 'firewall/address')
@@ -112,13 +113,13 @@ class IHTTPClient(Protocol):
             params: Optional query parameters
             vdom: Virtual domain name, or False to skip VDOM parameter
             raw_json: If True, return full API response with metadata; if False, return only results
-        
+
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
-        
+
         Example (Sync):
             result = client.post("cmdb", "firewall/address", data={"name": "test", "subnet": "10.0.0.1/32"})
-        
+
         Example (Async):
             result = await client.post("cmdb", "firewall/address", data={...})
         """
@@ -135,7 +136,7 @@ class IHTTPClient(Protocol):
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Perform PUT request to update existing resource in the API.
-        
+
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
             path: Endpoint path with identifier (e.g., 'firewall/address/web-server')
@@ -143,13 +144,13 @@ class IHTTPClient(Protocol):
             params: Optional query parameters
             vdom: Virtual domain name, or False to skip VDOM parameter
             raw_json: If True, return full API response with metadata; if False, return only results
-        
+
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
-        
+
         Example (Sync):
             result = client.put("cmdb", "firewall/address/web-server", data={"subnet": "10.0.0.2/32"})
-        
+
         Example (Async):
             result = await client.put("cmdb", "firewall/address/web-server", data={...})
         """
@@ -165,51 +166,51 @@ class IHTTPClient(Protocol):
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Perform DELETE request to remove resource from the API.
-        
+
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
             path: Endpoint path with identifier (e.g., 'firewall/address/web-server')
             params: Optional query parameters
             vdom: Virtual domain name, or False to skip VDOM parameter
             raw_json: If True, return full API response with metadata; if False, return only results
-        
+
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
-        
+
         Example (Sync):
             result = client.delete("cmdb", "firewall/address/web-server")
-        
+
         Example (Async):
             result = await client.delete("cmdb", "firewall/address/web-server")
         """
         ...
-    
+
     # Optional methods for additional functionality
     # These are not required for basic HTTP client implementation
     # but are provided by the built-in HTTPClient and AsyncHTTPClient
-    
+
     def close(self) -> None:
         """
         Close the HTTP client and release resources (sync clients).
-        
+
         Optional method - not required for basic protocol compliance.
         Custom clients may implement this for resource cleanup.
         """
         ...
-    
+
     async def aclose(self) -> None:
         """
         Close the async HTTP client and release resources (async clients).
-        
+
         Optional method - not required for basic protocol compliance.
         Async custom clients may implement this for resource cleanup.
         """
         ...
-    
+
     def get_connection_stats(self) -> dict[str, Any]:
         """
         Get connection statistics.
-        
+
         Optional method - not required for basic protocol compliance.
         Returns statistics about HTTP connections if supported.
         """

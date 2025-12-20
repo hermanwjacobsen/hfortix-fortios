@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.accprofile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.accprofile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.accprofile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.accprofile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.accprofile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Accprofile:
     """
     Accprofile Operations.
-    
+
     Provides CRUD operations for FortiOS accprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Accprofile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Accprofile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Accprofile endpoint.
 
@@ -90,7 +90,7 @@ class Accprofile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Accprofile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Accprofile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/system/accprofile/{name}"
         else:
             endpoint = "/system/accprofile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -168,7 +170,7 @@ class Accprofile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -204,7 +206,7 @@ class Accprofile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -212,77 +214,79 @@ class Accprofile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/system/accprofile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if secfabgrp is not None:
-            data_payload['secfabgrp'] = secfabgrp
+            data_payload["secfabgrp"] = secfabgrp
         if ftviewgrp is not None:
-            data_payload['ftviewgrp'] = ftviewgrp
+            data_payload["ftviewgrp"] = ftviewgrp
         if authgrp is not None:
-            data_payload['authgrp'] = authgrp
+            data_payload["authgrp"] = authgrp
         if sysgrp is not None:
-            data_payload['sysgrp'] = sysgrp
+            data_payload["sysgrp"] = sysgrp
         if netgrp is not None:
-            data_payload['netgrp'] = netgrp
+            data_payload["netgrp"] = netgrp
         if loggrp is not None:
-            data_payload['loggrp'] = loggrp
+            data_payload["loggrp"] = loggrp
         if fwgrp is not None:
-            data_payload['fwgrp'] = fwgrp
+            data_payload["fwgrp"] = fwgrp
         if vpngrp is not None:
-            data_payload['vpngrp'] = vpngrp
+            data_payload["vpngrp"] = vpngrp
         if utmgrp is not None:
-            data_payload['utmgrp'] = utmgrp
+            data_payload["utmgrp"] = utmgrp
         if wifi is not None:
-            data_payload['wifi'] = wifi
+            data_payload["wifi"] = wifi
         if netgrp_permission is not None:
-            data_payload['netgrp-permission'] = netgrp_permission
+            data_payload["netgrp-permission"] = netgrp_permission
         if sysgrp_permission is not None:
-            data_payload['sysgrp-permission'] = sysgrp_permission
+            data_payload["sysgrp-permission"] = sysgrp_permission
         if fwgrp_permission is not None:
-            data_payload['fwgrp-permission'] = fwgrp_permission
+            data_payload["fwgrp-permission"] = fwgrp_permission
         if loggrp_permission is not None:
-            data_payload['loggrp-permission'] = loggrp_permission
+            data_payload["loggrp-permission"] = loggrp_permission
         if utmgrp_permission is not None:
-            data_payload['utmgrp-permission'] = utmgrp_permission
+            data_payload["utmgrp-permission"] = utmgrp_permission
         if secfabgrp_permission is not None:
-            data_payload['secfabgrp-permission'] = secfabgrp_permission
+            data_payload["secfabgrp-permission"] = secfabgrp_permission
         if admintimeout_override is not None:
-            data_payload['admintimeout-override'] = admintimeout_override
+            data_payload["admintimeout-override"] = admintimeout_override
         if admintimeout is not None:
-            data_payload['admintimeout'] = admintimeout
+            data_payload["admintimeout"] = admintimeout
         if cli_diagnose is not None:
-            data_payload['cli-diagnose'] = cli_diagnose
+            data_payload["cli-diagnose"] = cli_diagnose
         if cli_get is not None:
-            data_payload['cli-get'] = cli_get
+            data_payload["cli-get"] = cli_get
         if cli_show is not None:
-            data_payload['cli-show'] = cli_show
+            data_payload["cli-show"] = cli_show
         if cli_exec is not None:
-            data_payload['cli-exec'] = cli_exec
+            data_payload["cli-exec"] = cli_exec
         if cli_config is not None:
-            data_payload['cli-config'] = cli_config
+            data_payload["cli-config"] = cli_config
         if system_execute_ssh is not None:
-            data_payload['system-execute-ssh'] = system_execute_ssh
+            data_payload["system-execute-ssh"] = system_execute_ssh
         if system_execute_telnet is not None:
-            data_payload['system-execute-telnet'] = system_execute_telnet
+            data_payload["system-execute-telnet"] = system_execute_telnet
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -294,13 +298,13 @@ class Accprofile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -308,18 +312,20 @@ class Accprofile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/accprofile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -328,37 +334,39 @@ class Accprofile:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -397,7 +405,7 @@ class Accprofile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -431,7 +439,7 @@ class Accprofile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -439,7 +447,7 @@ class Accprofile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -447,60 +455,62 @@ class Accprofile:
         params = {}
         endpoint = "/system/accprofile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if secfabgrp is not None:
-            data_payload['secfabgrp'] = secfabgrp
+            data_payload["secfabgrp"] = secfabgrp
         if ftviewgrp is not None:
-            data_payload['ftviewgrp'] = ftviewgrp
+            data_payload["ftviewgrp"] = ftviewgrp
         if authgrp is not None:
-            data_payload['authgrp'] = authgrp
+            data_payload["authgrp"] = authgrp
         if sysgrp is not None:
-            data_payload['sysgrp'] = sysgrp
+            data_payload["sysgrp"] = sysgrp
         if netgrp is not None:
-            data_payload['netgrp'] = netgrp
+            data_payload["netgrp"] = netgrp
         if loggrp is not None:
-            data_payload['loggrp'] = loggrp
+            data_payload["loggrp"] = loggrp
         if fwgrp is not None:
-            data_payload['fwgrp'] = fwgrp
+            data_payload["fwgrp"] = fwgrp
         if vpngrp is not None:
-            data_payload['vpngrp'] = vpngrp
+            data_payload["vpngrp"] = vpngrp
         if utmgrp is not None:
-            data_payload['utmgrp'] = utmgrp
+            data_payload["utmgrp"] = utmgrp
         if wifi is not None:
-            data_payload['wifi'] = wifi
+            data_payload["wifi"] = wifi
         if netgrp_permission is not None:
-            data_payload['netgrp-permission'] = netgrp_permission
+            data_payload["netgrp-permission"] = netgrp_permission
         if sysgrp_permission is not None:
-            data_payload['sysgrp-permission'] = sysgrp_permission
+            data_payload["sysgrp-permission"] = sysgrp_permission
         if fwgrp_permission is not None:
-            data_payload['fwgrp-permission'] = fwgrp_permission
+            data_payload["fwgrp-permission"] = fwgrp_permission
         if loggrp_permission is not None:
-            data_payload['loggrp-permission'] = loggrp_permission
+            data_payload["loggrp-permission"] = loggrp_permission
         if utmgrp_permission is not None:
-            data_payload['utmgrp-permission'] = utmgrp_permission
+            data_payload["utmgrp-permission"] = utmgrp_permission
         if secfabgrp_permission is not None:
-            data_payload['secfabgrp-permission'] = secfabgrp_permission
+            data_payload["secfabgrp-permission"] = secfabgrp_permission
         if admintimeout_override is not None:
-            data_payload['admintimeout-override'] = admintimeout_override
+            data_payload["admintimeout-override"] = admintimeout_override
         if admintimeout is not None:
-            data_payload['admintimeout'] = admintimeout
+            data_payload["admintimeout"] = admintimeout
         if cli_diagnose is not None:
-            data_payload['cli-diagnose'] = cli_diagnose
+            data_payload["cli-diagnose"] = cli_diagnose
         if cli_get is not None:
-            data_payload['cli-get'] = cli_get
+            data_payload["cli-get"] = cli_get
         if cli_show is not None:
-            data_payload['cli-show'] = cli_show
+            data_payload["cli-show"] = cli_show
         if cli_exec is not None:
-            data_payload['cli-exec'] = cli_exec
+            data_payload["cli-exec"] = cli_exec
         if cli_config is not None:
-            data_payload['cli-config'] = cli_config
+            data_payload["cli-config"] = cli_config
         if system_execute_ssh is not None:
-            data_payload['system-execute-ssh'] = system_execute_ssh
+            data_payload["system-execute-ssh"] = system_execute_ssh
         if system_execute_telnet is not None:
-            data_payload['system-execute-telnet'] = system_execute_telnet
+            data_payload["system-execute-telnet"] = system_execute_telnet
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.dhcp6.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.dhcp6.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Revoke:
     """
     Revoke Operations.
-    
+
     Provides read-only access for FortiOS revoke data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Revoke endpoint.
 
@@ -60,22 +60,22 @@ class Revoke:
     ) -> dict[str, Any]:
         """
         Revoke IPv6 DHCP leases.
-        
+
         Args:
             ip: Optional list of addresses to revoke. Defaults to all addresses if not provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.dhcp6.revoke.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if ip is not None:
-            data['ip'] = ip
+            data["ip"] = ip
         data.update(kwargs)
         return self._client.post("monitor", "/system/dhcp6/revoke", data=data)
 
@@ -83,7 +83,7 @@ class Revoke:
 class Dhcp6:
     """Dhcp6 operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Dhcp6 endpoint.
 

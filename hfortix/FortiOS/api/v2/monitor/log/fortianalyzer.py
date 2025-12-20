@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.log.fortianalyzer.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.log.fortianalyzer.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Fortianalyzer:
     """
     Fortianalyzer Operations.
-    
+
     Provides read-only access for FortiOS fortianalyzer data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Fortianalyzer endpoint.
 
@@ -62,7 +62,7 @@ class Fortianalyzer:
     ) -> dict[str, Any]:
         """
         Return FortiAnalyzer/FortiManager log status.
-        
+
         Args:
             scope: Scope from which to test the connectivity of the FortiAnalyzer address [vdom|global]. (optional)
             server: FortiAnalyzer/FortiManager address. (optional)
@@ -70,19 +70,19 @@ class Fortianalyzer:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.log.fortianalyzer.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if server is not None:
-            params['server'] = server
+            params["server"] = server
         if srcip is not None:
-            params['srcip'] = srcip
+            params["srcip"] = srcip
         params.update(kwargs)
         return self._client.get("monitor", "/log/fortianalyzer", params=params)

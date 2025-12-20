@@ -9,21 +9,29 @@ from .profile import Profile
 from .sensor import Sensor
 from .settings import Settings
 
-__all__ = ['DataType', 'Dictionary', 'ExactDataMatch', 'Filepattern', 'Label', 'Profile', 'Sensor', 'Settings']
-
+__all__ = [
+    "DataType",
+    "Dictionary",
+    "ExactDataMatch",
+    "Filepattern",
+    "Label",
+    "Profile",
+    "Sensor",
+    "Settings",
+]
 
 
 class Dlp:
     """
     Dlp category wrapper.
-    
+
     This class provides access to all dlp CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Dlp with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

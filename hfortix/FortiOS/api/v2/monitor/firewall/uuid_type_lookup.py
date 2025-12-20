@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.firewall.uuid_type_lookup.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.firewall.uuid_type_lookup.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class UuidTypeLookup:
     """
     Uuidtypelookup Operations.
-    
+
     Provides read-only access for FortiOS uuidtypelookup data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize UuidTypeLookup endpoint.
 
@@ -60,20 +60,22 @@ class UuidTypeLookup:
     ) -> dict[str, Any]:
         """
         Retrieve a mapping of UUIDs to their firewall object type for given UUIDs.
-        
+
         Args:
             uuids: UUID to be resolved. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.firewall.uuid_type_lookup.get()
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['uuids'] = uuids
+        params["uuids"] = uuids
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/uuid-type-lookup", params=params)
+        return self._client.get(
+            "monitor", "/firewall/uuid-type-lookup", params=params
+        )

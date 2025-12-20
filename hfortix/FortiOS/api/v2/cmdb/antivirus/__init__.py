@@ -5,21 +5,20 @@ from .profile import Profile
 from .quarantine import Quarantine
 from .settings import Settings
 
-__all__ = ['ExemptList', 'Profile', 'Quarantine', 'Settings']
-
+__all__ = ["ExemptList", "Profile", "Quarantine", "Settings"]
 
 
 class Antivirus:
     """
     Antivirus category wrapper.
-    
+
     This class provides access to all antivirus CMDB endpoints.
     """
-    
+
     def __init__(self, client):
         """
         Initialize Antivirus with all endpoint classes.
-        
+
         Args:
             client: HTTPClient instance
         """

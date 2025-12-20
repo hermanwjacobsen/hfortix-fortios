@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.wireless_controller.hotspot20_hs_profile.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.wireless_controller.hotspot20_hs_profile.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.hotspot20_hs_profile.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.wireless_controller.hotspot20_hs_profile.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.wireless_controller.hotspot20_hs_profile.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Hotspot20HsProfile:
     """
     Hotspot20Hsprofile Operations.
-    
+
     Provides CRUD operations for FortiOS hotspot20hsprofile configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Hotspot20HsProfile:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Hotspot20HsProfile:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Hotspot20HsProfile endpoint.
 
@@ -90,7 +90,7 @@ class Hotspot20HsProfile:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Hotspot20HsProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Hotspot20HsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/wireless-controller.hotspot20/hs-profile/{name}"
         else:
             endpoint = "/wireless-controller.hotspot20/hs-profile"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -184,7 +186,7 @@ class Hotspot20HsProfile:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -236,7 +238,7 @@ class Hotspot20HsProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -244,109 +246,115 @@ class Hotspot20HsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/wireless-controller.hotspot20/hs-profile/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if release is not None:
-            data_payload['release'] = release
+            data_payload["release"] = release
         if access_network_type is not None:
-            data_payload['access-network-type'] = access_network_type
+            data_payload["access-network-type"] = access_network_type
         if access_network_internet is not None:
-            data_payload['access-network-internet'] = access_network_internet
+            data_payload["access-network-internet"] = access_network_internet
         if access_network_asra is not None:
-            data_payload['access-network-asra'] = access_network_asra
+            data_payload["access-network-asra"] = access_network_asra
         if access_network_esr is not None:
-            data_payload['access-network-esr'] = access_network_esr
+            data_payload["access-network-esr"] = access_network_esr
         if access_network_uesa is not None:
-            data_payload['access-network-uesa'] = access_network_uesa
+            data_payload["access-network-uesa"] = access_network_uesa
         if venue_group is not None:
-            data_payload['venue-group'] = venue_group
+            data_payload["venue-group"] = venue_group
         if venue_type is not None:
-            data_payload['venue-type'] = venue_type
+            data_payload["venue-type"] = venue_type
         if hessid is not None:
-            data_payload['hessid'] = hessid
+            data_payload["hessid"] = hessid
         if proxy_arp is not None:
-            data_payload['proxy-arp'] = proxy_arp
+            data_payload["proxy-arp"] = proxy_arp
         if l2tif is not None:
-            data_payload['l2tif'] = l2tif
+            data_payload["l2tif"] = l2tif
         if pame_bi is not None:
-            data_payload['pame-bi'] = pame_bi
+            data_payload["pame-bi"] = pame_bi
         if anqp_domain_id is not None:
-            data_payload['anqp-domain-id'] = anqp_domain_id
+            data_payload["anqp-domain-id"] = anqp_domain_id
         if domain_name is not None:
-            data_payload['domain-name'] = domain_name
+            data_payload["domain-name"] = domain_name
         if osu_ssid is not None:
-            data_payload['osu-ssid'] = osu_ssid
+            data_payload["osu-ssid"] = osu_ssid
         if gas_comeback_delay is not None:
-            data_payload['gas-comeback-delay'] = gas_comeback_delay
+            data_payload["gas-comeback-delay"] = gas_comeback_delay
         if gas_fragmentation_limit is not None:
-            data_payload['gas-fragmentation-limit'] = gas_fragmentation_limit
+            data_payload["gas-fragmentation-limit"] = gas_fragmentation_limit
         if dgaf is not None:
-            data_payload['dgaf'] = dgaf
+            data_payload["dgaf"] = dgaf
         if deauth_request_timeout is not None:
-            data_payload['deauth-request-timeout'] = deauth_request_timeout
+            data_payload["deauth-request-timeout"] = deauth_request_timeout
         if wnm_sleep_mode is not None:
-            data_payload['wnm-sleep-mode'] = wnm_sleep_mode
+            data_payload["wnm-sleep-mode"] = wnm_sleep_mode
         if bss_transition is not None:
-            data_payload['bss-transition'] = bss_transition
+            data_payload["bss-transition"] = bss_transition
         if venue_name is not None:
-            data_payload['venue-name'] = venue_name
+            data_payload["venue-name"] = venue_name
         if venue_url is not None:
-            data_payload['venue-url'] = venue_url
+            data_payload["venue-url"] = venue_url
         if roaming_consortium is not None:
-            data_payload['roaming-consortium'] = roaming_consortium
+            data_payload["roaming-consortium"] = roaming_consortium
         if nai_realm is not None:
-            data_payload['nai-realm'] = nai_realm
+            data_payload["nai-realm"] = nai_realm
         if oper_friendly_name is not None:
-            data_payload['oper-friendly-name'] = oper_friendly_name
+            data_payload["oper-friendly-name"] = oper_friendly_name
         if oper_icon is not None:
-            data_payload['oper-icon'] = oper_icon
+            data_payload["oper-icon"] = oper_icon
         if advice_of_charge is not None:
-            data_payload['advice-of-charge'] = advice_of_charge
+            data_payload["advice-of-charge"] = advice_of_charge
         if osu_provider_nai is not None:
-            data_payload['osu-provider-nai'] = osu_provider_nai
+            data_payload["osu-provider-nai"] = osu_provider_nai
         if terms_and_conditions is not None:
-            data_payload['terms-and-conditions'] = terms_and_conditions
+            data_payload["terms-and-conditions"] = terms_and_conditions
         if osu_provider is not None:
-            data_payload['osu-provider'] = osu_provider
+            data_payload["osu-provider"] = osu_provider
         if wan_metrics is not None:
-            data_payload['wan-metrics'] = wan_metrics
+            data_payload["wan-metrics"] = wan_metrics
         if network_auth is not None:
-            data_payload['network-auth'] = network_auth
+            data_payload["network-auth"] = network_auth
         if _3gpp_plmn is not None:
-            data_payload['3gpp-plmn'] = _3gpp_plmn
+            data_payload["3gpp-plmn"] = _3gpp_plmn
         if conn_cap is not None:
-            data_payload['conn-cap'] = conn_cap
+            data_payload["conn-cap"] = conn_cap
         if qos_map is not None:
-            data_payload['qos-map'] = qos_map
+            data_payload["qos-map"] = qos_map
         if ip_addr_type is not None:
-            data_payload['ip-addr-type'] = ip_addr_type
+            data_payload["ip-addr-type"] = ip_addr_type
         if wba_open_roaming is not None:
-            data_payload['wba-open-roaming'] = wba_open_roaming
+            data_payload["wba-open-roaming"] = wba_open_roaming
         if wba_financial_clearing_provider is not None:
-            data_payload['wba-financial-clearing-provider'] = wba_financial_clearing_provider
+            data_payload["wba-financial-clearing-provider"] = (
+                wba_financial_clearing_provider
+            )
         if wba_data_clearing_provider is not None:
-            data_payload['wba-data-clearing-provider'] = wba_data_clearing_provider
+            data_payload["wba-data-clearing-provider"] = (
+                wba_data_clearing_provider
+            )
         if wba_charging_currency is not None:
-            data_payload['wba-charging-currency'] = wba_charging_currency
+            data_payload["wba-charging-currency"] = wba_charging_currency
         if wba_charging_rate is not None:
-            data_payload['wba-charging-rate'] = wba_charging_rate
+            data_payload["wba-charging-rate"] = wba_charging_rate
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -358,13 +366,13 @@ class Hotspot20HsProfile:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -372,18 +380,20 @@ class Hotspot20HsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller.hotspot20/hs-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -438,7 +448,7 @@ class Hotspot20HsProfile:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -488,7 +498,7 @@ class Hotspot20HsProfile:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -496,7 +506,7 @@ class Hotspot20HsProfile:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -504,92 +514,98 @@ class Hotspot20HsProfile:
         params = {}
         endpoint = "/wireless-controller.hotspot20/hs-profile"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if release is not None:
-            data_payload['release'] = release
+            data_payload["release"] = release
         if access_network_type is not None:
-            data_payload['access-network-type'] = access_network_type
+            data_payload["access-network-type"] = access_network_type
         if access_network_internet is not None:
-            data_payload['access-network-internet'] = access_network_internet
+            data_payload["access-network-internet"] = access_network_internet
         if access_network_asra is not None:
-            data_payload['access-network-asra'] = access_network_asra
+            data_payload["access-network-asra"] = access_network_asra
         if access_network_esr is not None:
-            data_payload['access-network-esr'] = access_network_esr
+            data_payload["access-network-esr"] = access_network_esr
         if access_network_uesa is not None:
-            data_payload['access-network-uesa'] = access_network_uesa
+            data_payload["access-network-uesa"] = access_network_uesa
         if venue_group is not None:
-            data_payload['venue-group'] = venue_group
+            data_payload["venue-group"] = venue_group
         if venue_type is not None:
-            data_payload['venue-type'] = venue_type
+            data_payload["venue-type"] = venue_type
         if hessid is not None:
-            data_payload['hessid'] = hessid
+            data_payload["hessid"] = hessid
         if proxy_arp is not None:
-            data_payload['proxy-arp'] = proxy_arp
+            data_payload["proxy-arp"] = proxy_arp
         if l2tif is not None:
-            data_payload['l2tif'] = l2tif
+            data_payload["l2tif"] = l2tif
         if pame_bi is not None:
-            data_payload['pame-bi'] = pame_bi
+            data_payload["pame-bi"] = pame_bi
         if anqp_domain_id is not None:
-            data_payload['anqp-domain-id'] = anqp_domain_id
+            data_payload["anqp-domain-id"] = anqp_domain_id
         if domain_name is not None:
-            data_payload['domain-name'] = domain_name
+            data_payload["domain-name"] = domain_name
         if osu_ssid is not None:
-            data_payload['osu-ssid'] = osu_ssid
+            data_payload["osu-ssid"] = osu_ssid
         if gas_comeback_delay is not None:
-            data_payload['gas-comeback-delay'] = gas_comeback_delay
+            data_payload["gas-comeback-delay"] = gas_comeback_delay
         if gas_fragmentation_limit is not None:
-            data_payload['gas-fragmentation-limit'] = gas_fragmentation_limit
+            data_payload["gas-fragmentation-limit"] = gas_fragmentation_limit
         if dgaf is not None:
-            data_payload['dgaf'] = dgaf
+            data_payload["dgaf"] = dgaf
         if deauth_request_timeout is not None:
-            data_payload['deauth-request-timeout'] = deauth_request_timeout
+            data_payload["deauth-request-timeout"] = deauth_request_timeout
         if wnm_sleep_mode is not None:
-            data_payload['wnm-sleep-mode'] = wnm_sleep_mode
+            data_payload["wnm-sleep-mode"] = wnm_sleep_mode
         if bss_transition is not None:
-            data_payload['bss-transition'] = bss_transition
+            data_payload["bss-transition"] = bss_transition
         if venue_name is not None:
-            data_payload['venue-name'] = venue_name
+            data_payload["venue-name"] = venue_name
         if venue_url is not None:
-            data_payload['venue-url'] = venue_url
+            data_payload["venue-url"] = venue_url
         if roaming_consortium is not None:
-            data_payload['roaming-consortium'] = roaming_consortium
+            data_payload["roaming-consortium"] = roaming_consortium
         if nai_realm is not None:
-            data_payload['nai-realm'] = nai_realm
+            data_payload["nai-realm"] = nai_realm
         if oper_friendly_name is not None:
-            data_payload['oper-friendly-name'] = oper_friendly_name
+            data_payload["oper-friendly-name"] = oper_friendly_name
         if oper_icon is not None:
-            data_payload['oper-icon'] = oper_icon
+            data_payload["oper-icon"] = oper_icon
         if advice_of_charge is not None:
-            data_payload['advice-of-charge'] = advice_of_charge
+            data_payload["advice-of-charge"] = advice_of_charge
         if osu_provider_nai is not None:
-            data_payload['osu-provider-nai'] = osu_provider_nai
+            data_payload["osu-provider-nai"] = osu_provider_nai
         if terms_and_conditions is not None:
-            data_payload['terms-and-conditions'] = terms_and_conditions
+            data_payload["terms-and-conditions"] = terms_and_conditions
         if osu_provider is not None:
-            data_payload['osu-provider'] = osu_provider
+            data_payload["osu-provider"] = osu_provider
         if wan_metrics is not None:
-            data_payload['wan-metrics'] = wan_metrics
+            data_payload["wan-metrics"] = wan_metrics
         if network_auth is not None:
-            data_payload['network-auth'] = network_auth
+            data_payload["network-auth"] = network_auth
         if _3gpp_plmn is not None:
-            data_payload['3gpp-plmn'] = _3gpp_plmn
+            data_payload["3gpp-plmn"] = _3gpp_plmn
         if conn_cap is not None:
-            data_payload['conn-cap'] = conn_cap
+            data_payload["conn-cap"] = conn_cap
         if qos_map is not None:
-            data_payload['qos-map'] = qos_map
+            data_payload["qos-map"] = qos_map
         if ip_addr_type is not None:
-            data_payload['ip-addr-type'] = ip_addr_type
+            data_payload["ip-addr-type"] = ip_addr_type
         if wba_open_roaming is not None:
-            data_payload['wba-open-roaming'] = wba_open_roaming
+            data_payload["wba-open-roaming"] = wba_open_roaming
         if wba_financial_clearing_provider is not None:
-            data_payload['wba-financial-clearing-provider'] = wba_financial_clearing_provider
+            data_payload["wba-financial-clearing-provider"] = (
+                wba_financial_clearing_provider
+            )
         if wba_data_clearing_provider is not None:
-            data_payload['wba-data-clearing-provider'] = wba_data_clearing_provider
+            data_payload["wba-data-clearing-provider"] = (
+                wba_data_clearing_provider
+            )
         if wba_charging_currency is not None:
-            data_payload['wba-charging-currency'] = wba_charging_currency
+            data_payload["wba-charging-currency"] = wba_charging_currency
         if wba_charging_rate is not None:
-            data_payload['wba-charging-rate'] = wba_charging_rate
+            data_payload["wba-charging-rate"] = wba_charging_rate
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

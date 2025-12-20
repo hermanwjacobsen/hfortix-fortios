@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.network.ddns.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.network.ddns.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Lookup:
     """
     Lookup Operations.
-    
+
     Provides read-only access for FortiOS lookup data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Lookup endpoint.
 
@@ -60,29 +60,31 @@ class Lookup:
     ) -> dict[str, Any]:
         """
         Check DDNS FQDN availability.
-        
+
         Args:
             domain: Filter: domain to check. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.network.ddns.lookup.get(domain='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['domain'] = domain
+        params["domain"] = domain
         params.update(kwargs)
-        return self._client.get("monitor", "/network/ddns/lookup", params=params)
+        return self._client.get(
+            "monitor", "/network/ddns/lookup", params=params
+        )
 
 
 class Servers:
     """Servers operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Servers endpoint.
 
@@ -99,27 +101,29 @@ class Servers:
     ) -> dict[str, Any]:
         """
         Get DDNS servers.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.network.ddns.servers.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/network/ddns/servers", params=params)
+        return self._client.get(
+            "monitor", "/network/ddns/servers", params=params
+        )
 
 
 class Ddns:
     """Ddns operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Ddns endpoint.
 

@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.vpn_certificate.local.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.vpn_certificate.local.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Create:
     """
     Create Operations.
-    
+
     Provides read-only access for FortiOS create data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Create endpoint.
 
@@ -62,7 +62,7 @@ class Create:
     ) -> dict[str, Any]:
         """
         Generate a new certificate signed by Fortinet_CA_SSL.
-        
+
         Args:
             certname: Certificate name. (optional)
             common_name: Certificate common name. (optional)
@@ -70,28 +70,30 @@ class Create:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn_certificate.local.create.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if certname is not None:
-            data['certname'] = certname
+            data["certname"] = certname
         if common_name is not None:
-            data['common_name'] = common_name
+            data["common_name"] = common_name
         if scope is not None:
-            data['scope'] = scope
+            data["scope"] = scope
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn-certificate/local/create", data=data)
+        return self._client.post(
+            "monitor", "/vpn-certificate/local/create", data=data
+        )
 
 
 class ImportLocal:
     """ImportLocal operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ImportLocal endpoint.
 
@@ -119,7 +121,7 @@ class ImportLocal:
     ) -> dict[str, Any]:
         """
         Import local certificate.
-        
+
         Args:
             type: Type of certificate.[local|pkcs12|regular] (optional)
             certname: Certificate name for pkcs12 and regular certificate types. (optional)
@@ -135,44 +137,46 @@ class ImportLocal:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.vpn_certificate.local.import.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if type is not None:
-            data['type'] = type
+            data["type"] = type
         if certname is not None:
-            data['certname'] = certname
+            data["certname"] = certname
         if password is not None:
-            data['password'] = password
+            data["password"] = password
         if key_file_content is not None:
-            data['key_file_content'] = key_file_content
+            data["key_file_content"] = key_file_content
         if scope is not None:
-            data['scope'] = scope
+            data["scope"] = scope
         if acme_domain is not None:
-            data['acme_domain'] = acme_domain
+            data["acme_domain"] = acme_domain
         if acme_email is not None:
-            data['acme_email'] = acme_email
+            data["acme_email"] = acme_email
         if acme_ca_url is not None:
-            data['acme_ca_url'] = acme_ca_url
+            data["acme_ca_url"] = acme_ca_url
         if acme_rsa_key_size is not None:
-            data['acme_rsa_key_size'] = acme_rsa_key_size
+            data["acme_rsa_key_size"] = acme_rsa_key_size
         if acme_renew_window is not None:
-            data['acme_renew_window'] = acme_renew_window
+            data["acme_renew_window"] = acme_renew_window
         if file_content is not None:
-            data['file_content'] = file_content
+            data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn-certificate/local/import", data=data)
+        return self._client.post(
+            "monitor", "/vpn-certificate/local/import", data=data
+        )
 
 
 class Local:
     """Local operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Local endpoint.
 

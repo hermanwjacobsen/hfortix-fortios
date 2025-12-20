@@ -14,8 +14,8 @@ from .ca import Ca, ImportCa
 from .cert_name_available import CertNameAvailable
 from .crl import Crl, ImportCrl
 from .csr import Csr
-from .local import Local, ImportLocal
-from .remote import Remote, ImportRemote
+from .local import ImportLocal, Local
+from .remote import ImportRemote, Remote
 
 
 class VpnCertificate:
@@ -40,11 +40,4 @@ class VpnCertificate:
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return [
-            "ca",
-            "cert_name_available",
-            "crl",
-            "csr",
-            "local",
-            "remote"
-        ]
+        return ["ca", "cert_name_available", "crl", "csr", "local", "remote"]

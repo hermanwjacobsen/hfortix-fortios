@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.interface_policy.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.interface_policy.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.interface_policy.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.interface_policy.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.interface_policy.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class InterfacePolicy:
     """
     Interfacepolicy Operations.
-    
+
     Provides CRUD operations for FortiOS interfacepolicy configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class InterfacePolicy:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class InterfacePolicy:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize InterfacePolicy endpoint.
 
@@ -90,7 +90,7 @@ class InterfacePolicy:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             policyid: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class InterfacePolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class InterfacePolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if policyid:
             endpoint = f"/firewall/interface-policy/{policyid}"
         else:
             endpoint = "/firewall/interface-policy"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -165,7 +167,7 @@ class InterfacePolicy:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             policyid: Object identifier (required)
@@ -198,7 +200,7 @@ class InterfacePolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -206,71 +208,75 @@ class InterfacePolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/interface-policy/{policyid}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if logtraffic is not None:
-            data_payload['logtraffic'] = logtraffic
+            data_payload["logtraffic"] = logtraffic
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if application_list_status is not None:
-            data_payload['application-list-status'] = application_list_status
+            data_payload["application-list-status"] = application_list_status
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if ips_sensor_status is not None:
-            data_payload['ips-sensor-status'] = ips_sensor_status
+            data_payload["ips-sensor-status"] = ips_sensor_status
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if dsri is not None:
-            data_payload['dsri'] = dsri
+            data_payload["dsri"] = dsri
         if av_profile_status is not None:
-            data_payload['av-profile-status'] = av_profile_status
+            data_payload["av-profile-status"] = av_profile_status
         if av_profile is not None:
-            data_payload['av-profile'] = av_profile
+            data_payload["av-profile"] = av_profile
         if webfilter_profile_status is not None:
-            data_payload['webfilter-profile-status'] = webfilter_profile_status
+            data_payload["webfilter-profile-status"] = webfilter_profile_status
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if casb_profile_status is not None:
-            data_payload['casb-profile-status'] = casb_profile_status
+            data_payload["casb-profile-status"] = casb_profile_status
         if casb_profile is not None:
-            data_payload['casb-profile'] = casb_profile
+            data_payload["casb-profile"] = casb_profile
         if emailfilter_profile_status is not None:
-            data_payload['emailfilter-profile-status'] = emailfilter_profile_status
+            data_payload["emailfilter-profile-status"] = (
+                emailfilter_profile_status
+            )
         if emailfilter_profile is not None:
-            data_payload['emailfilter-profile'] = emailfilter_profile
+            data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
-            data_payload['dlp-profile-status'] = dlp_profile_status
+            data_payload["dlp-profile-status"] = dlp_profile_status
         if dlp_profile is not None:
-            data_payload['dlp-profile'] = dlp_profile
+            data_payload["dlp-profile"] = dlp_profile
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -282,13 +288,13 @@ class InterfacePolicy:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -296,18 +302,20 @@ class InterfacePolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/interface-policy/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -343,7 +351,7 @@ class InterfacePolicy:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -374,7 +382,7 @@ class InterfacePolicy:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -382,7 +390,7 @@ class InterfacePolicy:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -390,54 +398,58 @@ class InterfacePolicy:
         params = {}
         endpoint = "/firewall/interface-policy"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if policyid is not None:
-            data_payload['policyid'] = policyid
+            data_payload["policyid"] = policyid
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if comments is not None:
-            data_payload['comments'] = comments
+            data_payload["comments"] = comments
         if logtraffic is not None:
-            data_payload['logtraffic'] = logtraffic
+            data_payload["logtraffic"] = logtraffic
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if srcaddr is not None:
-            data_payload['srcaddr'] = srcaddr
+            data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
-            data_payload['dstaddr'] = dstaddr
+            data_payload["dstaddr"] = dstaddr
         if service is not None:
-            data_payload['service'] = service
+            data_payload["service"] = service
         if application_list_status is not None:
-            data_payload['application-list-status'] = application_list_status
+            data_payload["application-list-status"] = application_list_status
         if application_list is not None:
-            data_payload['application-list'] = application_list
+            data_payload["application-list"] = application_list
         if ips_sensor_status is not None:
-            data_payload['ips-sensor-status'] = ips_sensor_status
+            data_payload["ips-sensor-status"] = ips_sensor_status
         if ips_sensor is not None:
-            data_payload['ips-sensor'] = ips_sensor
+            data_payload["ips-sensor"] = ips_sensor
         if dsri is not None:
-            data_payload['dsri'] = dsri
+            data_payload["dsri"] = dsri
         if av_profile_status is not None:
-            data_payload['av-profile-status'] = av_profile_status
+            data_payload["av-profile-status"] = av_profile_status
         if av_profile is not None:
-            data_payload['av-profile'] = av_profile
+            data_payload["av-profile"] = av_profile
         if webfilter_profile_status is not None:
-            data_payload['webfilter-profile-status'] = webfilter_profile_status
+            data_payload["webfilter-profile-status"] = webfilter_profile_status
         if webfilter_profile is not None:
-            data_payload['webfilter-profile'] = webfilter_profile
+            data_payload["webfilter-profile"] = webfilter_profile
         if casb_profile_status is not None:
-            data_payload['casb-profile-status'] = casb_profile_status
+            data_payload["casb-profile-status"] = casb_profile_status
         if casb_profile is not None:
-            data_payload['casb-profile'] = casb_profile
+            data_payload["casb-profile"] = casb_profile
         if emailfilter_profile_status is not None:
-            data_payload['emailfilter-profile-status'] = emailfilter_profile_status
+            data_payload["emailfilter-profile-status"] = (
+                emailfilter_profile_status
+            )
         if emailfilter_profile is not None:
-            data_payload['emailfilter-profile'] = emailfilter_profile
+            data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
-            data_payload['dlp-profile-status'] = dlp_profile_status
+            data_payload["dlp-profile-status"] = dlp_profile_status
         if dlp_profile is not None:
-            data_payload['dlp-profile'] = dlp_profile
+            data_payload["dlp-profile"] = dlp_profile
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

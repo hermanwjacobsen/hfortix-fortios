@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.extension_controller.dataplan.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.extension_controller.dataplan.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.extension_controller.dataplan.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.extension_controller.dataplan.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.extension_controller.dataplan.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class Dataplan:
     """
     Dataplan Operations.
-    
+
     Provides CRUD operations for FortiOS dataplan configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class Dataplan:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class Dataplan:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Dataplan endpoint.
 
@@ -90,7 +90,7 @@ class Dataplan:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class Dataplan:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class Dataplan:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/extension-controller/dataplan/{name}"
         else:
             endpoint = "/extension-controller/dataplan"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -160,7 +162,7 @@ class Dataplan:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -188,7 +190,7 @@ class Dataplan:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -196,61 +198,63 @@ class Dataplan:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/extension-controller/dataplan/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if modem_id is not None:
-            data_payload['modem-id'] = modem_id
+            data_payload["modem-id"] = modem_id
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if slot is not None:
-            data_payload['slot'] = slot
+            data_payload["slot"] = slot
         if iccid is not None:
-            data_payload['iccid'] = iccid
+            data_payload["iccid"] = iccid
         if carrier is not None:
-            data_payload['carrier'] = carrier
+            data_payload["carrier"] = carrier
         if apn is not None:
-            data_payload['apn'] = apn
+            data_payload["apn"] = apn
         if auth_type is not None:
-            data_payload['auth-type'] = auth_type
+            data_payload["auth-type"] = auth_type
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if pdn is not None:
-            data_payload['pdn'] = pdn
+            data_payload["pdn"] = pdn
         if signal_threshold is not None:
-            data_payload['signal-threshold'] = signal_threshold
+            data_payload["signal-threshold"] = signal_threshold
         if signal_period is not None:
-            data_payload['signal-period'] = signal_period
+            data_payload["signal-period"] = signal_period
         if capacity is not None:
-            data_payload['capacity'] = capacity
+            data_payload["capacity"] = capacity
         if monthly_fee is not None:
-            data_payload['monthly-fee'] = monthly_fee
+            data_payload["monthly-fee"] = monthly_fee
         if billing_date is not None:
-            data_payload['billing-date'] = billing_date
+            data_payload["billing-date"] = billing_date
         if overage is not None:
-            data_payload['overage'] = overage
+            data_payload["overage"] = overage
         if preferred_subnet is not None:
-            data_payload['preferred-subnet'] = preferred_subnet
+            data_payload["preferred-subnet"] = preferred_subnet
         if private_network is not None:
-            data_payload['private-network'] = private_network
+            data_payload["private-network"] = private_network
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -262,13 +266,13 @@ class Dataplan:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -276,18 +280,20 @@ class Dataplan:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/extension-controller/dataplan/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -296,37 +302,39 @@ class Dataplan:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -357,7 +365,7 @@ class Dataplan:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -383,7 +391,7 @@ class Dataplan:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -391,7 +399,7 @@ class Dataplan:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -399,44 +407,46 @@ class Dataplan:
         params = {}
         endpoint = "/extension-controller/dataplan"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if modem_id is not None:
-            data_payload['modem-id'] = modem_id
+            data_payload["modem-id"] = modem_id
         if type is not None:
-            data_payload['type'] = type
+            data_payload["type"] = type
         if slot is not None:
-            data_payload['slot'] = slot
+            data_payload["slot"] = slot
         if iccid is not None:
-            data_payload['iccid'] = iccid
+            data_payload["iccid"] = iccid
         if carrier is not None:
-            data_payload['carrier'] = carrier
+            data_payload["carrier"] = carrier
         if apn is not None:
-            data_payload['apn'] = apn
+            data_payload["apn"] = apn
         if auth_type is not None:
-            data_payload['auth-type'] = auth_type
+            data_payload["auth-type"] = auth_type
         if username is not None:
-            data_payload['username'] = username
+            data_payload["username"] = username
         if password is not None:
-            data_payload['password'] = password
+            data_payload["password"] = password
         if pdn is not None:
-            data_payload['pdn'] = pdn
+            data_payload["pdn"] = pdn
         if signal_threshold is not None:
-            data_payload['signal-threshold'] = signal_threshold
+            data_payload["signal-threshold"] = signal_threshold
         if signal_period is not None:
-            data_payload['signal-period'] = signal_period
+            data_payload["signal-period"] = signal_period
         if capacity is not None:
-            data_payload['capacity'] = capacity
+            data_payload["capacity"] = capacity
         if monthly_fee is not None:
-            data_payload['monthly-fee'] = monthly_fee
+            data_payload["monthly-fee"] = monthly_fee
         if billing_date is not None:
-            data_payload['billing-date'] = billing_date
+            data_payload["billing-date"] = billing_date
         if overage is not None:
-            data_payload['overage'] = overage
+            data_payload["overage"] = overage
         if preferred_subnet is not None:
-            data_payload['preferred-subnet'] = preferred_subnet
+            data_payload["preferred-subnet"] = preferred_subnet
         if private_network is not None:
-            data_payload['private-network'] = private_network
+            data_payload["private-network"] = private_network
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

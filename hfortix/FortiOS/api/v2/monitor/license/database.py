@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.license.database.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.license.database.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Upgrade:
     """
     Upgrade Operations.
-    
+
     Provides read-only access for FortiOS upgrade data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Upgrade endpoint.
 
@@ -64,7 +64,7 @@ class Upgrade:
     ) -> dict[str, Any]:
         """
         Upgrade or downgrade UTM engine or signature package (IPS/AntiVirus/Application Control/Industrial database/Security Rating/Internet Service Database) using uploaded file.
-        
+
         Args:
             db_name: Security service database name [ips|appctrl|industrial_db|antivirus|security_rating|isdb|iotddb] (optional)
             confirm_not_signed: Confirm whether unsigned pkg files may be uploaded. (optional)
@@ -74,32 +74,34 @@ class Upgrade:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.license.database.upgrade.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if db_name is not None:
-            data['db_name'] = db_name
+            data["db_name"] = db_name
         if confirm_not_signed is not None:
-            data['confirm_not_signed'] = confirm_not_signed
+            data["confirm_not_signed"] = confirm_not_signed
         if confirm_not_ga_certified is not None:
-            data['confirm_not_ga_certified'] = confirm_not_ga_certified
+            data["confirm_not_ga_certified"] = confirm_not_ga_certified
         if file_id is not None:
-            data['file_id'] = file_id
+            data["file_id"] = file_id
         if file_content is not None:
-            data['file_content'] = file_content
+            data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/license/database/upgrade", data=data)
+        return self._client.post(
+            "monitor", "/license/database/upgrade", data=data
+        )
 
 
 class Database:
     """Database operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Database endpoint.
 

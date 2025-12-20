@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.router.bgp.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.router.bgp.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.router.bgp.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.router.bgp.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.router.bgp.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Bgp:
     """
     Bgp Operations.
-    
+
     Provides CRUD operations for FortiOS bgp configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Bgp:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Bgp endpoint.
 
@@ -82,14 +82,14 @@ class Bgp:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Bgp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/router/bgp"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -187,7 +189,7 @@ class Bgp:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -261,7 +263,7 @@ class Bgp:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -269,7 +271,7 @@ class Bgp:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -277,140 +279,166 @@ class Bgp:
         params = {}
         endpoint = "/router/bgp"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if as_ is not None:
-            data_payload['as'] = as_
+            data_payload["as"] = as_
         if router_id is not None:
-            data_payload['router-id'] = router_id
+            data_payload["router-id"] = router_id
         if keepalive_timer is not None:
-            data_payload['keepalive-timer'] = keepalive_timer
+            data_payload["keepalive-timer"] = keepalive_timer
         if holdtime_timer is not None:
-            data_payload['holdtime-timer'] = holdtime_timer
+            data_payload["holdtime-timer"] = holdtime_timer
         if always_compare_med is not None:
-            data_payload['always-compare-med'] = always_compare_med
+            data_payload["always-compare-med"] = always_compare_med
         if bestpath_as_path_ignore is not None:
-            data_payload['bestpath-as-path-ignore'] = bestpath_as_path_ignore
+            data_payload["bestpath-as-path-ignore"] = bestpath_as_path_ignore
         if bestpath_cmp_confed_aspath is not None:
-            data_payload['bestpath-cmp-confed-aspath'] = bestpath_cmp_confed_aspath
+            data_payload["bestpath-cmp-confed-aspath"] = (
+                bestpath_cmp_confed_aspath
+            )
         if bestpath_cmp_routerid is not None:
-            data_payload['bestpath-cmp-routerid'] = bestpath_cmp_routerid
+            data_payload["bestpath-cmp-routerid"] = bestpath_cmp_routerid
         if bestpath_med_confed is not None:
-            data_payload['bestpath-med-confed'] = bestpath_med_confed
+            data_payload["bestpath-med-confed"] = bestpath_med_confed
         if bestpath_med_missing_as_worst is not None:
-            data_payload['bestpath-med-missing-as-worst'] = bestpath_med_missing_as_worst
+            data_payload["bestpath-med-missing-as-worst"] = (
+                bestpath_med_missing_as_worst
+            )
         if client_to_client_reflection is not None:
-            data_payload['client-to-client-reflection'] = client_to_client_reflection
+            data_payload["client-to-client-reflection"] = (
+                client_to_client_reflection
+            )
         if dampening is not None:
-            data_payload['dampening'] = dampening
+            data_payload["dampening"] = dampening
         if deterministic_med is not None:
-            data_payload['deterministic-med'] = deterministic_med
+            data_payload["deterministic-med"] = deterministic_med
         if ebgp_multipath is not None:
-            data_payload['ebgp-multipath'] = ebgp_multipath
+            data_payload["ebgp-multipath"] = ebgp_multipath
         if ibgp_multipath is not None:
-            data_payload['ibgp-multipath'] = ibgp_multipath
+            data_payload["ibgp-multipath"] = ibgp_multipath
         if enforce_first_as is not None:
-            data_payload['enforce-first-as'] = enforce_first_as
+            data_payload["enforce-first-as"] = enforce_first_as
         if fast_external_failover is not None:
-            data_payload['fast-external-failover'] = fast_external_failover
+            data_payload["fast-external-failover"] = fast_external_failover
         if log_neighbour_changes is not None:
-            data_payload['log-neighbour-changes'] = log_neighbour_changes
+            data_payload["log-neighbour-changes"] = log_neighbour_changes
         if network_import_check is not None:
-            data_payload['network-import-check'] = network_import_check
+            data_payload["network-import-check"] = network_import_check
         if ignore_optional_capability is not None:
-            data_payload['ignore-optional-capability'] = ignore_optional_capability
+            data_payload["ignore-optional-capability"] = (
+                ignore_optional_capability
+            )
         if additional_path is not None:
-            data_payload['additional-path'] = additional_path
+            data_payload["additional-path"] = additional_path
         if additional_path6 is not None:
-            data_payload['additional-path6'] = additional_path6
+            data_payload["additional-path6"] = additional_path6
         if additional_path_vpnv4 is not None:
-            data_payload['additional-path-vpnv4'] = additional_path_vpnv4
+            data_payload["additional-path-vpnv4"] = additional_path_vpnv4
         if additional_path_vpnv6 is not None:
-            data_payload['additional-path-vpnv6'] = additional_path_vpnv6
+            data_payload["additional-path-vpnv6"] = additional_path_vpnv6
         if multipath_recursive_distance is not None:
-            data_payload['multipath-recursive-distance'] = multipath_recursive_distance
+            data_payload["multipath-recursive-distance"] = (
+                multipath_recursive_distance
+            )
         if recursive_next_hop is not None:
-            data_payload['recursive-next-hop'] = recursive_next_hop
+            data_payload["recursive-next-hop"] = recursive_next_hop
         if recursive_inherit_priority is not None:
-            data_payload['recursive-inherit-priority'] = recursive_inherit_priority
+            data_payload["recursive-inherit-priority"] = (
+                recursive_inherit_priority
+            )
         if tag_resolve_mode is not None:
-            data_payload['tag-resolve-mode'] = tag_resolve_mode
+            data_payload["tag-resolve-mode"] = tag_resolve_mode
         if cluster_id is not None:
-            data_payload['cluster-id'] = cluster_id
+            data_payload["cluster-id"] = cluster_id
         if confederation_identifier is not None:
-            data_payload['confederation-identifier'] = confederation_identifier
+            data_payload["confederation-identifier"] = confederation_identifier
         if confederation_peers is not None:
-            data_payload['confederation-peers'] = confederation_peers
+            data_payload["confederation-peers"] = confederation_peers
         if dampening_route_map is not None:
-            data_payload['dampening-route-map'] = dampening_route_map
+            data_payload["dampening-route-map"] = dampening_route_map
         if dampening_reachability_half_life is not None:
-            data_payload['dampening-reachability-half-life'] = dampening_reachability_half_life
+            data_payload["dampening-reachability-half-life"] = (
+                dampening_reachability_half_life
+            )
         if dampening_reuse is not None:
-            data_payload['dampening-reuse'] = dampening_reuse
+            data_payload["dampening-reuse"] = dampening_reuse
         if dampening_suppress is not None:
-            data_payload['dampening-suppress'] = dampening_suppress
+            data_payload["dampening-suppress"] = dampening_suppress
         if dampening_max_suppress_time is not None:
-            data_payload['dampening-max-suppress-time'] = dampening_max_suppress_time
+            data_payload["dampening-max-suppress-time"] = (
+                dampening_max_suppress_time
+            )
         if dampening_unreachability_half_life is not None:
-            data_payload['dampening-unreachability-half-life'] = dampening_unreachability_half_life
+            data_payload["dampening-unreachability-half-life"] = (
+                dampening_unreachability_half_life
+            )
         if default_local_preference is not None:
-            data_payload['default-local-preference'] = default_local_preference
+            data_payload["default-local-preference"] = default_local_preference
         if scan_time is not None:
-            data_payload['scan-time'] = scan_time
+            data_payload["scan-time"] = scan_time
         if distance_external is not None:
-            data_payload['distance-external'] = distance_external
+            data_payload["distance-external"] = distance_external
         if distance_internal is not None:
-            data_payload['distance-internal'] = distance_internal
+            data_payload["distance-internal"] = distance_internal
         if distance_local is not None:
-            data_payload['distance-local'] = distance_local
+            data_payload["distance-local"] = distance_local
         if synchronization is not None:
-            data_payload['synchronization'] = synchronization
+            data_payload["synchronization"] = synchronization
         if graceful_restart is not None:
-            data_payload['graceful-restart'] = graceful_restart
+            data_payload["graceful-restart"] = graceful_restart
         if graceful_restart_time is not None:
-            data_payload['graceful-restart-time'] = graceful_restart_time
+            data_payload["graceful-restart-time"] = graceful_restart_time
         if graceful_stalepath_time is not None:
-            data_payload['graceful-stalepath-time'] = graceful_stalepath_time
+            data_payload["graceful-stalepath-time"] = graceful_stalepath_time
         if graceful_update_delay is not None:
-            data_payload['graceful-update-delay'] = graceful_update_delay
+            data_payload["graceful-update-delay"] = graceful_update_delay
         if graceful_end_on_timer is not None:
-            data_payload['graceful-end-on-timer'] = graceful_end_on_timer
+            data_payload["graceful-end-on-timer"] = graceful_end_on_timer
         if additional_path_select is not None:
-            data_payload['additional-path-select'] = additional_path_select
+            data_payload["additional-path-select"] = additional_path_select
         if additional_path_select6 is not None:
-            data_payload['additional-path-select6'] = additional_path_select6
+            data_payload["additional-path-select6"] = additional_path_select6
         if additional_path_select_vpnv4 is not None:
-            data_payload['additional-path-select-vpnv4'] = additional_path_select_vpnv4
+            data_payload["additional-path-select-vpnv4"] = (
+                additional_path_select_vpnv4
+            )
         if additional_path_select_vpnv6 is not None:
-            data_payload['additional-path-select-vpnv6'] = additional_path_select_vpnv6
+            data_payload["additional-path-select-vpnv6"] = (
+                additional_path_select_vpnv6
+            )
         if cross_family_conditional_adv is not None:
-            data_payload['cross-family-conditional-adv'] = cross_family_conditional_adv
+            data_payload["cross-family-conditional-adv"] = (
+                cross_family_conditional_adv
+            )
         if aggregate_address is not None:
-            data_payload['aggregate-address'] = aggregate_address
+            data_payload["aggregate-address"] = aggregate_address
         if aggregate_address6 is not None:
-            data_payload['aggregate-address6'] = aggregate_address6
+            data_payload["aggregate-address6"] = aggregate_address6
         if neighbor is not None:
-            data_payload['neighbor'] = neighbor
+            data_payload["neighbor"] = neighbor
         if neighbor_group is not None:
-            data_payload['neighbor-group'] = neighbor_group
+            data_payload["neighbor-group"] = neighbor_group
         if neighbor_range is not None:
-            data_payload['neighbor-range'] = neighbor_range
+            data_payload["neighbor-range"] = neighbor_range
         if neighbor_range6 is not None:
-            data_payload['neighbor-range6'] = neighbor_range6
+            data_payload["neighbor-range6"] = neighbor_range6
         if network is not None:
-            data_payload['network'] = network
+            data_payload["network"] = network
         if network6 is not None:
-            data_payload['network6'] = network6
+            data_payload["network6"] = network6
         if redistribute is not None:
-            data_payload['redistribute'] = redistribute
+            data_payload["redistribute"] = redistribute
         if redistribute6 is not None:
-            data_payload['redistribute6'] = redistribute6
+            data_payload["redistribute6"] = redistribute6
         if admin_distance is not None:
-            data_payload['admin-distance'] = admin_distance
+            data_payload["admin-distance"] = admin_distance
         if vrf is not None:
-            data_payload['vrf'] = vrf
+            data_payload["vrf"] = vrf
         if vrf6 is not None:
-            data_payload['vrf6'] = vrf6
+            data_payload["vrf6"] = vrf6
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

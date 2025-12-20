@@ -13,25 +13,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.firewall.service_custom.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.firewall.service_custom.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.service_custom.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.firewall.service_custom.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.firewall.service_custom.delete(name="item_name")
 
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 class ServiceCustom:
     """
     Servicecustom Operations.
-    
+
     Provides CRUD operations for FortiOS servicecustom configuration.
 
     Methods:
@@ -59,7 +59,7 @@ class ServiceCustom:
         post(): Create new configuration objects
         put(): Update existing configuration objects
         delete(): Remove configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -67,7 +67,7 @@ class ServiceCustom:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ServiceCustom endpoint.
 
@@ -90,7 +90,7 @@ class ServiceCustom:
     ) -> dict[str, Any]:
         """
         Select a specific entry from a CLI table.
-        
+
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
@@ -100,7 +100,7 @@ class ServiceCustom:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -108,27 +108,29 @@ class ServiceCustom:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if name:
             endpoint = f"/firewall.service/custom/{name}"
         else:
             endpoint = "/firewall.service/custom"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -169,7 +171,7 @@ class ServiceCustom:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             name: Object identifier (required)
@@ -206,7 +208,7 @@ class ServiceCustom:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -214,79 +216,81 @@ class ServiceCustom:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
         endpoint = f"/firewall.service/custom/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if category is not None:
-            data_payload['category'] = category
+            data_payload["category"] = category
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if helper is not None:
-            data_payload['helper'] = helper
+            data_payload["helper"] = helper
         if iprange is not None:
-            data_payload['iprange'] = iprange
+            data_payload["iprange"] = iprange
         if fqdn is not None:
-            data_payload['fqdn'] = fqdn
+            data_payload["fqdn"] = fqdn
         if protocol_number is not None:
-            data_payload['protocol-number'] = protocol_number
+            data_payload["protocol-number"] = protocol_number
         if icmptype is not None:
-            data_payload['icmptype'] = icmptype
+            data_payload["icmptype"] = icmptype
         if icmpcode is not None:
-            data_payload['icmpcode'] = icmpcode
+            data_payload["icmpcode"] = icmpcode
         if tcp_portrange is not None:
-            data_payload['tcp-portrange'] = tcp_portrange
+            data_payload["tcp-portrange"] = tcp_portrange
         if udp_portrange is not None:
-            data_payload['udp-portrange'] = udp_portrange
+            data_payload["udp-portrange"] = udp_portrange
         if udplite_portrange is not None:
-            data_payload['udplite-portrange'] = udplite_portrange
+            data_payload["udplite-portrange"] = udplite_portrange
         if sctp_portrange is not None:
-            data_payload['sctp-portrange'] = sctp_portrange
+            data_payload["sctp-portrange"] = sctp_portrange
         if tcp_halfclose_timer is not None:
-            data_payload['tcp-halfclose-timer'] = tcp_halfclose_timer
+            data_payload["tcp-halfclose-timer"] = tcp_halfclose_timer
         if tcp_halfopen_timer is not None:
-            data_payload['tcp-halfopen-timer'] = tcp_halfopen_timer
+            data_payload["tcp-halfopen-timer"] = tcp_halfopen_timer
         if tcp_timewait_timer is not None:
-            data_payload['tcp-timewait-timer'] = tcp_timewait_timer
+            data_payload["tcp-timewait-timer"] = tcp_timewait_timer
         if tcp_rst_timer is not None:
-            data_payload['tcp-rst-timer'] = tcp_rst_timer
+            data_payload["tcp-rst-timer"] = tcp_rst_timer
         if udp_idle_timer is not None:
-            data_payload['udp-idle-timer'] = udp_idle_timer
+            data_payload["udp-idle-timer"] = udp_idle_timer
         if session_ttl is not None:
-            data_payload['session-ttl'] = session_ttl
+            data_payload["session-ttl"] = session_ttl
         if check_reset_range is not None:
-            data_payload['check-reset-range'] = check_reset_range
+            data_payload["check-reset-range"] = check_reset_range
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if app_service_type is not None:
-            data_payload['app-service-type'] = app_service_type
+            data_payload["app-service-type"] = app_service_type
         if app_category is not None:
-            data_payload['app-category'] = app_category
+            data_payload["app-category"] = app_category
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         if fabric_object is not None:
-            data_payload['fabric-object'] = fabric_object
+            data_payload["fabric-object"] = fabric_object
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -298,13 +302,13 @@ class ServiceCustom:
     ) -> dict[str, Any]:
         """
         Delete this specific resource.
-        
+
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -312,18 +316,20 @@ class ServiceCustom:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        
+
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall.service/custom/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -332,37 +338,39 @@ class ServiceCustom:
     ) -> bool:
         """
         Check if an object exists.
-        
+
         Args:
             name: Object identifier
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-        
+
         Returns:
             True if object exists, False otherwise
-        
+
         Example:
             >>> if fgt.api.cmdb.firewall.address.exists("server1"):
             ...     print("Address exists")
         """
-        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
         import inspect
-        
+
+        from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
+
         # Call get() - returns dict (sync) or coroutine (async)
         result = self.get(name=name, vdom=vdom)
-        
+
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     await result  # type: ignore[misc]
                     return True
                 except ResourceNotFoundError:
                     return False
+
             return _async()
-        
+
         # Sync mode - get() already executed, no exception means it exists
         return True
-
 
     def post(
         self,
@@ -402,7 +410,7 @@ class ServiceCustom:
     ) -> dict[str, Any]:
         """
         Create object(s) in this table.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
@@ -437,7 +445,7 @@ class ServiceCustom:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -445,7 +453,7 @@ class ServiceCustom:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -453,62 +461,64 @@ class ServiceCustom:
         params = {}
         endpoint = "/firewall.service/custom"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if uuid is not None:
-            data_payload['uuid'] = uuid
+            data_payload["uuid"] = uuid
         if proxy is not None:
-            data_payload['proxy'] = proxy
+            data_payload["proxy"] = proxy
         if category is not None:
-            data_payload['category'] = category
+            data_payload["category"] = category
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if helper is not None:
-            data_payload['helper'] = helper
+            data_payload["helper"] = helper
         if iprange is not None:
-            data_payload['iprange'] = iprange
+            data_payload["iprange"] = iprange
         if fqdn is not None:
-            data_payload['fqdn'] = fqdn
+            data_payload["fqdn"] = fqdn
         if protocol_number is not None:
-            data_payload['protocol-number'] = protocol_number
+            data_payload["protocol-number"] = protocol_number
         if icmptype is not None:
-            data_payload['icmptype'] = icmptype
+            data_payload["icmptype"] = icmptype
         if icmpcode is not None:
-            data_payload['icmpcode'] = icmpcode
+            data_payload["icmpcode"] = icmpcode
         if tcp_portrange is not None:
-            data_payload['tcp-portrange'] = tcp_portrange
+            data_payload["tcp-portrange"] = tcp_portrange
         if udp_portrange is not None:
-            data_payload['udp-portrange'] = udp_portrange
+            data_payload["udp-portrange"] = udp_portrange
         if udplite_portrange is not None:
-            data_payload['udplite-portrange'] = udplite_portrange
+            data_payload["udplite-portrange"] = udplite_portrange
         if sctp_portrange is not None:
-            data_payload['sctp-portrange'] = sctp_portrange
+            data_payload["sctp-portrange"] = sctp_portrange
         if tcp_halfclose_timer is not None:
-            data_payload['tcp-halfclose-timer'] = tcp_halfclose_timer
+            data_payload["tcp-halfclose-timer"] = tcp_halfclose_timer
         if tcp_halfopen_timer is not None:
-            data_payload['tcp-halfopen-timer'] = tcp_halfopen_timer
+            data_payload["tcp-halfopen-timer"] = tcp_halfopen_timer
         if tcp_timewait_timer is not None:
-            data_payload['tcp-timewait-timer'] = tcp_timewait_timer
+            data_payload["tcp-timewait-timer"] = tcp_timewait_timer
         if tcp_rst_timer is not None:
-            data_payload['tcp-rst-timer'] = tcp_rst_timer
+            data_payload["tcp-rst-timer"] = tcp_rst_timer
         if udp_idle_timer is not None:
-            data_payload['udp-idle-timer'] = udp_idle_timer
+            data_payload["udp-idle-timer"] = udp_idle_timer
         if session_ttl is not None:
-            data_payload['session-ttl'] = session_ttl
+            data_payload["session-ttl"] = session_ttl
         if check_reset_range is not None:
-            data_payload['check-reset-range'] = check_reset_range
+            data_payload["check-reset-range"] = check_reset_range
         if comment is not None:
-            data_payload['comment'] = comment
+            data_payload["comment"] = comment
         if color is not None:
-            data_payload['color'] = color
+            data_payload["color"] = color
         if app_service_type is not None:
-            data_payload['app-service-type'] = app_service_type
+            data_payload["app-service-type"] = app_service_type
         if app_category is not None:
-            data_payload['app-category'] = app_category
+            data_payload["app-category"] = app_category
         if application is not None:
-            data_payload['application'] = application
+            data_payload["application"] = application
         if fabric_object is not None:
-            data_payload['fabric-object'] = fabric_object
+            data_payload["fabric-object"] = fabric_object
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

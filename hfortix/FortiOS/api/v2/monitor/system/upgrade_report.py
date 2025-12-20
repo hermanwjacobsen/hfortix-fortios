@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.system.upgrade_report.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.system.upgrade_report.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Current:
     """
     Current Operations.
-    
+
     Provides read-only access for FortiOS current data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Current endpoint.
 
@@ -59,27 +59,29 @@ class Current:
     ) -> dict[str, Any]:
         """
         Get current realtime device statistics that can be compared against a saved upgrade report.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.upgrade_report.current.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/upgrade-report/current", params=params)
+        return self._client.get(
+            "monitor", "/system/upgrade-report/current", params=params
+        )
 
 
 class Exists:
     """Exists operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Exists endpoint.
 
@@ -96,27 +98,29 @@ class Exists:
     ) -> dict[str, Any]:
         """
         Check if a report upgrade has been generated.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.upgrade_report.exists.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/upgrade-report/exists", params=params)
+        return self._client.get(
+            "monitor", "/system/upgrade-report/exists", params=params
+        )
 
 
 class Saved:
     """Saved operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Saved endpoint.
 
@@ -133,27 +137,29 @@ class Saved:
     ) -> dict[str, Any]:
         """
         Get the last generated upgrade report.
-        
+
         Args:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.system.upgrade_report.saved.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/upgrade-report/saved", params=params)
+        return self._client.get(
+            "monitor", "/system/upgrade-report/saved", params=params
+        )
 
 
 class UpgradeReport:
     """UpgradeReport operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize UpgradeReport endpoint.
 

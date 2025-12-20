@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.npu.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.npu.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.npu.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.npu.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.npu.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Npu:
     """
     Npu Operations.
-    
+
     Provides CRUD operations for FortiOS npu configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Npu:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Npu endpoint.
 
@@ -82,14 +82,14 @@ class Npu:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Npu:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/npu"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -129,7 +131,7 @@ class Npu:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -145,7 +147,7 @@ class Npu:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -153,7 +155,7 @@ class Npu:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -161,24 +163,28 @@ class Npu:
         params = {}
         endpoint = "/system/npu"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if dedicated_management_cpu is not None:
-            data_payload['dedicated-management-cpu'] = dedicated_management_cpu
+            data_payload["dedicated-management-cpu"] = dedicated_management_cpu
         if dedicated_management_affinity is not None:
-            data_payload['dedicated-management-affinity'] = dedicated_management_affinity
+            data_payload["dedicated-management-affinity"] = (
+                dedicated_management_affinity
+            )
         if capwap_offload is not None:
-            data_payload['capwap-offload'] = capwap_offload
+            data_payload["capwap-offload"] = capwap_offload
         if ipsec_mtu_override is not None:
-            data_payload['ipsec-mtu-override'] = ipsec_mtu_override
+            data_payload["ipsec-mtu-override"] = ipsec_mtu_override
         if ipsec_ordering is not None:
-            data_payload['ipsec-ordering'] = ipsec_ordering
+            data_payload["ipsec-ordering"] = ipsec_ordering
         if ipsec_enc_subengine_mask is not None:
-            data_payload['ipsec-enc-subengine-mask'] = ipsec_enc_subengine_mask
+            data_payload["ipsec-enc-subengine-mask"] = ipsec_enc_subengine_mask
         if ipsec_dec_subengine_mask is not None:
-            data_payload['ipsec-dec-subengine-mask'] = ipsec_dec_subengine_mask
+            data_payload["ipsec-dec-subengine-mask"] = ipsec_dec_subengine_mask
         if priority_protocol is not None:
-            data_payload['priority-protocol'] = priority_protocol
+            data_payload["priority-protocol"] = priority_protocol
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

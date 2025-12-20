@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.web_proxy.global_.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.web_proxy.global_.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.web_proxy.global_.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.web_proxy.global_.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.web_proxy.global_.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class Global:
     """
     Global Operations.
-    
+
     Provides CRUD operations for FortiOS global configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class Global:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Global endpoint.
 
@@ -82,14 +82,14 @@ class Global:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/web-proxy/global"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -149,7 +151,7 @@ class Global:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -185,7 +187,7 @@ class Global:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -193,7 +195,7 @@ class Global:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -201,64 +203,76 @@ class Global:
         params = {}
         endpoint = "/web-proxy/global"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if ssl_cert is not None:
-            data_payload['ssl-cert'] = ssl_cert
+            data_payload["ssl-cert"] = ssl_cert
         if ssl_ca_cert is not None:
-            data_payload['ssl-ca-cert'] = ssl_ca_cert
+            data_payload["ssl-ca-cert"] = ssl_ca_cert
         if fast_policy_match is not None:
-            data_payload['fast-policy-match'] = fast_policy_match
+            data_payload["fast-policy-match"] = fast_policy_match
         if ldap_user_cache is not None:
-            data_payload['ldap-user-cache'] = ldap_user_cache
+            data_payload["ldap-user-cache"] = ldap_user_cache
         if proxy_fqdn is not None:
-            data_payload['proxy-fqdn'] = proxy_fqdn
+            data_payload["proxy-fqdn"] = proxy_fqdn
         if max_request_length is not None:
-            data_payload['max-request-length'] = max_request_length
+            data_payload["max-request-length"] = max_request_length
         if max_message_length is not None:
-            data_payload['max-message-length'] = max_message_length
+            data_payload["max-message-length"] = max_message_length
         if http2_client_window_size is not None:
-            data_payload['http2-client-window-size'] = http2_client_window_size
+            data_payload["http2-client-window-size"] = http2_client_window_size
         if http2_server_window_size is not None:
-            data_payload['http2-server-window-size'] = http2_server_window_size
+            data_payload["http2-server-window-size"] = http2_server_window_size
         if auth_sign_timeout is not None:
-            data_payload['auth-sign-timeout'] = auth_sign_timeout
+            data_payload["auth-sign-timeout"] = auth_sign_timeout
         if strict_web_check is not None:
-            data_payload['strict-web-check'] = strict_web_check
+            data_payload["strict-web-check"] = strict_web_check
         if forward_proxy_auth is not None:
-            data_payload['forward-proxy-auth'] = forward_proxy_auth
+            data_payload["forward-proxy-auth"] = forward_proxy_auth
         if forward_server_affinity_timeout is not None:
-            data_payload['forward-server-affinity-timeout'] = forward_server_affinity_timeout
+            data_payload["forward-server-affinity-timeout"] = (
+                forward_server_affinity_timeout
+            )
         if max_waf_body_cache_length is not None:
-            data_payload['max-waf-body-cache-length'] = max_waf_body_cache_length
+            data_payload["max-waf-body-cache-length"] = (
+                max_waf_body_cache_length
+            )
         if webproxy_profile is not None:
-            data_payload['webproxy-profile'] = webproxy_profile
+            data_payload["webproxy-profile"] = webproxy_profile
         if learn_client_ip is not None:
-            data_payload['learn-client-ip'] = learn_client_ip
+            data_payload["learn-client-ip"] = learn_client_ip
         if always_learn_client_ip is not None:
-            data_payload['always-learn-client-ip'] = always_learn_client_ip
+            data_payload["always-learn-client-ip"] = always_learn_client_ip
         if learn_client_ip_from_header is not None:
-            data_payload['learn-client-ip-from-header'] = learn_client_ip_from_header
+            data_payload["learn-client-ip-from-header"] = (
+                learn_client_ip_from_header
+            )
         if learn_client_ip_srcaddr is not None:
-            data_payload['learn-client-ip-srcaddr'] = learn_client_ip_srcaddr
+            data_payload["learn-client-ip-srcaddr"] = learn_client_ip_srcaddr
         if learn_client_ip_srcaddr6 is not None:
-            data_payload['learn-client-ip-srcaddr6'] = learn_client_ip_srcaddr6
+            data_payload["learn-client-ip-srcaddr6"] = learn_client_ip_srcaddr6
         if src_affinity_exempt_addr is not None:
-            data_payload['src-affinity-exempt-addr'] = src_affinity_exempt_addr
+            data_payload["src-affinity-exempt-addr"] = src_affinity_exempt_addr
         if src_affinity_exempt_addr6 is not None:
-            data_payload['src-affinity-exempt-addr6'] = src_affinity_exempt_addr6
+            data_payload["src-affinity-exempt-addr6"] = (
+                src_affinity_exempt_addr6
+            )
         if policy_partial_match is not None:
-            data_payload['policy-partial-match'] = policy_partial_match
+            data_payload["policy-partial-match"] = policy_partial_match
         if log_policy_pending is not None:
-            data_payload['log-policy-pending'] = log_policy_pending
+            data_payload["log-policy-pending"] = log_policy_pending
         if log_forward_server is not None:
-            data_payload['log-forward-server'] = log_forward_server
+            data_payload["log-forward-server"] = log_forward_server
         if log_app_id is not None:
-            data_payload['log-app-id'] = log_app_id
+            data_payload["log-app-id"] = log_app_id
         if proxy_transparent_cert_inspection is not None:
-            data_payload['proxy-transparent-cert-inspection'] = proxy_transparent_cert_inspection
+            data_payload["proxy-transparent-cert-inspection"] = (
+                proxy_transparent_cert_inspection
+            )
         if request_obs_fold is not None:
-            data_payload['request-obs-fold'] = request_obs_fold
+            data_payload["request-obs-fold"] = request_obs_fold
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

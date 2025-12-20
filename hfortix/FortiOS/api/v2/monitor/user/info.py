@@ -9,10 +9,10 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # Get monitoring/log data (read-only)
     >>> data = fgt.api.monitor.user.info.get()
-    >>> 
+    >>>
     >>> # With filters and parameters
     >>> data = fgt.api.monitor.user.info.get(
     ...     count=100,
@@ -32,17 +32,17 @@ if TYPE_CHECKING:
 class Query:
     """
     Query Operations.
-    
+
     Provides read-only access for FortiOS query data.
 
     Methods:
         get(): Retrieve monitoring/log data (read-only)
-    
+
     Note:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Query endpoint.
 
@@ -68,7 +68,7 @@ class Query:
     ) -> dict[str, Any]:
         """
         Query user info.
-        
+
         Args:
             timestamp_from: To get entries since the timestamp for unified historical query. (optional)
             timestamp_to: To get entries before the timestamp for unified historical query. (optional)
@@ -82,32 +82,32 @@ class Query:
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.info.query.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if timestamp_from is not None:
-            params['timestamp_from'] = timestamp_from
+            params["timestamp_from"] = timestamp_from
         if timestamp_to is not None:
-            params['timestamp_to'] = timestamp_to
+            params["timestamp_to"] = timestamp_to
         if filters is not None:
-            params['filters'] = filters
+            params["filters"] = filters
         if query_type is not None:
-            params['query_type'] = query_type
+            params["query_type"] = query_type
         if query_id is not None:
-            params['query_id'] = query_id
+            params["query_id"] = query_id
         if cache_query is not None:
-            params['cache_query'] = cache_query
+            params["cache_query"] = cache_query
         if key_only is not None:
-            params['key_only'] = key_only
+            params["key_only"] = key_only
         if filter_logic is not None:
-            params['filter_logic'] = filter_logic
+            params["filter_logic"] = filter_logic
         if total_only is not None:
-            params['total_only'] = total_only
+            params["total_only"] = total_only
         params.update(kwargs)
         return self._client.get("monitor", "/user/info/query", params=params)
 
@@ -115,7 +115,7 @@ class Query:
 class Thumbnail:
     """Thumbnail operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Thumbnail endpoint.
 
@@ -133,29 +133,31 @@ class Thumbnail:
     ) -> dict[str, Any]:
         """
         Get user info thumbnail.
-        
+
         Args:
             filters: A list of filters. Type:{"type": string, "value": string} (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.info.thumbnail.get()
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['filters'] = filters
+        params["filters"] = filters
         params.update(kwargs)
-        return self._client.get("monitor", "/user/info/thumbnail", params=params)
+        return self._client.get(
+            "monitor", "/user/info/thumbnail", params=params
+        )
 
 
 class ThumbnailFile:
     """ThumbnailFile operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ThumbnailFile endpoint.
 
@@ -173,29 +175,31 @@ class ThumbnailFile:
     ) -> dict[str, Any]:
         """
         Get user info thumbnail by given file name.
-        
+
         Args:
             filename: Thumbnail file name. The file name is from thumbnailPhoto field of user info query. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-        
+
         Returns:
             Dictionary containing API response
-        
+
         Example:
             >>> fgt.api.monitor.user.info.thumbnail_file.get(filename='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['filename'] = filename
+        params["filename"] = filename
         params.update(kwargs)
-        return self._client.get("monitor", "/user/info/thumbnail-file", params=params)
+        return self._client.get(
+            "monitor", "/user/info/thumbnail-file", params=params
+        )
 
 
 class Info:
     """Info operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Info endpoint.
 

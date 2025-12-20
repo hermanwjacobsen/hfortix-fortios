@@ -10,25 +10,25 @@ API Endpoints:
 Example Usage:
     >>> from hfortix.FortiOS import FortiOS
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-    >>> 
+    >>>
     >>> # List all items
     >>> items = fgt.api.cmdb.system.vdom_dns.get()
-    >>> 
+    >>>
     >>> # Get specific item (if supported)
     >>> item = fgt.api.cmdb.system.vdom_dns.get(name="item_name")
-    >>> 
+    >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.vdom_dns.post(
     ...     name="new_item",
     ...     # ... additional parameters
     ... )
-    >>> 
+    >>>
     >>> # Update existing item (use PUT)
     >>> result = fgt.api.cmdb.system.vdom_dns.put(
     ...     name="existing_item",
     ...     # ... parameters to update
     ... )
-    >>> 
+    >>>
     >>> # Delete item
     >>> result = fgt.api.cmdb.system.vdom_dns.delete(name="item_name")
 
@@ -48,13 +48,13 @@ if TYPE_CHECKING:
 class VdomDns:
     """
     Vdomdns Operations.
-    
+
     Provides CRUD operations for FortiOS vdomdns configuration.
 
     Methods:
         get(): Retrieve configuration objects
         put(): Update existing configuration objects
-    
+
     Important:
         - POST creates new objects (404 if name already exists)
         - PUT updates existing objects (404 if name doesn't exist)
@@ -62,7 +62,7 @@ class VdomDns:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize VdomDns endpoint.
 
@@ -82,14 +82,14 @@ class VdomDns:
     ) -> dict[str, Any]:
         """
         Select all entries in a CLI table.
-        
+
         Args:
             exclude_default_values: Exclude properties/objects with default value (optional)
             stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -97,18 +97,20 @@ class VdomDns:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/vdom-dns"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -137,7 +139,7 @@ class VdomDns:
     ) -> dict[str, Any]:
         """
         Update this specific resource.
-        
+
         Args:
             payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
             before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
@@ -161,7 +163,7 @@ class VdomDns:
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
             raw_json: If True, return full API response with metadata. If False, return only results.
             **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
-        
+
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
             sort: Sort results (e.g., sort='name,asc')
@@ -169,7 +171,7 @@ class VdomDns:
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
             See FortiOS REST API documentation for full list of query parameters
-        
+
         Returns:
             Dictionary containing API response
         """
@@ -177,40 +179,42 @@ class VdomDns:
         params = {}
         endpoint = "/system/vdom-dns"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if vdom_dns is not None:
-            data_payload['vdom-dns'] = vdom_dns
+            data_payload["vdom-dns"] = vdom_dns
         if primary is not None:
-            data_payload['primary'] = primary
+            data_payload["primary"] = primary
         if secondary is not None:
-            data_payload['secondary'] = secondary
+            data_payload["secondary"] = secondary
         if protocol is not None:
-            data_payload['protocol'] = protocol
+            data_payload["protocol"] = protocol
         if ssl_certificate is not None:
-            data_payload['ssl-certificate'] = ssl_certificate
+            data_payload["ssl-certificate"] = ssl_certificate
         if server_hostname is not None:
-            data_payload['server-hostname'] = server_hostname
+            data_payload["server-hostname"] = server_hostname
         if ip6_primary is not None:
-            data_payload['ip6-primary'] = ip6_primary
+            data_payload["ip6-primary"] = ip6_primary
         if ip6_secondary is not None:
-            data_payload['ip6-secondary'] = ip6_secondary
+            data_payload["ip6-secondary"] = ip6_secondary
         if source_ip is not None:
-            data_payload['source-ip'] = source_ip
+            data_payload["source-ip"] = source_ip
         if source_ip_interface is not None:
-            data_payload['source-ip-interface'] = source_ip_interface
+            data_payload["source-ip-interface"] = source_ip_interface
         if interface_select_method is not None:
-            data_payload['interface-select-method'] = interface_select_method
+            data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
-            data_payload['interface'] = interface
+            data_payload["interface"] = interface
         if vrf_select is not None:
-            data_payload['vrf-select'] = vrf_select
+            data_payload["vrf-select"] = vrf_select
         if server_select_method is not None:
-            data_payload['server-select-method'] = server_select_method
+            data_payload["server-select-method"] = server_select_method
         if alt_primary is not None:
-            data_payload['alt-primary'] = alt_primary
+            data_payload["alt-primary"] = alt_primary
         if alt_secondary is not None:
-            data_payload['alt-secondary'] = alt_secondary
+            data_payload["alt-secondary"] = alt_secondary
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
