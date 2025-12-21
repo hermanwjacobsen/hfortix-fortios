@@ -37,6 +37,10 @@ ENV/
 # GitHub prompts (keep local only)
 .github/prompts/
 
+# GitHub issue templates (not ready for release yet)
+.github/ISSUE_TEMPLATE/
+.github/PULL_REQUEST_TEMPLATE.md
+
 # Environment variables (IMPORTANT - contains tokens!)
 .env
 .env.local

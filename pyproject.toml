@@ -116,14 +116,6 @@ pretty = true
 namespace_packages = true
 explicit_package_bases = true
 
-[[tool.mypy.overrides]]
-module = "requests.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "httpx.*"
-ignore_missing_imports = true
-
 # Allow some flexibility for generated code
 [[tool.mypy.overrides]]
 module = "hfortix.FortiOS.api.v2.*"

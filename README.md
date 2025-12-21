@@ -38,7 +38,25 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.17):**
+**Latest Features (v0.3.19 - Unreleased):**
+- 🔧 **Type Checking Improvements**: Enhanced type safety and IDE support
+  - Cleaned up mypy configuration (removed unnecessary overrides)
+  - Enhanced type checking roadmap with v1.0.0 milestones
+  - Better IDE autocomplete and type checking
+
+**Features from v0.3.18:**
+- ✨ **Extensibility: Custom HTTP Clients**: Support for custom HTTP client implementations
+  - `IHTTPClient` Protocol interface for audit logging, caching, testing, custom auth
+  - See [examples/custom_http_client_example.py](https://github.com/hermanwjacobsen/hfortix/blob/main/examples/custom_http_client_example.py)
+- ✨ **Environment Variables Support**: Load credentials from environment variables
+  - Support for `FORTIOS_HOST`, `FORTIOS_TOKEN`, `FORTIOS_USERNAME`, `FORTIOS_PASSWORD`
+  - Perfect for CI/CD pipelines and security best practices
+- ✨ **Credential Validation**: Comprehensive validation for authentication credentials
+  - Validates token format and catches common copy-paste errors
+- 🐛 **Test File Naming Fix**: Fixed critical circular import issues
+  - Renamed all 354 test files to use `test_` prefix
+
+**Features from v0.3.17:**
 - ✨ **Performance Testing API**: Built-in performance testing and optimization
   - New `fgt.api.utils.performance_test()` method for testing your device
   - Validates connection pool settings automatically
