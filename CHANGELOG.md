@@ -5,6 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.20] - 2025-12-21
+
+### Fixed
+
+- **Firewall Policy Wrapper**: Fixed critical bugs in policy management wrapper
+  - Fixed `move()` method "top" and "bottom" positions now work correctly
+    - Properly queries all policies to find first/last policy IDs
+    - Excludes the policy being moved from consideration
+    - Uses query parameters instead of data payload for move action
+    - Bypasses generated API layer to call HTTP client directly with `params`
+  - Fixed `get_by_name()` return type - now returns single dict or None (not a list)
+  - Fixed `get(policy_id=X)` response handling - properly extracts policy from list response
+  - Fixed parameter names in all methods: `mkey` → `policyid` for consistency
+  - Added `raw_json` parameter support to `create()`, `get()`, `update()`, `delete()`, `move()`
+  - All 10 wrapper methods now fully tested and working with live FortiGate
+
+### Tested
+
+- **Integration Testing**: Verified all firewall policy wrapper functions against live FortiGate
+  - ✅ `create()` - Create policies with all parameters
+  - ✅ `get()` - Get all policies or specific policy by ID  
+  - ✅ `get_by_name()` - Get policy by exact name match
+  - ✅ `update()` - Partial policy updates
+  - ✅ `delete()` - Delete policies
+  - ✅ `exists()` - Check policy existence
+  - ✅ `move()` - Reorder policies (before/after/top/bottom)
+  - ✅ `clone()` - Duplicate policies with modifications
+  - ✅ `enable()` / `disable()` - Toggle policy status
+  - Test file: `X/tests/FortiOS/firewall/test_policy.py`
+
+### Documentation
+
+- **Filtering Guide**: Confirmed filter operators for policy searches
+  - `==` - Exact match (case insensitive)
+  - `=@` - Contains (substring match)
+  - `!=` - Not equals
+  - `!@` - Does not contain
+  - Multiple conditions with `&` (AND logic)
+  - Examples: `filter="name=@API_TEST"` returns all policies containing "API_TEST"
+
 ## [0.3.19] - 2025-12-21
 
 ### Changed

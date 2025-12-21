@@ -292,6 +292,7 @@ class FirewallPolicy:
         vdom: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
+        raw_json: Optional[bool] = None,
         # Catch-all for any additional fields
         data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
@@ -834,14 +835,17 @@ class FirewallPolicy:
             api_params["datasource"] = datasource
         if with_meta is not None:
             api_params["with_meta"] = with_meta
+        if raw_json is not None:
+            api_params["raw_json"] = raw_json
 
-        return self._api.post(data=policy_data, **api_params)
+        return self._api.post(payload_dict=policy_data, **api_params)
 
     def get(
         self,
         policy_id: Optional[Union[str, int]] = None,
         vdom: Optional[str] = None,
         filter: Optional[str] = None,
+        raw_json: Optional[bool] = None,
         **kwargs,
     ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
         """
@@ -866,8 +870,10 @@ class FirewallPolicy:
             >>> # Get policies with filter
             >>> policies = fgt.firewall.policy.get(filter='name==Allow-HTTP')
         """
+        if raw_json is not None:
+            kwargs['raw_json'] = raw_json
         return self._api.get(
-            mkey=policy_id, vdom=vdom, filter=filter, **kwargs
+            policyid=policy_id, vdom=vdom, filter=filter, **kwargs
         )
 
     def update(
@@ -1093,6 +1099,7 @@ class FirewallPolicy:
         vdom: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
+        raw_json: Optional[bool] = None,
         # Catch-all for any additional fields
         data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
@@ -1378,15 +1385,18 @@ class FirewallPolicy:
             api_params["datasource"] = datasource
         if with_meta is not None:
             api_params["with_meta"] = with_meta
+        if raw_json is not None:
+            api_params["raw_json"] = raw_json
 
         return self._api.put(
-            mkey=str(policy_id), data=policy_data, **api_params
+            policyid=str(policy_id), payload_dict=policy_data, **api_params
         )
 
     def delete(
         self,
         policy_id: Union[str, int],
         vdom: Optional[str] = None,
+        raw_json: Optional[bool] = None,
     ) -> Dict[str, Any]:
         """
         Delete a firewall policy.
@@ -1404,7 +1414,9 @@ class FirewallPolicy:
         api_params = {}
         if vdom:
             api_params["vdom"] = vdom
-        return self._api.delete(mkey=str(policy_id), **api_params)
+        if raw_json is not None:
+            api_params["raw_json"] = raw_json
+        return self._api.delete(policyid=str(policy_id), **api_params)
 
     def exists(
         self,
@@ -1425,7 +1437,7 @@ class FirewallPolicy:
             >>> if fgt.firewall.policy.exists(policy_id=1):
             ...     print("Policy exists")
         """
-        return self._api.exists(str(policy_id), vdom=vdom)
+        return self._api.exists(policyid=str(policy_id), vdom=vdom)
 
     def move(
         self,
@@ -1433,6 +1445,7 @@ class FirewallPolicy:
         position: str,
         reference_id: Optional[Union[str, int]] = None,
         vdom: Optional[str] = None,
+        raw_json: Optional[bool] = None,
     ) -> Dict[str, Any]:
         """
         Move a firewall policy to a different position.
@@ -1460,6 +1473,8 @@ class FirewallPolicy:
         move_kwargs: Dict[str, Any] = {"action": "move"}
         if vdom:
             move_kwargs["vdom"] = vdom
+        if raw_json is not None:
+            move_kwargs["raw_json"] = raw_json
 
         # Add the position parameter
         if position in ("before", "after"):
@@ -1469,22 +1484,72 @@ class FirewallPolicy:
                 )
             move_kwargs[position] = str(reference_id)
         elif position == "top":
-            # Move to position 0 (top)
-            move_kwargs["before"] = "1"
+            # To move to top, we need to find the first policy and use 'before'
+            policies = self.get(vdom=vdom)
+            # Ensure we have a list of policies
+            if isinstance(policies, dict):
+                policies = policies.get("results", [])
+            if not policies:
+                raise ValueError("Cannot move to top: no policies found")
+            # Get the first policy ID (policies are returned in order)
+            # Exclude the policy being moved from consideration
+            for policy in policies:
+                first_policy_id = policy['policyid']
+                if str(first_policy_id) != str(policy_id):
+                    break
+            else:
+                # All policies are the same ID? Already at top if only one policy
+                return {"status": "success", "message": "Policy already at top"}
+            # Don't move if already at the top
+            if str(policies[0]['policyid']) == str(policy_id):
+                return {"status": "success", "message": "Policy already at top"}
+            move_kwargs["before"] = str(first_policy_id)
         elif position == "bottom":
-            # For bottom, we don't specify before/after, just the action
-            pass
+            # To move to bottom, we need to find the last policy and use 'after'
+            policies = self.get(vdom=vdom)
+            # Ensure we have a list of policies
+            if isinstance(policies, dict):
+                policies = policies.get("results", [])
+            if not policies:
+                raise ValueError("Cannot move to bottom: no policies found")
+            # Get the last policy ID, excluding the policy being moved
+            for policy in reversed(policies):
+                last_policy_id = policy['policyid']
+                if str(last_policy_id) != str(policy_id):
+                    break
+            else:
+                # All policies are the same ID? Already at bottom if only one policy
+                return {"status": "success", "message": "Policy already at bottom"}
+            # Don't move if already at the bottom
+            if str(policies[-1]['policyid']) == str(policy_id):
+                return {"status": "success", "message": "Policy already at bottom"}
+            move_kwargs["after"] = str(last_policy_id)
         else:
             raise ValueError(
                 f"Invalid position: {position}. Must be 'before', 'after', 'top', or 'bottom'"
             )
 
-        # Call the API using the put method
-        return self._api.put(
-            mkey=str(policy_id),
-            data={},
-            **move_kwargs,  # Move doesn't require data
-        )
+        # Call the API using the HTTP client directly with params
+        # We need to use the HTTP client directly because move uses query params,
+        # not data payload
+        endpoint = f"firewall/policy/{policy_id}"
+        if vdom:
+            return self._fgt._client.put(
+                "cmdb",
+                endpoint,
+                data={},
+                params=move_kwargs,
+                vdom=vdom,
+                raw_json=raw_json if raw_json is not None else False,
+            )
+        else:
+            return self._fgt._client.put(
+                "cmdb",
+                endpoint,
+                data={},
+                params=move_kwargs,
+                raw_json=raw_json if raw_json is not None else False,
+            )
 
     def clone(
         self,
