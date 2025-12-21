@@ -498,11 +498,11 @@ class FortiOS:
                 )
 
             # Warn about common placeholder strings
-            if token.lower() in [
+            if token.lower() in [  # type: ignore[union-attr]
                 "token",
                 "api_token",
                 "your_token_here",
-                "your-api-token",  # type: ignore[union-attr]
+                "your-api-token",
                 "xxx",
                 "xxxx",
                 "xxxxx",
