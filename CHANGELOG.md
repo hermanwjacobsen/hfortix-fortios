@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.21] - Unreleased
+
+### Added
+
+- **Builder Pattern Refactoring (Phase 1)**: Eliminated code duplication in firewall policy endpoints
+  - Created `hfortix/FortiOS/api/v2/cmdb/firewall/_helpers/policy_helpers.py` (123 lines)
+  - Implemented `build_policy_payload()` - API layer function (no normalization)
+  - Implemented `build_policy_payload_normalized()` - Wrapper layer function (with normalization)
+  - Implemented `normalize_to_name_list()` - Format converter for flexible inputs
+  - Refactored `policy.py`: 1796 → 1381 lines (-415 lines, -23% reduction)
+  - Refactored `firewallPolicy.py`: 1703 → 1541 lines (-162 lines, -10% reduction)
+  - Total: 454 lines removed, 13% reduction across both files
+  - All 226 integration tests passing - Zero breaking changes
+  - Proper architectural separation: API layer (no normalization) vs Wrapper layer (with normalization)
+
+### Changed
+
+- **Documentation Updates**: Updated roadmap and project status documentation
+  - Updated `ROADMAP.md` with comprehensive feature history from v0.3.14-v0.3.21
+  - Added detailed v0.3.18 features (custom HTTP clients, environment variables, credential validation)
+  - Added v0.3.10-0.3.13 features (circuit breaker, connection pool, request tracking, structured logging)
+  - Changed builder pattern status from ✅ to ⏳ (only 1 of 30+ resources completed)
+  - Updated version tracking: v0.3.20 released, v0.3.21 in development
+  - Created `REFACTORING_SUMMARY.md` documenting builder pattern implementation
+
+### Fixed
+
+- **Firewall Policy Wrapper**: Improved parameter handling and code consistency
+  - Fixed `get()` method to properly construct API parameters dictionary
+  - Fixed `move()` method to use consistent parameter passing pattern
+  - Simplified implementation to match other wrapper methods
+  - All parameters now passed correctly to underlying API layer
+
 ## [0.3.20] - 2025-12-21
 
 ### Fixed
@@ -15,11 +48,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Excludes the policy being moved from consideration
     - Uses query parameters instead of data payload for move action
     - Bypasses generated API layer to call HTTP client directly with `params`
-    - Simplified implementation using consistent parameter passing
-  - Fixed `get()` method parameter handling
-    - Properly constructs API parameters dictionary
-    - Fixed kwargs merging for additional parameters
-    - All parameters now passed correctly to underlying API
   - Fixed `get_by_name()` return type - now returns single dict or None (not a list)
   - Fixed `get(policy_id=X)` response handling - properly extracts policy from list response
   - Fixed parameter names in all methods: `mkey` → `policyid` for consistency

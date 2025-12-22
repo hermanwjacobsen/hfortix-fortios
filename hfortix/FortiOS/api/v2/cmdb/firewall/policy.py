@@ -47,6 +47,9 @@ from typing import TYPE_CHECKING, Any, Coroutine, cast
 if TYPE_CHECKING:
     from ....http_client_interface import IHTTPClient
 
+# Import from helpers module
+from ._helpers import build_policy_payload
+
 
 class Policy:
     """
@@ -518,410 +521,201 @@ class Policy:
         Returns:
             Dictionary containing API response
         """
+        # Start with payload_dict or empty
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/policy/{policyid}"
-        if before is not None:
-            data_payload["before"] = before
-        if after is not None:
-            data_payload["after"] = after
-        if policyid is not None:
-            data_payload["policyid"] = policyid
-        if status is not None:
-            data_payload["status"] = status
-        if name is not None:
-            data_payload["name"] = name
-        if uuid is not None:
-            data_payload["uuid"] = uuid
-        if srcintf is not None:
-            data_payload["srcintf"] = srcintf
-        if dstintf is not None:
-            data_payload["dstintf"] = dstintf
-        if nat64 is not None:
-            data_payload["nat64"] = nat64
-        if nat46 is not None:
-            data_payload["nat46"] = nat46
-        if ztna_status is not None:
-            data_payload["ztna-status"] = ztna_status
-        if ztna_device_ownership is not None:
-            data_payload["ztna-device-ownership"] = ztna_device_ownership
-        if srcaddr is not None:
-            data_payload["srcaddr"] = srcaddr
-        if dstaddr is not None:
-            data_payload["dstaddr"] = dstaddr
-        if srcaddr6 is not None:
-            data_payload["srcaddr6"] = srcaddr6
-        if dstaddr6 is not None:
-            data_payload["dstaddr6"] = dstaddr6
-        if ztna_ems_tag is not None:
-            data_payload["ztna-ems-tag"] = ztna_ems_tag
-        if ztna_ems_tag_secondary is not None:
-            data_payload["ztna-ems-tag-secondary"] = ztna_ems_tag_secondary
-        if ztna_tags_match_logic is not None:
-            data_payload["ztna-tags-match-logic"] = ztna_tags_match_logic
-        if ztna_geo_tag is not None:
-            data_payload["ztna-geo-tag"] = ztna_geo_tag
-        if internet_service is not None:
-            data_payload["internet-service"] = internet_service
-        if internet_service_name is not None:
-            data_payload["internet-service-name"] = internet_service_name
-        if internet_service_group is not None:
-            data_payload["internet-service-group"] = internet_service_group
-        if internet_service_custom is not None:
-            data_payload["internet-service-custom"] = internet_service_custom
-        if network_service_dynamic is not None:
-            data_payload["network-service-dynamic"] = network_service_dynamic
-        if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
-        if internet_service_src is not None:
-            data_payload["internet-service-src"] = internet_service_src
-        if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
-        if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
-        if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
-        if network_service_src_dynamic is not None:
-            data_payload["network-service-src-dynamic"] = (
-                network_service_src_dynamic
-            )
-        if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
-        if reputation_minimum is not None:
-            data_payload["reputation-minimum"] = reputation_minimum
-        if reputation_direction is not None:
-            data_payload["reputation-direction"] = reputation_direction
-        if src_vendor_mac is not None:
-            data_payload["src-vendor-mac"] = src_vendor_mac
-        if internet_service6 is not None:
-            data_payload["internet-service6"] = internet_service6
-        if internet_service6_name is not None:
-            data_payload["internet-service6-name"] = internet_service6_name
-        if internet_service6_group is not None:
-            data_payload["internet-service6-group"] = internet_service6_group
-        if internet_service6_custom is not None:
-            data_payload["internet-service6-custom"] = internet_service6_custom
-        if internet_service6_custom_group is not None:
-            data_payload["internet-service6-custom-group"] = (
-                internet_service6_custom_group
-            )
-        if internet_service6_src is not None:
-            data_payload["internet-service6-src"] = internet_service6_src
-        if internet_service6_src_name is not None:
-            data_payload["internet-service6-src-name"] = (
-                internet_service6_src_name
-            )
-        if internet_service6_src_group is not None:
-            data_payload["internet-service6-src-group"] = (
-                internet_service6_src_group
-            )
-        if internet_service6_src_custom is not None:
-            data_payload["internet-service6-src-custom"] = (
-                internet_service6_src_custom
-            )
-        if internet_service6_src_custom_group is not None:
-            data_payload["internet-service6-src-custom-group"] = (
-                internet_service6_src_custom_group
-            )
-        if reputation_minimum6 is not None:
-            data_payload["reputation-minimum6"] = reputation_minimum6
-        if reputation_direction6 is not None:
-            data_payload["reputation-direction6"] = reputation_direction6
-        if rtp_nat is not None:
-            data_payload["rtp-nat"] = rtp_nat
-        if rtp_addr is not None:
-            data_payload["rtp-addr"] = rtp_addr
-        if send_deny_packet is not None:
-            data_payload["send-deny-packet"] = send_deny_packet
-        if firewall_session_dirty is not None:
-            data_payload["firewall-session-dirty"] = firewall_session_dirty
-        if schedule is not None:
-            data_payload["schedule"] = schedule
-        if schedule_timeout is not None:
-            data_payload["schedule-timeout"] = schedule_timeout
-        if policy_expiry is not None:
-            data_payload["policy-expiry"] = policy_expiry
-        if policy_expiry_date is not None:
-            data_payload["policy-expiry-date"] = policy_expiry_date
-        if policy_expiry_date_utc is not None:
-            data_payload["policy-expiry-date-utc"] = policy_expiry_date_utc
-        if service is not None:
-            data_payload["service"] = service
-        if tos_mask is not None:
-            data_payload["tos-mask"] = tos_mask
-        if tos is not None:
-            data_payload["tos"] = tos
-        if tos_negate is not None:
-            data_payload["tos-negate"] = tos_negate
-        if anti_replay is not None:
-            data_payload["anti-replay"] = anti_replay
-        if tcp_session_without_syn is not None:
-            data_payload["tcp-session-without-syn"] = tcp_session_without_syn
-        if geoip_anycast is not None:
-            data_payload["geoip-anycast"] = geoip_anycast
-        if geoip_match is not None:
-            data_payload["geoip-match"] = geoip_match
-        if dynamic_shaping is not None:
-            data_payload["dynamic-shaping"] = dynamic_shaping
-        if passive_wan_health_measurement is not None:
-            data_payload["passive-wan-health-measurement"] = (
-                passive_wan_health_measurement
-            )
-        if app_monitor is not None:
-            data_payload["app-monitor"] = app_monitor
-        if utm_status is not None:
-            data_payload["utm-status"] = utm_status
-        if inspection_mode is not None:
-            data_payload["inspection-mode"] = inspection_mode
-        if http_policy_redirect is not None:
-            data_payload["http-policy-redirect"] = http_policy_redirect
-        if ssh_policy_redirect is not None:
-            data_payload["ssh-policy-redirect"] = ssh_policy_redirect
-        if ztna_policy_redirect is not None:
-            data_payload["ztna-policy-redirect"] = ztna_policy_redirect
-        if webproxy_profile is not None:
-            data_payload["webproxy-profile"] = webproxy_profile
-        if profile_type is not None:
-            data_payload["profile-type"] = profile_type
-        if profile_group is not None:
-            data_payload["profile-group"] = profile_group
-        if profile_protocol_options is not None:
-            data_payload["profile-protocol-options"] = profile_protocol_options
-        if ssl_ssh_profile is not None:
-            data_payload["ssl-ssh-profile"] = ssl_ssh_profile
-        if av_profile is not None:
-            data_payload["av-profile"] = av_profile
-        if webfilter_profile is not None:
-            data_payload["webfilter-profile"] = webfilter_profile
-        if dnsfilter_profile is not None:
-            data_payload["dnsfilter-profile"] = dnsfilter_profile
-        if emailfilter_profile is not None:
-            data_payload["emailfilter-profile"] = emailfilter_profile
-        if dlp_profile is not None:
-            data_payload["dlp-profile"] = dlp_profile
-        if file_filter_profile is not None:
-            data_payload["file-filter-profile"] = file_filter_profile
-        if ips_sensor is not None:
-            data_payload["ips-sensor"] = ips_sensor
-        if application_list is not None:
-            data_payload["application-list"] = application_list
-        if voip_profile is not None:
-            data_payload["voip-profile"] = voip_profile
-        if ips_voip_filter is not None:
-            data_payload["ips-voip-filter"] = ips_voip_filter
-        if sctp_filter_profile is not None:
-            data_payload["sctp-filter-profile"] = sctp_filter_profile
-        if diameter_filter_profile is not None:
-            data_payload["diameter-filter-profile"] = diameter_filter_profile
-        if virtual_patch_profile is not None:
-            data_payload["virtual-patch-profile"] = virtual_patch_profile
-        if icap_profile is not None:
-            data_payload["icap-profile"] = icap_profile
-        if videofilter_profile is not None:
-            data_payload["videofilter-profile"] = videofilter_profile
-        if waf_profile is not None:
-            data_payload["waf-profile"] = waf_profile
-        if ssh_filter_profile is not None:
-            data_payload["ssh-filter-profile"] = ssh_filter_profile
-        if casb_profile is not None:
-            data_payload["casb-profile"] = casb_profile
-        if logtraffic is not None:
-            data_payload["logtraffic"] = logtraffic
-        if logtraffic_start is not None:
-            data_payload["logtraffic-start"] = logtraffic_start
-        if log_http_transaction is not None:
-            data_payload["log-http-transaction"] = log_http_transaction
-        if capture_packet is not None:
-            data_payload["capture-packet"] = capture_packet
-        if auto_asic_offload is not None:
-            data_payload["auto-asic-offload"] = auto_asic_offload
-        if np_acceleration is not None:
-            data_payload["np-acceleration"] = np_acceleration
-        if webproxy_forward_server is not None:
-            data_payload["webproxy-forward-server"] = webproxy_forward_server
-        if traffic_shaper is not None:
-            data_payload["traffic-shaper"] = traffic_shaper
-        if traffic_shaper_reverse is not None:
-            data_payload["traffic-shaper-reverse"] = traffic_shaper_reverse
-        if per_ip_shaper is not None:
-            data_payload["per-ip-shaper"] = per_ip_shaper
-        if nat is not None:
-            data_payload["nat"] = nat
-        if pcp_outbound is not None:
-            data_payload["pcp-outbound"] = pcp_outbound
-        if pcp_inbound is not None:
-            data_payload["pcp-inbound"] = pcp_inbound
-        if pcp_poolname is not None:
-            data_payload["pcp-poolname"] = pcp_poolname
-        if permit_any_host is not None:
-            data_payload["permit-any-host"] = permit_any_host
-        if permit_stun_host is not None:
-            data_payload["permit-stun-host"] = permit_stun_host
-        if fixedport is not None:
-            data_payload["fixedport"] = fixedport
-        if port_preserve is not None:
-            data_payload["port-preserve"] = port_preserve
-        if port_random is not None:
-            data_payload["port-random"] = port_random
-        if ippool is not None:
-            data_payload["ippool"] = ippool
-        if poolname is not None:
-            data_payload["poolname"] = poolname
-        if poolname6 is not None:
-            data_payload["poolname6"] = poolname6
-        if session_ttl is not None:
-            data_payload["session-ttl"] = session_ttl
-        if vlan_cos_fwd is not None:
-            data_payload["vlan-cos-fwd"] = vlan_cos_fwd
-        if vlan_cos_rev is not None:
-            data_payload["vlan-cos-rev"] = vlan_cos_rev
-        if inbound is not None:
-            data_payload["inbound"] = inbound
-        if outbound is not None:
-            data_payload["outbound"] = outbound
-        if natinbound is not None:
-            data_payload["natinbound"] = natinbound
-        if natoutbound is not None:
-            data_payload["natoutbound"] = natoutbound
-        if fec is not None:
-            data_payload["fec"] = fec
-        if wccp is not None:
-            data_payload["wccp"] = wccp
-        if ntlm is not None:
-            data_payload["ntlm"] = ntlm
-        if ntlm_guest is not None:
-            data_payload["ntlm-guest"] = ntlm_guest
-        if ntlm_enabled_browsers is not None:
-            data_payload["ntlm-enabled-browsers"] = ntlm_enabled_browsers
-        if fsso_agent_for_ntlm is not None:
-            data_payload["fsso-agent-for-ntlm"] = fsso_agent_for_ntlm
-        if groups is not None:
-            data_payload["groups"] = groups
-        if users is not None:
-            data_payload["users"] = users
-        if fsso_groups is not None:
-            data_payload["fsso-groups"] = fsso_groups
-        if auth_path is not None:
-            data_payload["auth-path"] = auth_path
-        if disclaimer is not None:
-            data_payload["disclaimer"] = disclaimer
-        if email_collect is not None:
-            data_payload["email-collect"] = email_collect
-        if vpntunnel is not None:
-            data_payload["vpntunnel"] = vpntunnel
-        if natip is not None:
-            data_payload["natip"] = natip
-        if match_vip is not None:
-            data_payload["match-vip"] = match_vip
-        if match_vip_only is not None:
-            data_payload["match-vip-only"] = match_vip_only
-        if diffserv_copy is not None:
-            data_payload["diffserv-copy"] = diffserv_copy
-        if diffserv_forward is not None:
-            data_payload["diffserv-forward"] = diffserv_forward
-        if diffserv_reverse is not None:
-            data_payload["diffserv-reverse"] = diffserv_reverse
-        if diffservcode_forward is not None:
-            data_payload["diffservcode-forward"] = diffservcode_forward
-        if diffservcode_rev is not None:
-            data_payload["diffservcode-rev"] = diffservcode_rev
-        if tcp_mss_sender is not None:
-            data_payload["tcp-mss-sender"] = tcp_mss_sender
-        if tcp_mss_receiver is not None:
-            data_payload["tcp-mss-receiver"] = tcp_mss_receiver
-        if comments is not None:
-            data_payload["comments"] = comments
-        if auth_cert is not None:
-            data_payload["auth-cert"] = auth_cert
-        if auth_redirect_addr is not None:
-            data_payload["auth-redirect-addr"] = auth_redirect_addr
-        if redirect_url is not None:
-            data_payload["redirect-url"] = redirect_url
-        if identity_based_route is not None:
-            data_payload["identity-based-route"] = identity_based_route
-        if block_notification is not None:
-            data_payload["block-notification"] = block_notification
-        if custom_log_fields is not None:
-            data_payload["custom-log-fields"] = custom_log_fields
-        if replacemsg_override_group is not None:
-            data_payload["replacemsg-override-group"] = (
-                replacemsg_override_group
-            )
-        if srcaddr_negate is not None:
-            data_payload["srcaddr-negate"] = srcaddr_negate
-        if srcaddr6_negate is not None:
-            data_payload["srcaddr6-negate"] = srcaddr6_negate
-        if dstaddr_negate is not None:
-            data_payload["dstaddr-negate"] = dstaddr_negate
-        if dstaddr6_negate is not None:
-            data_payload["dstaddr6-negate"] = dstaddr6_negate
-        if ztna_ems_tag_negate is not None:
-            data_payload["ztna-ems-tag-negate"] = ztna_ems_tag_negate
-        if service_negate is not None:
-            data_payload["service-negate"] = service_negate
-        if internet_service_negate is not None:
-            data_payload["internet-service-negate"] = internet_service_negate
-        if internet_service_src_negate is not None:
-            data_payload["internet-service-src-negate"] = (
-                internet_service_src_negate
-            )
-        if internet_service6_negate is not None:
-            data_payload["internet-service6-negate"] = internet_service6_negate
-        if internet_service6_src_negate is not None:
-            data_payload["internet-service6-src-negate"] = (
-                internet_service6_src_negate
-            )
-        if timeout_send_rst is not None:
-            data_payload["timeout-send-rst"] = timeout_send_rst
-        if captive_portal_exempt is not None:
-            data_payload["captive-portal-exempt"] = captive_portal_exempt
-        if decrypted_traffic_mirror is not None:
-            data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
-        if dsri is not None:
-            data_payload["dsri"] = dsri
-        if radius_mac_auth_bypass is not None:
-            data_payload["radius-mac-auth-bypass"] = radius_mac_auth_bypass
-        if radius_ip_auth_bypass is not None:
-            data_payload["radius-ip-auth-bypass"] = radius_ip_auth_bypass
-        if delay_tcp_npu_session is not None:
-            data_payload["delay-tcp-npu-session"] = delay_tcp_npu_session
-        if vlan_filter is not None:
-            data_payload["vlan-filter"] = vlan_filter
-        if sgt_check is not None:
-            data_payload["sgt-check"] = sgt_check
-        if sgt is not None:
-            data_payload["sgt"] = sgt
-        if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
-        if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
-        if internet_service6_fortiguard is not None:
-            data_payload["internet-service6-fortiguard"] = (
-                internet_service6_fortiguard
-            )
-        if internet_service6_src_fortiguard is not None:
-            data_payload["internet-service6-src-fortiguard"] = (
-                internet_service6_src_fortiguard
-            )
+        
+        # Build payload from all parameters using helper function
+        policy_params = build_policy_payload(
+            before=before,
+            after=after,
+            policyid=policyid,
+            status=status,
+            name=name,
+            uuid=uuid,
+            srcintf=srcintf,
+            dstintf=dstintf,
+            nat64=nat64,
+            nat46=nat46,
+            ztna_status=ztna_status,
+            ztna_device_ownership=ztna_device_ownership,
+            srcaddr=srcaddr,
+            dstaddr=dstaddr,
+            srcaddr6=srcaddr6,
+            dstaddr6=dstaddr6,
+            ztna_ems_tag=ztna_ems_tag,
+            ztna_ems_tag_secondary=ztna_ems_tag_secondary,
+            ztna_tags_match_logic=ztna_tags_match_logic,
+            ztna_geo_tag=ztna_geo_tag,
+            internet_service=internet_service,
+            internet_service_name=internet_service_name,
+            internet_service_group=internet_service_group,
+            internet_service_custom=internet_service_custom,
+            network_service_dynamic=network_service_dynamic,
+            internet_service_custom_group=internet_service_custom_group,
+            internet_service_src=internet_service_src,
+            internet_service_src_name=internet_service_src_name,
+            internet_service_src_group=internet_service_src_group,
+            internet_service_src_custom=internet_service_src_custom,
+            network_service_src_dynamic=network_service_src_dynamic,
+            internet_service_src_custom_group=internet_service_src_custom_group,
+            reputation_minimum=reputation_minimum,
+            reputation_direction=reputation_direction,
+            src_vendor_mac=src_vendor_mac,
+            internet_service6=internet_service6,
+            internet_service6_name=internet_service6_name,
+            internet_service6_group=internet_service6_group,
+            internet_service6_custom=internet_service6_custom,
+            internet_service6_custom_group=internet_service6_custom_group,
+            internet_service6_src=internet_service6_src,
+            internet_service6_src_name=internet_service6_src_name,
+            internet_service6_src_group=internet_service6_src_group,
+            internet_service6_src_custom=internet_service6_src_custom,
+            internet_service6_src_custom_group=internet_service6_src_custom_group,
+            reputation_minimum6=reputation_minimum6,
+            reputation_direction6=reputation_direction6,
+            rtp_nat=rtp_nat,
+            rtp_addr=rtp_addr,
+            send_deny_packet=send_deny_packet,
+            firewall_session_dirty=firewall_session_dirty,
+            schedule=schedule,
+            schedule_timeout=schedule_timeout,
+            policy_expiry=policy_expiry,
+            policy_expiry_date=policy_expiry_date,
+            policy_expiry_date_utc=policy_expiry_date_utc,
+            service=service,
+            tos_mask=tos_mask,
+            tos=tos,
+            tos_negate=tos_negate,
+            anti_replay=anti_replay,
+            tcp_session_without_syn=tcp_session_without_syn,
+            geoip_anycast=geoip_anycast,
+            geoip_match=geoip_match,
+            dynamic_shaping=dynamic_shaping,
+            passive_wan_health_measurement=passive_wan_health_measurement,
+            app_monitor=app_monitor,
+            utm_status=utm_status,
+            inspection_mode=inspection_mode,
+            http_policy_redirect=http_policy_redirect,
+            ssh_policy_redirect=ssh_policy_redirect,
+            ztna_policy_redirect=ztna_policy_redirect,
+            webproxy_profile=webproxy_profile,
+            profile_type=profile_type,
+            profile_group=profile_group,
+            profile_protocol_options=profile_protocol_options,
+            ssl_ssh_profile=ssl_ssh_profile,
+            av_profile=av_profile,
+            webfilter_profile=webfilter_profile,
+            dnsfilter_profile=dnsfilter_profile,
+            emailfilter_profile=emailfilter_profile,
+            dlp_profile=dlp_profile,
+            file_filter_profile=file_filter_profile,
+            ips_sensor=ips_sensor,
+            application_list=application_list,
+            voip_profile=voip_profile,
+            ips_voip_filter=ips_voip_filter,
+            sctp_filter_profile=sctp_filter_profile,
+            diameter_filter_profile=diameter_filter_profile,
+            virtual_patch_profile=virtual_patch_profile,
+            icap_profile=icap_profile,
+            videofilter_profile=videofilter_profile,
+            waf_profile=waf_profile,
+            ssh_filter_profile=ssh_filter_profile,
+            casb_profile=casb_profile,
+            logtraffic=logtraffic,
+            logtraffic_start=logtraffic_start,
+            log_http_transaction=log_http_transaction,
+            capture_packet=capture_packet,
+            auto_asic_offload=auto_asic_offload,
+            np_acceleration=np_acceleration,
+            webproxy_forward_server=webproxy_forward_server,
+            traffic_shaper=traffic_shaper,
+            traffic_shaper_reverse=traffic_shaper_reverse,
+            per_ip_shaper=per_ip_shaper,
+            nat=nat,
+            pcp_outbound=pcp_outbound,
+            pcp_inbound=pcp_inbound,
+            pcp_poolname=pcp_poolname,
+            permit_any_host=permit_any_host,
+            permit_stun_host=permit_stun_host,
+            fixedport=fixedport,
+            port_preserve=port_preserve,
+            port_random=port_random,
+            ippool=ippool,
+            poolname=poolname,
+            poolname6=poolname6,
+            session_ttl=session_ttl,
+            vlan_cos_fwd=vlan_cos_fwd,
+            vlan_cos_rev=vlan_cos_rev,
+            inbound=inbound,
+            outbound=outbound,
+            natinbound=natinbound,
+            natoutbound=natoutbound,
+            fec=fec,
+            wccp=wccp,
+            ntlm=ntlm,
+            ntlm_guest=ntlm_guest,
+            ntlm_enabled_browsers=ntlm_enabled_browsers,
+            fsso_agent_for_ntlm=fsso_agent_for_ntlm,
+            groups=groups,
+            users=users,
+            fsso_groups=fsso_groups,
+            auth_path=auth_path,
+            disclaimer=disclaimer,
+            email_collect=email_collect,
+            vpntunnel=vpntunnel,
+            natip=natip,
+            match_vip=match_vip,
+            match_vip_only=match_vip_only,
+            diffserv_copy=diffserv_copy,
+            diffserv_forward=diffserv_forward,
+            diffserv_reverse=diffserv_reverse,
+            diffservcode_forward=diffservcode_forward,
+            diffservcode_rev=diffservcode_rev,
+            tcp_mss_sender=tcp_mss_sender,
+            tcp_mss_receiver=tcp_mss_receiver,
+            comments=comments,
+            auth_cert=auth_cert,
+            auth_redirect_addr=auth_redirect_addr,
+            redirect_url=redirect_url,
+            identity_based_route=identity_based_route,
+            block_notification=block_notification,
+            custom_log_fields=custom_log_fields,
+            replacemsg_override_group=replacemsg_override_group,
+            srcaddr_negate=srcaddr_negate,
+            srcaddr6_negate=srcaddr6_negate,
+            dstaddr_negate=dstaddr_negate,
+            dstaddr6_negate=dstaddr6_negate,
+            ztna_ems_tag_negate=ztna_ems_tag_negate,
+            service_negate=service_negate,
+            internet_service_negate=internet_service_negate,
+            internet_service_src_negate=internet_service_src_negate,
+            internet_service6_negate=internet_service6_negate,
+            internet_service6_src_negate=internet_service6_src_negate,
+            timeout_send_rst=timeout_send_rst,
+            captive_portal_exempt=captive_portal_exempt,
+            decrypted_traffic_mirror=decrypted_traffic_mirror,
+            dsri=dsri,
+            radius_mac_auth_bypass=radius_mac_auth_bypass,
+            radius_ip_auth_bypass=radius_ip_auth_bypass,
+            delay_tcp_npu_session=delay_tcp_npu_session,
+            vlan_filter=vlan_filter,
+            sgt_check=sgt_check,
+            sgt=sgt,
+            internet_service_fortiguard=internet_service_fortiguard,
+            internet_service_src_fortiguard=internet_service_src_fortiguard,
+            internet_service6_fortiguard=internet_service6_fortiguard,
+            internet_service6_src_fortiguard=internet_service6_src_fortiguard,
+        )
+        
+        # Merge with data_payload and kwargs
+        data_payload.update(policy_params)
         data_payload.update(kwargs)
+        
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
         )
@@ -1392,404 +1186,196 @@ class Policy:
         Returns:
             Dictionary containing API response
         """
+        # Start with payload_dict or empty
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/policy"
-        if nkey is not None:
-            data_payload["nkey"] = nkey
-        if policyid is not None:
-            data_payload["policyid"] = policyid
-        if status is not None:
-            data_payload["status"] = status
-        if name is not None:
-            data_payload["name"] = name
-        if uuid is not None:
-            data_payload["uuid"] = uuid
-        if srcintf is not None:
-            data_payload["srcintf"] = srcintf
-        if dstintf is not None:
-            data_payload["dstintf"] = dstintf
-        if nat64 is not None:
-            data_payload["nat64"] = nat64
-        if nat46 is not None:
-            data_payload["nat46"] = nat46
-        if ztna_status is not None:
-            data_payload["ztna-status"] = ztna_status
-        if ztna_device_ownership is not None:
-            data_payload["ztna-device-ownership"] = ztna_device_ownership
-        if srcaddr is not None:
-            data_payload["srcaddr"] = srcaddr
-        if dstaddr is not None:
-            data_payload["dstaddr"] = dstaddr
-        if srcaddr6 is not None:
-            data_payload["srcaddr6"] = srcaddr6
-        if dstaddr6 is not None:
-            data_payload["dstaddr6"] = dstaddr6
-        if ztna_ems_tag is not None:
-            data_payload["ztna-ems-tag"] = ztna_ems_tag
-        if ztna_ems_tag_secondary is not None:
-            data_payload["ztna-ems-tag-secondary"] = ztna_ems_tag_secondary
-        if ztna_tags_match_logic is not None:
-            data_payload["ztna-tags-match-logic"] = ztna_tags_match_logic
-        if ztna_geo_tag is not None:
-            data_payload["ztna-geo-tag"] = ztna_geo_tag
-        if internet_service is not None:
-            data_payload["internet-service"] = internet_service
-        if internet_service_name is not None:
-            data_payload["internet-service-name"] = internet_service_name
-        if internet_service_group is not None:
-            data_payload["internet-service-group"] = internet_service_group
-        if internet_service_custom is not None:
-            data_payload["internet-service-custom"] = internet_service_custom
-        if network_service_dynamic is not None:
-            data_payload["network-service-dynamic"] = network_service_dynamic
-        if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
-        if internet_service_src is not None:
-            data_payload["internet-service-src"] = internet_service_src
-        if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
-        if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
-        if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
-        if network_service_src_dynamic is not None:
-            data_payload["network-service-src-dynamic"] = (
-                network_service_src_dynamic
-            )
-        if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
-        if reputation_minimum is not None:
-            data_payload["reputation-minimum"] = reputation_minimum
-        if reputation_direction is not None:
-            data_payload["reputation-direction"] = reputation_direction
-        if src_vendor_mac is not None:
-            data_payload["src-vendor-mac"] = src_vendor_mac
-        if internet_service6 is not None:
-            data_payload["internet-service6"] = internet_service6
-        if internet_service6_name is not None:
-            data_payload["internet-service6-name"] = internet_service6_name
-        if internet_service6_group is not None:
-            data_payload["internet-service6-group"] = internet_service6_group
-        if internet_service6_custom is not None:
-            data_payload["internet-service6-custom"] = internet_service6_custom
-        if internet_service6_custom_group is not None:
-            data_payload["internet-service6-custom-group"] = (
-                internet_service6_custom_group
-            )
-        if internet_service6_src is not None:
-            data_payload["internet-service6-src"] = internet_service6_src
-        if internet_service6_src_name is not None:
-            data_payload["internet-service6-src-name"] = (
-                internet_service6_src_name
-            )
-        if internet_service6_src_group is not None:
-            data_payload["internet-service6-src-group"] = (
-                internet_service6_src_group
-            )
-        if internet_service6_src_custom is not None:
-            data_payload["internet-service6-src-custom"] = (
-                internet_service6_src_custom
-            )
-        if internet_service6_src_custom_group is not None:
-            data_payload["internet-service6-src-custom-group"] = (
-                internet_service6_src_custom_group
-            )
-        if reputation_minimum6 is not None:
-            data_payload["reputation-minimum6"] = reputation_minimum6
-        if reputation_direction6 is not None:
-            data_payload["reputation-direction6"] = reputation_direction6
-        if rtp_nat is not None:
-            data_payload["rtp-nat"] = rtp_nat
-        if rtp_addr is not None:
-            data_payload["rtp-addr"] = rtp_addr
-        if send_deny_packet is not None:
-            data_payload["send-deny-packet"] = send_deny_packet
-        if firewall_session_dirty is not None:
-            data_payload["firewall-session-dirty"] = firewall_session_dirty
-        if schedule is not None:
-            data_payload["schedule"] = schedule
-        if schedule_timeout is not None:
-            data_payload["schedule-timeout"] = schedule_timeout
-        if policy_expiry is not None:
-            data_payload["policy-expiry"] = policy_expiry
-        if policy_expiry_date is not None:
-            data_payload["policy-expiry-date"] = policy_expiry_date
-        if policy_expiry_date_utc is not None:
-            data_payload["policy-expiry-date-utc"] = policy_expiry_date_utc
-        if service is not None:
-            data_payload["service"] = service
-        if tos_mask is not None:
-            data_payload["tos-mask"] = tos_mask
-        if tos is not None:
-            data_payload["tos"] = tos
-        if tos_negate is not None:
-            data_payload["tos-negate"] = tos_negate
-        if anti_replay is not None:
-            data_payload["anti-replay"] = anti_replay
-        if tcp_session_without_syn is not None:
-            data_payload["tcp-session-without-syn"] = tcp_session_without_syn
-        if geoip_anycast is not None:
-            data_payload["geoip-anycast"] = geoip_anycast
-        if geoip_match is not None:
-            data_payload["geoip-match"] = geoip_match
-        if dynamic_shaping is not None:
-            data_payload["dynamic-shaping"] = dynamic_shaping
-        if passive_wan_health_measurement is not None:
-            data_payload["passive-wan-health-measurement"] = (
-                passive_wan_health_measurement
-            )
-        if app_monitor is not None:
-            data_payload["app-monitor"] = app_monitor
-        if utm_status is not None:
-            data_payload["utm-status"] = utm_status
-        if inspection_mode is not None:
-            data_payload["inspection-mode"] = inspection_mode
-        if http_policy_redirect is not None:
-            data_payload["http-policy-redirect"] = http_policy_redirect
-        if ssh_policy_redirect is not None:
-            data_payload["ssh-policy-redirect"] = ssh_policy_redirect
-        if ztna_policy_redirect is not None:
-            data_payload["ztna-policy-redirect"] = ztna_policy_redirect
-        if webproxy_profile is not None:
-            data_payload["webproxy-profile"] = webproxy_profile
-        if profile_type is not None:
-            data_payload["profile-type"] = profile_type
-        if profile_group is not None:
-            data_payload["profile-group"] = profile_group
-        if profile_protocol_options is not None:
-            data_payload["profile-protocol-options"] = profile_protocol_options
-        if ssl_ssh_profile is not None:
-            data_payload["ssl-ssh-profile"] = ssl_ssh_profile
-        if av_profile is not None:
-            data_payload["av-profile"] = av_profile
-        if webfilter_profile is not None:
-            data_payload["webfilter-profile"] = webfilter_profile
-        if dnsfilter_profile is not None:
-            data_payload["dnsfilter-profile"] = dnsfilter_profile
-        if emailfilter_profile is not None:
-            data_payload["emailfilter-profile"] = emailfilter_profile
-        if dlp_profile is not None:
-            data_payload["dlp-profile"] = dlp_profile
-        if file_filter_profile is not None:
-            data_payload["file-filter-profile"] = file_filter_profile
-        if ips_sensor is not None:
-            data_payload["ips-sensor"] = ips_sensor
-        if application_list is not None:
-            data_payload["application-list"] = application_list
-        if voip_profile is not None:
-            data_payload["voip-profile"] = voip_profile
-        if ips_voip_filter is not None:
-            data_payload["ips-voip-filter"] = ips_voip_filter
-        if sctp_filter_profile is not None:
-            data_payload["sctp-filter-profile"] = sctp_filter_profile
-        if diameter_filter_profile is not None:
-            data_payload["diameter-filter-profile"] = diameter_filter_profile
-        if virtual_patch_profile is not None:
-            data_payload["virtual-patch-profile"] = virtual_patch_profile
-        if icap_profile is not None:
-            data_payload["icap-profile"] = icap_profile
-        if videofilter_profile is not None:
-            data_payload["videofilter-profile"] = videofilter_profile
-        if waf_profile is not None:
-            data_payload["waf-profile"] = waf_profile
-        if ssh_filter_profile is not None:
-            data_payload["ssh-filter-profile"] = ssh_filter_profile
-        if casb_profile is not None:
-            data_payload["casb-profile"] = casb_profile
-        if logtraffic is not None:
-            data_payload["logtraffic"] = logtraffic
-        if logtraffic_start is not None:
-            data_payload["logtraffic-start"] = logtraffic_start
-        if log_http_transaction is not None:
-            data_payload["log-http-transaction"] = log_http_transaction
-        if capture_packet is not None:
-            data_payload["capture-packet"] = capture_packet
-        if auto_asic_offload is not None:
-            data_payload["auto-asic-offload"] = auto_asic_offload
-        if np_acceleration is not None:
-            data_payload["np-acceleration"] = np_acceleration
-        if webproxy_forward_server is not None:
-            data_payload["webproxy-forward-server"] = webproxy_forward_server
-        if traffic_shaper is not None:
-            data_payload["traffic-shaper"] = traffic_shaper
-        if traffic_shaper_reverse is not None:
-            data_payload["traffic-shaper-reverse"] = traffic_shaper_reverse
-        if per_ip_shaper is not None:
-            data_payload["per-ip-shaper"] = per_ip_shaper
-        if nat is not None:
-            data_payload["nat"] = nat
-        if pcp_outbound is not None:
-            data_payload["pcp-outbound"] = pcp_outbound
-        if pcp_inbound is not None:
-            data_payload["pcp-inbound"] = pcp_inbound
-        if pcp_poolname is not None:
-            data_payload["pcp-poolname"] = pcp_poolname
-        if permit_any_host is not None:
-            data_payload["permit-any-host"] = permit_any_host
-        if permit_stun_host is not None:
-            data_payload["permit-stun-host"] = permit_stun_host
-        if fixedport is not None:
-            data_payload["fixedport"] = fixedport
-        if port_preserve is not None:
-            data_payload["port-preserve"] = port_preserve
-        if port_random is not None:
-            data_payload["port-random"] = port_random
-        if ippool is not None:
-            data_payload["ippool"] = ippool
-        if poolname is not None:
-            data_payload["poolname"] = poolname
-        if poolname6 is not None:
-            data_payload["poolname6"] = poolname6
-        if session_ttl is not None:
-            data_payload["session-ttl"] = session_ttl
-        if vlan_cos_fwd is not None:
-            data_payload["vlan-cos-fwd"] = vlan_cos_fwd
-        if vlan_cos_rev is not None:
-            data_payload["vlan-cos-rev"] = vlan_cos_rev
-        if inbound is not None:
-            data_payload["inbound"] = inbound
-        if outbound is not None:
-            data_payload["outbound"] = outbound
-        if natinbound is not None:
-            data_payload["natinbound"] = natinbound
-        if natoutbound is not None:
-            data_payload["natoutbound"] = natoutbound
-        if fec is not None:
-            data_payload["fec"] = fec
-        if wccp is not None:
-            data_payload["wccp"] = wccp
-        if ntlm is not None:
-            data_payload["ntlm"] = ntlm
-        if ntlm_guest is not None:
-            data_payload["ntlm-guest"] = ntlm_guest
-        if ntlm_enabled_browsers is not None:
-            data_payload["ntlm-enabled-browsers"] = ntlm_enabled_browsers
-        if fsso_agent_for_ntlm is not None:
-            data_payload["fsso-agent-for-ntlm"] = fsso_agent_for_ntlm
-        if groups is not None:
-            data_payload["groups"] = groups
-        if users is not None:
-            data_payload["users"] = users
-        if fsso_groups is not None:
-            data_payload["fsso-groups"] = fsso_groups
-        if auth_path is not None:
-            data_payload["auth-path"] = auth_path
-        if disclaimer is not None:
-            data_payload["disclaimer"] = disclaimer
-        if email_collect is not None:
-            data_payload["email-collect"] = email_collect
-        if vpntunnel is not None:
-            data_payload["vpntunnel"] = vpntunnel
-        if natip is not None:
-            data_payload["natip"] = natip
-        if match_vip is not None:
-            data_payload["match-vip"] = match_vip
-        if match_vip_only is not None:
-            data_payload["match-vip-only"] = match_vip_only
-        if diffserv_copy is not None:
-            data_payload["diffserv-copy"] = diffserv_copy
-        if diffserv_forward is not None:
-            data_payload["diffserv-forward"] = diffserv_forward
-        if diffserv_reverse is not None:
-            data_payload["diffserv-reverse"] = diffserv_reverse
-        if diffservcode_forward is not None:
-            data_payload["diffservcode-forward"] = diffservcode_forward
-        if diffservcode_rev is not None:
-            data_payload["diffservcode-rev"] = diffservcode_rev
-        if tcp_mss_sender is not None:
-            data_payload["tcp-mss-sender"] = tcp_mss_sender
-        if tcp_mss_receiver is not None:
-            data_payload["tcp-mss-receiver"] = tcp_mss_receiver
-        if comments is not None:
-            data_payload["comments"] = comments
-        if auth_cert is not None:
-            data_payload["auth-cert"] = auth_cert
-        if auth_redirect_addr is not None:
-            data_payload["auth-redirect-addr"] = auth_redirect_addr
-        if redirect_url is not None:
-            data_payload["redirect-url"] = redirect_url
-        if identity_based_route is not None:
-            data_payload["identity-based-route"] = identity_based_route
-        if block_notification is not None:
-            data_payload["block-notification"] = block_notification
-        if custom_log_fields is not None:
-            data_payload["custom-log-fields"] = custom_log_fields
-        if replacemsg_override_group is not None:
-            data_payload["replacemsg-override-group"] = (
-                replacemsg_override_group
-            )
-        if srcaddr_negate is not None:
-            data_payload["srcaddr-negate"] = srcaddr_negate
-        if srcaddr6_negate is not None:
-            data_payload["srcaddr6-negate"] = srcaddr6_negate
-        if dstaddr_negate is not None:
-            data_payload["dstaddr-negate"] = dstaddr_negate
-        if dstaddr6_negate is not None:
-            data_payload["dstaddr6-negate"] = dstaddr6_negate
-        if ztna_ems_tag_negate is not None:
-            data_payload["ztna-ems-tag-negate"] = ztna_ems_tag_negate
-        if service_negate is not None:
-            data_payload["service-negate"] = service_negate
-        if internet_service_negate is not None:
-            data_payload["internet-service-negate"] = internet_service_negate
-        if internet_service_src_negate is not None:
-            data_payload["internet-service-src-negate"] = (
-                internet_service_src_negate
-            )
-        if internet_service6_negate is not None:
-            data_payload["internet-service6-negate"] = internet_service6_negate
-        if internet_service6_src_negate is not None:
-            data_payload["internet-service6-src-negate"] = (
-                internet_service6_src_negate
-            )
-        if timeout_send_rst is not None:
-            data_payload["timeout-send-rst"] = timeout_send_rst
-        if captive_portal_exempt is not None:
-            data_payload["captive-portal-exempt"] = captive_portal_exempt
-        if decrypted_traffic_mirror is not None:
-            data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
-        if dsri is not None:
-            data_payload["dsri"] = dsri
-        if radius_mac_auth_bypass is not None:
-            data_payload["radius-mac-auth-bypass"] = radius_mac_auth_bypass
-        if radius_ip_auth_bypass is not None:
-            data_payload["radius-ip-auth-bypass"] = radius_ip_auth_bypass
-        if delay_tcp_npu_session is not None:
-            data_payload["delay-tcp-npu-session"] = delay_tcp_npu_session
-        if vlan_filter is not None:
-            data_payload["vlan-filter"] = vlan_filter
-        if sgt_check is not None:
-            data_payload["sgt-check"] = sgt_check
-        if sgt is not None:
-            data_payload["sgt"] = sgt
-        if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
-        if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
-        if internet_service6_fortiguard is not None:
-            data_payload["internet-service6-fortiguard"] = (
-                internet_service6_fortiguard
-            )
-        if internet_service6_src_fortiguard is not None:
-            data_payload["internet-service6-src-fortiguard"] = (
-                internet_service6_src_fortiguard
-            )
+        
+        # Build payload from all parameters using helper function  
+        policy_params = build_policy_payload(
+            nkey=nkey,
+            policyid=policyid,
+            status=status,
+            name=name,
+            uuid=uuid,
+            srcintf=srcintf,
+            dstintf=dstintf,
+            nat64=nat64,
+            nat46=nat46,
+            ztna_status=ztna_status,
+            ztna_device_ownership=ztna_device_ownership,
+            srcaddr=srcaddr,
+            dstaddr=dstaddr,
+            srcaddr6=srcaddr6,
+            dstaddr6=dstaddr6,
+            ztna_ems_tag=ztna_ems_tag,
+            ztna_ems_tag_secondary=ztna_ems_tag_secondary,
+            ztna_tags_match_logic=ztna_tags_match_logic,
+            ztna_geo_tag=ztna_geo_tag,
+            internet_service=internet_service,
+            internet_service_name=internet_service_name,
+            internet_service_group=internet_service_group,
+            internet_service_custom=internet_service_custom,
+            network_service_dynamic=network_service_dynamic,
+            internet_service_custom_group=internet_service_custom_group,
+            internet_service_src=internet_service_src,
+            internet_service_src_name=internet_service_src_name,
+            internet_service_src_group=internet_service_src_group,
+            internet_service_src_custom=internet_service_src_custom,
+            network_service_src_dynamic=network_service_src_dynamic,
+            internet_service_src_custom_group=internet_service_src_custom_group,
+            reputation_minimum=reputation_minimum,
+            reputation_direction=reputation_direction,
+            src_vendor_mac=src_vendor_mac,
+            internet_service6=internet_service6,
+            internet_service6_name=internet_service6_name,
+            internet_service6_group=internet_service6_group,
+            internet_service6_custom=internet_service6_custom,
+            internet_service6_custom_group=internet_service6_custom_group,
+            internet_service6_src=internet_service6_src,
+            internet_service6_src_name=internet_service6_src_name,
+            internet_service6_src_group=internet_service6_src_group,
+            internet_service6_src_custom=internet_service6_src_custom,
+            internet_service6_src_custom_group=internet_service6_src_custom_group,
+            reputation_minimum6=reputation_minimum6,
+            reputation_direction6=reputation_direction6,
+            rtp_nat=rtp_nat,
+            rtp_addr=rtp_addr,
+            send_deny_packet=send_deny_packet,
+            firewall_session_dirty=firewall_session_dirty,
+            schedule=schedule,
+            schedule_timeout=schedule_timeout,
+            policy_expiry=policy_expiry,
+            policy_expiry_date=policy_expiry_date,
+            policy_expiry_date_utc=policy_expiry_date_utc,
+            service=service,
+            tos_mask=tos_mask,
+            tos=tos,
+            tos_negate=tos_negate,
+            anti_replay=anti_replay,
+            tcp_session_without_syn=tcp_session_without_syn,
+            geoip_anycast=geoip_anycast,
+            geoip_match=geoip_match,
+            dynamic_shaping=dynamic_shaping,
+            passive_wan_health_measurement=passive_wan_health_measurement,
+            app_monitor=app_monitor,
+            utm_status=utm_status,
+            inspection_mode=inspection_mode,
+            http_policy_redirect=http_policy_redirect,
+            ssh_policy_redirect=ssh_policy_redirect,
+            ztna_policy_redirect=ztna_policy_redirect,
+            webproxy_profile=webproxy_profile,
+            profile_type=profile_type,
+            profile_group=profile_group,
+            profile_protocol_options=profile_protocol_options,
+            ssl_ssh_profile=ssl_ssh_profile,
+            av_profile=av_profile,
+            webfilter_profile=webfilter_profile,
+            dnsfilter_profile=dnsfilter_profile,
+            emailfilter_profile=emailfilter_profile,
+            dlp_profile=dlp_profile,
+            file_filter_profile=file_filter_profile,
+            ips_sensor=ips_sensor,
+            application_list=application_list,
+            voip_profile=voip_profile,
+            ips_voip_filter=ips_voip_filter,
+            sctp_filter_profile=sctp_filter_profile,
+            diameter_filter_profile=diameter_filter_profile,
+            virtual_patch_profile=virtual_patch_profile,
+            icap_profile=icap_profile,
+            videofilter_profile=videofilter_profile,
+            waf_profile=waf_profile,
+            ssh_filter_profile=ssh_filter_profile,
+            casb_profile=casb_profile,
+            logtraffic=logtraffic,
+            logtraffic_start=logtraffic_start,
+            log_http_transaction=log_http_transaction,
+            capture_packet=capture_packet,
+            auto_asic_offload=auto_asic_offload,
+            np_acceleration=np_acceleration,
+            webproxy_forward_server=webproxy_forward_server,
+            traffic_shaper=traffic_shaper,
+            traffic_shaper_reverse=traffic_shaper_reverse,
+            per_ip_shaper=per_ip_shaper,
+            nat=nat,
+            pcp_outbound=pcp_outbound,
+            pcp_inbound=pcp_inbound,
+            pcp_poolname=pcp_poolname,
+            permit_any_host=permit_any_host,
+            permit_stun_host=permit_stun_host,
+            fixedport=fixedport,
+            port_preserve=port_preserve,
+            port_random=port_random,
+            ippool=ippool,
+            poolname=poolname,
+            poolname6=poolname6,
+            session_ttl=session_ttl,
+            vlan_cos_fwd=vlan_cos_fwd,
+            vlan_cos_rev=vlan_cos_rev,
+            inbound=inbound,
+            outbound=outbound,
+            natinbound=natinbound,
+            natoutbound=natoutbound,
+            fec=fec,
+            wccp=wccp,
+            ntlm=ntlm,
+            ntlm_guest=ntlm_guest,
+            ntlm_enabled_browsers=ntlm_enabled_browsers,
+            fsso_agent_for_ntlm=fsso_agent_for_ntlm,
+            groups=groups,
+            users=users,
+            fsso_groups=fsso_groups,
+            auth_path=auth_path,
+            disclaimer=disclaimer,
+            email_collect=email_collect,
+            vpntunnel=vpntunnel,
+            natip=natip,
+            match_vip=match_vip,
+            match_vip_only=match_vip_only,
+            diffserv_copy=diffserv_copy,
+            diffserv_forward=diffserv_forward,
+            diffserv_reverse=diffserv_reverse,
+            diffservcode_forward=diffservcode_forward,
+            diffservcode_rev=diffservcode_rev,
+            tcp_mss_sender=tcp_mss_sender,
+            tcp_mss_receiver=tcp_mss_receiver,
+            comments=comments,
+            auth_cert=auth_cert,
+            auth_redirect_addr=auth_redirect_addr,
+            redirect_url=redirect_url,
+            identity_based_route=identity_based_route,
+            block_notification=block_notification,
+            custom_log_fields=custom_log_fields,
+            replacemsg_override_group=replacemsg_override_group,
+            srcaddr_negate=srcaddr_negate,
+            srcaddr6_negate=srcaddr6_negate,
+            dstaddr_negate=dstaddr_negate,
+            dstaddr6_negate=dstaddr6_negate,
+            ztna_ems_tag_negate=ztna_ems_tag_negate,
+            service_negate=service_negate,
+            internet_service_negate=internet_service_negate,
+            internet_service_src_negate=internet_service_src_negate,
+            internet_service6_negate=internet_service6_negate,
+            internet_service6_src_negate=internet_service6_src_negate,
+            timeout_send_rst=timeout_send_rst,
+            captive_portal_exempt=captive_portal_exempt,
+            decrypted_traffic_mirror=decrypted_traffic_mirror,
+            dsri=dsri,
+            radius_mac_auth_bypass=radius_mac_auth_bypass,
+            radius_ip_auth_bypass=radius_ip_auth_bypass,
+            delay_tcp_npu_session=delay_tcp_npu_session,
+            vlan_filter=vlan_filter,
+            sgt_check=sgt_check,
+            sgt=sgt,
+            internet_service_fortiguard=internet_service_fortiguard,
+            internet_service_src_fortiguard=internet_service_src_fortiguard,
+            internet_service6_fortiguard=internet_service6_fortiguard,
+            internet_service6_src_fortiguard=internet_service6_src_fortiguard,
+        )
+        
+        # Merge with data_payload and kwargs
+        data_payload.update(policy_params)
         data_payload.update(kwargs)
+        
         return self._client.post(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
         )

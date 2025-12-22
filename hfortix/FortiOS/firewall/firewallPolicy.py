@@ -8,52 +8,14 @@ Use: fgt.firewall.policy.create(name='MyPolicy', srcintf=['port1'], ...)
 
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
 
+# Import shared helpers from the API layer
+from ..api.v2.cmdb.firewall._helpers import (
+    build_policy_payload_normalized,
+    normalize_to_name_list,
+)
+
 if TYPE_CHECKING:
     from ..fortios import FortiOS
-
-
-def _normalize_to_name_list(
-    value: Union[str, List[str], Dict[str, str], List[Dict[str, str]], None],
-) -> List[Dict[str, str]]:
-    """
-    Normalize various input formats to FortiOS API format: [{'name': 'value'}, ...]
-
-    Args:
-        value: Can be:
-            - String: 'port1' → [{'name': 'port1'}]
-            - List of strings: ['port1', 'port2'] → [{'name': 'port1'}, {'name': 'port2'}]
-            - Dict: {'name': 'port1'} → [{'name': 'port1'}]
-            - List of dicts: [{'name': 'port1'}, {'name': 'port2'}] → unchanged
-            - None: []
-
-    Returns:
-        List of dicts in FortiOS format
-    """
-    if value is None:
-        return []
-
-    # Already a list
-    if isinstance(value, list):
-        if not value:
-            return []
-        # If first item is a dict, assume whole list is dicts
-        if isinstance(value[0], dict):
-            # Filter out empty dicts that sometimes appear in API responses
-            filtered: list[dict[str, Any]] = [
-                item
-                for item in value
-                if isinstance(item, dict) and item and "name" in item
-            ]
-            return filtered
-        # List of strings
-        return [{"name": str(item)} for item in value]
-
-    # Single dict
-    if isinstance(value, dict):
-        return [value] if value and "name" in value else []
-
-    # Single string
-    return [{"name": str(value)}]
 
 
 class FirewallPolicy:
@@ -582,246 +544,185 @@ class FirewallPolicy:
             ...     logtraffic='all'
             ... )
         """
-        # Build the policy data dictionary
-        policy_data: Dict[str, Any] = {
-            "name": name,
-            "srcintf": _normalize_to_name_list(srcintf),
-            "dstintf": _normalize_to_name_list(dstintf),
-            "srcaddr": _normalize_to_name_list(srcaddr),
-            "dstaddr": _normalize_to_name_list(dstaddr),
-        }
-
-        # Add core optional fields if provided
-        if action is not None:
-            policy_data["action"] = action
-        if schedule is not None:
-            policy_data["schedule"] = schedule
-        if status is not None:
-            policy_data["status"] = status
-
-        # Add service if provided (no default - FortiOS will use its own default)
-        if service is not None:
-            policy_data["service"] = _normalize_to_name_list(service)
-
-        # Add optional string fields (simple enable/disable or profile names)
-        optional_string_fields = {
-            # Inspection & UTM
-            "inspection-mode": inspection_mode,
-            "utm-status": utm_status,
-            "profile-type": profile_type,
-            "profile-group": profile_group,
-            "profile-protocol-options": profile_protocol_options,
-            # Security Profiles
-            "ssl-ssh-profile": ssl_ssh_profile,
-            "av-profile": av_profile,
-            "webfilter-profile": webfilter_profile,
-            "dnsfilter-profile": dnsfilter_profile,
-            "emailfilter-profile": emailfilter_profile,
-            "dlp-profile": dlp_profile,
-            "file-filter-profile": file_filter_profile,
-            "ips-sensor": ips_sensor,
-            "application-list": application_list,
-            "voip-profile": voip_profile,
-            "ips-voip-filter": ips_voip_filter,
-            "sctp-filter-profile": sctp_filter_profile,
-            "diameter-filter-profile": diameter_filter_profile,
-            "virtual-patch-profile": virtual_patch_profile,
-            "icap-profile": icap_profile,
-            "videofilter-profile": videofilter_profile,
-            "waf-profile": waf_profile,
-            "ssh-filter-profile": ssh_filter_profile,
-            "casb-profile": casb_profile,
-            # Proxy
-            "http-policy-redirect": http_policy_redirect,
-            "ssh-policy-redirect": ssh_policy_redirect,
-            "webproxy-profile": webproxy_profile,
-            "webproxy-forward-server": webproxy_forward_server,
-            # NAT
-            "nat": nat,
-            "nat64": nat64,
-            "nat46": nat46,
-            "ippool": ippool,
-            "natip": natip,
-            "fixedport": fixedport,
-            "permit-any-host": permit_any_host,
-            "permit-stun-host": permit_stun_host,
-            "port-preserve": port_preserve,
-            "port-random": port_random,
-            # PCP
-            "pcp-outbound": pcp_outbound,
-            "pcp-inbound": pcp_inbound,
-            # VPN
-            "vpntunnel": vpntunnel,
-            "inbound": inbound,
-            "outbound": outbound,
-            "natinbound": natinbound,
-            "natoutbound": natoutbound,
-            # ZTNA
-            "ztna-status": ztna_status,
-            "ztna-device-ownership": ztna_device_ownership,
-            "ztna-tags-match-logic": ztna_tags_match_logic,
-            "ztna-ems-tag-negate": ztna_ems_tag_negate,
-            "ztna-policy-redirect": ztna_policy_redirect,
-            # Internet Services
-            "internet-service": internet_service,
-            "internet-service-negate": internet_service_negate,
-            "internet-service-src": internet_service_src,
-            "internet-service-src-negate": internet_service_src_negate,
-            "internet-service6": internet_service6,
-            "internet-service6-negate": internet_service6_negate,
-            "internet-service6-src": internet_service6_src,
-            "internet-service6-src-negate": internet_service6_src_negate,
-            # RTP
-            "rtp-nat": rtp_nat,
-            # Authentication
-            "fsso-agent-for-ntlm": fsso_agent_for_ntlm,
-            "ntlm": ntlm,
-            "ntlm-guest": ntlm_guest,
-            "auth-path": auth_path,
-            "auth-cert": auth_cert,
-            "auth-redirect-addr": auth_redirect_addr,
-            "disclaimer": disclaimer,
-            "email-collect": email_collect,
-            # Traffic Shaping
-            "traffic-shaper": traffic_shaper,
-            "traffic-shaper-reverse": traffic_shaper_reverse,
-            "per-ip-shaper": per_ip_shaper,
-            # Logging
-            "logtraffic": logtraffic,
-            "logtraffic-start": logtraffic_start,
-            "log-http-transaction": log_http_transaction,
-            "capture-packet": capture_packet,
-            # Advanced
-            "wccp": wccp,
-            "passive-wan-health-measurement": passive_wan_health_measurement,
-            "app-monitor": app_monitor,
-            "captive-portal-exempt": captive_portal_exempt,
-            "decrypted-traffic-mirror": decrypted_traffic_mirror,
-            "dynamic-shaping": dynamic_shaping,
-            "fec": fec,
-            # Session control
-            "send-deny-packet": send_deny_packet,
-            "firewall-session-dirty": firewall_session_dirty,
-            "schedule-timeout": schedule_timeout,
-            "policy-expiry": policy_expiry,
-            "policy-expiry-date": policy_expiry_date,
-            "policy-expiry-date-utc": policy_expiry_date_utc,
-            "session-ttl": session_ttl,
-            "timeout-send-rst": timeout_send_rst,
-            # VLAN & QoS
-            "vlan-filter": vlan_filter,
-            "diffserv-copy": diffserv_copy,
-            "diffserv-forward": diffserv_forward,
-            "diffserv-reverse": diffserv_reverse,
-            "diffservcode-forward": diffservcode_forward,
-            "diffservcode-rev": diffservcode_rev,
-            # TCP/IP
-            "tcp-session-without-syn": tcp_session_without_syn,
-            "anti-replay": anti_replay,
-            "tos": tos,
-            "tos-mask": tos_mask,
-            "tos-negate": tos_negate,
-            # Geo-IP
-            "geoip-anycast": geoip_anycast,
-            "geoip-match": geoip_match,
-            # Security Groups
-            "sgt-check": sgt_check,
-            # Performance
-            "auto-asic-offload": auto_asic_offload,
-            "np-acceleration": np_acceleration,
-            "delay-tcp-npu-session": delay_tcp_npu_session,
-            # VIP
-            "match-vip": match_vip,
-            "match-vip-only": match_vip_only,
-            # RADIUS
-            "radius-mac-auth-bypass": radius_mac_auth_bypass,
-            "radius-ip-auth-bypass": radius_ip_auth_bypass,
-            "dsri": dsri,
-            # Identity routing
-            "identity-based-route": identity_based_route,
-            # Redirects & Messages
-            "redirect-url": redirect_url,
-            "block-notification": block_notification,
-            "replacemsg-override-group": replacemsg_override_group,
-            # Negation
-            "srcaddr-negate": srcaddr_negate,
-            "dstaddr-negate": dstaddr_negate,
-            "srcaddr6-negate": srcaddr6_negate,
-            "dstaddr6-negate": dstaddr6_negate,
-            "service-negate": service_negate,
-            # Comments
-            "comments": comments,
-        }
-
-        for key, value in optional_string_fields.items():
-            if value is not None:
-                policy_data[key] = value
-
-        # Add optional integer fields
-        optional_int_fields = {
-            "reputation-minimum": reputation_minimum,
-            "reputation-minimum6": reputation_minimum6,
-            "vlan-cos-fwd": vlan_cos_fwd,
-            "vlan-cos-rev": vlan_cos_rev,
-            "tcp-mss-sender": tcp_mss_sender,
-            "tcp-mss-receiver": tcp_mss_receiver,
-        }
-
-        for key, value in optional_int_fields.items():
-            if value is not None:
-                policy_data[key] = value
-
-        # Add reputation direction fields (special handling for direction)
-        if reputation_direction is not None:
-            policy_data["reputation-direction"] = reputation_direction
-        if reputation_direction6 is not None:
-            policy_data["reputation-direction6"] = reputation_direction6
-
-        # Add list fields using the helper function for normalization
-        list_fields = {
-            "srcaddr6": srcaddr6,
-            "dstaddr6": dstaddr6,
-            "internet-service-name": internet_service_name,
-            "internet-service-group": internet_service_group,
-            "internet-service-custom": internet_service_custom,
-            "internet-service-custom-group": internet_service_custom_group,
-            "network-service-dynamic": network_service_dynamic,
-            "internet-service-fortiguard": internet_service_fortiguard,
-            "internet-service-src-name": internet_service_src_name,
-            "internet-service-src-group": internet_service_src_group,
-            "internet-service-src-custom": internet_service_src_custom,
-            "internet-service-src-custom-group": internet_service_src_custom_group,
-            "network-service-src-dynamic": network_service_src_dynamic,
-            "internet-service-src-fortiguard": internet_service_src_fortiguard,
-            "internet-service6-name": internet_service6_name,
-            "internet-service6-group": internet_service6_group,
-            "internet-service6-custom": internet_service6_custom,
-            "internet-service6-custom-group": internet_service6_custom_group,
-            "internet-service6-fortiguard": internet_service6_fortiguard,
-            "internet-service6-src-name": internet_service6_src_name,
-            "internet-service6-src-group": internet_service6_src_group,
-            "internet-service6-src-custom": internet_service6_src_custom,
-            "internet-service6-src-custom-group": internet_service6_src_custom_group,
-            "internet-service6-src-fortiguard": internet_service6_src_fortiguard,
-            "rtp-addr": rtp_addr,
-            "ztna-ems-tag": ztna_ems_tag,
-            "ztna-ems-tag-secondary": ztna_ems_tag_secondary,
-            "ztna-geo-tag": ztna_geo_tag,
-            "src-vendor-mac": src_vendor_mac,
-            "poolname": poolname,
-            "poolname6": poolname6,
-            "pcp-poolname": pcp_poolname,
-            "users": users,
-            "groups": groups,
-            "fsso-groups": fsso_groups,
-            "ntlm-enabled-browsers": ntlm_enabled_browsers,
-            "custom-log-fields": custom_log_fields,
-            "sgt": sgt,
-        }
-
-        for key, value in list_fields.items():
-            if value is not None:
-                policy_data[key] = _normalize_to_name_list(value)
+        # Use the shared builder function to construct the policy payload
+        policy_data = build_policy_payload_normalized(
+            name=name,
+            srcintf=srcintf,
+            dstintf=dstintf,
+            srcaddr=srcaddr,
+            dstaddr=dstaddr,
+            action=action,
+            schedule=schedule,
+            service=service,
+            status=status,
+            srcaddr6=srcaddr6,
+            dstaddr6=dstaddr6,
+            internet_service=internet_service,
+            internet_service_name=internet_service_name,
+            internet_service_group=internet_service_group,
+            internet_service_custom=internet_service_custom,
+            internet_service_custom_group=internet_service_custom_group,
+            network_service_dynamic=network_service_dynamic,
+            internet_service_fortiguard=internet_service_fortiguard,
+            internet_service_negate=internet_service_negate,
+            internet_service_src=internet_service_src,
+            internet_service_src_name=internet_service_src_name,
+            internet_service_src_group=internet_service_src_group,
+            internet_service_src_custom=internet_service_src_custom,
+            internet_service_src_custom_group=internet_service_src_custom_group,
+            network_service_src_dynamic=network_service_src_dynamic,
+            internet_service_src_fortiguard=internet_service_src_fortiguard,
+            internet_service_src_negate=internet_service_src_negate,
+            internet_service6=internet_service6,
+            internet_service6_name=internet_service6_name,
+            internet_service6_group=internet_service6_group,
+            internet_service6_custom=internet_service6_custom,
+            internet_service6_custom_group=internet_service6_custom_group,
+            internet_service6_fortiguard=internet_service6_fortiguard,
+            internet_service6_negate=internet_service6_negate,
+            internet_service6_src=internet_service6_src,
+            internet_service6_src_name=internet_service6_src_name,
+            internet_service6_src_group=internet_service6_src_group,
+            internet_service6_src_custom=internet_service6_src_custom,
+            internet_service6_src_custom_group=internet_service6_src_custom_group,
+            internet_service6_src_fortiguard=internet_service6_src_fortiguard,
+            internet_service6_src_negate=internet_service6_src_negate,
+            reputation_minimum=reputation_minimum,
+            reputation_direction=reputation_direction,
+            reputation_minimum6=reputation_minimum6,
+            reputation_direction6=reputation_direction6,
+            rtp_nat=rtp_nat,
+            rtp_addr=rtp_addr,
+            ztna_status=ztna_status,
+            ztna_device_ownership=ztna_device_ownership,
+            ztna_ems_tag=ztna_ems_tag,
+            ztna_ems_tag_secondary=ztna_ems_tag_secondary,
+            ztna_tags_match_logic=ztna_tags_match_logic,
+            ztna_geo_tag=ztna_geo_tag,
+            ztna_ems_tag_negate=ztna_ems_tag_negate,
+            ztna_policy_redirect=ztna_policy_redirect,
+            src_vendor_mac=src_vendor_mac,
+            inspection_mode=inspection_mode,
+            utm_status=utm_status,
+            profile_type=profile_type,
+            profile_group=profile_group,
+            profile_protocol_options=profile_protocol_options,
+            ssl_ssh_profile=ssl_ssh_profile,
+            av_profile=av_profile,
+            webfilter_profile=webfilter_profile,
+            dnsfilter_profile=dnsfilter_profile,
+            emailfilter_profile=emailfilter_profile,
+            dlp_profile=dlp_profile,
+            file_filter_profile=file_filter_profile,
+            ips_sensor=ips_sensor,
+            application_list=application_list,
+            voip_profile=voip_profile,
+            ips_voip_filter=ips_voip_filter,
+            sctp_filter_profile=sctp_filter_profile,
+            diameter_filter_profile=diameter_filter_profile,
+            virtual_patch_profile=virtual_patch_profile,
+            icap_profile=icap_profile,
+            videofilter_profile=videofilter_profile,
+            waf_profile=waf_profile,
+            ssh_filter_profile=ssh_filter_profile,
+            casb_profile=casb_profile,
+            http_policy_redirect=http_policy_redirect,
+            ssh_policy_redirect=ssh_policy_redirect,
+            webproxy_profile=webproxy_profile,
+            webproxy_forward_server=webproxy_forward_server,
+            nat=nat,
+            nat64=nat64,
+            nat46=nat46,
+            ippool=ippool,
+            poolname=poolname,
+            poolname6=poolname6,
+            natip=natip,
+            fixedport=fixedport,
+            permit_any_host=permit_any_host,
+            permit_stun_host=permit_stun_host,
+            port_preserve=port_preserve,
+            port_random=port_random,
+            pcp_outbound=pcp_outbound,
+            pcp_inbound=pcp_inbound,
+            pcp_poolname=pcp_poolname,
+            vpntunnel=vpntunnel,
+            inbound=inbound,
+            outbound=outbound,
+            natinbound=natinbound,
+            natoutbound=natoutbound,
+            users=users,
+            groups=groups,
+            fsso_groups=fsso_groups,
+            fsso_agent_for_ntlm=fsso_agent_for_ntlm,
+            ntlm=ntlm,
+            ntlm_guest=ntlm_guest,
+            ntlm_enabled_browsers=ntlm_enabled_browsers,
+            auth_path=auth_path,
+            auth_cert=auth_cert,
+            auth_redirect_addr=auth_redirect_addr,
+            disclaimer=disclaimer,
+            email_collect=email_collect,
+            traffic_shaper=traffic_shaper,
+            traffic_shaper_reverse=traffic_shaper_reverse,
+            per_ip_shaper=per_ip_shaper,
+            logtraffic=logtraffic,
+            logtraffic_start=logtraffic_start,
+            log_http_transaction=log_http_transaction,
+            capture_packet=capture_packet,
+            custom_log_fields=custom_log_fields,
+            wccp=wccp,
+            passive_wan_health_measurement=passive_wan_health_measurement,
+            app_monitor=app_monitor,
+            captive_portal_exempt=captive_portal_exempt,
+            decrypted_traffic_mirror=decrypted_traffic_mirror,
+            dynamic_shaping=dynamic_shaping,
+            fec=fec,
+            send_deny_packet=send_deny_packet,
+            firewall_session_dirty=firewall_session_dirty,
+            schedule_timeout=schedule_timeout,
+            policy_expiry=policy_expiry,
+            policy_expiry_date=policy_expiry_date,
+            policy_expiry_date_utc=policy_expiry_date_utc,
+            session_ttl=session_ttl,
+            timeout_send_rst=timeout_send_rst,
+            vlan_cos_fwd=vlan_cos_fwd,
+            vlan_cos_rev=vlan_cos_rev,
+            vlan_filter=vlan_filter,
+            diffserv_copy=diffserv_copy,
+            diffserv_forward=diffserv_forward,
+            diffserv_reverse=diffserv_reverse,
+            diffservcode_forward=diffservcode_forward,
+            diffservcode_rev=diffservcode_rev,
+            tcp_mss_sender=tcp_mss_sender,
+            tcp_mss_receiver=tcp_mss_receiver,
+            tcp_session_without_syn=tcp_session_without_syn,
+            anti_replay=anti_replay,
+            tos=tos,
+            tos_mask=tos_mask,
+            tos_negate=tos_negate,
+            geoip_anycast=geoip_anycast,
+            geoip_match=geoip_match,
+            sgt_check=sgt_check,
+            sgt=sgt,
+            auto_asic_offload=auto_asic_offload,
+            np_acceleration=np_acceleration,
+            delay_tcp_npu_session=delay_tcp_npu_session,
+            match_vip=match_vip,
+            match_vip_only=match_vip_only,
+            radius_mac_auth_bypass=radius_mac_auth_bypass,
+            radius_ip_auth_bypass=radius_ip_auth_bypass,
+            dsri=dsri,
+            identity_based_route=identity_based_route,
+            redirect_url=redirect_url,
+            block_notification=block_notification,
+            replacemsg_override_group=replacemsg_override_group,
+            srcaddr_negate=srcaddr_negate,
+            dstaddr_negate=dstaddr_negate,
+            srcaddr6_negate=srcaddr6_negate,
+            dstaddr6_negate=dstaddr6_negate,
+            service_negate=service_negate,
+            comments=comments,
+        )
 
         # Merge with additional data if provided
         if data:
@@ -1138,248 +1039,185 @@ class FirewallPolicy:
             ...     dstaddr='all'
             ... )
         """
-        # Build the update data dictionary (only include non-None values)
-        policy_data: Dict[str, Any] = {}
-
-        # Core fields
-        if name is not None:
-            policy_data["name"] = name
-        if srcintf is not None:
-            policy_data["srcintf"] = _normalize_to_name_list(srcintf)
-        if dstintf is not None:
-            policy_data["dstintf"] = _normalize_to_name_list(dstintf)
-        if srcaddr is not None:
-            policy_data["srcaddr"] = _normalize_to_name_list(srcaddr)
-        if dstaddr is not None:
-            policy_data["dstaddr"] = _normalize_to_name_list(dstaddr)
-        if action is not None:
-            policy_data["action"] = action
-        if schedule is not None:
-            policy_data["schedule"] = schedule
-        if service is not None:
-            policy_data["service"] = _normalize_to_name_list(service)
-        if status is not None:
-            policy_data["status"] = status
-
-        # Add optional string fields
-        optional_string_fields = {
-            # Inspection & UTM
-            "inspection-mode": inspection_mode,
-            "utm-status": utm_status,
-            "profile-type": profile_type,
-            "profile-group": profile_group,
-            "profile-protocol-options": profile_protocol_options,
-            # Security Profiles
-            "ssl-ssh-profile": ssl_ssh_profile,
-            "av-profile": av_profile,
-            "webfilter-profile": webfilter_profile,
-            "dnsfilter-profile": dnsfilter_profile,
-            "emailfilter-profile": emailfilter_profile,
-            "dlp-profile": dlp_profile,
-            "file-filter-profile": file_filter_profile,
-            "ips-sensor": ips_sensor,
-            "application-list": application_list,
-            "voip-profile": voip_profile,
-            "ips-voip-filter": ips_voip_filter,
-            "sctp-filter-profile": sctp_filter_profile,
-            "diameter-filter-profile": diameter_filter_profile,
-            "virtual-patch-profile": virtual_patch_profile,
-            "icap-profile": icap_profile,
-            "videofilter-profile": videofilter_profile,
-            "waf-profile": waf_profile,
-            "ssh-filter-profile": ssh_filter_profile,
-            "casb-profile": casb_profile,
-            # Proxy
-            "http-policy-redirect": http_policy_redirect,
-            "ssh-policy-redirect": ssh_policy_redirect,
-            "webproxy-profile": webproxy_profile,
-            "webproxy-forward-server": webproxy_forward_server,
-            # NAT
-            "nat": nat,
-            "nat64": nat64,
-            "nat46": nat46,
-            "ippool": ippool,
-            "natip": natip,
-            "fixedport": fixedport,
-            "permit-any-host": permit_any_host,
-            "permit-stun-host": permit_stun_host,
-            "port-preserve": port_preserve,
-            "port-random": port_random,
-            # PCP
-            "pcp-outbound": pcp_outbound,
-            "pcp-inbound": pcp_inbound,
-            # VPN
-            "vpntunnel": vpntunnel,
-            "inbound": inbound,
-            "outbound": outbound,
-            "natinbound": natinbound,
-            "natoutbound": natoutbound,
-            # ZTNA
-            "ztna-status": ztna_status,
-            "ztna-device-ownership": ztna_device_ownership,
-            "ztna-tags-match-logic": ztna_tags_match_logic,
-            "ztna-ems-tag-negate": ztna_ems_tag_negate,
-            "ztna-policy-redirect": ztna_policy_redirect,
-            # Internet Services
-            "internet-service": internet_service,
-            "internet-service-negate": internet_service_negate,
-            "internet-service-src": internet_service_src,
-            "internet-service-src-negate": internet_service_src_negate,
-            "internet-service6": internet_service6,
-            "internet-service6-negate": internet_service6_negate,
-            "internet-service6-src": internet_service6_src,
-            "internet-service6-src-negate": internet_service6_src_negate,
-            # RTP
-            "rtp-nat": rtp_nat,
-            # Authentication
-            "fsso-agent-for-ntlm": fsso_agent_for_ntlm,
-            "ntlm": ntlm,
-            "ntlm-guest": ntlm_guest,
-            "auth-path": auth_path,
-            "auth-cert": auth_cert,
-            "auth-redirect-addr": auth_redirect_addr,
-            "disclaimer": disclaimer,
-            "email-collect": email_collect,
-            # Traffic Shaping
-            "traffic-shaper": traffic_shaper,
-            "traffic-shaper-reverse": traffic_shaper_reverse,
-            "per-ip-shaper": per_ip_shaper,
-            # Logging
-            "logtraffic": logtraffic,
-            "logtraffic-start": logtraffic_start,
-            "log-http-transaction": log_http_transaction,
-            "capture-packet": capture_packet,
-            # Advanced
-            "wccp": wccp,
-            "passive-wan-health-measurement": passive_wan_health_measurement,
-            "app-monitor": app_monitor,
-            "captive-portal-exempt": captive_portal_exempt,
-            "decrypted-traffic-mirror": decrypted_traffic_mirror,
-            "dynamic-shaping": dynamic_shaping,
-            "fec": fec,
-            # Session control
-            "send-deny-packet": send_deny_packet,
-            "firewall-session-dirty": firewall_session_dirty,
-            "schedule-timeout": schedule_timeout,
-            "policy-expiry": policy_expiry,
-            "policy-expiry-date": policy_expiry_date,
-            "policy-expiry-date-utc": policy_expiry_date_utc,
-            "session-ttl": session_ttl,
-            "timeout-send-rst": timeout_send_rst,
-            # VLAN & QoS
-            "vlan-filter": vlan_filter,
-            "diffserv-copy": diffserv_copy,
-            "diffserv-forward": diffserv_forward,
-            "diffserv-reverse": diffserv_reverse,
-            "diffservcode-forward": diffservcode_forward,
-            "diffservcode-rev": diffservcode_rev,
-            # TCP/IP
-            "tcp-session-without-syn": tcp_session_without_syn,
-            "anti-replay": anti_replay,
-            "tos": tos,
-            "tos-mask": tos_mask,
-            "tos-negate": tos_negate,
-            # Geo-IP
-            "geoip-anycast": geoip_anycast,
-            "geoip-match": geoip_match,
-            # Security Groups
-            "sgt-check": sgt_check,
-            # Performance
-            "auto-asic-offload": auto_asic_offload,
-            "np-acceleration": np_acceleration,
-            "delay-tcp-npu-session": delay_tcp_npu_session,
-            # VIP
-            "match-vip": match_vip,
-            "match-vip-only": match_vip_only,
-            # RADIUS
-            "radius-mac-auth-bypass": radius_mac_auth_bypass,
-            "radius-ip-auth-bypass": radius_ip_auth_bypass,
-            "dsri": dsri,
-            # Identity routing
-            "identity-based-route": identity_based_route,
-            # Redirects & Messages
-            "redirect-url": redirect_url,
-            "block-notification": block_notification,
-            "replacemsg-override-group": replacemsg_override_group,
-            # Negation
-            "srcaddr-negate": srcaddr_negate,
-            "dstaddr-negate": dstaddr_negate,
-            "srcaddr6-negate": srcaddr6_negate,
-            "dstaddr6-negate": dstaddr6_negate,
-            "service-negate": service_negate,
-            # Comments
-            "comments": comments,
-        }
-
-        for key, value in optional_string_fields.items():
-            if value is not None:
-                policy_data[key] = value
-
-        # Add optional integer fields
-        optional_int_fields = {
-            "reputation-minimum": reputation_minimum,
-            "reputation-minimum6": reputation_minimum6,
-            "vlan-cos-fwd": vlan_cos_fwd,
-            "vlan-cos-rev": vlan_cos_rev,
-            "tcp-mss-sender": tcp_mss_sender,
-            "tcp-mss-receiver": tcp_mss_receiver,
-        }
-
-        for key, value in optional_int_fields.items():
-            if value is not None:
-                policy_data[key] = value
-
-        # Add reputation direction fields
-        if reputation_direction is not None:
-            policy_data["reputation-direction"] = reputation_direction
-        if reputation_direction6 is not None:
-            policy_data["reputation-direction6"] = reputation_direction6
-
-        # Add list fields using the helper function for normalization
-        list_fields = {
-            "srcaddr6": srcaddr6,
-            "dstaddr6": dstaddr6,
-            "internet-service-name": internet_service_name,
-            "internet-service-group": internet_service_group,
-            "internet-service-custom": internet_service_custom,
-            "internet-service-custom-group": internet_service_custom_group,
-            "network-service-dynamic": network_service_dynamic,
-            "internet-service-fortiguard": internet_service_fortiguard,
-            "internet-service-src-name": internet_service_src_name,
-            "internet-service-src-group": internet_service_src_group,
-            "internet-service-src-custom": internet_service_src_custom,
-            "internet-service-src-custom-group": internet_service_src_custom_group,
-            "network-service-src-dynamic": network_service_src_dynamic,
-            "internet-service-src-fortiguard": internet_service_src_fortiguard,
-            "internet-service6-name": internet_service6_name,
-            "internet-service6-group": internet_service6_group,
-            "internet-service6-custom": internet_service6_custom,
-            "internet-service6-custom-group": internet_service6_custom_group,
-            "internet-service6-fortiguard": internet_service6_fortiguard,
-            "internet-service6-src-name": internet_service6_src_name,
-            "internet-service6-src-group": internet_service6_src_group,
-            "internet-service6-src-custom": internet_service6_src_custom,
-            "internet-service6-src-custom-group": internet_service6_src_custom_group,
-            "internet-service6-src-fortiguard": internet_service6_src_fortiguard,
-            "rtp-addr": rtp_addr,
-            "ztna-ems-tag": ztna_ems_tag,
-            "ztna-ems-tag-secondary": ztna_ems_tag_secondary,
-            "ztna-geo-tag": ztna_geo_tag,
-            "src-vendor-mac": src_vendor_mac,
-            "poolname": poolname,
-            "poolname6": poolname6,
-            "pcp-poolname": pcp_poolname,
-            "users": users,
-            "groups": groups,
-            "fsso-groups": fsso_groups,
-            "ntlm-enabled-browsers": ntlm_enabled_browsers,
-            "custom-log-fields": custom_log_fields,
-            "sgt": sgt,
-        }
-
-        for key, value in list_fields.items():
-            if value is not None:
-                policy_data[key] = _normalize_to_name_list(value)
+        # Use the shared builder function to construct the policy payload
+        policy_data = build_policy_payload_normalized(
+            name=name,
+            srcintf=srcintf,
+            dstintf=dstintf,
+            srcaddr=srcaddr,
+            dstaddr=dstaddr,
+            action=action,
+            schedule=schedule,
+            service=service,
+            status=status,
+            srcaddr6=srcaddr6,
+            dstaddr6=dstaddr6,
+            internet_service=internet_service,
+            internet_service_name=internet_service_name,
+            internet_service_group=internet_service_group,
+            internet_service_custom=internet_service_custom,
+            internet_service_custom_group=internet_service_custom_group,
+            network_service_dynamic=network_service_dynamic,
+            internet_service_fortiguard=internet_service_fortiguard,
+            internet_service_negate=internet_service_negate,
+            internet_service_src=internet_service_src,
+            internet_service_src_name=internet_service_src_name,
+            internet_service_src_group=internet_service_src_group,
+            internet_service_src_custom=internet_service_src_custom,
+            internet_service_src_custom_group=internet_service_src_custom_group,
+            network_service_src_dynamic=network_service_src_dynamic,
+            internet_service_src_fortiguard=internet_service_src_fortiguard,
+            internet_service_src_negate=internet_service_src_negate,
+            internet_service6=internet_service6,
+            internet_service6_name=internet_service6_name,
+            internet_service6_group=internet_service6_group,
+            internet_service6_custom=internet_service6_custom,
+            internet_service6_custom_group=internet_service6_custom_group,
+            internet_service6_fortiguard=internet_service6_fortiguard,
+            internet_service6_negate=internet_service6_negate,
+            internet_service6_src=internet_service6_src,
+            internet_service6_src_name=internet_service6_src_name,
+            internet_service6_src_group=internet_service6_src_group,
+            internet_service6_src_custom=internet_service6_src_custom,
+            internet_service6_src_custom_group=internet_service6_src_custom_group,
+            internet_service6_src_fortiguard=internet_service6_src_fortiguard,
+            internet_service6_src_negate=internet_service6_src_negate,
+            reputation_minimum=reputation_minimum,
+            reputation_direction=reputation_direction,
+            reputation_minimum6=reputation_minimum6,
+            reputation_direction6=reputation_direction6,
+            rtp_nat=rtp_nat,
+            rtp_addr=rtp_addr,
+            ztna_status=ztna_status,
+            ztna_device_ownership=ztna_device_ownership,
+            ztna_ems_tag=ztna_ems_tag,
+            ztna_ems_tag_secondary=ztna_ems_tag_secondary,
+            ztna_tags_match_logic=ztna_tags_match_logic,
+            ztna_geo_tag=ztna_geo_tag,
+            ztna_ems_tag_negate=ztna_ems_tag_negate,
+            ztna_policy_redirect=ztna_policy_redirect,
+            src_vendor_mac=src_vendor_mac,
+            inspection_mode=inspection_mode,
+            utm_status=utm_status,
+            profile_type=profile_type,
+            profile_group=profile_group,
+            profile_protocol_options=profile_protocol_options,
+            ssl_ssh_profile=ssl_ssh_profile,
+            av_profile=av_profile,
+            webfilter_profile=webfilter_profile,
+            dnsfilter_profile=dnsfilter_profile,
+            emailfilter_profile=emailfilter_profile,
+            dlp_profile=dlp_profile,
+            file_filter_profile=file_filter_profile,
+            ips_sensor=ips_sensor,
+            application_list=application_list,
+            voip_profile=voip_profile,
+            ips_voip_filter=ips_voip_filter,
+            sctp_filter_profile=sctp_filter_profile,
+            diameter_filter_profile=diameter_filter_profile,
+            virtual_patch_profile=virtual_patch_profile,
+            icap_profile=icap_profile,
+            videofilter_profile=videofilter_profile,
+            waf_profile=waf_profile,
+            ssh_filter_profile=ssh_filter_profile,
+            casb_profile=casb_profile,
+            http_policy_redirect=http_policy_redirect,
+            ssh_policy_redirect=ssh_policy_redirect,
+            webproxy_profile=webproxy_profile,
+            webproxy_forward_server=webproxy_forward_server,
+            nat=nat,
+            nat64=nat64,
+            nat46=nat46,
+            ippool=ippool,
+            poolname=poolname,
+            poolname6=poolname6,
+            natip=natip,
+            fixedport=fixedport,
+            permit_any_host=permit_any_host,
+            permit_stun_host=permit_stun_host,
+            port_preserve=port_preserve,
+            port_random=port_random,
+            pcp_outbound=pcp_outbound,
+            pcp_inbound=pcp_inbound,
+            pcp_poolname=pcp_poolname,
+            vpntunnel=vpntunnel,
+            inbound=inbound,
+            outbound=outbound,
+            natinbound=natinbound,
+            natoutbound=natoutbound,
+            users=users,
+            groups=groups,
+            fsso_groups=fsso_groups,
+            fsso_agent_for_ntlm=fsso_agent_for_ntlm,
+            ntlm=ntlm,
+            ntlm_guest=ntlm_guest,
+            ntlm_enabled_browsers=ntlm_enabled_browsers,
+            auth_path=auth_path,
+            auth_cert=auth_cert,
+            auth_redirect_addr=auth_redirect_addr,
+            disclaimer=disclaimer,
+            email_collect=email_collect,
+            traffic_shaper=traffic_shaper,
+            traffic_shaper_reverse=traffic_shaper_reverse,
+            per_ip_shaper=per_ip_shaper,
+            logtraffic=logtraffic,
+            logtraffic_start=logtraffic_start,
+            log_http_transaction=log_http_transaction,
+            capture_packet=capture_packet,
+            custom_log_fields=custom_log_fields,
+            wccp=wccp,
+            passive_wan_health_measurement=passive_wan_health_measurement,
+            app_monitor=app_monitor,
+            captive_portal_exempt=captive_portal_exempt,
+            decrypted_traffic_mirror=decrypted_traffic_mirror,
+            dynamic_shaping=dynamic_shaping,
+            fec=fec,
+            send_deny_packet=send_deny_packet,
+            firewall_session_dirty=firewall_session_dirty,
+            schedule_timeout=schedule_timeout,
+            policy_expiry=policy_expiry,
+            policy_expiry_date=policy_expiry_date,
+            policy_expiry_date_utc=policy_expiry_date_utc,
+            session_ttl=session_ttl,
+            timeout_send_rst=timeout_send_rst,
+            vlan_cos_fwd=vlan_cos_fwd,
+            vlan_cos_rev=vlan_cos_rev,
+            vlan_filter=vlan_filter,
+            diffserv_copy=diffserv_copy,
+            diffserv_forward=diffserv_forward,
+            diffserv_reverse=diffserv_reverse,
+            diffservcode_forward=diffservcode_forward,
+            diffservcode_rev=diffservcode_rev,
+            tcp_mss_sender=tcp_mss_sender,
+            tcp_mss_receiver=tcp_mss_receiver,
+            tcp_session_without_syn=tcp_session_without_syn,
+            anti_replay=anti_replay,
+            tos=tos,
+            tos_mask=tos_mask,
+            tos_negate=tos_negate,
+            geoip_anycast=geoip_anycast,
+            geoip_match=geoip_match,
+            sgt_check=sgt_check,
+            sgt=sgt,
+            auto_asic_offload=auto_asic_offload,
+            np_acceleration=np_acceleration,
+            delay_tcp_npu_session=delay_tcp_npu_session,
+            match_vip=match_vip,
+            match_vip_only=match_vip_only,
+            radius_mac_auth_bypass=radius_mac_auth_bypass,
+            radius_ip_auth_bypass=radius_ip_auth_bypass,
+            dsri=dsri,
+            identity_based_route=identity_based_route,
+            redirect_url=redirect_url,
+            block_notification=block_notification,
+            replacemsg_override_group=replacemsg_override_group,
+            srcaddr_negate=srcaddr_negate,
+            dstaddr_negate=dstaddr_negate,
+            srcaddr6_negate=srcaddr6_negate,
+            dstaddr6_negate=dstaddr6_negate,
+            service_negate=service_negate,
+            comments=comments,
+        )
 
         # Merge with additional data if provided
         if data:
