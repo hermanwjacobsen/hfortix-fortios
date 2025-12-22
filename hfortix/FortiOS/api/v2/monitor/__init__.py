@@ -47,7 +47,39 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....http_client_interface import IHTTPClient
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
+    from .azure import Azure
+    from .casb import Casb
+    from .endpoint_control import EndpointControl
+    from .extender_controller import ExtenderController
+    from .extension_controller import ExtensionController
+    from .firewall import Firewall
+    from .firmware import Firmware
+    from .fortiguard import Fortiguard
+    from .fortiview import Fortiview
+    from .geoip import Geoip
+    from .ips import Ips
+    from .license import License
+    from .log import Log
+    from .network import Network
+    from .registration import Registration
+    from .router import Router
+    from .sdwan import Sdwan
+    from .service import Service
+    from .switch_controller import SwitchController
+    from .system import System
+    from .user import User
+    from .utm import Utm
+    from .videofilter import Videofilter
+    from .virtual_wan import VirtualWan
+    from .vpn import Vpn
+    from .vpn_certificate import VpnCertificate
+    from .wanopt import Wanopt
+    from .web_ui import WebUi
+    from .webcache import Webcache
+    from .webfilter import Webfilter
+    from .webproxy import Webproxy
+    from .wifi import Wifi
 
 __all__ = ["Monitor"]
 
@@ -114,38 +146,38 @@ class Monitor:
             client: HTTP client implementing IHTTPClient protocol
         """
         self._client = client
-        self._azure = None
-        self._casb = None
-        self._endpoint_control = None
-        self._extender_controller = None
-        self._extension_controller = None
-        self._firewall = None
-        self._firmware = None
-        self._fortiguard = None
-        self._fortiview = None
-        self._geoip = None
-        self._ips = None
-        self._license = None
-        self._log = None
-        self._network = None
-        self._registration = None
-        self._router = None
-        self._sdwan = None
-        self._service = None
-        self._switch_controller = None
-        self._system = None
-        self._user = None
-        self._utm = None
-        self._videofilter = None
-        self._virtual_wan = None
-        self._vpn = None
-        self._vpn_certificate = None
-        self._wanopt = None
-        self._web_ui = None
-        self._webcache = None
-        self._webfilter = None
-        self._webproxy = None
-        self._wifi = None
+        self._azure: Azure | None = None
+        self._casb: Casb | None = None
+        self._endpoint_control: EndpointControl | None = None
+        self._extender_controller: ExtenderController | None = None
+        self._extension_controller: ExtensionController | None = None
+        self._firewall: Firewall | None = None
+        self._firmware: Firmware | None = None
+        self._fortiguard: Fortiguard | None = None
+        self._fortiview: Fortiview | None = None
+        self._geoip: Geoip | None = None
+        self._ips: Ips | None = None
+        self._license: License | None = None
+        self._log: Log | None = None
+        self._network: Network | None = None
+        self._registration: Registration | None = None
+        self._router: Router | None = None
+        self._sdwan: Sdwan | None = None
+        self._service: Service | None = None
+        self._switch_controller: SwitchController | None = None
+        self._system: System | None = None
+        self._user: User | None = None
+        self._utm: Utm | None = None
+        self._videofilter: Videofilter | None = None
+        self._virtual_wan: VirtualWan | None = None
+        self._vpn: Vpn | None = None
+        self._vpn_certificate: VpnCertificate | None = None
+        self._wanopt: Wanopt | None = None
+        self._web_ui: WebUi | None = None
+        self._webcache: Webcache | None = None
+        self._webfilter: Webfilter | None = None
+        self._webproxy: Webproxy | None = None
+        self._wifi: Wifi | None = None
 
     @property
     def azure(self):

@@ -30,7 +30,8 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from .base import LogResource, RawResource
 
 if TYPE_CHECKING:
-    from ....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 # Event subtypes
@@ -63,7 +64,7 @@ class EventVPN:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get VPN event logs.
 
@@ -146,7 +147,7 @@ class EventUser:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get user event logs.
 
@@ -229,7 +230,7 @@ class EventRouter:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get router event logs.
 
@@ -312,7 +313,7 @@ class EventWireless:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get wireless event logs.
 
@@ -395,7 +396,7 @@ class EventWAD:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get WAD event logs.
 
@@ -478,7 +479,7 @@ class EventEndpoint:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get endpoint event logs.
 
@@ -561,7 +562,7 @@ class EventHA:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get HA event logs.
 
@@ -644,7 +645,7 @@ class EventComplianceCheck:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get compliance check event logs.
 
@@ -727,7 +728,7 @@ class EventSecurityRating:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get security rating event logs.
 
@@ -810,7 +811,7 @@ class EventFortiextender:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get fortiextender event logs.
 
@@ -893,7 +894,7 @@ class EventConnector:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get connector event logs.
 
@@ -976,7 +977,7 @@ class EventSystem:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get system event logs.
 

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
-    pass
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class InternetService:

@@ -23,10 +23,13 @@ Note:
     This is a read-only endpoint. Only GET operations are supported.
 """
 
-from typing import TYPE_CHECKING, Any
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Connect:
@@ -56,7 +59,7 @@ class Connect:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Trigger a connect for the configured modem.
 
@@ -93,7 +96,7 @@ class Disconnect:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Trigger a disconnect for the configured modem.
 
@@ -130,7 +133,7 @@ class Reset:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Reset statistics for internal/external configured modem.
 
@@ -167,7 +170,7 @@ class Update:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Update supported modem list from FortiGuard.
 
@@ -210,7 +213,7 @@ class Modem:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Retrieve statistics for internal/external configured modem.
 

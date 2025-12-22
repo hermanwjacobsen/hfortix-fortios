@@ -23,10 +23,13 @@ Note:
     This is a read-only endpoint. Only GET operations are supported.
 """
 
-from typing import TYPE_CHECKING, Any
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class ClearTunnel:
@@ -56,7 +59,7 @@ class ClearTunnel:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Remove all active tunnel sessions in current virtual domain.
 
@@ -95,7 +98,7 @@ class Delete:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Terminate the provided Agentless VPN session.
 
@@ -138,7 +141,7 @@ class Stats:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Return statistics about the Agentless VPN.
 
@@ -180,7 +183,7 @@ class Ssl:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Retrieve a list of all Agentless VPN sessions and sub-sessions.
 

@@ -30,7 +30,8 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from .base import LogResource, RawResource
 
 if TYPE_CHECKING:
-    from ....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 # Traffic subtypes
@@ -63,7 +64,7 @@ class TrafficForward:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get forward traffic logs.
 
@@ -146,7 +147,7 @@ class TrafficLocal:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get local traffic logs.
 
@@ -229,7 +230,7 @@ class TrafficMulticast:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get multicast traffic logs.
 
@@ -312,7 +313,7 @@ class TrafficSniffer:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get sniffer traffic logs.
 
@@ -395,7 +396,7 @@ class TrafficFortiview:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get fortiview traffic logs.
 
@@ -478,7 +479,7 @@ class TrafficThreat:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get threat traffic logs.
 

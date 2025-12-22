@@ -23,10 +23,13 @@ Note:
     This is a read-only endpoint. Only GET operations are supported.
 """
 
-from typing import TYPE_CHECKING, Any
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class ClearCounters:
@@ -57,7 +60,7 @@ class ClearCounters:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Reset traffic statistics for one or more firewall IPv6 multicast policies by policy ID.
 
@@ -97,7 +100,7 @@ class Reset:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Reset traffic statistics for all IPv6 firewall multicast policies.
 
@@ -139,7 +142,7 @@ class MulticastPolicy6:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         List traffic statistics for IPv6 firewall multicast policies.
 

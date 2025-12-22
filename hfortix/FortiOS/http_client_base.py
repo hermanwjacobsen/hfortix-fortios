@@ -99,7 +99,7 @@ class BaseHTTPClient:
         self._read_timeout = read_timeout
 
         # Initialize retry statistics
-        self._retry_stats = {
+        self._retry_stats: dict[str, Any] = {
             "total_retries": 0,
             "total_requests": 0,
             "successful_requests": 0,
@@ -110,7 +110,7 @@ class BaseHTTPClient:
         }
 
         # Initialize circuit breaker state
-        self._circuit_breaker = {
+        self._circuit_breaker: dict[str, Any] = {
             "consecutive_failures": 0,
             "last_failure_time": None,
             "state": "closed",  # closed, open, half_open

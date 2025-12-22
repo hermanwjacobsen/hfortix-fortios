@@ -23,10 +23,13 @@ Note:
     This is a read-only endpoint. Only GET operations are supported.
 """
 
-from typing import TYPE_CHECKING, Any
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class EnableAppBandwidthTracking:
@@ -56,7 +59,7 @@ class EnableAppBandwidthTracking:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Enable FortiView application bandwidth tracking.
 
@@ -99,7 +102,7 @@ class Interface:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Retrieve history traffic stats for an interface.
 
@@ -141,7 +144,7 @@ class TopApplications:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Retrieve top FortiView applications traffic stats by bandwidth.
 

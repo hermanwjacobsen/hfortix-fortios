@@ -6,7 +6,7 @@ System monitoring, status, and diagnostics
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 __all__ = ["System"]
 

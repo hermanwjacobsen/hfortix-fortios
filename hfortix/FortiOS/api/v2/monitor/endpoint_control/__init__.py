@@ -6,10 +6,14 @@ Provides monitoring and management of FortiClient endpoints via EMS integration.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
+    from .installer import Installer
+    from .avatar import Avatar
+    from .ems import Ems
 
 __all__ = ["EndpointControl"]
 
@@ -30,16 +34,16 @@ class EndpointControl:
             client: HTTP client implementing IHTTPClient protocol
         """
         self._client = client
-        self._installer = None
-        self._avatar = None
-        self._ems = None
+        self._installer: Installer | None = None
+        self._avatar: Avatar | None = None
+        self._ems: Ems | None = None
 
     def record_list(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         ems_name: Optional[str] = None,
         **kwargs: Any,
-    ) -> dict[str, Any] | list[dict]:
+    ) -> Union[dict[str, Any], list[dict], Coroutine[Any, Any, Union[dict[str, Any], list[dict]]]]:
         """
         List endpoint records from FortiEMS.
 
@@ -86,7 +90,7 @@ class EndpointControl:
 
         return self._client.get("monitor", "endpoint-control/record-list", params=params)
 
-    def summary(self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any) -> dict[str, Any]:
+    def summary(self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get summary of FortiClient endpoint records.
 

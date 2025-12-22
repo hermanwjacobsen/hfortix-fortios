@@ -25,10 +25,11 @@ Note:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Abort:
@@ -53,7 +54,7 @@ class Abort:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Abort a running log search session.
 
@@ -101,7 +102,7 @@ class Status:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Returns status of log search session, if it is active or not.
 

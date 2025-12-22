@@ -14,11 +14,11 @@ Benefits:
 Example:
     class CustomHTTPClient:
         '''Custom client with company-specific requirements'''
-        def get(self, api_type: str, path: str, **kwargs) -> dict[str, Any]:
+        def get(self, api_type: str, path: str, **kwargs) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
             # Custom implementation with logging, auth, etc.
             ...
 
-        def post(self, api_type: str, path: str, data: dict, **kwargs) -> dict[str, Any]:
+        def post(self, api_type: str, path: str, data: dict, **kwargs) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
             # Custom implementation
             ...
 
@@ -40,7 +40,7 @@ from typing import (
 )
 
 if TYPE_CHECKING:
-    from typing import Coroutine
+    from collections.abc import Coroutine
 
 __all__ = ["IHTTPClient"]
 

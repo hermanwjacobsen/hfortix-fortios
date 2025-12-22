@@ -23,10 +23,13 @@ Note:
     This is a read-only endpoint. Only GET operations are supported.
 """
 
-from typing import TYPE_CHECKING, Any
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Close:
@@ -61,7 +64,7 @@ class Close:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Close a single firewall session that matches all provided criteria.
 
@@ -113,7 +116,7 @@ class CloseAll:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Immediately close all active IPv4 and IPv6 sessions, as well as IPS sessions of the current VDOM.
 
@@ -158,7 +161,7 @@ class CloseMultiple:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Close multiple IPv4 firewall sessions which match the provided criteria.
 

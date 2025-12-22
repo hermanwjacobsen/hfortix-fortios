@@ -13,7 +13,10 @@ from __future__ import annotations
 import logging
 import time
 import uuid
-from typing import Any, Callable, Optional, TypeAlias, Union
+from typing import TYPE_CHECKING, Any, Callable, Optional, TypeAlias, Union
+
+if TYPE_CHECKING:
+    from collections.abc import Coroutine
 from urllib.parse import quote, urlencode
 
 import httpx
@@ -200,13 +203,13 @@ class HTTPClient(BaseHTTPClient):
         # Session timeout settings (in seconds) - only for username/password auth
         # If session_idle_timeout is None or False, disable proactive re-authentication
         if session_idle_timeout:
-            self._session_idle_timeout = float(session_idle_timeout)
+            self._session_idle_timeout: float | None = float(session_idle_timeout)
             # Re-authenticate at 80% of idle timeout to avoid session expiration
-            self._session_proactive_refresh = self._session_idle_timeout * 0.8
+            self._session_proactive_refresh: float | None = self._session_idle_timeout * 0.8
         else:
             # Disable proactive re-authentication
-            self._session_idle_timeout = None
-            self._session_proactive_refresh = None
+            self._session_idle_timeout: float | None = None
+            self._session_proactive_refresh: float | None = None
 
         # Read-only mode and operation tracking
         self._read_only = read_only
@@ -824,7 +827,7 @@ class HTTPClient(BaseHTTPClient):
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """GET request"""
         return self.request("GET", api_type, path, params=params, vdom=vdom, raw_json=raw_json)
 
@@ -873,7 +876,7 @@ class HTTPClient(BaseHTTPClient):
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """POST request - Create new object"""
         return self.request(
             "POST",
@@ -893,7 +896,7 @@ class HTTPClient(BaseHTTPClient):
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """PUT request - Update existing object"""
         return self.request(
             "PUT",
@@ -912,7 +915,7 @@ class HTTPClient(BaseHTTPClient):
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """DELETE request - Delete object"""
         return self.request(
             "DELETE",
@@ -1174,7 +1177,7 @@ class HTTPClient(BaseHTTPClient):
                         # Type ignore justified: Runtime check (inspect.iscoroutine) confirms
                         # result is awaitable, but mypy sees Union[dict, Coroutine] from protocol
                         # and cannot narrow the type. This is safe and necessary for dual-mode design.
-                        await result  # type: ignore[misc]
+                        await result
                         return True
                     except ResourceNotFoundError:
                         return False

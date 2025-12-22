@@ -42,10 +42,13 @@ Important:
     - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
-from typing import TYPE_CHECKING, Any, Coroutine, cast
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
-    from ....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class LinkMonitor:
@@ -87,7 +90,7 @@ class LinkMonitor:
         vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Select a specific entry from a CLI table.
 
@@ -172,7 +175,7 @@ class LinkMonitor:
         vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Update this specific resource.
 
@@ -318,7 +321,7 @@ class LinkMonitor:
         vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Delete this specific resource.
 
@@ -387,8 +390,7 @@ class LinkMonitor:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  # type: ignore[return-value]
-
+            return _async()  
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -433,7 +435,7 @@ class LinkMonitor:
         vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Create object(s) in this table.
 

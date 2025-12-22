@@ -55,7 +55,7 @@ from ..waf import WAF
 from ..webfilter import Webfilter
 
 if TYPE_CHECKING:
-    from ....http_client_interface import IHTTPClient
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Memory:

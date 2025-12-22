@@ -25,10 +25,11 @@ Note:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Delete:
@@ -57,7 +58,7 @@ class Delete:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Deletes a packet capture.
         Access Group: netgrp.packet-capture
@@ -116,7 +117,7 @@ class Download:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Returns a PCAP file of the packet capture.
         Access Group: netgrp.packet-capture
@@ -175,7 +176,7 @@ class List:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Returns list of all packet captures and their status information.
         Access Group: netgrp.packet-capture
@@ -233,7 +234,7 @@ class Meta:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Returns system limitations & meta information of packet capture feature.
         Access Group: netgrp.packet-capture
@@ -290,7 +291,7 @@ class Start:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Creates a new packet capture and starts it.
         Access Group: netgrp.packet-capture
@@ -349,7 +350,7 @@ class Stop:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Stop a running packet capture.
         Access Group: netgrp.packet-capture

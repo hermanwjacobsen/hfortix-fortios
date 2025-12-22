@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.21] - Unreleased
 
+### Fixed
+
+- **Type Annotation Runtime Error**: Fixed `NameError: name 'Coroutine' is not defined` error
+  - Added `from __future__ import annotations` to 832 files across the entire API codebase
+  - Issue: `Coroutine` type was imported in `TYPE_CHECKING` blocks (False at runtime) but used in runtime type annotations
+  - Solution: Deferred evaluation of all type annotations using PEP 563 (`__future__.annotations`)
+  - Enables proper type checking while avoiding runtime evaluation errors
+  - Affected files: All API endpoint modules (cmdb, log, monitor, service)
+  - Created automated fix script (`fix_coroutine_imports.py`) for systematic resolution
+  - All tests now pass without runtime type annotation errors
+
 ### Added
 
 - **API Validators - Complete Coverage**: Generated validation helpers for all FortiOS API types

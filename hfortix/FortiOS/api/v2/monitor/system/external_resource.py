@@ -23,10 +23,13 @@ Note:
     This is a read-only endpoint. Only GET operations are supported.
 """
 
-from typing import TYPE_CHECKING, Any
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
-    pass
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Dynamic:
@@ -57,7 +60,7 @@ class Dynamic:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Push updates to the specified external resource.
 
@@ -102,7 +105,7 @@ class EntryList:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Retrieve resource file status with a list of valid/invalid entries for the specific external resource.
 
@@ -155,7 +158,7 @@ class GenericAddress:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Push JSON data to the specified external resource.
 
@@ -172,13 +175,13 @@ class GenericAddress:
         Example:
             >>> fgt.api.monitor.system.external_resource.generic_address.post()
         """
-        data = payload_dict.copy() if payload_dict else {}
+        params: dict[str, Any] = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data["mkey"] = mkey
+            params["mkey"] = mkey
         if data is not None:
-            data["data"] = data
-        data.update(kwargs)
-        return self._client.post("monitor", "/system/external-resource/generic-address", data=data)
+            params["data"] = data
+        params.update(kwargs)
+        return self._client.post("monitor", "/system/external-resource/generic-address", data=params)
 
 
 class Refresh:
@@ -201,7 +204,7 @@ class Refresh:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Fetch the external resource file and refresh status for the specified external resource.
 
@@ -248,7 +251,7 @@ class ValidateJsonpath:
         payload_dict: dict[str, Any] | None = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Validate a JSON path name.
 

@@ -25,10 +25,11 @@ Note:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class Recommendations:
@@ -58,7 +59,7 @@ class Recommendations:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Retrieve recommendations for Security Rating tests.
         Access Group: secfabgrp.csfsys
@@ -124,7 +125,7 @@ class Report:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Retrieve full report of all Security Rating tests.
         Access Group: secfabgrp.csfsys
@@ -187,8 +188,8 @@ class SecurityRating:
 
     def __init__(self, client: "IHTTPClient") -> None:
         self._client = client
-        self._recommendations = None
-        self._report = None
+        self._recommendations: Recommendations | None = None
+        self._report: Report | None = None
 
     @property
     def recommendations(self) -> Recommendations:

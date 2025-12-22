@@ -7,7 +7,7 @@ This module provides access to FortiExtender monitoring endpoints.
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class ExtenderController:
@@ -21,7 +21,7 @@ class ExtenderController:
             client: HTTP client implementing IHTTPClient protocol for API communication
         """
         self._client = client
-        self._extender = None
+        self._extender: Extender | None = None
 
     @property
     def extender(self):

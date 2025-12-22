@@ -772,7 +772,7 @@ class AsyncHTTPClient(BaseHTTPClient):
                         # Type ignore justified: Runtime check (inspect.iscoroutine) confirms
                         # result is awaitable, but mypy sees Union[dict, Coroutine] from protocol
                         # and cannot narrow the type. This is safe and necessary for dual-mode design.
-                        await result  # type: ignore[misc]
+                        await result
                         return True
                     except ResourceNotFoundError:
                         return False

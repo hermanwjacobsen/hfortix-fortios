@@ -25,10 +25,11 @@ Note:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
-    from .....http_client_interface import IHTTPClient
+    from collections.abc import Coroutine
+    from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
 class FabricAdminLockoutExistsOnFirmwareUpdate:
@@ -56,7 +57,7 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Check if there exists a FortiGate in the Fabric that has an administrative user that will get locked out if firmware is updated to a version that does not support safer passwords.
         Access Group: any
@@ -113,7 +114,7 @@ class FabricTimeInSync:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Checks whether the other FortiGate device's time in the Security Fabric is in sync with the specified utc timestamp (in seconds)
         Access Group: any
@@ -171,7 +172,7 @@ class PsirtVulnerabilities:
         payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
-    ) -> dict[str, Any]:
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
                Retrieve a list of N number of PSIRT advisories that the Security Fabric is vulnerable to for a given severity.
         Access Group: sysgrp.mnt

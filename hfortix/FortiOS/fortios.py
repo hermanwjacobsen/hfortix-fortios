@@ -469,7 +469,7 @@ class FortiOS:
         # Check for invalid token format (common mistakes)
         if has_token:
             # Token should not contain spaces (common copy-paste error)
-            if " " in token:  # type: ignore[arg-type]
+            if " " in token:
                 raise ValueError(
                     "Invalid token format: API tokens should not contain spaces. "
                     "Check for copy-paste errors or extra whitespace."
