@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -45,7 +46,7 @@ class CheckPortAvailability:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CheckPortAvailability endpoint.
 
@@ -85,12 +86,10 @@ class CheckPortAvailability:
             >>> fgt.api.monitor.system.check_port_availability.get()
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['port_ranges'] = port_ranges
+        params["port_ranges"] = port_ranges
         if service is not None:
-            params['service'] = service
+            params["service"] = service
         params.update(kwargs)
         return self._client.get(
-            "monitor",
-            "/system/check-port-availability",
-            params=params
+            "monitor", "/system/check-port-availability", params=params
         )

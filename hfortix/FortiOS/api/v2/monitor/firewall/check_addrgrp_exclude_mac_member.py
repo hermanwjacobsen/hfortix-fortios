@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 __all__ = ["CheckAddrgrpExcludeMacMember"]
@@ -47,7 +48,7 @@ class CheckAddrgrpExcludeMacMember:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize CheckAddrgrpExcludeMacMember endpoint.
 
@@ -84,12 +85,12 @@ class CheckAddrgrpExcludeMacMember:
             fgt.api.monitor.firewall.check_addrgrp_exclude_mac_member.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params['mkey'] = mkey
+        params["mkey"] = mkey
         if ip_version is not None:
-            params['ip_version'] = ip_version
+            params["ip_version"] = ip_version
         params.update(kwargs)
         return self._client.get(
             "monitor",
             "/firewall/check-addrgrp-exclude-mac-member",
-            params=params
+            params=params,
         )
