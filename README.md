@@ -44,7 +44,6 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **📖 Documentation:**
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
-- **CI/CD Pipeline**: [docs/CICD.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/CICD.md) - Complete GitHub Actions automation guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
 **Latest Features (v0.3.22 - December 23, 2025):**

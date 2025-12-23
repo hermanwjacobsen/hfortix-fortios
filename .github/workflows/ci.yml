@@ -14,30 +14,30 @@ jobs:
 
     steps:
       - name: Checkout code
-      uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pip'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install black flake8 isort
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black flake8 isort
 
-    - name: Check formatting with Black
-      run: |
-        black --check --line-length=79 hfortix examples
+      - name: Check formatting with Black
+        run: |
+          black --check --line-length=79 hfortix examples
 
-    - name: Check import sorting with isort
-      run: |
-        isort --check-only --profile=black --line-length=79 hfortix examples
+      - name: Check import sorting with isort
+        run: |
+          isort --check-only --profile=black --line-length=79 hfortix examples
 
-    - name: Lint with flake8
-      run: |
-        flake8 hfortix --max-line-length=79 --extend-ignore=E203,W503 --exclude=hfortix/FortiOS/api/v2 --statistics
+      - name: Lint with flake8
+        run: |
+          flake8 hfortix --max-line-length=79 --extend-ignore=E203,W503 --exclude=hfortix/FortiOS/api/v2 --statistics
 
   type-check:
     name: Type Checking
@@ -45,22 +45,22 @@ jobs:
 
     steps:
       - name: Checkout code
-      uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pip'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install mypy httpx
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mypy httpx
 
-    - name: Type check with mypy
-      run: |
-        mypy hfortix --ignore-missing-imports --no-strict-optional
+      - name: Type check with mypy
+        run: |
+          mypy hfortix --ignore-missing-imports --no-strict-optional
 
   security:
     name: Security Scan
@@ -68,31 +68,31 @@ jobs:
 
     steps:
       - name: Checkout code
-      uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pip'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
 
-    - name: Install bandit
-      run: |
-        python -m pip install --upgrade pip
-        pip install "bandit[toml]"
+      - name: Install bandit
+        run: |
+          python -m pip install --upgrade pip
+          pip install "bandit[toml]"
 
-    - name: Run bandit security scan
-      run: |
-        bandit -r hfortix -c pyproject.toml -f json -o bandit-report.json
-        bandit -r hfortix -c pyproject.toml
+      - name: Run bandit security scan
+        run: |
+          bandit -r hfortix -c pyproject.toml -f json -o bandit-report.json
+          bandit -r hfortix -c pyproject.toml
 
-    - name: Upload security report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: bandit-security-report
-        path: bandit-report.json
-        retention-days: 30
+      - name: Upload security report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-security-report
+          path: bandit-report.json
+          retention-days: 30
 
   # test:
   #   name: Test Suite
@@ -136,33 +136,33 @@ jobs:
 
     steps:
       - name: Checkout code
-      uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        cache: 'pip'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
 
-    - name: Install build dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build twine
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
 
-    - name: Build distribution packages
-      run: |
-        python -m build
+      - name: Build distribution packages
+        run: |
+          python -m build
 
-    - name: Check package with twine
-      run: |
-        twine check dist/*
+      - name: Check package with twine
+        run: |
+          twine check dist/*
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist-packages
-        path: dist/
-        retention-days: 7
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-packages
+          path: dist/
+          retention-days: 7
 
   pre-commit-check:
     name: Pre-commit Hooks
@@ -170,21 +170,21 @@ jobs:
 
     steps:
       - name: Checkout code
-      uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Install pre-commit
-      run: |
-        python -m pip install --upgrade pip
-        pip install pre-commit
+      - name: Install pre-commit
+        run: |
+          python -m pip install --upgrade pip
+          pip install pre-commit
 
-    - name: Run pre-commit hooks
-      run: |
-        pre-commit run --all-files --show-diff-on-failure
+      - name: Run pre-commit hooks
+        run: |
+          pre-commit run --all-files --show-diff-on-failure
 
   all-checks-passed:
     name: All Checks Passed
@@ -194,14 +194,14 @@ jobs:
 
     steps:
       - name: Check all jobs
-      run: |
-        if [["${{ needs.lint.result }}" != "success"]] || \
-           [["${{ needs.type-check.result }}" != "success"]] || \
-           [["${{ needs.security.result }}" != "success"]] || \
-           [["${{ needs.build.result }}" != "success"]] || \
-           [["${{ needs.pre-commit-check.result }}" != "success"]]; then
-          echo "❌ One or more checks failed"
-          exit 1
-        else
-          echo "✅ All checks passed!"
-        fi
+        run: |
+          if [[ "${{ needs.lint.result }}" != "success" ]] || \
+             [[ "${{ needs.type-check.result }}" != "success" ]] || \
+             [[ "${{ needs.security.result }}" != "success" ]] || \
+             [[ "${{ needs.build.result }}" != "success" ]] || \
+             [[ "${{ needs.pre-commit-check.result }}" != "success" ]]; then
+            echo "❌ One or more checks failed"
+            exit 1
+          else
+            echo "✅ All checks passed!"
+          fi
