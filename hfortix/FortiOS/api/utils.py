@@ -194,8 +194,8 @@ class Utils:
                         print(f"  → Concurrency helps! (+{improvement:.0f}%)")
                     elif improvement < -10:
                         print(
-                            f"  → Concurrency hurts! ({
-                                improvement:.0f}%) - Use sequential!"
+                            f"  → Concurrency hurts! "
+                            f"({improvement:.0f}%) - Use sequential!"
                         )
                     else:
                         print(f"  → Concurrency neutral ({improvement:+.0f}%)")
