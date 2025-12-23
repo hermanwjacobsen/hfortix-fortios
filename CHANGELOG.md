@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.23] - 2025-12-23
+
+### Added
+
+- **API Endpoints**: Added missing monitor API endpoints
+  - `check_addrgrp_exclude_mac_member` - Firewall address group MAC exclusion checking
+  - `check_port_availability` - System port availability checking
+  - Helper modules for both endpoints with validation support
+
+### Fixed
+
+- **CI/CD Pipeline**: Resolved issues blocking automated builds
+  - All pre-commit hooks now pass consistently
+  - Fixed recurring formatting issues that caused CI failures
+  - Mypy type checking passes without errors
+  - Ready for automated PyPI publishing via GitHub Actions
+- **Code Quality**: Resolved persistent pre-commit formatting issues
+  - Fixed black formatting instability with inline comments in `http_client.py` and `http_client_base.py`
+  - Moved inline type annotation comments to separate lines for stable formatting
+  - Added missing `__all__` exports to resolve mypy module attribute errors
+  - Prevents format/check/format loops in CI pipeline
+- **Git Configuration**: Fixed `.gitignore` pattern blocking legitimate API files
+  - Changed `check_*.py` to `/check_*.py` to only ignore root-level temporary scripts
+  - Prevents accidental exclusion of API endpoint modules with `check_` prefix
+  - Previously ignored files now properly tracked and versioned
+- **Module Imports**: Removed unnecessary imports causing mypy errors
+  - Cleaned up redundant module-level imports in `firewall/__init__.py`
+  - Fixed "Module has no attribute" errors in type checking
+
+### Changed
+
+- **Code Formatting**: Applied black/isort formatting to all newly tracked files
+  - Consistent quote style (double quotes) across all API modules
+  - Proper import ordering and grouping per PEP 8
+  - Standardized blank line placement
+  - All 1596 source files pass mypy type checking
+
 ## [0.3.22] - 2025-12-23
 
 ### Added
