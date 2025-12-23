@@ -858,7 +858,9 @@ class FortiOS:
             raise RuntimeError(
                 "Cannot use .close() in async mode. Use 'await fgt.aclose()' or 'async with' instead."  # noqa: E501
             )
-        self._client.close()
+        result = self._client.close()
+        # In sync mode, close() returns None, not a coroutine
+        assert result is None, "Sync client close should not return coroutine"
 
     async def aclose(self) -> None:
         """
