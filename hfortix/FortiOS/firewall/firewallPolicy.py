@@ -1390,7 +1390,9 @@ class FirewallPolicy:
             policies_raw = self.get(vdom=vdom)
             # Ensure we have a list of policy dicts
             if isinstance(policies_raw, dict):
-                policies: list[dict[str, Any]] = policies_raw.get("results", [])
+                policies: list[dict[str, Any]] = policies_raw.get(
+                    "results", []
+                )
             else:
                 policies = policies_raw
             if not policies:

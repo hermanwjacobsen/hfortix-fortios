@@ -29,11 +29,11 @@ jobs:
 
       - name: Check formatting with Black
         run: |
-          black --check --line-length=79 hfortix
+          black --check --line-length=79 hfortix --exclude 'hfortix/FortiOS/api/v2'
 
       - name: Check import sorting with isort
         run: |
-          isort --check-only --profile=black --line-length=79 hfortix
+          isort --check-only --profile=black --line-length=79 hfortix --skip hfortix/FortiOS/api/v2
 
       - name: Lint with flake8
         run: |

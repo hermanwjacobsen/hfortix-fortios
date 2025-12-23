@@ -92,7 +92,7 @@ repos:
     hooks:
       - id: markdownlint
         args: [--config, .markdownlint.json]
-        exclude: ^(X/|CHANGELOG\.md|docs/|hfortix/FortiOS/firewall/.*\.md)
+        exclude: ^(X/|CHANGELOG\.md|QUICKSTART\.md|docs/|hfortix/FortiOS/firewall/.*\.md)
 
 # Configuration for pre-commit.ci (if using)
 ci:

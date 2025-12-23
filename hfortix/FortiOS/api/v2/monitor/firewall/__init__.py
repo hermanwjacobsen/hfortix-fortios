@@ -22,7 +22,9 @@ from typing import TYPE_CHECKING
 #
 # This is intentionally lightweight: importing these modules shouldn't have
 # side-effects beyond class definitions.
-from . import check_addrgrp_exclude_mac_member  # noqa: F401
+from . import (  # noqa: F401  # type: ignore[attr-defined]
+    check_addrgrp_exclude_mac_member,
+)
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client_interface import IHTTPClient

@@ -3,11 +3,13 @@
 ## Installation
 
 ### From PyPI (Recommended)
+
 ```bash
 pip install hfortix
 ```
 
 ### From Source
+
 ```bash
 git clone https://github.com/hermanwjacobsen/hfortix.git
 cd hfortix
@@ -17,21 +19,25 @@ pip install -e .
 ## Import Patterns
 
 ### Recommended: Unified Package Import
+
 ```python
 from hfortix import FortiOS
 ```
 
 ### Alternative: Direct Module Import
+
 ```python
 from hfortix.FortiOS import FortiOS
 ```
 
 ### Exception Imports
+
 ```python
 from hfortix import APIError, ResourceNotFoundError, FortinetError
 ```
 
 ### Future Products (Coming Soon)
+
 ```python
 # FortiManager / FortiAnalyzer are planned; currently FortiOS is available.
 from hfortix import FortiOS
@@ -169,6 +175,7 @@ fgt.service.sniffer.start(mkey='capture1')  # Same result
 ## Exception Quick Reference
 
 ### HTTP Exceptions
+
 - `ResourceNotFoundError` - 404
 - `BadRequestError` - 400
 - `MethodNotAllowedError` - 405
@@ -176,6 +183,7 @@ fgt.service.sniffer.start(mkey='capture1')  # Same result
 - `ServerError` - 500
 
 ### FortiOS-Specific
+
 - `DuplicateEntryError` - Object already exists
 - `EntryInUseError` - Object in use, can't delete
 - `InvalidValueError` - Invalid parameter value
@@ -194,6 +202,7 @@ print(get_available_modules())
 ## Common Patterns
 
 ### Environment Configuration
+
 ```python
 import os
 from dotenv import load_dotenv
@@ -210,6 +219,7 @@ fgt = FortiOS(
 ```
 
 ### Timeout Configuration
+
 ```python
 # Default timeouts (suitable for most scenarios)
 # - connect_timeout: 10 seconds (connection establishment)
@@ -240,6 +250,7 @@ fgt = FortiOS(
 ```
 
 ### Pagination
+
 ```python
 # Get all items (handles pagination automatically)
 all_addresses = fgt.api.cmdb.firewall.address.list()
@@ -250,6 +261,7 @@ page2 = fgt.api.cmdb.firewall.address.list(start=100, count=100)
 ```
 
 ### Filtering
+
 ```python
 # Filter by name
 result = fgt.api.cmdb.firewall.address.get(name='web-server')
@@ -261,6 +273,7 @@ addresses = fgt.api.cmdb.firewall.address.list(
 ```
 
 ### Working with Special Characters
+
 ```python
 # Objects with special characters in names are automatically handled
 # (underscores, slashes in IP addresses, spaces, etc.)
@@ -319,6 +332,7 @@ fgt.api.cmdb.vpn.ipsec.*              # IPSec VPN
 ```
 
 ### Monitor
+
 ```python
 fgt.api.monitor.system.interface.*     # Interface stats
 fgt.api.monitor.firewall.session.*     # Session table
@@ -326,6 +340,7 @@ fgt.api.monitor.system.resource.*      # Resource usage
 ```
 
 ### Log
+
 ```python
 fgt.api.log.disk.traffic.*             # Traffic logs
 fgt.api.log.disk.event.*               # Event logs
@@ -335,7 +350,7 @@ fgt.api.log.disk.virus.*               # Antivirus logs
 ## Error Codes Reference
 
 | Code | Meaning |
-|------|---------|
+| ---- | ------- |
 | -1 | Invalid parameter/value |
 | -5 | Object already exists |
 | -14 | Permission denied |
@@ -349,6 +364,7 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 ## Tips
 
 ✅ **DO:**
+
 - Use API tokens (only authentication method supported)
 - Handle specific exceptions
 - Set `verify=True` in production
@@ -357,6 +373,7 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 - Use async mode for concurrent operations (see ASYNC_GUIDE.md)
 
 ❌ **DON'T:**
+
 - Hardcode credentials
 - Ignore SSL verification in production
 - Use bare `except:` clauses
@@ -411,6 +428,7 @@ fgt.firewall.policy.delete(policyid="1")
 ```
 
 **Benefits:**
+
 - Automatic input normalization (strings → lists where needed)
 - More Pythonic interface
 - Fewer lines of code
@@ -458,6 +476,7 @@ create_policy_validated(
 ```
 
 **Coverage:**
+
 - 832 validation modules across 77 categories
 - CMDB, Monitor, Log, Service APIs
 - Enum, length, range, pattern validation
@@ -496,6 +515,7 @@ result = fgt.api.cmdb.firewall.policy.create(payload_dict=payload)
 ```
 
 **Benefits:**
+
 - 13% code reduction (454 lines removed from policy endpoints)
 - Consistent behavior across methods
 - Easier maintenance
