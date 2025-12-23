@@ -13,19 +13,6 @@ This module provides access to firewall monitoring endpoints including:
 
 from typing import TYPE_CHECKING
 
-# NOTE:
-# Mypy (and some static analyzers) don't treat dynamically imported
-# submodules inside methods as package attributes. We import any submodule
-# that we also import dynamically in `Firewall.__init__` so that
-# `hfortix.FortiOS.api.v2.monitor.firewall.<submodule>` is visible to type
-# checking.
-#
-# This is intentionally lightweight: importing these modules shouldn't have
-# side-effects beyond class definitions.
-from . import (  # noqa: F401; type: ignore[attr-defined]
-    check_addrgrp_exclude_mac_member,
-)
-
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
