@@ -20,18 +20,18 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Overall**: 77 of 77 categories (100% coverage) - 750+ API methods 🎉
 
 **Validation Coverage (v0.3.22):**
+
 - 832 validation helper modules auto-generated for all API types (CMDB, Monitor, Log, Service)
 - Enum, length, range, pattern, and type validation implemented
 - **Required field validation is NOT yet implemented**
 
 **Test Coverage:** 226 test files (145 CMDB, 81 Monitor) with 75%+ pass rate (~50% of generated endpoints tested)
-
-
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
 **Note:** Documentation in the `X/` folder is for internal development only, is not referenced outside `X`, and is not included in git or releases.
 
 **🔥 Recent Highlights (December 2025):**
+
 - 🎉 **100% API COVERAGE**: Complete implementation of ALL documented FortiOS 7.6.5 API categories!
 - 🚀 **MASSIVE EXPANSION**: Generated 500+ new endpoints across 37 CMDB + 32 Monitor categories
 - 🔄 **API Refactoring**: All endpoints refactored with RESTful methods (.list(), .get(), .create(), .update(), .delete())
@@ -43,10 +43,12 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - ✨ **Firewall Expansion** (v0.3.11): FTP proxy, ICAP, IPS, DoS policies, access-proxy (WAF)
 
 **📖 Documentation:**
+
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
 **Latest Features (v0.3.22 - December 23, 2025):**
+
 - 🎯 **CI/CD Pipeline**: Complete GitHub Actions automation
   - Automated code quality checks (lint, format, type-check, security)
   - PyPI publishing with trusted publishing (no API tokens needed)
@@ -58,12 +60,14 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Proper handling of long lines, imports, and f-strings
 
 **Features from v0.3.19:**
+
 - 🔧 **Type Checking Improvements**: Enhanced type safety and IDE support
   - Cleaned up mypy configuration (removed unnecessary overrides for httpx and requests)
   - Better IDE autocomplete and type checking
   - Zero breaking changes - purely internal improvements
 
 **Features from v0.3.18:**
+
 - ✨ **Extensibility: Custom HTTP Clients**: Support for custom HTTP client implementations
   - `IHTTPClient` Protocol interface for audit logging, caching, testing, custom auth
   - See [examples/custom_http_client_example.py](https://github.com/hermanwjacobsen/hfortix/blob/main/examples/custom_http_client_example.py)
@@ -76,6 +80,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Renamed all 354 test files to use `test_` prefix
 
 **Features from v0.3.17:**
+
 - ✨ **Performance Testing API**: Built-in performance testing and optimization
   - New `fgt.api.utils.performance_test()` method for testing your device
   - Validates connection pool settings automatically
@@ -102,6 +107,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - See [docs/FIREWALL_POLICY_WRAPPER.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/FIREWALL_POLICY_WRAPPER.md) for complete guide
 
 **Also in v0.3.17:**
+
 - ✨ **Async/Await Support**: Full dual-mode support for async operations
   - Single `FortiOS` class works in both sync and async modes
   - All 750+ API methods support async with `mode="async"` parameter
@@ -112,13 +118,14 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Returns `True`/`False` instead of raising exceptions
 
 **Previous Features:**
-  - Policy statistics, session monitoring, ACL counters
-  - Address objects, traffic shapers, GTP stats
-  - Special endpoints: policy-lookup (callable), clearpass-address (actions)
-  - **endpoint-control/**: 7 endpoints for FortiClient EMS monitoring
-  - **azure/, casb/, extender-controller/, extension-controller/**: Additional monitoring
-  - Test coverage: 39 firewall tests with 100% pass rate
-  - All endpoints support explicit parameters (no **kwargs)
+
+- Policy statistics, session monitoring, ACL counters
+- Address objects, traffic shapers, GTP stats
+- Special endpoints: policy-lookup (callable), clearpass-address (actions)
+- **endpoint-control/**: 7 endpoints for FortiClient EMS monitoring
+- **azure/, casb/, extender-controller/, extension-controller/**: Additional monitoring
+- Test coverage: 39 firewall tests with 100% pass rate
+- All endpoints support explicit parameters (no **kwargs)
 - ✨ **Log Configuration Category**: 56 endpoints for comprehensive logging setup
   - Nested object pattern: `fgt.api.cmdb.log.disk.filter.get()`
   - Multiple FortiAnalyzer, syslog, TACACS+ server support
@@ -132,6 +139,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Schedule, service, shaper, SSH/SSL configurations
 
 **Previous Release (v0.3.10):**
+
 - ✨ **Configurable Timeouts**: Customize connection and read timeouts
   - `connect_timeout`: Connection establishment timeout (default: 10.0s)
   - `read_timeout`: Response read timeout (default: 300.0s)
@@ -143,12 +151,14 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - ✅ **Bug Fix**: Fixed 404 errors when object names contain special characters
 
 **Previous Release (v0.3.9):**
+
 - ✨ **raw_json Parameter**: All 200+ API methods now support `raw_json=True` for full response access
 - ✨ **Logging System**: Global and per-instance logging control
 - ✅ **Code Quality**: 100% PEP 8 compliance (black + isort + flake8)
 - ✅ **Comprehensive Tests**: 200+ test files covering all endpoints
 
 **Previous Releases:**
+
 - v0.3.8: Dual-pattern interface for all create/update methods
 - v0.3.7: Packaging and layout improvements
 - v0.3.6: Hidden internal CRUD methods for cleaner autocomplete
@@ -175,10 +185,12 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 ## 📚 Documentation
 
 ### Getting Started
+
 - **[QUICKSTART.md](QUICKSTART.md)** - Quick reference guide with examples
 - **[docs/SECURITY.md](docs/SECURITY.md)** - Security best practices and audit results
 
 ### Feature Guides
+
 - **[docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
 - **[docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
 - **[docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md)** - Firewall policy convenience wrappers
@@ -187,6 +199,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization
 
 ### API Reference
+
 - **[docs/ENDPOINT_METHODS.md](docs/ENDPOINT_METHODS.md)** - Complete API method reference
 - **[API_COVERAGE.md](API_COVERAGE.md)** - Detailed API implementation status
 - **[CHANGELOG.md](CHANGELOG.md)** - Complete version history
@@ -223,11 +236,12 @@ results = fgt.api.utils.performance_test()
 ```
 
 **Real-World Test Results (December 2025):**
+
 - **FGT 70F** (10.37.95.1): 70.54 req/s - high-performance profile ⚡
 - **FGT 200F** (212.55.57.170): 11.11 req/s - fast-lan profile
 - **Remote VM** (fw.wjacobsen.fo): 4.75 req/s - remote-wan profile
 
-**Alternative: Standalone function**
+### Alternative: Standalone function
 
 ```python
 from hfortix.FortiOS.performance_test import quick_test
@@ -236,6 +250,7 @@ results = quick_test("192.168.1.99", "your_token", verify=False)
 ```
 
 **Features:**
+
 - ✅ Validates connection pool configuration
 - ✅ Tests real-world API endpoints (status, policies, addresses, etc.)
 - ✅ Identifies device profile (high-performance, fast-lan, or remote-wan)
@@ -246,6 +261,7 @@ results = quick_test("192.168.1.99", "your_token", verify=False)
 **Key Finding:** Most FortiGate devices serialize API requests internally, meaning concurrent requests don't improve throughput and can actually make things 10-15x slower! The performance test helps you identify if your device benefits from concurrency or should use sequential requests.
 
 **New Default Settings (v0.3.17):**
+
 - `max_connections`: **10** (conservative - should work for most devices)
 - `max_keepalive_connections`: **5** (50% below slowest device tested)
 - Run performance test to get device-specific optimal settings!
@@ -253,7 +269,7 @@ results = quick_test("192.168.1.99", "your_token", verify=False)
 ## 📦 Available Modules
 
 | Module | Status | Description |
-|--------|--------|-------------|
+| ------ | ------ | ----------- |
 | **FortiOS** | ✅ Active | FortiGate firewall management API |
 | **FortiManager** | ⏸️ Planned | Centralized management for FortiGate devices |
 | **FortiAnalyzer** | ⏸️ Planned | Log analysis and reporting platform |
@@ -261,6 +277,7 @@ results = quick_test("192.168.1.99", "your_token", verify=False)
 ## 🚀 Installation
 
 ### From PyPI (Recommended)
+
 ```bash
 pip install hfortix
 ```
@@ -349,12 +366,14 @@ fgt = FortiOS(host='192.168.1.99')  # Token from FORTIOS_TOKEN env var
 ```
 
 **Supported Environment Variables:**
+
 - `FORTIOS_HOST` - FortiGate hostname or IP
 - `FORTIOS_TOKEN` - API token
 - `FORTIOS_USERNAME` - Username for password authentication
 - `FORTIOS_PASSWORD` - Password for username authentication
 
 **Use Cases:**
+
 - **CI/CD Pipelines**: Store credentials as secrets, not in code
 - **Docker Containers**: Pass credentials via environment
 - **Security**: No credentials committed to version control
@@ -384,6 +403,7 @@ fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
 ```
 
 **Features:**
+
 - 5 log levels (DEBUG, INFO, WARNING, ERROR, OFF)
 - Automatic sensitive data sanitization
 - Request/response logging with timing
@@ -447,6 +467,7 @@ print(f"Would have executed {len(blocked_ops)} write operations")
 ```
 
 **Use Cases:**
+
 - **Testing**: Test automation scripts without affecting production
 - **CI/CD**: Validate configuration changes in pipelines
 - **Auditing**: Track all API operations for compliance
@@ -510,6 +531,7 @@ fgt = FortiOS(
 ```
 
 **Token Requirements:**
+
 - **Length**: Minimum 25 characters (FortiOS tokens are typically 31+ chars)
   - Older FortiOS versions: ~31-32 characters
   - Newer FortiOS versions: 40+ characters
@@ -518,6 +540,7 @@ fgt = FortiOS(
 - **Generate**: System > Administrators > Create New > REST API Admin
 
 **Why 25-character minimum?**
+
 - Catches obviously invalid tokens (passwords, test strings, placeholders)
 - Flexible enough for all FortiOS versions (31-32 char old, 40+ char new)
 - Prevents common user errors without being too restrictive
@@ -559,6 +582,7 @@ fgt = FortiOS('192.168.1.99', username='admin', password='password',
 ```
 
 **Important Notes:**
+
 - ⚠️ Username/password works in FortiOS ≤7.4.x but **removed in 7.6.x+**
 - 🔒 Use API token authentication for production deployments
 - ⏱️ Idle timer resets on each API request
@@ -656,11 +680,13 @@ class IHTTPClient(Protocol):
 **Complete Examples:**
 
 See `examples/custom_http_client_example.py` for production-ready implementations:
+
 - `AuditLoggingHTTPClient` - Log all API calls to syslog/SIEM for compliance
 - `CachingHTTPClient` - Cache GET responses to reduce API load
 - `FakeHTTPClient` - Return fake data for testing without a real FortiGate
 
 **Use Cases:**
+
 - **Enterprise Compliance**: Log all FortiGate changes to SIEM for SOX/HIPAA/PCI-DSS
 - **Development/Testing**: Use fake client in CI/CD pipelines without FortiGate hardware
 - **Performance Optimization**: Cache frequently-read data (address objects, service definitions)
@@ -731,6 +757,7 @@ hfortix.set_log_level('INFO')  # See request/response timing
 ```
 
 **Benefits:**
+
 - **Request Tracking**: Trace requests across distributed systems with correlation IDs
 - **Circuit Breaker**: Automatic fail-fast prevents wasting time on dead connections
 - **Connection Metrics**: Monitor health, detect issues before they cause problems
@@ -738,11 +765,13 @@ hfortix.set_log_level('INFO')  # See request/response timing
 - **Structured Logs**: Machine-readable JSON logs for aggregation tools
 
 **Circuit Breaker States:**
+
 - `closed` (normal): All requests pass through
 - `open` (failing): Requests fail immediately without attempting connection
 - `half_open` (testing): One request allowed to test if service recovered
 
 **When Circuit Opens:**
+
 - After 5 consecutive failures (configurable via `circuit_breaker_threshold`)
 - Automatically transitions to `half_open` after 60s (configurable via `circuit_breaker_timeout`)
 - If test request succeeds → back to `closed`
@@ -778,10 +807,12 @@ fgt.api.cmdb.firewall.address.create(
 ```
 
 **Available on:** 43 methods across 13 categories (100% coverage)
+
 - All CMDB create/update operations (38 endpoints)
 - Service operations (5 methods)
 
 ### Exception Handling
+
 ```python
 from hfortix import (
     FortiOS,
@@ -807,7 +838,7 @@ except APIError as e:
 
 ## 🏗️ Project Structure
 
-```
+```text
 fortinet/
 ├── hfortix/                  # Main package
 │   ├── __init__.py           # Public API exports
@@ -846,7 +877,8 @@ print(modules)
 ```
 
 ## 🎓 Examples
-# Async/Await Usage ✨
+
+## Async/Await Usage ✨
 
 HFortix provides full async/await support for all FortiOS API operations. To use async mode, simply pass `mode="async"` to the `FortiOS` constructor. All API methods and helpers support async/await, enabling high-performance concurrent automation.
 
@@ -866,12 +898,14 @@ asyncio.run(main())
 ```
 
 **Key Points:**
+
 - Use `mode="async"` to enable async mode
 - Use `async with` for automatic cleanup, or call `await fgt.aclose()` manually
 - All API methods and helpers (like `.exists()`) must be awaited
 - Use `asyncio.gather()` for concurrent requests
 
 **Best Practices:**
+
 - Use async mode for bulk operations or high concurrency
 - Always use context managers for resource cleanup
 - Limit concurrency with semaphores if needed
@@ -880,6 +914,7 @@ asyncio.run(main())
 ---
 
 ### FortiOS - Firewall Address Management
+
 ```python
 from hfortix import FortiOS
 
@@ -901,11 +936,14 @@ result = fgt.api.cmdb.firewall.address.update(
     comment='Updated comment'
 )
 
+```python
+
 # Delete address
 result = fgt.api.cmdb.firewall.address.delete(name='web-server')
 ```
 
 ### FortiOS - DoS Protection (NEW!)
+
 ```python
 # Create IPv4 DoS policy with simplified API
 result = fgt.api.cmdb.firewall.dos_policy.create(
@@ -939,6 +977,7 @@ result = fgt.api.cmdb.firewall.dos_policy.create(
 ```
 
 ### FortiOS - Reverse Proxy/WAF (NEW!)
+
 ```python
 # Create access proxy (requires VIP with type='access-proxy')
 result = fgt.api.cmdb.firewall.access_proxy.create(
@@ -963,6 +1002,7 @@ result = fgt.api.cmdb.firewall.access_proxy_virtual_host.create(
 ```
 
 ### FortiOS - Address & Address Group Management (NEW!)
+
 ```python
 # Create IPv4 address (subnet)
 result = fgt.api.cmdb.firewall.address.create(
@@ -1022,6 +1062,7 @@ result = fgt.api.cmdb.firewall.address6_template.create(
 ```
 
 ### FortiOS - Schedule Management
+
 ```python
 # Create recurring schedule
 result = fgt.api.cmdb.firewall.schedule.recurring.create(
@@ -1050,6 +1091,7 @@ result = fgt.api.cmdb.firewall.schedule.onetime.create(
 **Important:** Routing protocol configurations use a different pattern than collection endpoints.
 
 **Collection Endpoints** (addresses, policies, etc.) support standard CRUD:
+
 ```python
 # Standard CRUD - simple and intuitive
 fgt.api.cmdb.firewall.address.create(name='test', subnet='192.168.1.0/24')
@@ -1058,6 +1100,7 @@ fgt.api.cmdb.firewall.address.delete('test')
 ```
 
 **Singleton Endpoints** (BGP, OSPF, RIP, ISIS, etc.) require GET→Modify→PUT pattern:
+
 ```python
 # BGP Neighbor Management - requires full config update
 # Step 1: Get current BGP configuration
@@ -1093,6 +1136,8 @@ neighbors = config.get('neighbor', []) if isinstance(config, dict) else []
 print(f"BGP now has {len(neighbors)} neighbors")
 ```
 
+OSPF Network Management (same pattern)
+
 ```python
 # OSPF Network Management - same pattern
 config = fgt.api.cmdb.router.ospf.get()
@@ -1109,6 +1154,8 @@ config['network'] = networks
 fgt.api.cmdb.router.ospf.update(data_dict=config)
 ```
 
+RIP Network Management
+
 ```python
 # RIP Network Management
 config = fgt.api.cmdb.router.rip.get()
@@ -1122,12 +1169,14 @@ fgt.api.cmdb.router.rip.update(data_dict=config)
 ```
 
 **Why This Pattern?**
+
 - FortiOS API design: Routing protocols are singleton objects (only one BGP/OSPF/RIP config per VDOM)
 - Nested objects (neighbors, networks, areas) are managed as lists within the main config
 - The API requires sending the entire configuration on updates to maintain consistency
 
 **Future Enhancement:**
 Helper methods are planned to simplify this pattern:
+
 ```python
 # Planned for future release (not yet available)
 fgt.api.cmdb.router.bgp.add_neighbor(ip='10.0.0.1', remote_as=65001)
@@ -1136,6 +1185,7 @@ fgt.api.cmdb.router.bgp.list_neighbors()
 ```
 
 **Affected Endpoints:**
+
 - `router/bgp` - BGP neighbors, networks, aggregate addresses, VRFs
 - `router/ospf` - OSPF areas, interfaces, networks, neighbors
 - `router/ospf6` - OSPFv3 areas, interfaces
@@ -1146,7 +1196,6 @@ fgt.api.cmdb.router.bgp.list_neighbors()
 - `router/bfd6` - BFD neighbors (IPv6)
 
 See the test files in the development workspace for complete working examples.
-```
 
 ### Helper Methods - Safe Existence Checking ✨
 
@@ -1190,8 +1239,9 @@ for user in users:
 - See [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md) for complete API method reference
 - See [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) for async/await usage patterns
 
-### Exception Hierarchy
-```
+## Exception Hierarchy
+
+```text
 Exception
 └── FortinetError (base)
     ├── AuthenticationError
@@ -1213,6 +1263,7 @@ Exception
 **Note:** This SDK is currently in beta (v0.3.x). All endpoints are functional but will remain in beta status until version 1.0.0 with comprehensive unit test coverage.
 
 **Current Status:**
+
 - All implemented endpoints are tested against live FortiGate devices
 - Integration testing performed during development
 - Unit test framework planned for v1.0.0 release
@@ -1229,11 +1280,13 @@ print(get_version())
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to:
+
 - Report bugs and issues
 - Suggest new features or improvements
 - Submit pull requests
 
 For code contributions:
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes with proper tests
@@ -1244,12 +1297,14 @@ For code contributions:
 Proprietary License - Free for personal, educational, and business use.
 
 **You may:**
+
 - Use for personal projects and learning
 - Use in your business operations
 - Deploy in client environments
 - Use in managed services and technical support
 
 **You may not:**
+
 - Sell the software itself as a standalone product
 - Redistribute as your own product
 
@@ -1274,6 +1329,7 @@ See [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELO
 ## ⚙️ Configuration
 
 ### Environment Variables
+
 ```bash
 export FGT_HOST="192.168.1.99"
 export FGT_TOKEN="your-api-token"
@@ -1281,6 +1337,7 @@ export FGT_VERIFY_SSL="false"
 ```
 
 ### Using .env File
+
 ```python
 from dotenv import load_dotenv
 import os
@@ -1327,6 +1384,7 @@ fgt = FortiOS(
 **Routing protocol configurations (BGP, OSPF, RIP, ISIS, etc.) use a different pattern than collection endpoints:**
 
 - **Collection Endpoints** (addresses, policies, etc.): Use standard CRUD operations
+
   ```python
   # Simple add/remove pattern
   fgt.api.cmdb.firewall.address.create(name='test', subnet='192.168.1.0/24')
@@ -1334,6 +1392,7 @@ fgt = FortiOS(
   ```
 
 - **Singleton Endpoints** (bgp, ospf, rip, isis, etc.): Require GET→Modify→PUT pattern
+
   ```python
   # Must get entire config, modify, and send back
   config = fgt.api.cmdb.router.bgp.get()
@@ -1346,6 +1405,7 @@ fgt = FortiOS(
 **Future Enhancement:** Helper methods like `add_neighbor()`, `remove_neighbor()`, `list_neighbors()` are planned to simplify this pattern.
 
 **Affected Endpoints:**
+
 - `router/bgp` - BGP neighbors, networks, VRFs
 - `router/ospf` - OSPF areas, interfaces, networks
 - `router/ospf6` - OSPFv3 configuration
@@ -1361,11 +1421,12 @@ fgt = FortiOS(
 
 ## 👤 Author
 
-**Herman W. Jacobsen**
+### Herman W. Jacobsen
+
 - Email: herman@wjacobsen.fo
 - LinkedIn: [linkedin.com/in/hermanwjacobsen](https://www.linkedin.com/in/hermanwjacobsen/)
 - GitHub: [@hermanwjacobsen](https://github.com/hermanwjacobsen)
 
 ---
 
-**Built with ❤️ for the Fortinet community**
+## Built with ❤️ for the Fortinet community

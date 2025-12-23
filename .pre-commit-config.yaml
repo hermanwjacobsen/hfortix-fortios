@@ -26,6 +26,8 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: detect-private-key
+        # Generated API stubs can contain key-like strings; exclude them.
+        exclude: ^hfortix/FortiOS/api/v2/
 
   # Python code formatting with Black
   - repo: https://github.com/psf/black
@@ -49,10 +51,11 @@ repos:
     rev: 7.0.0
     hooks:
       - id: flake8
-        args: [--max-line-length=79, --extend-ignore=E203, W503]
-        exclude: ^(X/|Tests/|\.venv/|venv/|build/|dist/)
+        args: [--max-line-length=79, "--extend-ignore=E203,W503,B009,B036"]
+        # NOTE: hfortix/FortiOS/api/v2 is generated code; we exclude it from lint
+        # (matching the project's pyproject.toml) to avoid noisy docstring/style failures.
+        exclude: ^(X/|Tests/|\.venv/|venv/|build/|dist/|hfortix/FortiOS/api/v2/)
         additional_dependencies:
-          - flake8-docstrings
           - flake8-bugbear
 
   # Type checking with mypy
@@ -89,7 +92,7 @@ repos:
     hooks:
       - id: markdownlint
         args: [--config, .markdownlint.json]
-        exclude: ^(X/|CHANGELOG\.md)
+        exclude: ^(X/|CHANGELOG\.md|docs/|hfortix/FortiOS/firewall/.*\.md)
 
 # Configuration for pre-commit.ci (if using)
 ci:

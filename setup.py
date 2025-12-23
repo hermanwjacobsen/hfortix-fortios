@@ -21,7 +21,10 @@ setup(
     version="0.3.22",
     author="Herman W. Jacobsen",
     author_email="herman@wjacobsen.fo",
-    description="HFortix - Python SDK for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)",
+    description=(
+        "HFortix - Python SDK for Fortinet products "
+        "(FortiOS, FortiManager, FortiAnalyzer)"
+    ),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/hermanwjacobsen/hfortix",
@@ -57,10 +60,15 @@ setup(
             "python-dotenv>=1.0.0",
         ],
     },
-    keywords="hfortix fortinet fortigate fortios fortimanager fortianalyzer api sdk firewall security",
+    keywords=(
+        "hfortix fortinet fortigate fortios fortimanager fortianalyzer "
+        "api sdk firewall security"
+    ),
     project_urls={
         "Bug Reports": "https://github.com/hermanwjacobsen/hfortix/issues",
         "Source": "https://github.com/hermanwjacobsen/hfortix",
-        "Documentation": "https://github.com/hermanwjacobsen/hfortix/blob/main/README.md",
+        "Documentation": (
+            "https://github.com/hermanwjacobsen/hfortix/blob/main/README.md"
+        ),
     },
 )
