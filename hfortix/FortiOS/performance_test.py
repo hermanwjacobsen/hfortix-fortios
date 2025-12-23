@@ -340,8 +340,10 @@ def test_endpoint_performance(
                 for i in range(count):
                     start = time.time()
                     try:
-                        if hasattr(api_obj, "get"):
-                            api_obj.get()
+                        if hasattr(api_obj, "get") and callable(
+                            getattr(api_obj, "get")
+                        ):
+                            getattr(api_obj, "get")()
                         elapsed = (time.time() - start) * 1000  # ms
                         times.append(elapsed)
                         successes += 1

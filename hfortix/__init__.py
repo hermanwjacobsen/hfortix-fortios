@@ -28,6 +28,8 @@ from .FortiOS import (  # noqa: F401
     FortiOS,
     __author__,
     __version__,
+    quick_test,
+    run_performance_test,
 )
 from .FortiOS.exceptions import (
     FORTIOS_ERROR_CODES,
@@ -94,6 +96,9 @@ __all__ = [
     "get_available_modules",
     "get_version",
     "set_log_level",
+    # Performance testing
+    "quick_test",
+    "run_performance_test",
 ]
 
 __all__.append("FortiOS")

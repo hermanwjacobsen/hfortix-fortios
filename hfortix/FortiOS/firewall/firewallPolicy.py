@@ -787,7 +787,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.post(
+        return self._api.post(  # type: ignore[call-arg]
             payload_dict=policy_data, **api_params
         )
 
@@ -833,7 +833,7 @@ class FirewallPolicy:
         # Merge any additional kwargs
         api_params.update(kwargs)
 
-        return self._api.get(**api_params)  # type: ignore[return-value]
+        return self._api.get(**api_params)  # type: ignore[call-arg,return-value]
 
     def update(
         self,
@@ -1288,7 +1288,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.put(
+        return self._api.put(  # type: ignore[call-arg]
             policyid=str(policy_id),
             payload_dict=policy_data,
             **api_params,
@@ -1319,7 +1319,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.delete(
+        return self._api.delete(  # type: ignore[call-arg]
             policyid=str(policy_id), **api_params
         )
 
@@ -1464,11 +1464,10 @@ class FirewallPolicy:
         if raw_json is not None:
             call_params["raw_json"] = raw_json
 
-        # Type ignore: client can be sync or async, runtime returns Dict[str,
-        # Any]
-        return self._fgt._client.put(
+        # Type ignore: client can be sync or async, runtime returns Dict[str, Any]
+        return self._fgt._client.put(  # type: ignore[call-arg,return-value]
             "cmdb", endpoint, **call_params
-        )  # type: ignore
+        )
 
     def clone(
         self,
@@ -1557,7 +1556,7 @@ class FirewallPolicy:
         if vdom:
             api_params["vdom"] = vdom
 
-        return self._api.post(
+        return self._api.post(  # type: ignore[call-arg]
             data=clone_data, **api_params
         )
 

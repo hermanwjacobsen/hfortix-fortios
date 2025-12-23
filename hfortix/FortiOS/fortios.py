@@ -889,7 +889,12 @@ class FortiOS:
         """
         if self._mode != "async":
             raise RuntimeError("aclose() is only available in async mode")
-        await self._client.close()
+        if hasattr(self._client, "close") and callable(
+            getattr(self._client, "close")
+        ):
+            result = self._client.close()
+            if result is not None:
+                await result
 
     def __enter__(self) -> "FortiOS":
         """Context manager entry (sync mode only)"""

@@ -499,7 +499,7 @@ class BaseHTTPClient:
         Returns:
             Average response time in seconds, or 0.0 if no data
         """
-        times = self._response_times.get(endpoint, [])
+        times = self._response_times.get(endpoint, deque())
         if not times:
             return 0.0
         return sum(times) / len(times)
