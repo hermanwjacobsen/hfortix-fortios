@@ -39,16 +39,16 @@ jobs:
 
       - name: Check formatting with Black
         run: |
-          black --check --line-length=79 hfortix
+          black --check --line-length=79 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix examples
 
       - name: Check import sorting with isort
         run: |
-          isort --check-only --profile=black --line-length=79 hfortix
+          isort --check-only --profile=black --line-length=79 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix examples
 
       - name: Lint with flake8
         run: |
           # Uses .flake8 config file (79 chars, ignores E501 for api/* folders)
-          flake8 hfortix --statistics
+          flake8 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix --statistics
 
   type-check:
     name: Type Checking
@@ -72,14 +72,14 @@ jobs:
       - name: Type check with mypy
         continue-on-error: true
         run: |
-          mypy hfortix \
+          mypy packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix \
             --ignore-missing-imports \
             --no-strict-optional \
             --no-warn-unreachable \
             --no-warn-return-any \
             --allow-untyped-defs \
             --allow-incomplete-defs \
-            --exclude 'hfortix/FortiOS/api/v2/'
+            --exclude 'packages/fortios/hfortix_fortios/api/v2/'
 
   security:
     name: Security Scan
@@ -102,8 +102,8 @@ jobs:
 
       - name: Run bandit security scan
         run: |
-          bandit -r hfortix -c pyproject.toml -f json -o bandit-report.json
-          bandit -r hfortix -c pyproject.toml
+          bandit -r packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix -c pyproject.toml -f json -o bandit-report.json
+          bandit -r packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix -c pyproject.toml
 
       - name: Upload security report
         if: always()
@@ -170,7 +170,13 @@ jobs:
 
       - name: Build distribution packages
         run: |
-          python -m build
+          cd packages/core && python -m build && cd ../..
+          cd packages/fortios && python -m build && cd ../..
+          cd packages/meta && python -m build && cd ../..
+          mkdir -p dist
+          cp packages/core/dist/* dist/ || true
+          cp packages/fortios/dist/* dist/ || true
+          cp packages/meta/dist/* dist/ || true
 
       - name: Check package with twine
         run: |
