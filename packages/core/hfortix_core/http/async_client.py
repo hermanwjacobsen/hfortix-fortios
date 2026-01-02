@@ -81,6 +81,9 @@ class AsyncHTTPClient(BaseHTTPClient):
         read_only: bool = False,
         track_operations: bool = False,
         adaptive_retry: bool = False,
+        audit_handler: Optional[Any] = None,
+        audit_callback: Optional[Any] = None,
+        user_context: Optional[dict[str, Any]] = None,
     ) -> None:
         """
         Initialize async HTTP client
@@ -142,6 +145,19 @@ class AsyncHTTPClient(BaseHTTPClient):
                           retry delays based on
                           FortiGate health signals (slow responses, 503
                           errors).
+            audit_handler: Handler for audit logging (implements AuditHandler
+            protocol).
+                          Use built-in handlers: SyslogHandler, FileHandler,
+                          StreamHandler,
+                          CompositeHandler. Essential for compliance (SOC 2,
+                          HIPAA, PCI-DSS).
+            audit_callback: Custom callback function for audit logging.
+                           Alternative to audit_handler. Receives operation
+                           dict as parameter.
+            user_context: Optional dict with user/application context to
+            include in audit logs.
+                         Example: {"username": "admin", "app": "automation",
+                         "ticket": "CHG-12345"}
 
         Raises:
             ValueError: If parameters are invalid or both token and
@@ -213,6 +229,11 @@ class AsyncHTTPClient(BaseHTTPClient):
         self._read_only = read_only
         self._track_operations = track_operations
         self._operations: list[dict[str, Any]] = [] if track_operations else []
+
+        # Audit logging
+        self._audit_handler = audit_handler
+        self._audit_callback = audit_callback
+        self._user_context = user_context or {}
 
         # Set token if provided
         if token:
@@ -471,6 +492,165 @@ class AsyncHTTPClient(BaseHTTPClient):
                 )
                 response.raise_for_status()
 
+    def _log_audit(
+        self,
+        method: str,
+        endpoint: str,
+        api_type: str,
+        path: str,
+        data: Optional[dict[str, Any]],
+        params: Optional[dict[str, Any]],
+        status_code: int,
+        success: bool,
+        duration_ms: int,
+        request_id: str,
+        error: Optional[str] = None,
+    ) -> None:
+        """
+        Log API operation to audit handlers (sync for async client)
+
+        Note: This is intentionally synchronous to avoid async complexity
+        in audit logging. If async audit is needed, use audit_callback
+        with async function.
+
+        Args:
+            method: HTTP method
+            endpoint: Full API endpoint
+            api_type: API type (cmdb, monitor, etc.)
+            path: Relative path
+            data: Request data (will be sanitized)
+            params: Request params (will be sanitized)
+            status_code: HTTP status code
+            success: Whether operation succeeded
+            duration_ms: Duration in milliseconds
+            request_id: Request ID
+            error: Error message if failed
+        """
+        # Skip if no audit handler or callback configured
+        if not self._audit_handler and not self._audit_callback:
+            return
+
+        try:
+            from datetime import datetime, timezone
+
+            # Determine action from method and path
+            action = self._infer_action(method, path)
+
+            # Extract object type and name from path
+            object_type, object_name = self._extract_object_info(path, data)
+
+            # Build operation dict
+            operation: dict[str, Any] = {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "request_id": request_id,
+                "method": method.upper(),
+                "endpoint": endpoint,
+                "api_type": api_type,
+                "path": path,
+                "vdom": params.get("vdom") if params else None,
+                "action": action,
+                "object_type": object_type,
+                "object_name": object_name,
+                "data": self._sanitize_data(data) if data else None,
+                "params": self._sanitize_data(params) if params else None,
+                "status_code": status_code,
+                "success": success,
+                "duration_ms": duration_ms,
+                "host": self._url.replace("https://", "").replace("http://", ""),
+                "read_only_mode": self._read_only and method in ("POST", "PUT", "DELETE"),
+            }
+
+            # Add error if present
+            if error:
+                operation["error"] = error
+
+            # Add user context if provided
+            if self._user_context:
+                operation["user_context"] = self._user_context
+
+            # Call audit handler if configured
+            if self._audit_handler:
+                try:
+                    self._audit_handler.log_operation(operation)
+                except Exception as e:
+                    logger.error(
+                        f"Audit handler failed: {e}",
+                        extra={
+                            "error": str(e),
+                            "request_id": request_id,
+                        },
+                        exc_info=True,
+                    )
+
+            # Call audit callback if configured
+            if self._audit_callback:
+                try:
+                    self._audit_callback(operation)
+                except Exception as e:
+                    logger.error(
+                        f"Audit callback failed: {e}",
+                        extra={
+                            "error": str(e),
+                            "request_id": request_id,
+                        },
+                        exc_info=True,
+                    )
+
+        except Exception as e:
+            # Don't let audit failures break API operations
+            logger.error(
+                f"Audit logging failed: {e}",
+                extra={"error": str(e), "request_id": request_id},
+                exc_info=True,
+            )
+
+    @staticmethod
+    def _infer_action(method: str, path: str) -> str:
+        """Infer high-level action from method and path"""
+        method = method.upper()
+        
+        if method == "GET":
+            parts = path.strip("/").split("/")
+            if len(parts) > 0 and parts[-1] and not parts[-1].startswith("?"):
+                return "read"
+            return "list"
+        elif method == "POST":
+            return "create"
+        elif method == "PUT":
+            return "update"
+        elif method == "DELETE":
+            return "delete"
+        else:
+            return "unknown"
+
+    @staticmethod
+    def _extract_object_info(
+        path: str, data: Optional[dict[str, Any]]
+    ) -> tuple[str, Optional[str]]:
+        """
+        Extract object type and name from path and data
+
+        Returns:
+            Tuple of (object_type, object_name)
+        """
+        path = path.strip("/")
+        object_type = path.replace("/", ".")
+        object_name = None
+
+        parts = path.split("/")
+        if len(parts) > 0:
+            last_part = parts[-1]
+            if last_part and not last_part.startswith("?"):
+                object_name = last_part
+
+        if data:
+            if "name" in data:
+                object_name = str(data["name"])
+            elif "mkey" in data:
+                object_name = str(data["mkey"])
+
+        return object_type, object_name
+
     async def request(
         self,
         method: str,
@@ -601,6 +781,20 @@ class AsyncHTTPClient(BaseHTTPClient):
                     },
                 )
 
+                # Audit logging for successful operations
+                self._log_audit(
+                    method=method,
+                    endpoint=full_path,
+                    api_type=api_type,
+                    path=path,
+                    data=data,
+                    params=params,
+                    status_code=res.status_code,
+                    success=True,
+                    duration_ms=int(duration * 1000),
+                    request_id=request_id,
+                )
+
                 # Parse JSON response
                 json_response = res.json()
 
@@ -660,6 +854,32 @@ class AsyncHTTPClient(BaseHTTPClient):
                     "error_type": type(last_error).__name__,
                 },
             )
+
+            # Audit log the failure
+            duration = time.time() - start_time
+            error_message = str(last_error)
+            status_code = 0
+            
+            # Try to extract status code from error
+            if hasattr(last_error, "response"):
+                response_obj = getattr(last_error, "response", None)
+                if response_obj and hasattr(response_obj, "status_code"):
+                    status_code = response_obj.status_code
+            
+            self._log_audit(
+                method=method,
+                endpoint=full_path,
+                api_type=api_type,
+                path=path,
+                data=data,
+                params=params,
+                status_code=status_code,
+                success=False,
+                duration_ms=int(duration * 1000),
+                request_id=request_id,
+                error=error_message,
+            )
+
             raise last_error
 
         raise RuntimeError("Request loop completed without success or error")

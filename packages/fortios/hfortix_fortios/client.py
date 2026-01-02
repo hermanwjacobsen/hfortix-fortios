@@ -170,6 +170,9 @@ class FortiOS:
         track_operations: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
+        audit_handler: Optional[Any] = None,
+        audit_callback: Optional[Any] = None,
+        user_context: Optional[dict[str, Any]] = None,
     ) -> None:
         """Synchronous FortiOS client (default)"""
         ...
@@ -204,6 +207,9 @@ class FortiOS:
         track_operations: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
+        audit_handler: Optional[Any] = None,
+        audit_callback: Optional[Any] = None,
+        user_context: Optional[dict[str, Any]] = None,
     ) -> None:
         """Asynchronous FortiOS client"""
         ...
@@ -238,6 +244,9 @@ class FortiOS:
         adaptive_retry: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
+        audit_handler: Optional[Any] = None,
+        audit_callback: Optional[Any] = None,
+        user_context: Optional[dict[str, Any]] = None,
     ) -> None:
         """
         Initialize FortiOS API client (sync or async mode)
@@ -393,6 +402,28 @@ class FortiOS:
 
               Can be overridden per method call. Affects both raised
               exceptions and returned error dicts depending on error_mode.
+            audit_handler: Handler for enterprise audit logging (default: None).
+                          Automatically logs all API operations for compliance
+                          (SOC 2, HIPAA, PCI-DSS).
+                          Use built-in handlers: SyslogHandler (SIEM),
+                          FileHandler (local logs),
+                          StreamHandler (container logs), CompositeHandler
+                          (multiple destinations).
+                          Example: SyslogHandler("siem.company.com:514")
+            audit_callback: Custom callback function for audit logging
+            (default: None).
+                           Alternative to audit_handler. Called with operation
+                           dict for each API call.
+                           Use for custom logging destinations (Kafka,
+                           database, cloud services).
+                           Example: lambda op: send_to_kafka(op)
+            user_context: Optional user/application context for audit logs
+            (default: None).
+                         Dict with metadata to include in every audit entry.
+                         Useful for tracking which user/script/ticket caused
+                         each change.
+                         Example: {"username": "admin", "app": "backup_script",
+                         "ticket": "CHG-12345"}
 
         Important:
             Username/password authentication still works in FortiOS 7.4.x but
@@ -415,6 +446,34 @@ class FortiOS:
             fgt = FortiOS("fortigate.example.com", token="your_token_here",
             verify=True)
             addresses = fgt.api.cmdb.firewall.address.get("test-host")
+
+            # Enterprise audit logging to SIEM (compliance)
+            from hfortix_core.audit import SyslogHandler
+            fgt = FortiOS("192.0.2.10", token="token",
+                         audit_handler=SyslogHandler("siem.company.com:514"))
+            # All API operations now logged to SIEM automatically
+
+            # Multi-destination audit logging
+            from hfortix_core.audit import CompositeHandler, FileHandler,
+            StreamHandler
+            handler = CompositeHandler([
+                SyslogHandler("siem.company.com:514"),  # Compliance
+                FileHandler("/var/log/fortinet-audit.jsonl"),  # Backup
+            ])
+            fgt = FortiOS("192.0.2.10", token="token", audit_handler=handler)
+
+            # Custom audit callback
+            def my_audit(op):
+                send_to_kafka(op)
+                update_cmdb(op)
+            fgt = FortiOS("192.0.2.10", token="token",
+            audit_callback=my_audit)
+
+            # Audit logging with user context
+            fgt = FortiOS("192.0.2.10", token="token",
+                         audit_handler=SyslogHandler("siem.company.com:514"),
+                         user_context={"username": "admin", "ticket":
+                         "CHG-12345"})
 
             # Username/Password authentication with context manager (sync)
             with FortiOS("192.0.2.10", username="admin", password="password",
@@ -573,6 +632,9 @@ class FortiOS:
                     read_only=read_only,
                     track_operations=track_operations,
                     adaptive_retry=adaptive_retry,
+                    audit_handler=audit_handler,  # type: ignore[call-arg]
+                    audit_callback=audit_callback,  # type: ignore[call-arg]
+                    user_context=user_context,  # type: ignore[call-arg]
                 )
             else:
                 self._client = HTTPClient(
@@ -597,6 +659,9 @@ class FortiOS:
                     read_only=read_only,
                     track_operations=track_operations,
                     adaptive_retry=adaptive_retry,
+                    audit_handler=audit_handler,  # type: ignore[call-arg]
+                    audit_callback=audit_callback,  # type: ignore[call-arg]
+                    user_context=user_context,  # type: ignore[call-arg]
                 )
 
         # Initialize API namespace.

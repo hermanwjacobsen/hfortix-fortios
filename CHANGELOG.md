@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Enterprise Audit Logging**: Complete audit logging system for compliance (SOC 2, HIPAA, PCI-DSS)
+  - Built-in handlers: `SyslogHandler`, `FileHandler`, `StreamHandler`, `CompositeHandler`
+  - Multiple formatters: JSON, Syslog RFC 5424, CEF (Common Event Format)
+  - Automatic data sanitization for sensitive fields (passwords, tokens, keys)
+  - Non-blocking error handling (audit failures don't break operations)
+  - SIEM integration support (Splunk, ELK, QRadar, ArcSight)
+  - User context tracking for change management
+  - New parameters: `audit_handler`, `audit_callback`, `user_context`
+  - See `docs/fortios/AUDIT_LOGGING.md` for full documentation
+  - See `examples/audit_logging_demo.py` for usage examples
+  - **Unique to hfortix**: No other Python FortiGate library has built-in compliance features
+
 ## [0.4.0] - 2025-12-31
 
 ### ⚠️ BREAKING CHANGES
