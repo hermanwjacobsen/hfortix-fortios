@@ -70,46 +70,46 @@ class HTTPClient:
 
     def get(
         self,
-        endpoint: str,
+        api_type: str,
+        path: str,
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make GET request."""
         ...
 
     def post(
         self,
-        endpoint: str,
-        data: Optional[dict[str, Any]] = None,
+        api_type: str,
+        path: str,
+        data: dict[str, Any],
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make POST request."""
         ...
 
     def put(
         self,
-        endpoint: str,
-        data: Optional[dict[str, Any]] = None,
+        api_type: str,
+        path: str,
+        data: dict[str, Any],
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make PUT request."""
         ...
 
     def delete(
         self,
-        endpoint: str,
+        api_type: str,
+        path: str,
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make DELETE request."""
         ...

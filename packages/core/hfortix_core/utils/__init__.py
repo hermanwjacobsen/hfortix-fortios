@@ -1,3 +1,3 @@
 """Common utilities."""
 
-__all__ = []
+__all__: list[str] = []

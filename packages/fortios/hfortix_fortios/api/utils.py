@@ -101,7 +101,7 @@ class Utils:
         print("\n" + "=" * 70)
         print("FortiGate Performance Test")
         print("=" * 70)
-        print(f"Testing: {self._client._url}")
+        print(f"Testing: {self._client._url}")  # type: ignore[attr-defined]
         print("=" * 70 + "\n")
 
         # Test 1: Connection pool validation
@@ -223,7 +223,7 @@ class Utils:
 
             # Test 1: Normal configuration
             try:
-                _ = FortiOS(
+                _ = FortiOS(  # type: ignore[call-overload]
                     "test.example.com",
                     token="test",
                     max_connections=30,
@@ -233,12 +233,12 @@ class Utils:
             except Exception as e:
                 return False, [f"Normal configuration failed: {e}"]
 
-            # Test 2: Auto-adjustment
+            # Test 2: Pool size validation
             try:
-                _ = FortiOS(
+                _ = FortiOS(  # type: ignore[call-overload]
                     "test.example.com",
                     token="test",
-                    max_connections=5,
+                    max_connections=10,
                     max_keepalive_connections=20,
                 )
                 warnings.append(
@@ -288,7 +288,9 @@ class Utils:
                 for i in range(count):
                     start = time.time()
                     try:
-                        self._client.get(api_type, path)
+                        self._client.get(  # type: ignore[arg-type]
+                            api_type, path
+                        )
                         elapsed = (time.time() - start) * 1000  # ms
                         times.append(elapsed)
                         successes += 1
@@ -337,17 +339,17 @@ class Utils:
 
             # Get connection details from current client
             # Parse URL to extract host
-            url = self._client._url
+            url = self._client._url  # type: ignore[attr-defined]
             host = url.replace("https://", "").replace("http://", "")
 
             # Create async client - note: this creates a new session
             # We can't easily share auth from sync client, so this test
             # is more for relative performance comparison
-            fgt = FortiOS(
+            fgt = FortiOS(  # type: ignore[call-overload]
                 host=host,
                 token="test_token",  # Placeholder
-                verify=self._client._verify,  # noqa: E501
-                vdom=self._client._vdom,
+                verify=self._client._verify,  # type: ignore[attr-defined]
+                vdom=self._client._vdom,  # type: ignore[attr-defined]
                 mode="async",
                 max_connections=concurrency,
             )
@@ -369,7 +371,7 @@ class Utils:
 
             duration = time.time() - start
 
-            await fgt.aclose()
+            await fgt.aclose()  # type: ignore[attr-defined]
 
             return duration
 

@@ -201,7 +201,7 @@ def test_connection_pool_validation() -> tuple[bool, list[str]]:
 
         # Test 1: Normal configuration (should work)
         try:
-            _ = FortiOS(  # noqa: F841
+            _ = FortiOS(  # type: ignore[call-overload]  # noqa: F841
                 "test.example.com",
                 token="test",
                 max_connections=10,
@@ -213,7 +213,7 @@ def test_connection_pool_validation() -> tuple[bool, list[str]]:
 
         # Test 2: Auto-adjustment (should warn but work)
         try:
-            _ = FortiOS(  # noqa: F841
+            _ = FortiOS(  # type: ignore[call-overload]  # noqa: F841
                 "test.example.com",
                 token="test",
                 max_connections=5,
@@ -228,7 +228,7 @@ def test_connection_pool_validation() -> tuple[bool, list[str]]:
 
         # Test 3: Edge cases
         try:
-            _ = FortiOS(  # noqa: F841
+            _ = FortiOS(  # type: ignore[call-overload]  # noqa: F841
                 "test.example.com",
                 token="test",
                 max_connections=1,
@@ -291,11 +291,11 @@ def test_endpoint_performance(
     try:
         # Initialize client
         if token:
-            fgt = FortiOS(
+            fgt = FortiOS(  # type: ignore[call-overload]
                 host, token=token, verify=verify, vdom=vdom, port=port
             )
         else:
-            fgt = FortiOS(
+            fgt = FortiOS(  # type: ignore[call-overload]
                 host,
                 username=username,
                 password=password,
@@ -572,7 +572,7 @@ def run_performance_test(
         try:
             # Use async mode for concurrency test
             async def concurrent_test():
-                fgt = FortiOS(
+                fgt = FortiOS(  # type: ignore[call-overload, misc]
                     host=host,
                     token=token,
                     username=username,
@@ -593,7 +593,7 @@ def run_performance_test(
                 await asyncio.gather(*tasks)
                 duration = time.time() - start
 
-                await fgt.aclose()
+                await fgt.aclose()  # type: ignore[attr-defined]
 
                 return duration
 

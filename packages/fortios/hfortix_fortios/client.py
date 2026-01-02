@@ -730,7 +730,7 @@ class FortiOS:
         # concrete
         # instance attribute (often improves autocomplete ranking vs dunder
         # attrs).
-        self._api = API(self._client)
+        self._api = API(self._client)  # type: ignore[arg-type]
 
         # Log initialization
         logger = logging.getLogger("hfortix.client")
@@ -1439,7 +1439,7 @@ class FortiOS:
             >>> print(f"Last request: {info['method']} {info['endpoint']}")
             >>> print(f"Response time: {info['response_time_ms']:.2f}ms")
         """
-        return self._client.inspect_last_request()
+        return self._client.inspect_last_request()  # type: ignore[union-attr]
 
     def __enter__(self) -> "FortiOS":
         """Context manager entry (sync mode only)"""

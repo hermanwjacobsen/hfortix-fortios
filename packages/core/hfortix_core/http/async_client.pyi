@@ -66,46 +66,46 @@ class AsyncHTTPClient:
 
     async def get(
         self,
-        endpoint: str,
+        api_type: str,
+        path: str,
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make async GET request."""
         ...
 
     async def post(
         self,
-        endpoint: str,
-        data: Optional[dict[str, Any]] = None,
+        api_type: str,
+        path: str,
+        data: dict[str, Any],
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make async POST request."""
         ...
 
     async def put(
         self,
-        endpoint: str,
-        data: Optional[dict[str, Any]] = None,
+        api_type: str,
+        path: str,
+        data: dict[str, Any],
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make async PUT request."""
         ...
 
     async def delete(
         self,
-        endpoint: str,
+        api_type: str,
+        path: str,
         params: Optional[dict[str, Any]] = None,
-        vdom: Optional[str] = None,
-        validate: bool = True,
-        skip_validation: bool = False,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """Make async DELETE request."""
         ...

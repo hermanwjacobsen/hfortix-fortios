@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import logging
 import sys
-from typing import Literal
+from typing import Any, Literal
 
 # Import commonly used exceptions
 # Import debug utilities from core for convenience
@@ -187,7 +187,7 @@ def configure_logging(
 
     # Choose formatter based on format type or structured flag
     if format == "json" or structured:
-        formatter = StructuredFormatter()
+        formatter: logging.Formatter = StructuredFormatter()
     else:
         formatter = TextFormatter(use_color=use_color)
 
@@ -211,9 +211,12 @@ def configure_logging(
     logger.propagate = False
 
     # Log configuration
-    extra = {"format": format, "level": logging.getLevelName(level)}
+    extra: dict[str, Any] = {
+        "format": format,
+        "level": logging.getLevelName(level),
+    }
     if include_trace:
-        extra["trace_enabled"] = True
+        extra["trace_enabled"] = "true"
     if output_file:
         extra["output_file"] = output_file
 

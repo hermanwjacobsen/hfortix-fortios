@@ -121,46 +121,6 @@ class FortiOS:
     ) -> None:
         """Initialize with username/password authentication."""
         ...
-
-    def __init__(
-        self,
-        *,
-        host: Optional[str] = None,
-        token: Optional[str] = None,
-        username: Optional[str] = None,
-        password: Optional[str] = None,
-        client: Optional[IHTTPClient] = None,
-        verify: bool = True,
-        vdom: Optional[str] = None,
-        port: Optional[int] = None,
-        debug: Union[str, bool, None] = None,
-        debug_options: Optional[dict[str, Any]] = None,
-        max_retries: int = 3,
-        connect_timeout: float = 10.0,
-        read_timeout: float = 300.0,
-        mode: Literal["sync", "async"] = "sync",
-        error_mode: Literal["raise", "return", "print"] = "raise",
-        error_format: Literal["detailed", "simple", "code_only"] = "detailed",
-        user_agent: Optional[str] = None,
-        circuit_breaker_threshold: int = 10,
-        circuit_breaker_timeout: float = 30.0,
-        circuit_breaker_auto_retry: bool = False,
-        circuit_breaker_max_retries: int = 3,
-        circuit_breaker_retry_delay: float = 5.0,
-        max_connections: int = 100,
-        max_keepalive_connections: int = 20,
-        session_idle_timeout: Union[int, float, None] = 300,
-        read_only: bool = False,
-        track_operations: bool = False,
-        adaptive_retry: bool = False,
-        retry_strategy: str = "exponential",
-        retry_jitter: bool = False,
-        audit_handler: Optional[Any] = None,
-        audit_callback: Optional[Any] = None,
-        user_context: Optional[dict[str, Any]] = None,
-    ) -> None:
-        """Initialize FortiOS client with custom client or authentication."""
-        ...
     # Properties
     @property
     def api(self) -> API:

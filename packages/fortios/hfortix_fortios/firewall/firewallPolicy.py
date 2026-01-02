@@ -1673,7 +1673,7 @@ class FirewallPolicy:
             call_params["raw_json"] = raw_json
 
         # Client can be sync or async at runtime
-        return self._fgt._client.put(  # type: ignore[return-value]
+        return self._fgt._client.put(  # type: ignore[attr-defined, return-value, arg-type]  # noqa: E501
             "cmdb", endpoint, **call_params
         )
 

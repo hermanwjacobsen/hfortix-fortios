@@ -494,7 +494,7 @@ class BaseHTTPClient:
         if self._retry_jitter:
             import random
 
-            jitter_amount = delay * random.uniform(0, 0.25)
+            jitter_amount = delay * random.uniform(0, 0.25)  # nosec B311
             delay = delay + jitter_amount
             logger.debug(
                 "Applied jitter to retry delay: %.2fs + %.2fs jitter = %.2fs",

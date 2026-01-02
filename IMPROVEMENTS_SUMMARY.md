@@ -266,7 +266,7 @@ from hfortix_fortios import (
 
 All three major subsystems now follow the same pattern:
 
-```
+```text
 packages/core/hfortix_core/
 ├── audit/
 │   ├── base.py          # Protocol definitions
@@ -362,12 +362,12 @@ from hfortix_fortios import (
 - 1 types module (types.py)
 - 2 documentation files (DEBUGGING.md, RATE_LIMITING.md)
 - 2 RST wrapper files (debugging.rst, rate-limiting.rst)
-- 3 package __init__.py files
+- 3 package **init**.py files
 
 ### Files Modified: 10
 - 2 HTTP clients (sync and async)
 - 1 FortiOS client
-- 2 package __init__.py files
+- 2 package **init**.py files
 - 1 logging configuration
 - 4 documentation files (CHANGELOG.md, README.md, etc.)
 
