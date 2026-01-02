@@ -21,6 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - See `examples/audit_logging_demo.py` for usage examples
   - **Unique to hfortix**: No other Python FortiGate library has built-in compliance features
 
+- **Logging & Observability**: Enterprise-grade logging and distributed tracing
+  - `configure_logging()` helper for easy setup (text or JSON format)
+  - `StructuredFormatter` for machine-readable JSON logs (ELK, Splunk, CloudWatch compatible)
+  - `TextFormatter` with optional ANSI color codes for terminal output
+  - `trace_id` parameter for distributed tracing and request correlation
+  - Automatic trace_id inclusion in audit logs and user_context
+  - Support for custom logging handlers
+  - See `docs/source/fortios/guides/audit-logging.rst` for examples
+
 ## [0.4.0] - 2025-12-31
 
 ### ⚠️ BREAKING CHANGES

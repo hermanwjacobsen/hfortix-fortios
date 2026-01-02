@@ -173,6 +173,7 @@ class FortiOS:
         audit_handler: Optional[Any] = None,
         audit_callback: Optional[Any] = None,
         user_context: Optional[dict[str, Any]] = None,
+        trace_id: Optional[str] = None,
     ) -> None:
         """Synchronous FortiOS client (default)"""
         ...
@@ -210,6 +211,7 @@ class FortiOS:
         audit_handler: Optional[Any] = None,
         audit_callback: Optional[Any] = None,
         user_context: Optional[dict[str, Any]] = None,
+        trace_id: Optional[str] = None,
     ) -> None:
         """Asynchronous FortiOS client"""
         ...
@@ -247,6 +249,7 @@ class FortiOS:
         audit_handler: Optional[Any] = None,
         audit_callback: Optional[Any] = None,
         user_context: Optional[dict[str, Any]] = None,
+        trace_id: Optional[str] = None,
     ) -> None:
         """
         Initialize FortiOS API client (sync or async mode)
@@ -424,6 +427,14 @@ class FortiOS:
                          each change.
                          Example: {"username": "admin", "app": "backup_script",
                          "ticket": "CHG-12345"}
+            trace_id: Optional distributed tracing ID for request correlation
+            (default: None).
+                     String identifier to track requests across multiple
+                     systems.
+                     Automatically included in user_context and all audit logs.
+                     Useful for debugging and distributed tracing systems
+                     (Jaeger, Zipkin, etc.).
+                     Example: "request-12345" or UUID
 
         Important:
             Username/password authentication still works in FortiOS 7.4.x but
@@ -474,6 +485,12 @@ class FortiOS:
                          audit_handler=SyslogHandler("siem.company.com:514"),
                          user_context={"username": "admin", "ticket":
                          "CHG-12345"})
+
+            # Distributed tracing with trace_id
+            fgt = FortiOS("192.0.2.10", token="token",
+                         trace_id="request-abc123",
+                         audit_handler=SyslogHandler("siem.company.com:514"))
+            # trace_id automatically added to all audit logs and user_context
 
             # Username/Password authentication with context manager (sync)
             with FortiOS("192.0.2.10", username="admin", password="password",
@@ -582,6 +599,11 @@ class FortiOS:
         # Set up instance-specific logging if requested
         if debug:
             self._setup_logging(debug)
+
+        # If trace_id is provided, automatically include in user_context
+        if trace_id:
+            user_context = user_context or {}
+            user_context["trace_id"] = trace_id
 
         # Initialize HTTP client
         self._client: Union[HTTPClient, AsyncHTTPClient, IHTTPClient]
