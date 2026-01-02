@@ -10,6 +10,7 @@ Advanced topics, patterns, and techniques for working with HFortix.
 .. toctree::
    :maxdepth: 1
 
+   audit-logging
    filtering
    validation
    performance
@@ -22,19 +23,10 @@ Topic guides provide detailed, task-oriented documentation for advanced features
 Advanced Topics
 ---------------
 
-**Filtering**
-   Guide to filtering API results, including field selection, comparison operators,
-   and complex filter expressions.
-
-**Validation**
-   Guide to input validation, schema validation, and error handling for API requests.
-
-**Performance**
-   Guide to performance optimization including batching, caching, connection pooling,
-   and asynchronous operations.
-
-Advanced Topics
----------------
+**Audit Logging**
+   Enterprise audit logging with SIEM integration for compliance (SOC 2, HIPAA, PCI-DSS).
+   Built-in handlers for syslog, files, and streams. Automatic data sanitization and
+   user context tracking.
 
 **Filtering**
    Complete guide to filtering and querying API results. 50+ examples covering
