@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import custom
+    from .custom import Custom
 
 
 class X3gModem:
     """Type stub for X3gModem."""
 
-    custom: custom.Custom
+    custom: Custom
 
     def __init__(self, client: IHTTPClient) -> None: ...

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.5.0-beta"
+version = "0.5.2"
 description = "Meta-package for HFortix - Python SDK for Fortinet Products (FortiOS, FortiManager, FortiAnalyzer)"
 readme = "README.md"
 authors = [
@@ -156,6 +156,10 @@ filterwarnings = [
 markers = [
     "integration: marks tests as integration tests (require FortiGate access)",
     "unit: marks tests as unit tests (no external dependencies)",
+    "api_call: marks tests that make real API calls to FortiGate",
+    "read_only: marks tests that only perform read operations (GET)",
+    "validator: marks tests that only test validation logic (no API calls)",
+    "parallel_safe: marks tests that can safely run in parallel",
 ]
 
 [tool.coverage.run]

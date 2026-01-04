@@ -4,19 +4,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import keyword
-    from . import profile
-    from . import youtube_key
+    from .keyword import Keyword
+    from .profile import Profile
+    from .youtube_key import YoutubeKey
 
 
 class Videofilter:
     """Type stub for Videofilter."""
 
-    keyword: keyword.Keyword
-    profile: profile.Profile
-    youtube_key: youtube_key.YoutubeKey
+    keyword: Keyword
+    profile: Profile
+    youtube_key: YoutubeKey
 
     def __init__(self, client: IHTTPClient) -> None: ...

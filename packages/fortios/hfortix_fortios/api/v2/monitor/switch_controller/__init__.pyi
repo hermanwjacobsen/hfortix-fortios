@@ -4,31 +4,30 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import detected_device
-    from . import fsw_firmware
-    from . import isl_lockdown
-    from . import known_nac_device_criteria_list
-    from . import managed_switch
-    from . import matched_devices
-    from . import mclag_icl
-    from . import nac_device
-    from . import recommendation
+    from .detected_device import DetectedDevice
+    from .known_nac_device_criteria_list import KnownNacDeviceCriteriaList
+    from .matched_devices import MatchedDevices
+    from .nac_device import NacDevice
+    from .fsw_firmware import FswFirmware
+    from .isl_lockdown import IslLockdown
+    from .managed_switch import ManagedSwitch
+    from .mclag_icl import MclagIcl
+    from .recommendation import Recommendation
 
 
 class SwitchController:
     """Type stub for SwitchController."""
 
-    fsw_firmware: fsw_firmware.FswFirmware
-    isl_lockdown: isl_lockdown.IslLockdown
-    managed_switch: managed_switch.ManagedSwitch
-    mclag_icl: mclag_icl.MclagIcl
-    recommendation: recommendation.Recommendation
-    detected_device: detected_device.DetectedDevice
-    known_nac_device_criteria_list: known_nac_device_criteria_list.KnownNacDeviceCriteriaList
-    matched_devices: matched_devices.MatchedDevices
-    nac_device: nac_device.NacDevice
+    fsw_firmware: FswFirmware
+    isl_lockdown: IslLockdown
+    managed_switch: ManagedSwitch
+    mclag_icl: MclagIcl
+    recommendation: Recommendation
+    detected_device: DetectedDevice
+    known_nac_device_criteria_list: KnownNacDeviceCriteriaList
+    matched_devices: MatchedDevices
+    nac_device: NacDevice
 
     def __init__(self, client: IHTTPClient) -> None: ...

@@ -4,21 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import filter
-    from . import override_filter
-    from . import override_setting
-    from . import setting
+    from .filter import Filter
+    from .override_filter import OverrideFilter
+    from .override_setting import OverrideSetting
+    from .setting import Setting
 
 
 class Syslogd2:
     """Type stub for Syslogd2."""
 
-    filter: filter.Filter
-    override_filter: override_filter.OverrideFilter
-    override_setting: override_setting.OverrideSetting
-    setting: setting.Setting
+    filter: Filter
+    override_filter: OverrideFilter
+    override_setting: OverrideSetting
+    setting: Setting
 
     def __init__(self, client: IHTTPClient) -> None: ...

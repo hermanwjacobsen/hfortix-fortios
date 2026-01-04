@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import upload
+    from .upload import Upload
 
 
 class HscalefwLicense:
     """Type stub for HscalefwLicense."""
 
-    upload: upload.Upload
+    upload: Upload
 
     def __init__(self, client: IHTTPClient) -> None: ...

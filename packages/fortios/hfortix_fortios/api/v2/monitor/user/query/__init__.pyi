@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import abort
+    from .abort import Abort
 
 
 class Query:
     """Type stub for Query."""
 
-    abort: abort.Abort
+    abort: Abort
 
     def __init__(self, client: IHTTPClient) -> None: ...

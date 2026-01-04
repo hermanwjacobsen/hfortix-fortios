@@ -4,17 +4,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import clear
-    from . import download
+    from .clear import Clear
+    from .download import Download
 
 
 class CrashLog:
     """Type stub for CrashLog."""
 
-    clear: clear.Clear
-    download: download.Download
+    clear: Clear
+    download: Download
 
     def __init__(self, client: IHTTPClient) -> None: ...

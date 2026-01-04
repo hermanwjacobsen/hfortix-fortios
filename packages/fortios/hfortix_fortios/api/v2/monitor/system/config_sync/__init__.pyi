@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import status
+    from .status import Status
 
 
 class ConfigSync:
     """Type stub for ConfigSync."""
 
-    status: status.Status
+    status: Status
 
     def __init__(self, client: IHTTPClient) -> None: ...

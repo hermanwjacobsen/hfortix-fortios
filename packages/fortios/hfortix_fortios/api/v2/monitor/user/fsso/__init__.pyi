@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import refresh_server
+    from .refresh_server import RefreshServer
 
 
 class Fsso:
     """Type stub for Fsso."""
 
-    refresh_server: refresh_server.RefreshServer
+    refresh_server: RefreshServer
 
     def __init__(self, client: IHTTPClient) -> None: ...

@@ -4,17 +4,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import recommendations
-    from . import report
+    from .recommendations import Recommendations
+    from .report import Report
 
 
 class SecurityRating:
     """Type stub for SecurityRating."""
 
-    recommendations: recommendations.Recommendations
-    report: report.Report
+    recommendations: Recommendations
+    report: Report
 
     def __init__(self, client: IHTTPClient) -> None: ...

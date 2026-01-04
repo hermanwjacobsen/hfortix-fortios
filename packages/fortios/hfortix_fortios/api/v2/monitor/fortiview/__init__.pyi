@@ -4,21 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import historical_statistics
-    from . import realtime_proxy_statistics
-    from . import realtime_statistics
-    from . import session
+    from .historical_statistics import HistoricalStatistics
+    from .realtime_proxy_statistics import RealtimeProxyStatistics
+    from .realtime_statistics import RealtimeStatistics
+    from .session import Session
 
 
 class Fortiview:
     """Type stub for Fortiview."""
 
-    session: session.Session
-    historical_statistics: historical_statistics.HistoricalStatistics
-    realtime_proxy_statistics: realtime_proxy_statistics.RealtimeProxyStatistics
-    realtime_statistics: realtime_statistics.RealtimeStatistics
+    session: Session
+    historical_statistics: HistoricalStatistics
+    realtime_proxy_statistics: RealtimeProxyStatistics
+    realtime_statistics: RealtimeStatistics
 
     def __init__(self, client: IHTTPClient) -> None: ...

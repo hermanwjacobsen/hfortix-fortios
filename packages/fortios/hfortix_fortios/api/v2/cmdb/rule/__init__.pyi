@@ -4,21 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import fmwp
-    from . import iotd
-    from . import otdt
-    from . import otvp
+    from .fmwp import Fmwp
+    from .iotd import Iotd
+    from .otdt import Otdt
+    from .otvp import Otvp
 
 
 class Rule:
     """Type stub for Rule."""
 
-    fmwp: fmwp.Fmwp
-    iotd: iotd.Iotd
-    otdt: otdt.Otdt
-    otvp: otvp.Otvp
+    fmwp: Fmwp
+    iotd: Iotd
+    otdt: Otdt
+    otvp: Otvp
 
     def __init__(self, client: IHTTPClient) -> None: ...

@@ -4,21 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import connect
-    from . import list
-    from . import scan
-    from . import status
+    from .connect import Connect
+    from .list import List
+    from .scan import Scan
+    from .status import Status
 
 
 class Network:
     """Type stub for Network."""
 
-    connect: connect.Connect
-    list: list.List
-    scan: scan.Scan
-    status: status.Status
+    connect: Connect
+    list: List
+    scan: Scan
+    status: Status
 
     def __init__(self, client: IHTTPClient) -> None: ...

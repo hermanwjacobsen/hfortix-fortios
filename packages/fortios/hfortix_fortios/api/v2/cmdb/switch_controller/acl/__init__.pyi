@@ -4,17 +4,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import group
-    from . import ingress
+    from .group import Group
+    from .ingress import Ingress
 
 
 class Acl:
     """Type stub for Acl."""
 
-    group: group.Group
-    ingress: ingress.Ingress
+    group: Group
+    ingress: Ingress
 
     def __init__(self, client: IHTTPClient) -> None: ...
