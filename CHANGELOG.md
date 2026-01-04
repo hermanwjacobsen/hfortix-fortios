@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-01-04
+
+### Changed
+- Updated and regenerated all endpoint tests for comprehensive coverage
+- Regenerated all API endpoint type stubs (.pyi files) with latest schemas
+- Improved validator generation for all CMDB, Monitor, and Log endpoints
+- Enhanced test coverage across all API categories
+
+### Fixed
+- Fixed type stub generation for nested endpoint structures
+- Corrected endpoint parameter validation in auto-generated tests
+- Improved schema parsing for complex nested endpoint paths
+
 ## [0.5.0-beta] - 2026-01-04
 
 ### 🎉 **MAJOR RELEASE - Complete Code Regeneration**

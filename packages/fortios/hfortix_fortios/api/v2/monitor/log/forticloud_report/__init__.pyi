@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import download
+    from .download import Download
 
 
 class ForticloudReport:
     """Type stub for ForticloudReport."""
 
-    download: download.Download
+    download: Download
 
     def __init__(self, client: IHTTPClient) -> None: ...

@@ -49,42 +49,5 @@ if TYPE_CHECKING:
 class CMDB:
     """Type stub for CMDB."""
 
-    alertemail: alertemail.Alertemail
-    antivirus: antivirus.Antivirus
-    application: application.Application
-    authentication: authentication.Authentication
-    automation: automation.Automation
-    casb: casb.Casb
-    certificate: certificate.Certificate
-    diameter_filter: diameter_filter.DiameterFilter
-    dlp: dlp.Dlp
-    dnsfilter: dnsfilter.Dnsfilter
-    emailfilter: emailfilter.Emailfilter
-    endpoint_control: endpoint_control.EndpointControl
-    ethernet_oam: ethernet_oam.EthernetOam
-    extension_controller: extension_controller.ExtensionController
-    file_filter: file_filter.FileFilter
-    firewall: firewall.Firewall
-    ftp_proxy: ftp_proxy.FtpProxy
-    icap: icap.Icap
-    ips: ips.Ips
-    log: log.Log
-    monitoring: monitoring.Monitoring
-    report: report.Report
-    router: router.Router
-    rule: rule.Rule
-    sctp_filter: sctp_filter.SctpFilter
-    switch_controller: switch_controller.SwitchController
-    system: system.System
-    user: user.User
-    videofilter: videofilter.Videofilter
-    virtual_patch: virtual_patch.VirtualPatch
-    voip: voip.Voip
-    vpn: vpn.Vpn
-    waf: waf.Waf
-    web_proxy: web_proxy.WebProxy
-    webfilter: webfilter.Webfilter
-    wireless_controller: wireless_controller.WirelessController
-    ztna: ztna.Ztna
 
     def __init__(self, client: IHTTPClient) -> None: ...

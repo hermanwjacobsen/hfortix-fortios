@@ -44,37 +44,5 @@ if TYPE_CHECKING:
 class Monitor:
     """Type stub for Monitor."""
 
-    azure: azure.Azure
-    casb: casb.Casb
-    endpoint_control: endpoint_control.EndpointControl
-    extender_controller: extender_controller.ExtenderController
-    extension_controller: extension_controller.ExtensionController
-    firewall: firewall.Firewall
-    firmware: firmware.Firmware
-    fortiguard: fortiguard.Fortiguard
-    fortiview: fortiview.Fortiview
-    geoip: geoip.Geoip
-    ips: ips.Ips
-    license: license.License
-    log: log.Log
-    network: network.Network
-    registration: registration.Registration
-    router: router.Router
-    sdwan: sdwan.Sdwan
-    service: service.Service
-    switch_controller: switch_controller.SwitchController
-    system: system.System
-    user: user.User
-    utm: utm.Utm
-    videofilter: videofilter.Videofilter
-    virtual_wan: virtual_wan.VirtualWan
-    vpn: vpn.Vpn
-    vpn_certificate: vpn_certificate.VpnCertificate
-    wanopt: wanopt.Wanopt
-    web_ui: web_ui.WebUi
-    webcache: webcache.Webcache
-    webfilter: webfilter.Webfilter
-    webproxy: webproxy.Webproxy
-    wifi: wifi.Wifi
 
     def __init__(self, client: IHTTPClient) -> None: ...

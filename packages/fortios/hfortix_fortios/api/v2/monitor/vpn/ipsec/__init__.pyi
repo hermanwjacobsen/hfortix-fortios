@@ -4,19 +4,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import tunnel_down
-    from . import tunnel_reset_stats
-    from . import tunnel_up
+    from .tunnel_down import TunnelDown
+    from .tunnel_reset_stats import TunnelResetStats
+    from .tunnel_up import TunnelUp
 
 
 class Ipsec:
     """Type stub for Ipsec."""
 
-    tunnel_down: tunnel_down.TunnelDown
-    tunnel_reset_stats: tunnel_reset_stats.TunnelResetStats
-    tunnel_up: tunnel_up.TunnelUp
+    tunnel_down: TunnelDown
+    tunnel_reset_stats: TunnelResetStats
+    tunnel_up: TunnelUp
 
     def __init__(self, client: IHTTPClient) -> None: ...

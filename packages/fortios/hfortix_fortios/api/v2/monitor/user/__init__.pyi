@@ -4,45 +4,44 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import banned
-    from . import collected_email
-    from . import device
-    from . import firewall
-    from . import fortitoken
-    from . import fortitoken_cloud
-    from . import fsso
-    from . import guest
-    from . import info
-    from . import local
-    from . import password_policy_conform
-    from . import proxy
-    from . import query
-    from . import radius
-    from . import scim
-    from . import tacacs_plus
+    from .collected_email import CollectedEmail
+    from .proxy import Proxy
+    from .banned import Banned
+    from .device import Device
+    from .firewall import Firewall
+    from .fortitoken import Fortitoken
+    from .fortitoken_cloud import FortitokenCloud
+    from .fsso import Fsso
+    from .guest import Guest
+    from .info import Info
+    from .local import Local
+    from .password_policy_conform import PasswordPolicyConform
+    from .query import Query
+    from .radius import Radius
+    from .scim import Scim
+    from .tacacs_plus import TacacsPlus
 
 
 class User:
     """Type stub for User."""
 
-    banned: banned.Banned
-    device: device.Device
-    firewall: firewall.Firewall
-    fortitoken: fortitoken.Fortitoken
-    fortitoken_cloud: fortitoken_cloud.FortitokenCloud
-    fsso: fsso.Fsso
-    guest: guest.Guest
-    info: info.Info
-    local: local.Local
-    password_policy_conform: password_policy_conform.PasswordPolicyConform
-    query: query.Query
-    radius: radius.Radius
-    scim: scim.Scim
-    tacacs_plus: tacacs_plus.TacacsPlus
-    collected_email: collected_email.CollectedEmail
-    proxy: proxy.Proxy
+    banned: Banned
+    device: Device
+    firewall: Firewall
+    fortitoken: Fortitoken
+    fortitoken_cloud: FortitokenCloud
+    fsso: Fsso
+    guest: Guest
+    info: Info
+    local: Local
+    password_policy_conform: PasswordPolicyConform
+    query: Query
+    radius: Radius
+    scim: Scim
+    tacacs_plus: TacacsPlus
+    collected_email: CollectedEmail
+    proxy: Proxy
 
     def __init__(self, client: IHTTPClient) -> None: ...

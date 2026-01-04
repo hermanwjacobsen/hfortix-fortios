@@ -4,19 +4,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import keep_alive
-    from . import start
-    from . import stop
+    from .keep_alive import KeepAlive
+    from .start import Start
+    from .stop import Stop
 
 
 class Spectrum:
     """Type stub for Spectrum."""
 
-    keep_alive: keep_alive.KeepAlive
-    start: start.Start
-    stop: stop.Stop
+    keep_alive: KeepAlive
+    start: Start
+    stop: Stop
 
     def __init__(self, client: IHTTPClient) -> None: ...

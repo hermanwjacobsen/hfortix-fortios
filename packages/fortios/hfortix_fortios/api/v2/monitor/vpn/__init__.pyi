@@ -4,19 +4,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import ike
-    from . import ipsec
-    from . import ssl
+    from .ike import Ike
+    from .ipsec import Ipsec
+    from .ssl import Ssl
 
 
 class Vpn:
     """Type stub for Vpn."""
 
-    ike: ike.Ike
-    ipsec: ipsec.Ipsec
-    ssl: ssl.Ssl
+    ike: Ike
+    ipsec: Ipsec
+    ssl: Ssl
 
     def __init__(self, client: IHTTPClient) -> None: ...

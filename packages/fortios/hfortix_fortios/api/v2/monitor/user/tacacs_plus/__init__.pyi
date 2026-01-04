@@ -4,15 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import test
+    from .test import Test
 
 
 class TacacsPlus:
     """Type stub for TacacsPlus."""
 
-    test: test.Test
+    test: Test
 
     def __init__(self, client: IHTTPClient) -> None: ...

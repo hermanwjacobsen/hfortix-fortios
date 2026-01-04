@@ -4,23 +4,22 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import health_check
-    from . import interface_log
-    from . import members
-    from . import sla_log
-    from . import sladb
+    from .health_check import HealthCheck
+    from .interface_log import InterfaceLog
+    from .members import Members
+    from .sla_log import SlaLog
+    from .sladb import Sladb
 
 
 class VirtualWan:
     """Type stub for VirtualWan."""
 
-    health_check: health_check.HealthCheck
-    interface_log: interface_log.InterfaceLog
-    members: members.Members
-    sla_log: sla_log.SlaLog
-    sladb: sladb.Sladb
+    health_check: HealthCheck
+    interface_log: InterfaceLog
+    members: Members
+    sla_log: SlaLog
+    sladb: Sladb
 
     def __init__(self, client: IHTTPClient) -> None: ...

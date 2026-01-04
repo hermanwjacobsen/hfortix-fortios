@@ -4,17 +4,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import layout
-    from . import setting
+    from .layout import Layout
+    from .setting import Setting
 
 
 class Report:
     """Type stub for Report."""
 
-    layout: layout.Layout
-    setting: setting.Setting
+    layout: Layout
+    setting: Setting
 
     def __init__(self, client: IHTTPClient) -> None: ...

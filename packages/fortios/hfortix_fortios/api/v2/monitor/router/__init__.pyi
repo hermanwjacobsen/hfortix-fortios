@@ -4,35 +4,34 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import bgp
-    from . import charts
-    from . import ipv4
-    from . import ipv6
-    from . import lookup
-    from . import lookup_policy
-    from . import ospf
-    from . import policy
-    from . import policy6
-    from . import sdwan
-    from . import statistics
+    from .charts import Charts
+    from .ipv4 import Ipv4
+    from .ipv6 import Ipv6
+    from .lookup_policy import LookupPolicy
+    from .ospf import Ospf
+    from .policy import Policy
+    from .policy6 import Policy6
+    from .sdwan import Sdwan
+    from .statistics import Statistics
+    from .bgp import Bgp
+    from .lookup import Lookup
 
 
 class Router:
     """Type stub for Router."""
 
-    bgp: bgp.Bgp
-    lookup: lookup.Lookup
-    charts: charts.Charts
-    ipv4: ipv4.Ipv4
-    ipv6: ipv6.Ipv6
-    lookup_policy: lookup_policy.LookupPolicy
-    ospf: ospf.Ospf
-    policy: policy.Policy
-    policy6: policy6.Policy6
-    sdwan: sdwan.Sdwan
-    statistics: statistics.Statistics
+    bgp: Bgp
+    lookup: Lookup
+    charts: Charts
+    ipv4: Ipv4
+    ipv6: Ipv6
+    lookup_policy: LookupPolicy
+    ospf: Ospf
+    policy: Policy
+    policy6: Policy6
+    sdwan: Sdwan
+    statistics: Statistics
 
     def __init__(self, client: IHTTPClient) -> None: ...

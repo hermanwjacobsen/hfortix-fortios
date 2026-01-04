@@ -2,40 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Any, Literal, Optional, Union, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 
 from hfortix_core.http.interface import IHTTPClient
 from hfortix_fortios.api import API
-from hfortix_fortios.firewall import (
-    FirewallPolicy,
-    IPMACBindingSetting,
-    IPMACBindingTable,
-    ScheduleGroup,
-    ScheduleOnetime,
-    ScheduleRecurring,
-    ServiceCategory,
-    ServiceCustom,
-    ServiceGroup,
-    ShaperPerIp,
-    TrafficShaper,
-)
-
-class FirewallNamespace:
-    """Namespace for firewall convenience wrappers."""
-
-    policy: FirewallPolicy
-    ipmac_binding_setting: IPMACBindingSetting
-    ipmac_binding_table: IPMACBindingTable
-    schedule_recurring: ScheduleRecurring
-    schedule_onetime: ScheduleOnetime
-    schedule_group: ScheduleGroup
-    service_category: ServiceCategory
-    service_custom: ServiceCustom
-    service_group: ServiceGroup
-    shaper_per_ip: ShaperPerIp
-    traffic_shaper: TrafficShaper
-
-    def __init__(self, fortios_instance: FortiOS) -> None: ...
 
 class FortiOS:
     """FortiOS REST API Client.
@@ -125,26 +95,6 @@ class FortiOS:
     @property
     def api(self) -> API:
         """Primary entry point to FortiOS endpoints (cmdb/monitor/log/service)."""
-        ...
-
-    @property
-    def cmdb(self) -> Any:
-        """Shortcut to CMDB API (configuration management)."""
-        ...
-
-    @property
-    def monitor(self) -> Any:
-        """Shortcut to Monitor API (runtime data)."""
-        ...
-
-    @property
-    def log(self) -> Any:
-        """Shortcut to Log API (log queries)."""
-        ...
-
-    @property
-    def firewall(self) -> FirewallNamespace:
-        """Convenience wrappers for firewall operations."""
         ...
 
     @property

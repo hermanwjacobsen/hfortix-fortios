@@ -4,21 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import clear_statistics
-    from . import manual_update
-    from . import test_availability
-    from . import update
+    from .clear_statistics import ClearStatistics
+    from .manual_update import ManualUpdate
+    from .test_availability import TestAvailability
+    from .update import Update
 
 
 class Fortiguard:
     """Type stub for Fortiguard."""
 
-    clear_statistics: clear_statistics.ClearStatistics
-    manual_update: manual_update.ManualUpdate
-    test_availability: test_availability.TestAvailability
-    update: update.Update
+    clear_statistics: ClearStatistics
+    manual_update: ManualUpdate
+    test_availability: TestAvailability
+    update: Update
 
     def __init__(self, client: IHTTPClient) -> None: ...

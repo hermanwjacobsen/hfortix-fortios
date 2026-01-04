@@ -15,8 +15,5 @@ if TYPE_CHECKING:
 class Service:
     """Type stub for Service."""
 
-    security_rating: security_rating.SecurityRating
-    sniffer: sniffer.Sniffer
-    system: system.System
 
     def __init__(self, client: IHTTPClient) -> None: ...

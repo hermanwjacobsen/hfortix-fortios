@@ -4,23 +4,22 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import anomaly
-    from . import hold_signatures
-    from . import metadata
-    from . import rate_based
-    from . import session
+    from .anomaly import Anomaly
+    from .hold_signatures import HoldSignatures
+    from .metadata import Metadata
+    from .rate_based import RateBased
+    from .session import Session
 
 
 class Ips:
     """Type stub for Ips."""
 
-    anomaly: anomaly.Anomaly
-    hold_signatures: hold_signatures.HoldSignatures
-    metadata: metadata.Metadata
-    rate_based: rate_based.RateBased
-    session: session.Session
+    anomaly: Anomaly
+    hold_signatures: HoldSignatures
+    metadata: Metadata
+    rate_based: RateBased
+    session: Session
 
     def __init__(self, client: IHTTPClient) -> None: ...

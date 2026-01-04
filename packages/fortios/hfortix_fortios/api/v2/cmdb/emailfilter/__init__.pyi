@@ -4,29 +4,28 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import block_allow_list
-    from . import bword
-    from . import dnsbl
-    from . import fortishield
-    from . import iptrust
-    from . import mheader
-    from . import options
-    from . import profile
+    from .block_allow_list import BlockAllowList
+    from .bword import Bword
+    from .dnsbl import Dnsbl
+    from .fortishield import Fortishield
+    from .iptrust import Iptrust
+    from .mheader import Mheader
+    from .options import Options
+    from .profile import Profile
 
 
 class Emailfilter:
     """Type stub for Emailfilter."""
 
-    block_allow_list: block_allow_list.BlockAllowList
-    bword: bword.Bword
-    dnsbl: dnsbl.Dnsbl
-    fortishield: fortishield.Fortishield
-    iptrust: iptrust.Iptrust
-    mheader: mheader.Mheader
-    options: options.Options
-    profile: profile.Profile
+    block_allow_list: BlockAllowList
+    bword: Bword
+    dnsbl: Dnsbl
+    fortishield: Fortishield
+    iptrust: Iptrust
+    mheader: Mheader
+    options: Options
+    profile: Profile
 
     def __init__(self, client: IHTTPClient) -> None: ...

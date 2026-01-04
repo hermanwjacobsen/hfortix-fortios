@@ -4,29 +4,28 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from . import dhcp_renew
-    from . import dhcp_status
-    from . import poe
-    from . import poe_usage
-    from . import speed_test_status
-    from . import speed_test_trigger
-    from . import transceivers
-    from . import wake_on_lan
+    from .dhcp_renew import DhcpRenew
+    from .dhcp_status import DhcpStatus
+    from .poe import Poe
+    from .poe_usage import PoeUsage
+    from .speed_test_status import SpeedTestStatus
+    from .speed_test_trigger import SpeedTestTrigger
+    from .transceivers import Transceivers
+    from .wake_on_lan import WakeOnLan
 
 
 class Interface:
     """Type stub for Interface."""
 
-    dhcp_renew: dhcp_renew.DhcpRenew
-    dhcp_status: dhcp_status.DhcpStatus
-    poe: poe.Poe
-    poe_usage: poe_usage.PoeUsage
-    speed_test_status: speed_test_status.SpeedTestStatus
-    speed_test_trigger: speed_test_trigger.SpeedTestTrigger
-    transceivers: transceivers.Transceivers
-    wake_on_lan: wake_on_lan.WakeOnLan
+    dhcp_renew: DhcpRenew
+    dhcp_status: DhcpStatus
+    poe: Poe
+    poe_usage: PoeUsage
+    speed_test_status: SpeedTestStatus
+    speed_test_trigger: SpeedTestTrigger
+    transceivers: Transceivers
+    wake_on_lan: WakeOnLan
 
     def __init__(self, client: IHTTPClient) -> None: ...
