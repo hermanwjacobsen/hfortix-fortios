@@ -71,6 +71,9 @@ htmlcov/
 # Local test files and internal development
 .dev/
 
+# Schema files (generated, not for version control)
+schema/
+
 # Development tools (local only, not for public release)
 Makefile
 .editorconfig
