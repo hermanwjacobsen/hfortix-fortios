@@ -57,7 +57,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # FortiCloud SSO admin name.
-    "accprofile": "string",  # FortiCloud SSO admin user access profile. Permission is set 
+    "accprofile": "string",  # FortiCloud SSO admin user access profile. Permission is set to read-only without
     "vdom": "string",  # Virtual domain(s) that the administrator can access.
 }
 

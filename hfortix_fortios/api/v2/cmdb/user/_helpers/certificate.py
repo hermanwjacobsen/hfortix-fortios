@@ -64,7 +64,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # User name.
     "id": "integer",  # User ID.
-    "status": "option",  # Enable/disable allowing the certificate user to authenticate
+    "status": "option",  # Enable/disable allowing the certificate user to authenticate with the FortiGate 
     "type": "option",  # Type of certificate authentication method.
     "common-name": "string",  # Certificate common name.
     "issuer": "string",  # CA certificate used for client certificate verification.

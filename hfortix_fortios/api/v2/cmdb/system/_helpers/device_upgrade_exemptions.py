@@ -60,8 +60,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Device upgrade exemption ID (0 - 65535).
-    "fortinet-device": "string",  # Fortinet extension device (FortiAP, FortiSwitch, FortiExtend
-    "version": "user",  # Highest version of Fortinet firmware to exempt (format in Ma
+    "fortinet-device": "string",  # Fortinet extension device (FortiAP, FortiSwitch, FortiExtender).
+    "version": "user",  # Highest version of Fortinet firmware to exempt (format in Major.minor.patch, suc
 }
 
 # Field descriptions (help text from FortiOS API)

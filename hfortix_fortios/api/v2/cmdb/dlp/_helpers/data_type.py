@@ -68,14 +68,14 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name of table containing the data type.
     "pattern": "string",  # Regular expression pattern string without look around.
-    "verify": "string",  # Regular expression pattern string used to verify the data ty
-    "verify2": "string",  # Extra regular expression pattern string used to verify the d
-    "match-around": "string",  # Dictionary to check whether it has a match around (Only supp
-    "look-back": "integer",  # Number of characters required to save for verification (1 - 
-    "look-ahead": "integer",  # Number of characters to obtain in advance for verification (
-    "match-back": "integer",  # Number of characters in front for match-around (1 - 4096, de
-    "match-ahead": "integer",  # Number of characters behind for match-around (1 - 4096, defa
-    "transform": "string",  # Template to transform user input to a pattern using capture 
+    "verify": "string",  # Regular expression pattern string used to verify the data type.
+    "verify2": "string",  # Extra regular expression pattern string used to verify the data type.
+    "match-around": "string",  # Dictionary to check whether it has a match around (Only support match-any and ba
+    "look-back": "integer",  # Number of characters required to save for verification (1 - 255, default = 1).
+    "look-ahead": "integer",  # Number of characters to obtain in advance for verification (1 - 255, default = 1
+    "match-back": "integer",  # Number of characters in front for match-around (1 - 4096, default = 1).
+    "match-ahead": "integer",  # Number of characters behind for match-around (1 - 4096, default = 1).
+    "transform": "string",  # Template to transform user input to a pattern using capture group from 'pattern'
     "verify-transformed-pattern": "option",  # Enable/disable verification for transformed pattern.
     "comment": "var-string",  # Optional comments.
 }

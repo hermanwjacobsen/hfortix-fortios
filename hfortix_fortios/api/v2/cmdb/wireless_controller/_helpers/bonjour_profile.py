@@ -59,7 +59,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Bonjour profile name.
     "comment": "string",  # Comment.
-    "micro-location": "option",  # Enable/disable Micro location for Bonjour profile (default =
+    "micro-location": "option",  # Enable/disable Micro location for Bonjour profile (default = disable).
     "policy-list": "string",  # Bonjour policy list.
 }
 

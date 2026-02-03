@@ -65,10 +65,10 @@ FIELD_TYPES = {
     "name": "string",  # Search engine name.
     "hostname": "string",  # Hostname (regular expression).
     "url": "string",  # URL (regular expression).
-    "query": "string",  # Code used to prefix a query (must end with an equals charact
-    "safesearch": "option",  # Safe search method. You can disable safe search, add the saf
+    "query": "string",  # Code used to prefix a query (must end with an equals character).
+    "safesearch": "option",  # Safe search method. You can disable safe search, add the safe search string to U
     "charset": "option",  # Search engine charset.
-    "safesearch-str": "string",  # Safe search parameter used in the URL in URL mode. In transl
+    "safesearch-str": "string",  # Safe search parameter used in the URL in URL mode. In translate mode, it provide
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -67,12 +67,12 @@ FIELD_TYPES = {
     "name": "string",  # MAC policy name.
     "description": "string",  # Description for the MAC policy.
     "fortilink": "string",  # FortiLink interface for which this MAC policy belongs to.
-    "vlan": "string",  # Ingress traffic VLAN assignment for the MAC address matching
+    "vlan": "string",  # Ingress traffic VLAN assignment for the MAC address matching this MAC policy.
     "traffic-policy": "string",  # Traffic policy to be applied when using this MAC policy.
     "count": "option",  # Enable/disable packet count on the NAC device.
-    "bounce-port-link": "option",  # Enable/disable bouncing (administratively bring the link dow
-    "bounce-port-duration": "integer",  # Bounce duration in seconds of a switch port where this mac-p
-    "poe-reset": "option",  # Enable/disable POE reset of a switch port where this mac-pol
+    "bounce-port-link": "option",  # Enable/disable bouncing (administratively bring the link down, up) of a switch p
+    "bounce-port-duration": "integer",  # Bounce duration in seconds of a switch port where this mac-policy is applied.
+    "poe-reset": "option",  # Enable/disable POE reset of a switch port where this mac-policy is applied.
 }
 
 # Field descriptions (help text from FortiOS API)

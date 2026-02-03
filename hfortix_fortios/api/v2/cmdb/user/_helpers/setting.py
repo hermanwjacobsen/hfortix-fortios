@@ -79,25 +79,25 @@ FIELD_TYPES = {
     "auth-type": "option",  # Supported firewall policy authentication protocols/methods.
     "auth-cert": "string",  # HTTPS server certificate for policy authentication.
     "auth-ca-cert": "string",  # HTTPS CA certificate for policy authentication.
-    "auth-secure-http": "option",  # Enable/disable redirecting HTTP user authentication to more 
-    "auth-http-basic": "option",  # Enable/disable use of HTTP basic authentication for identity
+    "auth-secure-http": "option",  # Enable/disable redirecting HTTP user authentication to more secure HTTPS.
+    "auth-http-basic": "option",  # Enable/disable use of HTTP basic authentication for identity-based firewall poli
     "auth-ssl-allow-renegotiation": "option",  # Allow/forbid SSL re-negotiation for HTTPS authentication.
     "auth-src-mac": "option",  # Enable/disable source MAC for user identity.
     "auth-on-demand": "option",  # Always/implicitly trigger firewall authentication on demand.
-    "auth-timeout": "integer",  # Time in minutes before the firewall user authentication time
-    "auth-timeout-type": "option",  # Control if authenticated users have to login again after a h
-    "auth-portal-timeout": "integer",  # Time in minutes before captive portal user have to re-authen
-    "radius-ses-timeout-act": "option",  # Set the RADIUS session timeout to a hard timeout or to ignor
-    "auth-blackout-time": "integer",  # Time in seconds an IP address is denied access after failing
-    "auth-invalid-max": "integer",  # Maximum number of failed authentication attempts before the 
-    "auth-lockout-threshold": "integer",  # Maximum number of failed login attempts before login lockout
+    "auth-timeout": "integer",  # Time in minutes before the firewall user authentication timeout requires the use
+    "auth-timeout-type": "option",  # Control if authenticated users have to login again after a hard timeout, after a
+    "auth-portal-timeout": "integer",  # Time in minutes before captive portal user have to re-authenticate (1 - 30 min, 
+    "radius-ses-timeout-act": "option",  # Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server sess
+    "auth-blackout-time": "integer",  # Time in seconds an IP address is denied access after failing to authenticate fiv
+    "auth-invalid-max": "integer",  # Maximum number of failed authentication attempts before the user is blocked.
+    "auth-lockout-threshold": "integer",  # Maximum number of failed login attempts before login lockout is triggered.
     "auth-lockout-duration": "integer",  # Lockout period in seconds after too many login failures.
     "per-policy-disclaimer": "option",  # Enable/disable per policy disclaimer.
-    "auth-ports": "string",  # Set up non-standard ports for authentication with HTTP, HTTP
-    "auth-ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
-    "auth-ssl-max-proto-version": "option",  # Maximum supported protocol version for SSL/TLS connections (
-    "auth-ssl-sigalgs": "option",  # Set signature algorithms related to HTTPS authentication (af
-    "default-user-password-policy": "string",  # Default password policy to apply to all local users unless o
+    "auth-ports": "string",  # Set up non-standard ports for authentication with HTTP, HTTPS, FTP, and TELNET.
+    "auth-ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
+    "auth-ssl-max-proto-version": "option",  # Maximum supported protocol version for SSL/TLS connections (default is no limit)
+    "auth-ssl-sigalgs": "option",  # Set signature algorithms related to HTTPS authentication (affects TLS version <=
+    "default-user-password-policy": "string",  # Default password policy to apply to all local users unless otherwise specified, 
     "cors": "option",  # Enable/disable allowed origins white list for CORS.
     "cors-allowed-origins": "string",  # Allowed origins white list for CORS.
 }

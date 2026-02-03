@@ -74,7 +74,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "policyid": "integer",  # Policy ID.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "status": "option",  # Enable/disable the active status of this policy.
     "type": "option",  # IPv4/IPv6 source NAT.
     "srcintf": "string",  # Source interface name from available interfaces.
@@ -88,12 +88,12 @@ FIELD_TYPES = {
     "nat": "option",  # Enable/disable source NAT.
     "nat46": "option",  # Enable/disable NAT46.
     "nat64": "option",  # Enable/disable NAT64.
-    "nat-ippool": "string",  # Name of the IP pools to be used to translate addresses from 
+    "nat-ippool": "string",  # Name of the IP pools to be used to translate addresses from available IP Pools.
     "nat-ippool6": "string",  # IPv6 pools to be used for source NAT.
-    "port-preserve": "option",  # Enable/disable preservation of the original source port from
+    "port-preserve": "option",  # Enable/disable preservation of the original source port from source NAT if it ha
     "port-random": "option",  # Enable/disable random source port selection for source NAT.
-    "nat-port": "user",  # Translated port or port range (1 to 65535, 0 means any port)
-    "dst-port": "user",  # Destination port or port range (1 to 65535, 0 means any port
+    "nat-port": "user",  # Translated port or port range (1 to 65535, 0 means any port).
+    "dst-port": "user",  # Destination port or port range (1 to 65535, 0 means any port).
     "comments": "var-string",  # Comment.
 }
 

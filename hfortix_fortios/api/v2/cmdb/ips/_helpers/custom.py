@@ -69,11 +69,11 @@ FIELD_TYPES = {
     "tag": "string",  # Signature tag.
     "signature": "var-string",  # Custom signature enclosed in single quotes.
     "rule-id": "integer",  # Signature ID.
-    "severity": "user",  # Relative severity of the signature, from info to critical. L
+    "severity": "user",  # Relative severity of the signature, from info to critical. Log messages generate
     "location": "user",  # Protect client or server traffic.
-    "os": "user",  # Operating system(s) that the signature protects. Blank for a
+    "os": "user",  # Operating system(s) that the signature protects. Blank for all operating systems
     "application": "user",  # Applications to be protected. Blank for all applications.
-    "protocol": "user",  # Protocol(s) that the signature scans. Blank for all protocol
+    "protocol": "user",  # Protocol(s) that the signature scans. Blank for all protocols.
     "status": "option",  # Enable/disable this signature.
     "log": "option",  # Enable/disable logging.
     "log-packet": "option",  # Enable/disable packet logging.

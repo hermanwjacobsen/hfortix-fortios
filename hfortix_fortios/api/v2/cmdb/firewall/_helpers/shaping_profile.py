@@ -63,7 +63,7 @@ FIELD_TYPES = {
     "comment": "var-string",  # Comment.
     "type": "option",  # Select shaping profile type: policing / queuing.
     "npu-offloading": "option",  # Enable/disable NPU offloading.
-    "default-class-id": "integer",  # Default class ID to handle unclassified packets (including a
+    "default-class-id": "integer",  # Default class ID to handle unclassified packets (including all local traffic).
     "shaping-entries": "string",  # Define shaping entries of this shaping profile.
 }
 

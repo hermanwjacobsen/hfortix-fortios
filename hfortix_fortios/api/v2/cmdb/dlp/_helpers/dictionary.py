@@ -60,7 +60,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "name": "string",  # Name of table containing the dictionary.
     "match-type": "option",  # Logical relation between entries (default = match-any).
     "match-around": "option",  # Enable/disable match-around support.

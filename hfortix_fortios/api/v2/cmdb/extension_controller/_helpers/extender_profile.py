@@ -69,10 +69,10 @@ FIELD_TYPES = {
     "id": "integer",  # ID.
     "model": "option",  # Model.
     "extension": "option",  # Extension option.
-    "allowaccess": "option",  # Control management access to the managed extender. Separate 
-    "login-password-change": "option",  # Change or reset the administrator password of a managed exte
+    "allowaccess": "option",  # Control management access to the managed extender. Separate entries with a space
+    "login-password-change": "option",  # Change or reset the administrator password of a managed extender (yes, default, 
     "login-password": "password",  # Set the managed extender's administrator password.
-    "enforce-bandwidth": "option",  # Enable/disable enforcement of bandwidth on LAN extension int
+    "enforce-bandwidth": "option",  # Enable/disable enforcement of bandwidth on LAN extension interface.
     "bandwidth-limit": "integer",  # FortiExtender LAN extension bandwidth limit (Mbps).
     "cellular": "string",  # FortiExtender cellular configuration.
     "wifi": "string",  # FortiExtender Wi-Fi configuration.

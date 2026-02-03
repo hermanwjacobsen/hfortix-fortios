@@ -71,13 +71,13 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name.
     "ca": "user",  # CA certificate as a PEM file.
-    "range": "option",  # Either global or VDOM IP address range for the CA certificat
+    "range": "option",  # Either global or VDOM IP address range for the CA certificate.
     "source": "option",  # CA certificate source type.
     "ssl-inspection-trusted": "option",  # Enable/disable this CA as a trusted CA for SSL inspection.
     "scep-url": "string",  # URL of the SCEP server.
     "est-url": "string",  # URL of the EST server.
-    "auto-update-days": "integer",  # Number of days to wait before requesting an updated CA certi
-    "auto-update-days-warning": "integer",  # Number of days before an expiry-warning message is generated
+    "auto-update-days": "integer",  # Number of days to wait before requesting an updated CA certificate (0 - 42949672
+    "auto-update-days-warning": "integer",  # Number of days before an expiry-warning message is generated (0 - 4294967295, 0 
     "source-ip": "ipv4-address",  # Source IP address for communications to the SCEP server.
     "ca-identifier": "string",  # CA identifier of the SCEP server.
     "obsolete": "option",  # Enable/disable this CA as obsoleted.

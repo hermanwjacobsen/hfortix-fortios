@@ -83,27 +83,27 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Policy name.
     "security-mode": "option",  # Port or MAC based 802.1X security mode.
-    "user-group": "string",  # Name of user-group to assign to this MAC Authentication Bypa
+    "user-group": "string",  # Name of user-group to assign to this MAC Authentication Bypass (MAB) policy.
     "mac-auth-bypass": "option",  # Enable/disable MAB for this policy.
     "auth-order": "option",  # Configure authentication order.
     "auth-priority": "option",  # Configure authentication priority.
     "open-auth": "option",  # Enable/disable open authentication for this policy.
-    "eap-passthru": "option",  # Enable/disable EAP pass-through mode, allowing protocols (su
+    "eap-passthru": "option",  # Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass 
     "eap-auto-untagged-vlans": "option",  # Enable/disable automatic inclusion of untagged VLANs.
-    "guest-vlan": "option",  # Enable the guest VLAN feature to allow limited access to non
+    "guest-vlan": "option",  # Enable the guest VLAN feature to allow limited access to non-802.1X-compliant cl
     "guest-vlan-id": "string",  # Guest VLAN name.
     "guest-auth-delay": "integer",  # Guest authentication delay (1 - 900  sec, default = 30).
-    "auth-fail-vlan": "option",  # Enable to allow limited access to clients that cannot authen
+    "auth-fail-vlan": "option",  # Enable to allow limited access to clients that cannot authenticate.
     "auth-fail-vlan-id": "string",  # VLAN ID on which authentication failed.
-    "framevid-apply": "option",  # Enable/disable the capability to apply the EAP/MAB frame VLA
+    "framevid-apply": "option",  # Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native
     "radius-timeout-overwrite": "option",  # Enable to override the global RADIUS session timeout.
     "policy-type": "option",  # Policy type.
-    "authserver-timeout-period": "integer",  # Authentication server timeout period (3 - 15 sec, default = 
-    "authserver-timeout-vlan": "option",  # Enable/disable the authentication server timeout VLAN to all
+    "authserver-timeout-period": "integer",  # Authentication server timeout period (3 - 15 sec, default = 3).
+    "authserver-timeout-vlan": "option",  # Enable/disable the authentication server timeout VLAN to allow limited access wh
     "authserver-timeout-vlanid": "string",  # Authentication server timeout VLAN name.
-    "authserver-timeout-tagged": "option",  # Configure timeout option for the tagged VLAN which allows li
-    "authserver-timeout-tagged-vlanid": "string",  # Tagged VLAN name for which the timeout option is applied to 
-    "dacl": "option",  # Enable/disable dynamic access control list on this interface
+    "authserver-timeout-tagged": "option",  # Configure timeout option for the tagged VLAN which allows limited access when th
+    "authserver-timeout-tagged-vlanid": "string",  # Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+    "dacl": "option",  # Enable/disable dynamic access control list on this interface.
 }
 
 # Field descriptions (help text from FortiOS API)

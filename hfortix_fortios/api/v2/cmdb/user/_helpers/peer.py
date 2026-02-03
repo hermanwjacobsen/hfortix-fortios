@@ -66,17 +66,17 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Peer name.
-    "mandatory-ca-verify": "option",  # Determine what happens to the peer if the CA certificate is 
+    "mandatory-ca-verify": "option",  # Determine what happens to the peer if the CA certificate is not installed. Disab
     "ca": "string",  # Name of the CA certificate.
     "subject": "string",  # Peer certificate name constraints.
     "cn": "string",  # Peer certificate common name.
     "cn-type": "option",  # Peer certificate common name type.
     "mfa-mode": "option",  # MFA mode for remote peer authentication/authorization.
-    "mfa-server": "string",  # Name of a remote authenticator. Performs client access right
+    "mfa-server": "string",  # Name of a remote authenticator. Performs client access right check.
     "mfa-username": "string",  # Unified username for remote authentication.
-    "mfa-password": "password",  # Unified password for remote authentication. This field may b
-    "ocsp-override-server": "string",  # Online Certificate Status Protocol (OCSP) server for certifi
-    "two-factor": "option",  # Enable/disable two-factor authentication, applying certifica
+    "mfa-password": "password",  # Unified password for remote authentication. This field may be left empty when RA
+    "ocsp-override-server": "string",  # Online Certificate Status Protocol (OCSP) server for certificate retrieval.
+    "two-factor": "option",  # Enable/disable two-factor authentication, applying certificate and password-base
     "passwd": "password",  # Peer's password used for two-factor authentication.
 }
 

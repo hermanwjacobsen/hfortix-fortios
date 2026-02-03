@@ -88,32 +88,32 @@ FIELD_TYPES = {
     "replacemsg-group": "string",  # Replacement message group.
     "name": "string",  # ICAP profile name.
     "comment": "var-string",  # Comment.
-    "request": "option",  # Enable/disable whether an HTTP request is passed to an ICAP 
-    "response": "option",  # Enable/disable whether an HTTP response is passed to an ICAP
-    "file-transfer": "option",  # Configure the file transfer protocols to pass transferred fi
-    "streaming-content-bypass": "option",  # Enable/disable bypassing of ICAP server for streaming conten
-    "ocr-only": "option",  # Enable/disable this FortiGate unit to submit only OCR intere
-    "204-size-limit": "integer",  # 204 response size limit to be saved by ICAP client in megaby
+    "request": "option",  # Enable/disable whether an HTTP request is passed to an ICAP server.
+    "response": "option",  # Enable/disable whether an HTTP response is passed to an ICAP server.
+    "file-transfer": "option",  # Configure the file transfer protocols to pass transferred files to an ICAP serve
+    "streaming-content-bypass": "option",  # Enable/disable bypassing of ICAP server for streaming content.
+    "ocr-only": "option",  # Enable/disable this FortiGate unit to submit only OCR interested content to the 
+    "204-size-limit": "integer",  # 204 response size limit to be saved by ICAP client in megabytes (1 - 10, default
     "204-response": "option",  # Enable/disable allowance of 204 response from ICAP server.
     "preview": "option",  # Enable/disable preview of data to ICAP server.
     "preview-data-length": "integer",  # Preview data length to be sent to ICAP server.
     "request-server": "string",  # ICAP server to use for an HTTP request.
     "response-server": "string",  # ICAP server to use for an HTTP response.
     "file-transfer-server": "string",  # ICAP server to use for a file transfer.
-    "request-failure": "option",  # Action to take if the ICAP server cannot be contacted when p
-    "response-failure": "option",  # Action to take if the ICAP server cannot be contacted when p
-    "file-transfer-failure": "option",  # Action to take if the ICAP server cannot be contacted when p
-    "request-path": "string",  # Path component of the ICAP URI that identifies the HTTP requ
-    "response-path": "string",  # Path component of the ICAP URI that identifies the HTTP resp
-    "file-transfer-path": "string",  # Path component of the ICAP URI that identifies the file tran
-    "methods": "option",  # The allowed HTTP methods that will be sent to ICAP server fo
-    "response-req-hdr": "option",  # Enable/disable addition of req-hdr for ICAP response modific
-    "respmod-default-action": "option",  # Default action to ICAP response modification (respmod) proce
-    "icap-block-log": "option",  # Enable/disable UTM log when infection found (default = disab
+    "request-failure": "option",  # Action to take if the ICAP server cannot be contacted when processing an HTTP re
+    "response-failure": "option",  # Action to take if the ICAP server cannot be contacted when processing an HTTP re
+    "file-transfer-failure": "option",  # Action to take if the ICAP server cannot be contacted when processing a file tra
+    "request-path": "string",  # Path component of the ICAP URI that identifies the HTTP request processing servi
+    "response-path": "string",  # Path component of the ICAP URI that identifies the HTTP response processing serv
+    "file-transfer-path": "string",  # Path component of the ICAP URI that identifies the file transfer processing serv
+    "methods": "option",  # The allowed HTTP methods that will be sent to ICAP server for further processing
+    "response-req-hdr": "option",  # Enable/disable addition of req-hdr for ICAP response modification (respmod) proc
+    "respmod-default-action": "option",  # Default action to ICAP response modification (respmod) processing.
+    "icap-block-log": "option",  # Enable/disable UTM log when infection found (default = disable).
     "chunk-encap": "option",  # Enable/disable chunked encapsulation (default = disable).
     "extension-feature": "option",  # Enable/disable ICAP extension features.
     "scan-progress-interval": "integer",  # Scan progress interval value.
-    "timeout": "integer",  # Time (in seconds) that ICAP client waits for the response fr
+    "timeout": "integer",  # Time (in seconds) that ICAP client waits for the response from ICAP server.
     "icap-headers": "string",  # Configure ICAP forwarded request headers.
     "respmod-forward-rules": "string",  # ICAP response mode forward rules.
 }

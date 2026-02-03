@@ -59,7 +59,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "show-filter": "string",  # Prefix-list as filter for showing routes.
     "hostname": "string",  # Hostname for this virtual domain router.
-    "kernel-route-distance": "integer",  # Administrative distance for routes learned from kernel (0 - 
+    "kernel-route-distance": "integer",  # Administrative distance for routes learned from kernel (0 - 255).
 }
 
 # Field descriptions (help text from FortiOS API)

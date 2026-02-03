@@ -98,14 +98,14 @@ FIELD_TYPES = {
     "route": "string",  # Subnet to monitor.
     "source-ip": "ipv4-address-any",  # Source IP address used in packet to the server.
     "source-ip6": "ipv6-address",  # Source IPv6 address used in packet to the server.
-    "http-get": "string",  # If you are monitoring an HTML server you can send an HTTP-GE
+    "http-get": "string",  # If you are monitoring an HTML server you can send an HTTP-GET request with a cus
     "http-agent": "string",  # String in the http-agent field in the HTTP header.
-    "http-match": "string",  # String that you expect to see in the HTTP-GET requests of th
-    "interval": "integer",  # Detection interval in milliseconds (20 - 3600 * 1000 msec, d
-    "probe-timeout": "integer",  # Time to wait before a probe packet is considered lost (20 - 
-    "failtime": "integer",  # Number of retry attempts before the server is considered dow
-    "recoverytime": "integer",  # Number of successful responses received before server is con
-    "probe-count": "integer",  # Number of most recent probes that should be used to calculat
+    "http-match": "string",  # String that you expect to see in the HTTP-GET requests of the traffic to be moni
+    "interval": "integer",  # Detection interval in milliseconds (20 - 3600 * 1000 msec, default = 500).
+    "probe-timeout": "integer",  # Time to wait before a probe packet is considered lost (20 - 5000 msec, default =
+    "failtime": "integer",  # Number of retry attempts before the server is considered down (1 - 3600, default
+    "recoverytime": "integer",  # Number of successful responses received before server is considered recovered (1
+    "probe-count": "integer",  # Number of most recent probes that should be used to calculate latency and jitter
     "security-mode": "option",  # Twamp controller security mode.
     "password": "password",  # TWAMP controller password in authentication mode.
     "packet-size": "integer",  # Packet size of a TWAMP test session (124/158 - 1024).
@@ -115,9 +115,9 @@ FIELD_TYPES = {
     "update-static-route": "option",  # Enable/disable updating the static route.
     "update-policy-route": "option",  # Enable/disable updating the policy route.
     "status": "option",  # Enable/disable this link monitor.
-    "diffservcode": "user",  # Differentiated services code point (DSCP) in the IP header o
+    "diffservcode": "user",  # Differentiated services code point (DSCP) in the IP header of the probe packet.
     "class-id": "integer",  # Traffic class ID.
-    "service-detection": "option",  # Only use monitor to read quality values. If enabled, static 
+    "service-detection": "option",  # Only use monitor to read quality values. If enabled, static routes and cascade i
     "server-list": "string",  # Servers for link-monitor to monitor.
 }
 

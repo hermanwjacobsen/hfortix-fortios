@@ -224,7 +224,7 @@ FIELD_TYPES = {
     "remote-gw": "ipv4-address",  # Remote VPN gateway.
     "local-gw": "ipv4-address",  # Local VPN gateway.
     "remotegw-ddns": "string",  # Domain name of remote gateway. For example, name.ddns.com.
-    "keylife": "integer",  # Time to wait in seconds before phase 1 encryption key expire
+    "keylife": "integer",  # Time to wait in seconds before phase 1 encryption key expires.
     "certificate": "string",  # Names of up to 4 signed personal certificates.
     "authmethod": "option",  # Authentication method.
     "authmethod-remote": "option",  # Authentication method (remote side).
@@ -235,20 +235,20 @@ FIELD_TYPES = {
     "peer": "string",  # Accept this peer certificate.
     "peergrp": "string",  # Accept this peer certificate group.
     "mode-cfg": "option",  # Enable/disable configuration method.
-    "mode-cfg-allow-client-selector": "option",  # Enable/disable mode-cfg client to use custom phase2 selector
-    "assign-ip": "option",  # Enable/disable assignment of IP to IPsec interface via confi
+    "mode-cfg-allow-client-selector": "option",  # Enable/disable mode-cfg client to use custom phase2 selectors.
+    "assign-ip": "option",  # Enable/disable assignment of IP to IPsec interface via configuration method.
     "assign-ip-from": "option",  # Method by which the IP address will be assigned.
     "ipv4-start-ip": "ipv4-address",  # Start of IPv4 range.
     "ipv4-end-ip": "ipv4-address",  # End of IPv4 range.
     "ipv4-netmask": "ipv4-netmask",  # IPv4 Netmask.
-    "dhcp-ra-giaddr": "ipv4-address",  # Relay agent gateway IP address to use in the giaddr field of
+    "dhcp-ra-giaddr": "ipv4-address",  # Relay agent gateway IP address to use in the giaddr field of DHCP requests.
     "dhcp6-ra-linkaddr": "ipv6-address",  # Relay agent IPv6 link address to use in DHCP6 requests.
     "dns-mode": "option",  # DNS server mode.
     "ipv4-dns-server1": "ipv4-address",  # IPv4 DNS server 1.
     "ipv4-dns-server2": "ipv4-address",  # IPv4 DNS server 2.
     "ipv4-dns-server3": "ipv4-address",  # IPv4 DNS server 3.
-    "internal-domain-list": "string",  # One or more internal domain names in quotes separated by spa
-    "dns-suffix-search": "string",  # One or more DNS domain name suffixes in quotes separated by 
+    "internal-domain-list": "string",  # One or more internal domain names in quotes separated by spaces.
+    "dns-suffix-search": "string",  # One or more DNS domain name suffixes in quotes separated by spaces.
     "ipv4-wins-server1": "ipv4-address",  # WINS server 1.
     "ipv4-wins-server2": "ipv4-address",  # WINS server 2.
     "ipv4-exclude-range": "string",  # Configuration Method IPv4 exclude ranges.
@@ -265,21 +265,21 @@ FIELD_TYPES = {
     "ipv6-split-include": "string",  # IPv6 split-include subnets.
     "ipv6-name": "string",  # IPv6 address name.
     "ip-delay-interval": "integer",  # IP address reuse delay interval in seconds (0 - 28800).
-    "unity-support": "option",  # Enable/disable support for Cisco UNITY Configuration Method 
+    "unity-support": "option",  # Enable/disable support for Cisco UNITY Configuration Method extensions.
     "domain": "string",  # Instruct unity clients about the single default DNS domain.
     "banner": "var-string",  # Message that unity client should display after connecting.
     "include-local-lan": "option",  # Enable/disable allow local LAN access on unity clients.
     "ipv4-split-exclude": "string",  # IPv4 subnets that should not be sent over the IPsec tunnel.
     "ipv6-split-exclude": "string",  # IPv6 subnets that should not be sent over the IPsec tunnel.
-    "save-password": "option",  # Enable/disable saving XAuth username and password on VPN cli
-    "client-auto-negotiate": "option",  # Enable/disable allowing the VPN client to bring up the tunne
-    "client-keep-alive": "option",  # Enable/disable allowing the VPN client to keep the tunnel up
+    "save-password": "option",  # Enable/disable saving XAuth username and password on VPN clients.
+    "client-auto-negotiate": "option",  # Enable/disable allowing the VPN client to bring up the tunnel when there is no t
+    "client-keep-alive": "option",  # Enable/disable allowing the VPN client to keep the tunnel up when there is no tr
     "backup-gateway": "string",  # Instruct unity clients about the backup gateway address(es).
     "proposal": "option",  # Phase1 proposal.
-    "add-route": "option",  # Enable/disable control addition of a route to peer destinati
-    "add-gw-route": "option",  # Enable/disable automatically add a route to the remote gatew
-    "psksecret": "password-3",  # Pre-shared secret for PSK authentication (ASCII string or he
-    "psksecret-remote": "password-3",  # Pre-shared secret for remote side PSK authentication (ASCII 
+    "add-route": "option",  # Enable/disable control addition of a route to peer destination selector.
+    "add-gw-route": "option",  # Enable/disable automatically add a route to the remote gateway.
+    "psksecret": "password-3",  # Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded wi
+    "psksecret-remote": "password-3",  # Pre-shared secret for remote side PSK authentication (ASCII string or hexadecima
     "keepalive": "integer",  # NAT-T keep alive interval.
     "distance": "integer",  # Distance for routes added by IKE (1 - 255).
     "priority": "integer",  # Priority for routes added by IKE (1 - 65535).
@@ -306,66 +306,66 @@ FIELD_TYPES = {
     "eap": "option",  # Enable/disable IKEv2 EAP authentication.
     "eap-identity": "option",  # IKEv2 EAP peer identity type.
     "eap-exclude-peergrp": "string",  # Peer group excluded from EAP authentication.
-    "eap-cert-auth": "option",  # Enable/disable peer certificate authentication in addition t
+    "eap-cert-auth": "option",  # Enable/disable peer certificate authentication in addition to EAP if peer is a F
     "acct-verify": "option",  # Enable/disable verification of RADIUS accounting record.
     "ppk": "option",  # Enable/disable IKEv2 Postquantum Preshared Key (PPK).
-    "ppk-secret": "password-3",  # IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal
+    "ppk-secret": "password-3",  # IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a lead
     "ppk-identity": "string",  # IKEv2 Postquantum Preshared Key Identity.
     "wizard-type": "option",  # GUI VPN Wizard Type.
     "xauthtype": "option",  # XAuth type.
-    "reauth": "option",  # Enable/disable re-authentication upon IKE SA lifetime expira
+    "reauth": "option",  # Enable/disable re-authentication upon IKE SA lifetime expiration.
     "authusr": "string",  # XAuth user name.
     "authpasswd": "password",  # XAuth password (max 35 characters).
     "group-authentication": "option",  # Enable/disable IKEv2 IDi group authentication.
-    "group-authentication-secret": "password-3",  # Password for IKEv2 ID group authentication. ASCII string or 
+    "group-authentication-secret": "password-3",  # Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicate
     "authusrgrp": "string",  # Authentication user group.
-    "mesh-selector-type": "option",  # Add selectors containing subsets of the configuration depend
+    "mesh-selector-type": "option",  # Add selectors containing subsets of the configuration depending on traffic.
     "idle-timeout": "option",  # Enable/disable IPsec tunnel idle timeout.
     "shared-idle-timeout": "option",  # Enable/disable IPsec tunnel shared idle timeout.
     "idle-timeoutinterval": "integer",  # IPsec tunnel idle timeout in minutes (5 - 43200).
     "ha-sync-esp-seqno": "option",  # Enable/disable sequence number jump ahead for IPsec HA.
     "fgsp-sync": "option",  # Enable/disable IPsec syncing of tunnels for FGSP IPsec.
-    "inbound-dscp-copy": "option",  # Enable/disable copy the dscp in the ESP header to the inner 
+    "inbound-dscp-copy": "option",  # Enable/disable copy the dscp in the ESP header to the inner IP Header.
     "nattraversal": "option",  # Enable/disable NAT traversal.
     "esn": "option",  # Extended sequence number (ESN) negotiation.
     "fragmentation-mtu": "integer",  # IKE fragmentation MTU (500 - 16000).
     "childless-ike": "option",  # Enable/disable childless IKEv2 initiation (RFC 6023).
     "azure-ad-autoconnect": "option",  # Enable/disable Azure AD Auto-Connect for FortiClient.
-    "client-resume": "option",  # Enable/disable resumption of offline FortiClient sessions.  
-    "client-resume-interval": "integer",  # Maximum time in seconds during which a VPN client may resume
+    "client-resume": "option",  # Enable/disable resumption of offline FortiClient sessions.  When a FortiClient e
+    "client-resume-interval": "integer",  # Maximum time in seconds during which a VPN client may resume using a tunnel afte
     "rekey": "option",  # Enable/disable phase1 rekey.
-    "digital-signature-auth": "option",  # Enable/disable IKEv2 Digital Signature Authentication (RFC 7
+    "digital-signature-auth": "option",  # Enable/disable IKEv2 Digital Signature Authentication (RFC 7427).
     "signature-hash-alg": "option",  # Digital Signature Authentication hash algorithms.
     "rsa-signature-format": "option",  # Digital Signature Authentication RSA signature format.
     "rsa-signature-hash-override": "option",  # Enable/disable IKEv2 RSA signature hash algorithm override.
     "enforce-unique-id": "option",  # Enable/disable peer ID uniqueness check.
-    "cert-id-validation": "option",  # Enable/disable cross validation of peer ID and the identity 
-    "fec-egress": "option",  # Enable/disable Forward Error Correction for egress IPsec tra
-    "fec-send-timeout": "integer",  # Timeout in milliseconds before sending Forward Error Correct
+    "cert-id-validation": "option",  # Enable/disable cross validation of peer ID and the identity in the peer's certif
+    "fec-egress": "option",  # Enable/disable Forward Error Correction for egress IPsec traffic.
+    "fec-send-timeout": "integer",  # Timeout in milliseconds before sending Forward Error Correction packets (1 - 100
     "fec-base": "integer",  # Number of base Forward Error Correction packets (1 - 20).
     "fec-codec": "option",  # Forward Error Correction encoding/decoding algorithm.
-    "fec-redundant": "integer",  # Number of redundant Forward Error Correction packets (1 - 5 
-    "fec-ingress": "option",  # Enable/disable Forward Error Correction for ingress IPsec tr
-    "fec-receive-timeout": "integer",  # Timeout in milliseconds before dropping Forward Error Correc
+    "fec-redundant": "integer",  # Number of redundant Forward Error Correction packets (1 - 5 for reed-solomon, 1 
+    "fec-ingress": "option",  # Enable/disable Forward Error Correction for ingress IPsec traffic.
+    "fec-receive-timeout": "integer",  # Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10
     "fec-health-check": "string",  # SD-WAN health check.
     "fec-mapping-profile": "string",  # Forward Error Correction (FEC) mapping profile.
     "network-overlay": "option",  # Enable/disable network overlays.
     "network-id": "integer",  # VPN gateway network ID.
     "dev-id-notification": "option",  # Enable/disable device ID notification.
     "dev-id": "string",  # Device ID carried by the device ID notification.
-    "loopback-asymroute": "option",  # Enable/disable asymmetric routing for IKE traffic on loopbac
+    "loopback-asymroute": "option",  # Enable/disable asymmetric routing for IKE traffic on loopback interface.
     "link-cost": "integer",  # VPN tunnel underlay link cost.
     "kms": "string",  # Key Management Services server.
-    "exchange-fgt-device-id": "option",  # Enable/disable device identifier exchange with peer FortiGat
-    "ipv6-auto-linklocal": "option",  # Enable/disable auto generation of IPv6 link-local address us
+    "exchange-fgt-device-id": "option",  # Enable/disable device identifier exchange with peer FortiGate units for use of V
+    "ipv6-auto-linklocal": "option",  # Enable/disable auto generation of IPv6 link-local address using last 8 bytes of 
     "ems-sn-check": "option",  # Enable/disable verification of EMS serial number.
     "cert-trust-store": "option",  # CA certificate trust store.
     "qkd": "option",  # Enable/disable use of Quantum Key Distribution (QKD) server.
-    "qkd-hybrid": "option",  # Enable/disable use of Quantum Key Distribution (QKD) hybrid 
+    "qkd-hybrid": "option",  # Enable/disable use of Quantum Key Distribution (QKD) hybrid keys.
     "qkd-profile": "string",  # Quantum Key Distribution (QKD) server profile.
     "transport": "option",  # Set IKE transport protocol.
     "fortinet-esp": "option",  # Enable/disable Fortinet ESP encapsulation.
-    "auto-transport-threshold": "integer",  # Timeout in seconds before falling back to next transport pro
+    "auto-transport-threshold": "integer",  # Timeout in seconds before falling back to next transport protocol.
     "remote-gw-match": "option",  # Set type of IPv4 remote gateway address matching.
     "remote-gw-subnet": "ipv4-classnet-any",  # IPv4 address and subnet mask.
     "remote-gw-start-ip": "ipv4-address-any",  # First IPv4 address in the range.
@@ -377,7 +377,7 @@ FIELD_TYPES = {
     "remote-gw6-start-ip": "ipv6-address",  # First IPv6 address in the range.
     "remote-gw6-end-ip": "ipv6-address",  # Last IPv6 address in the range.
     "remote-gw6-country": "string",  # IPv6 addresses associated to a specific country.
-    "cert-peer-username-validation": "option",  # Enable/disable cross validation of peer username and the ide
+    "cert-peer-username-validation": "option",  # Enable/disable cross validation of peer username and the identity in the peer's 
     "cert-peer-username-strip": "option",  # Enable/disable domain stripping on certificate identity.
 }
 

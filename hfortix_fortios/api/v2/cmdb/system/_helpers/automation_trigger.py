@@ -83,7 +83,7 @@ FIELD_TYPES = {
     "trigger-weekday": "option",  # Day of week for trigger.
     "trigger-day": "integer",  # Day within a month to trigger.
     "trigger-hour": "integer",  # Hour of the day on which to trigger (0 - 23, default = 1).
-    "trigger-minute": "integer",  # Minute of the hour on which to trigger (0 - 59, default = 0)
+    "trigger-minute": "integer",  # Minute of the hour on which to trigger (0 - 59, default = 0).
     "trigger-datetime": "datetime",  # Trigger date and time (YYYY-MM-DD HH:MM:SS).
     "fields": "string",  # Customized trigger field settings.
     "faz-event-name": "var-string",  # FortiAnalyzer event handler name.

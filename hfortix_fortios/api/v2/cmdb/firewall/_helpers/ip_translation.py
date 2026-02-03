@@ -61,9 +61,9 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "transid": "integer",  # IP translation ID.
     "type": "option",  # IP translation type (option: SCTP).
-    "startip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range of the addresses
-    "endip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range of the addresses
-    "map-startip": "ipv4-address-any",  # Address to be used as the starting point for translation in 
+    "startip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range of the addresses to be translated (f
+    "endip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range of the addresses to be translated (f
+    "map-startip": "ipv4-address-any",  # Address to be used as the starting point for translation in the range (format xx
 }
 
 # Field descriptions (help text from FortiOS API)

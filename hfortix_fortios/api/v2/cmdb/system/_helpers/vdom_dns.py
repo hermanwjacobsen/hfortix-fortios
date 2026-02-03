@@ -79,13 +79,13 @@ FIELD_TYPES = {
     "ip6-primary": "ipv6-address",  # Primary IPv6 DNS server IP address for the VDOM.
     "ip6-secondary": "ipv6-address",  # Secondary IPv6 DNS server IP address for the VDOM.
     "source-ip": "ipv4-address",  # Source IP for communications with the DNS server.
-    "source-ip-interface": "string",  # IP address of the specified interface as the source IP addre
+    "source-ip-interface": "string",  # IP address of the specified interface as the source IP address.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
     "server-select-method": "option",  # Specify how configured servers are prioritized.
-    "alt-primary": "ipv4-address",  # Alternate primary DNS server. This is not used as a failover
-    "alt-secondary": "ipv4-address",  # Alternate secondary DNS server. This is not used as a failov
+    "alt-primary": "ipv4-address",  # Alternate primary DNS server. This is not used as a failover DNS server.
+    "alt-secondary": "ipv4-address",  # Alternate secondary DNS server. This is not used as a failover DNS server.
 }
 
 # Field descriptions (help text from FortiOS API)

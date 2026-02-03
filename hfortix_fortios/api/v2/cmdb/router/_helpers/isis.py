@@ -88,8 +88,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "is-type": "option",  # IS type.
-    "adv-passive-only": "option",  # Enable/disable IS-IS advertisement of passive interfaces onl
-    "adv-passive-only6": "option",  # Enable/disable IPv6 IS-IS advertisement of passive interface
+    "adv-passive-only": "option",  # Enable/disable IS-IS advertisement of passive interfaces only.
+    "adv-passive-only6": "option",  # Enable/disable IPv6 IS-IS advertisement of passive interfaces only.
     "auth-mode-l1": "option",  # Level 1 authentication mode.
     "auth-mode-l2": "option",  # Level 2 authentication mode.
     "auth-password-l1": "password",  # Authentication password for level 1 PDUs.
@@ -112,15 +112,15 @@ FIELD_TYPES = {
     "overload-bit-suppress": "option",  # Suppress overload-bit for the specific prefixes.
     "overload-bit-on-startup": "integer",  # Overload-bit only temporarily after reboot.
     "default-originate": "option",  # Enable/disable distribution of default route information.
-    "default-originate6": "option",  # Enable/disable distribution of default IPv6 route informatio
+    "default-originate6": "option",  # Enable/disable distribution of default IPv6 route information.
     "metric-style": "option",  # Use old-style (ISO 10589) or new-style packet formats.
-    "redistribute-l1": "option",  # Enable/disable redistribution of level 1 routes into level 2
+    "redistribute-l1": "option",  # Enable/disable redistribution of level 1 routes into level 2.
     "redistribute-l1-list": "string",  # Access-list for route redistribution from l1 to l2.
-    "redistribute-l2": "option",  # Enable/disable redistribution of level 2 routes into level 1
+    "redistribute-l2": "option",  # Enable/disable redistribution of level 2 routes into level 1.
     "redistribute-l2-list": "string",  # Access-list for route redistribution from l2 to l1.
-    "redistribute6-l1": "option",  # Enable/disable redistribution of level 1 IPv6 routes into le
+    "redistribute6-l1": "option",  # Enable/disable redistribution of level 1 IPv6 routes into level 2.
     "redistribute6-l1-list": "string",  # Access-list for IPv6 route redistribution from l1 to l2.
-    "redistribute6-l2": "option",  # Enable/disable redistribution of level 2 IPv6 routes into le
+    "redistribute6-l2": "option",  # Enable/disable redistribution of level 2 IPv6 routes into level 1.
     "redistribute6-l2-list": "string",  # Access-list for IPv6 route redistribution from l2 to l1.
     "isis-net": "string",  # IS-IS net configuration.
     "isis-interface": "string",  # IS-IS interface configuration.

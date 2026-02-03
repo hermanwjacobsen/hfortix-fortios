@@ -68,16 +68,16 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "cache-mode": "option",  # Cache entry expiration mode.
     "cache-prefix-match": "option",  # Enable/disable prefix matching in the cache.
-    "cache-mem-permille": "integer",  # Maximum permille of available memory allocated to caching (1
-    "ovrd-auth-port-http": "integer",  # Port to use for FortiGuard Web Filter HTTP override authenti
-    "ovrd-auth-port-https": "integer",  # Port to use for FortiGuard Web Filter HTTPS override authent
-    "ovrd-auth-port-https-flow": "integer",  # Port to use for FortiGuard Web Filter HTTPS override authent
-    "ovrd-auth-port-warning": "integer",  # Port to use for FortiGuard Web Filter Warning override authe
+    "cache-mem-permille": "integer",  # Maximum permille of available memory allocated to caching (1 - 150).
+    "ovrd-auth-port-http": "integer",  # Port to use for FortiGuard Web Filter HTTP override authentication.
+    "ovrd-auth-port-https": "integer",  # Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mod
+    "ovrd-auth-port-https-flow": "integer",  # Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode
+    "ovrd-auth-port-warning": "integer",  # Port to use for FortiGuard Web Filter Warning override authentication.
     "ovrd-auth-https": "option",  # Enable/disable use of HTTPS for override authentication.
     "warn-auth-https": "option",  # Enable/disable use of HTTPS for warning and authentication.
-    "close-ports": "option",  # Close ports used for HTTP/HTTPS override authentication and 
-    "request-packet-size-limit": "integer",  # Limit size of URL request packets sent to FortiGuard server 
-    "embed-image": "option",  # Enable/disable embedding images into replacement messages (d
+    "close-ports": "option",  # Close ports used for HTTP/HTTPS override authentication and disable user overrid
+    "request-packet-size-limit": "integer",  # Limit size of URL request packets sent to FortiGuard server (0 for default).
+    "embed-image": "option",  # Enable/disable embedding images into replacement messages (default = enable).
 }
 
 # Field descriptions (help text from FortiOS API)

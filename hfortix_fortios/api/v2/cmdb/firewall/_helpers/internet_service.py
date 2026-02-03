@@ -69,7 +69,7 @@ FIELD_TYPES = {
     "id": "integer",  # Internet Service ID.
     "name": "string",  # Internet Service name.
     "icon-id": "integer",  # Icon ID of Internet Service.
-    "direction": "option",  # How this service may be used in a firewall policy (source, d
+    "direction": "option",  # How this service may be used in a firewall policy (source, destination or both).
     "database": "option",  # Database name this Internet Service belongs to.
     "ip-range-number": "integer",  # Number of IPv4 ranges.
     "extra-ip-range-number": "integer",  # Extra number of IPv4 ranges.

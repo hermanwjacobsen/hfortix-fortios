@@ -59,7 +59,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "quarantine": "option",  # Enable/disable quarantine.
     "traffic-policy": "string",  # Traffic policy for quarantined MACs.
-    "firewall-groups": "string",  # Firewall address group which includes all quarantine MAC add
+    "firewall-groups": "string",  # Firewall address group which includes all quarantine MAC address.
     "targets": "string",  # Quarantine entry to hold multiple MACs.
 }
 

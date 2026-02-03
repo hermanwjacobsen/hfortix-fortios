@@ -67,7 +67,7 @@ FIELD_TYPES = {
     "server": "string",  # IPv4, IPv6 or DNS address of the KME.
     "port": "integer",  # Port to connect to on the KME.
     "id": "string",  # Quantum Key Distribution ID assigned by the KME.
-    "peer": "string",  # Authenticate Quantum Key Device's certificate with the peer/
+    "peer": "string",  # Authenticate Quantum Key Device's certificate with the peer/peergrp.
     "certificate": "string",  # Names of up to 4 certificates to offer to the KME.
     "comment": "var-string",  # Comment.
 }

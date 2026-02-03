@@ -86,12 +86,12 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Local user name.
     "id": "integer",  # User ID.
-    "status": "option",  # Enable/disable allowing the local user to authenticate with 
+    "status": "option",  # Enable/disable allowing the local user to authenticate with the FortiGate unit.
     "type": "option",  # Authentication method.
     "passwd": "password",  # User's password.
     "ldap-server": "string",  # Name of LDAP server with which the user must authenticate.
     "radius-server": "string",  # Name of RADIUS server with which the user must authenticate.
-    "tacacs+-server": "string",  # Name of TACACS+ server with which the user must authenticate
+    "tacacs+-server": "string",  # Name of TACACS+ server with which the user must authenticate.
     "saml-server": "string",  # Name of SAML server with which the user must authenticate.
     "two-factor": "option",  # Enable/disable two-factor authentication.
     "two-factor-authentication": "option",  # Authentication method by FortiToken Cloud.
@@ -101,16 +101,16 @@ FIELD_TYPES = {
     "sms-server": "option",  # Send SMS through FortiGuard or other external server.
     "sms-custom-server": "string",  # Two-factor recipient's SMS server.
     "sms-phone": "string",  # Two-factor recipient's mobile phone number.
-    "passwd-policy": "string",  # Password policy to apply to this user, as defined in config 
+    "passwd-policy": "string",  # Password policy to apply to this user, as defined in config user password-policy
     "passwd-time": "user",  # Time of the last password update.
-    "authtimeout": "integer",  # Time in minutes before the authentication timeout for a user
-    "workstation": "string",  # Name of the remote user workstation, if you want to limit th
-    "auth-concurrent-override": "option",  # Enable/disable overriding the policy-auth-concurrent under c
-    "auth-concurrent-value": "integer",  # Maximum number of concurrent logins permitted from the same 
-    "ppk-secret": "password-3",  # IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal
+    "authtimeout": "integer",  # Time in minutes before the authentication timeout for a user is reached.
+    "workstation": "string",  # Name of the remote user workstation, if you want to limit the user to authentica
+    "auth-concurrent-override": "option",  # Enable/disable overriding the policy-auth-concurrent under config system global.
+    "auth-concurrent-value": "integer",  # Maximum number of concurrent logins permitted from the same user.
+    "ppk-secret": "password-3",  # IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a lead
     "ppk-identity": "string",  # IKEv2 Postquantum Preshared Key Identity.
     "qkd-profile": "string",  # Quantum Key Distribution (QKD) profile.
-    "username-sensitivity": "option",  # Enable/disable case and accent sensitivity when performing u
+    "username-sensitivity": "option",  # Enable/disable case and accent sensitivity when performing username matching (ac
 }
 
 # Field descriptions (help text from FortiOS API)

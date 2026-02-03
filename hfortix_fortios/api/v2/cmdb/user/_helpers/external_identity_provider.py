@@ -72,15 +72,15 @@ FIELD_TYPES = {
     "name": "string",  # External identity provider name.
     "type": "option",  # External identity provider type.
     "version": "option",  # External identity API version.
-    "url": "string",  # External identity provider URL (e.g. "https://example.com:80
+    "url": "string",  # External identity provider URL (e.g. \"https://example.com:8080/api/v1\").
     "user-attr-name": "string",  # User attribute name in authentication query.
     "group-attr-name": "string",  # Group attribute name in authentication query.
-    "port": "integer",  # External identity provider service port number (0 to use def
-    "source-ip": "string",  # Use this IPv4/v6 address to connect to the external identity
+    "port": "integer",  # External identity provider service port number (0 to use default).
+    "source-ip": "string",  # Use this IPv4/v6 address to connect to the external identity provider.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
-    "server-identity-check": "option",  # Enable/disable server's identity check against its certifica
+    "server-identity-check": "option",  # Enable/disable server's identity check against its certificate and subject alter
     "timeout": "integer",  # Connection timeout value in seconds (default=5).
 }
 

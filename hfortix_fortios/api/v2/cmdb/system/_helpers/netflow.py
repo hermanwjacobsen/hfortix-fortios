@@ -59,10 +59,10 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "active-flow-timeout": "integer",  # Timeout to report active flows (60 - 3600 sec, default = 180
-    "inactive-flow-timeout": "integer",  # Timeout for periodic report of finished flows (10 - 600 sec,
-    "template-tx-timeout": "integer",  # Timeout for periodic template flowset transmission (60 - 864
-    "template-tx-counter": "integer",  # Counter of flowset records before resending a template flows
+    "active-flow-timeout": "integer",  # Timeout to report active flows (60 - 3600 sec, default = 1800).
+    "inactive-flow-timeout": "integer",  # Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
+    "template-tx-timeout": "integer",  # Timeout for periodic template flowset transmission (60 - 86400 sec, default = 18
+    "template-tx-counter": "integer",  # Counter of flowset records before resending a template flowset record.
     "session-cache-size": "option",  # Maximum RAM usage allowed for Netflow session cache.
     "exclusion-filters": "string",  # Exclusion filters
     "collectors": "string",  # Netflow collectors.

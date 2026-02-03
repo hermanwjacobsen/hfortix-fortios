@@ -71,15 +71,15 @@ FIELD_TYPES = {
     "ip": "ipv4-address-any",  # IPv4 address of the SSL server.
     "port": "integer",  # Server service port (1 - 65535, default = 443).
     "ssl-mode": "option",  # SSL/TLS mode for encryption and decryption of traffic.
-    "add-header-x-forwarded-proto": "option",  # Enable/disable adding an X-Forwarded-Proto header to forward
+    "add-header-x-forwarded-proto": "option",  # Enable/disable adding an X-Forwarded-Proto header to forwarded requests.
     "mapped-port": "integer",  # Mapped server service port (1 - 65535, default = 80).
-    "ssl-cert": "string",  # List of certificate names to use for SSL connections to this
-    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negoti
-    "ssl-algorithm": "option",  # Relative strength of encryption algorithms accepted in negot
+    "ssl-cert": "string",  # List of certificate names to use for SSL connections to this server. (default = 
+    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 204
+    "ssl-algorithm": "option",  # Relative strength of encryption algorithms accepted in negotiation.
     "ssl-client-renegotiation": "option",  # Allow or block client renegotiation by server.
     "ssl-min-version": "option",  # Lowest SSL/TLS version to negotiate.
     "ssl-max-version": "option",  # Highest SSL/TLS version to negotiate.
-    "ssl-send-empty-frags": "option",  # Enable/disable sending empty fragments to avoid attack on CB
+    "ssl-send-empty-frags": "option",  # Enable/disable sending empty fragments to avoid attack on CBC IV.
     "url-rewrite": "option",  # Enable/disable rewriting the URL.
 }
 

@@ -61,9 +61,9 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "machine-learning-detection": "option",  # Use machine learning based malware detection.
     "use-extreme-db": "option",  # Enable/disable the use of Extreme AVDB.
-    "grayware": "option",  # Enable/disable grayware detection when an AntiVirus profile 
-    "override-timeout": "integer",  # Override the large file scan timeout value in seconds (30 - 
-    "cache-infected-result": "option",  # Enable/disable cache of infected scan results (default = ena
+    "grayware": "option",  # Enable/disable grayware detection when an AntiVirus profile is applied to traffi
+    "override-timeout": "integer",  # Override the large file scan timeout value in seconds (30 - 3600). Zero is the d
+    "cache-infected-result": "option",  # Enable/disable cache of infected scan results (default = enable).
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -78,8 +78,8 @@ FIELD_TYPES = {
     "ipsec-phase1-interface": "integer",  # Maximum number of VPN IPsec phase1 interface tunnels.
     "ipsec-phase2-interface": "integer",  # Maximum number of VPN IPsec phase2 interface tunnels.
     "dialup-tunnel": "integer",  # Maximum number of dial-up tunnels.
-    "firewall-policy": "integer",  # Maximum number of firewall policies (policy, DoS-policy4, Do
-    "firewall-address": "integer",  # Maximum number of firewall addresses (IPv4, IPv6, multicast)
+    "firewall-policy": "integer",  # Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast
+    "firewall-address": "integer",  # Maximum number of firewall addresses (IPv4, IPv6, multicast).
     "firewall-addrgrp": "integer",  # Maximum number of firewall address groups (IPv4, IPv6).
     "custom-service": "integer",  # Maximum number of firewall custom services.
     "service-group": "integer",  # Maximum number of firewall service groups.

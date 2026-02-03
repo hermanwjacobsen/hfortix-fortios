@@ -63,7 +63,7 @@ FIELD_TYPES = {
     "status": "option",  # Enable/disable the fast-fallback entry.
     "connection-mode": "option",  # Connection mode for multiple destinations.
     "protocol": "option",  # Connection protocols for multiple destinations.
-    "connection-timeout": "integer",  # Number of milliseconds to wait before starting another conne
+    "connection-timeout": "integer",  # Number of milliseconds to wait before starting another connection (200 - 1800000
 }
 
 # Field descriptions (help text from FortiOS API)

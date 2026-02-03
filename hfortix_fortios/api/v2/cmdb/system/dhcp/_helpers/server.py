@@ -104,41 +104,41 @@ FIELD_TYPES = {
     "id": "integer",  # ID.
     "status": "option",  # Enable/disable this DHCP configuration.
     "lease-time": "integer",  # Lease time in seconds, 0 means unlimited.
-    "mac-acl-default-action": "option",  # MAC access control default action (allow or block assigning 
-    "forticlient-on-net-status": "option",  # Enable/disable FortiClient-On-Net service for this DHCP serv
+    "mac-acl-default-action": "option",  # MAC access control default action (allow or block assigning IP settings).
+    "forticlient-on-net-status": "option",  # Enable/disable FortiClient-On-Net service for this DHCP server.
     "dns-service": "option",  # Options for assigning DNS servers to DHCP clients.
     "dns-server1": "ipv4-address",  # DNS server 1.
     "dns-server2": "ipv4-address",  # DNS server 2.
     "dns-server3": "ipv4-address",  # DNS server 3.
     "dns-server4": "ipv4-address",  # DNS server 4.
-    "wifi-ac-service": "option",  # Options for assigning WiFi access controllers to DHCP client
-    "wifi-ac1": "ipv4-address",  # WiFi Access Controller 1 IP address (DHCP option 138, RFC 54
-    "wifi-ac2": "ipv4-address",  # WiFi Access Controller 2 IP address (DHCP option 138, RFC 54
-    "wifi-ac3": "ipv4-address",  # WiFi Access Controller 3 IP address (DHCP option 138, RFC 54
-    "ntp-service": "option",  # Options for assigning Network Time Protocol (NTP) servers to
+    "wifi-ac-service": "option",  # Options for assigning WiFi access controllers to DHCP clients.
+    "wifi-ac1": "ipv4-address",  # WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417).
+    "wifi-ac2": "ipv4-address",  # WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417).
+    "wifi-ac3": "ipv4-address",  # WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417).
+    "ntp-service": "option",  # Options for assigning Network Time Protocol (NTP) servers to DHCP clients.
     "ntp-server1": "ipv4-address",  # NTP server 1.
     "ntp-server2": "ipv4-address",  # NTP server 2.
     "ntp-server3": "ipv4-address",  # NTP server 3.
-    "domain": "string",  # Domain name suffix for the IP addresses that the DHCP server
+    "domain": "string",  # Domain name suffix for the IP addresses that the DHCP server assigns to clients.
     "wins-server1": "ipv4-address",  # WINS server 1.
     "wins-server2": "ipv4-address",  # WINS server 2.
     "default-gateway": "ipv4-address",  # Default gateway IP address assigned by the DHCP server.
-    "next-server": "ipv4-address",  # IP address of a server (for example, a TFTP sever) that DHCP
+    "next-server": "ipv4-address",  # IP address of a server (for example, a TFTP sever) that DHCP clients can downloa
     "netmask": "ipv4-netmask",  # Netmask assigned by the DHCP server.
-    "interface": "string",  # DHCP server can assign IP configurations to clients connecte
+    "interface": "string",  # DHCP server can assign IP configurations to clients connected to this interface.
     "ip-range": "string",  # DHCP IP range configuration.
     "timezone-option": "option",  # Options for the DHCP server to set the client's time zone.
     "timezone": "string",  # Select the time zone to be assigned to DHCP clients.
-    "tftp-server": "string",  # One or more hostnames or IP addresses of the TFTP servers in
+    "tftp-server": "string",  # One or more hostnames or IP addresses of the TFTP servers in quotes separated by
     "filename": "string",  # Name of the boot file on the TFTP server.
     "options": "string",  # DHCP options.
-    "server-type": "option",  # DHCP server can be a normal DHCP server or an IPsec DHCP ser
+    "server-type": "option",  # DHCP server can be a normal DHCP server or an IPsec DHCP server.
     "ip-mode": "option",  # Method used to assign client IP.
-    "conflicted-ip-timeout": "integer",  # Time in seconds to wait after a conflicted IP address is rem
-    "ipsec-lease-hold": "integer",  # DHCP over IPsec leases expire this many seconds after tunnel
+    "conflicted-ip-timeout": "integer",  # Time in seconds to wait after a conflicted IP address is removed from the DHCP r
+    "ipsec-lease-hold": "integer",  # DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable 
     "auto-configuration": "option",  # Enable/disable auto configuration.
-    "dhcp-settings-from-fortiipam": "option",  # Enable/disable populating of DHCP server settings from Forti
-    "auto-managed-status": "option",  # Enable/disable use of this DHCP server once this interface h
+    "dhcp-settings-from-fortiipam": "option",  # Enable/disable populating of DHCP server settings from FortiIPAM.
+    "auto-managed-status": "option",  # Enable/disable use of this DHCP server once this interface has been assigned an 
     "ddns-update": "option",  # Enable/disable DDNS update for DHCP.
     "ddns-update-override": "option",  # Enable/disable DDNS update override for DHCP.
     "ddns-server-ip": "ipv4-address",  # DDNS server IP.
@@ -147,12 +147,12 @@ FIELD_TYPES = {
     "ddns-keyname": "string",  # DDNS update key name.
     "ddns-key": "password_aes256",  # DDNS update key (base 64 encoding).
     "ddns-ttl": "integer",  # TTL.
-    "vci-match": "option",  # Enable/disable vendor class identifier (VCI) matching. When 
+    "vci-match": "option",  # Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP re
     "vci-string": "string",  # One or more VCI strings in quotes separated by spaces.
-    "exclude-range": "string",  # Exclude one or more ranges of IP addresses from being assign
+    "exclude-range": "string",  # Exclude one or more ranges of IP addresses from being assigned to clients.
     "shared-subnet": "option",  # Enable/disable shared subnet.
     "relay-agent": "ipv4-address",  # Relay agent IP.
-    "reserved-address": "string",  # Options for the DHCP server to assign IP settings to specifi
+    "reserved-address": "string",  # Options for the DHCP server to assign IP settings to specific MAC addresses.
 }
 
 # Field descriptions (help text from FortiOS API)

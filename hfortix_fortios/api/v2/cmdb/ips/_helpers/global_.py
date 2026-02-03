@@ -69,20 +69,20 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "fail-open": "option",  # Enable to allow traffic if the IPS buffer is full. Default i
-    "database": "option",  # Regular or extended IPS database. Regular protects against t
-    "traffic-submit": "option",  # Enable/disable submitting attack data found by this FortiGat
+    "fail-open": "option",  # Enable to allow traffic if the IPS buffer is full. Default is disable and IPS tr
+    "database": "option",  # Regular or extended IPS database. Regular protects against the latest common and
+    "traffic-submit": "option",  # Enable/disable submitting attack data found by this FortiGate to FortiGuard.
     "anomaly-mode": "option",  # Global blocking mode for rate-based anomalies.
-    "session-limit-mode": "option",  # Method of counting concurrent sessions used by session limit
-    "socket-size": "integer",  # IPS socket buffer size. Max and default value depend on avai
-    "engine-count": "integer",  # Number of IPS engines running. If set to the default value o
+    "session-limit-mode": "option",  # Method of counting concurrent sessions used by session limit anomalies. Choose b
+    "socket-size": "integer",  # IPS socket buffer size. Max and default value depend on available memory. Can be
+    "engine-count": "integer",  # Number of IPS engines running. If set to the default value of 0, FortiOS sets th
     "sync-session-ttl": "option",  # Enable/disable use of kernel session TTL for IPS sessions.
-    "deep-app-insp-timeout": "integer",  # Timeout for Deep application inspection (1 - 2147483647 sec.
-    "deep-app-insp-db-limit": "integer",  # Limit on number of entries in deep application inspection da
+    "deep-app-insp-timeout": "integer",  # Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommende
+    "deep-app-insp-db-limit": "integer",  # Limit on number of entries in deep application inspection database (1 - 21474836
     "exclude-signatures": "option",  # Excluded signatures.
     "packet-log-queue-depth": "integer",  # Packet/pcap log queue depth per IPS engine.
     "ngfw-max-scan-range": "integer",  # NGFW policy-mode app detection threshold.
-    "av-mem-limit": "integer",  # Maximum percentage of system memory allowed for use on AV sc
+    "av-mem-limit": "integer",  # Maximum percentage of system memory allowed for use on AV scanning (10 - 50, def
     "machine-learning-detection": "option",  # Enable/disable machine learning detection.
     "tls-active-probe": "string",  # TLS active probe configuration.
 }

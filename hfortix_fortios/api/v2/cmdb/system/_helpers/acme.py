@@ -57,13 +57,13 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "interface": "string",  # Interface(s) on which the ACME client will listen for challe
-    "use-ha-direct": "option",  # Enable the use of 'ha-mgmt' interface to connect to the ACME
+    "interface": "string",  # Interface(s) on which the ACME client will listen for challenges.
+    "use-ha-direct": "option",  # Enable the use of 'ha-mgmt' interface to connect to the ACME server when 'ha-dir
     "source-ip": "ipv4-address",  # Source IPv4 address used to connect to the ACME server.
     "source-ip6": "ipv6-address",  # Source IPv6 address used to connect to the ACME server.
     "accounts": "string",  # ACME accounts list.
     "acc-details": "key",  # Print Account information and decrypted key.
-    "status": "key",  # Print information about the current status of the acme clien
+    "status": "key",  # Print information about the current status of the acme client.
 }
 
 # Field descriptions (help text from FortiOS API)

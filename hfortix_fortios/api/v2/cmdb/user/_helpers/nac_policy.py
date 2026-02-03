@@ -83,7 +83,7 @@ FIELD_TYPES = {
     "category": "option",  # Category of NAC policy.
     "status": "option",  # Enable/disable NAC policy.
     "match-type": "option",  # Match and retain the devices based on the type.
-    "match-period": "integer",  # Number of days the matched devices will be retained (0 - alw
+    "match-period": "integer",  # Number of days the matched devices will be retained (0 - always retain)
     "match-remove": "option",  # Options to remove the matched override devices.
     "mac": "string",  # NAC policy matching MAC address.
     "hw-vendor": "string",  # NAC policy matching hardware vendor.
@@ -100,9 +100,9 @@ FIELD_TYPES = {
     "fortivoice-tag": "string",  # NAC policy matching FortiVoice tag.
     "severity": "string",  # NAC policy matching devices vulnerability severity lists.
     "switch-fortilink": "string",  # FortiLink interface for which this NAC policy belongs to.
-    "switch-group": "string",  # List of managed FortiSwitch groups on which NAC policy can b
-    "switch-mac-policy": "string",  # Switch MAC policy action to be applied on the matched NAC po
-    "firewall-address": "string",  # Dynamic firewall address to associate MAC which match this p
+    "switch-group": "string",  # List of managed FortiSwitch groups on which NAC policy can be applied.
+    "switch-mac-policy": "string",  # Switch MAC policy action to be applied on the matched NAC policy.
+    "firewall-address": "string",  # Dynamic firewall address to associate MAC which match this policy.
     "ssid-policy": "string",  # SSID policy to be applied on the matched NAC policy.
 }
 

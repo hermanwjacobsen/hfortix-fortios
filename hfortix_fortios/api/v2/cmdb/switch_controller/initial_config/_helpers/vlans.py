@@ -63,7 +63,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "optional-vlans": "option",  # Auto-generate pre-configured VLANs upon switch discovery.
-    "default-vlan": "string",  # Default VLAN (native) assigned to all switch ports upon disc
+    "default-vlan": "string",  # Default VLAN (native) assigned to all switch ports upon discovery.
     "quarantine": "string",  # VLAN for quarantined traffic.
     "rspan": "string",  # VLAN for RSPAN/ERSPAN mirrored traffic.
     "voice": "string",  # VLAN dedicated for voice devices.

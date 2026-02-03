@@ -63,10 +63,10 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name of global STP settings configuration.
     "revision": "integer",  # STP revision number (0 - 65535).
-    "hello-time": "integer",  # Period of time between successive STP frame Bridge Protocol 
-    "forward-time": "integer",  # Period of time a port is in listening and learning state (4 
-    "max-age": "integer",  # Maximum time before a bridge port expires its configuration 
-    "max-hops": "integer",  # Maximum number of hops between the root bridge and the furth
+    "hello-time": "integer",  # Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) s
+    "forward-time": "integer",  # Period of time a port is in listening and learning state (4 - 30 sec, default = 
+    "max-age": "integer",  # Maximum time before a bridge port expires its configuration BPDU information (6 
+    "max-hops": "integer",  # Maximum number of hops between the root bridge and the furthest bridge (1- 40, d
     "pending-timer": "integer",  # Pending time (1 - 15 sec, default = 4).
 }
 

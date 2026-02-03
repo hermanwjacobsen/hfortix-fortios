@@ -85,20 +85,20 @@ FIELD_TYPES = {
     "authgrp": "option",  # Administrator access to Users and Devices.
     "sysgrp": "option",  # System Configuration.
     "netgrp": "option",  # Network Configuration.
-    "loggrp": "option",  # Administrator access to Logging and Reporting including view
+    "loggrp": "option",  # Administrator access to Logging and Reporting including viewing log messages.
     "fwgrp": "option",  # Administrator access to the Firewall configuration.
     "vpngrp": "option",  # Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
     "utmgrp": "option",  # Administrator access to Security Profiles.
     "wanoptgrp": "option",  # Administrator access to WAN Opt & Cache.
-    "wifi": "option",  # Administrator access to the WiFi controller and Switch contr
+    "wifi": "option",  # Administrator access to the WiFi controller and Switch controller.
     "netgrp-permission": "string",  # Custom network permission.
     "sysgrp-permission": "string",  # Custom system permission.
     "fwgrp-permission": "string",  # Custom firewall permission.
     "loggrp-permission": "string",  # Custom Log & Report permission.
     "utmgrp-permission": "string",  # Custom Security Profile permissions.
     "secfabgrp-permission": "string",  # Custom Security Fabric permissions.
-    "admintimeout-override": "option",  # Enable/disable overriding the global administrator idle time
-    "admintimeout": "integer",  # Administrator timeout for this access profile (0 - 480 min, 
+    "admintimeout-override": "option",  # Enable/disable overriding the global administrator idle timeout.
+    "admintimeout": "integer",  # Administrator timeout for this access profile (0 - 480 min, default = 10, 0 mean
     "cli-diagnose": "option",  # Enable/disable permission to run diagnostic commands.
     "cli-get": "option",  # Enable/disable permission to run get commands.
     "cli-show": "option",  # Enable/disable permission to run show commands.

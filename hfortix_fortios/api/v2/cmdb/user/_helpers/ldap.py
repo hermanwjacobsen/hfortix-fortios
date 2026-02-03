@@ -103,13 +103,13 @@ FIELD_TYPES = {
     "server": "string",  # LDAP server CN domain name or IP.
     "secondary-server": "string",  # Secondary LDAP server CN domain name or IP.
     "tertiary-server": "string",  # Tertiary LDAP server CN domain name or IP.
-    "status-ttl": "integer",  # Time for which server reachability is cached so that when a 
-    "server-identity-check": "option",  # Enable/disable LDAP server identity check (verify server dom
-    "source-ip": "string",  # FortiGate IP address to be used for communication with the L
+    "status-ttl": "integer",  # Time for which server reachability is cached so that when a server is unreachabl
+    "server-identity-check": "option",  # Enable/disable LDAP server identity check (verify server domain name/IP address 
+    "source-ip": "string",  # FortiGate IP address to be used for communication with the LDAP server.
     "source-ip-interface": "string",  # Source interface for communication with the LDAP server.
-    "source-port": "integer",  # Source port to be used for communication with the LDAP serve
-    "cnid": "string",  # Common name identifier for the LDAP server. The common name 
-    "dn": "string",  # Distinguished name used to look up entries on the LDAP serve
+    "source-port": "integer",  # Source port to be used for communication with the LDAP server.
+    "cnid": "string",  # Common name identifier for the LDAP server. The common name identifier for most 
+    "dn": "string",  # Distinguished name used to look up entries on the LDAP server.
     "type": "option",  # Authentication type for LDAP searches.
     "two-factor": "option",  # Enable/disable two-factor authentication.
     "two-factor-authentication": "option",  # Authentication method by FortiToken Cloud.
@@ -122,17 +122,17 @@ FIELD_TYPES = {
     "group-object-filter": "string",  # Filter used for group searching.
     "group-filter": "string",  # Filter used for group matching.
     "secure": "option",  # Port to be used for authentication.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
     "ca-cert": "string",  # CA certificate name.
-    "port": "integer",  # Port to be used for communication with the LDAP server (defa
+    "port": "integer",  # Port to be used for communication with the LDAP server (default = 389).
     "password-expiry-warning": "option",  # Enable/disable password expiry warnings.
     "password-renewal": "option",  # Enable/disable online password renewal.
     "member-attr": "string",  # Name of attribute from which to get group membership.
-    "account-key-processing": "option",  # Account key processing operation. The FortiGate will keep ei
-    "account-key-cert-field": "option",  # Define subject identity field in certificate for user access
+    "account-key-processing": "option",  # Account key processing operation. The FortiGate will keep either the whole domai
+    "account-key-cert-field": "option",  # Define subject identity field in certificate for user access right checking.
     "account-key-filter": "string",  # Account key filter, using the UPN as the search filter.
     "search-type": "option",  # Search type.
-    "client-cert-auth": "option",  # Enable/disable using client certificate for TLS authenticati
+    "client-cert-auth": "option",  # Enable/disable using client certificate for TLS authentication.
     "client-cert": "string",  # Client certificate name.
     "obtain-user-info": "option",  # Enable/disable obtaining of user information.
     "user-info-exchange-server": "string",  # MS Exchange server from which to fetch user information.

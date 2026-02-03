@@ -80,25 +80,25 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "mode": "option",  # Central management mode.
     "type": "option",  # Central management type.
-    "fortigate-cloud-sso-default-profile": "string",  # Override access profile. Permission is set to read-only with
-    "schedule-config-restore": "option",  # Enable/disable allowing the central management server to res
-    "schedule-script-restore": "option",  # Enable/disable allowing the central management server to res
-    "allow-push-configuration": "option",  # Enable/disable allowing the central management server to pus
-    "allow-push-firmware": "option",  # Enable/disable allowing the central management server to pus
-    "allow-remote-firmware-upgrade": "option",  # Enable/disable remotely upgrading the firmware on this Forti
-    "allow-monitor": "option",  # Enable/disable allowing the central management server to rem
+    "fortigate-cloud-sso-default-profile": "string",  # Override access profile. Permission is set to read-only without a FortiGate Clou
+    "schedule-config-restore": "option",  # Enable/disable allowing the central management server to restore the configurati
+    "schedule-script-restore": "option",  # Enable/disable allowing the central management server to restore the scripts sto
+    "allow-push-configuration": "option",  # Enable/disable allowing the central management server to push configuration chan
+    "allow-push-firmware": "option",  # Enable/disable allowing the central management server to push firmware updates t
+    "allow-remote-firmware-upgrade": "option",  # Enable/disable remotely upgrading the firmware on this FortiGate from the centra
+    "allow-monitor": "option",  # Enable/disable allowing the central management server to remotely monitor this F
     "serial-number": "user",  # Serial number.
     "fmg": "user",  # IP address or FQDN of the FortiManager.
-    "fmg-source-ip": "ipv4-address",  # IPv4 source address that this FortiGate uses when communicat
-    "fmg-source-ip6": "ipv6-address",  # IPv6 source address that this FortiGate uses when communicat
+    "fmg-source-ip": "ipv4-address",  # IPv4 source address that this FortiGate uses when communicating with FortiManage
+    "fmg-source-ip6": "ipv6-address",  # IPv6 source address that this FortiGate uses when communicating with FortiManage
     "local-cert": "string",  # Certificate to be used by FGFM protocol.
     "ca-cert": "user",  # CA certificate to be used by FGFM protocol.
-    "vdom": "string",  # Virtual domain (VDOM) name to use when communicating with Fo
-    "server-list": "string",  # Additional severs that the FortiGate can use for updates (fo
-    "fmg-update-port": "option",  # Port used to communicate with FortiManager that is acting as
+    "vdom": "string",  # Virtual domain (VDOM) name to use when communicating with FortiManager.
+    "server-list": "string",  # Additional severs that the FortiGate can use for updates (for AV, IPS, updates) 
+    "fmg-update-port": "option",  # Port used to communicate with FortiManager that is acting as a FortiGuard update
     "fmg-update-http-header": "option",  # Enable/disable inclusion of HTTP header in update request.
-    "include-default-servers": "option",  # Enable/disable inclusion of public FortiGuard servers in the
-    "enc-algorithm": "option",  # Encryption strength for communications between the FortiGate
+    "include-default-servers": "option",  # Enable/disable inclusion of public FortiGuard servers in the override server lis
+    "enc-algorithm": "option",  # Encryption strength for communications between the FortiGate and central managem
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.

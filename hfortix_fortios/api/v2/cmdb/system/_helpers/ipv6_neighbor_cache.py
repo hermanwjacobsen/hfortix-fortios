@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "id": "integer",  # Unique integer ID of the entry.
     "interface": "string",  # Select the associated interface name from available options.
-    "ipv6": "ipv6-address",  # IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxx
+    "ipv6": "ipv6-address",  # IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
     "mac": "mac-address",  # MAC address (format: xx:xx:xx:xx:xx:xx).
 }
 

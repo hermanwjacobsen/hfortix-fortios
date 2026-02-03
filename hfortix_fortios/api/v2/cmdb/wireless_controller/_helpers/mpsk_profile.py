@@ -60,8 +60,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # MPSK profile name.
-    "mpsk-concurrent-clients": "integer",  # Maximum number of concurrent clients that connect using the 
-    "mpsk-external-server-auth": "option",  # Enable/Disable MPSK external server authentication (default 
+    "mpsk-concurrent-clients": "integer",  # Maximum number of concurrent clients that connect using the same passphrase in m
+    "mpsk-external-server-auth": "option",  # Enable/Disable MPSK external server authentication (default = disable).
     "mpsk-external-server": "string",  # RADIUS server to be used to authenticate MPSK users.
     "mpsk-type": "option",  # Select the security type of keys for this profile.
     "mpsk-group": "string",  # List of multiple PSK groups.

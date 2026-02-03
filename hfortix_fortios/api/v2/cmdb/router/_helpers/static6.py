@@ -82,10 +82,10 @@ FIELD_TYPES = {
     "priority": "integer",  # Administrative priority (1 - 65535).
     "comment": "var-string",  # Optional comments.
     "blackhole": "option",  # Enable/disable black hole.
-    "dynamic-gateway": "option",  # Enable use of dynamic gateway retrieved from Router Advertis
+    "dynamic-gateway": "option",  # Enable use of dynamic gateway retrieved from Router Advertisement (RA).
     "sdwan-zone": "string",  # Choose SD-WAN Zone.
     "dstaddr": "string",  # Name of firewall address or address group.
-    "link-monitor-exempt": "option",  # Enable/disable withdrawal of this static route when link mon
+    "link-monitor-exempt": "option",  # Enable/disable withdrawal of this static route when link monitor or health check
     "vrf": "integer",  # Virtual Routing Forwarding ID.
     "bfd": "option",  # Enable/disable Bidirectional Forwarding Detection (BFD).
     "tag": "integer",  # Route tag.

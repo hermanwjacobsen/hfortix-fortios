@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "seq-num": "integer",  # Entry number.
     "ip": "ipv4-address",  # IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
-    "mac": "mac-address",  # MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx 
+    "mac": "mac-address",  # MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
     "name": "string",  # Name of the pair (optional, default = no name).
     "status": "option",  # Enable/disable this IP-mac binding pair.
 }

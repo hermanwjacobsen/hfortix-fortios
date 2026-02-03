@@ -80,10 +80,10 @@ FIELD_TYPES = {
     "replacemsg-group": "string",  # Replacement message group customized for this profile.
     "feature-set": "option",  # Flow/proxy feature set.
     "fortisandbox-mode": "option",  # FortiSandbox scan modes.
-    "fortisandbox-max-upload": "integer",  # Maximum size of files that can be uploaded to FortiSandbox i
-    "analytics-ignore-filetype": "integer",  # Do not submit files matching this DLP file-pattern to FortiS
-    "analytics-accept-filetype": "integer",  # Only submit files matching this DLP file-pattern to FortiSan
-    "analytics-db": "option",  # Enable/disable using the FortiSandbox signature database to 
+    "fortisandbox-max-upload": "integer",  # Maximum size of files that can be uploaded to FortiSandbox in Mbytes.
+    "analytics-ignore-filetype": "integer",  # Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfe
+    "analytics-accept-filetype": "integer",  # Only submit files matching this DLP file-pattern to FortiSandbox (post-transfer 
+    "analytics-db": "option",  # Enable/disable using the FortiSandbox signature database to supplement the AV si
     "mobile-malware-db": "option",  # Enable/disable using the mobile malware signature database.
     "http": "string",  # Configure HTTP AntiVirus options.
     "ftp": "string",  # Configure FTP AntiVirus options.
@@ -99,12 +99,12 @@ FIELD_TYPES = {
     "outbreak-prevention-archive-scan": "option",  # Enable/disable outbreak-prevention archive scanning.
     "external-blocklist-enable-all": "option",  # Enable/disable all external blocklists.
     "external-blocklist": "string",  # One or more external malware block lists.
-    "ems-threat-feed": "option",  # Enable/disable use of EMS threat feed when performing AntiVi
+    "ems-threat-feed": "option",  # Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes f
     "fortindr-error-action": "option",  # Action to take if FortiNDR encounters an error.
     "fortindr-timeout-action": "option",  # Action to take if FortiNDR encounters a scan timeout.
-    "fortisandbox-scan-timeout": "integer",  # FortiSandbox inline scan timeout in seconds (30 - 180, defau
-    "fortisandbox-error-action": "option",  # Action to take if FortiSandbox inline scan encounters an err
-    "fortisandbox-timeout-action": "option",  # Action to take if FortiSandbox inline scan encounters a scan
+    "fortisandbox-scan-timeout": "integer",  # FortiSandbox inline scan timeout in seconds (30 - 180, default = 60).
+    "fortisandbox-error-action": "option",  # Action to take if FortiSandbox inline scan encounters an error.
+    "fortisandbox-timeout-action": "option",  # Action to take if FortiSandbox inline scan encounters a scan timeout.
     "av-virus-log": "option",  # Enable/disable AntiVirus logging.
     "extended-log": "option",  # Enable/disable extended logging for antivirus.
     "scan-mode": "option",  # Configure scan mode (default or legacy).

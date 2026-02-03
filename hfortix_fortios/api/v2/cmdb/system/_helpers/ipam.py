@@ -64,9 +64,9 @@ FIELD_TYPES = {
     "status": "option",  # Enable/disable IP address management services.
     "server-type": "option",  # Configure the type of IPAM server to use.
     "automatic-conflict-resolution": "option",  # Enable/disable automatic conflict resolution.
-    "require-subnet-size-match": "option",  # Enable/disable reassignment of subnets to make requested and
-    "manage-lan-addresses": "option",  # Enable/disable default management of LAN interface addresses
-    "manage-lan-extension-addresses": "option",  # Enable/disable default management of FortiExtender LAN exten
+    "require-subnet-size-match": "option",  # Enable/disable reassignment of subnets to make requested and actual sizes match.
+    "manage-lan-addresses": "option",  # Enable/disable default management of LAN interface addresses.
+    "manage-lan-extension-addresses": "option",  # Enable/disable default management of FortiExtender LAN extension interface addre
     "manage-ssid-addresses": "option",  # Enable/disable default management of FortiAP SSID addresses.
     "pools": "string",  # Configure IPAM pools.
     "rules": "string",  # Configure IPAM allocation rules.

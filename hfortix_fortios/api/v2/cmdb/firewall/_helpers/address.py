@@ -94,7 +94,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Address name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "subnet": "ipv4-classnet-any",  # IP address and subnet mask of address.
     "type": "option",  # Type of address.
     "route-tag": "integer",  # route-tag address.
@@ -106,7 +106,7 @@ FIELD_TYPES = {
     "fqdn": "string",  # Fully Qualified Domain Name address.
     "country": "string",  # IP addresses associated to a specific country.
     "wildcard-fqdn": "string",  # Fully Qualified Domain Name with wildcard characters.
-    "cache-ttl": "integer",  # Defines the minimal TTL of individual IP addresses in FQDN c
+    "cache-ttl": "integer",  # Defines the minimal TTL of individual IP addresses in FQDN cache measured in sec
     "wildcard": "ipv4-classnet-any",  # IP address and wildcard netmask.
     "sdn": "string",  # SDN.
     "fsso-group": "string",  # FSSO group(s).
@@ -131,12 +131,12 @@ FIELD_TYPES = {
     "color": "integer",  # Color of icon on the GUI.
     "filter": "var-string",  # Match criteria filter.
     "sdn-addr-type": "option",  # Type of addresses to collect.
-    "node-ip-only": "option",  # Enable/disable collection of node addresses only in Kubernet
+    "node-ip-only": "option",  # Enable/disable collection of node addresses only in Kubernetes.
     "obj-id": "var-string",  # Object ID for NSX.
     "list": "string",  # IP address list.
     "tagging": "string",  # Config object tagging.
-    "allow-routing": "option",  # Enable/disable use of this address in routing configurations
-    "passive-fqdn-learning": "option",  # Enable/disable passive learning of FQDNs.  When enabled, the
+    "allow-routing": "option",  # Enable/disable use of this address in routing configurations.
+    "passive-fqdn-learning": "option",  # Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, t
     "fabric-object": "option",  # Security Fabric global object setting.
 }
 

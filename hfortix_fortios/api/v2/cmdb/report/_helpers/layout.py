@@ -84,7 +84,7 @@ FIELD_TYPES = {
     "cutoff-time": "user",  # Custom cutoff time to generate report (format = hh:mm).
     "email-send": "option",  # Enable/disable sending emails after reports are generated.
     "email-recipients": "string",  # Email recipients for generated reports.
-    "max-pdf-report": "integer",  # Maximum number of PDF reports to keep at one time (oldest re
+    "max-pdf-report": "integer",  # Maximum number of PDF reports to keep at one time (oldest report is overwritten)
     "page": "string",  # Configure report page.
     "body-item": "string",  # Configure report body item.
 }

@@ -86,7 +86,7 @@ FIELD_TYPES = {
     "vip6": "string",  # Virtual IPv6 name.
     "auth-rule": "string",  # Authentication Rule.
     "display-bookmark": "option",  # Enable to display the web portal bookmark widget.
-    "focus-bookmark": "option",  # Enable to prioritize the placement of the bookmark section o
+    "focus-bookmark": "option",  # Enable to prioritize the placement of the bookmark section over the quick-connec
     "display-status": "option",  # Enable to display the web portal status widget.
     "display-history": "option",  # Enable to display the web portal user login history widget.
     "policy-auth-sso": "option",  # Enable policy sso authentication.
@@ -95,7 +95,7 @@ FIELD_TYPES = {
     "clipboard": "option",  # Enable to support RDP/VPC clipboard functionality.
     "default-window-width": "integer",  # Screen width (range from 0 - 65535, default = 1024).
     "default-window-height": "integer",  # Screen height (range from 0 - 65535, default = 768).
-    "cookie-age": "integer",  # Time in minutes that client web browsers should keep a cooki
+    "cookie-age": "integer",  # Time in minutes that client web browsers should keep a cookie. Default is 60 min
     "forticlient-download": "option",  # Enable/disable download option for FortiClient.
     "customize-forticlient-download-url": "option",  # Enable support of customized download URL for FortiClient.
     "windows-forticlient-download-url": "var-string",  # Download URL for Windows FortiClient.

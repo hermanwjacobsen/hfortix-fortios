@@ -60,11 +60,11 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # FortiSwitch Profile name.
-    "login-passwd-override": "option",  # Enable/disable overriding the admin administrator password f
+    "login-passwd-override": "option",  # Enable/disable overriding the admin administrator password for a managed FortiSw
     "login-passwd": "password",  # Login password of managed FortiSwitch.
     "login": "option",  # Enable/disable FortiSwitch serial console.
-    "revision-backup-on-logout": "option",  # Enable/disable automatic revision backup upon logout from Fo
-    "revision-backup-on-upgrade": "option",  # Enable/disable automatic revision backup upon FortiSwitch im
+    "revision-backup-on-logout": "option",  # Enable/disable automatic revision backup upon logout from FortiSwitch.
+    "revision-backup-on-upgrade": "option",  # Enable/disable automatic revision backup upon FortiSwitch image upgrade.
 }
 
 # Field descriptions (help text from FortiOS API)

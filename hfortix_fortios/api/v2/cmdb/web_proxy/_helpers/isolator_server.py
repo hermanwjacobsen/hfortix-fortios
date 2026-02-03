@@ -71,12 +71,12 @@ FIELD_TYPES = {
     "ip": "ipv4-address-any",  # Forward proxy server IP address.
     "ipv6": "ipv6-address",  # Forward proxy server IPv6 address.
     "fqdn": "string",  # Forward server Fully Qualified Domain Name (FQDN).
-    "port": "integer",  # Port number that the forwarding server expects to receive HT
+    "port": "integer",  # Port number that the forwarding server expects to receive HTTP sessions on (1 - 
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
     "comment": "string",  # Comment.
-    "masquerade": "option",  # Enable/disable use of the IP address of the outgoing interfa
+    "masquerade": "option",  # Enable/disable use of the IP address of the outgoing interface as the client IP 
 }
 
 # Field descriptions (help text from FortiOS API)

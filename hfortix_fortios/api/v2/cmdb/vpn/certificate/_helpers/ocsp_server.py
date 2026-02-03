@@ -66,7 +66,7 @@ FIELD_TYPES = {
     "cert": "string",  # OCSP server certificate.
     "secondary-url": "string",  # Secondary OCSP server URL.
     "secondary-cert": "string",  # Secondary OCSP server certificate.
-    "unavail-action": "option",  # Action when server is unavailable (revoke the certificate or
+    "unavail-action": "option",  # Action when server is unavailable (revoke the certificate or ignore the result o
     "source-ip": "string",  # Source IP address for dynamic AIA and OCSP queries.
 }
 

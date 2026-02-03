@@ -75,15 +75,15 @@ FIELD_TYPES = {
     "ip": "ipv4-address-any",  # Forward proxy server IP address.
     "ipv6": "ipv6-address",  # Forward proxy server IPv6 address.
     "fqdn": "string",  # Forward server Fully Qualified Domain Name (FQDN).
-    "port": "integer",  # Port number that the forwarding server expects to receive HT
+    "port": "integer",  # Port number that the forwarding server expects to receive HTTP sessions on (1 - 
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
     "comment": "string",  # Comment.
-    "masquerade": "option",  # Enable/disable use of the IP address of the outgoing interfa
-    "healthcheck": "option",  # Enable/disable forward server health checking. Attempts to c
-    "monitor": "string",  # URL for forward server health check monitoring (default = ww
-    "server-down-option": "option",  # Action to take when the forward server is found to be down: 
+    "masquerade": "option",  # Enable/disable use of the IP address of the outgoing interface as the client IP 
+    "healthcheck": "option",  # Enable/disable forward server health checking. Attempts to connect through the r
+    "monitor": "string",  # URL for forward server health check monitoring (default = www.google.com).
+    "server-down-option": "option",  # Action to take when the forward server is found to be down: block sessions until
     "username": "string",  # HTTP authentication user name.
     "password": "password",  # HTTP authentication password.
 }

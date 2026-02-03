@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # SaaS application name.
-    "uuid": "string",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "string",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "status": "option",  # Enable/disable setting.
     "type": "option",  # SaaS application type.
     "casb-name": "string",  # SaaS application signature name.

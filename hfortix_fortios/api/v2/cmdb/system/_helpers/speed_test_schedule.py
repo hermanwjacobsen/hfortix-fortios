@@ -80,26 +80,26 @@ FIELD_TYPES = {
     "interface": "string",  # Interface name.
     "status": "option",  # Enable/disable scheduled speed test.
     "diffserv": "user",  # DSCP used for speed test.
-    "server-name": "string",  # Speed test server name in system.speed-test-server list or l
+    "server-name": "string",  # Speed test server name in system.speed-test-server list or leave it as empty to 
     "mode": "option",  # Protocol Auto(default), TCP or UDP used for speed test.
     "schedules": "string",  # Schedules for the interface.
     "dynamic-server": "option",  # Enable/disable dynamic server option.
     "ctrl-port": "integer",  # Port of the controller to get access token.
     "server-port": "integer",  # Port of the server to run speed test.
     "update-shaper": "option",  # Set egress shaper based on the test result.
-    "update-inbandwidth": "option",  # Enable/disable bypassing interface's inbound bandwidth setti
-    "update-outbandwidth": "option",  # Enable/disable bypassing interface's outbound bandwidth sett
-    "update-interface-shaping": "option",  # Enable/disable using the speedtest results as reference for 
-    "update-inbandwidth-maximum": "integer",  # Maximum downloading bandwidth (kbps) to be used in a speed t
-    "update-inbandwidth-minimum": "integer",  # Minimum downloading bandwidth (kbps) to be considered effect
-    "update-outbandwidth-maximum": "integer",  # Maximum uploading bandwidth (kbps) to be used in a speed tes
-    "update-outbandwidth-minimum": "integer",  # Minimum uploading bandwidth (kbps) to be considered effectiv
-    "expected-inbandwidth-minimum": "integer",  # Set the minimum inbandwidth threshold for applying speedtest
-    "expected-inbandwidth-maximum": "integer",  # Set the maximum inbandwidth threshold for applying speedtest
-    "expected-outbandwidth-minimum": "integer",  # Set the minimum outbandwidth threshold for applying speedtes
-    "expected-outbandwidth-maximum": "integer",  # Set the maximum outbandwidth threshold for applying speedtes
-    "retries": "integer",  # Maximum number of times the FortiGate unit will attempt to c
-    "retry-pause": "integer",  # Number of seconds the FortiGate pauses between successive sp
+    "update-inbandwidth": "option",  # Enable/disable bypassing interface's inbound bandwidth setting.
+    "update-outbandwidth": "option",  # Enable/disable bypassing interface's outbound bandwidth setting.
+    "update-interface-shaping": "option",  # Enable/disable using the speedtest results as reference for interface shaping (o
+    "update-inbandwidth-maximum": "integer",  # Maximum downloading bandwidth (kbps) to be used in a speed test.
+    "update-inbandwidth-minimum": "integer",  # Minimum downloading bandwidth (kbps) to be considered effective.
+    "update-outbandwidth-maximum": "integer",  # Maximum uploading bandwidth (kbps) to be used in a speed test.
+    "update-outbandwidth-minimum": "integer",  # Minimum uploading bandwidth (kbps) to be considered effective.
+    "expected-inbandwidth-minimum": "integer",  # Set the minimum inbandwidth threshold for applying speedtest results on shaping-
+    "expected-inbandwidth-maximum": "integer",  # Set the maximum inbandwidth threshold for applying speedtest results on shaping-
+    "expected-outbandwidth-minimum": "integer",  # Set the minimum outbandwidth threshold for applying speedtest results on shaping
+    "expected-outbandwidth-maximum": "integer",  # Set the maximum outbandwidth threshold for applying speedtest results on shaping
+    "retries": "integer",  # Maximum number of times the FortiGate unit will attempt to contact the same serv
+    "retry-pause": "integer",  # Number of seconds the FortiGate pauses between successive speed tests before try
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -73,7 +73,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Policy ID (0 - 4294967294).
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "status": "option",  # Enable/disable this policy.
     "name": "string",  # Policy name.
     "srcintf": "string",  # IPv6 source interface name.
@@ -81,13 +81,13 @@ FIELD_TYPES = {
     "srcaddr": "string",  # IPv6 source address name.
     "dstaddr": "string",  # IPv6 destination address name.
     "action": "option",  # Accept or deny traffic matching the policy.
-    "protocol": "integer",  # Integer value for the protocol type as defined by IANA (0 - 
-    "start-port": "integer",  # Integer value for starting TCP/UDP/SCTP destination port in 
-    "end-port": "integer",  # Integer value for ending TCP/UDP/SCTP destination port in ra
+    "protocol": "integer",  # Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
+    "start-port": "integer",  # Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, de
+    "end-port": "integer",  # Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, defa
     "utm-status": "option",  # Enable to add an IPS security profile to the policy.
     "ips-sensor": "string",  # Name of an existing IPS sensor.
-    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security prof
-    "auto-asic-offload": "option",  # Enable/disable offloading policy traffic for hardware accele
+    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security profile sessions.
+    "auto-asic-offload": "option",  # Enable/disable offloading policy traffic for hardware acceleration.
     "comments": "var-string",  # Comment.
 }
 

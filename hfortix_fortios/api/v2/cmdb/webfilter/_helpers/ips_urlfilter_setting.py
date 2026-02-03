@@ -60,7 +60,7 @@ FIELD_TYPES = {
     "device": "string",  # Interface for this route.
     "distance": "integer",  # Administrative distance (1 - 255) for this route.
     "gateway": "ipv4-address",  # Gateway IP address for this route.
-    "geo-filter": "var-string",  # Filter based on geographical location. Route will NOT be ins
+    "geo-filter": "var-string",  # Filter based on geographical location. Route will NOT be installed if the resolv
 }
 
 # Field descriptions (help text from FortiOS API)

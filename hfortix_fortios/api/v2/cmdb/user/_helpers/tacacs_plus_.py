@@ -76,7 +76,7 @@ FIELD_TYPES = {
     "key": "password",  # Key to access the primary server.
     "secondary-key": "password",  # Key to access the secondary server.
     "tertiary-key": "password",  # Key to access the tertiary server.
-    "status-ttl": "integer",  # Time for which server reachability is cached so that when a 
+    "status-ttl": "integer",  # Time for which server reachability is cached so that when a server is unreachabl
     "authen-type": "option",  # Allowed authentication protocols/methods.
     "authorization": "option",  # Enable/disable TACACS+ authorization.
     "source-ip": "string",  # Source IP address for communications to TACACS+ server.

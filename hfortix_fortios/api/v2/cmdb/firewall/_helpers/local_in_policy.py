@@ -73,23 +73,23 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "policyid": "integer",  # User defined local in policy ID.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
-    "ha-mgmt-intf-only": "option",  # Enable/disable dedicating the HA management interface only f
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "ha-mgmt-intf-only": "option",  # Enable/disable dedicating the HA management interface only for local-in policy.
     "intf": "string",  # Incoming interface name from available options.
     "srcaddr": "string",  # Source address object from available options.
-    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must 
+    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must NOT be.
     "dstaddr": "string",  # Destination address object from available options.
-    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this l
+    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this local-in policy. If e
     "internet-service-src-name": "string",  # Internet Service source name.
     "internet-service-src-group": "string",  # Internet Service source group name.
     "internet-service-src-custom": "string",  # Custom Internet Service source name.
     "internet-service-src-custom-group": "string",  # Custom Internet Service source group name.
     "internet-service-src-fortiguard": "string",  # FortiGuard Internet Service source name.
-    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address 
-    "action": "option",  # Action performed on traffic matching the policy (default = d
+    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address must NOT be.
+    "action": "option",  # Action performed on traffic matching the policy (default = deny).
     "service": "string",  # Service object from available options.
     "service-negate": "option",  # When enabled service specifies what the service must NOT be.
-    "internet-service-src-negate": "option",  # When enabled internet-service-src specifies what the service
+    "internet-service-src-negate": "option",  # When enabled internet-service-src specifies what the service must NOT be.
     "schedule": "string",  # Schedule object from available options.
     "status": "option",  # Enable/disable this local-in policy.
     "virtual-patch": "option",  # Enable/disable virtual patching.

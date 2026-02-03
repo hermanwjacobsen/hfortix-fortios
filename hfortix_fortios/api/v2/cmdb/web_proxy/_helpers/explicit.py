@@ -91,43 +91,43 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "status": "option",  # Enable/disable the explicit Web proxy for HTTP and HTTPS ses
-    "secure-web-proxy": "option",  # Enable/disable/require the secure web proxy for HTTP and HTT
-    "ftp-over-http": "option",  # Enable to proxy FTP-over-HTTP sessions sent from a web brows
+    "status": "option",  # Enable/disable the explicit Web proxy for HTTP and HTTPS session.
+    "secure-web-proxy": "option",  # Enable/disable/require the secure web proxy for HTTP and HTTPS session.
+    "ftp-over-http": "option",  # Enable to proxy FTP-over-HTTP sessions sent from a web browser.
     "socks": "option",  # Enable/disable the SOCKS proxy.
-    "http-incoming-port": "user",  # Accept incoming HTTP requests on one or more ports (0 - 6553
+    "http-incoming-port": "user",  # Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
     "http-connection-mode": "option",  # HTTP connection mode (default = static).
-    "https-incoming-port": "user",  # Accept incoming HTTPS requests on one or more ports (0 - 655
+    "https-incoming-port": "user",  # Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use
     "secure-web-proxy-cert": "string",  # Name of certificates for secure web proxy.
     "client-cert": "option",  # Enable/disable to request client certificate.
-    "user-agent-detect": "option",  # Enable/disable to detect device type by HTTP user-agent if n
+    "user-agent-detect": "option",  # Enable/disable to detect device type by HTTP user-agent if no client certificate
     "empty-cert-action": "option",  # Action of an empty client certificate.
-    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negoti
-    "ftp-incoming-port": "user",  # Accept incoming FTP-over-HTTP requests on one or more ports 
-    "socks-incoming-port": "user",  # Accept incoming SOCKS proxy requests on one or more ports (0
-    "incoming-ip": "ipv4-address-any",  # Restrict the explicit HTTP proxy to only accept sessions fro
-    "outgoing-ip": "ipv4-address-any",  # Outgoing HTTP requests will have this IP address as their so
+    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 204
+    "ftp-incoming-port": "user",  # Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default 
+    "socks-incoming-port": "user",  # Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 
+    "incoming-ip": "ipv4-address-any",  # Restrict the explicit HTTP proxy to only accept sessions from this IP address. A
+    "outgoing-ip": "ipv4-address-any",  # Outgoing HTTP requests will have this IP address as their source address. An int
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
-    "ipv6-status": "option",  # Enable/disable allowing an IPv6 web proxy destination in pol
-    "incoming-ip6": "ipv6-address",  # Restrict the explicit web proxy to only accept sessions from
-    "outgoing-ip6": "ipv6-address",  # Outgoing HTTP requests will leave this IPv6. Multiple interf
-    "strict-guest": "option",  # Enable/disable strict guest user checking by the explicit we
-    "pref-dns-result": "option",  # Prefer resolving addresses using the configured IPv4 or IPv6
-    "unknown-http-version": "option",  # How to handle HTTP sessions that do not comply with HTTP 0.9
-    "realm": "string",  # Authentication realm used to identify the explicit web proxy
-    "sec-default-action": "option",  # Accept or deny explicit web proxy sessions when no web proxy
-    "https-replacement-message": "option",  # Enable/disable sending the client a replacement message for 
-    "message-upon-server-error": "option",  # Enable/disable displaying a replacement message when a serve
-    "pac-file-server-status": "option",  # Enable/disable Proxy Auto-Configuration (PAC) for users of t
+    "ipv6-status": "option",  # Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 r
+    "incoming-ip6": "ipv6-address",  # Restrict the explicit web proxy to only accept sessions from this IPv6 address. 
+    "outgoing-ip6": "ipv6-address",  # Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specifie
+    "strict-guest": "option",  # Enable/disable strict guest user checking by the explicit web proxy.
+    "pref-dns-result": "option",  # Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default
+    "unknown-http-version": "option",  # How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
+    "realm": "string",  # Authentication realm used to identify the explicit web proxy (maximum of 63 char
+    "sec-default-action": "option",  # Accept or deny explicit web proxy sessions when no web proxy firewall policy exi
+    "https-replacement-message": "option",  # Enable/disable sending the client a replacement message for HTTPS requests.
+    "message-upon-server-error": "option",  # Enable/disable displaying a replacement message when a server error is detected.
+    "pac-file-server-status": "option",  # Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy p
     "pac-file-url": "user",  # PAC file access URL.
-    "pac-file-server-port": "user",  # Port number that PAC traffic from client web browsers uses t
-    "pac-file-through-https": "option",  # Enable/disable to get Proxy Auto-Configuration (PAC) through
+    "pac-file-server-port": "user",  # Port number that PAC traffic from client web browsers uses to connect to the exp
+    "pac-file-through-https": "option",  # Enable/disable to get Proxy Auto-Configuration (PAC) through HTTPS.
     "pac-file-name": "string",  # Pac file name.
-    "pac-file-data": "user",  # PAC file contents enclosed in quotes (maximum of 256K bytes)
+    "pac-file-data": "user",  # PAC file contents enclosed in quotes (maximum of 256K bytes).
     "pac-policy": "string",  # PAC policies.
-    "ssl-algorithm": "option",  # Relative strength of encryption algorithms accepted in HTTPS
+    "ssl-algorithm": "option",  # Relative strength of encryption algorithms accepted in HTTPS deep scan: high, me
     "trace-auth-no-rsp": "option",  # Enable/disable logging timed-out authentication requests.
 }
 

@@ -81,32 +81,32 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # IP pool name.
-    "type": "option",  # IP pool type: overload, one-to-one, fixed-port-range, port-b
-    "startip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range for the address 
-    "endip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range for the address 
-    "startport": "integer",  # First port number (inclusive) in the range for the address p
-    "endport": "integer",  # Final port number (inclusive) in the range for the address p
-    "source-startip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range of the source ad
-    "source-endip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range of the source ad
+    "type": "option",  # IP pool type: overload, one-to-one, fixed-port-range, port-block-allocation, cgn
+    "startip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx
+    "endip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx
+    "startport": "integer",  # First port number (inclusive) in the range for the address pool (1024 - 65535, D
+    "endport": "integer",  # Final port number (inclusive) in the range for the address pool (1024 - 65535, D
+    "source-startip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range of the source addresses to be transl
+    "source-endip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range of the source addresses to be transl
     "block-size": "integer",  # Number of addresses in a block (64 - 4096, default = 128).
-    "port-per-user": "integer",  # Number of port for each user (32 - 60416, default = 0, which
-    "num-blocks-per-user": "integer",  # Number of addresses blocks that can be used by a user (1 to 
+    "port-per-user": "integer",  # Number of port for each user (32 - 60416, default = 0, which is auto).
+    "num-blocks-per-user": "integer",  # Number of addresses blocks that can be used by a user (1 to 128, default = 8).
     "pba-timeout": "integer",  # Port block allocation timeout (seconds).
-    "pba-interim-log": "integer",  # Port block allocation interim logging interval (600 - 86400 
-    "permit-any-host": "option",  # Enable/disable fullcone NAT. Accept UDP packets from any hos
-    "arp-reply": "option",  # Enable/disable replying to ARP requests when an IP Pool is a
-    "arp-intf": "string",  # Select an interface from available options that will reply t
+    "pba-interim-log": "integer",  # Port block allocation interim logging interval (600 - 86400 seconds, default = 0
+    "permit-any-host": "option",  # Enable/disable fullcone NAT. Accept UDP packets from any host.
+    "arp-reply": "option",  # Enable/disable replying to ARP requests when an IP Pool is added to a policy (de
+    "arp-intf": "string",  # Select an interface from available options that will reply to ARP requests. (If 
     "associated-interface": "string",  # Associated interface name.
     "comments": "var-string",  # Comment.
     "nat64": "option",  # Enable/disable NAT64.
     "add-nat64-route": "option",  # Enable/disable adding NAT64 route.
-    "source-prefix6": "ipv6-network",  # Source IPv6 network to be translated (format = xxxx:xxxx:xxx
-    "client-prefix-length": "integer",  # Subnet length of a single deterministic NAT64 client (1 - 12
-    "tcp-session-quota": "integer",  # Maximum number of concurrent TCP sessions allowed per client
-    "udp-session-quota": "integer",  # Maximum number of concurrent UDP sessions allowed per client
-    "icmp-session-quota": "integer",  # Maximum number of concurrent ICMP sessions allowed per clien
-    "privileged-port-use-pba": "option",  # Enable/disable selection of the external port from the port 
-    "subnet-broadcast-in-ippool": "option",  # Enable/disable inclusion of the subnetwork address and broad
+    "source-prefix6": "ipv6-network",  # Source IPv6 network to be translated (format = xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxx
+    "client-prefix-length": "integer",  # Subnet length of a single deterministic NAT64 client (1 - 128, default = 64).
+    "tcp-session-quota": "integer",  # Maximum number of concurrent TCP sessions allowed per client (0 - 2097000, defau
+    "udp-session-quota": "integer",  # Maximum number of concurrent UDP sessions allowed per client (0 - 2097000, defau
+    "icmp-session-quota": "integer",  # Maximum number of concurrent ICMP sessions allowed per client (0 - 2097000, defa
+    "privileged-port-use-pba": "option",  # Enable/disable selection of the external port from the port block allocation for
+    "subnet-broadcast-in-ippool": "option",  # Enable/disable inclusion of the subnetwork address and broadcast IP address in t
 }
 
 # Field descriptions (help text from FortiOS API)

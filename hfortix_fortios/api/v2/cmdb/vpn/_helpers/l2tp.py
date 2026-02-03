@@ -69,9 +69,9 @@ FIELD_TYPES = {
     "sip": "ipv4-address",  # Start IP.
     "usrgrp": "string",  # User group.
     "enforce-ipsec": "option",  # Enable/disable IPsec enforcement.
-    "lcp-echo-interval": "integer",  # Time in seconds between PPPoE Link Control Protocol (LCP) ec
-    "lcp-max-echo-fails": "integer",  # Maximum number of missed LCP echo messages before disconnect
-    "hello-interval": "integer",  # L2TP hello message interval in seconds (0 - 3600 sec, defaul
+    "lcp-echo-interval": "integer",  # Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+    "lcp-max-echo-fails": "integer",  # Maximum number of missed LCP echo messages before disconnect.
+    "hello-interval": "integer",  # L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
     "compress": "option",  # Enable/disable data compression.
 }
 

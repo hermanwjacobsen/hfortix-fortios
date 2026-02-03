@@ -72,11 +72,11 @@ FIELD_TYPES = {
     "ssh-port": "option",  # Set SSH port service status.
     "http-port": "option",  # Set HTTP port service status.
     "tls-port": "option",  # Set TLS VPN (HTTPS) port service status.
-    "pptp-vpn-port": "option",  # Set Point to Point Tunneling Protocol (PPTP) VPN port servic
+    "pptp-vpn-port": "option",  # Set Point to Point Tunneling Protocol (PPTP) VPN port service status.
     "voip-tcp-port": "option",  # Set VoIP TCP port service status.
     "voip-udp-port": "option",  # Set VoIP UDP port service status.
     "ikev2-port": "option",  # Set IKEv2 port service for IPsec VPN status.
-    "ikev2-xx-port": "option",  # Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN)
+    "ikev2-xx-port": "option",  # Set UDP port 4500 (which may be used by IKEv2 for IPsec VPN) service status.
     "esp-port": "option",  # Set ESP port service (used by IPsec VPNs) status.
 }
 

@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Profile name.
     "comment": "var-string",  # Comment.
-    "severity": "option",  # Relative severity of the signature (low, medium, high, criti
+    "severity": "option",  # Relative severity of the signature (low, medium, high, critical).
     "action": "option",  # Action (pass/block).
     "log": "option",  # Enable/disable logging of detection.
     "exemption": "string",  # Exempt devices or rules.

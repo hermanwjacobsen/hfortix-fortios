@@ -74,22 +74,22 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Authentication scheme name.
     "method": "option",  # Authentication methods (default = basic).
-    "negotiate-ntlm": "option",  # Enable/disable negotiate authentication for NTLM (default = 
+    "negotiate-ntlm": "option",  # Enable/disable negotiate authentication for NTLM (default = disable).
     "kerberos-keytab": "string",  # Kerberos keytab setting.
     "domain-controller": "string",  # Domain controller setting.
     "saml-server": "string",  # SAML configuration.
     "saml-timeout": "integer",  # SAML authentication timeout in seconds.
     "fsso-agent-for-ntlm": "string",  # FSSO agent to use for NTLM authentication.
-    "require-tfa": "option",  # Enable/disable two-factor authentication (default = disable)
-    "fsso-guest": "option",  # Enable/disable user fsso-guest authentication (default = dis
-    "user-cert": "option",  # Enable/disable authentication with user certificate (default
-    "cert-http-header": "option",  # Enable/disable authentication with user certificate in Clien
-    "user-database": "string",  # Authentication server to contain user information; "local-us
+    "require-tfa": "option",  # Enable/disable two-factor authentication (default = disable).
+    "fsso-guest": "option",  # Enable/disable user fsso-guest authentication (default = disable).
+    "user-cert": "option",  # Enable/disable authentication with user certificate (default = disable).
+    "cert-http-header": "option",  # Enable/disable authentication with user certificate in Client-Cert HTTP header (
+    "user-database": "string",  # Authentication server to contain user information; \"local-user-db\" (default) o
     "ssh-ca": "string",  # SSH CA name.
     "external-idp": "string",  # External identity provider configuration.
-    "group-attr-type": "option",  # Group attribute type used to match SCIM groups (default = di
+    "group-attr-type": "option",  # Group attribute type used to match SCIM groups (default = display-name).
     "digest-algo": "option",  # Digest Authentication Algorithms.
-    "digest-rfc2069": "option",  # Enable/disable support for the deprecated RFC2069 Digest Cli
+    "digest-rfc2069": "option",  # Enable/disable support for the deprecated RFC2069 Digest Client (no cnonce field
 }
 
 # Field descriptions (help text from FortiOS API)

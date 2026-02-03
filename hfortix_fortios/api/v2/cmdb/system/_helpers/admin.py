@@ -106,42 +106,42 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # User name.
     "vdom": "string",  # Virtual domain(s) that the administrator can access.
-    "remote-auth": "option",  # Enable/disable authentication using a remote RADIUS, LDAP, o
+    "remote-auth": "option",  # Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server.
     "remote-group": "string",  # User group name used for remote auth.
     "wildcard": "option",  # Enable/disable wildcard RADIUS authentication.
     "password": "password-2",  # Admin user password.
-    "peer-auth": "option",  # Set to enable peer certificate authentication (for HTTPS adm
-    "peer-group": "string",  # Name of peer group defined under config user group which has
-    "trusthost1": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost2": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost3": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost4": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost5": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost6": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost7": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost8": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost9": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "trusthost10": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which th
-    "ip6-trusthost1": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost2": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost3": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost4": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost5": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost6": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost7": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost8": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost9": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "ip6-trusthost10": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to
-    "accprofile": "string",  # Access profile for this administrator. Access profiles contr
-    "allow-remove-admin-session": "option",  # Enable/disable allow admin session to be removed by privileg
+    "peer-auth": "option",  # Set to enable peer certificate authentication (for HTTPS admin access).
+    "peer-group": "string",  # Name of peer group defined under config user group which has PKI members. Used f
+    "trusthost1": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost2": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost3": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost4": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost5": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost6": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost7": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost8": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost9": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "trusthost10": "ipv4-classnet",  # Any IPv4 address or subnet address and netmask from which the administrator can 
+    "ip6-trusthost1": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost2": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost3": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost4": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost5": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost6": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost7": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost8": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost9": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "ip6-trusthost10": "ipv6-prefix",  # Any IPv6 address from which the administrator can connect to the FortiGate unit.
+    "accprofile": "string",  # Access profile for this administrator. Access profiles control administrator acc
+    "allow-remove-admin-session": "option",  # Enable/disable allow admin session to be removed by privileged admin users.
     "comments": "var-string",  # Comment.
-    "ssh-public-key1": "user",  # Public key of an SSH client. The client is authenticated wit
-    "ssh-public-key2": "user",  # Public key of an SSH client. The client is authenticated wit
-    "ssh-public-key3": "user",  # Public key of an SSH client. The client is authenticated wit
-    "ssh-certificate": "string",  # Select the certificate to be used by the FortiGate for authe
-    "schedule": "string",  # Firewall schedule used to restrict when the administrator ca
-    "accprofile-override": "option",  # Enable to use the name of an access profile provided by the 
-    "vdom-override": "option",  # Enable to use the names of VDOMs provided by the remote auth
+    "ssh-public-key1": "user",  # Public key of an SSH client. The client is authenticated without being asked for
+    "ssh-public-key2": "user",  # Public key of an SSH client. The client is authenticated without being asked for
+    "ssh-public-key3": "user",  # Public key of an SSH client. The client is authenticated without being asked for
+    "ssh-certificate": "string",  # Select the certificate to be used by the FortiGate for authentication with an SS
+    "schedule": "string",  # Firewall schedule used to restrict when the administrator can log in. No schedul
+    "accprofile-override": "option",  # Enable to use the name of an access profile provided by the remote authenticatio
+    "vdom-override": "option",  # Enable to use the names of VDOMs provided by the remote authentication server to
     "password-expire": "datetime",  # Password expire time.
     "force-password-change": "option",  # Enable/disable force password change on next login.
     "two-factor": "option",  # Enable/disable two-factor authentication.
@@ -149,9 +149,9 @@ FIELD_TYPES = {
     "two-factor-notification": "option",  # Notification method for user activation by FortiToken Cloud.
     "fortitoken": "string",  # This administrator's FortiToken serial number.
     "email-to": "string",  # This administrator's email address.
-    "sms-server": "option",  # Send SMS messages using the FortiGuard SMS server or a custo
+    "sms-server": "option",  # Send SMS messages using the FortiGuard SMS server or a custom server.
     "sms-custom-server": "string",  # Custom SMS server to send SMS messages to.
-    "sms-phone": "string",  # Phone number on which the administrator receives SMS message
+    "sms-phone": "string",  # Phone number on which the administrator receives SMS messages.
     "guest-auth": "option",  # Enable/disable guest authentication.
     "guest-usergroups": "string",  # Select guest user groups.
     "guest-lang": "string",  # Guest management portal language.

@@ -78,12 +78,12 @@ FIELD_TYPES = {
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
-    "enc-algorithm": "option",  # Configure the level of SSL protection for secure communicati
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "enc-algorithm": "option",  # Configure the level of SSL protection for secure communication with FortiSandbox
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
     "email": "string",  # Notifier email address.
-    "ca": "string",  # The CA that signs remote FortiSandbox certificate, empty for
-    "cn": "string",  # The CN of remote server certificate, case sensitive, empty f
-    "certificate-verification": "option",  # Enable/disable identity verification of FortiSandbox by use 
+    "ca": "string",  # The CA that signs remote FortiSandbox certificate, empty for no check.
+    "cn": "string",  # The CN of remote server certificate, case sensitive, empty for no check.
+    "certificate-verification": "option",  # Enable/disable identity verification of FortiSandbox by use of certificate.
 }
 
 # Field descriptions (help text from FortiOS API)

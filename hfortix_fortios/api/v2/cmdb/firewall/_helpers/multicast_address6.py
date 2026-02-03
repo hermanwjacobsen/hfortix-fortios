@@ -58,7 +58,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # IPv6 multicast address name.
-    "ip6": "ipv6-network",  # IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:x
+    "ip6": "ipv6-network",  # IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
     "comment": "var-string",  # Comment.
     "color": "integer",  # Color of icon on the GUI.
     "tagging": "string",  # Config object tagging.

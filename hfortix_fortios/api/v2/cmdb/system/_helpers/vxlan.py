@@ -66,14 +66,14 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "name": "string",  # VXLAN device or interface name. Must be a unique interface n
+    "name": "string",  # VXLAN device or interface name. Must be a unique interface name.
     "interface": "string",  # Outgoing interface for VXLAN encapsulated traffic.
     "vni": "integer",  # VXLAN network ID.
-    "ip-version": "option",  # IP version to use for the VXLAN interface and so for communi
-    "remote-ip": "string",  # IPv4 address of the VXLAN interface on the device at the rem
-    "local-ip": "ipv4-address",  # IPv4 address to use as the source address for egress VXLAN p
-    "remote-ip6": "string",  # IPv6 IP address of the VXLAN interface on the device at the 
-    "local-ip6": "ipv6-address",  # IPv6 address to use as the source address for egress VXLAN p
+    "ip-version": "option",  # IP version to use for the VXLAN interface and so for communication over the VXLA
+    "remote-ip": "string",  # IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN
+    "local-ip": "ipv4-address",  # IPv4 address to use as the source address for egress VXLAN packets.
+    "remote-ip6": "string",  # IPv6 IP address of the VXLAN interface on the device at the remote end of the VX
+    "local-ip6": "ipv6-address",  # IPv6 address to use as the source address for egress VXLAN packets.
     "dstport": "integer",  # VXLAN destination port (1 - 65535, default = 4789).
     "multicast-ttl": "integer",  # VXLAN multicast TTL (1-255, default = 0).
     "evpn-id": "integer",  # EVPN instance.

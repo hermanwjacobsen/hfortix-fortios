@@ -62,11 +62,11 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # WTP system log server profile name.
     "comment": "var-string",  # Comment.
-    "server-status": "option",  # Enable/disable FortiAP units to send log messages to a syslo
+    "server-status": "option",  # Enable/disable FortiAP units to send log messages to a syslog server (default = 
     "server": "string",  # Syslog server CN domain name or IP address.
-    "server-port": "integer",  # Port number of syslog server that FortiAP units send log mes
+    "server-port": "integer",  # Port number of syslog server that FortiAP units send log messages to (default = 
     "server-type": "option",  # Configure syslog server type (default = standard).
-    "log-level": "option",  # Lowest level of log messages that FortiAP units send to this
+    "log-level": "option",  # Lowest level of log messages that FortiAP units send to this server (default = i
 }
 
 # Field descriptions (help text from FortiOS API)

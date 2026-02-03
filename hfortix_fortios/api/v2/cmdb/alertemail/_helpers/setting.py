@@ -89,32 +89,32 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "username": "string",  # Name that appears in the From: field of alert emails (max. 6
-    "mailto1": "string",  # Email address to send alert email to (usually a system admin
-    "mailto2": "string",  # Optional second email address to send alert email to (max. 6
-    "mailto3": "string",  # Optional third email address to send alert email to (max. 63
+    "username": "string",  # Name that appears in the From: field of alert emails (max. 63 characters).
+    "mailto1": "string",  # Email address to send alert email to (usually a system administrator) (max. 63 c
+    "mailto2": "string",  # Optional second email address to send alert email to (max. 63 characters).
+    "mailto3": "string",  # Optional third email address to send alert email to (max. 63 characters).
     "filter-mode": "option",  # How to filter log messages that are sent to alert emails.
-    "email-interval": "integer",  # Interval between sending alert emails (1 - 99999 min, defaul
+    "email-interval": "integer",  # Interval between sending alert emails (1 - 99999 min, default = 5).
     "IPS-logs": "option",  # Enable/disable IPS logs in alert email.
-    "firewall-authentication-failure-logs": "option",  # Enable/disable firewall authentication failure logs in alert
+    "firewall-authentication-failure-logs": "option",  # Enable/disable firewall authentication failure logs in alert email.
     "HA-logs": "option",  # Enable/disable HA logs in alert email.
     "IPsec-errors-logs": "option",  # Enable/disable IPsec error logs in alert email.
     "FDS-update-logs": "option",  # Enable/disable FortiGuard update logs in alert email.
     "PPP-errors-logs": "option",  # Enable/disable PPP error logs in alert email.
-    "sslvpn-authentication-errors-logs": "option",  # Enable/disable Agentless VPN authentication error logs in al
+    "sslvpn-authentication-errors-logs": "option",  # Enable/disable Agentless VPN authentication error logs in alert email.
     "antivirus-logs": "option",  # Enable/disable antivirus logs in alert email.
     "webfilter-logs": "option",  # Enable/disable web filter logs in alert email.
     "configuration-changes-logs": "option",  # Enable/disable configuration change logs in alert email.
     "violation-traffic-logs": "option",  # Enable/disable violation traffic logs in alert email.
-    "admin-login-logs": "option",  # Enable/disable administrator login/logout logs in alert emai
-    "FDS-license-expiring-warning": "option",  # Enable/disable FortiGuard license expiration warnings in ale
+    "admin-login-logs": "option",  # Enable/disable administrator login/logout logs in alert email.
+    "FDS-license-expiring-warning": "option",  # Enable/disable FortiGuard license expiration warnings in alert email.
     "log-disk-usage-warning": "option",  # Enable/disable disk usage warnings in alert email.
     "fortiguard-log-quota-warning": "option",  # Enable/disable FortiCloud log quota warnings in alert email.
-    "amc-interface-bypass-mode": "option",  # Enable/disable Fortinet Advanced Mezzanine Card (AMC) interf
-    "FIPS-CC-errors": "option",  # Enable/disable FIPS and Common Criteria error logs in alert 
+    "amc-interface-bypass-mode": "option",  # Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs
+    "FIPS-CC-errors": "option",  # Enable/disable FIPS and Common Criteria error logs in alert email.
     "FSSO-disconnect-logs": "option",  # Enable/disable logging of FSSO collector agent disconnect.
     "ssh-logs": "option",  # Enable/disable SSH logs in alert email.
-    "local-disk-usage": "integer",  # Disk usage percentage at which to send alert email (1 - 99 p
+    "local-disk-usage": "integer",  # Disk usage percentage at which to send alert email (1 - 99 percent, default = 75
     "emergency-interval": "integer",  # Emergency alert interval in minutes.
     "alert-interval": "integer",  # Alert alert interval in minutes.
     "critical-interval": "integer",  # Critical alert interval in minutes.

@@ -82,7 +82,7 @@ FIELD_TYPES = {
     "ddns-auth": "option",  # Enable/disable TSIG authentication for your DDNS server.
     "ddns-keyname": "string",  # DDNS update key name.
     "ddns-key": "password_aes256",  # DDNS update key (base 64 encoding).
-    "ddns-domain": "string",  # Your fully qualified domain name. For example, yourname.ddns
+    "ddns-domain": "string",  # Your fully qualified domain name. For example, yourname.ddns.com.
     "ddns-username": "string",  # DDNS user name.
     "ddns-sn": "string",  # DDNS Serial Number.
     "ddns-password": "password",  # DDNS password.

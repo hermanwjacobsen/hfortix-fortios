@@ -64,7 +64,7 @@ FIELD_TYPES = {
     "server": "string",  # Server domain name or IP address.
     "port": "integer",  # POP3 service port number.
     "secure": "option",  # SSL connection.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
 }
 
 # Field descriptions (help text from FortiOS API)

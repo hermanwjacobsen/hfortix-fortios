@@ -66,8 +66,8 @@ FIELD_TYPES = {
     "outgoing-ip": "ipv4-address-any",  # WISP outgoing IP address.
     "server-ip": "ipv4-address-any",  # WISP server IP address.
     "server-port": "integer",  # WISP server port (1 - 65535, default = 15868).
-    "max-connections": "integer",  # Maximum number of web proxy WISP connections (4 - 4096, defa
-    "timeout": "integer",  # Period of time before WISP requests time out (1 - 15 sec, de
+    "max-connections": "integer",  # Maximum number of web proxy WISP connections (4 - 4096, default = 64).
+    "timeout": "integer",  # Period of time before WISP requests time out (1 - 15 sec, default = 5).
 }
 
 # Field descriptions (help text from FortiOS API)

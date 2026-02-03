@@ -155,11 +155,11 @@ FIELD_TYPES = {
     "domain": "string",  # Domain name.
     "group-name": "string",  # Full path group name of computers.
     "server-cert": "string",  # Trust servers that contain this certificate only.
-    "server-ca-cert": "string",  # Trust only those servers whose certificate is directly/indir
+    "server-ca-cert": "string",  # Trust only those servers whose certificate is directly/indirectly signed by this
     "api-key": "password",  # IBM cloud API key or service ID API key.
     "ibm-region": "option",  # IBM cloud region name.
     "par-id": "string",  # Public address range ID.
-    "update-interval": "integer",  # Dynamic object update interval (30 - 3600 sec, default = 60,
+    "update-interval": "integer",  # Dynamic object update interval (30 - 3600 sec, default = 60, 0 = disabled).
 }
 
 # Field descriptions (help text from FortiOS API)

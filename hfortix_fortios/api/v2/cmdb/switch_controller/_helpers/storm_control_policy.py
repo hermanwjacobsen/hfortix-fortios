@@ -66,11 +66,11 @@ FIELD_TYPES = {
     "name": "string",  # Storm control policy name.
     "description": "string",  # Description of the storm control policy.
     "storm-control-mode": "option",  # Set Storm control mode.
-    "rate": "integer",  # Threshold rate in packets per second at which storm traffic 
-    "burst-size-level": "integer",  # Increase level to handle bursty traffic (0 - 4, default = 0)
-    "unknown-unicast": "option",  # Enable/disable storm control to drop/allow unknown unicast t
-    "unknown-multicast": "option",  # Enable/disable storm control to drop/allow unknown multicast
-    "broadcast": "option",  # Enable/disable storm control to drop/allow broadcast traffic
+    "rate": "integer",  # Threshold rate in packets per second at which storm traffic is controlled in ove
+    "burst-size-level": "integer",  # Increase level to handle bursty traffic (0 - 4, default = 0).
+    "unknown-unicast": "option",  # Enable/disable storm control to drop/allow unknown unicast traffic in override m
+    "unknown-multicast": "option",  # Enable/disable storm control to drop/allow unknown multicast traffic in override
+    "broadcast": "option",  # Enable/disable storm control to drop/allow broadcast traffic in override mode.
 }
 
 # Field descriptions (help text from FortiOS API)

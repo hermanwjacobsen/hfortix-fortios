@@ -63,15 +63,15 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "agelimit": "integer",  # Age limit for quarantined files (0 - 479 hours, 0 means fore
-    "maxfilesize": "integer",  # Maximum file size to quarantine (0 - 500 Mbytes, 0 means unl
-    "quarantine-quota": "integer",  # The amount of disk space to reserve for quarantining files (
-    "drop-infected": "option",  # Do not quarantine infected files found in sessions using the
-    "store-infected": "option",  # Quarantine infected files found in sessions using the select
-    "drop-machine-learning": "option",  # Do not quarantine files detected by machine learning found i
-    "store-machine-learning": "option",  # Quarantine files detected by machine learning found in sessi
-    "lowspace": "option",  # Select the method for handling additional files when running
-    "destination": "option",  # Choose whether to quarantine files to the FortiGate disk or 
+    "agelimit": "integer",  # Age limit for quarantined files (0 - 479 hours, 0 means forever).
+    "maxfilesize": "integer",  # Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
+    "quarantine-quota": "integer",  # The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbyte
+    "drop-infected": "option",  # Do not quarantine infected files found in sessions using the selected protocols.
+    "store-infected": "option",  # Quarantine infected files found in sessions using the selected protocols.
+    "drop-machine-learning": "option",  # Do not quarantine files detected by machine learning found in sessions using the
+    "store-machine-learning": "option",  # Quarantine files detected by machine learning found in sessions using the select
+    "lowspace": "option",  # Select the method for handling additional files when running low on disk space.
+    "destination": "option",  # Choose whether to quarantine files to the FortiGate disk or to FortiAnalyzer or 
 }
 
 # Field descriptions (help text from FortiOS API)

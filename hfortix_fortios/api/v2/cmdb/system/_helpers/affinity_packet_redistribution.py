@@ -61,8 +61,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # ID of the packet redistribution setting.
-    "interface": "string",  # Physical interface name on which to perform packet redistrib
-    "rxqid": "integer",  # ID of the receive queue (when the interface has multiple que
+    "interface": "string",  # Physical interface name on which to perform packet redistribution.
+    "rxqid": "integer",  # ID of the receive queue (when the interface has multiple queues) on which to per
     "round-robin": "option",  # Enable/disable round-robin redistribution to multiple CPUs.
     "affinity-cpumask": "string",  # Hexadecimal cpumask, empty value means all CPUs.
 }

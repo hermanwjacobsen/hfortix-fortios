@@ -97,48 +97,48 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "wtp-id": "string",  # WTP ID.
     "index": "integer",  # Index (0 - 4294967295).
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
-    "admin": "option",  # Configure how the FortiGate operating as a wireless controll
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "admin": "option",  # Configure how the FortiGate operating as a wireless controller discovers and man
     "name": "string",  # WTP, AP or FortiAP configuration name.
-    "location": "string",  # Field for describing the physical location of the WTP, AP or
+    "location": "string",  # Field for describing the physical location of the WTP, AP or FortiAP.
     "comment": "var-string",  # Comment.
     "region": "string",  # Region name WTP is associated with.
     "region-x": "string",  # Relative horizontal region coordinate (between 0 and 1).
     "region-y": "string",  # Relative vertical region coordinate (between 0 and 1).
-    "firmware-provision": "string",  # Firmware version to provision to this FortiAP on bootup (maj
-    "firmware-provision-latest": "option",  # Enable/disable one-time automatic provisioning of the latest
+    "firmware-provision": "string",  # Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e.
+    "firmware-provision-latest": "option",  # Enable/disable one-time automatic provisioning of the latest firmware version.
     "wtp-profile": "string",  # WTP profile name to apply to this WTP, AP or FortiAP.
     "apcfg-profile": "string",  # AP local configuration profile name.
     "bonjour-profile": "string",  # Bonjour profile name.
     "ble-major-id": "integer",  # Override BLE Major ID.
     "ble-minor-id": "integer",  # Override BLE Minor ID.
-    "override-led-state": "option",  # Enable to override the profile LED state setting for this Fo
-    "led-state": "option",  # Enable to allow the FortiAPs LEDs to light. Disable to keep 
-    "override-wan-port-mode": "option",  # Enable/disable overriding the wan-port-mode in the WTP profi
+    "override-led-state": "option",  # Enable to override the profile LED state setting for this FortiAP. You must enab
+    "led-state": "option",  # Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You ma
+    "override-wan-port-mode": "option",  # Enable/disable overriding the wan-port-mode in the WTP profile.
     "wan-port-mode": "option",  # Enable/disable using the FortiAP WAN port as a LAN port.
-    "override-ip-fragment": "option",  # Enable/disable overriding the WTP profile IP fragment preven
-    "ip-fragment-preventing": "option",  # Method(s) by which IP fragmentation is prevented for control
-    "tun-mtu-uplink": "integer",  # The maximum transmission unit (MTU) of uplink CAPWAP tunnel 
-    "tun-mtu-downlink": "integer",  # The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 
-    "override-split-tunnel": "option",  # Enable/disable overriding the WTP profile split tunneling se
+    "override-ip-fragment": "option",  # Enable/disable overriding the WTP profile IP fragment prevention setting.
+    "ip-fragment-preventing": "option",  # Method(s) by which IP fragmentation is prevented for control and data packets th
+    "tun-mtu-uplink": "integer",  # The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or
+    "tun-mtu-downlink": "integer",  # The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU 
+    "override-split-tunnel": "option",  # Enable/disable overriding the WTP profile split tunneling setting.
     "split-tunneling-acl-path": "option",  # Split tunneling ACL path is local/tunnel.
-    "split-tunneling-acl-local-ap-subnet": "option",  # Enable/disable automatically adding local subnetwork of Fort
+    "split-tunneling-acl-local-ap-subnet": "option",  # Enable/disable automatically adding local subnetwork of FortiAP to split-tunneli
     "split-tunneling-acl": "string",  # Split tunneling ACL filter list.
     "override-lan": "option",  # Enable to override the WTP profile LAN port setting.
     "lan": "string",  # WTP LAN port mapping.
-    "override-allowaccess": "option",  # Enable to override the WTP profile management access configu
-    "allowaccess": "option",  # Control management access to the managed WTP, FortiAP, or AP
-    "override-login-passwd-change": "option",  # Enable to override the WTP profile login-password (administr
-    "login-passwd-change": "option",  # Change or reset the administrator password of a managed WTP,
-    "login-passwd": "password",  # Set the managed WTP, FortiAP, or AP's administrator password
-    "override-default-mesh-root": "option",  # Enable to override the WTP profile default mesh root SSID se
-    "default-mesh-root": "option",  # Configure default mesh root SSID when it is not included by 
+    "override-allowaccess": "option",  # Enable to override the WTP profile management access configuration.
+    "allowaccess": "option",  # Control management access to the managed WTP, FortiAP, or AP. Separate entries w
+    "override-login-passwd-change": "option",  # Enable to override the WTP profile login-password (administrator password) setti
+    "login-passwd-change": "option",  # Change or reset the administrator password of a managed WTP, FortiAP or AP (yes,
+    "login-passwd": "password",  # Set the managed WTP, FortiAP, or AP's administrator password.
+    "override-default-mesh-root": "option",  # Enable to override the WTP profile default mesh root SSID setting.
+    "default-mesh-root": "option",  # Configure default mesh root SSID when it is not included by radio's SSID configu
     "radio-1": "string",  # Configuration options for radio 1.
     "radio-2": "string",  # Configuration options for radio 2.
     "radio-3": "string",  # Configuration options for radio 3.
     "radio-4": "string",  # Configuration options for radio 4.
     "image-download": "option",  # Enable/disable WTP image download.
-    "mesh-bridge-enable": "option",  # Enable/disable mesh Ethernet bridge when WTP is configured a
+    "mesh-bridge-enable": "option",  # Enable/disable mesh Ethernet bridge when WTP is configured as a mesh branch/leaf
     "purdue-level": "option",  # Purdue Level of this WTP.
     "coordinate-latitude": "string",  # WTP latitude coordinate.
     "coordinate-longitude": "string",  # WTP longitude coordinate.

@@ -81,7 +81,7 @@ FIELD_TYPES = {
     "bfd": "option",  # Enable/disable Bidirectional Forwarding Detection (BFD).
     "restart-mode": "option",  # OSPFv3 restart mode (graceful or none).
     "restart-period": "integer",  # Graceful restart period in seconds.
-    "restart-on-topology-change": "option",  # Enable/disable continuing graceful restart upon topology cha
+    "restart-on-topology-change": "option",  # Enable/disable continuing graceful restart upon topology change.
     "area": "string",  # OSPF6 area configuration.
     "ospf6-interface": "string",  # OSPF6 interface configuration.
     "redistribute": "string",  # Redistribute configuration.

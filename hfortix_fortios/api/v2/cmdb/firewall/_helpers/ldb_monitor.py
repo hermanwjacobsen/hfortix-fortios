@@ -69,16 +69,16 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Monitor name.
-    "type": "option",  # Select the Monitor type used by the health check monitor to 
+    "type": "option",  # Select the Monitor type used by the health check monitor to check the health of 
     "interval": "integer",  # Time between health checks (5 - 65535 sec, default = 10).
-    "timeout": "integer",  # Time to wait to receive response to a health check from a se
-    "retry": "integer",  # Number health check attempts before the server is considered
-    "port": "integer",  # Service port used to perform the health check. If 0, health 
+    "timeout": "integer",  # Time to wait to receive response to a health check from a server. Reaching the t
+    "retry": "integer",  # Number health check attempts before the server is considered down (1 - 255, defa
+    "port": "integer",  # Service port used to perform the health check. If 0, health check monitor inheri
     "src-ip": "ipv4-address",  # Source IP for ldb-monitor.
-    "http-get": "string",  # Request URI used to send a GET request to check the health o
-    "http-match": "string",  # String to match the value expected in response to an HTTP-GE
-    "http-max-redirects": "integer",  # The maximum number of HTTP redirects to be allowed (0 - 5, d
-    "dns-protocol": "option",  # Select the protocol used by the DNS health check monitor to 
+    "http-get": "string",  # Request URI used to send a GET request to check the health of an HTTP server. Op
+    "http-match": "string",  # String to match the value expected in response to an HTTP-GET request.
+    "http-max-redirects": "integer",  # The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
+    "dns-protocol": "option",  # Select the protocol used by the DNS health check monitor to check the health of 
     "dns-request-domain": "string",  # Fully qualified domain name to resolve for the DNS probe.
     "dns-match-ip": "ipv4-address",  # Response IP expected from DNS server.
 }

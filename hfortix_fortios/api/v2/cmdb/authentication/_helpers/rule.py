@@ -69,21 +69,21 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Authentication rule name.
     "status": "option",  # Enable/disable this authentication rule.
-    "protocol": "option",  # Authentication is required for the selected protocol (defaul
+    "protocol": "option",  # Authentication is required for the selected protocol (default = HTTP).
     "srcintf": "string",  # Incoming (ingress) interface.
-    "srcaddr": "string",  # Authentication is required for the selected IPv4 source addr
-    "dstaddr": "string",  # Select an IPv4 destination address from available options. R
-    "srcaddr6": "string",  # Authentication is required for the selected IPv6 source addr
-    "dstaddr6": "string",  # Select an IPv6 destination address from available options. R
-    "ip-based": "option",  # Enable/disable IP-based authentication. When enabled, previo
+    "srcaddr": "string",  # Authentication is required for the selected IPv4 source address.
+    "dstaddr": "string",  # Select an IPv4 destination address from available options. Required for web prox
+    "srcaddr6": "string",  # Authentication is required for the selected IPv6 source address.
+    "dstaddr6": "string",  # Select an IPv6 destination address from available options. Required for web prox
+    "ip-based": "option",  # Enable/disable IP-based authentication. When enabled, previously authenticated u
     "active-auth-method": "string",  # Select an active authentication method.
     "sso-auth-method": "string",  # Select a single-sign on (SSO) authentication method.
-    "web-auth-cookie": "option",  # Enable/disable Web authentication cookies (default = disable
+    "web-auth-cookie": "option",  # Enable/disable Web authentication cookies (default = disable).
     "cors-stateful": "option",  # Enable/disable allowance of CORS access (default = disable).
     "cors-depth": "integer",  # Depth to allow CORS access (default = 3).
-    "cert-auth-cookie": "option",  # Enable/disable to use device certificate as authentication c
-    "transaction-based": "option",  # Enable/disable transaction based authentication (default = d
-    "web-portal": "option",  # Enable/disable web portal for proxy transparent policy (defa
+    "cert-auth-cookie": "option",  # Enable/disable to use device certificate as authentication cookie (default = ena
+    "transaction-based": "option",  # Enable/disable transaction based authentication (default = disable).
+    "web-portal": "option",  # Enable/disable web portal for proxy transparent policy (default = enable).
     "comments": "var-string",  # Comment.
     "session-logout": "option",  # Enable/disable logout of a user from the current session.
 }

@@ -70,16 +70,16 @@ FIELD_TYPES = {
     "name": "string",  # Password policy name.
     "expire-status": "option",  # Enable/disable password expiration.
     "expire-days": "integer",  # Time in days before the user's password expires.
-    "warn-days": "integer",  # Time in days before a password expiration warning message is
-    "expired-password-renewal": "option",  # Enable/disable renewal of a password that already is expired
+    "warn-days": "integer",  # Time in days before a password expiration warning message is displayed to the us
+    "expired-password-renewal": "option",  # Enable/disable renewal of a password that already is expired.
     "minimum-length": "integer",  # Minimum password length (8 - 128, default = 8).
-    "min-lower-case-letter": "integer",  # Minimum number of lowercase characters in password (0 - 128,
-    "min-upper-case-letter": "integer",  # Minimum number of uppercase characters in password (0 - 128,
-    "min-non-alphanumeric": "integer",  # Minimum number of non-alphanumeric characters in password (0
-    "min-number": "integer",  # Minimum number of numeric characters in password (0 - 128, d
-    "min-change-characters": "integer",  # Minimum number of unique characters in new password which do
-    "reuse-password": "option",  # Enable/disable reuse of password. If both reuse-password and
-    "reuse-password-limit": "integer",  # Number of times passwords can be reused (0 - 20, default = 0
+    "min-lower-case-letter": "integer",  # Minimum number of lowercase characters in password (0 - 128, default = 0).
+    "min-upper-case-letter": "integer",  # Minimum number of uppercase characters in password (0 - 128, default = 0).
+    "min-non-alphanumeric": "integer",  # Minimum number of non-alphanumeric characters in password (0 - 128, default = 0)
+    "min-number": "integer",  # Minimum number of numeric characters in password (0 - 128, default = 0).
+    "min-change-characters": "integer",  # Minimum number of unique characters in new password which do not exist in old pa
+    "reuse-password": "option",  # Enable/disable reuse of password. If both reuse-password and min-change-characte
+    "reuse-password-limit": "integer",  # Number of times passwords can be reused (0 - 20, default = 0. If set to 0, can r
 }
 
 # Field descriptions (help text from FortiOS API)

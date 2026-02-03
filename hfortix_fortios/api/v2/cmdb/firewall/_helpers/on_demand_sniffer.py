@@ -60,13 +60,13 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # On-demand packet sniffer name.
-    "interface": "string",  # Interface name that on-demand packet sniffer will take place
-    "max-packet-count": "integer",  # Maximum number of packets to capture per on-demand packet sn
+    "interface": "string",  # Interface name that on-demand packet sniffer will take place.
+    "max-packet-count": "integer",  # Maximum number of packets to capture per on-demand packet sniffer.
     "hosts": "string",  # IPv4 or IPv6 hosts to filter in this traffic sniffer.
     "ports": "string",  # Ports to filter for in this traffic sniffer.
     "protocols": "string",  # Protocols to filter in this traffic sniffer.
     "non-ip-packet": "option",  # Include non-IP packets.
-    "advanced-filter": "var-string",  # Advanced freeform filter that will be used over existing fil
+    "advanced-filter": "var-string",  # Advanced freeform filter that will be used over existing filter settings if set.
 }
 
 # Field descriptions (help text from FortiOS API)

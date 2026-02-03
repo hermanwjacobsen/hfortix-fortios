@@ -58,11 +58,11 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "groups": "string",  # Firewall user groups permitted to authenticate through this 
+    "groups": "string",  # Firewall user groups permitted to authenticate through this portal. Separate gro
     "portal-addr": "string",  # Address (or FQDN) of the authentication portal.
     "portal-addr6": "string",  # IPv6 address (or FQDN) of authentication portal.
-    "identity-based-route": "string",  # Name of the identity-based route that applies to this portal
-    "proxy-auth": "option",  # Enable/disable authentication by proxy daemon (default = dis
+    "identity-based-route": "string",  # Name of the identity-based route that applies to this portal.
+    "proxy-auth": "option",  # Enable/disable authentication by proxy daemon (default = disable).
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -65,8 +65,8 @@ FIELD_TYPES = {
     "repeat": "integer",  # Number of times to repeat this script (0 = infinite).
     "start": "option",  # Script starting mode.
     "script": "var-string",  # List of FortiOS CLI commands to repeat.
-    "output-size": "integer",  # Number of megabytes to limit script output to (10 - 1024, de
-    "timeout": "integer",  # Maximum running time for this script in seconds (0 = no time
+    "output-size": "integer",  # Number of megabytes to limit script output to (10 - 1024, default = 10).
+    "timeout": "integer",  # Maximum running time for this script in seconds (0 = no timeout).
 }
 
 # Field descriptions (help text from FortiOS API)

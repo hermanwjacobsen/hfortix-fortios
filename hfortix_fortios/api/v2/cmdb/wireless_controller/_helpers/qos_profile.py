@@ -75,23 +75,23 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # WiFi QoS profile name.
     "comment": "string",  # Comment.
-    "uplink": "integer",  # Maximum uplink bandwidth for Virtual Access Points (VAPs) (0
-    "downlink": "integer",  # Maximum downlink bandwidth for Virtual Access Points (VAPs) 
-    "uplink-sta": "integer",  # Maximum uplink bandwidth for clients (0 - 2097152 Kbps, defa
-    "downlink-sta": "integer",  # Maximum downlink bandwidth for clients (0 - 2097152 Kbps, de
+    "uplink": "integer",  # Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, def
+    "downlink": "integer",  # Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, d
+    "uplink-sta": "integer",  # Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no 
+    "downlink-sta": "integer",  # Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means n
     "burst": "option",  # Enable/disable client rate burst.
     "wmm": "option",  # Enable/disable WiFi multi-media (WMM) control.
-    "wmm-uapsd": "option",  # Enable/disable WMM Unscheduled Automatic Power Save Delivery
+    "wmm-uapsd": "option",  # Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save
     "call-admission-control": "option",  # Enable/disable WMM call admission control.
-    "call-capacity": "integer",  # Maximum number of Voice over WLAN (VoWLAN) phones allowed (0
+    "call-capacity": "integer",  # Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10)
     "bandwidth-admission-control": "option",  # Enable/disable WMM bandwidth admission control.
-    "bandwidth-capacity": "integer",  # Maximum bandwidth capacity allowed (1 - 600000 Kbps, default
-    "dscp-wmm-mapping": "option",  # Enable/disable Differentiated Services Code Point (DSCP) map
+    "bandwidth-capacity": "integer",  # Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
+    "dscp-wmm-mapping": "option",  # Enable/disable Differentiated Services Code Point (DSCP) mapping.
     "dscp-wmm-vo": "string",  # DSCP mapping for voice access (default = 48 56).
     "dscp-wmm-vi": "string",  # DSCP mapping for video access (default = 32 40).
     "dscp-wmm-be": "string",  # DSCP mapping for best effort access (default = 0 24).
     "dscp-wmm-bk": "string",  # DSCP mapping for background access (default = 8 16).
-    "wmm-dscp-marking": "option",  # Enable/disable WMM Differentiated Services Code Point (DSCP)
+    "wmm-dscp-marking": "option",  # Enable/disable WMM Differentiated Services Code Point (DSCP) marking.
     "wmm-vo-dscp": "integer",  # DSCP marking for voice access (default = 48).
     "wmm-vi-dscp": "integer",  # DSCP marking for video access (default = 32).
     "wmm-be-dscp": "integer",  # DSCP marking for best effort access (default = 0).

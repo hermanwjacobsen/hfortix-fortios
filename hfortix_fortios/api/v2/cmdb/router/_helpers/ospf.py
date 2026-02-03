@@ -103,11 +103,11 @@ FIELD_TYPES = {
     "distribute-route-map-in": "string",  # Filter incoming external routes by route-map.
     "restart-mode": "option",  # OSPF restart mode (graceful or LLS).
     "restart-period": "integer",  # Graceful restart period.
-    "restart-on-topology-change": "option",  # Enable/disable continuing graceful restart upon topology cha
+    "restart-on-topology-change": "option",  # Enable/disable continuing graceful restart upon topology change.
     "area": "string",  # OSPF area configuration.
     "ospf-interface": "string",  # OSPF interface configuration.
     "network": "string",  # OSPF network configuration.
-    "neighbor": "string",  # OSPF neighbor configuration are used when OSPF runs on non-b
+    "neighbor": "string",  # OSPF neighbor configuration are used when OSPF runs on non-broadcast media.
     "passive-interface": "string",  # Passive interface configuration.
     "summary-address": "string",  # IP address summary configuration.
     "distribute-list": "string",  # Distribute list configuration.

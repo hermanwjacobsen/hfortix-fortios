@@ -122,7 +122,7 @@ FIELD_TYPES = {
     "control-message-offload": "option",  # Enable/disable CAPWAP control message data channel offload.
     "bonjour-profile": "string",  # Bonjour profile name.
     "apcfg-profile": "string",  # AP local configuration profile name.
-    "apcfg-mesh": "option",  # Enable/disable AP local mesh configuration (default = disabl
+    "apcfg-mesh": "option",  # Enable/disable AP local mesh configuration (default = disable).
     "apcfg-mesh-ap-type": "option",  # Mesh AP Type (default = ethernet).
     "apcfg-mesh-ssid": "string",  #  Mesh SSID (default = none).
     "apcfg-mesh-eth-bridge": "option",  # Enable/disable mesh ethernet bridge (default = disable).
@@ -133,67 +133,67 @@ FIELD_TYPES = {
     "lan": "string",  # WTP LAN port mapping.
     "energy-efficient-ethernet": "option",  # Enable/disable use of energy efficient Ethernet on WTP.
     "led-state": "option",  # Enable/disable use of LEDs on WTP (default = enable).
-    "led-schedules": "string",  # Recurring firewall schedules for illuminating LEDs on the Fo
+    "led-schedules": "string",  # Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state 
     "dtls-policy": "option",  # WTP data channel DTLS policy (default = clear-text).
     "dtls-in-kernel": "option",  # Enable/disable data channel DTLS in kernel.
-    "max-clients": "integer",  # Maximum number of stations (STAs) supported by the WTP (defa
-    "handoff-rssi": "integer",  # Minimum received signal strength indicator (RSSI) value for 
+    "max-clients": "integer",  # Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no 
+    "handoff-rssi": "integer",  # Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, de
     "handoff-sta-thresh": "integer",  # Threshold value for AP handoff.
-    "handoff-roaming": "option",  # Enable/disable client load balancing during roaming to avoid
-    "deny-mac-list": "string",  # List of MAC addresses that are denied access to this WTP, Fo
-    "ap-country": "option",  # Country in which this WTP, FortiAP, or AP will operate (defa
-    "ip-fragment-preventing": "option",  # Method(s) by which IP fragmentation is prevented for control
-    "tun-mtu-uplink": "integer",  # The maximum transmission unit (MTU) of uplink CAPWAP tunnel 
-    "tun-mtu-downlink": "integer",  # The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 
+    "handoff-roaming": "option",  # Enable/disable client load balancing during roaming to avoid roaming delay (defa
+    "deny-mac-list": "string",  # List of MAC addresses that are denied access to this WTP, FortiAP, or AP.
+    "ap-country": "option",  # Country in which this WTP, FortiAP, or AP will operate (default = NA, automatica
+    "ip-fragment-preventing": "option",  # Method(s) by which IP fragmentation is prevented for control and data packets th
+    "tun-mtu-uplink": "integer",  # The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or
+    "tun-mtu-downlink": "integer",  # The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU 
     "split-tunneling-acl-path": "option",  # Split tunneling ACL path is local/tunnel.
-    "split-tunneling-acl-local-ap-subnet": "option",  # Enable/disable automatically adding local subnetwork of Fort
+    "split-tunneling-acl-local-ap-subnet": "option",  # Enable/disable automatically adding local subnetwork of FortiAP to split-tunneli
     "split-tunneling-acl": "string",  # Split tunneling ACL filter list.
-    "allowaccess": "option",  # Control management access to the managed WTP, FortiAP, or AP
-    "login-passwd-change": "option",  # Change or reset the administrator password of a managed WTP,
-    "login-passwd": "password",  # Set the managed WTP, FortiAP, or AP's administrator password
-    "lldp": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) for the 
+    "allowaccess": "option",  # Control management access to the managed WTP, FortiAP, or AP. Separate entries w
+    "login-passwd-change": "option",  # Change or reset the administrator password of a managed WTP, FortiAP or AP (yes,
+    "login-passwd": "password",  # Set the managed WTP, FortiAP, or AP's administrator password.
+    "lldp": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP 
     "poe-mode": "option",  # Set the WTP, FortiAP, or AP's PoE mode.
     "usb-port": "option",  # Enable/disable USB port of the WTP (default = enable).
-    "frequency-handoff": "option",  # Enable/disable frequency handoff of clients to other channel
-    "ap-handoff": "option",  # Enable/disable AP handoff of clients to other APs (default =
-    "default-mesh-root": "option",  # Configure default mesh root SSID when it is not included by 
+    "frequency-handoff": "option",  # Enable/disable frequency handoff of clients to other channels (default = disable
+    "ap-handoff": "option",  # Enable/disable AP handoff of clients to other APs (default = disable).
+    "default-mesh-root": "option",  # Configure default mesh root SSID when it is not included by radio's SSID configu
     "radio-1": "string",  # Configuration options for radio 1.
     "radio-2": "string",  # Configuration options for radio 2.
     "radio-3": "string",  # Configuration options for radio 3.
     "radio-4": "string",  # Configuration options for radio 4.
     "lbs": "string",  # Set various location based service (LBS) options.
     "ext-info-enable": "option",  # Enable/disable station/VAP/radio extension information.
-    "indoor-outdoor-deployment": "option",  # Set to allow indoor/outdoor-only channels under regulatory r
+    "indoor-outdoor-deployment": "option",  # Set to allow indoor/outdoor-only channels under regulatory rules (default = plat
     "esl-ses-dongle": "string",  # ESL SES-imagotag dongle configuration.
-    "console-login": "option",  # Enable/disable FortiAP console login access (default = enabl
+    "console-login": "option",  # Enable/disable FortiAP console login access (default = enable).
     "wan-port-auth": "option",  # Set WAN port authentication mode (default = none).
     "wan-port-auth-usrname": "string",  # Set WAN port 802.1x supplicant user name.
     "wan-port-auth-password": "password",  # Set WAN port 802.1x supplicant password.
     "wan-port-auth-methods": "option",  # WAN port 802.1x supplicant EAP methods (default = all).
-    "wan-port-auth-macsec": "option",  # Enable/disable WAN port 802.1x supplicant MACsec policy (def
-    "apcfg-auto-cert": "option",  # Enable/disable AP local auto cert configuration (default = d
+    "wan-port-auth-macsec": "option",  # Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable).
+    "apcfg-auto-cert": "option",  # Enable/disable AP local auto cert configuration (default = disable).
     "apcfg-auto-cert-enroll-protocol": "option",  # Certificate enrollment protocol (default = none)
-    "apcfg-auto-cert-crypto-algo": "option",  # Cryptography algorithm: rsa-1024, rsa-1536, rsa-2048, rsa-40
-    "apcfg-auto-cert-est-server": "string",  # Address and port for EST server (e.g. https://example.com:12
+    "apcfg-auto-cert-crypto-algo": "option",  # Cryptography algorithm: rsa-1024, rsa-1536, rsa-2048, rsa-4096, ec-secp256r1, ec
+    "apcfg-auto-cert-est-server": "string",  # Address and port for EST server (e.g. https://example.com:1234).
     "apcfg-auto-cert-est-ca-id": "string",  # CA identifier of the CA server for signing via EST.
     "apcfg-auto-cert-est-http-username": "string",  # HTTP Authentication username for signing via EST.
     "apcfg-auto-cert-est-http-password": "password",  # HTTP Authentication password for signing via EST.
-    "apcfg-auto-cert-est-subject": "string",  # Subject e.g. "CN=User,DC=example,DC=COM" (default = CN=Forti
-    "apcfg-auto-cert-est-subject-alt-name": "string",  # Subject alternative name (optional, e.g. "DNS:dns1.com,IP:19
-    "apcfg-auto-cert-auto-regen-days": "integer",  # Number of days to wait before expiry of an updated local cer
+    "apcfg-auto-cert-est-subject": "string",  # Subject e.g. \"CN=User,DC=example,DC=COM\" (default = CN=FortiAP,DC=local,DC=COM
+    "apcfg-auto-cert-est-subject-alt-name": "string",  # Subject alternative name (optional, e.g. \"DNS:dns1.com,IP:192.168.1.99\")
+    "apcfg-auto-cert-auto-regen-days": "integer",  # Number of days to wait before expiry of an updated local certificate is requeste
     "apcfg-auto-cert-est-https-ca": "string",  # PEM format https CA Certificate.
     "apcfg-auto-cert-scep-keytype": "option",  # Key type (default = rsa)
     "apcfg-auto-cert-scep-keysize": "option",  # Key size: 1024, 1536, 2048, 4096 (default 2048).
-    "apcfg-auto-cert-scep-ec-name": "option",  # Elliptic curve name: secp256r1, secp384r1 and secp521r1. (de
-    "apcfg-auto-cert-scep-sub-fully-dn": "string",  # Full DN of the subject (e.g C=US,ST=CA,L=Sunnyvale,O=Fortine
+    "apcfg-auto-cert-scep-ec-name": "option",  # Elliptic curve name: secp256r1, secp384r1 and secp521r1. (default secp256r1).
+    "apcfg-auto-cert-scep-sub-fully-dn": "string",  # Full DN of the subject (e.g C=US,ST=CA,L=Sunnyvale,O=Fortinet,OU=Dep1,emailAddre
     "apcfg-auto-cert-scep-url": "string",  # SCEP server URL.
     "apcfg-auto-cert-scep-password": "password",  # SCEP server challenge password for auto-regeneration.
     "apcfg-auto-cert-scep-ca-id": "string",  # CA identifier of the CA server for signing via SCEP.
-    "apcfg-auto-cert-scep-subject-alt-name": "string",  # Subject alternative name (optional, e.g. "DNS:dns1.com,IP:19
+    "apcfg-auto-cert-scep-subject-alt-name": "string",  # Subject alternative name (optional, e.g. \"DNS:dns1.com,IP:192.168.1.99\")
     "apcfg-auto-cert-scep-https-ca": "string",  # PEM format https CA Certificate.
-    "unii-4-5ghz-band": "option",  # Enable/disable UNII-4 5Ghz band channels (default = disable)
+    "unii-4-5ghz-band": "option",  # Enable/disable UNII-4 5Ghz band channels (default = disable).
     "admin-auth-tacacs+": "string",  # Remote authentication server for admin user.
-    "admin-restrict-local": "option",  # Enable/disable local admin authentication restriction when r
+    "admin-restrict-local": "option",  # Enable/disable local admin authentication restriction when remote authenticator 
 }
 
 # Field descriptions (help text from FortiOS API)

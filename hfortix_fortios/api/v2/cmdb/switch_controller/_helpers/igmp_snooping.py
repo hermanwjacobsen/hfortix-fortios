@@ -57,9 +57,9 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "aging-time": "integer",  # Maximum number of seconds to retain a multicast snooping ent
+    "aging-time": "integer",  # Maximum number of seconds to retain a multicast snooping entry for which no pack
     "flood-unknown-multicast": "option",  # Enable/disable unknown multicast flooding.
-    "query-interval": "integer",  # Maximum time after which IGMP query will be sent (10 - 1200 
+    "query-interval": "integer",  # Maximum time after which IGMP query will be sent (10 - 1200 sec, default = 125).
 }
 
 # Field descriptions (help text from FortiOS API)

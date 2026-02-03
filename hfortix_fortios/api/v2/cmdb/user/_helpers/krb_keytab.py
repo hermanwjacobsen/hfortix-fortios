@@ -62,7 +62,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Kerberos keytab entry name.
     "pac-data": "option",  # Enable/disable parsing PAC data in the ticket.
-    "principal": "string",  # Kerberos service principal. For example, HTTP/myfgt.example.
+    "principal": "string",  # Kerberos service principal. For example, HTTP/myfgt.example.com@example.com.
     "ldap-server": "string",  # LDAP server name(s).
     "keytab": "string",  # Base64 coded keytab file containing a pre-shared key.
 }

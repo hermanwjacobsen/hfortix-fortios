@@ -76,7 +76,7 @@ FIELD_TYPES = {
     "status": "option",  # Enable/disable remote syslog logging.
     "server": "string",  # Address of remote syslog server.
     "mode": "option",  # Remote syslog logging over UDP/Reliable TCP.
-    "use-management-vdom": "option",  # Enable/disable use of management VDOM as source VDOM for log
+    "use-management-vdom": "option",  # Enable/disable use of management VDOM as source VDOM for logs sent to syslog ser
     "port": "integer",  # Server listen port.
     "facility": "option",  # Remote syslog facility.
     "source-ip-interface": "string",  # Source interface of syslog.
@@ -85,7 +85,7 @@ FIELD_TYPES = {
     "priority": "option",  # Set log transmission priority.
     "max-log-rate": "integer",  # Syslog maximum log rate in MBps (0 = unlimited).
     "enc-algorithm": "option",  # Enable/disable reliable syslogging with TLS encryption.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
     "certificate": "string",  # Certificate used to communicate with Syslog server.
     "custom-field-name": "string",  # Custom field name for CEF format logging.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.

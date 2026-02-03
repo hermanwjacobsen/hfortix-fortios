@@ -114,7 +114,7 @@ FIELD_TYPES = {
     "name": "string",  # IPsec tunnel name.
     "phase1name": "string",  # Phase 1 determines the options required for phase 2.
     "dhcp-ipsec": "option",  # Enable/disable DHCP-IPsec.
-    "use-natip": "option",  # Enable to use the FortiGate public IP as the source selector
+    "use-natip": "option",  # Enable to use the FortiGate public IP as the source selector when outbound NAT i
     "selector-match": "option",  # Match type to use when comparing selectors.
     "proposal": "option",  # Phase2 proposal.
     "pfs": "option",  # Enable/disable PFS feature.
@@ -130,18 +130,18 @@ FIELD_TYPES = {
     "keepalive": "option",  # Enable/disable keep alive.
     "auto-negotiate": "option",  # Enable/disable IPsec SA auto-negotiation.
     "add-route": "option",  # Enable/disable automatic route addition.
-    "inbound-dscp-copy": "option",  # Enable/disable copying of the DSCP in the ESP header to the 
+    "inbound-dscp-copy": "option",  # Enable/disable copying of the DSCP in the ESP header to the inner IP header.
     "keylifeseconds": "integer",  # Phase2 key life in time in seconds (120 - 172800).
-    "keylifekbs": "integer",  # Phase2 key life in number of kilobytes of traffic (5120 - 42
+    "keylifekbs": "integer",  # Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
     "keylife-type": "option",  # Keylife type.
     "single-source": "option",  # Enable/disable single source IP restriction.
     "route-overlap": "option",  # Action for overlapping routes.
     "encapsulation": "option",  # ESP encapsulation mode.
     "l2tp": "option",  # Enable/disable L2TP over IPsec.
     "comments": "var-string",  # Comment.
-    "initiator-ts-narrow": "option",  # Enable/disable traffic selector narrowing for IKEv2 initiato
-    "diffserv": "option",  # Enable/disable applying DSCP value to the IPsec tunnel outer
-    "diffservcode": "user",  # DSCP value to be applied to the IPsec tunnel outer IP header
+    "initiator-ts-narrow": "option",  # Enable/disable traffic selector narrowing for IKEv2 initiator.
+    "diffserv": "option",  # Enable/disable applying DSCP value to the IPsec tunnel outer IP header.
+    "diffservcode": "user",  # DSCP value to be applied to the IPsec tunnel outer IP header.
     "protocol": "integer",  # Quick mode protocol selector (1 - 255 or 0 for all).
     "src-name": "string",  # Local proxy ID name.
     "src-name6": "string",  # Local proxy ID name.

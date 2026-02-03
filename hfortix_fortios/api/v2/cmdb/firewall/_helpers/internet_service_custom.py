@@ -59,7 +59,7 @@ FIELD_TYPES = {
     "name": "string",  # Internet Service name.
     "reputation": "integer",  # Reputation level of the custom Internet Service.
     "comment": "var-string",  # Comment.
-    "entry": "string",  # Entries added to the Internet Service database and custom da
+    "entry": "string",  # Entries added to the Internet Service database and custom database.
 }
 
 # Field descriptions (help text from FortiOS API)

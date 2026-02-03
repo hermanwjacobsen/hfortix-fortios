@@ -64,9 +64,9 @@ FIELD_TYPES = {
     "embryonic-limit": "integer",  # Maximum number of IPsec tunnels to negotiate simultaneously.
     "dh-multiprocess": "option",  # Enable/disable multiprocess Diffie-Hellman daemon for IKE.
     "dh-worker-count": "integer",  # Number of Diffie-Hellman workers to start.
-    "dh-mode": "option",  # Use software (CPU) or hardware (CPX) to perform Diffie-Hellm
+    "dh-mode": "option",  # Use software (CPU) or hardware (CPX) to perform Diffie-Hellman calculations.
     "dh-keypair-cache": "option",  # Enable/disable Diffie-Hellman key pair cache.
-    "dh-keypair-count": "integer",  # Number of key pairs to pre-generate for each Diffie-Hellman 
+    "dh-keypair-count": "integer",  # Number of key pairs to pre-generate for each Diffie-Hellman group (per-worker).
     "dh-keypair-throttle": "option",  # Enable/disable Diffie-Hellman key pair cache CPU throttling.
     "dh-group-1": "string",  # Diffie-Hellman group 1 (MODP-768).
     "dh-group-2": "string",  # Diffie-Hellman group 2 (MODP-1024).

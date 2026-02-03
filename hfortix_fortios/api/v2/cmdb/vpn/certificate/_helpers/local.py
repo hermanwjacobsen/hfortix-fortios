@@ -100,35 +100,35 @@ FIELD_TYPES = {
     "csr": "user",  # Certificate Signing Request.
     "state": "user",  # Certificate Signing Request State.
     "scep-url": "string",  # SCEP server URL.
-    "range": "option",  # Either a global or VDOM IP address range for the certificate
+    "range": "option",  # Either a global or VDOM IP address range for the certificate.
     "source": "option",  # Certificate source type.
-    "auto-regenerate-days": "integer",  # Number of days to wait before expiry of an updated local cer
-    "auto-regenerate-days-warning": "integer",  # Number of days to wait before an expiry warning message is g
+    "auto-regenerate-days": "integer",  # Number of days to wait before expiry of an updated local certificate is requeste
+    "auto-regenerate-days-warning": "integer",  # Number of days to wait before an expiry warning message is generated (0 = disabl
     "scep-password": "password",  # SCEP server challenge password for auto-regeneration.
     "ca-identifier": "string",  # CA identifier of the CA server for signing via SCEP.
     "name-encoding": "option",  # Name encoding method for auto-regeneration.
     "source-ip": "ipv4-address",  # Source IP address for communications to the SCEP server.
-    "ike-localid": "string",  # Local ID the FortiGate uses for authentication as a VPN clie
+    "ike-localid": "string",  # Local ID the FortiGate uses for authentication as a VPN client.
     "ike-localid-type": "option",  # IKE local ID type.
     "enroll-protocol": "option",  # Certificate enrollment protocol.
-    "private-key-retain": "option",  # Enable/disable retention of private key during SCEP renewal 
+    "private-key-retain": "option",  # Enable/disable retention of private key during SCEP renewal (default = disable).
     "cmp-server": "string",  # Address and port for CMP server (format = address:port).
     "cmp-path": "string",  # Path location inside CMP server.
     "cmp-server-cert": "string",  # CMP server certificate.
     "cmp-regeneration-method": "option",  # CMP auto-regeneration method.
-    "acme-ca-url": "string",  # The URL for the ACME CA server (Let's Encrypt is the default
+    "acme-ca-url": "string",  # The URL for the ACME CA server (Let's Encrypt is the default provider).
     "acme-domain": "string",  # A valid domain that resolves to this FortiGate unit.
-    "acme-email": "string",  # Contact email address that is required by some CAs like Lets
+    "acme-email": "string",  # Contact email address that is required by some CAs like LetsEncrypt.
     "acme-eab-key-id": "var-string",  # External Account Binding Key ID (optional setting).
     "acme-eab-key-hmac": "password",  # External Account Binding HMAC Key (URL-encoded base64).
-    "acme-rsa-key-size": "integer",  # Length of the RSA private key of the generated cert (Minimum
-    "acme-renew-window": "integer",  # Beginning of the renewal window (in days before certificate 
-    "est-server": "string",  # Address and port for EST server (e.g. https://example.com:12
+    "acme-rsa-key-size": "integer",  # Length of the RSA private key of the generated cert (Minimum 2048 bits).
+    "acme-renew-window": "integer",  # Beginning of the renewal window (in days before certificate expiration, 30 by de
+    "est-server": "string",  # Address and port for EST server (e.g. https://example.com:1234).
     "est-ca-id": "string",  # CA identifier of the CA server for signing via EST.
     "est-http-username": "string",  # HTTP Authentication username for signing via EST.
     "est-http-password": "password",  # HTTP Authentication password for signing via EST.
-    "est-client-cert": "string",  # Certificate used to authenticate this FortiGate to EST serve
-    "est-server-cert": "string",  # EST server's certificate must be verifiable by this certific
+    "est-client-cert": "string",  # Certificate used to authenticate this FortiGate to EST server.
+    "est-server-cert": "string",  # EST server's certificate must be verifiable by this certificate to be authentica
     "est-srp-username": "string",  # EST SRP authentication username.
     "est-srp-password": "password",  # EST SRP authentication password.
     "est-regeneration-method": "option",  # EST behavioral options during re-enrollment.

@@ -65,17 +65,17 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "status": "option",  # Enable/disable setting a password policy for locally defined
+    "status": "option",  # Enable/disable setting a password policy for locally defined administrator passw
     "apply-to": "option",  # Guest administrator to which this password policy applies.
     "minimum-length": "integer",  # Minimum password length (12 - 128, default = 12).
-    "min-lower-case-letter": "integer",  # Minimum number of lowercase characters in password (0 - 128,
-    "min-upper-case-letter": "integer",  # Minimum number of uppercase characters in password (0 - 128,
-    "min-non-alphanumeric": "integer",  # Minimum number of non-alphanumeric characters in password (0
-    "min-number": "integer",  # Minimum number of numeric characters in password (0 - 128, d
+    "min-lower-case-letter": "integer",  # Minimum number of lowercase characters in password (0 - 128, default = 1).
+    "min-upper-case-letter": "integer",  # Minimum number of uppercase characters in password (0 - 128, default = 1).
+    "min-non-alphanumeric": "integer",  # Minimum number of non-alphanumeric characters in password (0 - 128, default = 1)
+    "min-number": "integer",  # Minimum number of numeric characters in password (0 - 128, default = 1).
     "expire-status": "option",  # Enable/disable password expiration.
-    "expire-day": "integer",  # Number of days after which passwords expire (1 - 999 days, d
+    "expire-day": "integer",  # Number of days after which passwords expire (1 - 999 days, default = 90).
     "reuse-password": "option",  # Enable/disable reuse of password.
-    "reuse-password-limit": "integer",  # Number of times passwords can be reused (0 - 20, default = 0
+    "reuse-password-limit": "integer",  # Number of times passwords can be reused (0 - 20, default = 0. If set to 0, can r
 }
 
 # Field descriptions (help text from FortiOS API)

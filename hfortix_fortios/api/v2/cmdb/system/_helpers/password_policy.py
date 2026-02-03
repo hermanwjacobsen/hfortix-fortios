@@ -66,18 +66,18 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "status": "option",  # Enable/disable setting a password policy for locally defined
-    "apply-to": "option",  # Apply password policy to administrator passwords or IPsec pr
+    "status": "option",  # Enable/disable setting a password policy for locally defined administrator passw
+    "apply-to": "option",  # Apply password policy to administrator passwords or IPsec pre-shared keys or bot
     "minimum-length": "integer",  # Minimum password length (12 - 128, default = 12).
-    "min-lower-case-letter": "integer",  # Minimum number of lowercase characters in password (0 - 128,
-    "min-upper-case-letter": "integer",  # Minimum number of uppercase characters in password (0 - 128,
-    "min-non-alphanumeric": "integer",  # Minimum number of non-alphanumeric characters in password (0
-    "min-number": "integer",  # Minimum number of numeric characters in password (0 - 128, d
+    "min-lower-case-letter": "integer",  # Minimum number of lowercase characters in password (0 - 128, default = 1).
+    "min-upper-case-letter": "integer",  # Minimum number of uppercase characters in password (0 - 128, default = 1).
+    "min-non-alphanumeric": "integer",  # Minimum number of non-alphanumeric characters in password (0 - 128, default = 1)
+    "min-number": "integer",  # Minimum number of numeric characters in password (0 - 128, default = 1).
     "expire-status": "option",  # Enable/disable password expiration.
-    "expire-day": "integer",  # Number of days after which passwords expire (1 - 999 days, d
+    "expire-day": "integer",  # Number of days after which passwords expire (1 - 999 days, default = 90).
     "reuse-password": "option",  # Enable/disable reuse of password.
-    "reuse-password-limit": "integer",  # Number of times passwords can be reused (0 - 20, default = 0
-    "login-lockout-upon-weaker-encryption": "option",  # Enable/disable administrative user login lockout upon downgr
+    "reuse-password-limit": "integer",  # Number of times passwords can be reused (0 - 20, default = 0. If set to 0, can r
+    "login-lockout-upon-weaker-encryption": "option",  # Enable/disable administrative user login lockout upon downgrade (defaut = disabl
 }
 
 # Field descriptions (help text from FortiOS API)

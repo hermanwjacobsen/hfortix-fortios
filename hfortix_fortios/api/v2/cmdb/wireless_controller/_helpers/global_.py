@@ -89,37 +89,37 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name of the wireless controller.
     "location": "string",  # Description of the location of the wireless controller.
-    "acd-process-count": "integer",  # Configure the number cw_acd daemons for multi-core CPU suppo
+    "acd-process-count": "integer",  # Configure the number cw_acd daemons for multi-core CPU support (default = 0).
     "wpad-process-count": "integer",  # Wpad daemon process count for multi-core CPU support.
     "image-download": "option",  # Enable/disable WTP image download at join time.
     "rolling-wtp-upgrade": "option",  # Enable/disable rolling WTP upgrade (default = disable).
-    "rolling-wtp-upgrade-threshold": "string",  # Minimum signal level/threshold in dBm required for the manag
-    "max-retransmit": "integer",  # Maximum number of tunnel packet retransmissions (0 - 64, def
+    "rolling-wtp-upgrade-threshold": "string",  # Minimum signal level/threshold in dBm required for the managed WTP to be include
+    "max-retransmit": "integer",  # Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
     "control-message-offload": "option",  # Configure CAPWAP control message data channel offload.
-    "data-ethernet-II": "option",  # Configure the wireless controller to use Ethernet II or 802.
-    "link-aggregation": "option",  # Enable/disable calculating the CAPWAP transmit hash to load 
-    "mesh-eth-type": "integer",  # Mesh Ethernet identifier included in backhaul packets (0 - 6
-    "fiapp-eth-type": "integer",  # Ethernet type for Fortinet Inter-Access Point Protocol (IAPP
-    "discovery-mc-addr": "ipv4-address-multicast",  # Multicast IP address for AP discovery (default = 244.0.1.140
-    "discovery-mc-addr6": "ipv6-address",  # Multicast IPv6 address for AP discovery (default = FF02::18C
-    "max-clients": "integer",  # Maximum number of clients that can connect simultaneously (d
-    "rogue-scan-mac-adjacency": "integer",  # Maximum numerical difference between an AP's Ethernet and wi
-    "ipsec-base-ip": "ipv4-address",  # Base IP address for IPsec VPN tunnels between the access poi
+    "data-ethernet-II": "option",  # Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 
+    "link-aggregation": "option",  # Enable/disable calculating the CAPWAP transmit hash to load balance sessions to 
+    "mesh-eth-type": "integer",  # Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755
+    "fiapp-eth-type": "integer",  # Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, 
+    "discovery-mc-addr": "ipv4-address-multicast",  # Multicast IP address for AP discovery (default = 244.0.1.140).
+    "discovery-mc-addr6": "ipv6-address",  # Multicast IPv6 address for AP discovery (default = FF02::18C).
+    "max-clients": "integer",  # Maximum number of clients that can connect simultaneously (default = 0, meaning 
+    "rogue-scan-mac-adjacency": "integer",  # Maximum numerical difference between an AP's Ethernet and wireless MAC values to
+    "ipsec-base-ip": "ipv4-address",  # Base IP address for IPsec VPN tunnels between the access points and the wireless
     "wtp-share": "option",  # Enable/disable sharing of WTPs between VDOMs.
     "tunnel-mode": "option",  # Compatible/strict tunnel mode.
-    "nac-interval": "integer",  # Interval in seconds between two WiFi network access control 
-    "ap-log-server": "option",  # Enable/disable configuring FortiGate to redirect wireless ev
+    "nac-interval": "integer",  # Interval in seconds between two WiFi network access control (NAC) checks (10 - 6
+    "ap-log-server": "option",  # Enable/disable configuring FortiGate to redirect wireless event log messages or 
     "ap-log-server-ip": "ipv4-address",  # IP address that FortiGate or FortiAPs send log messages to.
     "ap-log-server-port": "integer",  # Port that FortiGate or FortiAPs send log messages to.
-    "max-sta-offline": "integer",  # Maximum number of station offline stored on the controller (
-    "max-sta-offline-ip2mac": "integer",  # Maximum number of station offline ip2mac stored on the contr
-    "max-sta-cap": "integer",  # Maximum number of station cap stored on the controller (defa
-    "max-sta-cap-wtp": "integer",  # Maximum number of station cap's wtp info stored on the contr
-    "max-rogue-ap": "integer",  # Maximum number of rogue APs stored on the controller (defaul
-    "max-rogue-ap-wtp": "integer",  # Maximum number of rogue AP's wtp info stored on the controll
-    "max-rogue-sta": "integer",  # Maximum number of rogue stations stored on the controller (d
-    "max-wids-entry": "integer",  # Maximum number of wids entries stored on the controller (def
-    "max-ble-device": "integer",  # Maximum number of BLE devices stored on the controller (defa
+    "max-sta-offline": "integer",  # Maximum number of station offline stored on the controller (default = 0).
+    "max-sta-offline-ip2mac": "integer",  # Maximum number of station offline ip2mac stored on the controller (default = 0).
+    "max-sta-cap": "integer",  # Maximum number of station cap stored on the controller (default = 0).
+    "max-sta-cap-wtp": "integer",  # Maximum number of station cap's wtp info stored on the controller (1 - 16, defau
+    "max-rogue-ap": "integer",  # Maximum number of rogue APs stored on the controller (default = 0).
+    "max-rogue-ap-wtp": "integer",  # Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default 
+    "max-rogue-sta": "integer",  # Maximum number of rogue stations stored on the controller (default = 0).
+    "max-wids-entry": "integer",  # Maximum number of wids entries stored on the controller (default = 0).
+    "max-ble-device": "integer",  # Maximum number of BLE devices stored on the controller (default = 0).
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -60,7 +60,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Dynamic port policy name.
     "description": "string",  # Description for the Dynamic port policy.
-    "fortilink": "string",  # FortiLink interface for which this Dynamic port policy belon
+    "fortilink": "string",  # FortiLink interface for which this Dynamic port policy belongs to.
     "policy": "string",  # Port policies with matching criteria and actions.
 }
 

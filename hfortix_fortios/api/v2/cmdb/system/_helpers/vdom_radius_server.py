@@ -60,7 +60,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name of the VDOM that you are adding the RADIUS server to.
     "status": "option",  # Enable/disable the RSSO RADIUS server for this VDOM.
-    "radius-server-vdom": "string",  # Use this option to select another VDOM containing a VDOM RSS
+    "radius-server-vdom": "string",  # Use this option to select another VDOM containing a VDOM RSSO RADIUS server to u
 }
 
 # Field descriptions (help text from FortiOS API)

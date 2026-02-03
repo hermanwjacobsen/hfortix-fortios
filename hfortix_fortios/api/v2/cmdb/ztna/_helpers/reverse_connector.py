@@ -66,8 +66,8 @@ FIELD_TYPES = {
     "name": "string",  # Reverse-Connector name
     "status": "option",  # Reverse-Connector status.
     "address": "string",  # Connector service edge adress(IP or FQDN).
-    "port": "integer",  # Port number that traffic uses to connect to connector servic
-    "health-check-interval": "integer",  # Health check interval in seconds (0 - 600, default = 60, 0 =
+    "port": "integer",  # Port number that traffic uses to connect to connector service edge(0 - 65535;).
+    "health-check-interval": "integer",  # Health check interval in seconds (0 - 600, default = 60, 0 = disable).
     "ssl-max-version": "option",  # Highest TLS version acceptable from a server.
     "certificate": "string",  # The name of the certificate to use for SSL handshake.
     "trusted-server-ca": "string",  # Trusted Server CA certificate used by SSL connection.

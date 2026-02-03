@@ -65,8 +65,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "link-down-auth": "option",  # Interface-reauthentication state to set if a link is down.
-    "reauth-period": "integer",  # Period of time to allow for reauthentication (1 - 1440 sec, 
-    "max-reauth-attempt": "integer",  # Maximum number of authentication attempts (0 - 15, default =
+    "reauth-period": "integer",  # Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = di
+    "max-reauth-attempt": "integer",  # Maximum number of authentication attempts (0 - 15, default = 3).
     "tx-period": "integer",  # 802.1X Tx period (seconds, default=30).
     "mab-reauth": "option",  # Enable/disable MAB re-authentication.
     "mac-username-delimiter": "option",  # MAC authentication username delimiter (default = hyphen).

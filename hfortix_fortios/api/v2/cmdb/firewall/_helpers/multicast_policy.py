@@ -77,7 +77,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Policy ID ((0 - 4294967294).
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "name": "string",  # Policy name.
     "comments": "var-string",  # Comment.
     "status": "option",  # Enable/disable this policy.
@@ -85,18 +85,18 @@ FIELD_TYPES = {
     "dstintf": "string",  # Destination interface name.
     "srcaddr": "string",  # Source address objects.
     "dstaddr": "string",  # Destination address objects.
-    "snat": "option",  # Enable/disable substitution of the outgoing interface IP add
-    "snat-ip": "ipv4-address",  # IPv4 address to be used as the source address for NATed traf
+    "snat": "option",  # Enable/disable substitution of the outgoing interface IP address for the origina
+    "snat-ip": "ipv4-address",  # IPv4 address to be used as the source address for NATed traffic.
     "dnat": "ipv4-address-any",  # IPv4 DNAT address used for multicast destination addresses.
     "action": "option",  # Accept or deny traffic matching the policy.
-    "protocol": "integer",  # Integer value for the protocol type as defined by IANA (0 - 
-    "start-port": "integer",  # Integer value for starting TCP/UDP/SCTP destination port in 
-    "end-port": "integer",  # Integer value for ending TCP/UDP/SCTP destination port in ra
+    "protocol": "integer",  # Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
+    "start-port": "integer",  # Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, de
+    "end-port": "integer",  # Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, defa
     "utm-status": "option",  # Enable to add an IPS security profile to the policy.
     "ips-sensor": "string",  # Name of an existing IPS sensor.
-    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security prof
-    "auto-asic-offload": "option",  # Enable/disable offloading policy traffic for hardware accele
-    "traffic-shaper": "string",  # Traffic shaper to apply to traffic forwarded by the multicas
+    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security profile sessions.
+    "auto-asic-offload": "option",  # Enable/disable offloading policy traffic for hardware acceleration.
+    "traffic-shaper": "string",  # Traffic shaper to apply to traffic forwarded by the multicast policy.
 }
 
 # Field descriptions (help text from FortiOS API)

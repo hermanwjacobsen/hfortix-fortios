@@ -74,7 +74,7 @@ FIELD_TYPES = {
     "vpn-role": "option",  # Fabric VPN role.
     "overlays": "string",  # Local overlay interfaces table.
     "advertised-subnets": "string",  # Local advertised subnets.
-    "loopback-address-block": "ipv4-classnet-host",  # IPv4 address and subnet mask for hub's loopback address, syn
+    "loopback-address-block": "ipv4-classnet-host",  # IPv4 address and subnet mask for hub's loopback address, syntax: X.X.X.X/24.
     "loopback-interface": "string",  # Loopback interface.
     "loopback-advertised-subnet": "integer",  # Loopback advertised subnet reference.
     "psksecret": "password-3",  # Pre-shared secret for ADVPN.

@@ -83,7 +83,7 @@ FIELD_TYPES = {
     "priority": "option",  # Set log transmission priority.
     "max-log-rate": "integer",  # Syslog maximum log rate in MBps (0 = unlimited).
     "enc-algorithm": "option",  # Enable/disable reliable syslogging with TLS encryption.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
     "certificate": "string",  # Certificate used to communicate with Syslog server.
     "custom-field-name": "string",  # Custom field name for CEF format logging.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.

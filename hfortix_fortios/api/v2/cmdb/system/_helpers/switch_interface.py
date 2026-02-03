@@ -64,16 +64,16 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "name": "string",  # Interface name (name cannot be in use by any other interface
+    "name": "string",  # Interface name (name cannot be in use by any other interfaces, VLANs, or inter-V
     "vdom": "string",  # VDOM that the software switch belongs to.
-    "span-dest-port": "string",  # SPAN destination port name. All traffic on the SPAN source p
-    "span-source-port": "string",  # Physical interface name. Port spanning echoes all traffic on
+    "span-dest-port": "string",  # SPAN destination port name. All traffic on the SPAN source ports is echoed to th
+    "span-source-port": "string",  # Physical interface name. Port spanning echoes all traffic on the SPAN source por
     "member": "string",  # Names of the interfaces that belong to the virtual switch.
-    "type": "option",  # Type of switch based on functionality: switch for normal fun
-    "intra-switch-policy": "option",  # Allow any traffic between switch interfaces or require firew
-    "mac-ttl": "integer",  # Duration for which MAC addresses are held in the ARP table (
-    "span": "option",  # Enable/disable port spanning. Port spanning echoes traffic r
-    "span-direction": "option",  # The direction in which the SPAN port operates, either: rx, t
+    "type": "option",  # Type of switch based on functionality: switch for normal functionality, or hub t
+    "intra-switch-policy": "option",  # Allow any traffic between switch interfaces or require firewall policies to allo
+    "mac-ttl": "integer",  # Duration for which MAC addresses are held in the ARP table (300 - 8640000 sec, d
+    "span": "option",  # Enable/disable port spanning. Port spanning echoes traffic received by the softw
+    "span-direction": "option",  # The direction in which the SPAN port operates, either: rx, tx, or both.
 }
 
 # Field descriptions (help text from FortiOS API)

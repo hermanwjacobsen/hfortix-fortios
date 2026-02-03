@@ -57,9 +57,9 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "match-timeout": "integer",  # Number of seconds to wait before a security policy match for
-    "tcp-match-timeout": "integer",  # Number of seconds to wait before a security policy match for
-    "tcp-halfopen-match-timeout": "integer",  # Number of seconds to wait before a security policy match for
+    "match-timeout": "integer",  # Number of seconds to wait before a security policy match for an idle non-TCP ses
+    "tcp-match-timeout": "integer",  # Number of seconds to wait before a security policy match for an idle TCP session
+    "tcp-halfopen-match-timeout": "integer",  # Number of seconds to wait before a security policy match for a session after one
 }
 
 # Field descriptions (help text from FortiOS API)

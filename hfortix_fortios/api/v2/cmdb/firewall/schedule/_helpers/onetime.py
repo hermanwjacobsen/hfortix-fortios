@@ -67,13 +67,13 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Onetime schedule name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
     "start": "user",  # Schedule start date and time, format hh:mm yyyy/mm/dd.
     "start-utc": "user",  # Schedule start date and time, in epoch format.
     "end": "user",  # Schedule end date and time, format hh:mm yyyy/mm/dd.
     "end-utc": "user",  # Schedule end date and time, in epoch format.
     "color": "integer",  # Color of icon on the GUI.
-    "expiration-days": "integer",  # Write an event log message this many days before the schedul
+    "expiration-days": "integer",  # Write an event log message this many days before the schedule expires.
     "fabric-object": "option",  # Security Fabric global object setting.
 }
 

@@ -61,11 +61,11 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "storage-device": "string",  # Storage device name.
-    "size": "integer",  # Maximum total size of files within the DLP fingerprint datab
-    "db-mode": "option",  # Behavior when the maximum size is reached in the DLP fingerp
-    "cache-mem-percent": "integer",  # Maximum percentage of available memory allocated to caching 
-    "chunk-size": "integer",  # Maximum fingerprint chunk size. Caution, changing this setti
-    "config-builder-timeout": "integer",  # Maximum time allowed for building a single DLP profile (defa
+    "size": "integer",  # Maximum total size of files within the DLP fingerprint database (MB).
+    "db-mode": "option",  # Behavior when the maximum size is reached in the DLP fingerprint database.
+    "cache-mem-percent": "integer",  # Maximum percentage of available memory allocated to caching DLP fingerprints (1 
+    "chunk-size": "integer",  # Maximum fingerprint chunk size. Caution, changing this setting will flush the en
+    "config-builder-timeout": "integer",  # Maximum time allowed for building a single DLP profile (default 60 seconds).
 }
 
 # Field descriptions (help text from FortiOS API)

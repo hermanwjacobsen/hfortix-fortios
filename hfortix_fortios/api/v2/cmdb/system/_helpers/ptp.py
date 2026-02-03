@@ -61,13 +61,13 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "status": "option",  # Enable/disable setting the FortiGate system time by synchron
+    "status": "option",  # Enable/disable setting the FortiGate system time by synchronizing with an PTP Se
     "mode": "option",  # Multicast transmission or hybrid transmission.
     "delay-mechanism": "option",  # End to end delay detection or peer to peer delay detection.
-    "request-interval": "integer",  # The delay request value is the logarithmic mean interval in 
+    "request-interval": "integer",  # The delay request value is the logarithmic mean interval in seconds between the 
     "interface": "string",  # PTP client will reply through this interface.
-    "server-mode": "option",  # Enable/disable FortiGate PTP server mode. Your FortiGate bec
-    "server-interface": "string",  # FortiGate interface(s) with PTP server mode enabled. Devices
+    "server-mode": "option",  # Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server f
+    "server-interface": "string",  # FortiGate interface(s) with PTP server mode enabled. Devices on your network can
 }
 
 # Field descriptions (help text from FortiOS API)

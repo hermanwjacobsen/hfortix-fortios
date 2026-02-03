@@ -79,19 +79,19 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "status": "option",  # Enable/disable logging to FortiAnalyzer.
     "ips-archive": "option",  # Enable/disable IPS packet archive logging.
-    "certificate-verification": "option",  # Enable/disable identity verification of FortiAnalyzer by use
+    "certificate-verification": "option",  # Enable/disable identity verification of FortiAnalyzer by use of certificate.
     "serial": "string",  # Serial numbers of the FortiAnalyzer.
     "preshared-key": "string",  # Preshared-key used for auto-authorization on FortiAnalyzer.
-    "access-config": "option",  # Enable/disable FortiAnalyzer access to configuration and dat
+    "access-config": "option",  # Enable/disable FortiAnalyzer access to configuration and data.
     "hmac-algorithm": "option",  # OFTP login hash algorithm.
-    "enc-algorithm": "option",  # Configure the level of SSL protection for secure communicati
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
-    "conn-timeout": "integer",  # FortiAnalyzer connection time-out in seconds (for status and
-    "monitor-keepalive-period": "integer",  # Time between OFTP keepalives in seconds (for status and log 
-    "monitor-failure-retry-period": "integer",  # Time between FortiAnalyzer connection retries in seconds (fo
+    "enc-algorithm": "option",  # Configure the level of SSL protection for secure communication with FortiAnalyze
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
+    "conn-timeout": "integer",  # FortiAnalyzer connection time-out in seconds (for status and log buffer).
+    "monitor-keepalive-period": "integer",  # Time between OFTP keepalives in seconds (for status and log buffer).
+    "monitor-failure-retry-period": "integer",  # Time between FortiAnalyzer connection retries in seconds (for status and log buf
     "certificate": "string",  # Certificate used to communicate with FortiAnalyzer.
-    "source-ip": "string",  # Source IPv4 or IPv6 address used to communicate with FortiAn
-    "upload-option": "option",  # Enable/disable logging to hard disk and then uploading to Fo
+    "source-ip": "string",  # Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
+    "upload-option": "option",  # Enable/disable logging to hard disk and then uploading to FortiAnalyzer.
     "upload-interval": "option",  # Frequency to upload log files to FortiAnalyzer.
     "upload-day": "user",  # Day of week (month) to upload logs.
     "upload-time": "user",  # Time to upload logs (hh:mm).

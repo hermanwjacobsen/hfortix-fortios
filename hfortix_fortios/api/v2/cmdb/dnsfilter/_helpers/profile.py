@@ -70,19 +70,19 @@ FIELD_TYPES = {
     "comment": "var-string",  # Comment.
     "domain-filter": "string",  # Domain filter settings.
     "ftgd-dns": "string",  # FortiGuard DNS Filter settings.
-    "log-all-domain": "option",  # Enable/disable logging of all domains visited (detailed DNS 
+    "log-all-domain": "option",  # Enable/disable logging of all domains visited (detailed DNS logging).
     "sdns-ftgd-err-log": "option",  # Enable/disable FortiGuard SDNS rating error logging.
     "sdns-domain-log": "option",  # Enable/disable domain filtering and botnet domain logging.
     "block-action": "option",  # Action to take for blocked domains.
     "redirect-portal": "ipv4-address",  # IPv4 address of the SDNS redirect portal.
     "redirect-portal6": "ipv6-address",  # IPv6 address of the SDNS redirect portal.
     "block-botnet": "option",  # Enable/disable blocking botnet C&C DNS lookups.
-    "safe-search": "option",  # Enable/disable Google, Bing, YouTube, Qwant, DuckDuckGo safe
+    "safe-search": "option",  # Enable/disable Google, Bing, YouTube, Qwant, DuckDuckGo safe search.
     "youtube-restrict": "option",  # Set safe search for YouTube restriction level.
     "external-ip-blocklist": "string",  # One or more external IP block lists.
     "dns-translation": "string",  # DNS translation settings.
     "transparent-dns-database": "string",  # Transparent DNS database zones.
-    "strip-ech": "option",  # Enable/disable removal of the encrypted client hello service
+    "strip-ech": "option",  # Enable/disable removal of the encrypted client hello service parameter from supp
 }
 
 # Field descriptions (help text from FortiOS API)

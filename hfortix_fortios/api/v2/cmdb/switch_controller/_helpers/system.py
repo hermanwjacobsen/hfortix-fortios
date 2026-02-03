@@ -68,13 +68,13 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "parallel-process-override": "option",  # Enable/disable parallel process override.
     "parallel-process": "integer",  # Maximum number of parallel processes.
-    "data-sync-interval": "integer",  # Time interval between collection of switch data (30 - 1800 s
-    "iot-weight-threshold": "integer",  # MAC entry's confidence value. Value is re-queried when below
-    "iot-scan-interval": "integer",  # IoT scan interval (2 - 10080 mins, default = 60 mins, 0 = di
-    "iot-holdoff": "integer",  # MAC entry's creation time. Time must be greater than this va
-    "iot-mac-idle": "integer",  # MAC entry's idle time. MAC entry is removed after this value
-    "nac-periodic-interval": "integer",  # Periodic time interval to run NAC engine (5 - 180 sec, defau
-    "dynamic-periodic-interval": "integer",  # Periodic time interval to run Dynamic port policy engine (5 
+    "data-sync-interval": "integer",  # Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 
+    "iot-weight-threshold": "integer",  # MAC entry's confidence value. Value is re-queried when below this value (default
+    "iot-scan-interval": "integer",  # IoT scan interval (2 - 10080 mins, default = 60 mins, 0 = disable).
+    "iot-holdoff": "integer",  # MAC entry's creation time. Time must be greater than this value for an entry to 
+    "iot-mac-idle": "integer",  # MAC entry's idle time. MAC entry is removed after this value (0 - 10080 mins, de
+    "nac-periodic-interval": "integer",  # Periodic time interval to run NAC engine (5 - 180 sec, default = 60).
+    "dynamic-periodic-interval": "integer",  # Periodic time interval to run Dynamic port policy engine (5 - 180 sec, default =
     "tunnel-mode": "option",  # Compatible/strict tunnel mode.
     "caputp-echo-interval": "integer",  # Echo interval for the caputp echo requests from swtp.
     "caputp-max-retransmit": "integer",  # Maximum retransmission count for the caputp tunnel packets.

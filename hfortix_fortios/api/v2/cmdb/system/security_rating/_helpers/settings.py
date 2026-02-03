@@ -55,7 +55,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "override-sync": "option",  # Enable/disable overriding Security Rating control settings s
+    "override-sync": "option",  # Enable/disable overriding Security Rating control settings synced from the Secur
 }
 
 # Field descriptions (help text from FortiOS API)

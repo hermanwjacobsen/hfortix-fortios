@@ -56,8 +56,8 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "status": "option",  # Enable/disable adding FortiSwitch logs to FortiGate event lo
-    "severity": "option",  # Severity of FortiSwitch logs that are added to the FortiGate
+    "status": "option",  # Enable/disable adding FortiSwitch logs to FortiGate event log.
+    "severity": "option",  # Severity of FortiSwitch logs that are added to the FortiGate event log.
 }
 
 # Field descriptions (help text from FortiOS API)

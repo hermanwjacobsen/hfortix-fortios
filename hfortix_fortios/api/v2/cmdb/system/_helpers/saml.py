@@ -91,9 +91,9 @@ FIELD_TYPES = {
     "idp-single-logout-url": "string",  # IDP single logout URL.
     "idp-cert": "string",  # IDP certificate name.
     "server-address": "string",  # Server address.
-    "require-signed-resp-and-asrt": "option",  # Require both response and assertion from IDP to be signed wh
-    "tolerance": "integer",  # Tolerance to the range of time when the assertion is valid (
-    "life": "integer",  # Length of the range of time when the assertion is valid (in 
+    "require-signed-resp-and-asrt": "option",  # Require both response and assertion from IDP to be signed when FGT acts as SP (d
+    "tolerance": "integer",  # Tolerance to the range of time when the assertion is valid (in minutes).
+    "life": "integer",  # Length of the range of time when the assertion is valid (in minutes).
     "service-providers": "string",  # Authorized service providers.
 }
 

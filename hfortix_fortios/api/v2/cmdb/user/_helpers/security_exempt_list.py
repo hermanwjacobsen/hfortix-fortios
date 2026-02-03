@@ -58,7 +58,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name of the exempt list.
     "description": "string",  # Description.
-    "rule": "string",  # Configure rules for exempting users from captive portal auth
+    "rule": "string",  # Configure rules for exempting users from captive portal authentication.
 }
 
 # Field descriptions (help text from FortiOS API)

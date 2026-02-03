@@ -93,20 +93,20 @@ FIELD_TYPES = {
     "retry": "integer",  # Number of times to retry (0 - 5).
     "dns-cache-limit": "integer",  # Maximum number of records in the DNS cache.
     "dns-cache-ttl": "integer",  # Duration in seconds that the DNS cache retains information.
-    "cache-notfound-responses": "option",  # Enable/disable response from the DNS server when a record is
+    "cache-notfound-responses": "option",  # Enable/disable response from the DNS server when a record is not in cache.
     "source-ip": "ipv4-address",  # IP address used by the DNS server as its source IP.
-    "source-ip-interface": "string",  # IP address of the specified interface as the source IP addre
-    "root-servers": "user",  # Configure up to two preferred servers that serve the DNS roo
+    "source-ip-interface": "string",  # IP address of the specified interface as the source IP address.
+    "root-servers": "user",  # Configure up to two preferred servers that serve the DNS root zone (default uses
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
     "server-select-method": "option",  # Specify how configured servers are prioritized.
-    "alt-primary": "ipv4-address",  # Alternate primary DNS server. This is not used as a failover
-    "alt-secondary": "ipv4-address",  # Alternate secondary DNS server. This is not used as a failov
+    "alt-primary": "ipv4-address",  # Alternate primary DNS server. This is not used as a failover DNS server.
+    "alt-secondary": "ipv4-address",  # Alternate secondary DNS server. This is not used as a failover DNS server.
     "log": "option",  # Local DNS log setting.
     "fqdn-cache-ttl": "integer",  # FQDN cache time to live in seconds (0 - 86400, default = 0).
-    "fqdn-max-refresh": "integer",  # FQDN cache maximum refresh time in seconds (3600 - 86400, de
-    "fqdn-min-refresh": "integer",  # FQDN cache minimum refresh time in seconds (10 - 3600, defau
+    "fqdn-max-refresh": "integer",  # FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+    "fqdn-min-refresh": "integer",  # FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
     "hostname-ttl": "integer",  # TTL of hostname table entries (60 - 86400).
     "hostname-limit": "integer",  # Limit of the number of hostname table entries (0 - 50000).
 }

@@ -59,11 +59,11 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "tx-hold": "integer",  # Number of tx-intervals before local LLDP data expires (1 - 1
-    "tx-interval": "integer",  # Frequency of LLDP PDU transmission from FortiSwitch (5 - 409
-    "fast-start-interval": "integer",  # Frequency of LLDP PDU transmission from FortiSwitch for the 
-    "management-interface": "option",  # Primary management interface to be advertised in LLDP and CD
-    "device-detection": "option",  # Enable/disable dynamic detection of LLDP neighbor devices fo
+    "tx-hold": "integer",  # Number of tx-intervals before local LLDP data expires (1 - 16, default = 4). Pac
+    "tx-interval": "integer",  # Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30)
+    "fast-start-interval": "integer",  # Frequency of LLDP PDU transmission from FortiSwitch for the first 4 packets when
+    "management-interface": "option",  # Primary management interface to be advertised in LLDP and CDP PDUs.
+    "device-detection": "option",  # Enable/disable dynamic detection of LLDP neighbor devices for VLAN assignment.
 }
 
 # Field descriptions (help text from FortiOS API)

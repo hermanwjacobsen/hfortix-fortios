@@ -74,10 +74,10 @@ FIELD_TYPES = {
     "auth-portal": "option",  # Enable/disable authentication portal.
     "auth-virtual-host": "string",  # Virtual host for authentication portal.
     "vip6": "string",  # Virtual IPv6 name.
-    "svr-pool-multiplex": "option",  # Enable/disable server pool multiplexing (default = disable).
-    "svr-pool-ttl": "integer",  # Time-to-live in the server pool for idle connections to serv
-    "svr-pool-server-max-request": "integer",  # Maximum number of requests that servers in the server pool h
-    "svr-pool-server-max-concurrent-request": "integer",  # Maximum number of concurrent requests that servers in the se
+    "svr-pool-multiplex": "option",  # Enable/disable server pool multiplexing (default = disable). Share connected ser
+    "svr-pool-ttl": "integer",  # Time-to-live in the server pool for idle connections to servers.
+    "svr-pool-server-max-request": "integer",  # Maximum number of requests that servers in the server pool handle before disconn
+    "svr-pool-server-max-concurrent-request": "integer",  # Maximum number of concurrent requests that servers in the server pool could hand
     "api-gateway": "string",  # Set IPv4 API Gateway.
     "api-gateway6": "string",  # Set IPv6 API Gateway.
 }

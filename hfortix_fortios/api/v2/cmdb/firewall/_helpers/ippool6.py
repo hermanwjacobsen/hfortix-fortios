@@ -64,8 +64,8 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # IPv6 IP pool name.
     "type": "option",  # Configure IPv6 pool type (overload or NPTv6).
-    "startip": "ipv6-address",  # First IPv6 address (inclusive) in the range for the address 
-    "endip": "ipv6-address",  # Final IPv6 address (inclusive) in the range for the address 
+    "startip": "ipv6-address",  # First IPv6 address (inclusive) in the range for the address pool (format = xxxx:
+    "endip": "ipv6-address",  # Final IPv6 address (inclusive) in the range for the address pool (format = xxxx:
     "internal-prefix": "ipv6-network",  # Internal NPTv6 prefix length (32 - 64).
     "external-prefix": "ipv6-network",  # External NPTv6 prefix length (32 - 64).
     "comments": "var-string",  # Comment.

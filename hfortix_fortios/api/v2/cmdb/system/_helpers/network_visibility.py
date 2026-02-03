@@ -59,9 +59,9 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "destination-visibility": "option",  # Enable/disable logging of destination visibility.
-    "source-location": "option",  # Enable/disable logging of source geographical location visib
+    "source-location": "option",  # Enable/disable logging of source geographical location visibility.
     "destination-hostname-visibility": "option",  # Enable/disable logging of destination hostname visibility.
-    "destination-location": "option",  # Enable/disable logging of destination geographical location 
+    "destination-location": "option",  # Enable/disable logging of destination geographical location visibility.
 }
 
 # Field descriptions (help text from FortiOS API)

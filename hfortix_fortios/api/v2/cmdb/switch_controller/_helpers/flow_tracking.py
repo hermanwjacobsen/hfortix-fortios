@@ -68,20 +68,20 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "sample-mode": "option",  # Configure sample mode for the flow tracking.
-    "sample-rate": "integer",  # Configure sample rate for the perimeter and device-ingress s
+    "sample-rate": "integer",  # Configure sample rate for the perimeter and device-ingress sampling(0 - 99999).
     "format": "option",  # Configure flow tracking protocol.
     "collectors": "string",  # Configure collectors for the flow.
     "level": "option",  # Configure flow tracking level.
-    "max-export-pkt-size": "integer",  # Configure flow max export packet size (512-9216, default=512
+    "max-export-pkt-size": "integer",  # Configure flow max export packet size (512-9216, default=512 bytes).
     "template-export-period": "integer",  # Configure template export period (1-60, default=5 minutes).
-    "timeout-general": "integer",  # Configure flow session general timeout (60-604800, default=3
-    "timeout-icmp": "integer",  # Configure flow session ICMP timeout (60-604800, default=300 
-    "timeout-max": "integer",  # Configure flow session max timeout (60-604800, default=60480
-    "timeout-tcp": "integer",  # Configure flow session TCP timeout (60-604800, default=3600 
-    "timeout-tcp-fin": "integer",  # Configure flow session TCP FIN timeout (60-604800, default=3
-    "timeout-tcp-rst": "integer",  # Configure flow session TCP RST timeout (60-604800, default=1
-    "timeout-udp": "integer",  # Configure flow session UDP timeout (60-604800, default=300 s
-    "aggregates": "string",  # Configure aggregates in which all traffic sessions matching 
+    "timeout-general": "integer",  # Configure flow session general timeout (60-604800, default=3600 seconds).
+    "timeout-icmp": "integer",  # Configure flow session ICMP timeout (60-604800, default=300 seconds).
+    "timeout-max": "integer",  # Configure flow session max timeout (60-604800, default=604800 seconds).
+    "timeout-tcp": "integer",  # Configure flow session TCP timeout (60-604800, default=3600 seconds).
+    "timeout-tcp-fin": "integer",  # Configure flow session TCP FIN timeout (60-604800, default=300 seconds).
+    "timeout-tcp-rst": "integer",  # Configure flow session TCP RST timeout (60-604800, default=120 seconds).
+    "timeout-udp": "integer",  # Configure flow session UDP timeout (60-604800, default=300 seconds).
+    "aggregates": "string",  # Configure aggregates in which all traffic sessions matching the IP Address will 
 }
 
 # Field descriptions (help text from FortiOS API)

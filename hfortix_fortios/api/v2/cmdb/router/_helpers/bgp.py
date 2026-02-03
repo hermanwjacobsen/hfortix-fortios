@@ -107,7 +107,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "as": "user",  # Router AS number, asplain/asdot/asdot+ format, 0 to disable 
+    "as": "user",  # Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
     "router-id": "ipv4-address-any",  # Router ID.
     "keepalive-timer": "integer",  # Frequency to send keep alive requests.
     "holdtime-timer": "integer",  # Number of seconds to mark peer as dead.
@@ -126,15 +126,15 @@ FIELD_TYPES = {
     "fast-external-failover": "option",  # Enable/disable reset peer BGP session if link goes down.
     "log-neighbour-changes": "option",  # Log BGP neighbor changes.
     "network-import-check": "option",  # Enable/disable ensure BGP network route exists in IGP.
-    "ignore-optional-capability": "option",  # Do not send unknown optional capability notification message
+    "ignore-optional-capability": "option",  # Do not send unknown optional capability notification message.
     "additional-path": "option",  # Enable/disable selection of BGP IPv4 additional paths.
     "additional-path6": "option",  # Enable/disable selection of BGP IPv6 additional paths.
     "additional-path-vpnv4": "option",  # Enable/disable selection of BGP VPNv4 additional paths.
     "additional-path-vpnv6": "option",  # Enable/disable selection of BGP VPNv6 additional paths.
-    "multipath-recursive-distance": "option",  # Enable/disable use of recursive distance to select multipath
-    "recursive-next-hop": "option",  # Enable/disable recursive resolution of next-hop using BGP ro
-    "recursive-inherit-priority": "option",  # Enable/disable priority inheritance for recursive resolution
-    "tag-resolve-mode": "option",  # Configure tag-match mode. Resolves BGP routes with other rou
+    "multipath-recursive-distance": "option",  # Enable/disable use of recursive distance to select multipath.
+    "recursive-next-hop": "option",  # Enable/disable recursive resolution of next-hop using BGP route.
+    "recursive-inherit-priority": "option",  # Enable/disable priority inheritance for recursive resolution.
+    "tag-resolve-mode": "option",  # Configure tag-match mode. Resolves BGP routes with other routes containing the s
     "cluster-id": "ipv4-address-any",  # Route reflector cluster ID.
     "confederation-identifier": "integer",  # Confederation identifier.
     "confederation-peers": "string",  # Confederation peers.
@@ -149,17 +149,17 @@ FIELD_TYPES = {
     "distance-external": "integer",  # Distance for routes external to the AS.
     "distance-internal": "integer",  # Distance for routes internal to the AS.
     "distance-local": "integer",  # Distance for routes local to the AS.
-    "synchronization": "option",  # Enable/disable only advertise routes from iBGP if routes pre
+    "synchronization": "option",  # Enable/disable only advertise routes from iBGP if routes present in an IGP.
     "graceful-restart": "option",  # Enable/disable BGP graceful restart capabilities.
     "graceful-restart-time": "integer",  # Time needed for neighbors to restart (sec).
     "graceful-stalepath-time": "integer",  # Time to hold stale paths of restarting neighbor (sec).
     "graceful-update-delay": "integer",  # Route advertisement/selection delay after restart (sec).
     "graceful-end-on-timer": "option",  # Enable/disable to exit graceful restart on timer only.
-    "additional-path-select": "integer",  # Number of additional paths to be selected for each IPv4 NLRI
-    "additional-path-select6": "integer",  # Number of additional paths to be selected for each IPv6 NLRI
-    "additional-path-select-vpnv4": "integer",  # Number of additional paths to be selected for each VPNv4 NLR
-    "additional-path-select-vpnv6": "integer",  # Number of additional paths to be selected for each VPNv6 NLR
-    "cross-family-conditional-adv": "option",  # Enable/disable cross address family conditional advertisemen
+    "additional-path-select": "integer",  # Number of additional paths to be selected for each IPv4 NLRI.
+    "additional-path-select6": "integer",  # Number of additional paths to be selected for each IPv6 NLRI.
+    "additional-path-select-vpnv4": "integer",  # Number of additional paths to be selected for each VPNv4 NLRI.
+    "additional-path-select-vpnv6": "integer",  # Number of additional paths to be selected for each VPNv6 NLRI.
+    "cross-family-conditional-adv": "option",  # Enable/disable cross address family conditional advertisement.
     "aggregate-address": "string",  # BGP aggregate address table.
     "aggregate-address6": "string",  # BGP IPv6 aggregate address table.
     "neighbor": "string",  # BGP neighbor table.

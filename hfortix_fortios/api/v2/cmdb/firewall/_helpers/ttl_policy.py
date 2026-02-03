@@ -67,12 +67,12 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "id": "integer",  # ID.
     "status": "option",  # Enable/disable this TTL policy.
-    "action": "option",  # Action to be performed on traffic matching this policy (defa
+    "action": "option",  # Action to be performed on traffic matching this policy (default = deny).
     "srcintf": "string",  # Source interface name from available interfaces.
-    "srcaddr": "string",  # Source address object(s) from available options. Separate mu
-    "service": "string",  # Service object(s) from available options. Separate multiple 
+    "srcaddr": "string",  # Source address object(s) from available options. Separate multiple names with a 
+    "service": "string",  # Service object(s) from available options. Separate multiple names with a space.
     "schedule": "string",  # Schedule object from available options.
-    "ttl": "user",  # Value/range to match against the packet's Time to Live value
+    "ttl": "user",  # Value/range to match against the packet's Time to Live value (format: ttl[ - ttl
 }
 
 # Field descriptions (help text from FortiOS API)

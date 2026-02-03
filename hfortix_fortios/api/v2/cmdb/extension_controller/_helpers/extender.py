@@ -84,16 +84,16 @@ FIELD_TYPES = {
     "device-id": "integer",  # Device ID.
     "extension-type": "option",  # Extension type for this FortiExtender.
     "profile": "string",  # FortiExtender profile configuration.
-    "override-allowaccess": "option",  # Enable to override the extender profile management access co
-    "allowaccess": "option",  # Control management access to the managed extender. Separate 
-    "override-login-password-change": "option",  # Enable to override the extender profile login-password (admi
-    "login-password-change": "option",  # Change or reset the administrator password of a managed exte
+    "override-allowaccess": "option",  # Enable to override the extender profile management access configuration.
+    "allowaccess": "option",  # Control management access to the managed extender. Separate entries with a space
+    "override-login-password-change": "option",  # Enable to override the extender profile login-password (administrator password) 
+    "login-password-change": "option",  # Change or reset the administrator password of a managed extender (yes, default, 
     "login-password": "password",  # Set the managed extender's administrator password.
-    "override-enforce-bandwidth": "option",  # Enable to override the extender profile enforce-bandwidth se
-    "enforce-bandwidth": "option",  # Enable/disable enforcement of bandwidth on LAN extension int
+    "override-enforce-bandwidth": "option",  # Enable to override the extender profile enforce-bandwidth setting.
+    "enforce-bandwidth": "option",  # Enable/disable enforcement of bandwidth on LAN extension interface.
     "bandwidth-limit": "integer",  # FortiExtender LAN extension bandwidth limit (Mbps).
     "wan-extension": "string",  # FortiExtender wan extension configuration.
-    "firmware-provision-latest": "option",  # Enable/disable one-time automatic provisioning of the latest
+    "firmware-provision-latest": "option",  # Enable/disable one-time automatic provisioning of the latest firmware version.
 }
 
 # Field descriptions (help text from FortiOS API)

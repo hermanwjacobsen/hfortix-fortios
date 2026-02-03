@@ -67,10 +67,10 @@ FIELD_TYPES = {
     "tunnel-type": "option",  # Tunnel type.
     "wag-ip": "ipv4-address",  # IP Address of the wireless access gateway.
     "wag-port": "integer",  # UDP port of the wireless access gateway.
-    "ping-interval": "integer",  # Interval between two tunnel monitoring echo packets (1 - 655
-    "ping-number": "integer",  # Number of the tunnel monitoring echo packets (1 - 65535, def
-    "return-packet-timeout": "integer",  # Window of time for the return packets from the tunnel's remo
-    "dhcp-ip-addr": "ipv4-address",  # IP address of the monitoring DHCP request packet sent throug
+    "ping-interval": "integer",  # Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1)
+    "ping-number": "integer",  # Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+    "return-packet-timeout": "integer",  # Window of time for the return packets from the tunnel's remote end (1 - 65535 se
+    "dhcp-ip-addr": "ipv4-address",  # IP address of the monitoring DHCP request packet sent through the tunnel.
 }
 
 # Field descriptions (help text from FortiOS API)

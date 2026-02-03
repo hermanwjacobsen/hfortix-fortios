@@ -64,10 +64,10 @@ FIELD_TYPES = {
     "name": "string",  # Name.
     "vendor": "option",  # Cloud service vendor.
     "traffic-vdom": "string",  # Vdom used to communicate with cloud service.
-    "gck-service-account": "string",  # Service account (e.g. "account-id@sampledomain.com").
-    "gck-private-key": "string",  # Service account private key in PEM format (e.g. "-----BEGIN 
-    "gck-keyid": "string",  # Key id, also referred as "kid".
-    "gck-access-token-lifetime": "integer",  # Lifetime of automatically generated access tokens in minutes
+    "gck-service-account": "string",  # Service account (e.g. \"account-id@sampledomain.com\").
+    "gck-private-key": "string",  # Service account private key in PEM format (e.g. \"-----BEGIN PRIVATE KEY-----\\ 
+    "gck-keyid": "string",  # Key id, also referred as \"kid\".
+    "gck-access-token-lifetime": "integer",  # Lifetime of automatically generated access tokens in minutes (default is 60 minu
 }
 
 # Field descriptions (help text from FortiOS API)
