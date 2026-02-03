@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix-fortios"
-version = "0.5.155"
+version = "0.5.156"
 description = "Modern, fully-typed Python SDK for FortiOS/FortiGate with complete API coverage (1,348 endpoints)"
 readme = "README.md"
 license = {text = "Proprietary"}
