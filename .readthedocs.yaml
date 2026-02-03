@@ -15,7 +15,7 @@ sphinx:
 
 python:
   install:
-    # Install this package in editable mode
+    # Install this package - dependencies will be pulled from PyPI
     - method: pip
       path: .
       extra_requirements:
