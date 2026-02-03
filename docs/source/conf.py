@@ -74,13 +74,13 @@ keep_warnings = 10  # Only keep last 10 warnings
 if os.environ.get('READTHEDOCS') == 'True':
     # Skip intersphinx inventory loading (slow)
     intersphinx_timeout = 5
-    # Reduce navigation depth
+    # Optimize navigation for large doc sets
     html_theme_options = {
-        'navigation_depth': 3,  # Reduced from 4
-        'collapse_navigation': True,  # Collapsed by default
+        'navigation_depth': 4,  # Keep full depth
+        'collapse_navigation': True,  # Collapsed by default to save memory
         'sticky_navigation': True,
-        'includehidden': False,  # Reduced
-        'titles_only': True,  # Faster rendering
+        'includehidden': True,
+        'titles_only': False,  # Show full navigation (not just titles)
     }
 else:
     html_theme_options = {
