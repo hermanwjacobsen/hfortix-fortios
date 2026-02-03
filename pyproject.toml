@@ -1,65 +1,84 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix-fortios"
 version = "0.5.154"
-description = "Type-safe Python client for FortiGate automation and FortiOS REST API - 1,348+ endpoints with async support and atomic transactions"
-authors = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
-maintainers = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
+description = "Modern, fully-typed Python SDK for FortiOS/FortiGate with complete API coverage (1,348 endpoints)"
 readme = "README.md"
-requires-python = ">=3.10"
 license = {text = "Proprietary"}
+authors = [{name = "Herman W. Jacobsen", email = "herman@example.com"}]
 keywords = [
-    "fortinet", "fortigate", "fortios", "api", "sdk", "rest-api",
-    "automation", "network-automation", "firewall", "security", "network-security",
-    "typed", "type-hints", "pydantic", "async", "asyncio",
-    "configuration-management", "infrastructure-as-code", "iac",
-    "network-as-code", "network-administration", "devops", "netops"
+    "fortinet", "fortios", "fortigate", "firewall", "api", "sdk",
+    "automation", "security", "network", "orchestration", "cmdb",
+    "monitor", "configuration", "typed", "async"
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
     "Intended Audience :: Telecommunications Industry",
-    "Intended Audience :: Information Technology",
-    "License :: Other/Proprietary License",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: System :: Networking",
     "Topic :: System :: Networking :: Firewalls",
-    "Topic :: System :: Networking :: Monitoring",
     "Topic :: System :: Systems Administration",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3 :: Only",
-    "Framework :: AsyncIO",
-    "Framework :: Pydantic",
     "Typing :: Typed",
 ]
+requires-python = ">=3.10"
 dependencies = [
-    "hfortix-core>=0.5.154",
-    "hfortix>=0.5.154",
-    "pydantic>=2.0",
-    "httpx>=0.24.0",
+    "hfortix-core>=0.5.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
 ]
 
 [project.optional-dependencies]
-# Minimal installation without stubs (for size-constrained environments)
-minimal = []
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.0.0",
+    "ruff>=0.2.0",
+    "mypy>=1.8.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=2.0.0",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-design>=0.5.0",
+    "sphinx-autodoc-typehints>=1.25.0",
+    "myst-parser>=2.0.0",
+]
 
 [project.urls]
-Homepage = "https://github.com/hermanwjacobsen/hfortix"
-Repository = "https://github.com/hermanwjacobsen/hfortix"
-Documentation = "https://hfortix.readthedocs.io/en/latest/fortios/"
-"Bug Tracker" = "https://github.com/hermanwjacobsen/hfortix/issues"
-Changelog = "https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md"
-"Source Code" = "https://github.com/hermanwjacobsen/hfortix"
-Download = "https://pypi.org/project/hfortix-fortios/#files"
+Homepage = "https://github.com/hermanwjacobsen/hfortix-fortios"
+Documentation = "https://hfortix-fortios.readthedocs.io"
+Repository = "https://github.com/hermanwjacobsen/hfortix-fortios"
+Issues = "https://github.com/hermanwjacobsen/hfortix-fortios/issues"
+Changelog = "https://github.com/hermanwjacobsen/hfortix-fortios/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["hfortix_fortios*"]
+exclude = ["tests*", "docs*"]
+
+[tool.setuptools.package-data]
+hfortix_fortios = ["py.typed", "**/*.pyi"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

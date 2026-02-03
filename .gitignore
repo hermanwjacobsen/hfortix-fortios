@@ -19,14 +19,15 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual environments
-venv/
-env/
-ENV/
+# Virtual Environment
 .venv/
+venv/
+ENV/
+env/
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp
@@ -34,80 +35,20 @@ ENV/
 *~
 .DS_Store
 
-# GitHub prompts (keep local only)
-.github/prompts/
-
-# GitHub issue templates (not ready for release yet)
-.github/ISSUE_TEMPLATE/
-.github/PULL_REQUEST_TEMPLATE.md
-
-# Environment variables (IMPORTANT - contains tokens!)
-.env
-.env.local
-.env.*.local
-
-# But DO include the example file
-!.env.example
-
-# Archive directories (backups before major refactoring)
-archive_*/
-.archive/
-
-# Examples directory (demonstrations only, not for distribution)
-examples/
-Examples/
-example_*.py
-*_example.py
-
-# But DO keep .env.example
-!.env.example
-
 # Testing
 .pytest_cache/
 .coverage
-htmlcov/
 .tox/
-*.log
+htmlcov/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Documentation
+docs/build/
+docs/_build/
 
-# Root-level dev and schema folders only (old structure - no longer used)
-# DO NOT ignore packages/*/dev/ or packages/*/dev/schema/ (new structure)
-/dev/
-/schema/
+# Environment
+.env
+.env.local
 
-# Development notes (local only, not for public release)
-DEVELOPER_NOTES.md
-QUICK_WINS_SUMMARY.md
-
-# Credentials and secrets
-*token*
-*secret*
-# Only exclude password files in root and common credential locations, not all files with "password" in the name
-credentials.json
-
-# Temporary fix/refactor/debug scripts
-add_raw_json*.py
-fix_*.py
-refactor_*.py
-debug_*.py
-/check_*.py
-rename_*.py
-test_raw_json*.py
-test_autocomplete.py
-test_wifi*.py
-test_error_handling.py
-
-# Temporary log files
-*_update.log
-test_results*.log
-raw_json*.log
-
-# Sphinx documentation build output (new structure: packages/*/docs/)
-packages/*/docs/build/
-packages/*/docs/source/_build/
-packages/*/docs/source/generated/
-.mypy_cache/
-
-# NOTE: Do NOT ignore .github/ (workflows, templates, etc.)
+# Distribution
+*.tar.gz
+*.whl
