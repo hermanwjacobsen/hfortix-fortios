@@ -89,47 +89,21 @@ Advanced Features
 Observability & Debugging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The SDK includes built-in observability features for monitoring API interactions:
+The SDK includes built-in observability features:
 
-* **Request/Response Logging** - Track all API calls
-* **Performance Metrics** - Monitor API latency and throughput
-* **Audit Trail** - Record configuration changes
-* **Debug Mode** - Detailed diagnostic output
-
-See :doc:`/guides/observability` for details.
+* Request/Response Logging
+* Performance Metrics  
+* Audit Trail
+* Debug Mode
 
 FortiManager Proxy
 ^^^^^^^^^^^^^^^^^^
 
-Manage multiple FortiGates through FortiManager with automatic ADOM and device routing:
-
-.. code-block:: python
-
-   from hfortix_fortios import FortiOS
-
-   # Connect through FortiManager
-   fgt = FortiOS.from_fortimanager(
-       fmg_host="fortimanager.example.com",
-       fmg_token="fmg-token",
-       adom="root",
-       device="FortiGate-1"
-   )
-
-See :doc:`/guides/fmg-proxy` for complete documentation.
+The SDK supports managing multiple FortiGates through FortiManager with automatic
+ADOM and device routing.
 
 Custom Wrappers
 ^^^^^^^^^^^^^^^
 
-Build your own high-level abstractions and convenience methods:
-
-.. code-block:: python
-
-   from hfortix_fortios import FortiOS
-
-   class MyFortiGate(FortiOS):
-       def create_datacenter_policy(self, name, servers):
-           """Custom wrapper for datacenter policies."""
-           # Implementation here
-           pass
-
-See :doc:`/guides/custom-wrappers` for patterns and examples.
+You can extend the client classes with your own custom methods and high-level abstractions
+by subclassing ``FortiOS`` or ``AsyncFortiOS``.
