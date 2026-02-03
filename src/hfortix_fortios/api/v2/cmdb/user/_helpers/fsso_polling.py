@@ -69,14 +69,14 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Active Directory server ID.
-    "status": "option",  # Enable/disable polling for the status of this Active Directory server.
+    "status": "option",  # Enable/disable polling for the status of this Active Directo
     "server": "string",  # Host name or IP address of the Active Directory server.
     "default-domain": "string",  # Default domain managed by this Active Directory server.
     "port": "integer",  # Port to communicate with this Active Directory server.
     "user": "string",  # User name required to log into this Active Directory server.
     "password": "password",  # Password required to log into this Active Directory server.
     "ldap-server": "string",  # LDAP server name used in LDAP connection strings.
-    "logon-history": "integer",  # Number of hours of logon history to keep, 0 means keep all history.
+    "logon-history": "integer",  # Number of hours of logon history to keep, 0 means keep all h
     "polling-frequency": "integer",  # Polling frequency (every 1 to 30 seconds).
     "adgrp": "string",  # LDAP Group Info.
     "smbv1": "option",  # Enable/disable support of SMBv1 for Samba.

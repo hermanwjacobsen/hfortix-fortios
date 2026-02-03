@@ -61,9 +61,9 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # FortiLink settings name.
     "fortilink": "string",  # FortiLink interface to which this fortilink-setting belongs.
-    "inactive-timer": "integer",  # Time interval(minutes) to be included in the inactive devices expiry calculation
-    "link-down-flush": "option",  # Clear NAC and dynamic devices on switch ports on link down event.
-    "access-vlan-mode": "option",  # Intra VLAN traffic behavior with loss of connection to the FortiGate.
+    "inactive-timer": "integer",  # Time interval(minutes) to be included in the inactive device
+    "link-down-flush": "option",  # Clear NAC and dynamic devices on switch ports on link down e
+    "access-vlan-mode": "option",  # Intra VLAN traffic behavior with loss of connection to the F
     "nac-ports": "string",  # NAC specific configuration.
 }
 

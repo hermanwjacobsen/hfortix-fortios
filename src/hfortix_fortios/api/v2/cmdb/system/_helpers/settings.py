@@ -204,7 +204,7 @@ FIELD_TYPES = {
     "opmode": "option",  # Firewall operation mode (NAT or Transparent).
     "ngfw-mode": "option",  # Next Generation Firewall (NGFW) mode.
     "http-external-dest": "option",  # Offload HTTP traffic to FortiWeb or FortiCache.
-    "firewall-session-dirty": "option",  # Select how to manage sessions affected by firewall policy configuration changes.
+    "firewall-session-dirty": "option",  # Select how to manage sessions affected by firewall policy co
     "manageip": "user",  # Transparent mode IPv4 management IP address and netmask.
     "gateway": "ipv4-address",  # Transparent mode IPv4 default gateway IP address.
     "ip": "ipv4-classnet-host",  # IP address and netmask.
@@ -212,18 +212,18 @@ FIELD_TYPES = {
     "gateway6": "ipv6-address",  # Transparent mode IPv6 default gateway IP address.
     "ip6": "ipv6-prefix",  # IPv6 address prefix for NAT mode.
     "device": "string",  # Interface to use for management access for NAT mode.
-    "bfd": "option",  # Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces.
-    "bfd-desired-min-tx": "integer",  # BFD desired minimal transmit interval (1 - 100000 ms, default = 250).
-    "bfd-required-min-rx": "integer",  # BFD required minimal receive interval (1 - 100000 ms, default = 250).
+    "bfd": "option",  # Enable/disable Bi-directional Forwarding Detection (BFD) on 
+    "bfd-desired-min-tx": "integer",  # BFD desired minimal transmit interval (1 - 100000 ms, defaul
+    "bfd-required-min-rx": "integer",  # BFD required minimal receive interval (1 - 100000 ms, defaul
     "bfd-detect-mult": "integer",  # BFD detection multiplier (1 - 50, default = 3).
-    "bfd-dont-enforce-src-port": "option",  # Enable to not enforce verifying the source port of BFD Packets.
-    "utf8-spam-tagging": "option",  # Enable/disable converting antispam tags to UTF-8 for better non-ASCII character 
+    "bfd-dont-enforce-src-port": "option",  # Enable to not enforce verifying the source port of BFD Packe
+    "utf8-spam-tagging": "option",  # Enable/disable converting antispam tags to UTF-8 for better 
     "wccp-cache-engine": "option",  # Enable/disable WCCP cache engine.
-    "vpn-stats-log": "option",  # Enable/disable periodic VPN log statistics for one or more types of VPN. Separat
+    "vpn-stats-log": "option",  # Enable/disable periodic VPN log statistics for one or more t
     "vpn-stats-period": "integer",  # Period to send VPN log statistics (0 or 60 - 86400 sec).
-    "v4-ecmp-mode": "option",  # IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode.
-    "mac-ttl": "integer",  # Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300)
-    "fw-session-hairpin": "option",  # Enable/disable checking for a matching policy each time hairpin traffic goes thr
+    "v4-ecmp-mode": "option",  # IPv4 Equal-cost multi-path (ECMP) routing and load balancing
+    "mac-ttl": "integer",  # Duration of MAC addresses in Transparent mode (300 - 8640000
+    "fw-session-hairpin": "option",  # Enable/disable checking for a matching policy each time hair
     "prp-trailer-action": "option",  # Enable/disable action to take on PRP trailer.
     "snat-hairpin-traffic": "option",  # Enable/disable source NAT (SNAT) for VIP hairpin traffic.
     "dhcp-proxy": "option",  # Enable/disable the DHCP Proxy.
@@ -234,42 +234,42 @@ FIELD_TYPES = {
     "dhcp6-server-ip": "user",  # DHCPv6 server IPv6 address.
     "central-nat": "option",  # Enable/disable central NAT.
     "gui-default-policy-columns": "string",  # Default columns to display for policy lists on GUI.
-    "lldp-reception": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or a
-    "lldp-transmission": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM o
+    "lldp-reception": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) receptio
+    "lldp-transmission": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) transmis
     "link-down-access": "option",  # Enable/disable link down access traffic.
     "nat46-generate-ipv6-fragment-header": "option",  # Enable/disable NAT46 IPv6 fragment header generation.
     "nat46-force-ipv4-packet-forwarding": "option",  # Enable/disable mandatory IPv4 packet forwarding in NAT46.
     "nat64-force-ipv6-packet-forwarding": "option",  # Enable/disable mandatory IPv6 packet forwarding in NAT64.
-    "detect-unknown-esp": "option",  # Enable/disable detection of unknown ESP packets (default = enable).
+    "detect-unknown-esp": "option",  # Enable/disable detection of unknown ESP packets (default = e
     "intree-ses-best-route": "option",  # Force the intree session to always use the best route.
     "auxiliary-session": "option",  # Enable/disable auxiliary session.
     "asymroute": "option",  # Enable/disable IPv4 asymmetric routing.
     "asymroute-icmp": "option",  # Enable/disable ICMP asymmetric routing.
     "tcp-session-without-syn": "option",  # Enable/disable allowing TCP session without SYN flags.
-    "ses-denied-traffic": "option",  # Enable/disable including denied session in the session table.
-    "ses-denied-multicast-traffic": "option",  # Enable/disable including denied multicast session in the session table.
+    "ses-denied-traffic": "option",  # Enable/disable including denied session in the session table
+    "ses-denied-multicast-traffic": "option",  # Enable/disable including denied multicast session in the ses
     "strict-src-check": "option",  # Enable/disable strict source verification.
     "allow-linkdown-path": "option",  # Enable/disable link down path.
     "asymroute6": "option",  # Enable/disable asymmetric IPv6 routing.
     "asymroute6-icmp": "option",  # Enable/disable asymmetric ICMPv6 routing.
     "sctp-session-without-init": "option",  # Enable/disable SCTP session creation without SCTP INIT.
-    "sip-expectation": "option",  # Enable/disable the SIP kernel session helper to create an expectation for port 5
-    "sip-nat-trace": "option",  # Enable/disable recording the original SIP source IP address when NAT is used.
+    "sip-expectation": "option",  # Enable/disable the SIP kernel session helper to create an ex
+    "sip-nat-trace": "option",  # Enable/disable recording the original SIP source IP address 
     "h323-direct-model": "option",  # Enable/disable H323 direct model.
     "status": "option",  # Enable/disable this VDOM.
-    "sip-tcp-port": "integer",  # TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-    "sip-udp-port": "integer",  # UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060).
-    "sip-ssl-port": "integer",  # TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 50
-    "sccp-port": "integer",  # TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000).
+    "sip-tcp-port": "integer",  # TCP port the SIP proxy monitors for SIP traffic (0 - 65535, 
+    "sip-udp-port": "integer",  # UDP port the SIP proxy monitors for SIP traffic (0 - 65535, 
+    "sip-ssl-port": "integer",  # TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 -
+    "sccp-port": "integer",  # TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535
     "multicast-forward": "option",  # Enable/disable multicast forwarding.
-    "multicast-ttl-notchange": "option",  # Enable/disable preventing the FortiGate from changing the TTL for forwarded mult
-    "multicast-skip-policy": "option",  # Enable/disable allowing multicast traffic through the FortiGate without a policy
-    "allow-subnet-overlap": "option",  # Enable/disable allowing interface subnets to use overlapping IP addresses.
-    "deny-tcp-with-icmp": "option",  # Enable/disable denying TCP by sending an ICMP communication prohibited packet.
-    "ecmp-max-paths": "integer",  # Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable EC
+    "multicast-ttl-notchange": "option",  # Enable/disable preventing the FortiGate from changing the TT
+    "multicast-skip-policy": "option",  # Enable/disable allowing multicast traffic through the FortiG
+    "allow-subnet-overlap": "option",  # Enable/disable allowing interface subnets to use overlapping
+    "deny-tcp-with-icmp": "option",  # Enable/disable denying TCP by sending an ICMP communication 
+    "ecmp-max-paths": "integer",  # Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Se
     "discovered-device-timeout": "integer",  # Timeout for discovered devices (1 - 365 days, default = 28).
-    "email-portal-check-dns": "option",  # Enable/disable using DNS to validate email addresses collected by a captive port
-    "default-voip-alg-mode": "option",  # Configure how the FortiGate handles VoIP traffic when a policy that accepts the 
+    "email-portal-check-dns": "option",  # Enable/disable using DNS to validate email addresses collect
+    "default-voip-alg-mode": "option",  # Configure how the FortiGate handles VoIP traffic when a poli
     "gui-icap": "option",  # Enable/disable ICAP on the GUI.
     "gui-implicit-policy": "option",  # Enable/disable implicit firewall policies on the GUI.
     "gui-dns-database": "option",  # Enable/disable DNS database settings on the GUI.
@@ -285,7 +285,7 @@ FIELD_TYPES = {
     "gui-wanopt-cache": "option",  # Enable/disable WAN Optimization and Web Caching on the GUI.
     "gui-explicit-proxy": "option",  # Enable/disable the explicit proxy on the GUI.
     "gui-dynamic-routing": "option",  # Enable/disable dynamic routing on the GUI.
-    "gui-sslvpn-personal-bookmarks": "option",  # Enable/disable SSL-VPN personal bookmark management on the GUI.
+    "gui-sslvpn-personal-bookmarks": "option",  # Enable/disable SSL-VPN personal bookmark management on the G
     "gui-sslvpn-realms": "option",  # Enable/disable SSL-VPN realms on the GUI.
     "gui-policy-based-ipsec": "option",  # Enable/disable policy-based IPsec VPN on the GUI.
     "gui-threat-weight": "option",  # Enable/disable threat weight on the GUI.
@@ -316,12 +316,12 @@ FIELD_TYPES = {
     "gui-advanced-policy": "option",  # Enable/disable advanced policy configuration on the GUI.
     "gui-allow-unnamed-policy": "option",  # Enable/disable the requirement for policy naming on the GUI.
     "gui-email-collection": "option",  # Enable/disable email collection on the GUI.
-    "gui-multiple-interface-policy": "option",  # Enable/disable adding multiple interfaces to a policy on the GUI.
+    "gui-multiple-interface-policy": "option",  # Enable/disable adding multiple interfaces to a policy on the
     "gui-policy-disclaimer": "option",  # Enable/disable policy disclaimer on the GUI.
-    "gui-ztna": "option",  # Enable/disable Zero Trust Network Access features on the GUI.
+    "gui-ztna": "option",  # Enable/disable Zero Trust Network Access features on the GUI
     "gui-ot": "option",  # Enable/disable Operational technology features on the GUI.
-    "gui-dynamic-device-os-id": "option",  # Enable/disable Create dynamic addresses to manage known devices.
-    "gui-gtp": "option",  # Enable/disable Manage general radio packet service (GPRS) protocols on the GUI.
+    "gui-dynamic-device-os-id": "option",  # Enable/disable Create dynamic addresses to manage known devi
+    "gui-gtp": "option",  # Enable/disable Manage general radio packet service (GPRS) pr
     "location-id": "ipv4-address",  # Local location ID in the form of an IPv4 address.
     "ike-session-resume": "option",  # Enable/disable IKEv2 session resumption (RFC 5723).
     "ike-quick-crash-detect": "option",  # Enable/disable IKE quick crash detection (RFC 6290).
@@ -331,14 +331,14 @@ FIELD_TYPES = {
     "ike-policy-route": "option",  # Enable/disable IKE Policy Based Routing (PBR).
     "ike-detailed-event-logs": "option",  # Enable/disable detail log for IKE events.
     "block-land-attack": "option",  # Enable/disable blocking of land attacks.
-    "default-app-port-as-service": "option",  # Enable/disable policy service enforcement based on application default ports.
+    "default-app-port-as-service": "option",  # Enable/disable policy service enforcement based on applicati
     "fqdn-session-check": "option",  # Enable/disable dirty session check caused by FQDN updates.
-    "ext-resource-session-check": "option",  # Enable/disable dirty session check caused by external resource updates.
-    "dyn-addr-session-check": "option",  # Enable/disable dirty session check caused by dynamic address updates.
+    "ext-resource-session-check": "option",  # Enable/disable dirty session check caused by external resour
+    "dyn-addr-session-check": "option",  # Enable/disable dirty session check caused by dynamic address
     "default-policy-expiry-days": "integer",  # Default policy expiry in days (0 - 365 days, default = 30).
     "gui-enforce-change-summary": "option",  # Enforce change summaries for select tables in the GUI.
     "internet-service-database-cache": "option",  # Enable/disable Internet Service database caching.
-    "internet-service-app-ctrl-size": "integer",  # Maximum number of tuple entries (protocol, port, IP address, application ID) sto
+    "internet-service-app-ctrl-size": "integer",  # Maximum number of tuple entries (protocol, port, IP address,
 }
 
 # Field descriptions (help text from FortiOS API)

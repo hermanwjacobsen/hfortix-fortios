@@ -65,21 +65,21 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "status": "option",  # Enable/disable SD-WAN.
-    "load-balance-mode": "option",  # Algorithm or mode to use for load balancing Internet traffic to SD-WAN members.
-    "speedtest-bypass-routing": "option",  # Enable/disable bypass routing when speedtest on a SD-WAN member.
-    "duplication-max-num": "integer",  # Maximum number of interface members a packet is duplicated in the SD-WAN zone (2
-    "duplication-max-discrepancy": "integer",  # Maximum discrepancy between two packets for deduplication in milliseconds (250 -
-    "neighbor-hold-down": "option",  # Enable/disable hold switching from the secondary neighbor to the primary neighbo
-    "neighbor-hold-down-time": "integer",  # Waiting period in seconds when switching from the secondary neighbor to the prim
-    "app-perf-log-period": "integer",  # Time interval in seconds that application performance logs are generated (0 - 36
-    "neighbor-hold-boot-time": "integer",  # Waiting period in seconds when switching from the primary neighbor to the second
-    "fail-detect": "option",  # Enable/disable SD-WAN Internet connection status checking (failure detection).
+    "load-balance-mode": "option",  # Algorithm or mode to use for load balancing Internet traffic
+    "speedtest-bypass-routing": "option",  # Enable/disable bypass routing when speedtest on a SD-WAN mem
+    "duplication-max-num": "integer",  # Maximum number of interface members a packet is duplicated i
+    "duplication-max-discrepancy": "integer",  # Maximum discrepancy between two packets for deduplication in
+    "neighbor-hold-down": "option",  # Enable/disable hold switching from the secondary neighbor to
+    "neighbor-hold-down-time": "integer",  # Waiting period in seconds when switching from the secondary 
+    "app-perf-log-period": "integer",  # Time interval in seconds that application performance logs a
+    "neighbor-hold-boot-time": "integer",  # Waiting period in seconds when switching from the primary ne
+    "fail-detect": "option",  # Enable/disable SD-WAN Internet connection status checking (f
     "fail-alert-interfaces": "string",  # Physical interfaces that will be alerted.
     "zone": "string",  # Configure SD-WAN zones.
     "members": "string",  # FortiGate interfaces added to the SD-WAN.
-    "health-check": "string",  # SD-WAN status checking or health checking. Identify a server on the Internet and
-    "service": "string",  # Create SD-WAN rules (also called services) to control how sessions are distribut
-    "neighbor": "string",  # Create SD-WAN neighbor from BGP neighbor table to control route advertisements a
+    "health-check": "string",  # SD-WAN status checking or health checking. Identify a server
+    "service": "string",  # Create SD-WAN rules (also called services) to control how se
+    "neighbor": "string",  # Create SD-WAN neighbor from BGP neighbor table to control ro
     "duplication": "string",  # Create SD-WAN duplication rule.
 }
 

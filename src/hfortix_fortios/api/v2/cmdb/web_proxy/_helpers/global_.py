@@ -82,32 +82,32 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "ssl-cert": "string",  # SSL certificate for SSL interception.
     "ssl-ca-cert": "string",  # SSL CA certificate for SSL interception.
-    "fast-policy-match": "option",  # Enable/disable fast matching algorithm for explicit and transparent proxy policy
-    "ldap-user-cache": "option",  # Enable/disable LDAP user cache for explicit and transparent proxy user.
-    "proxy-fqdn": "string",  # Fully Qualified Domain Name of the explicit web proxy (default = default.fqdn) t
-    "max-request-length": "integer",  # Maximum length of HTTP request line (2 - 64 Kbytes, default = 8).
-    "max-message-length": "integer",  # Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 3
-    "http2-client-window-size": "integer",  # HTTP/2 client initial window size in bytes (65535 - 2147483647, default = 104857
-    "http2-server-window-size": "integer",  # HTTP/2 server initial window size in bytes (65535 - 2147483647, default = 104857
-    "auth-sign-timeout": "integer",  # Proxy auth query sign timeout in seconds (30 - 3600, default = 120).
-    "strict-web-check": "option",  # Enable/disable strict web checking to block web sites that send incorrect header
+    "fast-policy-match": "option",  # Enable/disable fast matching algorithm for explicit and tran
+    "ldap-user-cache": "option",  # Enable/disable LDAP user cache for explicit and transparent 
+    "proxy-fqdn": "string",  # Fully Qualified Domain Name of the explicit web proxy (defau
+    "max-request-length": "integer",  # Maximum length of HTTP request line (2 - 64 Kbytes, default 
+    "max-message-length": "integer",  # Maximum length of HTTP message, not including body (16 - 256
+    "http2-client-window-size": "integer",  # HTTP/2 client initial window size in bytes (65535 - 21474836
+    "http2-server-window-size": "integer",  # HTTP/2 server initial window size in bytes (65535 - 21474836
+    "auth-sign-timeout": "integer",  # Proxy auth query sign timeout in seconds (30 - 3600, default
+    "strict-web-check": "option",  # Enable/disable strict web checking to block web sites that s
     "forward-proxy-auth": "option",  # Enable/disable forwarding proxy authentication headers.
-    "forward-server-affinity-timeout": "integer",  # Period of time before the source IP's traffic is no longer assigned to the forwa
-    "max-waf-body-cache-length": "integer",  # Maximum length of HTTP messages processed by Web Application Firewall (WAF) (1 -
-    "webproxy-profile": "string",  # Name of the web proxy profile to apply when explicit proxy traffic is allowed by
-    "learn-client-ip": "option",  # Enable/disable learning the client's IP address from headers.
-    "always-learn-client-ip": "option",  # Enable/disable learning the client's IP address from headers for every request.
+    "forward-server-affinity-timeout": "integer",  # Period of time before the source IP's traffic is no longer a
+    "max-waf-body-cache-length": "integer",  # Maximum length of HTTP messages processed by Web Application
+    "webproxy-profile": "string",  # Name of the web proxy profile to apply when explicit proxy t
+    "learn-client-ip": "option",  # Enable/disable learning the client's IP address from headers
+    "always-learn-client-ip": "option",  # Enable/disable learning the client's IP address from headers
     "learn-client-ip-from-header": "option",  # Learn client IP address from the specified headers.
     "learn-client-ip-srcaddr": "string",  # Source address name (srcaddr or srcaddr6 must be set).
     "learn-client-ip-srcaddr6": "string",  # IPv6 Source address name (srcaddr or srcaddr6 must be set).
     "src-affinity-exempt-addr": "ipv4-address-any",  # IPv4 source addresses to exempt proxy affinity.
     "src-affinity-exempt-addr6": "ipv6-address",  # IPv6 source addresses to exempt proxy affinity.
     "policy-partial-match": "option",  # Enable/disable policy partial matching.
-    "log-policy-pending": "option",  # Enable/disable logging sessions that are pending on policy matching.
-    "log-forward-server": "option",  # Enable/disable forward server name logging in forward traffic log.
+    "log-policy-pending": "option",  # Enable/disable logging sessions that are pending on policy m
+    "log-forward-server": "option",  # Enable/disable forward server name logging in forward traffi
     "log-app-id": "option",  # Enable/disable always log application type in traffic log.
     "proxy-transparent-cert-inspection": "option",  # Enable/disable transparent proxy certificate inspection.
-    "request-obs-fold": "option",  # Action when HTTP/1.x request header contains obs-fold (default = keep).
+    "request-obs-fold": "option",  # Action when HTTP/1.x request header contains obs-fold (defau
 }
 
 # Field descriptions (help text from FortiOS API)

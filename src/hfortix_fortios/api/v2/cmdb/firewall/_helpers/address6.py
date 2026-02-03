@@ -79,19 +79,19 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Address name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "type": "option",  # Type of IPv6 address object (default = ipprefix).
     "route-tag": "integer",  # route-tag address.
     "macaddr": "string",  # Multiple MAC address ranges.
     "sdn": "string",  # SDN.
-    "ip6": "ipv6-network",  # IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
+    "ip6": "ipv6-network",  # IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:x
     "wildcard": "ipv6-wildcard",  # IPv6 address and wildcard netmask.
-    "start-ip": "ipv6-address",  # First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxx
-    "end-ip": "ipv6-address",  # Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxx
+    "start-ip": "ipv6-address",  # First IP address (inclusive) in the range for the address (f
+    "end-ip": "ipv6-address",  # Final IP address (inclusive) in the range for the address (f
     "fqdn": "string",  # Fully qualified domain name.
     "country": "string",  # IPv6 addresses associated to a specific country.
     "cache-ttl": "integer",  # Minimal TTL of individual IPv6 addresses in FQDN cache.
-    "color": "integer",  # Integer value to determine the color of the icon in the GUI (range 1 to 32, defa
+    "color": "integer",  # Integer value to determine the color of the icon in the GUI 
     "obj-id": "var-string",  # Object ID for NSX.
     "tagging": "string",  # Config object tagging.
     "comment": "var-string",  # Comment.
@@ -105,7 +105,7 @@ FIELD_TYPES = {
     "filter": "var-string",  # Match criteria filter.
     "list": "string",  # IP address list.
     "sdn-addr-type": "option",  # Type of addresses to collect.
-    "passive-fqdn-learning": "option",  # Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, t
+    "passive-fqdn-learning": "option",  # Enable/disable passive learning of FQDNs.  When enabled, the
     "fabric-object": "option",  # Security Fabric global object setting.
 }
 

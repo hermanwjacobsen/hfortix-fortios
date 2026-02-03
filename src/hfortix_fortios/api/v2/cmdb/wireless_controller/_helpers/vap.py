@@ -216,29 +216,29 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Virtual AP name.
-    "pre-auth": "option",  # Enable/disable pre-authentication, where supported by clients (default = enable)
-    "external-pre-auth": "option",  # Enable/disable pre-authentication with external APs not managed by the FortiGate
-    "mesh-backhaul": "option",  # Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This 
+    "pre-auth": "option",  # Enable/disable pre-authentication, where supported by client
+    "external-pre-auth": "option",  # Enable/disable pre-authentication with external APs not mana
+    "mesh-backhaul": "option",  # Enable/disable using this VAP as a WiFi mesh backhaul (defau
     "atf-weight": "integer",  # Airtime weight in percentage (default = 20).
-    "max-clients": "integer",  # Maximum number of clients that can connect simultaneously to the VAP (default = 
-    "max-clients-ap": "integer",  # Maximum number of clients that can connect simultaneously to the VAP per AP radi
-    "ssid": "string",  # IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who 
+    "max-clients": "integer",  # Maximum number of clients that can connect simultaneously to
+    "max-clients-ap": "integer",  # Maximum number of clients that can connect simultaneously to
+    "ssid": "string",  # IEEE 802.11 service set identifier (SSID) for the wireless i
     "broadcast-ssid": "option",  # Enable/disable broadcasting the SSID (default = enable).
-    "security": "option",  # Security mode for the wireless interface (default = wpa2-only-personal).
-    "pmf": "option",  # Protected Management Frames (PMF) support (default = disable).
-    "pmf-assoc-comeback-timeout": "integer",  # Protected Management Frames (PMF) comeback maximum timeout (1-20 sec).
-    "pmf-sa-query-retry-timeout": "integer",  # Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of
-    "beacon-protection": "option",  # Enable/disable beacon protection support (default = disable).
-    "okc": "option",  # Enable/disable Opportunistic Key Caching (OKC) (default = enable).
+    "security": "option",  # Security mode for the wireless interface (default = wpa2-onl
+    "pmf": "option",  # Protected Management Frames (PMF) support (default = disable
+    "pmf-assoc-comeback-timeout": "integer",  # Protected Management Frames (PMF) comeback maximum timeout (
+    "pmf-sa-query-retry-timeout": "integer",  # Protected Management Frames (PMF) SA query retry timeout int
+    "beacon-protection": "option",  # Enable/disable beacon protection support (default = disable)
+    "okc": "option",  # Enable/disable Opportunistic Key Caching (OKC) (default = en
     "mbo": "option",  # Enable/disable Multiband Operation (default = disable).
-    "gas-comeback-delay": "integer",  # GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+    "gas-comeback-delay": "integer",  # GAS comeback delay (0 or 100 - 10000 milliseconds, default =
     "gas-fragmentation-limit": "integer",  # GAS fragmentation limit (512 - 4096, default = 1024).
-    "mbo-cell-data-conn-pref": "option",  # MBO cell data connection preference (0, 1, or 255, default = 1).
+    "mbo-cell-data-conn-pref": "option",  # MBO cell data connection preference (0, 1, or 255, default =
     "80211k": "option",  # Enable/disable 802.11k assisted roaming (default = enable).
     "80211v": "option",  # Enable/disable 802.11v assisted roaming (default = enable).
-    "neighbor-report-dual-band": "option",  # Enable/disable dual-band neighbor report (default = disable).
-    "fast-bss-transition": "option",  # Enable/disable 802.11r Fast BSS Transition (FT) (default = disable).
-    "ft-mobility-domain": "integer",  # Mobility domain identifier in FT (1 - 65535, default = 1000).
+    "neighbor-report-dual-band": "option",  # Enable/disable dual-band neighbor report (default = disable)
+    "fast-bss-transition": "option",  # Enable/disable 802.11r Fast BSS Transition (FT) (default = d
+    "ft-mobility-domain": "integer",  # Mobility domain identifier in FT (1 - 65535, default = 1000)
     "ft-r0-key-lifetime": "integer",  # Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
     "ft-over-ds": "option",  # Enable/disable FT over the Distribution System (DS).
     "sae-groups": "option",  # SAE-Groups.
@@ -246,7 +246,7 @@ FIELD_TYPES = {
     "owe-transition": "option",  # Enable/disable OWE transition mode support.
     "owe-transition-ssid": "string",  # OWE transition mode peer SSID.
     "additional-akms": "option",  # Additional AKMs.
-    "eapol-key-retries": "option",  # Enable/disable retransmission of EAPOL-Key frames (message 3/4 and group message
+    "eapol-key-retries": "option",  # Enable/disable retransmission of EAPOL-Key frames (message 3
     "tkip-counter-measure": "option",  # Enable/disable TKIP counter measure.
     "external-web": "var-string",  # URL of external authentication web server.
     "external-web-format": "option",  # URL query parameter detection (default = auto-detect).
@@ -256,59 +256,59 @@ FIELD_TYPES = {
     "mac-calling-station-delimiter": "option",  # MAC calling station delimiter (default = hyphen).
     "mac-called-station-delimiter": "option",  # MAC called station delimiter (default = hyphen).
     "mac-case": "option",  # MAC case (default = uppercase).
-    "called-station-id-type": "option",  # The format type of RADIUS attribute Called-Station-Id (default = mac).
+    "called-station-id-type": "option",  # The format type of RADIUS attribute Called-Station-Id (defau
     "mac-auth-bypass": "option",  # Enable/disable MAC authentication bypass.
-    "radius-mac-auth": "option",  # Enable/disable RADIUS-based MAC authentication of clients (default = disable).
+    "radius-mac-auth": "option",  # Enable/disable RADIUS-based MAC authentication of clients (d
     "radius-mac-auth-server": "string",  # RADIUS-based MAC authentication server.
-    "radius-mac-auth-block-interval": "integer",  # Don't send RADIUS MAC auth request again if the client has been rejected within 
-    "radius-mac-mpsk-auth": "option",  # Enable/disable RADIUS-based MAC authentication of clients for MPSK authenticatio
-    "radius-mac-mpsk-timeout": "integer",  # RADIUS MAC MPSK cache timeout interval (0 or 300 - 864000, default = 86400, 0 to
-    "radius-mac-auth-usergroups": "string",  # Selective user groups that are permitted for RADIUS mac authentication.
+    "radius-mac-auth-block-interval": "integer",  # Don't send RADIUS MAC auth request again if the client has b
+    "radius-mac-mpsk-auth": "option",  # Enable/disable RADIUS-based MAC authentication of clients fo
+    "radius-mac-mpsk-timeout": "integer",  # RADIUS MAC MPSK cache timeout interval (0 or 300 - 864000, d
+    "radius-mac-auth-usergroups": "string",  # Selective user groups that are permitted for RADIUS mac auth
     "auth": "option",  # Authentication protocol.
-    "encrypt": "option",  # Encryption protocol to use (only available when security is set to a WPA type).
+    "encrypt": "option",  # Encryption protocol to use (only available when security is 
     "keyindex": "integer",  # WEP key index (1 - 4).
     "key": "password",  # WEP Key.
-    "passphrase": "password",  # WPA pre-shared key (PSK) to be used to authenticate WiFi users.
+    "passphrase": "password",  # WPA pre-shared key (PSK) to be used to authenticate WiFi use
     "sae-password": "password",  # WPA3 SAE password to be used to authenticate WiFi users.
-    "sae-h2e-only": "option",  # Use hash-to-element-only mechanism for PWE derivation (default = disable).
-    "sae-hnp-only": "option",  # Use hunting-and-pecking-only mechanism for PWE derivation (default = disable).
+    "sae-h2e-only": "option",  # Use hash-to-element-only mechanism for PWE derivation (defau
+    "sae-hnp-only": "option",  # Use hunting-and-pecking-only mechanism for PWE derivation (d
     "sae-pk": "option",  # Enable/disable WPA3 SAE-PK (default = disable).
     "sae-private-key": "string",  # Private key used for WPA3 SAE-PK authentication.
-    "akm24-only": "option",  # WPA3 SAE using group-dependent hash only (default = disable).
+    "akm24-only": "option",  # WPA3 SAE using group-dependent hash only (default = disable)
     "radius-server": "string",  # RADIUS server to be used to authenticate WiFi users.
     "nas-filter-rule": "option",  # Enable/disable NAS filter rule support (default = disable).
-    "domain-name-stripping": "option",  # Enable/disable stripping domain name from identity (default = disable).
-    "mlo": "option",  # Enable/disable WiFi7 Multi-Link-Operation (default = disable).
+    "domain-name-stripping": "option",  # Enable/disable stripping domain name from identity (default 
+    "mlo": "option",  # Enable/disable WiFi7 Multi-Link-Operation (default = disable
     "local-standalone": "option",  # Enable/disable AP local standalone (default = disable).
     "local-standalone-nat": "option",  # Enable/disable AP local standalone NAT mode.
-    "ip": "ipv4-classnet-host",  # IP address and subnet mask for the local standalone NAT subnet.
+    "ip": "ipv4-classnet-host",  # IP address and subnet mask for the local standalone NAT subn
     "dhcp-lease-time": "integer",  # DHCP lease time in seconds for NAT IP address.
     "local-standalone-dns": "option",  # Enable/disable AP local standalone DNS.
     "local-standalone-dns-ip": "ipv4-address",  # IPv4 addresses for the local standalone DNS.
-    "local-lan-partition": "option",  # Enable/disable segregating client traffic to local LAN side (default = disable).
-    "local-bridging": "option",  # Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (defa
-    "local-lan": "option",  # Allow/deny traffic destined for a Class A, B, or C private IP address (default =
+    "local-lan-partition": "option",  # Enable/disable segregating client traffic to local LAN side 
+    "local-bridging": "option",  # Enable/disable bridging of wireless and Ethernet interfaces 
+    "local-lan": "option",  # Allow/deny traffic destined for a Class A, B, or C private I
     "local-authentication": "option",  # Enable/disable AP local authentication.
     "usergroup": "string",  # Firewall user group to be used to authenticate WiFi users.
     "captive-portal": "option",  # Enable/disable captive portal.
     "captive-network-assistant-bypass": "option",  # Enable/disable Captive Network Assistant bypass.
-    "portal-message-override-group": "string",  # Replacement message group for this VAP (only available when security is set to a
+    "portal-message-override-group": "string",  # Replacement message group for this VAP (only available when 
     "portal-message-overrides": "string",  # Individual message overrides.
-    "portal-type": "option",  # Captive portal functionality. Configure how the captive portal authenticates use
+    "portal-type": "option",  # Captive portal functionality. Configure how the captive port
     "selected-usergroups": "string",  # Selective user groups that are permitted to authenticate.
-    "security-exempt-list": "string",  # Optional security exempt list for captive portal authentication.
-    "security-redirect-url": "var-string",  # Optional URL for redirecting users after they pass captive portal authentication
+    "security-exempt-list": "string",  # Optional security exempt list for captive portal authenticat
+    "security-redirect-url": "var-string",  # Optional URL for redirecting users after they pass captive p
     "auth-cert": "string",  # HTTPS server certificate.
     "auth-portal-addr": "string",  # Address of captive portal.
-    "intra-vap-privacy": "option",  # Enable/disable blocking communication between clients on the same SSID (called i
-    "schedule": "string",  # Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enable
+    "intra-vap-privacy": "option",  # Enable/disable blocking communication between clients on the
+    "schedule": "string",  # Firewall schedules for enabling this VAP on the FortiAP. Thi
     "ldpc": "option",  # VAP low-density parity-check (LDPC) coding configuration.
     "high-efficiency": "option",  # Enable/disable 802.11ax high efficiency (default = enable).
     "target-wake-time": "option",  # Enable/disable 802.11ax target wake time (default = enable).
-    "port-macauth": "option",  # Enable/disable LAN port MAC authentication (default = disable).
-    "port-macauth-timeout": "integer",  # LAN port MAC authentication idle timeout value (default = 600 sec).
-    "port-macauth-reauth-timeout": "integer",  # LAN port MAC authentication re-authentication timeout value (default = 7200 sec)
-    "bss-color-partial": "option",  # Enable/disable 802.11ax partial BSS color (default = enable).
+    "port-macauth": "option",  # Enable/disable LAN port MAC authentication (default = disabl
+    "port-macauth-timeout": "integer",  # LAN port MAC authentication idle timeout value (default = 60
+    "port-macauth-reauth-timeout": "integer",  # LAN port MAC authentication re-authentication timeout value 
+    "bss-color-partial": "option",  # Enable/disable 802.11ax partial BSS color (default = enable)
     "mpsk-profile": "string",  # MPSK profile name.
     "split-tunneling": "option",  # Enable/disable split tunneling (default = disable).
     "nac": "option",  # Enable/disable network access control.
@@ -316,77 +316,77 @@ FIELD_TYPES = {
     "vlanid": "integer",  # Optional VLAN ID.
     "vlan-auto": "option",  # Enable/disable automatic management of SSID VLAN interface.
     "dynamic-vlan": "option",  # Enable/disable dynamic VLAN assignment.
-    "captive-portal-fw-accounting": "option",  # Enable/disable RADIUS accounting for captive portal firewall authentication sess
+    "captive-portal-fw-accounting": "option",  # Enable/disable RADIUS accounting for captive portal firewall
     "captive-portal-ac-name": "string",  # Local-bridging captive portal ac-name.
-    "captive-portal-auth-timeout": "integer",  # Hard timeout - AP will always clear the session after timeout regardless of traf
+    "captive-portal-auth-timeout": "integer",  # Hard timeout - AP will always clear the session after timeou
     "multicast-rate": "option",  # Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0).
-    "multicast-enhance": "option",  # Enable/disable converting multicast to unicast to improve performance (default =
+    "multicast-enhance": "option",  # Enable/disable converting multicast to unicast to improve pe
     "igmp-snooping": "option",  # Enable/disable IGMP snooping.
     "dhcp-address-enforcement": "option",  # Enable/disable DHCP address enforcement (default = disable).
-    "broadcast-suppression": "option",  # Optional suppression of broadcast messages. For example, you can keep DHCP messa
-    "ipv6-rules": "option",  # Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off o
-    "me-disable-thresh": "integer",  # Disable multicast enhancement when this many clients are receiving multicast tra
+    "broadcast-suppression": "option",  # Optional suppression of broadcast messages. For example, you
+    "ipv6-rules": "option",  # Optional rules of IPv6 packets. For example, you can keep RA
+    "me-disable-thresh": "integer",  # Disable multicast enhancement when this many clients are rec
     "mu-mimo": "option",  # Enable/disable Multi-user MIMO (default = enable).
-    "probe-resp-suppression": "option",  # Enable/disable probe response suppression (to ignore weak signals) (default = di
-    "probe-resp-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP response to probe requ
-    "radio-sensitivity": "option",  # Enable/disable software radio sensitivity (to ignore weak signals) (default = di
+    "probe-resp-suppression": "option",  # Enable/disable probe response suppression (to ignore weak si
+    "probe-resp-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP re
+    "radio-sensitivity": "option",  # Enable/disable software radio sensitivity (to ignore weak si
     "quarantine": "option",  # Enable/disable station quarantine (default = disable).
-    "radio-5g-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP response to receive a 
-    "radio-2g-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP response to receive a 
+    "radio-5g-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP re
+    "radio-2g-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP re
     "vlan-name": "string",  # Table for mapping VLAN name to VLAN ID.
-    "vlan-pooling": "option",  # Enable/disable VLAN pooling, to allow grouping of multiple wireless controller V
+    "vlan-pooling": "option",  # Enable/disable VLAN pooling, to allow grouping of multiple w
     "vlan-pool": "string",  # VLAN pool.
-    "dhcp-option43-insertion": "option",  # Enable/disable insertion of DHCP option 43 (default = enable).
+    "dhcp-option43-insertion": "option",  # Enable/disable insertion of DHCP option 43 (default = enable
     "dhcp-option82-insertion": "option",  # Enable/disable DHCP option 82 insert (default = disable).
-    "dhcp-option82-circuit-id-insertion": "option",  # Enable/disable DHCP option 82 circuit-id insert (default = disable).
-    "dhcp-option82-remote-id-insertion": "option",  # Enable/disable DHCP option 82 remote-id insert (default = disable).
+    "dhcp-option82-circuit-id-insertion": "option",  # Enable/disable DHCP option 82 circuit-id insert (default = d
+    "dhcp-option82-remote-id-insertion": "option",  # Enable/disable DHCP option 82 remote-id insert (default = di
     "ptk-rekey": "option",  # Enable/disable PTK rekey for WPA-Enterprise security.
     "ptk-rekey-intv": "integer",  # PTK rekey interval (600 - 864000 sec, default = 86400).
     "gtk-rekey": "option",  # Enable/disable GTK rekey for WPA security.
     "gtk-rekey-intv": "integer",  # GTK rekey interval (600 - 864000 sec, default = 86400).
-    "eap-reauth": "option",  # Enable/disable EAP re-authentication for WPA-Enterprise security.
-    "eap-reauth-intv": "integer",  # EAP re-authentication interval (1800 - 864000 sec, default = 86400).
-    "roaming-acct-interim-update": "option",  # Enable/disable using accounting interim update instead of accounting start/stop 
+    "eap-reauth": "option",  # Enable/disable EAP re-authentication for WPA-Enterprise secu
+    "eap-reauth-intv": "integer",  # EAP re-authentication interval (1800 - 864000 sec, default =
+    "roaming-acct-interim-update": "option",  # Enable/disable using accounting interim update instead of ac
     "qos-profile": "string",  # Quality of service profile name.
     "hotspot20-profile": "string",  # Hotspot 2.0 profile name.
     "access-control-list": "string",  # Profile name for access-control-list.
     "primary-wag-profile": "string",  # Primary wireless access gateway profile name.
     "secondary-wag-profile": "string",  # Secondary wireless access gateway profile name.
-    "tunnel-echo-interval": "integer",  # The time interval to send echo to both primary and secondary tunnel peers (1 - 6
-    "tunnel-fallback-interval": "integer",  # The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535
+    "tunnel-echo-interval": "integer",  # The time interval to send echo to both primary and secondary
+    "tunnel-fallback-interval": "integer",  # The time interval for secondary tunnel to fall back to prima
     "rates-11a": "option",  # Allowed data rates for 802.11a.
     "rates-11bg": "option",  # Allowed data rates for 802.11b/g.
     "rates-11n-ss12": "option",  # Allowed data rates for 802.11n with 1 or 2 spatial streams.
     "rates-11n-ss34": "option",  # Allowed data rates for 802.11n with 3 or 4 spatial streams.
-    "rates-11ac-mcs-map": "string",  # Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
-    "rates-11ax-mcs-map": "string",  # Comma separated list of max supported HE MCS for spatial streams 1 through 8.
-    "rates-11be-mcs-map": "string",  # Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MH
-    "rates-11be-mcs-map-160": "string",  # Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160M
-    "rates-11be-mcs-map-320": "string",  # Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320M
+    "rates-11ac-mcs-map": "string",  # Comma separated list of max supported VHT MCS for spatial st
+    "rates-11ax-mcs-map": "string",  # Comma separated list of max supported HE MCS for spatial str
+    "rates-11be-mcs-map": "string",  # Comma separated list of max nss that supports EHT-MCS 0-9, 1
+    "rates-11be-mcs-map-160": "string",  # Comma separated list of max nss that supports EHT-MCS 0-9, 1
+    "rates-11be-mcs-map-320": "string",  # Comma separated list of max nss that supports EHT-MCS 0-9, 1
     "utm-profile": "string",  # UTM profile name.
-    "utm-status": "option",  # Enable to add one or more security profiles (AV, IPS, etc.) to the VAP.
+    "utm-status": "option",  # Enable to add one or more security profiles (AV, IPS, etc.) 
     "utm-log": "option",  # Enable/disable UTM logging.
     "ips-sensor": "string",  # IPS sensor name.
     "application-list": "string",  # Application control list name.
     "antivirus-profile": "string",  # AntiVirus profile name.
     "webfilter-profile": "string",  # WebFilter profile name.
-    "scan-botnet-connections": "option",  # Block or monitor connections to Botnet servers or disable Botnet scanning.
+    "scan-botnet-connections": "option",  # Block or monitor connections to Botnet servers or disable Bo
     "address-group": "string",  # Firewall Address Group Name.
-    "address-group-policy": "option",  # Configure MAC address filtering policy for MAC addresses that are in the address
-    "sticky-client-remove": "option",  # Enable/disable sticky client remove to maintain good signal level clients in SSI
-    "sticky-client-threshold-5g": "string",  # Minimum signal level/threshold in dBm required for the 5G client to be serviced 
-    "sticky-client-threshold-2g": "string",  # Minimum signal level/threshold in dBm required for the 2G client to be serviced 
-    "sticky-client-threshold-6g": "string",  # Minimum signal level/threshold in dBm required for the 6G client to be serviced 
-    "bstm-rssi-disassoc-timer": "integer",  # Time interval for client to voluntarily leave AP before forcing a disassociation
-    "bstm-load-balancing-disassoc-timer": "integer",  # Time interval for client to voluntarily leave AP before forcing a disassociation
-    "bstm-disassociation-imminent": "option",  # Enable/disable forcing of disassociation after the BSTM request timer has been r
+    "address-group-policy": "option",  # Configure MAC address filtering policy for MAC addresses tha
+    "sticky-client-remove": "option",  # Enable/disable sticky client remove to maintain good signal 
+    "sticky-client-threshold-5g": "string",  # Minimum signal level/threshold in dBm required for the 5G cl
+    "sticky-client-threshold-2g": "string",  # Minimum signal level/threshold in dBm required for the 2G cl
+    "sticky-client-threshold-6g": "string",  # Minimum signal level/threshold in dBm required for the 6G cl
+    "bstm-rssi-disassoc-timer": "integer",  # Time interval for client to voluntarily leave AP before forc
+    "bstm-load-balancing-disassoc-timer": "integer",  # Time interval for client to voluntarily leave AP before forc
+    "bstm-disassociation-imminent": "option",  # Enable/disable forcing of disassociation after the BSTM requ
     "beacon-advertising": "option",  # Fortinet beacon advertising IE data   (default = empty).
-    "osen": "option",  # Enable/disable OSEN as part of key management (default = disable).
-    "application-detection-engine": "option",  # Enable/disable application detection engine (default = disable).
-    "application-dscp-marking": "option",  # Enable/disable application attribute based DSCP marking (default = disable).
-    "application-report-intv": "integer",  # Application report interval (30 - 864000 sec, default = 120).
+    "osen": "option",  # Enable/disable OSEN as part of key management (default = dis
+    "application-detection-engine": "option",  # Enable/disable application detection engine (default = disab
+    "application-dscp-marking": "option",  # Enable/disable application attribute based DSCP marking (def
+    "application-report-intv": "integer",  # Application report interval (30 - 864000 sec, default = 120)
     "l3-roaming": "option",  # Enable/disable layer 3 roaming (default = disable).
-    "l3-roaming-mode": "option",  # Select the way that layer 3 roaming traffic is passed (default = direct).
+    "l3-roaming-mode": "option",  # Select the way that layer 3 roaming traffic is passed (defau
 }
 
 # Field descriptions (help text from FortiOS API)

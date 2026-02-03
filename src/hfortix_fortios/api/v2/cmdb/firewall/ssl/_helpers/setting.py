@@ -65,16 +65,16 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "proxy-connect-timeout": "integer",  # Time limit to make an internal connection to the appropriate proxy process (1 - 
-    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 204
-    "ssl-send-empty-frags": "option",  # Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 an
-    "no-matching-cipher-action": "option",  # Bypass or drop the connection when no matching cipher is found.
-    "cert-manager-cache-timeout": "integer",  # Time limit for certificate manager to keep FortiGate re-signed server certificat
+    "proxy-connect-timeout": "integer",  # Time limit to make an internal connection to the appropriate
+    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negoti
+    "ssl-send-empty-frags": "option",  # Enable/disable sending empty fragments to avoid attack on CB
+    "no-matching-cipher-action": "option",  # Bypass or drop the connection when no matching cipher is fou
+    "cert-manager-cache-timeout": "integer",  # Time limit for certificate manager to keep FortiGate re-sign
     "resigned-short-lived-certificate": "option",  # Enable/disable short-lived certificate.
-    "cert-cache-capacity": "integer",  # Maximum capacity of the host certificate cache (0 - 500, default = 200).
-    "cert-cache-timeout": "integer",  # Time limit to keep certificate cache (1 - 120 min, default = 10).
-    "session-cache-capacity": "integer",  # Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500).
-    "session-cache-timeout": "integer",  # Time limit to keep SSL session state (1 - 60 min, default = 20).
+    "cert-cache-capacity": "integer",  # Maximum capacity of the host certificate cache (0 - 500, def
+    "cert-cache-timeout": "integer",  # Time limit to keep certificate cache (1 - 120 min, default =
+    "session-cache-capacity": "integer",  # Capacity of the SSL session cache (--Obsolete--) (1 - 1000, 
+    "session-cache-timeout": "integer",  # Time limit to keep SSL session state (1 - 60 min, default = 
     "abbreviate-handshake": "option",  # Enable/disable use of SSL abbreviated handshake.
 }
 

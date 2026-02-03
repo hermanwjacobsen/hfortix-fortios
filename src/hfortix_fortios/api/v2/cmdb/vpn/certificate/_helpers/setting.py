@@ -87,8 +87,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "ocsp-status": "option",  # Enable/disable receiving certificates using the OCSP.
-    "ocsp-option": "option",  # Specify whether the OCSP URL is from certificate or configured OCSP server.
-    "proxy": "string",  # Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+    "ocsp-option": "option",  # Specify whether the OCSP URL is from certificate or configur
+    "proxy": "string",  # Proxy server FQDN or IP for OCSP/CA queries during certifica
     "proxy-port": "integer",  # Proxy server port (1 - 65535, default = 8080).
     "proxy-username": "string",  # Proxy server user name.
     "proxy-password": "password",  # Proxy server password.
@@ -97,28 +97,28 @@ FIELD_TYPES = {
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
-    "check-ca-cert": "option",  # Enable/disable verification of the user certificate and pass authentication if a
-    "check-ca-chain": "option",  # Enable/disable verification of the entire certificate chain and pass authenticat
-    "subject-match": "option",  # When searching for a matching certificate, control how to do RDN value matching 
-    "subject-set": "option",  # When searching for a matching certificate, control how to do RDN set matching wi
-    "cn-match": "option",  # When searching for a matching certificate, control how to do CN value matching w
-    "cn-allow-multi": "option",  # When searching for a matching certificate, allow multiple CN fields in certifica
+    "check-ca-cert": "option",  # Enable/disable verification of the user certificate and pass
+    "check-ca-chain": "option",  # Enable/disable verification of the entire certificate chain 
+    "subject-match": "option",  # When searching for a matching certificate, control how to do
+    "subject-set": "option",  # When searching for a matching certificate, control how to do
+    "cn-match": "option",  # When searching for a matching certificate, control how to do
+    "cn-allow-multi": "option",  # When searching for a matching certificate, allow multiple CN
     "crl-verification": "string",  # CRL verification options.
     "strict-ocsp-check": "option",  # Enable/disable strict mode OCSP checking.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
-    "cmp-save-extra-certs": "option",  # Enable/disable saving extra certificates in CMP mode (default = disable).
-    "cmp-key-usage-checking": "option",  # Enable/disable server certificate key usage checking in CMP mode (default = enab
-    "cert-expire-warning": "integer",  # Number of days before a certificate expires to send a warning. Set to 0 to disab
-    "certname-rsa1024": "string",  # 1024 bit RSA key certificate for re-signing server certificates for SSL inspecti
-    "certname-rsa2048": "string",  # 2048 bit RSA key certificate for re-signing server certificates for SSL inspecti
-    "certname-rsa4096": "string",  # 4096 bit RSA key certificate for re-signing server certificates for SSL inspecti
-    "certname-dsa1024": "string",  # 1024 bit DSA key certificate for re-signing server certificates for SSL inspecti
-    "certname-dsa2048": "string",  # 2048 bit DSA key certificate for re-signing server certificates for SSL inspecti
-    "certname-ecdsa256": "string",  # 256 bit ECDSA key certificate for re-signing server certificates for SSL inspect
-    "certname-ecdsa384": "string",  # 384 bit ECDSA key certificate for re-signing server certificates for SSL inspect
-    "certname-ecdsa521": "string",  # 521 bit ECDSA key certificate for re-signing server certificates for SSL inspect
-    "certname-ed25519": "string",  # 253 bit EdDSA key certificate for re-signing server certificates for SSL inspect
-    "certname-ed448": "string",  # 456 bit EdDSA key certificate for re-signing server certificates for SSL inspect
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "cmp-save-extra-certs": "option",  # Enable/disable saving extra certificates in CMP mode (defaul
+    "cmp-key-usage-checking": "option",  # Enable/disable server certificate key usage checking in CMP 
+    "cert-expire-warning": "integer",  # Number of days before a certificate expires to send a warnin
+    "certname-rsa1024": "string",  # 1024 bit RSA key certificate for re-signing server certifica
+    "certname-rsa2048": "string",  # 2048 bit RSA key certificate for re-signing server certifica
+    "certname-rsa4096": "string",  # 4096 bit RSA key certificate for re-signing server certifica
+    "certname-dsa1024": "string",  # 1024 bit DSA key certificate for re-signing server certifica
+    "certname-dsa2048": "string",  # 2048 bit DSA key certificate for re-signing server certifica
+    "certname-ecdsa256": "string",  # 256 bit ECDSA key certificate for re-signing server certific
+    "certname-ecdsa384": "string",  # 384 bit ECDSA key certificate for re-signing server certific
+    "certname-ecdsa521": "string",  # 521 bit ECDSA key certificate for re-signing server certific
+    "certname-ed25519": "string",  # 253 bit EdDSA key certificate for re-signing server certific
+    "certname-ed448": "string",  # 456 bit EdDSA key certificate for re-signing server certific
 }
 
 # Field descriptions (help text from FortiOS API)

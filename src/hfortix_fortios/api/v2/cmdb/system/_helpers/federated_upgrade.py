@@ -71,9 +71,9 @@ FIELD_TYPES = {
     "failure-device": "string",  # Serial number of the node to include.
     "upgrade-id": "integer",  # Unique identifier for this upgrade.
     "next-path-index": "integer",  # The index of the next image to upgrade to.
-    "ignore-signing-errors": "option",  # Allow/reject use of FortiGate firmware images that are unsigned.
-    "ha-reboot-controller": "string",  # Serial number of the FortiGate unit that will control the reboot process for the
-    "known-ha-members": "string",  # Known members of the HA cluster. If a member is missing at upgrade time, the upg
+    "ignore-signing-errors": "option",  # Allow/reject use of FortiGate firmware images that are unsig
+    "ha-reboot-controller": "string",  # Serial number of the FortiGate unit that will control the re
+    "known-ha-members": "string",  # Known members of the HA cluster. If a member is missing at u
     "initial-version": "user",  # Firmware version when the upgrade was set up.
     "starter-admin": "string",  # Admin that started the upgrade.
     "node-list": "string",  # Nodes which will be included in the upgrade.

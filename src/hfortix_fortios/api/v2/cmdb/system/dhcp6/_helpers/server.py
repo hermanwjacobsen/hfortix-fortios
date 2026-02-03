@@ -84,13 +84,13 @@ FIELD_TYPES = {
     "dns-server2": "ipv6-address",  # DNS server 2.
     "dns-server3": "ipv6-address",  # DNS server 3.
     "dns-server4": "ipv6-address",  # DNS server 4.
-    "domain": "string",  # Domain name suffix for the IP addresses that the DHCP server assigns to clients.
+    "domain": "string",  # Domain name suffix for the IP addresses that the DHCP server
     "subnet": "ipv6-prefix",  # Subnet or subnet-id if the IP mode is delegated.
-    "interface": "string",  # DHCP server can assign IP configurations to clients connected to this interface.
-    "delegated-prefix-route": "option",  # Enable/disable automatically adding of routing for delegated prefix.
+    "interface": "string",  # DHCP server can assign IP configurations to clients connecte
+    "delegated-prefix-route": "option",  # Enable/disable automatically adding of routing for delegated
     "options": "string",  # DHCPv6 options.
     "upstream-interface": "string",  # Interface name from where delegated information is provided.
-    "delegated-prefix-iaid": "integer",  # IAID of obtained delegated-prefix from the upstream interface.
+    "delegated-prefix-iaid": "integer",  # IAID of obtained delegated-prefix from the upstream interfac
     "ip-mode": "option",  # Method used to assign client IP.
     "prefix-mode": "option",  # Assigning a prefix from a DHCPv6 client or RA.
     "prefix-range": "string",  # DHCP prefix configuration.

@@ -57,9 +57,9 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "bindthroughfw": "option",  # Enable/disable use of IP/MAC binding to filter packets that would normally go th
-    "bindtofw": "option",  # Enable/disable use of IP/MAC binding to filter packets that would normally go to
-    "undefinedhost": "option",  # Select action to take on packets with IP/MAC addresses not in the binding list (
+    "bindthroughfw": "option",  # Enable/disable use of IP/MAC binding to filter packets that 
+    "bindtofw": "option",  # Enable/disable use of IP/MAC binding to filter packets that 
+    "undefinedhost": "option",  # Select action to take on packets with IP/MAC addresses not i
 }
 
 # Field descriptions (help text from FortiOS API)

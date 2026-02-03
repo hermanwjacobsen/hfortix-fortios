@@ -61,7 +61,7 @@ FIELD_TYPES = {
     "id": "integer",  # AP ID.
     "bssid": "mac-address",  # Access Point's (AP's) BSSID.
     "ssid": "string",  # Access Point's (AP's) SSID.
-    "status": "option",  # Access Point's (AP's) status: rogue, accepted, or suppressed.
+    "status": "option",  # Access Point's (AP's) status: rogue, accepted, or suppressed
 }
 
 # Field descriptions (help text from FortiOS API)

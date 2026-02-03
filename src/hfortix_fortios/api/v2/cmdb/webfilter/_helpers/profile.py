@@ -117,7 +117,7 @@ FIELD_TYPES = {
     "web-ftgd-err-log": "option",  # Enable/disable logging rating errors.
     "web-ftgd-quota-usage": "option",  # Enable/disable logging daily quota usage.
     "extended-log": "option",  # Enable/disable extended logging for web filtering.
-    "web-extended-all-action-log": "option",  # Enable/disable extended any filter action logging for web filtering.
+    "web-extended-all-action-log": "option",  # Enable/disable extended any filter action logging for web fi
     "web-antiphishing-log": "option",  # Enable/disable logging of AntiPhishing checks.
 }
 

@@ -68,7 +68,7 @@ FIELD_TYPES = {
     "accprofile": "string",  # Admin user access profile.
     "vdom": "string",  # Virtual domains.
     "schedule": "string",  # Schedule name.
-    "cors-allow-origin": "string",  # Value for Access-Control-Allow-Origin on API responses. Avoid using '*' if possi
+    "cors-allow-origin": "string",  # Value for Access-Control-Allow-Origin on API responses. Avoi
     "peer-auth": "option",  # Enable/disable peer authentication.
     "peer-group": "string",  # Peer group name.
     "trusthost": "string",  # Trusthost.

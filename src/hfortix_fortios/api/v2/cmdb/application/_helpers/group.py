@@ -66,12 +66,12 @@ FIELD_TYPES = {
     "type": "option",  # Application group type.
     "application": "string",  # Application ID list.
     "category": "string",  # Application category ID list.
-    "risk": "string",  # Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low,
+    "risk": "string",  # Risk, or impact, of allowing traffic from this application t
     "protocols": "user",  # Application protocol filter.
     "vendor": "user",  # Application vendor filter.
     "technology": "user",  # Application technology filter.
     "behavior": "user",  # Application behavior filter.
-    "popularity": "option",  # Application popularity filter (1 - 5, from least to most popular).
+    "popularity": "option",  # Application popularity filter (1 - 5, from least to most pop
 }
 
 # Field descriptions (help text from FortiOS API)

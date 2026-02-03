@@ -58,7 +58,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "login-audit": "option",  # Enable/disable TACACS+ accounting for login events audit.
-    "config-change-audit": "option",  # Enable/disable TACACS+ accounting for configuration change events audit.
+    "config-change-audit": "option",  # Enable/disable TACACS+ accounting for configuration change e
     "cli-cmd-audit": "option",  # Enable/disable TACACS+ accounting for CLI commands audit.
 }
 

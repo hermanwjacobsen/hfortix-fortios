@@ -313,252 +313,252 @@ FIELD_TYPES = {
     "gui-ipv6": "option",  # Enable/disable IPv6 settings on the GUI.
     "gui-replacement-message-groups": "option",  # Enable/disable replacement message groups on the GUI.
     "gui-local-out": "option",  # Enable/disable Local-out traffic on the GUI.
-    "gui-certificates": "option",  # Enable/disable the System > Certificate GUI page, allowing you to add and config
+    "gui-certificates": "option",  # Enable/disable the System > Certificate GUI page, allowing y
     "gui-custom-language": "option",  # Enable/disable custom languages in GUI.
     "gui-wireless-opensecurity": "option",  # Enable/disable wireless open security option on the GUI.
     "gui-app-detection-sdwan": "option",  # Enable/disable Allow app-detection based SD-WAN.
-    "gui-display-hostname": "option",  # Enable/disable displaying the FortiGate's hostname on the GUI login page.
-    "gui-fortigate-cloud-sandbox": "option",  # Enable/disable displaying FortiGate Cloud Sandbox on the GUI.
+    "gui-display-hostname": "option",  # Enable/disable displaying the FortiGate's hostname on the GU
+    "gui-fortigate-cloud-sandbox": "option",  # Enable/disable displaying FortiGate Cloud Sandbox on the GUI
     "gui-firmware-upgrade-warning": "option",  # Enable/disable the firmware upgrade warning on the GUI.
-    "gui-forticare-registration-setup-warning": "option",  # Enable/disable the FortiCare registration setup warning on the GUI.
-    "gui-auto-upgrade-setup-warning": "option",  # Enable/disable the automatic patch upgrade setup prompt on the GUI.
+    "gui-forticare-registration-setup-warning": "option",  # Enable/disable the FortiCare registration setup warning on t
+    "gui-auto-upgrade-setup-warning": "option",  # Enable/disable the automatic patch upgrade setup prompt on t
     "gui-workflow-management": "option",  # Enable/disable Workflow management features on the GUI.
     "gui-cdn-usage": "option",  # Enable/disable Load GUI static files from a CDN.
     "admin-https-ssl-versions": "option",  # Allowed TLS versions for web administration.
-    "admin-https-ssl-ciphersuites": "option",  # Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TL
-    "admin-https-ssl-banned-ciphers": "option",  # Select one or more cipher technologies that cannot be used in GUI HTTPS negotiat
-    "admintimeout": "integer",  # Number of minutes before an idle administrator session times out (1 - 480 minute
-    "admin-console-timeout": "integer",  # Console login timeout that overrides the admin timeout value (15 - 300 seconds, 
-    "ssd-trim-freq": "option",  # How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data l
-    "ssd-trim-hour": "integer",  # Hour of the day on which to run SSD Trim (0 - 23, default = 1).
-    "ssd-trim-min": "integer",  # Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
+    "admin-https-ssl-ciphersuites": "option",  # Select one or more TLS 1.3 ciphersuites to enable. Does not 
+    "admin-https-ssl-banned-ciphers": "option",  # Select one or more cipher technologies that cannot be used i
+    "admintimeout": "integer",  # Number of minutes before an idle administrator session times
+    "admin-console-timeout": "integer",  # Console login timeout that overrides the admin timeout value
+    "ssd-trim-freq": "option",  # How often to run SSD Trim (default = weekly). SSD Trim preve
+    "ssd-trim-hour": "integer",  # Hour of the day on which to run SSD Trim (0 - 23, default = 
+    "ssd-trim-min": "integer",  # Minute of the hour on which to run SSD Trim (0 - 59, 60 for 
     "ssd-trim-weekday": "option",  # Day of week to run SSD Trim.
     "ssd-trim-date": "integer",  # Date within a month to run ssd trim.
-    "admin-concurrent": "option",  # Enable/disable concurrent administrator logins. Use policy-auth-concurrent for f
-    "admin-lockout-threshold": "integer",  # Number of failed login attempts before an administrator account is locked out fo
-    "admin-lockout-duration": "integer",  # Amount of time in seconds that an administrator account is locked out after reac
+    "admin-concurrent": "option",  # Enable/disable concurrent administrator logins. Use policy-a
+    "admin-lockout-threshold": "integer",  # Number of failed login attempts before an administrator acco
+    "admin-lockout-duration": "integer",  # Amount of time in seconds that an administrator account is l
     "refresh": "integer",  # Statistics refresh interval second(s) in GUI.
     "interval": "integer",  # Dead gateway detection interval.
     "failtime": "integer",  # Fail-time for server lost.
     "purdue-level": "option",  # Purdue Level of this FortiGate.
-    "daily-restart": "option",  # Enable/disable daily restart of FortiGate unit. Use the restart-time option to s
+    "daily-restart": "option",  # Enable/disable daily restart of FortiGate unit. Use the rest
     "restart-time": "user",  # Daily restart time (hh:mm).
     "wad-restart-mode": "option",  # WAD worker restart mode (default = none).
     "wad-restart-start-time": "user",  # WAD workers daily restart time (hh:mm).
     "wad-restart-end-time": "user",  # WAD workers daily restart end time (hh:mm).
-    "wad-p2s-max-body-size": "integer",  # Maximum size of the body of the local out HTTP request (1 - 32 Mbytes, default =
+    "wad-p2s-max-body-size": "integer",  # Maximum size of the body of the local out HTTP request (1 - 
     "radius-port": "integer",  # RADIUS service port number.
     "speedtestd-server-port": "integer",  # Speedtest server port number.
     "speedtestd-ctrl-port": "integer",  # Speedtest server controller port number.
-    "admin-login-max": "integer",  # Maximum number of administrators who can be logged in at the same time (1 - 100,
-    "remoteauthtimeout": "integer",  # Number of seconds that the FortiGate waits for responses from remote RADIUS, LDA
-    "ldapconntimeout": "integer",  # Global timeout for connections with remote LDAP servers in milliseconds (1 - 300
-    "batch-cmdb": "option",  # Enable/disable batch mode, allowing you to enter a series of CLI commands that w
-    "multi-factor-authentication": "option",  # Enforce all login methods to require an additional authentication factor (defaul
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
-    "autorun-log-fsck": "option",  # Enable/disable automatic log partition check after ungraceful shutdown.
-    "timezone": "string",  # Timezone database name. Enter ? to view the list of timezone.
-    "traffic-priority": "option",  # Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for tr
-    "traffic-priority-level": "option",  # Default system-wide level of priority for traffic prioritization.
+    "admin-login-max": "integer",  # Maximum number of administrators who can be logged in at the
+    "remoteauthtimeout": "integer",  # Number of seconds that the FortiGate waits for responses fro
+    "ldapconntimeout": "integer",  # Global timeout for connections with remote LDAP servers in m
+    "batch-cmdb": "option",  # Enable/disable batch mode, allowing you to enter a series of
+    "multi-factor-authentication": "option",  # Enforce all login methods to require an additional authentic
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "autorun-log-fsck": "option",  # Enable/disable automatic log partition check after ungracefu
+    "timezone": "string",  # Timezone database name. Enter ? to view the list of timezone
+    "traffic-priority": "option",  # Choose Type of Service (ToS) or Differentiated Services Code
+    "traffic-priority-level": "option",  # Default system-wide level of priority for traffic prioritiza
     "quic-congestion-control-algo": "option",  # QUIC congestion control algorithm (default = cubic).
-    "quic-max-datagram-size": "integer",  # Maximum transmit datagram size (1200 - 1500, default = 1500).
-    "quic-udp-payload-size-shaping-per-cid": "option",  # Enable/disable UDP payload size shaping per connection ID (default = enable).
-    "quic-ack-thresold": "integer",  # Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3)
+    "quic-max-datagram-size": "integer",  # Maximum transmit datagram size (1200 - 1500, default = 1500)
+    "quic-udp-payload-size-shaping-per-cid": "option",  # Enable/disable UDP payload size shaping per connection ID (d
+    "quic-ack-thresold": "integer",  # Maximum number of unacknowledged packets before sending ACK 
     "quic-pmtud": "option",  # Enable/disable path MTU discovery (default = enable).
-    "quic-tls-handshake-timeout": "integer",  # Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
-    "anti-replay": "option",  # Level of checking for packet replay and TCP sequence checking.
-    "send-pmtu-icmp": "option",  # Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destinati
+    "quic-tls-handshake-timeout": "integer",  # Time-to-live (TTL) for TLS handshake in seconds (1 - 60, def
+    "anti-replay": "option",  # Level of checking for packet replay and TCP sequence checkin
+    "send-pmtu-icmp": "option",  # Enable/disable sending of path maximum transmission unit (PM
     "honor-df": "option",  # Enable/disable honoring of Don't-Fragment (DF) flag.
     "pmtu-discovery": "option",  # Enable/disable path MTU discovery.
-    "revision-image-auto-backup": "option",  # Enable/disable back-up of the latest image revision after the firmware is upgrad
-    "revision-backup-on-logout": "option",  # Enable/disable back-up of the latest configuration revision when an administrato
+    "revision-image-auto-backup": "option",  # Enable/disable back-up of the latest image revision after th
+    "revision-backup-on-logout": "option",  # Enable/disable back-up of the latest configuration revision 
     "management-vdom": "string",  # Management virtual domain name.
-    "hostname": "string",  # FortiGate unit's hostname. Most models will truncate names longer than 24 charac
+    "hostname": "string",  # FortiGate unit's hostname. Most models will truncate names l
     "alias": "string",  # Alias for your FortiGate unit.
-    "strong-crypto": "option",  # Enable to use strong encryption and only allow strong ciphers and digest for HTT
-    "ssl-static-key-ciphers": "option",  # Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES25
+    "strong-crypto": "option",  # Enable to use strong encryption and only allow strong cipher
+    "ssl-static-key-ciphers": "option",  # Enable/disable static key ciphers in SSL/TLS connections (e.
     "snat-route-change": "option",  # Enable/disable the ability to change the source NAT route.
-    "ipv6-snat-route-change": "option",  # Enable/disable the ability to change the IPv6 source NAT route.
+    "ipv6-snat-route-change": "option",  # Enable/disable the ability to change the IPv6 source NAT rou
     "speedtest-server": "option",  # Enable/disable speed test server.
     "cli-audit-log": "option",  # Enable/disable CLI audit log.
-    "dh-params": "option",  # Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols.
-    "fds-statistics": "option",  # Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuar
-    "fds-statistics-period": "integer",  # FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 h
+    "dh-params": "option",  # Number of bits to use in the Diffie-Hellman exchange for HTT
+    "fds-statistics": "option",  # Enable/disable sending IPS, Application Control, and AntiVir
+    "fds-statistics-period": "integer",  # FortiGuard statistics collection period in minutes. (1 - 144
     "tcp-option": "option",  # Enable SACK, timestamp and MSS TCP options.
-    "lldp-transmission": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
-    "lldp-reception": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) reception.
-    "proxy-auth-timeout": "integer",  # Authentication timeout in minutes for authenticated users (1 - 10000 min, defaul
-    "proxy-keep-alive-mode": "option",  # Control if users must re-authenticate after a session is closed, traffic has bee
-    "proxy-re-authentication-time": "integer",  # The time limit that users must re-authenticate if proxy-keep-alive-mode is set t
-    "proxy-auth-lifetime": "option",  # Enable/disable authenticated users lifetime control. This is a cap on the total 
-    "proxy-auth-lifetime-timeout": "integer",  # Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480
-    "proxy-resource-mode": "option",  # Enable/disable use of the maximum memory usage on the FortiGate unit's proxy pro
+    "lldp-transmission": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) transmis
+    "lldp-reception": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) receptio
+    "proxy-auth-timeout": "integer",  # Authentication timeout in minutes for authenticated users (1
+    "proxy-keep-alive-mode": "option",  # Control if users must re-authenticate after a session is clo
+    "proxy-re-authentication-time": "integer",  # The time limit that users must re-authenticate if proxy-keep
+    "proxy-auth-lifetime": "option",  # Enable/disable authenticated users lifetime control. This is
+    "proxy-auth-lifetime-timeout": "integer",  # Lifetime timeout in minutes for authenticated users (5  - 65
+    "proxy-resource-mode": "option",  # Enable/disable use of the maximum memory usage on the FortiG
     "proxy-cert-use-mgmt-vdom": "option",  # Enable/disable using management VDOM to send requests.
-    "sys-perf-log-interval": "integer",  # Time in minutes between updates of performance statistics logging. (1 - 15 min, 
-    "check-protocol-header": "option",  # Level of checking performed on protocol headers. Strict checking is more thoroug
-    "vip-arp-range": "option",  # Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) addr
-    "reset-sessionless-tcp": "option",  # Action to perform if the FortiGate receives a TCP packet but cannot find a corre
-    "allow-traffic-redirect": "option",  # Disable to prevent traffic with same local ingress and egress interface from bei
-    "ipv6-allow-traffic-redirect": "option",  # Disable to prevent IPv6 traffic with same local ingress and egress interface fro
-    "strict-dirty-session-check": "option",  # Enable to check the session against the original policy when revalidating. This 
-    "tcp-halfclose-timer": "integer",  # Number of seconds the FortiGate unit should wait to close a session after one pe
-    "tcp-halfopen-timer": "integer",  # Number of seconds the FortiGate unit should wait to close a session after one pe
-    "tcp-timewait-timer": "integer",  # Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
-    "tcp-rst-timer": "integer",  # Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-    "udp-idle-timer": "integer",  # UDP connection session timeout. This command can be useful in managing CPU and m
-    "block-session-timer": "integer",  # Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30
-    "ip-src-port-range": "user",  # IP source port range used for traffic originating from the FortiGate unit.
-    "pre-login-banner": "option",  # Enable/disable displaying the administrator access disclaimer message on the log
-    "post-login-banner": "option",  # Enable/disable displaying the administrator access disclaimer message after an a
+    "sys-perf-log-interval": "integer",  # Time in minutes between updates of performance statistics lo
+    "check-protocol-header": "option",  # Level of checking performed on protocol headers. Strict chec
+    "vip-arp-range": "option",  # Controls the number of ARPs that the FortiGate sends for a V
+    "reset-sessionless-tcp": "option",  # Action to perform if the FortiGate receives a TCP packet but
+    "allow-traffic-redirect": "option",  # Disable to prevent traffic with same local ingress and egres
+    "ipv6-allow-traffic-redirect": "option",  # Disable to prevent IPv6 traffic with same local ingress and 
+    "strict-dirty-session-check": "option",  # Enable to check the session against the original policy when
+    "tcp-halfclose-timer": "integer",  # Number of seconds the FortiGate unit should wait to close a 
+    "tcp-halfopen-timer": "integer",  # Number of seconds the FortiGate unit should wait to close a 
+    "tcp-timewait-timer": "integer",  # Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, d
+    "tcp-rst-timer": "integer",  # Length of the TCP CLOSE state in seconds (5 - 300 sec, defau
+    "udp-idle-timer": "integer",  # UDP connection session timeout. This command can be useful i
+    "block-session-timer": "integer",  # Duration in seconds for blocked sessions (1 - 300 sec  (5 mi
+    "ip-src-port-range": "user",  # IP source port range used for traffic originating from the F
+    "pre-login-banner": "option",  # Enable/disable displaying the administrator access disclaime
+    "post-login-banner": "option",  # Enable/disable displaying the administrator access disclaime
     "tftp": "option",  # Enable/disable TFTP.
-    "av-failopen": "option",  # Set the action to take if the FortiGate is running low on memory or the proxy co
-    "av-failopen-session": "option",  # When enabled and a proxy for a protocol runs out of room in its session table, t
-    "memory-use-threshold-extreme": "integer",  # Threshold at which memory usage is considered extreme (new sessions are dropped)
-    "memory-use-threshold-red": "integer",  # Threshold at which memory usage forces the FortiGate to enter conserve mode (% o
-    "memory-use-threshold-green": "integer",  # Threshold at which memory usage forces the FortiGate to exit conserve mode (% of
+    "av-failopen": "option",  # Set the action to take if the FortiGate is running low on me
+    "av-failopen-session": "option",  # When enabled and a proxy for a protocol runs out of room in 
+    "memory-use-threshold-extreme": "integer",  # Threshold at which memory usage is considered extreme (new s
+    "memory-use-threshold-red": "integer",  # Threshold at which memory usage forces the FortiGate to ente
+    "memory-use-threshold-green": "integer",  # Threshold at which memory usage forces the FortiGate to exit
     "ip-fragment-mem-thresholds": "integer",  # Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
-    "ip-fragment-timeout": "integer",  # Timeout value in seconds for any fragment not being reassembled
-    "ipv6-fragment-timeout": "integer",  # Timeout value in seconds for any IPv6 fragment not being reassembled
-    "cpu-use-threshold": "integer",  # Threshold at which CPU usage is reported (% of total CPU, default = 90).
-    "log-single-cpu-high": "option",  # Enable/disable logging the event of a single CPU core reaching CPU usage thresho
-    "check-reset-range": "option",  # Configure ICMP error message verification. You can either apply strict RST range
-    "upgrade-report": "option",  # Enable/disable the generation of an upgrade report when upgrading the firmware.
-    "admin-port": "integer",  # Administrative access port for HTTP. (1 - 65535, default = 80).
-    "admin-sport": "integer",  # Administrative access port for HTTPS. (1 - 65535, default = 443).
-    "admin-host": "string",  # Administrative host for HTTP and HTTPS. When set, will be used in lieu of the cl
-    "admin-https-redirect": "option",  # Enable/disable redirection of HTTP administration access to HTTPS.
-    "admin-hsts-max-age": "integer",  # HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will res
+    "ip-fragment-timeout": "integer",  # Timeout value in seconds for any fragment not being reassemb
+    "ipv6-fragment-timeout": "integer",  # Timeout value in seconds for any IPv6 fragment not being rea
+    "cpu-use-threshold": "integer",  # Threshold at which CPU usage is reported (% of total CPU, de
+    "log-single-cpu-high": "option",  # Enable/disable logging the event of a single CPU core reachi
+    "check-reset-range": "option",  # Configure ICMP error message verification. You can either ap
+    "upgrade-report": "option",  # Enable/disable the generation of an upgrade report when upgr
+    "admin-port": "integer",  # Administrative access port for HTTP. (1 - 65535, default = 8
+    "admin-sport": "integer",  # Administrative access port for HTTPS. (1 - 65535, default = 
+    "admin-host": "string",  # Administrative host for HTTP and HTTPS. When set, will be us
+    "admin-https-redirect": "option",  # Enable/disable redirection of HTTP administration access to 
+    "admin-hsts-max-age": "integer",  # HTTPS Strict-Transport-Security header max-age in seconds. A
     "admin-ssh-password": "option",  # Enable/disable password authentication for SSH admin access.
-    "admin-restrict-local": "option",  # Enable/disable local admin authentication restriction when remote authenticator 
-    "admin-ssh-port": "integer",  # Administrative access port for SSH. (1 - 65535, default = 22).
-    "admin-ssh-grace-time": "integer",  # Maximum time in seconds permitted between making an SSH connection to the FortiG
+    "admin-restrict-local": "option",  # Enable/disable local admin authentication restriction when r
+    "admin-ssh-port": "integer",  # Administrative access port for SSH. (1 - 65535, default = 22
+    "admin-ssh-grace-time": "integer",  # Maximum time in seconds permitted between making an SSH conn
     "admin-ssh-v1": "option",  # Enable/disable SSH v1 compatibility.
     "admin-telnet": "option",  # Enable/disable TELNET service.
-    "admin-telnet-port": "integer",  # Administrative access port for TELNET. (1 - 65535, default = 23).
+    "admin-telnet-port": "integer",  # Administrative access port for TELNET. (1 - 65535, default =
     "admin-forticloud-sso-login": "option",  # Enable/disable FortiCloud admin login via SSO.
     "admin-forticloud-sso-default-profile": "string",  # Override access profile.
     "default-service-source-port": "user",  # Default service source port range (default = 1 - 65535).
-    "admin-server-cert": "string",  # Server certificate that the FortiGate uses for HTTPS administrative connections.
-    "admin-https-pki-required": "option",  # Enable/disable admin login method. Enable to force administrators to provide a v
+    "admin-server-cert": "string",  # Server certificate that the FortiGate uses for HTTPS adminis
+    "admin-https-pki-required": "option",  # Enable/disable admin login method. Enable to force administr
     "wifi-certificate": "string",  # Certificate to use for WiFi authentication.
-    "dhcp-lease-backup-interval": "integer",  # DHCP leases backup interval in seconds (10 - 3600, default = 60).
+    "dhcp-lease-backup-interval": "integer",  # DHCP leases backup interval in seconds (10 - 3600, default =
     "wifi-ca-certificate": "string",  # CA certificate that verifies the WiFi certificate.
     "auth-http-port": "integer",  # User authentication HTTP port. (1 - 65535, default = 1000).
     "auth-https-port": "integer",  # User authentication HTTPS port. (1 - 65535, default = 1003).
-    "auth-ike-saml-port": "integer",  # User IKE SAML authentication port (0 - 65535, default = 1001).
-    "auth-keepalive": "option",  # Enable to prevent user authentication sessions from timing out when idle.
-    "policy-auth-concurrent": "integer",  # Number of concurrent firewall use logins from the same user (1 - 100, default = 
-    "auth-session-limit": "option",  # Action to take when the number of allowed user authenticated sessions is reached
-    "auth-cert": "string",  # Server certificate that the FortiGate uses for HTTPS firewall authentication con
-    "clt-cert-req": "option",  # Enable/disable requiring administrators to have a client certificate to log into
-    "fortiservice-port": "integer",  # FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint comp
+    "auth-ike-saml-port": "integer",  # User IKE SAML authentication port (0 - 65535, default = 1001
+    "auth-keepalive": "option",  # Enable to prevent user authentication sessions from timing o
+    "policy-auth-concurrent": "integer",  # Number of concurrent firewall use logins from the same user 
+    "auth-session-limit": "option",  # Action to take when the number of allowed user authenticated
+    "auth-cert": "string",  # Server certificate that the FortiGate uses for HTTPS firewal
+    "clt-cert-req": "option",  # Enable/disable requiring administrators to have a client cer
+    "fortiservice-port": "integer",  # FortiService port (1 - 65535, default = 8013). Used by Forti
     "cfg-save": "option",  # Configuration file save mode for CLI changes.
-    "cfg-revert-timeout": "integer",  # Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds
-    "reboot-upon-config-restore": "option",  # Enable/disable reboot of system upon restoring configuration.
-    "admin-scp": "option",  # Enable/disable SCP support for system configuration backup, restore, and firmwar
-    "wireless-controller": "option",  # Enable/disable the wireless controller feature to use the FortiGate unit to mana
-    "wireless-controller-port": "integer",  # Port used for the control channel in wireless controller mode (wireless-mode is 
+    "cfg-revert-timeout": "integer",  # Time-out for reverting to the last saved configuration. (10 
+    "reboot-upon-config-restore": "option",  # Enable/disable reboot of system upon restoring configuration
+    "admin-scp": "option",  # Enable/disable SCP support for system configuration backup, 
+    "wireless-controller": "option",  # Enable/disable the wireless controller feature to use the Fo
+    "wireless-controller-port": "integer",  # Port used for the control channel in wireless controller mod
     "fortiextender-data-port": "integer",  # FortiExtender data port (1024 - 49150, default = 25246).
     "fortiextender": "option",  # Enable/disable FortiExtender.
-    "extender-controller-reserved-network": "ipv4-classnet-host",  # Configure reserved network subnet for managed LAN extension FortiExtender units.
+    "extender-controller-reserved-network": "ipv4-classnet-host",  # Configure reserved network subnet for managed LAN extension 
     "fortiextender-discovery-lockdown": "option",  # Enable/disable FortiExtender CAPWAP lockdown.
     "fortiextender-vlan-mode": "option",  # Enable/disable FortiExtender VLAN mode.
-    "fortiextender-provision-on-authorization": "option",  # Enable/disable automatic provisioning of latest FortiExtender firmware on author
-    "switch-controller": "option",  # Enable/disable switch controller feature. Switch controller allows you to manage
-    "switch-controller-reserved-network": "ipv4-classnet-host",  # Configure reserved network subnet for managed switches. This is available when t
-    "dnsproxy-worker-count": "integer",  # DNS proxy worker count. For a FortiGate with multiple logical CPUs, you can set 
+    "fortiextender-provision-on-authorization": "option",  # Enable/disable automatic provisioning of latest FortiExtende
+    "switch-controller": "option",  # Enable/disable switch controller feature. Switch controller 
+    "switch-controller-reserved-network": "ipv4-classnet-host",  # Configure reserved network subnet for managed switches. This
+    "dnsproxy-worker-count": "integer",  # DNS proxy worker count. For a FortiGate with multiple logica
     "url-filter-count": "integer",  # URL filter daemon count.
-    "httpd-max-worker-count": "integer",  # Maximum number of simultaneous HTTP requests that will be served. This number ma
+    "httpd-max-worker-count": "integer",  # Maximum number of simultaneous HTTP requests that will be se
     "proxy-worker-count": "integer",  # Proxy worker count.
-    "scanunit-count": "integer",  # Number of scanunits. The range and the default depend on the number of CPUs. Onl
+    "scanunit-count": "integer",  # Number of scanunits. The range and the default depend on the
     "fgd-alert-subscription": "option",  # Type of alert to retrieve from FortiGuard.
-    "ipv6-accept-dad": "integer",  # Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
+    "ipv6-accept-dad": "integer",  # Enable/disable acceptance of IPv6 Duplicate Address Detectio
     "ipv6-allow-anycast-probe": "option",  # Enable/disable IPv6 address probe through Anycast.
     "ipv6-allow-multicast-probe": "option",  # Enable/disable IPv6 address probe through Multicast.
     "ipv6-allow-local-in-silent-drop": "option",  # Enable/disable silent drop of IPv6 local-in traffic.
-    "csr-ca-attribute": "option",  # Enable/disable the CA attribute in certificates. Some CA servers reject CSRs tha
+    "csr-ca-attribute": "option",  # Enable/disable the CA attribute in certificates. Some CA ser
     "wimax-4g-usb": "option",  # Enable/disable comparability with WiMAX 4G USB devices.
-    "cert-chain-max": "integer",  # Maximum number of certificates that can be traversed in a certificate chain.
-    "sslvpn-max-worker-count": "integer",  # Maximum number of Agentless VPN processes. Upper limit for this value is the num
+    "cert-chain-max": "integer",  # Maximum number of certificates that can be traversed in a ce
+    "sslvpn-max-worker-count": "integer",  # Maximum number of Agentless VPN processes. Upper limit for t
     "sslvpn-affinity": "string",  # Agentless VPN CPU affinity.
     "sslvpn-web-mode": "option",  # Enable/disable Agentless VPN web mode.
-    "two-factor-ftk-expiry": "integer",  # FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 
-    "two-factor-email-expiry": "integer",  # Email-based two-factor authentication session timeout (30 - 300 seconds (5 minut
-    "two-factor-sms-expiry": "integer",  # SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60)
-    "two-factor-fac-expiry": "integer",  # FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 ho
-    "two-factor-ftm-expiry": "integer",  # FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72).
+    "two-factor-ftk-expiry": "integer",  # FortiToken authentication session timeout (60 - 600 sec (10 
+    "two-factor-email-expiry": "integer",  # Email-based two-factor authentication session timeout (30 - 
+    "two-factor-sms-expiry": "integer",  # SMS-based two-factor authentication session timeout (30 - 30
+    "two-factor-fac-expiry": "integer",  # FortiAuthenticator token authentication session timeout (10 
+    "two-factor-ftm-expiry": "integer",  # FortiToken Mobile session timeout (1 - 168 hours (7 days), d
     "per-user-bal": "option",  # Enable/disable per-user block/allow list filter.
-    "wad-worker-count": "integer",  # Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN
-    "wad-worker-dev-cache": "integer",  # Number of cached devices for each ZTNA proxy worker. The default value is tuned 
-    "wad-csvc-cs-count": "integer",  # Number of concurrent WAD-cache-service object-cache processes.
+    "wad-worker-count": "integer",  # Number of explicit proxy WAN optimization daemon (WAD) proce
+    "wad-worker-dev-cache": "integer",  # Number of cached devices for each ZTNA proxy worker. The def
+    "wad-csvc-cs-count": "integer",  # Number of concurrent WAD-cache-service object-cache processe
     "wad-csvc-db-count": "integer",  # Number of concurrent WAD-cache-service byte-cache processes.
-    "wad-source-affinity": "option",  # Enable/disable dispatching traffic to WAD workers based on source affinity.
-    "wad-memory-change-granularity": "integer",  # Minimum percentage change in system memory usage detected by the wad daemon prio
+    "wad-source-affinity": "option",  # Enable/disable dispatching traffic to WAD workers based on s
+    "wad-memory-change-granularity": "integer",  # Minimum percentage change in system memory usage detected by
     "login-timestamp": "option",  # Enable/disable login time recording.
     "ip-conflict-detection": "option",  # Enable/disable logging of IPv4 address conflict detection.
-    "miglogd-children": "integer",  # Number of logging (miglogd) processes to be allowed to run. Higher number can re
-    "log-daemon-cpu-threshold": "integer",  # Configure syslog daemon process spawning threshold. Use a percentage threshold o
-    "special-file-23-support": "option",  # Enable/disable detection of those special format files when using Data Loss Prev
+    "miglogd-children": "integer",  # Number of logging (miglogd) processes to be allowed to run. 
+    "log-daemon-cpu-threshold": "integer",  # Configure syslog daemon process spawning threshold. Use a pe
+    "special-file-23-support": "option",  # Enable/disable detection of those special format files when 
     "log-uuid-address": "option",  # Enable/disable insertion of address UUIDs to traffic logs.
     "log-ssl-connection": "option",  # Enable/disable logging of SSL connection events.
     "gui-rest-api-cache": "option",  # Enable/disable REST API result caching on FortiGate.
-    "rest-api-key-url-query": "option",  # Enable/disable support for passing REST API keys through URL query parameters.
-    "arp-max-entry": "integer",  # Maximum number of dynamically learned MAC addresses that can be added to the ARP
-    "ha-affinity": "string",  # Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format 
-    "bfd-affinity": "string",  # Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format 
-    "cmdbsvr-affinity": "string",  # Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of 
-    "av-affinity": "string",  # Affinity setting for AV scanning (hexadecimal value up to 256 bits in the format
-    "wad-affinity": "string",  # Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxx
-    "ips-affinity": "string",  # Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxx
-    "miglog-affinity": "string",  # Affinity setting for logging (hexadecimal value up to 256 bits in the format of 
-    "syslog-affinity": "string",  # Affinity setting for syslog (hexadecimal value up to 256 bits in the format of x
+    "rest-api-key-url-query": "option",  # Enable/disable support for passing REST API keys through URL
+    "arp-max-entry": "integer",  # Maximum number of dynamically learned MAC addresses that can
+    "ha-affinity": "string",  # Affinity setting for HA daemons (hexadecimal value up to 256
+    "bfd-affinity": "string",  # Affinity setting for BFD daemon (hexadecimal value up to 256
+    "cmdbsvr-affinity": "string",  # Affinity setting for cmdbsvr (hexadecimal value up to 256 bi
+    "av-affinity": "string",  # Affinity setting for AV scanning (hexadecimal value up to 25
+    "wad-affinity": "string",  # Affinity setting for wad (hexadecimal value up to 256 bits i
+    "ips-affinity": "string",  # Affinity setting for IPS (hexadecimal value up to 256 bits i
+    "miglog-affinity": "string",  # Affinity setting for logging (hexadecimal value up to 256 bi
+    "syslog-affinity": "string",  # Affinity setting for syslog (hexadecimal value up to 256 bit
     "url-filter-affinity": "string",  # URL filter CPU affinity.
-    "router-affinity": "string",  # Affinity setting for BFD/VRRP/BGP/OSPF daemons (hexadecimal value up to 256 bits
-    "ndp-max-entry": "integer",  # Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kerne
+    "router-affinity": "string",  # Affinity setting for BFD/VRRP/BGP/OSPF daemons (hexadecimal 
+    "ndp-max-entry": "integer",  # Maximum number of NDP table entries (set to 65,536 or higher
     "br-fdb-max-entry": "integer",  # Maximum number of bridge forwarding database (FDB) entries.
     "max-route-cache-size": "integer",  # Maximum number of IP route cache entries (0 - 2147483647).
-    "ipsec-qat-offload": "option",  # Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAs
-    "device-idle-timeout": "integer",  # Time in seconds that a device must be idle to automatically log the device user 
+    "ipsec-qat-offload": "option",  # Enable/disable QAT offloading (Intel QuickAssist) for IPsec 
+    "device-idle-timeout": "integer",  # Time in seconds that a device must be idle to automatically 
     "user-device-store-max-devices": "integer",  # Maximum number of devices allowed in user device store.
-    "user-device-store-max-device-mem": "integer",  # Maximum percentage of total system memory allowed to be used for devices in the 
+    "user-device-store-max-device-mem": "integer",  # Maximum percentage of total system memory allowed to be used
     "user-device-store-max-users": "integer",  # Maximum number of users allowed in user device store.
     "user-device-store-max-unified-mem": "integer",  # Maximum unified memory allowed in user device store.
-    "gui-device-latitude": "string",  # Add the latitude of the location of this FortiGate to position it on the Threat 
-    "gui-device-longitude": "string",  # Add the longitude of the location of this FortiGate to position it on the Threat
-    "private-data-encryption": "option",  # Enable/disable private data encryption using an AES 128-bit key or passpharse.
-    "auto-auth-extension-device": "option",  # Enable/disable automatic authorization of dedicated Fortinet extension devices.
+    "gui-device-latitude": "string",  # Add the latitude of the location of this FortiGate to positi
+    "gui-device-longitude": "string",  # Add the longitude of the location of this FortiGate to posit
+    "private-data-encryption": "option",  # Enable/disable private data encryption using an AES 128-bit 
+    "auto-auth-extension-device": "option",  # Enable/disable automatic authorization of dedicated Fortinet
     "gui-theme": "option",  # Color scheme for the administration GUI.
     "gui-date-format": "option",  # Default date format used throughout GUI.
-    "gui-date-time-source": "option",  # Source from which the FortiGate GUI uses to display date and time entries.
-    "igmp-state-limit": "integer",  # Maximum number of IGMP memberships (96 - 64000, default = 3200).
+    "gui-date-time-source": "option",  # Source from which the FortiGate GUI uses to display date and
+    "igmp-state-limit": "integer",  # Maximum number of IGMP memberships (96 - 64000, default = 32
     "cloud-communication": "option",  # Enable/disable all cloud communication.
     "ipsec-ha-seqjump-rate": "integer",  # ESP jump ahead rate (1G - 10G pps equivalent).
     "fortitoken-cloud": "option",  # Enable/disable FortiToken Cloud service.
     "fortitoken-cloud-push-status": "option",  # Enable/disable FTM push service of FortiToken Cloud.
     "fortitoken-cloud-region": "string",  # Region domain of FortiToken Cloud(unset to non-region).
-    "fortitoken-cloud-sync-interval": "integer",  # Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (1
-    "faz-disk-buffer-size": "integer",  # Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. T
+    "fortitoken-cloud-sync-interval": "integer",  # Interval in which to clean up remote users in FortiToken Clo
+    "faz-disk-buffer-size": "integer",  # Maximum disk buffer size to temporarily store logs destined 
     "irq-time-accounting": "option",  # Configure CPU IRQ time accounting mode.
-    "management-ip": "string",  # Management IP address of this FortiGate. Used to log into this FortiGate from an
-    "management-port": "integer",  # Overriding port for management connection (Overrides admin port).
-    "management-port-use-admin-sport": "option",  # Enable/disable use of the admin-sport setting for the management port. If disabl
+    "management-ip": "string",  # Management IP address of this FortiGate. Used to log into th
+    "management-port": "integer",  # Overriding port for management connection (Overrides admin p
+    "management-port-use-admin-sport": "option",  # Enable/disable use of the admin-sport setting for the manage
     "forticonverter-integration": "option",  # Enable/disable FortiConverter integration service.
     "forticonverter-config-upload": "option",  # Enable/disable config upload to FortiConverter.
-    "internet-service-database": "option",  # Configure which Internet Service database size to download from FortiGuard and u
-    "internet-service-download-list": "string",  # Configure which on-demand Internet Service IDs are to be downloaded.
-    "geoip-full-db": "option",  # When enabled, the full geographic database will be loaded into the kernel which 
+    "internet-service-database": "option",  # Configure which Internet Service database size to download f
+    "internet-service-download-list": "string",  # Configure which on-demand Internet Service IDs are to be dow
+    "geoip-full-db": "option",  # When enabled, the full geographic database will be loaded in
     "early-tcp-npu-session": "option",  # Enable/disable early TCP NPU session.
-    "npu-neighbor-update": "option",  # Enable/disable sending of ARP/ICMP6 probing packets to update neighbors for offl
-    "delay-tcp-npu-session": "option",  # Enable TCP NPU session delay to guarantee packet order of 3-way handshake.
-    "interface-subnet-usage": "option",  # Enable/disable allowing use of interface-subnet setting in firewall addresses (d
+    "npu-neighbor-update": "option",  # Enable/disable sending of ARP/ICMP6 probing packets to updat
+    "delay-tcp-npu-session": "option",  # Enable TCP NPU session delay to guarantee packet order of 3-
+    "interface-subnet-usage": "option",  # Enable/disable allowing use of interface-subnet setting in f
     "sflowd-max-children-num": "integer",  # Maximum number of sflowd child processes allowed to run.
     "fortigslb-integration": "option",  # Enable/disable integration with the FortiGSLB cloud service.
-    "user-history-password-threshold": "integer",  # Maximum number of previous passwords saved per admin/user (3 - 15, default = 3).
-    "auth-session-auto-backup": "option",  # Enable/disable automatic and periodic backup of authentication sessions (default
-    "auth-session-auto-backup-interval": "option",  # Configure automatic authentication session backup interval (default = 15min).
+    "user-history-password-threshold": "integer",  # Maximum number of previous passwords saved per admin/user (3
+    "auth-session-auto-backup": "option",  # Enable/disable automatic and periodic backup of authenticati
+    "auth-session-auto-backup-interval": "option",  # Configure automatic authentication session backup interval (
     "scim-https-port": "integer",  # SCIM port (0 - 65535, default = 44559).
     "scim-http-port": "integer",  # SCIM http port (0 - 65535, default = 44558).
-    "scim-server-cert": "string",  # Server certificate that the FortiGate uses for SCIM connections.
+    "scim-server-cert": "string",  # Server certificate that the FortiGate uses for SCIM connecti
     "application-bandwidth-tracking": "option",  # Enable/disable application bandwidth tracking.
     "tls-session-cache": "option",  # Enable/disable TLS session cache.
 }

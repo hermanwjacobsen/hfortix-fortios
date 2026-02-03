@@ -74,7 +74,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Name of the PPPoE interface.
-    "dial-on-demand": "option",  # Enable/disable dial on demand to dial the PPPoE interface when packets are route
+    "dial-on-demand": "option",  # Enable/disable dial on demand to dial the PPPoE interface wh
     "ipv6": "option",  # Enable/disable IPv6 Control Protocol (IPv6CP).
     "device": "string",  # Name for the physical interface.
     "username": "string",  # User name.
@@ -90,7 +90,7 @@ FIELD_TYPES = {
     "padt-retry-timeout": "integer",  # PPPoE terminate timeout value in (0-4294967295 sec).
     "service-name": "string",  # PPPoE service name.
     "ac-name": "string",  # PPPoE AC name.
-    "lcp-echo-interval": "integer",  # Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+    "lcp-echo-interval": "integer",  # Time in seconds between PPPoE Link Control Protocol (LCP) ec
     "lcp-max-echo-fails": "integer",  # Maximum missed LCP echo messages before disconnect.
 }
 

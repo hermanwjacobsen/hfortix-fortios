@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Service group name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "proxy": "option",  # Enable/disable web proxy service group.
     "member": "string",  # Service objects contained within the group.
     "comment": "var-string",  # Comment.

@@ -64,7 +64,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Remote log name.
-    "status": "option",  # Enable/disable logging by FortiSwitch device to a remote syslog server.
+    "status": "option",  # Enable/disable logging by FortiSwitch device to a remote sys
     "server": "string",  # IPv4 address of the remote syslog server.
     "port": "integer",  # Remote syslog server listening port.
     "severity": "option",  # Severity of logs to be transferred to remote log server.

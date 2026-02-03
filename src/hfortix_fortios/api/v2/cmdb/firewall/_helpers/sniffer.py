@@ -90,15 +90,15 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Sniffer ID (0 - 9999).
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "status": "option",  # Enable/disable the active status of the sniffer.
-    "logtraffic": "option",  # Either log all sessions, only sessions that have a security profile applied, or 
+    "logtraffic": "option",  # Either log all sessions, only sessions that have a security 
     "ipv6": "option",  # Enable/disable sniffing IPv6 packets.
     "non-ip": "option",  # Enable/disable sniffing non-IP packets.
     "interface": "string",  # Interface name that traffic sniffing will take place on.
-    "host": "string",  # Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.
-    "port": "string",  # Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
-    "protocol": "string",  # Integer value for the protocol type as defined by IANA (0 - 255).
+    "host": "string",  # Hosts to filter for in sniffer traffic (Format examples: 1.1
+    "port": "string",  # Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-20
+    "protocol": "string",  # Integer value for the protocol type as defined by IANA (0 - 
     "vlan": "string",  # List of VLANs to sniff.
     "application-list-status": "option",  # Enable/disable application control profile.
     "application-list": "string",  # Name of an existing application list.
@@ -118,7 +118,7 @@ FIELD_TYPES = {
     "file-filter-profile-status": "option",  # Enable/disable file filter.
     "file-filter-profile": "string",  # Name of an existing file-filter profile.
     "ips-dos-status": "option",  # Enable/disable IPS DoS anomaly detection.
-    "anomaly": "string",  # Configuration method to edit Denial of Service (DoS) anomaly settings.
+    "anomaly": "string",  # Configuration method to edit Denial of Service (DoS) anomaly
 }
 
 # Field descriptions (help text from FortiOS API)

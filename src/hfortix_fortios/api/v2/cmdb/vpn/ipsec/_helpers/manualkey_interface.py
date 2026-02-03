@@ -82,13 +82,13 @@ FIELD_TYPES = {
     "remote-gw6": "ipv6-address",  # Remote IPv6 address of VPN gateway.
     "local-gw": "ipv4-address-any",  # IPv4 address of the local gateway's external interface.
     "local-gw6": "ipv6-address",  # Local IPv6 address of VPN gateway.
-    "auth-alg": "option",  # Authentication algorithm. Must be the same for both ends of the tunnel.
-    "enc-alg": "option",  # Encryption algorithm. Must be the same for both ends of the tunnel.
-    "auth-key": "user",  # Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphen
-    "enc-key": "user",  # Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-    "local-spi": "user",  # Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic stre
-    "remote-spi": "user",  # Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic str
-    "npu-offload": "option",  # Enable/disable offloading IPsec VPN manual key sessions to NPUs.
+    "auth-alg": "option",  # Authentication algorithm. Must be the same for both ends of 
+    "enc-alg": "option",  # Encryption algorithm. Must be the same for both ends of the 
+    "auth-key": "user",  # Hexadecimal authentication key in 16-digit (8-byte) segments
+    "enc-key": "user",  # Hexadecimal encryption key in 16-digit (8-byte) segments sep
+    "local-spi": "user",  # Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns betw
+    "remote-spi": "user",  # Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns bet
+    "npu-offload": "option",  # Enable/disable offloading IPsec VPN manual key sessions to N
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -102,17 +102,17 @@ FIELD_TYPES = {
     "access-network-internet": "option",  # Enable/disable connectivity to the Internet.
     "access-network-asra": "option",  # Enable/disable additional step required for access (ASRA).
     "access-network-esr": "option",  # Enable/disable emergency services reachable (ESR).
-    "access-network-uesa": "option",  # Enable/disable unauthenticated emergency service accessible (UESA).
+    "access-network-uesa": "option",  # Enable/disable unauthenticated emergency service accessible 
     "venue-group": "option",  # Venue group.
     "venue-type": "option",  # Venue type.
     "hessid": "mac-address",  # Homogeneous extended service set identifier (HESSID).
     "proxy-arp": "option",  # Enable/disable Proxy ARP.
     "l2tif": "option",  # Enable/disable Layer 2 traffic inspection and filtering.
-    "pame-bi": "option",  # Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI).
+    "pame-bi": "option",  # Enable/disable Pre-Association Message Exchange BSSID Indepe
     "anqp-domain-id": "integer",  # ANQP Domain ID (0-65535).
     "domain-name": "string",  # Domain name.
     "osu-ssid": "string",  # Online sign up (OSU) SSID.
-    "gas-comeback-delay": "integer",  # GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+    "gas-comeback-delay": "integer",  # GAS comeback delay (0 or 100 - 10000 milliseconds, default =
     "gas-fragmentation-limit": "integer",  # GAS fragmentation limit (512 - 4096, default = 1024).
     "dgaf": "option",  # Enable/disable downstream group-addressed forwarding (DGAF).
     "deauth-request-timeout": "integer",  # Deauthentication request timeout (in seconds).

@@ -64,7 +64,7 @@ FIELD_TYPES = {
     "comment": "var-string",  # Comment.
     "replacemsg-group": "string",  # Replacement message group.
     "block-malicious-url": "option",  # Enable/disable malicious URL blocking.
-    "scan-botnet-connections": "option",  # Block or monitor connections to Botnet servers, or disable Botnet scanning.
+    "scan-botnet-connections": "option",  # Block or monitor connections to Botnet servers, or disable B
     "extended-log": "option",  # Enable/disable extended logging.
     "entries": "string",  # IPS sensor filter.
 }

@@ -74,10 +74,10 @@ FIELD_TYPES = {
     "replacemsg-group": "string",  # Replacement message group.
     "extended-log": "option",  # Enable/disable extended logging.
     "other-application-action": "option",  # Action for other applications.
-    "app-replacemsg": "option",  # Enable/disable replacement messages for blocked applications.
+    "app-replacemsg": "option",  # Enable/disable replacement messages for blocked applications
     "other-application-log": "option",  # Enable/disable logging for other applications.
-    "enforce-default-app-port": "option",  # Enable/disable default application port enforcement for allowed applications.
-    "force-inclusion-ssl-di-sigs": "option",  # Enable/disable forced inclusion of SSL deep inspection signatures.
+    "enforce-default-app-port": "option",  # Enable/disable default application port enforcement for allo
+    "force-inclusion-ssl-di-sigs": "option",  # Enable/disable forced inclusion of SSL deep inspection signa
     "unknown-application-action": "option",  # Pass or block traffic from unknown applications.
     "unknown-application-log": "option",  # Enable/disable logging for unknown applications.
     "p2p-block-list": "option",  # P2P applications to be block listed.

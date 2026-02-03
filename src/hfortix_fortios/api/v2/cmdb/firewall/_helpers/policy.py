@@ -199,7 +199,7 @@ FIELD_TYPES = {
     "policyid": "integer",  # Policy ID (0 - 4294967294).
     "status": "option",  # Enable or disable this policy.
     "name": "string",  # Policy name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "srcintf": "string",  # Incoming (ingress) interface.
     "dstintf": "string",  # Outgoing (egress) interface.
     "action": "option",  # Policy action (accept/deny/ipsec).
@@ -215,60 +215,60 @@ FIELD_TYPES = {
     "ztna-ems-tag-secondary": "string",  # Source ztna-ems-tag-secondary names.
     "ztna-tags-match-logic": "option",  # ZTNA tag matching logic.
     "ztna-geo-tag": "string",  # Source ztna-geo-tag names.
-    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If enabled, destination
+    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If 
     "internet-service-name": "string",  # Internet Service name.
     "internet-service-group": "string",  # Internet Service group name.
     "internet-service-custom": "string",  # Custom Internet Service name.
     "network-service-dynamic": "string",  # Dynamic Network Service name.
     "internet-service-custom-group": "string",  # Custom Internet Service group name.
-    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this policy. If enabled, s
+    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this p
     "internet-service-src-name": "string",  # Internet Service source name.
     "internet-service-src-group": "string",  # Internet Service source group name.
     "internet-service-src-custom": "string",  # Custom Internet Service source name.
     "network-service-src-dynamic": "string",  # Dynamic Network Service source name.
     "internet-service-src-custom-group": "string",  # Custom Internet Service source group name.
     "reputation-minimum": "integer",  # Minimum Reputation to take action.
-    "reputation-direction": "option",  # Direction of the initial traffic for reputation to take effect.
+    "reputation-direction": "option",  # Direction of the initial traffic for reputation to take effe
     "src-vendor-mac": "string",  # Vendor MAC source ID.
-    "internet-service6": "option",  # Enable/disable use of IPv6 Internet Services for this policy. If enabled, destin
+    "internet-service6": "option",  # Enable/disable use of IPv6 Internet Services for this policy
     "internet-service6-name": "string",  # IPv6 Internet Service name.
     "internet-service6-group": "string",  # Internet Service group name.
     "internet-service6-custom": "string",  # Custom IPv6 Internet Service name.
     "internet-service6-custom-group": "string",  # Custom Internet Service6 group name.
-    "internet-service6-src": "option",  # Enable/disable use of IPv6 Internet Services in source for this policy. If enabl
+    "internet-service6-src": "option",  # Enable/disable use of IPv6 Internet Services in source for t
     "internet-service6-src-name": "string",  # IPv6 Internet Service source name.
     "internet-service6-src-group": "string",  # Internet Service6 source group name.
     "internet-service6-src-custom": "string",  # Custom IPv6 Internet Service source name.
     "internet-service6-src-custom-group": "string",  # Custom Internet Service6 source group name.
     "reputation-minimum6": "integer",  # IPv6 Minimum Reputation to take action.
-    "reputation-direction6": "option",  # Direction of the initial traffic for IPv6 reputation to take effect.
+    "reputation-direction6": "option",  # Direction of the initial traffic for IPv6 reputation to take
     "rtp-nat": "option",  # Enable Real Time Protocol (RTP) NAT.
     "rtp-addr": "string",  # Address names if this is an RTP NAT policy.
-    "send-deny-packet": "option",  # Enable to send a reply when a session is denied or blocked by a firewall policy.
-    "firewall-session-dirty": "option",  # How to handle sessions if the configuration of this firewall policy changes.
+    "send-deny-packet": "option",  # Enable to send a reply when a session is denied or blocked b
+    "firewall-session-dirty": "option",  # How to handle sessions if the configuration of this firewall
     "schedule": "string",  # Schedule name.
-    "schedule-timeout": "option",  # Enable to force current sessions to end when the schedule object times out. Disa
+    "schedule-timeout": "option",  # Enable to force current sessions to end when the schedule ob
     "policy-expiry": "option",  # Enable/disable policy expiry.
     "policy-expiry-date": "datetime",  # Policy expiry date (YYYY-MM-DD HH:MM:SS).
     "policy-expiry-date-utc": "user",  # Policy expiry date and time, in epoch format.
     "service": "string",  # Service and service group names.
-    "tos-mask": "user",  # Non-zero bit positions are used for comparison while zero bit positions are igno
+    "tos-mask": "user",  # Non-zero bit positions are used for comparison while zero bi
     "tos": "user",  # ToS (Type of Service) value used for comparison.
     "tos-negate": "option",  # Enable negated TOS match.
     "anti-replay": "option",  # Enable/disable anti-replay check.
     "tcp-session-without-syn": "option",  # Enable/disable creation of TCP session without SYN flag.
-    "geoip-anycast": "option",  # Enable/disable recognition of anycast IP addresses using the geography IP databa
-    "geoip-match": "option",  # Match geography address based either on its physical location or registered loca
+    "geoip-anycast": "option",  # Enable/disable recognition of anycast IP addresses using the
+    "geoip-match": "option",  # Match geography address based either on its physical locatio
     "dynamic-shaping": "option",  # Enable/disable dynamic RADIUS defined traffic shaping.
-    "passive-wan-health-measurement": "option",  # Enable/disable passive WAN health measurement. When enabled, auto-asic-offload i
-    "app-monitor": "option",  # Enable/disable application TCP metrics in session logs.When enabled, auto-asic-o
-    "utm-status": "option",  # Enable to add one or more security profiles (AV, IPS, etc.) to the firewall poli
+    "passive-wan-health-measurement": "option",  # Enable/disable passive WAN health measurement. When enabled,
+    "app-monitor": "option",  # Enable/disable application TCP metrics in session logs.When 
+    "utm-status": "option",  # Enable to add one or more security profiles (AV, IPS, etc.) 
     "inspection-mode": "option",  # Policy inspection mode (Flow/proxy). Default is Flow mode.
-    "http-policy-redirect": "option",  # Redirect HTTP(S) traffic to matching transparent web proxy policy.
+    "http-policy-redirect": "option",  # Redirect HTTP(S) traffic to matching transparent web proxy p
     "ssh-policy-redirect": "option",  # Redirect SSH traffic to matching transparent proxy policy.
     "ztna-policy-redirect": "option",  # Redirect ZTNA traffic to matching Access-Proxy proxy-policy.
     "webproxy-profile": "string",  # Webproxy profile name.
-    "profile-type": "option",  # Determine whether the firewall policy allows security profile groups or single p
+    "profile-type": "option",  # Determine whether the firewall policy allows security profil
     "profile-group": "string",  # Name of profile group.
     "profile-protocol-options": "string",  # Name of an existing Protocol options profile.
     "ssl-ssh-profile": "string",  # Name of an existing SSL SSH profile.
@@ -290,14 +290,14 @@ FIELD_TYPES = {
     "waf-profile": "string",  # Name of an existing Web application firewall profile.
     "ssh-filter-profile": "string",  # Name of an existing SSH filter profile.
     "casb-profile": "string",  # Name of an existing CASB profile.
-    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security profile sessions.
+    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security prof
     "logtraffic-start": "option",  # Record logs when a session starts.
     "log-http-transaction": "option",  # Enable/disable HTTP transaction log.
     "capture-packet": "option",  # Enable/disable capture packets.
     "auto-asic-offload": "option",  # Enable/disable policy traffic ASIC offloading.
     "wanopt": "option",  # Enable/disable WAN optimization.
     "wanopt-detection": "option",  # WAN optimization auto-detection mode.
-    "wanopt-passive-opt": "option",  # WAN optimization passive mode options. This option decides what IP address will 
+    "wanopt-passive-opt": "option",  # WAN optimization passive mode options. This option decides w
     "wanopt-profile": "string",  # WAN optimization profile.
     "wanopt-peer": "string",  # WAN optimization peer.
     "webcache": "option",  # Enable/disable web cache.
@@ -310,40 +310,40 @@ FIELD_TYPES = {
     "pcp-outbound": "option",  # Enable/disable PCP outbound SNAT.
     "pcp-inbound": "option",  # Enable/disable PCP inbound DNAT.
     "pcp-poolname": "string",  # PCP pool names.
-    "permit-any-host": "option",  # Enable/disable fullcone NAT. Accept UDP packets from any host.
-    "permit-stun-host": "option",  # Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host.
-    "fixedport": "option",  # Enable to prevent source NAT from changing a session's source port.
-    "port-preserve": "option",  # Enable/disable preservation of the original source port from source NAT if it ha
+    "permit-any-host": "option",  # Enable/disable fullcone NAT. Accept UDP packets from any hos
+    "permit-stun-host": "option",  # Accept UDP packets from any Session Traversal Utilities for 
+    "fixedport": "option",  # Enable to prevent source NAT from changing a session's sourc
+    "port-preserve": "option",  # Enable/disable preservation of the original source port from
     "port-random": "option",  # Enable/disable random source port selection for source NAT.
     "ippool": "option",  # Enable to use IP Pools for source NAT.
     "poolname": "string",  # IP Pool names.
     "poolname6": "string",  # IPv6 pool names.
-    "session-ttl": "user",  # TTL in seconds for sessions accepted by this policy (0 means use the system defa
-    "vlan-cos-fwd": "integer",  # VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
-    "vlan-cos-rev": "integer",  # VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
-    "inbound": "option",  # Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN.
-    "outbound": "option",  # Policy-based IPsec VPN: only traffic from the internal network can initiate a VP
-    "natinbound": "option",  # Policy-based IPsec VPN: apply destination NAT to inbound traffic.
-    "natoutbound": "option",  # Policy-based IPsec VPN: apply source NAT to outbound traffic.
-    "fec": "option",  # Enable/disable Forward Error Correction on traffic matching this policy on a FEC
-    "wccp": "option",  # Enable/disable forwarding traffic matching this policy to a configured WCCP serv
+    "session-ttl": "user",  # TTL in seconds for sessions accepted by this policy (0 means
+    "vlan-cos-fwd": "integer",  # VLAN forward direction user priority: 255 passthrough, 0 low
+    "vlan-cos-rev": "integer",  # VLAN reverse direction user priority: 255 passthrough, 0 low
+    "inbound": "option",  # Policy-based IPsec VPN: only traffic from the remote network
+    "outbound": "option",  # Policy-based IPsec VPN: only traffic from the internal netwo
+    "natinbound": "option",  # Policy-based IPsec VPN: apply destination NAT to inbound tra
+    "natoutbound": "option",  # Policy-based IPsec VPN: apply source NAT to outbound traffic
+    "fec": "option",  # Enable/disable Forward Error Correction on traffic matching 
+    "wccp": "option",  # Enable/disable forwarding traffic matching this policy to a 
     "ntlm": "option",  # Enable/disable NTLM authentication.
     "ntlm-guest": "option",  # Enable/disable NTLM guest user access.
     "ntlm-enabled-browsers": "string",  # HTTP-User-Agent value of supported browsers.
     "fsso-agent-for-ntlm": "string",  # FSSO agent to use for NTLM authentication.
     "groups": "string",  # Names of user groups that can authenticate with this policy.
-    "users": "string",  # Names of individual users that can authenticate with this policy.
+    "users": "string",  # Names of individual users that can authenticate with this po
     "fsso-groups": "string",  # Names of FSSO groups.
     "auth-path": "option",  # Enable/disable authentication-based routing.
     "disclaimer": "option",  # Enable/disable user authentication disclaimer.
     "email-collect": "option",  # Enable/disable email collection.
     "vpntunnel": "string",  # Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-    "natip": "ipv4-classnet",  # Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
-    "match-vip": "option",  # Enable to match packets that have had their destination addresses changed by a V
-    "match-vip-only": "option",  # Enable/disable matching of only those packets that have had their destination ad
-    "diffserv-copy": "option",  # Enable to copy packet's DiffServ values from session's original direction to its
-    "diffserv-forward": "option",  # Enable to change packet's DiffServ values to the specified diffservcode-forward 
-    "diffserv-reverse": "option",  # Enable to change packet's reverse (reply) DiffServ values to the specified diffs
+    "natip": "ipv4-classnet",  # Policy-based IPsec VPN: source NAT IP address for outgoing t
+    "match-vip": "option",  # Enable to match packets that have had their destination addr
+    "match-vip-only": "option",  # Enable/disable matching of only those packets that have had 
+    "diffserv-copy": "option",  # Enable to copy packet's DiffServ values from session's origi
+    "diffserv-forward": "option",  # Enable to change packet's DiffServ values to the specified d
+    "diffserv-reverse": "option",  # Enable to change packet's reverse (reply) DiffServ values to
     "diffservcode-forward": "user",  # Change packet's DiffServ to this value.
     "diffservcode-rev": "user",  # Change packet's reverse (reply) DiffServ to this value.
     "tcp-mss-sender": "integer",  # Sender TCP maximum segment size (MSS).
@@ -351,28 +351,28 @@ FIELD_TYPES = {
     "comments": "var-string",  # Comment.
     "auth-cert": "string",  # HTTPS server certificate for policy authentication.
     "auth-redirect-addr": "string",  # HTTP-to-HTTPS redirect address for firewall authentication.
-    "redirect-url": "var-string",  # URL users are directed to after seeing and accepting the disclaimer or authentic
+    "redirect-url": "var-string",  # URL users are directed to after seeing and accepting the dis
     "identity-based-route": "string",  # Name of identity-based routing rule.
     "block-notification": "option",  # Enable/disable block notification.
     "custom-log-fields": "string",  # Custom fields to append to log messages for this policy.
-    "replacemsg-override-group": "string",  # Override the default replacement message group for this policy.
-    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must NOT be.
-    "srcaddr6-negate": "option",  # When enabled srcaddr6 specifies what the source address must NOT be.
-    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address must NOT be.
-    "dstaddr6-negate": "option",  # When enabled dstaddr6 specifies what the destination address must NOT be.
-    "ztna-ems-tag-negate": "option",  # When enabled ztna-ems-tag specifies what the tags must NOT be.
+    "replacemsg-override-group": "string",  # Override the default replacement message group for this poli
+    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must 
+    "srcaddr6-negate": "option",  # When enabled srcaddr6 specifies what the source address must
+    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address 
+    "dstaddr6-negate": "option",  # When enabled dstaddr6 specifies what the destination address
+    "ztna-ems-tag-negate": "option",  # When enabled ztna-ems-tag specifies what the tags must NOT b
     "service-negate": "option",  # When enabled service specifies what the service must NOT be.
-    "internet-service-negate": "option",  # When enabled internet-service specifies what the service must NOT be.
-    "internet-service-src-negate": "option",  # When enabled internet-service-src specifies what the service must NOT be.
-    "internet-service6-negate": "option",  # When enabled internet-service6 specifies what the service must NOT be.
-    "internet-service6-src-negate": "option",  # When enabled internet-service6-src specifies what the service must NOT be.
+    "internet-service-negate": "option",  # When enabled internet-service specifies what the service mus
+    "internet-service-src-negate": "option",  # When enabled internet-service-src specifies what the service
+    "internet-service6-negate": "option",  # When enabled internet-service6 specifies what the service mu
+    "internet-service6-src-negate": "option",  # When enabled internet-service6-src specifies what the servic
     "timeout-send-rst": "option",  # Enable/disable sending RST packets when TCP sessions expire.
     "captive-portal-exempt": "option",  # Enable to exempt some users from the captive portal.
     "decrypted-traffic-mirror": "string",  # Decrypted traffic mirror.
     "dsri": "option",  # Enable DSRI to ignore HTTP server responses.
-    "radius-mac-auth-bypass": "option",  # Enable MAC authentication bypass. The bypassed MAC address must be received from
-    "radius-ip-auth-bypass": "option",  # Enable IP authentication bypass. The bypassed IP address must be received from R
-    "delay-tcp-npu-session": "option",  # Enable TCP NPU session delay to guarantee packet order of 3-way handshake.
+    "radius-mac-auth-bypass": "option",  # Enable MAC authentication bypass. The bypassed MAC address m
+    "radius-ip-auth-bypass": "option",  # Enable IP authentication bypass. The bypassed IP address mus
+    "delay-tcp-npu-session": "option",  # Enable TCP NPU session delay to guarantee packet order of 3-
     "vlan-filter": "user",  # VLAN ranges to allow
     "sgt-check": "option",  # Enable/disable security group tags (SGT) check.
     "sgt": "string",  # Security group tags.

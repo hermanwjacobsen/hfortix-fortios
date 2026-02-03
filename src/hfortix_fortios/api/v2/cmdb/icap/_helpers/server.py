@@ -72,10 +72,10 @@ FIELD_TYPES = {
     "ip6-address": "ipv6-address",  # IPv6 address of the ICAP server.
     "fqdn": "string",  # ICAP remote server Fully Qualified Domain Name (FQDN).
     "port": "integer",  # ICAP server port.
-    "max-connections": "integer",  # Maximum number of concurrent connections to ICAP server (unlimited = 0, default 
+    "max-connections": "integer",  # Maximum number of concurrent connections to ICAP server (unl
     "secure": "option",  # Enable/disable secure connection to ICAP server.
     "ssl-cert": "string",  # CA certificate name.
-    "healthcheck": "option",  # Enable/disable ICAP remote server health checking. Attempts to connect to the re
+    "healthcheck": "option",  # Enable/disable ICAP remote server health checking. Attempts 
     "healthcheck-service": "string",  # ICAP Service name to use for health checks.
 }
 

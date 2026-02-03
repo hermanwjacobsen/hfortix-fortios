@@ -77,9 +77,9 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "service-id": "string",  # Service ID.
-    "router-id": "ipv4-address",  # IP address known to all cache engines. If all cache engines connect to the same 
-    "cache-id": "ipv4-address",  # IP address known to all routers. If the addresses are the same, use the default 
-    "group-address": "ipv4-address-multicast",  # IP multicast address used by the cache routers. For the FortiGate to ignore mult
+    "router-id": "ipv4-address",  # IP address known to all cache engines. If all cache engines 
+    "cache-id": "ipv4-address",  # IP address known to all routers. If the addresses are the sa
+    "group-address": "ipv4-address-multicast",  # IP multicast address used by the cache routers. For the Fort
     "server-list": "user",  # IP addresses and netmasks for up to four cache servers.
     "router-list": "user",  # IP addresses of one or more WCCP routers.
     "ports-defined": "option",  # Match method.
@@ -88,14 +88,14 @@ FIELD_TYPES = {
     "authentication": "option",  # Enable/disable MD5 authentication.
     "password": "password",  # Password for MD5 authentication.
     "forward-method": "option",  # Method used to forward traffic to the cache servers.
-    "cache-engine-method": "option",  # Method used to forward traffic to the routers or to return to the cache engine.
-    "service-type": "option",  # WCCP service type used by the cache server for logical interception and redirect
+    "cache-engine-method": "option",  # Method used to forward traffic to the routers or to return t
+    "service-type": "option",  # WCCP service type used by the cache server for logical inter
     "primary-hash": "option",  # Hash method.
     "priority": "integer",  # Service priority.
     "protocol": "integer",  # Service protocol.
     "assignment-weight": "integer",  # Assignment of hash weight/ratio for the WCCP cache engine.
     "assignment-bucket-format": "option",  # Assignment bucket format for the WCCP cache engine.
-    "return-method": "option",  # Method used to decline a redirected packet and return it to the FortiGate unit.
+    "return-method": "option",  # Method used to decline a redirected packet and return it to 
     "assignment-method": "option",  # Hash key assignment preference.
     "assignment-srcaddr-mask": "ipv4-netmask-any",  # Assignment source address mask.
     "assignment-dstaddr-mask": "ipv4-netmask-any",  # Assignment destination address mask.

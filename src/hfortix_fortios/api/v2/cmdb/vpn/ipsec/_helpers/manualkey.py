@@ -74,12 +74,12 @@ FIELD_TYPES = {
     "interface": "string",  # Name of the physical, aggregate, or VLAN interface.
     "remote-gw": "ipv4-address",  # Peer gateway.
     "local-gw": "ipv4-address-any",  # Local gateway.
-    "authentication": "option",  # Authentication algorithm. Must be the same for both ends of the tunnel.
-    "encryption": "option",  # Encryption algorithm. Must be the same for both ends of the tunnel.
-    "authkey": "user",  # Hexadecimal authentication key in 16-digit (8-byte) segments separated by hyphen
-    "enckey": "user",  # Hexadecimal encryption key in 16-digit (8-byte) segments separated by hyphens.
-    "localspi": "user",  # Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic stre
-    "remotespi": "user",  # Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic str
+    "authentication": "option",  # Authentication algorithm. Must be the same for both ends of 
+    "encryption": "option",  # Encryption algorithm. Must be the same for both ends of the 
+    "authkey": "user",  # Hexadecimal authentication key in 16-digit (8-byte) segments
+    "enckey": "user",  # Hexadecimal encryption key in 16-digit (8-byte) segments sep
+    "localspi": "user",  # Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns betw
+    "remotespi": "user",  # Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns bet
     "npu-offload": "option",  # Enable/disable NPU offloading.
 }
 

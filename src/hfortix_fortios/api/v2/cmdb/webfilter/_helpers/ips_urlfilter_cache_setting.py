@@ -56,8 +56,8 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "dns-retry-interval": "integer",  # Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0
-    "extended-ttl": "integer",  # Extend time to live beyond reported by DNS. Use of 0 means use DNS server's TTL.
+    "dns-retry-interval": "integer",  # Retry interval. Refresh DNS faster than TTL to capture multi
+    "extended-ttl": "integer",  # Extend time to live beyond reported by DNS. Use of 0 means u
 }
 
 # Field descriptions (help text from FortiOS API)

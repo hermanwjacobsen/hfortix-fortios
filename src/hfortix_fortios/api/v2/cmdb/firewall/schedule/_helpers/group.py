@@ -62,7 +62,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Schedule group name.
     "member": "string",  # Schedules added to the schedule group.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "color": "integer",  # Color of icon on the GUI.
     "fabric-object": "option",  # Security Fabric global object setting.
 }

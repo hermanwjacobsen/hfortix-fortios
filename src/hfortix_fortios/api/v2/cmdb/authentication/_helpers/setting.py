@@ -76,21 +76,21 @@ FIELD_TYPES = {
     "active-auth-scheme": "string",  # Active authentication method (scheme name).
     "sso-auth-scheme": "string",  # Single-Sign-On authentication method (scheme name).
     "update-time": "user",  # Time of the last update.
-    "persistent-cookie": "option",  # Enable/disable persistent cookie on web portal authentication (default = enable)
-    "ip-auth-cookie": "option",  # Enable/disable persistent cookie on IP based web portal authentication (default 
-    "cookie-max-age": "integer",  # Persistent web portal cookie maximum age in minutes (30 - 10080 (1 week), defaul
-    "cookie-refresh-div": "integer",  # Refresh rate divider of persistent web portal cookie (default = 2). Refresh valu
+    "persistent-cookie": "option",  # Enable/disable persistent cookie on web portal authenticatio
+    "ip-auth-cookie": "option",  # Enable/disable persistent cookie on IP based web portal auth
+    "cookie-max-age": "integer",  # Persistent web portal cookie maximum age in minutes (30 - 10
+    "cookie-refresh-div": "integer",  # Refresh rate divider of persistent web portal cookie (defaul
     "captive-portal-type": "option",  # Captive portal type.
     "captive-portal-ip": "ipv4-address-any",  # Captive portal IP address.
     "captive-portal-ip6": "ipv6-address",  # Captive portal IPv6 address.
     "captive-portal": "string",  # Captive portal host name.
     "captive-portal6": "string",  # IPv6 captive portal host name.
-    "cert-auth": "option",  # Enable/disable redirecting certificate authentication to HTTPS portal.
+    "cert-auth": "option",  # Enable/disable redirecting certificate authentication to HTT
     "cert-captive-portal": "string",  # Certificate captive portal host name.
     "cert-captive-portal-ip": "ipv4-address-any",  # Certificate captive portal IP address.
-    "cert-captive-portal-port": "integer",  # Certificate captive portal port number (1 - 65535, default = 7832).
+    "cert-captive-portal-port": "integer",  # Certificate captive portal port number (1 - 65535, default =
     "captive-portal-port": "integer",  # Captive portal port number (1 - 65535, default = 7830).
-    "auth-https": "option",  # Enable/disable redirecting HTTP user authentication to HTTPS.
+    "auth-https": "option",  # Enable/disable redirecting HTTP user authentication to HTTPS
     "captive-portal-ssl-port": "integer",  # Captive portal SSL port number (1 - 65535, default = 7831).
     "user-cert-ca": "string",  # CA certificate used for client certificate verification.
     "dev-range": "string",  # Address range for the IP based device query.

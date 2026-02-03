@@ -93,27 +93,27 @@ FIELD_TYPES = {
     "roll-schedule": "option",  # Frequency to check log file for rolling.
     "roll-day": "option",  # Day of week on which to roll log file.
     "roll-time": "user",  # Time of day to roll the log file (hh:mm).
-    "diskfull": "option",  # Action to take when disk is full. The system can overwrite the oldest log messag
+    "diskfull": "option",  # Action to take when disk is full. The system can overwrite t
     "log-quota": "integer",  # Disk log quota (MB).
     "dlp-archive-quota": "integer",  # DLP archive quota (MB).
     "report-quota": "integer",  # Report db quota (MB).
     "maximum-log-age": "integer",  # Delete log files older than (days).
     "upload": "option",  # Enable/disable uploading log files when they are rolled.
-    "upload-destination": "option",  # The type of server to upload log files to. Only FTP is currently supported.
+    "upload-destination": "option",  # The type of server to upload log files to. Only FTP is curre
     "uploadip": "ipv4-address",  # IP address of the FTP server to upload log files to.
-    "uploadport": "integer",  # TCP port to use for communicating with the FTP server (default = 21).
+    "uploadport": "integer",  # TCP port to use for communicating with the FTP server (defau
     "source-ip": "ipv4-address",  # Source IP address to use for uploading disk log files.
-    "uploaduser": "string",  # Username required to log into the FTP server to upload disk log files.
-    "uploadpass": "password",  # Password required to log into the FTP server to upload disk log files.
-    "uploaddir": "string",  # The remote directory on the FTP server to upload log files to.
-    "uploadtype": "option",  # Types of log files to upload. Separate multiple entries with a space.
-    "uploadsched": "option",  # Set the schedule for uploading log files to the FTP server (default = disable = 
-    "uploadtime": "user",  # Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or 
+    "uploaduser": "string",  # Username required to log into the FTP server to upload disk 
+    "uploadpass": "password",  # Password required to log into the FTP server to upload disk 
+    "uploaddir": "string",  # The remote directory on the FTP server to upload log files t
+    "uploadtype": "option",  # Types of log files to upload. Separate multiple entries with
+    "uploadsched": "option",  # Set the schedule for uploading log files to the FTP server (
+    "uploadtime": "user",  # Time of day at which log files are uploaded if uploadsched i
     "upload-delete-files": "option",  # Delete log files after uploading (default = enable).
-    "upload-ssl-conn": "option",  # Enable/disable encrypted FTPS communication to upload log files.
-    "full-first-warning-threshold": "integer",  # Log full first warning threshold as a percent (1 - 98, default = 75).
-    "full-second-warning-threshold": "integer",  # Log full second warning threshold as a percent (2 - 99, default = 90).
-    "full-final-warning-threshold": "integer",  # Log full final warning threshold as a percent (3 - 100, default = 95).
+    "upload-ssl-conn": "option",  # Enable/disable encrypted FTPS communication to upload log fi
+    "full-first-warning-threshold": "integer",  # Log full first warning threshold as a percent (1 - 98, defau
+    "full-second-warning-threshold": "integer",  # Log full second warning threshold as a percent (2 - 99, defa
+    "full-final-warning-threshold": "integer",  # Log full final warning threshold as a percent (3 - 100, defa
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.

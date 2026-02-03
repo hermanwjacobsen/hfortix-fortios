@@ -77,13 +77,13 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Group name.
     "id": "integer",  # Group ID.
-    "group-type": "option",  # Set the group to be for firewall authentication, FSSO, RSSO, or guest users.
-    "authtimeout": "integer",  # Authentication timeout in minutes for this user group. 0 to use the global user 
-    "auth-concurrent-override": "option",  # Enable/disable overriding the global number of concurrent authentication session
-    "auth-concurrent-value": "integer",  # Maximum number of concurrent authenticated connections per user (0 - 100).
+    "group-type": "option",  # Set the group to be for firewall authentication, FSSO, RSSO,
+    "authtimeout": "integer",  # Authentication timeout in minutes for this user group. 0 to 
+    "auth-concurrent-override": "option",  # Enable/disable overriding the global number of concurrent au
+    "auth-concurrent-value": "integer",  # Maximum number of concurrent authenticated connections per u
     "http-digest-realm": "string",  # Realm attribute for MD5-digest authentication.
     "sso-attribute-value": "string",  # RADIUS attribute value.
-    "member": "string",  # Names of users, peers, LDAP severs, RADIUS servers or external idp servers to ad
+    "member": "string",  # Names of users, peers, LDAP severs, RADIUS servers or extern
     "match": "string",  # Group matches.
     "user-id": "option",  # Guest user ID type.
     "password": "option",  # Guest user password type.
@@ -95,8 +95,8 @@ FIELD_TYPES = {
     "sms-server": "option",  # Send SMS through FortiGuard or other external server.
     "sms-custom-server": "string",  # SMS server.
     "expire-type": "option",  # Determine when the expiration countdown begins.
-    "expire": "integer",  # Time in seconds before guest user accounts expire (1 - 31536000).
-    "max-accounts": "integer",  # Maximum number of guest accounts that can be created for this group (0 means unl
+    "expire": "integer",  # Time in seconds before guest user accounts expire (1 - 31536
+    "max-accounts": "integer",  # Maximum number of guest accounts that can be created for thi
     "multiple-guest-add": "option",  # Enable/disable addition of multiple guests.
     "guest": "string",  # Guest User.
 }

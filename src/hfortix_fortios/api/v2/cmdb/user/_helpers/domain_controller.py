@@ -83,22 +83,22 @@ FIELD_TYPES = {
     "name": "string",  # Domain controller entry name.
     "ad-mode": "option",  # Set Active Directory mode.
     "hostname": "string",  # Hostname of the server to connect to.
-    "username": "string",  # User name to sign in with. Must have proper permissions for service.
+    "username": "string",  # User name to sign in with. Must have proper permissions for 
     "password": "password",  # Password for specified username.
     "ip-address": "ipv4-address",  # Domain controller IPv4 address.
     "ip6": "ipv6-address",  # Domain controller IPv6 address.
-    "port": "integer",  # Port to be used for communication with the domain controller (default = 445).
-    "source-ip-address": "ipv4-address",  # FortiGate IPv4 address to be used for communication with the domain controller.
-    "source-ip6": "ipv6-address",  # FortiGate IPv6 address to be used for communication with the domain controller.
-    "source-port": "integer",  # Source port to be used for communication with the domain controller.
+    "port": "integer",  # Port to be used for communication with the domain controller
+    "source-ip-address": "ipv4-address",  # FortiGate IPv4 address to be used for communication with the
+    "source-ip6": "ipv6-address",  # FortiGate IPv6 address to be used for communication with the
+    "source-port": "integer",  # Source port to be used for communication with the domain con
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "extra-server": "string",  # Extra servers.
     "domain-name": "string",  # Domain DNS name.
-    "replication-port": "integer",  # Port to be used for communication with the domain controller for replication ser
+    "replication-port": "integer",  # Port to be used for communication with the domain controller
     "ldap-server": "string",  # LDAP server name(s).
-    "change-detection": "option",  # Enable/disable detection of a configuration change in the Active Directory serve
-    "change-detection-period": "integer",  # Minutes to detect a configuration change in the Active Directory server (5 - 100
+    "change-detection": "option",  # Enable/disable detection of a configuration change in the Ac
+    "change-detection-period": "integer",  # Minutes to detect a configuration change in the Active Direc
     "dns-srv-lookup": "option",  # Enable/disable DNS service lookup.
     "adlds-dn": "string",  # AD LDS distinguished name.
     "adlds-ip-address": "ipv4-address",  # AD LDS IPv4 address.

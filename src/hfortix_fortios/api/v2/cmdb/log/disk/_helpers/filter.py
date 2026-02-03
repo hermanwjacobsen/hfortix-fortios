@@ -67,7 +67,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "severity": "option",  # Log to disk every message above and including this severity level.
+    "severity": "option",  # Log to disk every message above and including this severity 
     "forward-traffic": "option",  # Enable/disable forward traffic logging.
     "local-traffic": "option",  # Enable/disable local in or out traffic logging.
     "multicast-traffic": "option",  # Enable/disable multicast traffic logging.

@@ -88,7 +88,7 @@ FIELD_TYPES = {
     "username": "string",  # Username.
     "password": "password",  # Password.
     "pdn": "option",  # PDN type.
-    "signal-threshold": "integer",  # Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-10
+    "signal-threshold": "integer",  # Signal threshold. Specify the range between 50 - 100, where 
     "signal-period": "integer",  # Signal period (600 to 18000 seconds).
     "capacity": "integer",  # Capacity in MB (0 - 102400000).
     "monthly-fee": "integer",  # Monthly fee of dataplan (0 - 100000, in local currency).

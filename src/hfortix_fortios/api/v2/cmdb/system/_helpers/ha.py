@@ -128,86 +128,86 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "group-id": "integer",  # HA group ID  (0 - 1023;  or 0 - 7 when there are more than 2 vclusters). Must be
+    "group-id": "integer",  # HA group ID  (0 - 1023;  or 0 - 7 when there are more than 2
     "group-name": "string",  # Cluster group name. Must be the same for all members.
-    "mode": "option",  # HA mode. Must be the same for all members. FGSP requires standalone.
+    "mode": "option",  # HA mode. Must be the same for all members. FGSP requires sta
     "sync-packet-balance": "option",  # Enable/disable HA packet distribution to multiple CPUs.
     "password": "password",  # Cluster password. Must be the same for all members.
     "key": "password",  # Key.
     "hbdev": "user",  # Heartbeat interfaces. Must be the same for all members.
-    "auto-virtual-mac-interface": "string",  # The physical interface that will be assigned an auto-generated virtual MAC addre
-    "backup-hbdev": "string",  # Backup heartbeat interfaces. Must be the same for all members.
+    "auto-virtual-mac-interface": "string",  # The physical interface that will be assigned an auto-generat
+    "backup-hbdev": "string",  # Backup heartbeat interfaces. Must be the same for all member
     "unicast-hb": "option",  # Enable/disable unicast heartbeat.
     "unicast-hb-peerip": "ipv4-address",  # Unicast heartbeat peer IP.
     "unicast-hb-netmask": "ipv4-netmask",  # Unicast heartbeat netmask.
-    "session-sync-dev": "user",  # Offload session-sync process to kernel and sync sessions using connected interfa
-    "route-ttl": "integer",  # TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes d
-    "route-wait": "integer",  # Time to wait before sending new routes to the cluster (0 - 3600 sec).
-    "route-hold": "integer",  # Time to wait between routing table updates to the cluster (0 - 3600 sec).
+    "session-sync-dev": "user",  # Offload session-sync process to kernel and sync sessions usi
+    "route-ttl": "integer",  # TTL for primary unit routes (5 - 3600 sec). Increase to main
+    "route-wait": "integer",  # Time to wait before sending new routes to the cluster (0 - 3
+    "route-hold": "integer",  # Time to wait between routing table updates to the cluster (0
     "multicast-ttl": "integer",  # HA multicast TTL on primary (5 - 3600 sec).
     "evpn-ttl": "integer",  # HA EVPN FDB TTL on primary box (5 - 3600 sec).
-    "load-balance-all": "option",  # Enable to load balance TCP sessions. Disable to load balance proxy sessions only
+    "load-balance-all": "option",  # Enable to load balance TCP sessions. Disable to load balance
     "sync-config": "option",  # Enable/disable configuration synchronization.
     "encryption": "option",  # Enable/disable heartbeat message encryption.
     "authentication": "option",  # Enable/disable heartbeat message authentication.
-    "hb-interval": "integer",  # Time between sending heartbeat packets (1 - 20). Increase to reduce false positi
-    "hb-interval-in-milliseconds": "option",  # Units of heartbeat interval time between sending heartbeat packets. Default is 1
-    "hb-lost-threshold": "integer",  # Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false
-    "hello-holddown": "integer",  # Time to wait before changing from hello to work state (5 - 300 sec).
-    "gratuitous-arps": "option",  # Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled.
-    "arps": "integer",  # Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce fa
-    "arps-interval": "integer",  # Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Highe
-    "session-pickup": "option",  # Enable/disable session pickup. Enabling it can reduce session down time when fai
+    "hb-interval": "integer",  # Time between sending heartbeat packets (1 - 20). Increase to
+    "hb-interval-in-milliseconds": "option",  # Units of heartbeat interval time between sending heartbeat p
+    "hb-lost-threshold": "integer",  # Number of lost heartbeats to signal a failure (1 - 60). Incr
+    "hello-holddown": "integer",  # Time to wait before changing from hello to work state (5 - 3
+    "gratuitous-arps": "option",  # Enable/disable gratuitous ARPs. Disable if link-failed-signa
+    "arps": "integer",  # Number of gratuitous ARPs (1 - 60). Lower to reduce traffic.
+    "arps-interval": "integer",  # Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce 
+    "session-pickup": "option",  # Enable/disable session pickup. Enabling it can reduce sessio
     "session-pickup-connectionless": "option",  # Enable/disable UDP and ICMP session sync.
-    "session-pickup-expectation": "option",  # Enable/disable session helper expectation session sync for FGSP.
+    "session-pickup-expectation": "option",  # Enable/disable session helper expectation session sync for F
     "session-pickup-nat": "option",  # Enable/disable NAT session sync for FGSP.
-    "session-pickup-delay": "option",  # Enable to sync sessions longer than 30 sec. Only longer lived sessions need to b
-    "link-failed-signal": "option",  # Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous
+    "session-pickup-delay": "option",  # Enable to sync sessions longer than 30 sec. Only longer live
+    "link-failed-signal": "option",  # Enable to shut down all interfaces for 1 sec after a failove
     "upgrade-mode": "option",  # The mode to upgrade a cluster.
-    "uninterruptible-primary-wait": "integer",  # Number of minutes the primary HA unit waits before the secondary HA unit is cons
+    "uninterruptible-primary-wait": "integer",  # Number of minutes the primary HA unit waits before the secon
     "standalone-mgmt-vdom": "option",  # Enable/disable standalone management VDOM.
-    "ha-mgmt-status": "option",  # Enable to reserve interfaces to manage individual cluster units.
+    "ha-mgmt-status": "option",  # Enable to reserve interfaces to manage individual cluster un
     "ha-mgmt-interfaces": "string",  # Reserve interfaces to manage individual cluster units.
     "ha-eth-type": "string",  # HA heartbeat packet Ethertype (4-digit hex).
-    "hc-eth-type": "string",  # Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+    "hc-eth-type": "string",  # Transparent mode HA heartbeat packet Ethertype (4-digit hex)
     "l2ep-eth-type": "string",  # Telnet session HA heartbeat packet Ethertype (4-digit hex).
-    "ha-uptime-diff-margin": "integer",  # Normally you would only reduce this value for failover testing.
+    "ha-uptime-diff-margin": "integer",  # Normally you would only reduce this value for failover testi
     "standalone-config-sync": "option",  # Enable/disable FGSP configuration synchronization.
     "unicast-status": "option",  # Enable/disable unicast connection.
     "unicast-gateway": "ipv4-address",  # Default route gateway for unicast interface.
     "unicast-peers": "string",  # Number of unicast peers.
-    "schedule": "option",  # Type of A-A load balancing. Use none if you have external load balancers.
-    "weight": "user",  # Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
-    "cpu-threshold": "user",  # Dynamic weighted load balancing CPU usage weight and high and low thresholds.
-    "memory-threshold": "user",  # Dynamic weighted load balancing memory usage weight and high and low thresholds.
-    "http-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low number of HTTP proxy ses
-    "ftp-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low number of FTP proxy sess
-    "imap-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low number of IMAP proxy ses
-    "nntp-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low number of NNTP proxy ses
-    "pop3-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low number of POP3 proxy ses
-    "smtp-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low number of SMTP proxy ses
-    "override": "option",  # Enable and increase the priority of the unit that should always be primary (mast
+    "schedule": "option",  # Type of A-A load balancing. Use none if you have external lo
+    "weight": "user",  # Weight-round-robin weight for each cluster unit. Syntax <pri
+    "cpu-threshold": "user",  # Dynamic weighted load balancing CPU usage weight and high an
+    "memory-threshold": "user",  # Dynamic weighted load balancing memory usage weight and high
+    "http-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low numb
+    "ftp-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low numb
+    "imap-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low numb
+    "nntp-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low numb
+    "pop3-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low numb
+    "smtp-proxy-threshold": "user",  # Dynamic weighted load balancing weight and high and low numb
+    "override": "option",  # Enable and increase the priority of the unit that should alw
     "priority": "integer",  # Increase the priority to select the primary unit (0 - 255).
-    "override-wait-time": "integer",  # Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the c
+    "override-wait-time": "integer",  # Delay negotiating if override is enabled (0 - 3600 sec). Red
     "monitor": "user",  # Interfaces to check for port monitoring (or link failure).
     "pingserver-monitor-interface": "user",  # Interfaces to check for remote IP monitoring.
     "pingserver-failover-threshold": "integer",  # Remote IP monitoring failover threshold (0 - 50).
-    "pingserver-secondary-force-reset": "option",  # Enable to force the cluster to negotiate after a remote IP monitoring failover.
-    "pingserver-flip-timeout": "integer",  # Time to wait in minutes before renegotiating after a remote IP monitoring failov
+    "pingserver-secondary-force-reset": "option",  # Enable to force the cluster to negotiate after a remote IP m
+    "pingserver-flip-timeout": "integer",  # Time to wait in minutes before renegotiating after a remote 
     "vcluster-status": "option",  # Enable/disable virtual cluster for virtual clustering.
     "vcluster": "string",  # Virtual cluster table.
-    "ha-direct": "option",  # Enable/disable using ha-mgmt interface for syslog, remote authentication (RADIUS
+    "ha-direct": "option",  # Enable/disable using ha-mgmt interface for syslog, remote au
     "ssd-failover": "option",  # Enable/disable automatic HA failover on SSD disk failure.
     "memory-compatible-mode": "option",  # Enable/disable memory compatible mode.
     "memory-based-failover": "option",  # Enable/disable memory based failover.
-    "memory-failover-threshold": "integer",  # Memory usage threshold to trigger memory based failover (0 means using conserve 
-    "memory-failover-monitor-period": "integer",  # Duration of high memory usage before memory based failover is triggered in secon
-    "memory-failover-sample-rate": "integer",  # Rate at which memory usage is sampled in order to measure memory usage in second
-    "memory-failover-flip-timeout": "integer",  # Time to wait between subsequent memory based failovers in minutes (6 - 214748364
-    "failover-hold-time": "integer",  # Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
-    "check-secondary-dev-health": "option",  # Enable/disable secondary dev health check for session load-balance in HA A-A mod
+    "memory-failover-threshold": "integer",  # Memory usage threshold to trigger memory based failover (0 m
+    "memory-failover-monitor-period": "integer",  # Duration of high memory usage before memory based failover i
+    "memory-failover-sample-rate": "integer",  # Rate at which memory usage is sampled in order to measure me
+    "memory-failover-flip-timeout": "integer",  # Time to wait between subsequent memory based failovers in mi
+    "failover-hold-time": "integer",  # Time to wait before failover (0 - 300 sec, default = 0), to 
+    "check-secondary-dev-health": "option",  # Enable/disable secondary dev health check for session load-b
     "ipsec-phase2-proposal": "option",  # IPsec phase2 proposal.
-    "bounce-intf-upon-failover": "option",  # Enable/disable notification of kernel to bring down and up all monitored interfa
+    "bounce-intf-upon-failover": "option",  # Enable/disable notification of kernel to bring down and up a
     "status": "key",  # list ha status information
 }
 

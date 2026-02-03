@@ -58,7 +58,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "spam-submit-srv": "string",  # Hostname of the spam submission server.
-    "spam-submit-force": "option",  # Enable/disable force insertion of a new mime entity for the submission text.
+    "spam-submit-force": "option",  # Enable/disable force insertion of a new mime entity for the 
     "spam-submit-txt2htm": "option",  # Enable/disable conversion of text email to HTML email.
 }
 

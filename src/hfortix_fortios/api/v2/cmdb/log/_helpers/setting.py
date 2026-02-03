@@ -82,8 +82,8 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "resolve-ip": "option",  # Enable/disable adding resolved domain names to traffic logs if possible.
-    "resolve-port": "option",  # Enable/disable adding resolved service names to traffic logs.
+    "resolve-ip": "option",  # Enable/disable adding resolved domain names to traffic logs 
+    "resolve-port": "option",  # Enable/disable adding resolved service names to traffic logs
     "log-user-in-upper": "option",  # Enable/disable logs with user-in-upper.
     "fwpolicy-implicit-log": "option",  # Enable/disable implicit firewall policy logging.
     "fwpolicy6-implicit-log": "option",  # Enable/disable implicit firewall policy6 logging.
@@ -93,7 +93,7 @@ FIELD_TYPES = {
     "local-in-deny-broadcast": "option",  # Enable/disable local-in-deny-broadcast logging.
     "local-in-policy-log": "option",  # Enable/disable local-in-policy logging.
     "local-out": "option",  # Enable/disable local-out logging.
-    "local-out-ioc-detection": "option",  # Enable/disable local-out traffic IoC detection. Requires local-out to be enabled
+    "local-out-ioc-detection": "option",  # Enable/disable local-out traffic IoC detection. Requires loc
     "daemon-log": "option",  # Enable/disable daemon logging.
     "neighbor-event": "option",  # Enable/disable neighbor event logging.
     "brief-traffic-format": "option",  # Enable/disable brief format traffic logging.
@@ -104,7 +104,7 @@ FIELD_TYPES = {
     "syslog-override": "option",  # Enable/disable override Syslog settings.
     "rest-api-set": "option",  # Enable/disable REST API POST/PUT/DELETE request logging.
     "rest-api-get": "option",  # Enable/disable REST API GET request logging.
-    "rest-api-performance": "option",  # Enable/disable REST API memory and performance stats in rest-api-get/set logs.
+    "rest-api-performance": "option",  # Enable/disable REST API memory and performance stats in rest
     "long-live-session-stat": "option",  # Enable/disable long-live-session statistics logging.
     "extended-utm-log": "option",  # Enable/disable extended UTM logging.
     "zone-name": "option",  # Enable/disable zone name logging.

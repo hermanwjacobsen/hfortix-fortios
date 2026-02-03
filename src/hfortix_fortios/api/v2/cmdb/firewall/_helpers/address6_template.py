@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # IPv6 address template name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "ip6": "ipv6-network",  # IPv6 address prefix.
     "subnet-segment-count": "integer",  # Number of IPv6 subnet segments.
     "subnet-segment": "string",  # IPv6 subnet segments.

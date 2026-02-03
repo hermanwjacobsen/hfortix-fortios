@@ -83,7 +83,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Shaping policy ID (0 - 4294967295).
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "name": "string",  # Shaping policy name.
     "comment": "var-string",  # Comments.
     "status": "option",  # Enable/disable this traffic shaping policy.
@@ -93,13 +93,13 @@ FIELD_TYPES = {
     "dstaddr": "string",  # IPv4 destination address and address group names.
     "srcaddr6": "string",  # IPv6 source address and address group names.
     "dstaddr6": "string",  # IPv6 destination address and address group names.
-    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If enabled, destination
+    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If 
     "internet-service-name": "string",  # Internet Service ID.
     "internet-service-group": "string",  # Internet Service group name.
     "internet-service-custom": "string",  # Custom Internet Service name.
     "internet-service-custom-group": "string",  # Custom Internet Service group name.
     "internet-service-fortiguard": "string",  # FortiGuard Internet Service name.
-    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this policy. If enabled, s
+    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this p
     "internet-service-src-name": "string",  # Internet Service source name.
     "internet-service-src-group": "string",  # Internet Service source group name.
     "internet-service-src-custom": "string",  # Custom Internet Service source name.
@@ -107,23 +107,23 @@ FIELD_TYPES = {
     "internet-service-src-fortiguard": "string",  # FortiGuard Internet Service source name.
     "service": "string",  # Service and service group names.
     "schedule": "string",  # Schedule name.
-    "users": "string",  # Apply this traffic shaping policy to individual users that have authenticated wi
-    "groups": "string",  # Apply this traffic shaping policy to user groups that have authenticated with th
-    "application": "string",  # IDs of one or more applications that this shaper applies application control tra
-    "app-category": "string",  # IDs of one or more application categories that this shaper applies application c
+    "users": "string",  # Apply this traffic shaping policy to individual users that h
+    "groups": "string",  # Apply this traffic shaping policy to user groups that have a
+    "application": "string",  # IDs of one or more applications that this shaper applies app
+    "app-category": "string",  # IDs of one or more application categories that this shaper a
     "app-group": "string",  # One or more application group names.
-    "url-category": "string",  # IDs of one or more FortiGuard Web Filtering categories that this shaper applies 
+    "url-category": "string",  # IDs of one or more FortiGuard Web Filtering categories that 
     "srcintf": "string",  # One or more incoming (ingress) interfaces.
     "dstintf": "string",  # One or more outgoing (egress) interfaces.
-    "tos-mask": "user",  # Non-zero bit positions are used for comparison while zero bit positions are igno
+    "tos-mask": "user",  # Non-zero bit positions are used for comparison while zero bi
     "tos": "user",  # ToS (Type of Service) value used for comparison.
     "tos-negate": "option",  # Enable negated TOS match.
-    "traffic-shaper": "string",  # Traffic shaper to apply to traffic forwarded by the firewall policy.
-    "traffic-shaper-reverse": "string",  # Traffic shaper to apply to response traffic received by the firewall policy.
+    "traffic-shaper": "string",  # Traffic shaper to apply to traffic forwarded by the firewall
+    "traffic-shaper-reverse": "string",  # Traffic shaper to apply to response traffic received by the 
     "per-ip-shaper": "string",  # Per-IP traffic shaper to apply with this policy.
     "class-id": "integer",  # Traffic class ID.
-    "diffserv-forward": "option",  # Enable to change packet's DiffServ values to the specified diffservcode-forward 
-    "diffserv-reverse": "option",  # Enable to change packet's reverse (reply) DiffServ values to the specified diffs
+    "diffserv-forward": "option",  # Enable to change packet's DiffServ values to the specified d
+    "diffserv-reverse": "option",  # Enable to change packet's reverse (reply) DiffServ values to
     "diffservcode-forward": "user",  # Change packet's DiffServ to this value.
     "diffservcode-rev": "user",  # Change packet's reverse (reply) DiffServ to this value.
     "cos-mask": "user",  # VLAN CoS evaluated bits.

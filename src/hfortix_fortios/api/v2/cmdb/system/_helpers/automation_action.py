@@ -93,11 +93,11 @@ FIELD_TYPES = {
     "action-type": "option",  # Action type.
     "system-action": "option",  # System action type.
     "tls-certificate": "string",  # Custom TLS certificate for API request.
-    "forticare-email": "option",  # Enable/disable use of your FortiCare email address as the email-to address.
+    "forticare-email": "option",  # Enable/disable use of your FortiCare email address as the em
     "email-to": "string",  # Email addresses.
     "email-from": "var-string",  # Email sender name.
     "email-subject": "var-string",  # Email subject.
-    "minimum-interval": "integer",  # Limit execution to no more than once in this interval (in seconds).
+    "minimum-interval": "integer",  # Limit execution to no more than once in this interval (in se
     "aws-api-key": "password",  # AWS API Gateway API key.
     "azure-function-authorization": "option",  # Azure function authorization level.
     "azure-api-key": "password",  # Azure function API key.
@@ -111,21 +111,21 @@ FIELD_TYPES = {
     "protocol": "option",  # Request protocol.
     "method": "option",  # Request method (POST, PUT, GET, PATCH or DELETE).
     "uri": "var-string",  # Request API URI.
-    "http-body": "var-string",  # Request body (if necessary). Should be serialized json string.
+    "http-body": "var-string",  # Request body (if necessary). Should be serialized json strin
     "port": "integer",  # Protocol port.
     "http-headers": "string",  # Request headers.
     "form-data": "string",  # Form data parts for content type multipart/form-data.
     "verify-host-cert": "option",  # Enable/disable verification of the remote host certificate.
     "script": "var-string",  # CLI script.
-    "output-size": "integer",  # Number of megabytes to limit script output to (1 - 1024, default = 10).
-    "timeout": "integer",  # Maximum running time for this script in seconds (0 = no timeout).
+    "output-size": "integer",  # Number of megabytes to limit script output to (1 - 1024, def
+    "timeout": "integer",  # Maximum running time for this script in seconds (0 = no time
     "duration": "integer",  # Maximum running time for this script in seconds.
-    "output-interval": "integer",  # Collect the outputs for each output-interval in seconds (0 = no intermediate out
+    "output-interval": "integer",  # Collect the outputs for each output-interval in seconds (0 =
     "file-only": "option",  # Enable/disable the output in files only.
-    "execute-security-fabric": "option",  # Enable/disable execution of CLI script on all or only one FortiGate unit in the 
-    "accprofile": "string",  # Access profile for CLI script action to access FortiGate features.
+    "execute-security-fabric": "option",  # Enable/disable execution of CLI script on all or only one Fo
+    "accprofile": "string",  # Access profile for CLI script action to access FortiGate fea
     "regular-expression": "var-string",  # Regular expression string.
-    "log-debug-print": "option",  # Enable/disable logging debug print output from diagnose action.
+    "log-debug-print": "option",  # Enable/disable logging debug print output from diagnose acti
     "security-tag": "string",  # NSX security tag.
     "sdn-connector": "string",  # NSX SDN connector names.
 }

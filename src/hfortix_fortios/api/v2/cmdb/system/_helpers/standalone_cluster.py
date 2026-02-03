@@ -63,16 +63,16 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "standalone-group-id": "integer",  # Cluster group ID (0 - 255). Must be the same for all members.
+    "standalone-group-id": "integer",  # Cluster group ID (0 - 255). Must be the same for all members
     "group-member-id": "integer",  # Cluster member ID (0 - 15).
-    "layer2-connection": "option",  # Indicate whether layer 2 connections are present among FGSP members.
-    "session-sync-dev": "user",  # Offload session-sync process to kernel and sync sessions using connected interfa
+    "layer2-connection": "option",  # Indicate whether layer 2 connections are present among FGSP 
+    "session-sync-dev": "user",  # Offload session-sync process to kernel and sync sessions usi
     "encryption": "option",  # Enable/disable encryption when synchronizing sessions.
-    "psksecret": "password-3",  # Pre-shared secret for session synchronization (ASCII string or hexadecimal encod
+    "psksecret": "password-3",  # Pre-shared secret for session synchronization (ASCII string 
     "asymmetric-traffic-control": "option",  # Asymmetric traffic control mode.
-    "cluster-peer": "string",  # Configure FortiGate Session Life Support Protocol (FGSP) session synchronization
-    "monitor-interface": "string",  # Configure a list of interfaces on which to monitor itself. Monitoring is perform
-    "pingsvr-monitor-interface": "string",  # List of pingsvr monitor interface to check for remote IP monitoring.
+    "cluster-peer": "string",  # Configure FortiGate Session Life Support Protocol (FGSP) ses
+    "monitor-interface": "string",  # Configure a list of interfaces on which to monitor itself. M
+    "pingsvr-monitor-interface": "string",  # List of pingsvr monitor interface to check for remote IP mon
     "monitor-prefix": "string",  # Configure a list of routing prefixes to monitor.
     "helper-traffic-bounce": "option",  # Enable/disable helper related traffic bounce.
     "utm-traffic-bounce": "option",  # Enable/disable UTM related traffic bounce.

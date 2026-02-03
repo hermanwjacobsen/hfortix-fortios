@@ -74,18 +74,18 @@ FIELD_TYPES = {
     "802.1-tlvs": "option",  # Transmitted IEEE 802.1 TLVs.
     "802.3-tlvs": "option",  # Transmitted IEEE 802.3 TLVs.
     "auto-isl": "option",  # Enable/disable auto inter-switch LAG.
-    "auto-isl-hello-timer": "integer",  # Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
-    "auto-isl-receive-timeout": "integer",  # Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 
+    "auto-isl-hello-timer": "integer",  # Auto inter-switch LAG hello timer duration (1 - 30 sec, defa
+    "auto-isl-receive-timeout": "integer",  # Auto inter-switch LAG timeout if no response is received (3 
     "auto-isl-port-group": "integer",  # Auto inter-switch LAG port group ID (0 - 9).
     "auto-mclag-icl": "option",  # Enable/disable MCLAG inter chassis link.
     "auto-isl-auth": "option",  # Auto inter-switch LAG authentication mode.
     "auto-isl-auth-user": "string",  # Auto inter-switch LAG authentication user certificate.
     "auto-isl-auth-identity": "string",  # Auto inter-switch LAG authentication identity.
-    "auto-isl-auth-reauth": "integer",  # Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default
+    "auto-isl-auth-reauth": "integer",  # Auto inter-switch LAG authentication reauth period in second
     "auto-isl-auth-encrypt": "option",  # Auto inter-switch LAG encryption mode.
     "auto-isl-auth-macsec-profile": "string",  # Auto inter-switch LAG macsec profile for encryption.
-    "med-network-policy": "string",  # Configuration method to edit Media Endpoint Discovery (MED) network policy type-
-    "med-location-service": "string",  # Configuration method to edit Media Endpoint Discovery (MED) location service typ
+    "med-network-policy": "string",  # Configuration method to edit Media Endpoint Discovery (MED) 
+    "med-location-service": "string",  # Configuration method to edit Media Endpoint Discovery (MED) 
     "custom-tlvs": "string",  # Configuration method to edit custom TLV entries.
 }
 

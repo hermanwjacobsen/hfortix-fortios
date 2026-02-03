@@ -80,7 +80,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # External resource name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "status": "option",  # Enable/disable user resource.
     "type": "option",  # User resource type.
     "namespace": "string",  # Generic external connector address namespace.
@@ -92,13 +92,13 @@ FIELD_TYPES = {
     "category": "integer",  # User resource category.
     "username": "string",  # HTTP basic authentication user name.
     "password": "varlen_password",  # HTTP basic authentication password.
-    "client-cert-auth": "option",  # Enable/disable using client certificate for TLS authentication.
+    "client-cert-auth": "option",  # Enable/disable using client certificate for TLS authenticati
     "client-cert": "string",  # Client certificate name.
     "comments": "var-string",  # Comment.
     "resource": "string",  # URL of external resource.
     "user-agent": "var-string",  # HTTP User-Agent header (default = 'curl/7.58.0').
     "server-identity-check": "option",  # Certificate verification option.
-    "refresh-rate": "integer",  # Time interval to refresh external resource (1 - 43200 min, default = 5 min).
+    "refresh-rate": "integer",  # Time interval to refresh external resource (1 - 43200 min, d
     "source-ip": "ipv4-address",  # Source IPv4 address used to communicate with server.
     "source-ip-interface": "string",  # IPv4 Source interface for communication with the server.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.

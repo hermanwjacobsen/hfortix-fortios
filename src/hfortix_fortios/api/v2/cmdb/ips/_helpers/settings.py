@@ -60,10 +60,10 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "packet-log-history": "integer",  # Number of packets to capture before and including the one in which the IPS signa
-    "packet-log-post-attack": "integer",  # Number of packets to log after the IPS signature is detected (0 - 255).
+    "packet-log-history": "integer",  # Number of packets to capture before and including the one in
+    "packet-log-post-attack": "integer",  # Number of packets to log after the IPS signature is detected
     "packet-log-memory": "integer",  # Maximum memory can be used by packet log (64 - 8192 kB).
-    "ips-packet-quota": "integer",  # Maximum amount of disk space in MB for logged packets when logging to disk. Rang
+    "ips-packet-quota": "integer",  # Maximum amount of disk space in MB for logged packets when l
     "proxy-inline-ips": "option",  # Enable/disable proxy-mode policy inline IPS support.
     "ha-session-pickup": "option",  # IPS HA failover session pickup preference.
 }

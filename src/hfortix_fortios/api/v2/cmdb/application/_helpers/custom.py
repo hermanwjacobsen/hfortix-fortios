@@ -63,10 +63,10 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "tag": "string",  # Signature tag.
-    "id": "integer",  # Custom application category ID (use ? to view available options).
+    "id": "integer",  # Custom application category ID (use ? to view available opti
     "comment": "string",  # Comment.
-    "signature": "var-string",  # The text that makes up the actual custom application signature.
-    "category": "integer",  # Custom application category ID (use ? to view available options).
+    "signature": "var-string",  # The text that makes up the actual custom application signatu
+    "category": "integer",  # Custom application category ID (use ? to view available opti
     "protocol": "user",  # Custom application signature protocol.
     "technology": "user",  # Custom application signature technology.
     "behavior": "user",  # Custom application signature behavior.

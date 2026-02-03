@@ -82,19 +82,19 @@ FIELD_TYPES = {
     "status": "option",  # Enable/disable this DNS zone.
     "domain": "string",  # Domain name.
     "allow-transfer": "user",  # DNS zone transfer IP address list.
-    "type": "option",  # Zone type (primary to manage entries directly, secondary to import entries from 
-    "view": "option",  # Zone view (public to serve public clients, shadow to serve internal clients).
-    "ip-primary": "ipv4-address-any",  # IP address of primary DNS server. Entries in this primary DNS server and importe
+    "type": "option",  # Zone type (primary to manage entries directly, secondary to 
+    "view": "option",  # Zone view (public to serve public clients, shadow to serve i
+    "ip-primary": "ipv4-address-any",  # IP address of primary DNS server. Entries in this primary DN
     "primary-name": "string",  # Domain name of the default DNS server for this zone.
-    "contact": "string",  # Email address of the administrator for this zone. You can specify only the usern
-    "ttl": "integer",  # Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec,
+    "contact": "string",  # Email address of the administrator for this zone. You can sp
+    "ttl": "integer",  # Default time-to-live value for the entries of this DNS zone 
     "authoritative": "option",  # Enable/disable authoritative zone.
     "forwarder": "user",  # DNS zone forwarder IP address list.
     "forwarder6": "ipv6-address",  # Forwarder IPv6 address.
     "source-ip": "ipv4-address",  # Source IP for forwarding to DNS server.
     "source-ip6": "ipv6-address",  # IPv6 source IP address for forwarding to DNS server.
-    "source-ip-interface": "string",  # IP address of the specified interface as the source IP address.
-    "rr-max": "integer",  # Maximum number of resource records (10 - 65536, 0 means infinite).
+    "source-ip-interface": "string",  # IP address of the specified interface as the source IP addre
+    "rr-max": "integer",  # Maximum number of resource records (10 - 65536, 0 means infi
     "dns-entry": "string",  # DNS entry.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.

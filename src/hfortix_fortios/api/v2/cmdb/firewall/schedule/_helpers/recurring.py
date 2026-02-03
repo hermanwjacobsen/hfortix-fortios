@@ -66,11 +66,11 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Recurring schedule name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "start": "user",  # Time of day to start the schedule, format hh:mm.
     "end": "user",  # Time of day to end the schedule, format hh:mm.
-    "day": "option",  # One or more days of the week on which the schedule is valid. Separate the names 
-    "label-day": "option",  # Configure a window during the time of day in which the schedule job is executed.
+    "day": "option",  # One or more days of the week on which the schedule is valid.
+    "label-day": "option",  # Configure a window during the time of day in which the sched
     "color": "integer",  # Color of icon on the GUI.
     "fabric-object": "option",  # Security Fabric global object setting.
 }

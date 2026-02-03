@@ -114,7 +114,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "policyid": "integer",  # Policy ID.
     "name": "string",  # Policy name.
     "proxy": "option",  # Type of explicit proxy.
@@ -129,32 +129,32 @@ FIELD_TYPES = {
     "dstaddr": "string",  # Destination address objects.
     "ztna-ems-tag": "string",  # ZTNA EMS Tag names.
     "ztna-tags-match-logic": "option",  # ZTNA tag matching logic.
-    "device-ownership": "option",  # When enabled, the ownership enforcement will be done at policy level.
+    "device-ownership": "option",  # When enabled, the ownership enforcement will be done at poli
     "url-risk": "string",  # URL risk level name.
-    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If enabled, destination
-    "internet-service-negate": "option",  # When enabled, Internet Services match against any internet service EXCEPT the se
+    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If 
+    "internet-service-negate": "option",  # When enabled, Internet Services match against any internet s
     "internet-service-name": "string",  # Internet Service name.
     "internet-service-group": "string",  # Internet Service group name.
     "internet-service-custom": "string",  # Custom Internet Service name.
     "internet-service-custom-group": "string",  # Custom Internet Service group name.
     "internet-service-fortiguard": "string",  # FortiGuard Internet Service name.
-    "internet-service6": "option",  # Enable/disable use of Internet Services IPv6 for this policy. If enabled, destin
-    "internet-service6-negate": "option",  # When enabled, Internet Services match against any internet service IPv6 EXCEPT t
+    "internet-service6": "option",  # Enable/disable use of Internet Services IPv6 for this policy
+    "internet-service6-negate": "option",  # When enabled, Internet Services match against any internet s
     "internet-service6-name": "string",  # Internet Service IPv6 name.
     "internet-service6-group": "string",  # Internet Service IPv6 group name.
     "internet-service6-custom": "string",  # Custom Internet Service IPv6 name.
     "internet-service6-custom-group": "string",  # Custom Internet Service IPv6 group name.
     "internet-service6-fortiguard": "string",  # FortiGuard Internet Service IPv6 name.
     "service": "string",  # Name of service objects.
-    "srcaddr-negate": "option",  # When enabled, source addresses match against any address EXCEPT the specified so
-    "dstaddr-negate": "option",  # When enabled, destination addresses match against any address EXCEPT the specifi
-    "ztna-ems-tag-negate": "option",  # When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS 
-    "service-negate": "option",  # When enabled, services match against any service EXCEPT the specified destinatio
+    "srcaddr-negate": "option",  # When enabled, source addresses match against any address EXC
+    "dstaddr-negate": "option",  # When enabled, destination addresses match against any addres
+    "ztna-ems-tag-negate": "option",  # When enabled, ZTNA EMS tags match against any tag EXCEPT the
+    "service-negate": "option",  # When enabled, services match against any service EXCEPT the 
     "action": "option",  # Accept or deny traffic matching the policy parameters.
     "status": "option",  # Enable/disable the active status of the policy.
     "schedule": "string",  # Name of schedule object.
     "logtraffic": "option",  # Enable/disable logging traffic through the policy.
-    "session-ttl": "integer",  # TTL in seconds for sessions accepted by this policy (0 means use the system defa
+    "session-ttl": "integer",  # TTL in seconds for sessions accepted by this policy (0 means
     "srcaddr6": "string",  # IPv6 source address objects.
     "dstaddr6": "string",  # IPv6 destination address objects.
     "groups": "string",  # Names of group objects.
@@ -164,12 +164,12 @@ FIELD_TYPES = {
     "webproxy-forward-server": "string",  # Web proxy forward server name.
     "isolator-server": "string",  # Isolator server name.
     "webproxy-profile": "string",  # Name of web proxy profile.
-    "transparent": "option",  # Enable to use the IP address of the client to connect to the server.
+    "transparent": "option",  # Enable to use the IP address of the client to connect to the
     "webcache": "option",  # Enable/disable web caching.
-    "webcache-https": "option",  # Enable/disable web caching for HTTPS (Requires deep-inspection enabled in ssl-ss
+    "webcache-https": "option",  # Enable/disable web caching for HTTPS (Requires deep-inspecti
     "disclaimer": "option",  # Web proxy disclaimer setting: by domain, policy, or user.
     "utm-status": "option",  # Enable the use of UTM profiles/sensors/lists.
-    "profile-type": "option",  # Determine whether the firewall policy allows security profile groups or single p
+    "profile-type": "option",  # Determine whether the firewall policy allows security profil
     "profile-group": "string",  # Name of profile group.
     "profile-protocol-options": "string",  # Name of an existing Protocol options profile.
     "ssl-ssh-profile": "string",  # Name of an existing SSL SSH profile.

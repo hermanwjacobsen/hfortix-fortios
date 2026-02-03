@@ -73,10 +73,10 @@ FIELD_TYPES = {
     "roaming-interface": "string",  # Select the associated interface name from available options.
     "home-agent": "ipv4-address",  # IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
     "home-address": "ipv4-address",  # Home IP address (Format: xxx.xxx.xxx.xxx).
-    "renew-interval": "integer",  # Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default
-    "lifetime": "integer",  # NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
+    "renew-interval": "integer",  # Time before lifetime expiration to send NMMO HA re-registrat
+    "lifetime": "integer",  # NMMO HA registration request lifetime (180 - 65535 sec, defa
     "reg-interval": "integer",  # NMMO HA registration interval (5 - 300, default = 5).
-    "reg-retry": "integer",  # Maximum number of NMMO HA registration retries (1 to 30, default = 3).
+    "reg-retry": "integer",  # Maximum number of NMMO HA registration retries (1 to 30, def
     "n-mhae-spi": "integer",  # NEMO authentication SPI (default: 256).
     "n-mhae-key-type": "option",  # NEMO authentication key type (ASCII or base64).
     "n-mhae-key": "password_aes256",  # NEMO authentication key.

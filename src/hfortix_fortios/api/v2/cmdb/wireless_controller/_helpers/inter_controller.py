@@ -59,12 +59,12 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "inter-controller-mode": "option",  # Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable).
+    "inter-controller-mode": "option",  # Configure inter-controller mode (disable, l2-roaming, 1+1, d
     "l3-roaming": "option",  # Enable/disable layer 3 roaming (default = disable).
     "inter-controller-key": "password",  # Secret key for inter-controller communications.
-    "inter-controller-pri": "option",  # Configure inter-controller's priority (primary or secondary, default = primary).
-    "fast-failover-max": "integer",  # Maximum number of retransmissions for fast failover HA messages between peer wir
-    "fast-failover-wait": "integer",  # Minimum wait time before an AP transitions from secondary controller to primary 
+    "inter-controller-pri": "option",  # Configure inter-controller's priority (primary or secondary,
+    "fast-failover-max": "integer",  # Maximum number of retransmissions for fast failover HA messa
+    "fast-failover-wait": "integer",  # Minimum wait time before an AP transitions from secondary co
     "inter-controller-peer": "string",  # Fast failover peer wireless controller list.
 }
 

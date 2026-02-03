@@ -57,8 +57,8 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "max-concurrent-stitches": "integer",  # Maximum number of automation stitches that are allowed to run concurrently.
-    "fabric-sync": "option",  # Enable/disable synchronization of automation settings with security fabric.
+    "max-concurrent-stitches": "integer",  # Maximum number of automation stitches that are allowed to ru
+    "fabric-sync": "option",  # Enable/disable synchronization of automation settings with s
     "secure-mode": "option",  # Enable/disable secure running mode for automation.
 }
 

@@ -82,10 +82,10 @@ FIELD_TYPES = {
     "status": "option",  # Enable or disable this EMS configuration.
     "name": "string",  # FortiClient Enterprise Management Server (EMS) name.
     "dirty-reason": "option",  # Dirty Reason for FortiClient EMS.
-    "fortinetone-cloud-authentication": "option",  # Enable/disable authentication of FortiClient EMS Cloud through FortiCloud accoun
+    "fortinetone-cloud-authentication": "option",  # Enable/disable authentication of FortiClient EMS Cloud throu
     "cloud-authentication-access-key": "password",  # FortiClient EMS Cloud multitenancy access key
     "server": "string",  # FortiClient EMS FQDN or IPv4 address.
-    "https-port": "integer",  # FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
+    "https-port": "integer",  # FortiClient EMS HTTPS access port number. (1 - 65535, defaul
     "serial-number": "string",  # EMS Serial Number.
     "tenant-id": "string",  # EMS Tenant ID.
     "source-ip": "ipv4-address-any",  # REST API call source IP.
@@ -94,13 +94,13 @@ FIELD_TYPES = {
     "pull-tags": "option",  # Enable/disable pulling FortiClient user tags from EMS.
     "pull-malware-hash": "option",  # Enable/disable pulling FortiClient malware hash from EMS.
     "capabilities": "option",  # List of EMS capabilities.
-    "call-timeout": "integer",  # FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30).
-    "out-of-sync-threshold": "integer",  # Outdated resource threshold in seconds (10 - 3600, default = 180).
+    "call-timeout": "integer",  # FortiClient EMS call timeout in seconds (1 - 180 seconds, de
+    "out-of-sync-threshold": "integer",  # Outdated resource threshold in seconds (10 - 3600, default =
     "send-tags-to-all-vdoms": "option",  # Relax restrictions on tags to send all EMS tags to all VDOMs
-    "websocket-override": "option",  # Enable/disable override behavior for how this FortiGate unit connects to EMS usi
+    "websocket-override": "option",  # Enable/disable override behavior for how this FortiGate unit
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
-    "trust-ca-cn": "option",  # Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for c
+    "trust-ca-cn": "option",  # Enable/disable trust of the EMS certificate issuer(CA) and c
     "verifying-ca": "string",  # Lowest CA cert on Fortigate in verified EMS cert chain.
 }
 

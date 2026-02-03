@@ -58,10 +58,10 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "max-size": "integer",  # Maximum amount of memory that can be used for memory logging in bytes.
-    "full-first-warning-threshold": "integer",  # Log full first warning threshold as a percent (1 - 98, default = 75).
-    "full-second-warning-threshold": "integer",  # Log full second warning threshold as a percent (2 - 99, default = 90).
-    "full-final-warning-threshold": "integer",  # Log full final warning threshold as a percent (3 - 100, default = 95).
+    "max-size": "integer",  # Maximum amount of memory that can be used for memory logging
+    "full-first-warning-threshold": "integer",  # Log full first warning threshold as a percent (1 - 98, defau
+    "full-second-warning-threshold": "integer",  # Log full second warning threshold as a percent (2 - 99, defa
+    "full-final-warning-threshold": "integer",  # Log full final warning threshold as a percent (3 - 100, defa
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -80,7 +80,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Custom service name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "proxy": "option",  # Enable/disable web proxy service.
     "category": "string",  # Service category.
     "protocol": "option",  # Protocol type based on IANA numbers.
@@ -94,11 +94,11 @@ FIELD_TYPES = {
     "udp-portrange": "user",  # Multiple UDP port ranges.
     "udplite-portrange": "user",  # Multiple UDP-Lite port ranges.
     "sctp-portrange": "user",  # Multiple SCTP port ranges.
-    "tcp-halfclose-timer": "integer",  # Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400
-    "tcp-halfopen-timer": "integer",  # Wait time to close a TCP session waiting for an unanswered open session packet (
-    "tcp-timewait-timer": "integer",  # Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
-    "tcp-rst-timer": "integer",  # Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
-    "udp-idle-timer": "integer",  # Number of seconds before an idle UDP/UDP-Lite connection times out (0 - 86400 se
+    "tcp-halfclose-timer": "integer",  # Wait time to close a TCP session waiting for an unanswered F
+    "tcp-halfopen-timer": "integer",  # Wait time to close a TCP session waiting for an unanswered o
+    "tcp-timewait-timer": "integer",  # Set the length of the TCP TIME-WAIT state in seconds (1 - 30
+    "tcp-rst-timer": "integer",  # Set the length of the TCP CLOSE state in seconds (5 - 300 se
+    "udp-idle-timer": "integer",  # Number of seconds before an idle UDP/UDP-Lite connection tim
     "session-ttl": "user",  # Session TTL (300 - 2764800, 0 = default).
     "check-reset-range": "option",  # Configure the type of ICMP error message verification.
     "comment": "var-string",  # Comment.

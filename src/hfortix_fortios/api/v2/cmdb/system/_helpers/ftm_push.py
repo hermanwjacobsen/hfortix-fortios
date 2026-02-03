@@ -61,12 +61,12 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "proxy": "option",  # Enable/disable communication to the proxy server in FortiGuard configuration.
+    "proxy": "option",  # Enable/disable communication to the proxy server in FortiGua
     "interface": "string",  # Interface of FortiToken Mobile push services server.
-    "server": "string",  # IPv4 address or domain name of FortiToken Mobile push services server.
-    "server-port": "integer",  # Port to communicate with FortiToken Mobile push services server (1 - 65535, defa
+    "server": "string",  # IPv4 address or domain name of FortiToken Mobile push servic
+    "server-port": "integer",  # Port to communicate with FortiToken Mobile push services ser
     "server-cert": "string",  # Name of the server certificate to be used for SSL.
-    "server-ip": "ipv4-address",  # IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx)
+    "server-ip": "ipv4-address",  # IPv4 address of FortiToken Mobile push services server (form
     "status": "option",  # Enable/disable the use of FortiToken Mobile push services.
 }
 

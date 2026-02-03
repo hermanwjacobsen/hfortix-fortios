@@ -59,8 +59,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Index (1 - 4096).
-    "object": "option",  # Name of the configuration object that can be configured independently for all VD
-    "scope": "option",  # Determine whether the configuration object can be configured separately for all 
+    "object": "option",  # Name of the configuration object that can be configured inde
+    "scope": "option",  # Determine whether the configuration object can be configured
     "vdom": "string",  # Names of the VDOMs.
 }
 

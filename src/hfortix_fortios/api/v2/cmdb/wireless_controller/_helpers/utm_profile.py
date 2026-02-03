@@ -69,7 +69,7 @@ FIELD_TYPES = {
     "application-list": "string",  # Application control list name.
     "antivirus-profile": "string",  # AntiVirus profile name.
     "webfilter-profile": "string",  # WebFilter profile name.
-    "scan-botnet-connections": "option",  # Block or monitor connections to Botnet servers or disable Botnet scanning.
+    "scan-botnet-connections": "option",  # Block or monitor connections to Botnet servers or disable Bo
 }
 
 # Field descriptions (help text from FortiOS API)

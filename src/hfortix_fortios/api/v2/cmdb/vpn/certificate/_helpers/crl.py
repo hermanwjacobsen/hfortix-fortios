@@ -77,9 +77,9 @@ FIELD_TYPES = {
     "ldap-password": "password",  # LDAP server user password.
     "http-url": "string",  # HTTP server URL for CRL auto-update.
     "scep-url": "string",  # SCEP server URL for CRL auto-update.
-    "scep-cert": "string",  # Local certificate for SCEP communication for CRL auto-update.
-    "update-interval": "integer",  # Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to upda
-    "source-ip": "ipv4-address",  # Source IP address for communications to a HTTP or SCEP CA server.
+    "scep-cert": "string",  # Local certificate for SCEP communication for CRL auto-update
+    "update-interval": "integer",  # Time in seconds before the FortiGate checks for an updated C
+    "source-ip": "ipv4-address",  # Source IP address for communications to a HTTP or SCEP CA se
 }
 
 # Field descriptions (help text from FortiOS API)

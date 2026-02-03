@@ -78,7 +78,7 @@ FIELD_TYPES = {
     "username": "string",  # SMTP server user name for authentication.
     "password": "password",  # SMTP server user password for authentication.
     "security": "option",  # Connection security used by the email server.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.

@@ -56,8 +56,8 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "latency-threshold": "integer",  # Speed test latency threshold in milliseconds (0 - 2000, default = 60) for the Au
-    "multiple-tcp-stream": "integer",  # Number of parallel client streams (1 - 64, default = 4) for the TCP protocol to 
+    "latency-threshold": "integer",  # Speed test latency threshold in milliseconds (0 - 2000, defa
+    "multiple-tcp-stream": "integer",  # Number of parallel client streams (1 - 64, default = 4) for 
 }
 
 # Field descriptions (help text from FortiOS API)

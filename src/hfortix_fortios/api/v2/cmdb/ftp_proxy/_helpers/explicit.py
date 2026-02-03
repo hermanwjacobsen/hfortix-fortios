@@ -65,14 +65,14 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "status": "option",  # Enable/disable the explicit FTP proxy.
     "incoming-port": "user",  # Accept incoming FTP requests on one or more ports.
-    "incoming-ip": "ipv4-address-any",  # Accept incoming FTP requests from this IP address. An interface must have this I
-    "outgoing-ip": "ipv4-address-any",  # Outgoing FTP requests will leave from this IP address. An interface must have th
-    "sec-default-action": "option",  # Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exi
+    "incoming-ip": "ipv4-address-any",  # Accept incoming FTP requests from this IP address. An interf
+    "outgoing-ip": "ipv4-address-any",  # Outgoing FTP requests will leave from this IP address. An in
+    "sec-default-action": "option",  # Accept or deny explicit FTP proxy sessions when no FTP proxy
     "server-data-mode": "option",  # Determine mode of data session on FTP server side.
     "ssl": "option",  # Enable/disable the explicit FTPS proxy.
-    "ssl-cert": "string",  # List of certificate names to use for SSL connections to this server.
-    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 204
-    "ssl-algorithm": "option",  # Relative strength of encryption algorithms accepted in negotiation.
+    "ssl-cert": "string",  # List of certificate names to use for SSL connections to this
+    "ssl-dh-bits": "option",  # Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negoti
+    "ssl-algorithm": "option",  # Relative strength of encryption algorithms accepted in negot
 }
 
 # Field descriptions (help text from FortiOS API)

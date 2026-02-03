@@ -85,13 +85,13 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "policyid": "integer",  # Policy ID (0 - 4294967295).
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "status": "option",  # Enable/disable this policy.
     "comments": "var-string",  # Comments.
-    "logtraffic": "option",  # Logging type to be used in this policy (Options: all | utm | disable, Default: u
+    "logtraffic": "option",  # Logging type to be used in this policy (Options: all | utm |
     "interface": "string",  # Monitored interface name from available interfaces.
-    "srcaddr6": "string",  # IPv6 address object to limit traffic monitoring to network traffic sent from the
-    "dstaddr6": "string",  # IPv6 address object to limit traffic monitoring to network traffic sent to the s
+    "srcaddr6": "string",  # IPv6 address object to limit traffic monitoring to network t
+    "dstaddr6": "string",  # IPv6 address object to limit traffic monitoring to network t
     "service6": "string",  # Service name.
     "application-list-status": "option",  # Enable/disable application control.
     "application-list": "string",  # Application list name.

@@ -62,8 +62,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Configure a name for the URL to be exempted.
-    "status": "option",  # Enable/disable exempting the URLs matching the URL pattern from web proxy forwar
-    "url-pattern": "string",  # URL pattern to be exempted from web proxy forwarding, caching and fast-fallback.
+    "status": "option",  # Enable/disable exempting the URLs matching the URL pattern f
+    "url-pattern": "string",  # URL pattern to be exempted from web proxy forwarding, cachin
     "forward-server": "string",  # Forward server name.
     "fast-fallback": "string",  # Fast fallback configuration entry name.
     "cache-exemption": "option",  # Enable/disable exempting this URL pattern from caching.

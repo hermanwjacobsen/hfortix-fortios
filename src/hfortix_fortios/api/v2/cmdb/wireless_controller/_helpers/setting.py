@@ -68,20 +68,20 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "account-id": "string",  # FortiCloud customer account ID.
-    "country": "option",  # Country or region in which the FortiGate is located. The country determines the 
-    "duplicate-ssid": "option",  # Enable/disable allowing Virtual Access Points (VAPs) to use the same SSID name i
+    "country": "option",  # Country or region in which the FortiGate is located. The cou
+    "duplicate-ssid": "option",  # Enable/disable allowing Virtual Access Points (VAPs) to use 
     "fapc-compatibility": "option",  # Enable/disable FAP-C series compatibility.
     "wfa-compatibility": "option",  # Enable/disable WFA compatibility.
     "phishing-ssid-detect": "option",  # Enable/disable phishing SSID detection.
     "fake-ssid-action": "option",  # Actions taken for detected fake SSID.
     "offending-ssid": "string",  # Configure offending SSID.
-    "device-weight": "integer",  # Upper limit of confidence of device for identification (0 - 255, default = 1, 0 
-    "device-holdoff": "integer",  # Lower limit of creation time of device for identification in minutes (0 - 60, de
-    "device-idle": "integer",  # Upper limit of idle time of device for identification in minutes (0 - 14400, def
-    "firmware-provision-on-authorization": "option",  # Enable/disable automatic provisioning of latest firmware on authorization.
+    "device-weight": "integer",  # Upper limit of confidence of device for identification (0 - 
+    "device-holdoff": "integer",  # Lower limit of creation time of device for identification in
+    "device-idle": "integer",  # Upper limit of idle time of device for identification in min
+    "firmware-provision-on-authorization": "option",  # Enable/disable automatic provisioning of latest firmware on 
     "rolling-wtp-upgrade": "option",  # Enable/disable rolling WTP upgrade (default = disable).
-    "darrp-optimize": "integer",  # Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optim
-    "darrp-optimize-schedules": "string",  # Firewall schedules for DARRP running time. DARRP will run periodically based on 
+    "darrp-optimize": "integer",  # Time for running Distributed Automatic Radio Resource Provis
+    "darrp-optimize-schedules": "string",  # Firewall schedules for DARRP running time. DARRP will run pe
 }
 
 # Field descriptions (help text from FortiOS API)

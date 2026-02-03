@@ -76,26 +76,26 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # WiFi ARRP profile name.
     "comment": "var-string",  # Comment.
-    "selection-period": "integer",  # Period in seconds to measure average channel load, noise floor, spectral RSSI (d
-    "monitor-period": "integer",  # Period in seconds to measure average transmit retries and receive errors (defaul
-    "weight-managed-ap": "integer",  # Weight in DARRP channel score calculation for managed APs (0 - 2000, default = 5
-    "weight-rogue-ap": "integer",  # Weight in DARRP channel score calculation for rogue APs (0 - 2000, default = 10)
-    "weight-noise-floor": "integer",  # Weight in DARRP channel score calculation for noise floor (0 - 2000, default = 4
-    "weight-channel-load": "integer",  # Weight in DARRP channel score calculation for channel load (0 - 2000, default = 
-    "weight-spectral-rssi": "integer",  # Weight in DARRP channel score calculation for spectral RSSI (0 - 2000, default =
-    "weight-weather-channel": "integer",  # Weight in DARRP channel score calculation for weather channel (0 - 2000, default
-    "weight-dfs-channel": "integer",  # Weight in DARRP channel score calculation for DFS channel (0 - 2000, default = 0
-    "threshold-ap": "integer",  # Threshold to reject channel in DARRP channel selection phase 1 due to surroundin
-    "threshold-noise-floor": "string",  # Threshold in dBm to reject channel in DARRP channel selection phase 1 due to noi
-    "threshold-channel-load": "integer",  # Threshold in percentage to reject channel in DARRP channel selection phase 1 due
-    "threshold-spectral-rssi": "string",  # Threshold in dBm to reject channel in DARRP channel selection phase 1 due to spe
-    "threshold-tx-retries": "integer",  # Threshold in percentage for transmit retries to trigger channel reselection in D
-    "threshold-rx-errors": "integer",  # Threshold in percentage for receive errors to trigger channel reselection in DAR
-    "include-weather-channel": "option",  # Enable/disable use of weather channel in DARRP channel selection phase 1 (defaul
-    "include-dfs-channel": "option",  # Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = 
-    "override-darrp-optimize": "option",  # Enable to override setting darrp-optimize and darrp-optimize-schedules (default 
-    "darrp-optimize": "integer",  # Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optim
-    "darrp-optimize-schedules": "string",  # Firewall schedules for DARRP running time. DARRP will run periodically based on 
+    "selection-period": "integer",  # Period in seconds to measure average channel load, noise flo
+    "monitor-period": "integer",  # Period in seconds to measure average transmit retries and re
+    "weight-managed-ap": "integer",  # Weight in DARRP channel score calculation for managed APs (0
+    "weight-rogue-ap": "integer",  # Weight in DARRP channel score calculation for rogue APs (0 -
+    "weight-noise-floor": "integer",  # Weight in DARRP channel score calculation for noise floor (0
+    "weight-channel-load": "integer",  # Weight in DARRP channel score calculation for channel load (
+    "weight-spectral-rssi": "integer",  # Weight in DARRP channel score calculation for spectral RSSI 
+    "weight-weather-channel": "integer",  # Weight in DARRP channel score calculation for weather channe
+    "weight-dfs-channel": "integer",  # Weight in DARRP channel score calculation for DFS channel (0
+    "threshold-ap": "integer",  # Threshold to reject channel in DARRP channel selection phase
+    "threshold-noise-floor": "string",  # Threshold in dBm to reject channel in DARRP channel selectio
+    "threshold-channel-load": "integer",  # Threshold in percentage to reject channel in DARRP channel s
+    "threshold-spectral-rssi": "string",  # Threshold in dBm to reject channel in DARRP channel selectio
+    "threshold-tx-retries": "integer",  # Threshold in percentage for transmit retries to trigger chan
+    "threshold-rx-errors": "integer",  # Threshold in percentage for receive errors to trigger channe
+    "include-weather-channel": "option",  # Enable/disable use of weather channel in DARRP channel selec
+    "include-dfs-channel": "option",  # Enable/disable use of DFS channel in DARRP channel selection
+    "override-darrp-optimize": "option",  # Enable to override setting darrp-optimize and darrp-optimize
+    "darrp-optimize": "integer",  # Time for running Distributed Automatic Radio Resource Provis
+    "darrp-optimize-schedules": "string",  # Firewall schedules for DARRP running time. DARRP will run pe
 }
 
 # Field descriptions (help text from FortiOS API)

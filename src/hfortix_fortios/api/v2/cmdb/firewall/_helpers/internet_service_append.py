@@ -58,7 +58,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "addr-mode": "option",  # Address mode (IPv4 or IPv6).
-    "match-port": "integer",  # Matching TCP/UDP/SCTP destination port (0 to 65535, 0 means any port).
+    "match-port": "integer",  # Matching TCP/UDP/SCTP destination port (0 to 65535, 0 means 
     "append-port": "integer",  # Appending TCP/UDP/SCTP destination port (1 to 65535).
 }
 

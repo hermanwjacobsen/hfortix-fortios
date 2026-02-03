@@ -76,17 +76,17 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "vdom": "string",  # Limit upgrade to this virtual domain (VDOM).
     "status": "option",  # Current status of the upgrade.
-    "ha-reboot-controller": "string",  # Serial number of the FortiGate unit that will control the reboot process for the
+    "ha-reboot-controller": "string",  # Serial number of the FortiGate unit that will control the re
     "next-path-index": "integer",  # The index of the next image to upgrade to.
-    "known-ha-members": "string",  # Known members of the HA cluster. If a member is missing at upgrade time, the upg
+    "known-ha-members": "string",  # Known members of the HA cluster. If a member is missing at u
     "initial-version": "user",  # Firmware version when the upgrade was set up.
     "starter-admin": "string",  # Admin that started the upgrade.
     "serial": "string",  # Serial number of the node to include.
     "timing": "option",  # Run immediately or at a scheduled time.
-    "maximum-minutes": "integer",  # Maximum number of minutes to allow for immediate upgrade preparation.
-    "time": "user",  # Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
-    "setup-time": "user",  # Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
-    "upgrade-path": "user",  # Fortinet OS image versions to upgrade through in major-minor-patch format, such 
+    "maximum-minutes": "integer",  # Maximum number of minutes to allow for immediate upgrade pre
+    "time": "user",  # Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UT
+    "setup-time": "user",  # Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC)
+    "upgrade-path": "user",  # Fortinet OS image versions to upgrade through in major-minor
     "device-type": "option",  # Fortinet device type.
     "allow-download": "option",  # Enable/disable download firmware images.
     "failure-reason": "option",  # Upgrade failure reason.

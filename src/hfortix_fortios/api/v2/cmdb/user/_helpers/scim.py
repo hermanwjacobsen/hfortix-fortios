@@ -66,8 +66,8 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # SCIM client name.
     "id": "integer",  # SCIM client ID.
-    "status": "option",  # Enable/disable System for Cross-domain Identity Management (SCIM).
-    "base-url": "string",  # Server URL to receive SCIM create, read, update, delete (CRUD) requests.
+    "status": "option",  # Enable/disable System for Cross-domain Identity Management (
+    "base-url": "string",  # Server URL to receive SCIM create, read, update, delete (CRU
     "auth-method": "option",  # TLS client authentication methods (default = bearer token).
     "token-certificate": "string",  # Certificate for token verification.
     "secret": "password",  # Secret for token verification or base authentication.

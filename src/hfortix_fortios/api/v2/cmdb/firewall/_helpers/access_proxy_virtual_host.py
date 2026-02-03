@@ -67,9 +67,9 @@ FIELD_TYPES = {
     "ssl-certificate": "string",  # SSL certificates for this host.
     "host": "string",  # The host name.
     "host-type": "option",  # Type of host pattern.
-    "replacemsg-group": "string",  # Access-proxy-virtual-host replacement message override group.
+    "replacemsg-group": "string",  # Access-proxy-virtual-host replacement message override group
     "empty-cert-action": "option",  # Action for an empty client certificate.
-    "user-agent-detect": "option",  # Enable/disable detecting device type by HTTP user-agent if no client certificate
+    "user-agent-detect": "option",  # Enable/disable detecting device type by HTTP user-agent if n
     "client-cert": "option",  # Enable/disable requesting client certificate.
 }
 

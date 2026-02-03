@@ -83,14 +83,14 @@ FIELD_TYPES = {
     "ssh": "string",  # Configure SSH options.
     "dot": "string",  # Configure DNS over TLS options.
     "allowlist": "option",  # Enable/disable exempting servers by FortiGuard allowlist.
-    "block-blocklisted-certificates": "option",  # Enable/disable blocking SSL-based botnet communication by FortiGuard certificate
+    "block-blocklisted-certificates": "option",  # Enable/disable blocking SSL-based botnet communication by Fo
     "ssl-exempt": "string",  # Servers to exempt from SSL inspection.
     "ech-outer-sni": "string",  # ClientHelloOuter SNIs to be blocked.
     "server-cert-mode": "option",  # Re-sign or replace the server's certificate.
-    "use-ssl-server": "option",  # Enable/disable the use of SSL server table for SSL offloading.
+    "use-ssl-server": "option",  # Enable/disable the use of SSL server table for SSL offloadin
     "caname": "string",  # CA certificate used by SSL Inspection.
     "untrusted-caname": "string",  # Untrusted CA certificate used by SSL Inspection.
-    "server-cert": "string",  # Certificate used by SSL Inspection to replace server certificate.
+    "server-cert": "string",  # Certificate used by SSL Inspection to replace server certifi
     "ssl-server": "string",  # SSL server settings used for client certificate request.
     "ssl-exemption-ip-rating": "option",  # Enable/disable IP based URL rating.
     "ssl-exemption-log": "option",  # Enable/disable logging of SSL exemptions.

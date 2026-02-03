@@ -59,10 +59,10 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "rate": "integer",  # Rate in packets per second at which storm control drops excess traffic(0-1000000
-    "burst-size-level": "integer",  # Increase level to handle bursty traffic (0 - 4, default = 0).
-    "unknown-unicast": "option",  # Enable/disable storm control to drop unknown unicast traffic.
-    "unknown-multicast": "option",  # Enable/disable storm control to drop unknown multicast traffic.
+    "rate": "integer",  # Rate in packets per second at which storm control drops exce
+    "burst-size-level": "integer",  # Increase level to handle bursty traffic (0 - 4, default = 0)
+    "unknown-unicast": "option",  # Enable/disable storm control to drop unknown unicast traffic
+    "unknown-multicast": "option",  # Enable/disable storm control to drop unknown multicast traff
     "broadcast": "option",  # Enable/disable storm control to drop broadcast traffic.
 }
 

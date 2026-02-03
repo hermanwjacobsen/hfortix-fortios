@@ -59,7 +59,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Address name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "wildcard-fqdn": "string",  # Wildcard FQDN.
     "color": "integer",  # GUI icon color.
     "comment": "var-string",  # Comment.

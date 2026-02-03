@@ -62,7 +62,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # IPIP Tunnel name.
-    "interface": "string",  # Interface name that is associated with the incoming traffic from available optio
+    "interface": "string",  # Interface name that is associated with the incoming traffic 
     "remote-gw": "ipv4-address",  # IPv4 address for the remote gateway.
     "local-gw": "ipv4-address-any",  # IPv4 address for the local gateway.
     "use-sdwan": "option",  # Enable/disable use of SD-WAN to reach remote gateway.

@@ -64,9 +64,9 @@ FIELD_TYPES = {
     "ap-family": "option",  # FortiAP family type (default = fap).
     "comment": "var-string",  # Comment.
     "ac-type": "option",  # Validation controller type (default = default).
-    "ac-timer": "integer",  # Maximum waiting time for the AP to join the validation controller after applying
-    "ac-ip": "ipv4-address",  # IP address of the validation controller that AP must be able to join after apply
-    "ac-port": "integer",  # Port of the validation controller that AP must be able to join after applying AP
+    "ac-timer": "integer",  # Maximum waiting time for the AP to join the validation contr
+    "ac-ip": "ipv4-address",  # IP address of the validation controller that AP must be able
+    "ac-port": "integer",  # Port of the validation controller that AP must be able to jo
     "command-list": "string",  # AP local configuration command list.
 }
 

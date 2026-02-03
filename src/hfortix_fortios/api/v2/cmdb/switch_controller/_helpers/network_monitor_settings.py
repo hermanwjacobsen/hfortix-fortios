@@ -55,7 +55,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "network-monitoring": "option",  # Enable/disable passive gathering of information by FortiSwitch units concerning 
+    "network-monitoring": "option",  # Enable/disable passive gathering of information by FortiSwit
 }
 
 # Field descriptions (help text from FortiOS API)

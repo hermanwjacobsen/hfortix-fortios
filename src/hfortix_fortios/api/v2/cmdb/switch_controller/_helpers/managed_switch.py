@@ -109,7 +109,7 @@ FIELD_TYPES = {
     "access-profile": "string",  # FortiSwitch access profile.
     "purdue-level": "option",  # Purdue Level of this FortiSwitch.
     "fsw-wan1-peer": "string",  # FortiSwitch WAN1 peer port.
-    "fsw-wan1-admin": "option",  # FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed 
+    "fsw-wan1-admin": "option",  # FortiSwitch WAN1 admin status; enable to authorize the Forti
     "poe-pre-standard-detection": "option",  # Enable/disable PoE pre-standard detection.
     "dhcp-server-access-list": "option",  # DHCP snooping server access list.
     "poe-detection-type": "integer",  # PoE detection type for FortiSwitch.
@@ -122,7 +122,7 @@ FIELD_TYPES = {
     "mgmt-mode": "integer",  # FortiLink management mode.
     "tunnel-discovered": "integer",  # SOCKS tunnel management discovered.
     "tdr-supported": "string",  # TDR supported.
-    "dynamic-capability": "user",  # List of features this FortiSwitch supports (not configurable) that is sent to th
+    "dynamic-capability": "user",  # List of features this FortiSwitch supports (not configurable
     "switch-device-tag": "string",  # User definable label/tag.
     "switch-dhcp_opt43_key": "string",  # DHCP option43 key.
     "mclag-igmp-snooping-aware": "option",  # Enable/disable MCLAG IGMP-snooping awareness.
@@ -137,35 +137,35 @@ FIELD_TYPES = {
     "vlan": "string",  # Configure VLAN assignment priority.
     "type": "option",  # Indication of switch type, physical or virtual.
     "owner-vdom": "string",  # VDOM which owner of port belongs to.
-    "flow-identity": "user",  # Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF defa
+    "flow-identity": "user",  # Flow-tracking netflow ipfix switch identity in hex format(00
     "staged-image-version": "string",  # Staged image version for FortiSwitch.
     "delayed-restart-trigger": "integer",  # Delayed restart triggered for this FortiSwitch.
-    "firmware-provision": "option",  # Enable/disable provisioning of firmware to FortiSwitches on join connection.
-    "firmware-provision-version": "string",  # Firmware version to provision to this FortiSwitch on bootup (major.minor.build, 
-    "firmware-provision-latest": "option",  # Enable/disable one-time automatic provisioning of the latest firmware version.
+    "firmware-provision": "option",  # Enable/disable provisioning of firmware to FortiSwitches on 
+    "firmware-provision-version": "string",  # Firmware version to provision to this FortiSwitch on bootup 
+    "firmware-provision-latest": "option",  # Enable/disable one-time automatic provisioning of the latest
     "ports": "string",  # Managed-switch port list.
     "ip-source-guard": "string",  # IP source guard.
-    "stp-settings": "string",  # Configuration method to edit Spanning Tree Protocol (STP) settings used to preve
-    "stp-instance": "string",  # Configuration method to edit Spanning Tree Protocol (STP) instances.
-    "override-snmp-sysinfo": "option",  # Enable/disable overriding the global SNMP system information.
-    "snmp-sysinfo": "string",  # Configuration method to edit Simple Network Management Protocol (SNMP) system in
-    "override-snmp-trap-threshold": "option",  # Enable/disable overriding the global SNMP trap threshold values.
-    "snmp-trap-threshold": "string",  # Configuration method to edit Simple Network Management Protocol (SNMP) trap thre
+    "stp-settings": "string",  # Configuration method to edit Spanning Tree Protocol (STP) se
+    "stp-instance": "string",  # Configuration method to edit Spanning Tree Protocol (STP) in
+    "override-snmp-sysinfo": "option",  # Enable/disable overriding the global SNMP system information
+    "snmp-sysinfo": "string",  # Configuration method to edit Simple Network Management Proto
+    "override-snmp-trap-threshold": "option",  # Enable/disable overriding the global SNMP trap threshold val
+    "snmp-trap-threshold": "string",  # Configuration method to edit Simple Network Management Proto
     "override-snmp-community": "option",  # Enable/disable overriding the global SNMP communities.
-    "snmp-community": "string",  # Configuration method to edit Simple Network Management Protocol (SNMP) communiti
+    "snmp-community": "string",  # Configuration method to edit Simple Network Management Proto
     "override-snmp-user": "option",  # Enable/disable overriding the global SNMP users.
-    "snmp-user": "string",  # Configuration method to edit Simple Network Management Protocol (SNMP) users.
+    "snmp-user": "string",  # Configuration method to edit Simple Network Management Proto
     "qos-drop-policy": "option",  # Set QoS drop-policy.
     "qos-red-probability": "integer",  # Set QoS RED/WRED drop probability.
-    "switch-log": "string",  # Configuration method to edit FortiSwitch logging settings (logs are transferred 
-    "remote-log": "string",  # Configure logging by FortiSwitch device to a remote syslog server.
-    "storm-control": "string",  # Configuration method to edit FortiSwitch storm control for measuring traffic act
+    "switch-log": "string",  # Configuration method to edit FortiSwitch logging settings (l
+    "remote-log": "string",  # Configure logging by FortiSwitch device to a remote syslog s
+    "storm-control": "string",  # Configuration method to edit FortiSwitch storm control for m
     "mirror": "string",  # Configuration method to edit FortiSwitch packet mirror.
-    "static-mac": "string",  # Configuration method to edit FortiSwitch Static and Sticky MAC.
-    "custom-command": "string",  # Configuration method to edit FortiSwitch commands to be pushed to this FortiSwit
+    "static-mac": "string",  # Configuration method to edit FortiSwitch Static and Sticky M
+    "custom-command": "string",  # Configuration method to edit FortiSwitch commands to be push
     "dhcp-snooping-static-client": "string",  # Configure FortiSwitch DHCP snooping static clients.
     "igmp-snooping": "string",  # Configure FortiSwitch IGMP snooping global settings.
-    "802-1X-settings": "string",  # Configuration method to edit FortiSwitch 802.1X global settings.
+    "802-1X-settings": "string",  # Configuration method to edit FortiSwitch 802.1X global setti
     "router-vrf": "string",  # Configure VRF.
     "system-interface": "string",  # Configure system interface on FortiSwitch.
     "router-static": "string",  # Configure static routes.

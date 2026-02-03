@@ -57,7 +57,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "route-threshold": "integer",  # Generate warnings when the number of multicast routes exceeds this number, must 
+    "route-threshold": "integer",  # Generate warnings when the number of multicast routes exceed
     "route-limit": "integer",  # Maximum number of multicast routes.
     "multicast-routing": "option",  # Enable/disable IP multicast routing.
     "pim-sm-global": "string",  # PIM sparse-mode global settings.

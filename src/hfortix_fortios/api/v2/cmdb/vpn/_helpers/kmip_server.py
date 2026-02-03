@@ -70,12 +70,12 @@ FIELD_TYPES = {
     "server-list": "string",  # KMIP server list.
     "username": "string",  # User name to use for connectivity to the KMIP server.
     "password": "password",  # Password to use for connectivity to the KMIP server.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
-    "server-identity-check": "option",  # Enable/disable KMIP server identity check (verify server FQDN/IP address against
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
+    "server-identity-check": "option",  # Enable/disable KMIP server identity check (verify server FQD
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
-    "source-ip": "string",  # FortiGate IP address to be used for communication with the KMIP server.
+    "source-ip": "string",  # FortiGate IP address to be used for communication with the K
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -61,9 +61,9 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Address group name.
     "type": "option",  # Source or destination address group type.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "member": "string",  # Members of address group.
-    "color": "integer",  # Integer value to determine the color of the icon in the GUI (1 - 32, default = 0
+    "color": "integer",  # Integer value to determine the color of the icon in the GUI 
     "tagging": "string",  # Config object tagging.
     "comment": "var-string",  # Optional comments.
 }

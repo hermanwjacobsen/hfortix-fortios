@@ -81,19 +81,19 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "status": "option",  # Enable/disable Security Fabric.
     "uid": "string",  # Unique ID of the current CSF node
-    "upstream": "string",  # IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
-    "source-ip": "ipv4-address",  # Source IP address for communication with the upstream FortiGate.
+    "upstream": "string",  # IP/FQDN of the FortiGate upstream from this FortiGate in the
+    "source-ip": "ipv4-address",  # Source IP address for communication with the upstream FortiG
     "upstream-interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "upstream-interface": "string",  # Specify outgoing interface to reach server.
-    "upstream-port": "integer",  # The port number to use to communicate with the FortiGate upstream from this Fort
-    "group-name": "string",  # Security Fabric group name. All FortiGates in a Security Fabric must have the sa
-    "group-password": "password",  # Security Fabric group password. For legacy authentication, fabric members must h
-    "accept-auth-by-cert": "option",  # Accept connections with unknown certificates and ask admin for approval.
-    "log-unification": "option",  # Enable/disable broadcast of discovery messages for log unification.
+    "upstream-port": "integer",  # The port number to use to communicate with the FortiGate ups
+    "group-name": "string",  # Security Fabric group name. All FortiGates in a Security Fab
+    "group-password": "password",  # Security Fabric group password. For legacy authentication, f
+    "accept-auth-by-cert": "option",  # Accept connections with unknown certificates and ask admin f
+    "log-unification": "option",  # Enable/disable broadcast of discovery messages for log unifi
     "authorization-request-type": "option",  # Authorization request type.
     "certificate": "string",  # Certificate.
     "fabric-workers": "integer",  # Number of worker processes for Security Fabric daemon.
-    "downstream-access": "option",  # Enable/disable downstream device access to this device's configuration and data.
+    "downstream-access": "option",  # Enable/disable downstream device access to this device's con
     "legacy-authentication": "option",  # Enable/disable legacy authentication.
     "downstream-accprofile": "string",  # Default access profile for requests from downstream devices.
     "configuration-sync": "option",  # Configuration sync mode.
@@ -103,7 +103,7 @@ FIELD_TYPES = {
     "fabric-connector": "string",  # Fabric connector configuration.
     "forticloud-account-enforcement": "option",  # Fabric FortiCloud account unification.
     "file-mgmt": "option",  # Enable/disable Security Fabric daemon file management.
-    "file-quota": "integer",  # Maximum amount of memory that can be used by the daemon files (in bytes).
+    "file-quota": "integer",  # Maximum amount of memory that can be used by the daemon file
     "file-quota-warning": "integer",  # Warn when the set percentage of quota has been used.
 }
 

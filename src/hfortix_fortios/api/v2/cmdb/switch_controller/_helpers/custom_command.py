@@ -57,9 +57,9 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "command-name": "string",  # Command name called by the FortiGate switch controller in the execute command.
+    "command-name": "string",  # Command name called by the FortiGate switch controller in th
     "description": "string",  # Description.
-    "command": "var-string",  # String of commands to send to FortiSwitch devices (For example (%0a = return key
+    "command": "var-string",  # String of commands to send to FortiSwitch devices (For examp
 }
 
 # Field descriptions (help text from FortiOS API)

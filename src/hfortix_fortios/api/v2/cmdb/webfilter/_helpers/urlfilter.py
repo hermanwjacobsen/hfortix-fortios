@@ -65,10 +65,10 @@ FIELD_TYPES = {
     "id": "integer",  # ID.
     "name": "string",  # Name of URL filter list.
     "comment": "var-string",  # Optional comments.
-    "one-arm-ips-urlfilter": "option",  # Enable/disable DNS resolver for one-arm IPS URL filter operation.
-    "ip-addr-block": "option",  # Enable/disable blocking URLs when the hostname appears as an IP address.
+    "one-arm-ips-urlfilter": "option",  # Enable/disable DNS resolver for one-arm IPS URL filter opera
+    "ip-addr-block": "option",  # Enable/disable blocking URLs when the hostname appears as an
     "ip4-mapped-ip6": "option",  # Enable/disable matching of IPv4 mapped IPv6 URLs.
-    "include-subdomains": "option",  # Enable/disable matching subdomains. Applies only to simple type (default = enabl
+    "include-subdomains": "option",  # Enable/disable matching subdomains. Applies only to simple t
     "entries": "string",  # URL filter entries.
 }
 

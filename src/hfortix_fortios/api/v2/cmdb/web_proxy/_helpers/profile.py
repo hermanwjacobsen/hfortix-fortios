@@ -67,16 +67,16 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Profile name.
-    "header-client-ip": "option",  # Action to take on the HTTP client-IP header in forwarded requests: forwards (pas
-    "header-via-request": "option",  # Action to take on the HTTP via header in forwarded requests: forwards (pass), ad
-    "header-via-response": "option",  # Action to take on the HTTP via header in forwarded responses: forwards (pass), a
-    "header-client-cert": "option",  # Action to take on the HTTP Client-Cert/Client-Cert-Chain headers in forwarded re
-    "header-x-forwarded-for": "option",  # Action to take on the HTTP x-forwarded-for header in forwarded requests: forward
-    "header-x-forwarded-client-cert": "option",  # Action to take on the HTTP x-forwarded-client-cert header in forwarded requests:
-    "header-front-end-https": "option",  # Action to take on the HTTP front-end-HTTPS header in forwarded requests: forward
-    "header-x-authenticated-user": "option",  # Action to take on the HTTP x-authenticated-user header in forwarded requests: fo
-    "header-x-authenticated-groups": "option",  # Action to take on the HTTP x-authenticated-groups header in forwarded requests: 
-    "strip-encoding": "option",  # Enable/disable stripping unsupported encoding from the request header.
+    "header-client-ip": "option",  # Action to take on the HTTP client-IP header in forwarded req
+    "header-via-request": "option",  # Action to take on the HTTP via header in forwarded requests:
+    "header-via-response": "option",  # Action to take on the HTTP via header in forwarded responses
+    "header-client-cert": "option",  # Action to take on the HTTP Client-Cert/Client-Cert-Chain hea
+    "header-x-forwarded-for": "option",  # Action to take on the HTTP x-forwarded-for header in forward
+    "header-x-forwarded-client-cert": "option",  # Action to take on the HTTP x-forwarded-client-cert header in
+    "header-front-end-https": "option",  # Action to take on the HTTP front-end-HTTPS header in forward
+    "header-x-authenticated-user": "option",  # Action to take on the HTTP x-authenticated-user header in fo
+    "header-x-authenticated-groups": "option",  # Action to take on the HTTP x-authenticated-groups header in 
+    "strip-encoding": "option",  # Enable/disable stripping unsupported encoding from the reque
     "log-header-change": "option",  # Enable/disable logging HTTP header changes.
     "headers": "string",  # Configure HTTP forwarded requests headers.
 }

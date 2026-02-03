@@ -58,8 +58,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Security Rating control name.
-    "display-report": "option",  # Enable/disable displaying the Security Rating control in the default report.
-    "display-insight": "option",  # Enable/disable displaying the Security Rating control as an insight across the G
+    "display-report": "option",  # Enable/disable displaying the Security Rating control in the
+    "display-insight": "option",  # Enable/disable displaying the Security Rating control as an 
 }
 
 # Field descriptions (help text from FortiOS API)

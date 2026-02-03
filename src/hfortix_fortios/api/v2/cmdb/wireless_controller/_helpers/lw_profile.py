@@ -64,10 +64,10 @@ FIELD_TYPES = {
     "name": "string",  # LoRaWAN profile name.
     "comment": "string",  # Comment.
     "lw-protocol": "option",  # Configure LoRaWAN protocol (default = basics-station)
-    "cups-server": "string",  # CUPS (Configuration and Update Server) domain name or IP address of LoRaWAN devi
+    "cups-server": "string",  # CUPS (Configuration and Update Server) domain name or IP add
     "cups-server-port": "integer",  # CUPS Port value of LoRaWAN device.
     "cups-api-key": "password",  # CUPS API key of LoRaWAN device.
-    "tc-server": "string",  # TC (Traffic Controller) domain name or IP address of LoRaWAN device.
+    "tc-server": "string",  # TC (Traffic Controller) domain name or IP address of LoRaWAN
     "tc-server-port": "integer",  # TC Port value of LoRaWAN device.
     "tc-api-key": "password",  # TC API key of LoRaWAN device.
 }

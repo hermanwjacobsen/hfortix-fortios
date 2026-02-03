@@ -80,16 +80,16 @@ FIELD_TYPES = {
     "remote-gw": "ipv4-address",  # IP address of the remote gateway.
     "local-gw": "ipv4-address-any",  # IP address of the local gateway.
     "use-sdwan": "option",  # Enable/disable use of SD-WAN to reach remote gateway.
-    "sequence-number-transmission": "option",  # Enable/disable including of sequence numbers in transmitted GRE packets.
-    "sequence-number-reception": "option",  # Enable/disable validating sequence numbers in received GRE packets.
-    "checksum-transmission": "option",  # Enable/disable including checksums in transmitted GRE packets.
+    "sequence-number-transmission": "option",  # Enable/disable including of sequence numbers in transmitted 
+    "sequence-number-reception": "option",  # Enable/disable validating sequence numbers in received GRE p
+    "checksum-transmission": "option",  # Enable/disable including checksums in transmitted GRE packet
     "checksum-reception": "option",  # Enable/disable validating checksums in received GRE packets.
-    "key-outbound": "integer",  # Include this key in transmitted GRE packets (0 - 4294967295).
-    "key-inbound": "integer",  # Require received GRE packets contain this key (0 - 4294967295).
+    "key-outbound": "integer",  # Include this key in transmitted GRE packets (0 - 4294967295)
+    "key-inbound": "integer",  # Require received GRE packets contain this key (0 - 429496729
     "dscp-copying": "option",  # Enable/disable DSCP copying.
-    "diffservcode": "user",  # DiffServ setting to be applied to GRE tunnel outer IP header.
+    "diffservcode": "user",  # DiffServ setting to be applied to GRE tunnel outer IP header
     "keepalive-interval": "integer",  # Keepalive message interval (0 - 32767, 0 = disabled).
-    "keepalive-failtimes": "integer",  # Number of consecutive unreturned keepalive messages before a GRE connection is c
+    "keepalive-failtimes": "integer",  # Number of consecutive unreturned keepalive messages before a
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -72,22 +72,22 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "policyid": "integer",  # User defined local in policy ID.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "intf": "string",  # Incoming interface name from available options.
     "srcaddr": "string",  # Source address object from available options.
-    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must NOT be.
+    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must 
     "dstaddr": "string",  # Destination address object from available options.
-    "internet-service6-src": "option",  # Enable/disable use of IPv6 Internet Services in source for this local-in policy.
+    "internet-service6-src": "option",  # Enable/disable use of IPv6 Internet Services in source for t
     "internet-service6-src-name": "string",  # IPv6 Internet Service source name.
     "internet-service6-src-group": "string",  # Internet Service6 source group name.
     "internet-service6-src-custom": "string",  # Custom IPv6 Internet Service source name.
     "internet-service6-src-custom-group": "string",  # Custom Internet Service6 source group name.
     "internet-service6-src-fortiguard": "string",  # FortiGuard IPv6 Internet Service source name.
-    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address must NOT be.
-    "action": "option",  # Action performed on traffic matching the policy (default = deny).
-    "service": "string",  # Service object from available options. Separate names with a space.
+    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address 
+    "action": "option",  # Action performed on traffic matching the policy (default = d
+    "service": "string",  # Service object from available options. Separate names with a
     "service-negate": "option",  # When enabled service specifies what the service must NOT be.
-    "internet-service6-src-negate": "option",  # When enabled internet-service6-src specifies what the service must NOT be.
+    "internet-service6-src-negate": "option",  # When enabled internet-service6-src specifies what the servic
     "schedule": "string",  # Schedule object from available options.
     "status": "option",  # Enable/disable this local-in policy.
     "virtual-patch": "option",  # Enable/disable the virtual patching feature.

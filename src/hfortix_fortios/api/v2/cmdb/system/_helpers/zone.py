@@ -60,8 +60,8 @@ FIELD_TYPES = {
     "name": "string",  # Zone name.
     "tagging": "string",  # Config object tagging.
     "description": "string",  # Description.
-    "intrazone": "option",  # Allow or deny traffic routing between different interfaces in the same zone (def
-    "interface": "string",  # Add interfaces to this zone. Interfaces must not be assigned to another zone or 
+    "intrazone": "option",  # Allow or deny traffic routing between different interfaces i
+    "interface": "string",  # Add interfaces to this zone. Interfaces must not be assigned
 }
 
 # Field descriptions (help text from FortiOS API)

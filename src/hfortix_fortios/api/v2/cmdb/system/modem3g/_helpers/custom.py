@@ -61,7 +61,7 @@ FIELD_TYPES = {
     "product-id": "string",  # USB product ID in hexadecimal format (0000-ffff).
     "class-id": "string",  # USB interface class in hexadecimal format (00-ff).
     "init-string": "string",  # Init string in hexadecimal format (even length).
-    "modeswitch-string": "string",  # USB modeswitch arguments. For example: '-v 1410 -p 9030 -V 1410 -P 9032 -u 3'.
+    "modeswitch-string": "string",  # USB modeswitch arguments. For example: '-v 1410 -p 9030 -V 1
 }
 
 # Field descriptions (help text from FortiOS API)

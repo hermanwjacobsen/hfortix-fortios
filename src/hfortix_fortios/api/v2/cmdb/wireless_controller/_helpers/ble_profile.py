@@ -75,7 +75,7 @@ FIELD_TYPES = {
     "name": "string",  # Bluetooth Low Energy profile name.
     "comment": "string",  # Comment.
     "advertising": "option",  # Advertising type.
-    "ibeacon-uuid": "string",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "ibeacon-uuid": "string",  # Universally Unique Identifier (UUID; automatically assigned 
     "major-id": "integer",  # Major ID.
     "minor-id": "integer",  # Minor ID.
     "eddystone-namespace": "string",  # Eddystone namespace ID.
@@ -85,7 +85,7 @@ FIELD_TYPES = {
     "beacon-interval": "integer",  # Beacon interval (default = 100 msec).
     "ble-scanning": "option",  # Enable/disable Bluetooth Low Energy (BLE) scanning.
     "scan-type": "option",  # Scan Type (default = active).
-    "scan-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP to report detected BLE
+    "scan-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP to
     "scan-period": "integer",  # Scan Period (default = 4000 msec).
     "scan-time": "integer",  # Scan Time (default = 1000 msec).
     "scan-interval": "integer",  # Scan Interval (default = 50 msec).

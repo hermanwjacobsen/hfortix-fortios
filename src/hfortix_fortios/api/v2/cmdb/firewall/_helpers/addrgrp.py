@@ -70,7 +70,7 @@ FIELD_TYPES = {
     "allow-routing": "option",  # Enable/disable use of this group in routing configurations.
     "member": "string",  # Address objects contained within the group.
     "comment": "var-string",  # Comment.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "exclude": "option",  # Enable/disable address exclusion.
     "exclude-member": "string",  # Address exclusion member.
     "color": "integer",  # Color of icon on the GUI.

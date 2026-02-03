@@ -104,60 +104,60 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "policyid": "integer",  # Policy ID.
     "name": "string",  # Policy name.
     "comments": "var-string",  # Comment.
     "srcintf": "string",  # Incoming (ingress) interface.
     "dstintf": "string",  # Outgoing (egress) interface.
     "srcaddr": "string",  # Source IPv4 address name and address group names.
-    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must NOT be.
+    "srcaddr-negate": "option",  # When enabled srcaddr specifies what the source address must 
     "dstaddr": "string",  # Destination IPv4 address name and address group names.
-    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address must NOT be.
+    "dstaddr-negate": "option",  # When enabled dstaddr specifies what the destination address 
     "srcaddr6": "string",  # Source IPv6 address name and address group names.
-    "srcaddr6-negate": "option",  # When enabled srcaddr6 specifies what the source address must NOT be.
+    "srcaddr6-negate": "option",  # When enabled srcaddr6 specifies what the source address must
     "dstaddr6": "string",  # Destination IPv6 address name and address group names.
-    "dstaddr6-negate": "option",  # When enabled dstaddr6 specifies what the destination address must NOT be.
-    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If enabled, destination
+    "dstaddr6-negate": "option",  # When enabled dstaddr6 specifies what the destination address
+    "internet-service": "option",  # Enable/disable use of Internet Services for this policy. If 
     "internet-service-name": "string",  # Internet Service name.
-    "internet-service-negate": "option",  # When enabled internet-service specifies what the service must NOT be.
+    "internet-service-negate": "option",  # When enabled internet-service specifies what the service mus
     "internet-service-group": "string",  # Internet Service group name.
     "internet-service-custom": "string",  # Custom Internet Service name.
     "internet-service-custom-group": "string",  # Custom Internet Service group name.
     "internet-service-fortiguard": "string",  # FortiGuard Internet Service name.
-    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this policy. If enabled, s
+    "internet-service-src": "option",  # Enable/disable use of Internet Services in source for this p
     "internet-service-src-name": "string",  # Internet Service source name.
-    "internet-service-src-negate": "option",  # When enabled internet-service-src specifies what the service must NOT be.
+    "internet-service-src-negate": "option",  # When enabled internet-service-src specifies what the service
     "internet-service-src-group": "string",  # Internet Service source group name.
     "internet-service-src-custom": "string",  # Custom Internet Service source name.
     "internet-service-src-custom-group": "string",  # Custom Internet Service source group name.
     "internet-service-src-fortiguard": "string",  # FortiGuard Internet Service source name.
-    "internet-service6": "option",  # Enable/disable use of IPv6 Internet Services for this policy. If enabled, destin
+    "internet-service6": "option",  # Enable/disable use of IPv6 Internet Services for this policy
     "internet-service6-name": "string",  # IPv6 Internet Service name.
-    "internet-service6-negate": "option",  # When enabled internet-service6 specifies what the service must NOT be.
+    "internet-service6-negate": "option",  # When enabled internet-service6 specifies what the service mu
     "internet-service6-group": "string",  # Internet Service group name.
     "internet-service6-custom": "string",  # Custom IPv6 Internet Service name.
     "internet-service6-custom-group": "string",  # Custom IPv6 Internet Service group name.
     "internet-service6-fortiguard": "string",  # FortiGuard IPv6 Internet Service name.
-    "internet-service6-src": "option",  # Enable/disable use of IPv6 Internet Services in source for this policy. If enabl
+    "internet-service6-src": "option",  # Enable/disable use of IPv6 Internet Services in source for t
     "internet-service6-src-name": "string",  # IPv6 Internet Service source name.
-    "internet-service6-src-negate": "option",  # When enabled internet-service6-src specifies what the service must NOT be.
+    "internet-service6-src-negate": "option",  # When enabled internet-service6-src specifies what the servic
     "internet-service6-src-group": "string",  # Internet Service6 source group name.
     "internet-service6-src-custom": "string",  # Custom IPv6 Internet Service source name.
     "internet-service6-src-custom-group": "string",  # Custom Internet Service6 source group name.
     "internet-service6-src-fortiguard": "string",  # FortiGuard IPv6 Internet Service source name.
-    "enforce-default-app-port": "option",  # Enable/disable default application port enforcement for allowed applications.
+    "enforce-default-app-port": "option",  # Enable/disable default application port enforcement for allo
     "service": "string",  # Service and service group names.
     "service-negate": "option",  # When enabled service specifies what the service must NOT be.
     "action": "option",  # Policy action (accept/deny).
-    "send-deny-packet": "option",  # Enable to send a reply when a session is denied or blocked by a firewall policy.
+    "send-deny-packet": "option",  # Enable to send a reply when a session is denied or blocked b
     "schedule": "string",  # Schedule name.
     "status": "option",  # Enable or disable this policy.
-    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security profile sessions.
-    "learning-mode": "option",  # Enable to allow everything, but log all of the meaningful data for security info
+    "logtraffic": "option",  # Enable or disable logging. Log all sessions or security prof
+    "learning-mode": "option",  # Enable to allow everything, but log all of the meaningful da
     "nat46": "option",  # Enable/disable NAT46.
     "nat64": "option",  # Enable/disable NAT64.
-    "profile-type": "option",  # Determine whether the firewall policy allows security profile groups or single p
+    "profile-type": "option",  # Determine whether the firewall policy allows security profil
     "profile-group": "string",  # Name of profile group.
     "profile-protocol-options": "string",  # Name of an existing Protocol options profile.
     "ssl-ssh-profile": "string",  # Name of an existing SSL SSH profile.
@@ -183,7 +183,7 @@ FIELD_TYPES = {
     "url-category": "user",  # URL categories or groups.
     "app-group": "string",  # Application group names.
     "groups": "string",  # Names of user groups that can authenticate with this policy.
-    "users": "string",  # Names of individual users that can authenticate with this policy.
+    "users": "string",  # Names of individual users that can authenticate with this po
     "fsso-groups": "string",  # Names of FSSO groups.
 }
 

@@ -147,16 +147,16 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Virtual IP name.
     "id": "integer",  # Custom defined ID.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "comment": "var-string",  # Comment.
-    "type": "option",  # Configure a static NAT, load balance, server load balance, access proxy, DNS tra
-    "server-type": "option",  # Protocol to be load balanced by the virtual server (also called the server load 
-    "dns-mapping-ttl": "integer",  # DNS mapping TTL (Set to zero to use TTL in DNS response, default = 0).
+    "type": "option",  # Configure a static NAT, load balance, server load balance, a
+    "server-type": "option",  # Protocol to be load balanced by the virtual server (also cal
+    "dns-mapping-ttl": "integer",  # DNS mapping TTL (Set to zero to use TTL in DNS response, def
     "ldb-method": "option",  # Method used to distribute sessions to real servers.
-    "src-filter": "string",  # Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a
-    "src-vip-filter": "option",  # Enable/disable use of 'src-filter' to match destinations for the reverse SNAT ru
+    "src-filter": "string",  # Source address filter. Each address must be either an IP/sub
+    "src-vip-filter": "option",  # Enable/disable use of 'src-filter' to match destinations for
     "service": "string",  # Service name.
-    "extip": "user",  # IP address or address range on the external interface that you want to map to an
+    "extip": "user",  # IP address or address range on the external interface that y
     "extaddr": "string",  # External FQDN address name.
     "h2-support": "option",  # Enable/disable HTTP2 support (default = enable).
     "h3-support": "option",  # Enable/disable HTTP3/QUIC support (default = disable).
@@ -164,66 +164,66 @@ FIELD_TYPES = {
     "nat44": "option",  # Enable/disable NAT44.
     "nat46": "option",  # Enable/disable NAT46.
     "add-nat46-route": "option",  # Enable/disable adding NAT46 route.
-    "mappedip": "string",  # IP address or address range on the destination network to which the external IP 
+    "mappedip": "string",  # IP address or address range on the destination network to wh
     "mapped-addr": "string",  # Mapped FQDN address name.
-    "extintf": "string",  # Interface connected to the source network that receives the packets that will be
-    "arp-reply": "option",  # Enable to respond to ARP requests for this virtual IP address. Enabled by defaul
+    "extintf": "string",  # Interface connected to the source network that receives the 
+    "arp-reply": "option",  # Enable to respond to ARP requests for this virtual IP addres
     "http-redirect": "option",  # Enable/disable redirection of HTTP to HTTPS.
-    "persistence": "option",  # Configure how to make sure that clients connect to the same server every time th
-    "nat-source-vip": "option",  # Enable/disable forcing the source NAT mapped IP to the external IP for all traff
+    "persistence": "option",  # Configure how to make sure that clients connect to the same 
+    "nat-source-vip": "option",  # Enable/disable forcing the source NAT mapped IP to the exter
     "portforward": "option",  # Enable/disable port forwarding.
     "status": "option",  # Enable/disable VIP.
     "protocol": "option",  # Protocol to use when forwarding packets.
-    "extport": "user",  # Incoming port number range that you want to map to a port number range on the de
-    "mappedport": "user",  # Port number range on the destination network to which the external port number r
-    "gratuitous-arp-interval": "integer",  # Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 864000
-    "srcintf-filter": "string",  # Interfaces to which the VIP applies. Separate the names with spaces.
+    "extport": "user",  # Incoming port number range that you want to map to a port nu
+    "mappedport": "user",  # Port number range on the destination network to which the ex
+    "gratuitous-arp-interval": "integer",  # Enable to have the VIP send gratuitous ARPs. 0=disabled. Set
+    "srcintf-filter": "string",  # Interfaces to which the VIP applies. Separate the names with
     "portmapping-type": "option",  # Port mapping type.
     "empty-cert-action": "option",  # Action for an empty client certificate.
-    "user-agent-detect": "option",  # Enable/disable detecting device type by HTTP user-agent if no client certificate
+    "user-agent-detect": "option",  # Enable/disable detecting device type by HTTP user-agent if n
     "client-cert": "option",  # Enable/disable requesting client certificate.
-    "realservers": "string",  # Select the real servers that this server load balancing VIP will distribute traf
-    "http-cookie-domain-from-host": "option",  # Enable/disable use of HTTP cookie domain from host field in HTTP.
+    "realservers": "string",  # Select the real servers that this server load balancing VIP 
+    "http-cookie-domain-from-host": "option",  # Enable/disable use of HTTP cookie domain from host field in 
     "http-cookie-domain": "string",  # Domain that HTTP cookie persistence should apply to.
     "http-cookie-path": "string",  # Limit HTTP cookie persistence to the specified path.
-    "http-cookie-generation": "integer",  # Generation of HTTP cookie to be accepted. Changing invalidates all existing cook
-    "http-cookie-age": "integer",  # Time in minutes that client web browsers should keep a cookie. Default is 60 min
-    "http-cookie-share": "option",  # Control sharing of cookies across virtual servers. Use of same-ip means a cookie
-    "https-cookie-secure": "option",  # Enable/disable verification that inserted HTTPS cookies are secure.
+    "http-cookie-generation": "integer",  # Generation of HTTP cookie to be accepted. Changing invalidat
+    "http-cookie-age": "integer",  # Time in minutes that client web browsers should keep a cooki
+    "http-cookie-share": "option",  # Control sharing of cookies across virtual servers. Use of sa
+    "https-cookie-secure": "option",  # Enable/disable verification that inserted HTTPS cookies are 
     "http-multiplex": "option",  # Enable/disable HTTP multiplexing.
     "http-multiplex-ttl": "integer",  # Time-to-live for idle connections to servers.
-    "http-multiplex-max-request": "integer",  # Maximum number of requests that a multiplex server can handle before disconnecti
-    "http-multiplex-max-concurrent-request": "integer",  # Maximum number of concurrent requests that a multiplex server can handle (defaul
-    "http-ip-header": "option",  # For HTTP multiplexing, enable to add the original client IP address in the X-For
-    "http-ip-header-name": "string",  # For HTTP multiplexing, enter a custom HTTPS header name. The original client IP 
-    "outlook-web-access": "option",  # Enable to add the Front-End-Https header for Microsoft Outlook Web Access.
-    "weblogic-server": "option",  # Enable to add an HTTP header to indicate SSL offloading for a WebLogic server.
-    "websphere-server": "option",  # Enable to add an HTTP header to indicate SSL offloading for a WebSphere server.
-    "ssl-mode": "option",  # Apply SSL offloading between the client and the FortiGate (half) or from the cli
+    "http-multiplex-max-request": "integer",  # Maximum number of requests that a multiplex server can handl
+    "http-multiplex-max-concurrent-request": "integer",  # Maximum number of concurrent requests that a multiplex serve
+    "http-ip-header": "option",  # For HTTP multiplexing, enable to add the original client IP 
+    "http-ip-header-name": "string",  # For HTTP multiplexing, enter a custom HTTPS header name. The
+    "outlook-web-access": "option",  # Enable to add the Front-End-Https header for Microsoft Outlo
+    "weblogic-server": "option",  # Enable to add an HTTP header to indicate SSL offloading for 
+    "websphere-server": "option",  # Enable to add an HTTP header to indicate SSL offloading for 
+    "ssl-mode": "option",  # Apply SSL offloading between the client and the FortiGate (h
     "ssl-certificate": "string",  # Name of the certificate to use for SSL handshake.
-    "ssl-dh-bits": "option",  # Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL s
-    "ssl-algorithm": "option",  # Permitted encryption algorithms for SSL sessions according to encryption strengt
-    "ssl-cipher-suites": "string",  # SSL/TLS cipher suites acceptable from a client, ordered by priority.
-    "ssl-server-algorithm": "option",  # Permitted encryption algorithms for the server side of SSL full mode sessions ac
-    "ssl-server-cipher-suites": "string",  # SSL/TLS cipher suites to offer to a server, ordered by priority.
-    "ssl-pfs": "option",  # Select the cipher suites that can be used for SSL perfect forward secrecy (PFS).
+    "ssl-dh-bits": "option",  # Number of bits to use in the Diffie-Hellman exchange for RSA
+    "ssl-algorithm": "option",  # Permitted encryption algorithms for SSL sessions according t
+    "ssl-cipher-suites": "string",  # SSL/TLS cipher suites acceptable from a client, ordered by p
+    "ssl-server-algorithm": "option",  # Permitted encryption algorithms for the server side of SSL f
+    "ssl-server-cipher-suites": "string",  # SSL/TLS cipher suites to offer to a server, ordered by prior
+    "ssl-pfs": "option",  # Select the cipher suites that can be used for SSL perfect fo
     "ssl-min-version": "option",  # Lowest SSL/TLS version acceptable from a client.
     "ssl-max-version": "option",  # Highest SSL/TLS version acceptable from a client.
-    "ssl-server-min-version": "option",  # Lowest SSL/TLS version acceptable from a server. Use the client setting by defau
-    "ssl-server-max-version": "option",  # Highest SSL/TLS version acceptable from a server. Use the client setting by defa
+    "ssl-server-min-version": "option",  # Lowest SSL/TLS version acceptable from a server. Use the cli
+    "ssl-server-max-version": "option",  # Highest SSL/TLS version acceptable from a server. Use the cl
     "ssl-accept-ffdhe-groups": "option",  # Enable/disable FFDHE cipher suite for SSL key exchange.
-    "ssl-send-empty-frags": "option",  # Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.
-    "ssl-client-fallback": "option",  # Enable/disable support for preventing Downgrade Attacks on client connections (R
-    "ssl-client-renegotiation": "option",  # Allow, deny, or require secure renegotiation of client sessions to comply with R
-    "ssl-client-session-state-type": "option",  # How to expire SSL sessions for the segment of the SSL connection between the cli
-    "ssl-client-session-state-timeout": "integer",  # Number of minutes to keep client to FortiGate SSL session state.
-    "ssl-client-session-state-max": "integer",  # Maximum number of client to FortiGate SSL session states to keep.
-    "ssl-client-rekey-count": "integer",  # Maximum length of data in MB before triggering a client rekey (0 = disable).
+    "ssl-send-empty-frags": "option",  # Enable/disable sending empty fragments to avoid CBC IV attac
+    "ssl-client-fallback": "option",  # Enable/disable support for preventing Downgrade Attacks on c
+    "ssl-client-renegotiation": "option",  # Allow, deny, or require secure renegotiation of client sessi
+    "ssl-client-session-state-type": "option",  # How to expire SSL sessions for the segment of the SSL connec
+    "ssl-client-session-state-timeout": "integer",  # Number of minutes to keep client to FortiGate SSL session st
+    "ssl-client-session-state-max": "integer",  # Maximum number of client to FortiGate SSL session states to 
+    "ssl-client-rekey-count": "integer",  # Maximum length of data in MB before triggering a client reke
     "ssl-server-renegotiation": "option",  # Enable/disable secure renegotiation to comply with RFC 5746.
-    "ssl-server-session-state-type": "option",  # How to expire SSL sessions for the segment of the SSL connection between the ser
-    "ssl-server-session-state-timeout": "integer",  # Number of minutes to keep FortiGate to Server SSL session state.
-    "ssl-server-session-state-max": "integer",  # Maximum number of FortiGate to Server SSL session states to keep.
-    "ssl-http-location-conversion": "option",  # Enable to replace HTTP with HTTPS in the reply's Location HTTP header field.
+    "ssl-server-session-state-type": "option",  # How to expire SSL sessions for the segment of the SSL connec
+    "ssl-server-session-state-timeout": "integer",  # Number of minutes to keep FortiGate to Server SSL session st
+    "ssl-server-session-state-max": "integer",  # Maximum number of FortiGate to Server SSL session states to 
+    "ssl-http-location-conversion": "option",  # Enable to replace HTTP with HTTPS in the reply's Location HT
     "ssl-http-match-host": "option",  # Enable/disable HTTP host matching for location conversion.
     "ssl-hpkp": "option",  # Enable/disable including HPKP header in response.
     "ssl-hpkp-primary": "string",  # Certificate to generate primary HPKP pin from.
@@ -234,12 +234,12 @@ FIELD_TYPES = {
     "ssl-hsts": "option",  # Enable/disable including HSTS header in response.
     "ssl-hsts-age": "integer",  # Number of seconds the client should honor the HSTS setting.
     "ssl-hsts-include-subdomains": "option",  # Indicate that HSTS header applies to all subdomains.
-    "monitor": "string",  # Name of the health check monitor to use when polling to determine a virtual serv
+    "monitor": "string",  # Name of the health check monitor to use when polling to dete
     "max-embryonic-connections": "integer",  # Maximum number of incomplete connections.
     "color": "integer",  # Color of icon on the GUI.
-    "ipv6-mappedip": "user",  # Range of mapped IPv6 addresses. Specify the start IPv6 address followed by a spa
-    "ipv6-mappedport": "user",  # IPv6 port number range on the destination network to which the external port num
-    "one-click-gslb-server": "option",  # Enable/disable one click GSLB server integration with FortiGSLB.
+    "ipv6-mappedip": "user",  # Range of mapped IPv6 addresses. Specify the start IPv6 addre
+    "ipv6-mappedport": "user",  # IPv6 port number range on the destination network to which t
+    "one-click-gslb-server": "option",  # Enable/disable one click GSLB server integration with FortiG
     "gslb-hostname": "string",  # Hostname to use within the configured FortiGSLB domain.
     "gslb-domain-name": "string",  # Domain to use when integrating with FortiGSLB.
     "gslb-public-ips": "string",  # Publicly accessible IP addresses for the FortiGSLB service.

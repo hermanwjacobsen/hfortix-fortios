@@ -63,13 +63,13 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "name": "string",  # GENEVE device or interface name. Must be an unique interface name.
+    "name": "string",  # GENEVE device or interface name. Must be an unique interface
     "interface": "string",  # Outgoing interface for GENEVE encapsulated traffic.
     "vni": "integer",  # GENEVE network ID.
     "type": "option",  # GENEVE type.
-    "ip-version": "option",  # IP version to use for the GENEVE interface and so for communication over the GEN
-    "remote-ip": "ipv4-address",  # IPv4 address of the GENEVE interface on the device at the remote end of the GENE
-    "remote-ip6": "ipv6-address",  # IPv6 IP address of the GENEVE interface on the device at the remote end of the G
+    "ip-version": "option",  # IP version to use for the GENEVE interface and so for commun
+    "remote-ip": "ipv4-address",  # IPv4 address of the GENEVE interface on the device at the re
+    "remote-ip6": "ipv6-address",  # IPv6 IP address of the GENEVE interface on the device at the
     "dstport": "integer",  # GENEVE destination port (1 - 65535, default = 6081).
 }
 

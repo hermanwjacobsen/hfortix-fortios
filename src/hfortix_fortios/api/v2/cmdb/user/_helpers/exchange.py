@@ -73,15 +73,15 @@ FIELD_TYPES = {
     "name": "string",  # MS Exchange server entry name.
     "server-name": "string",  # MS Exchange server hostname.
     "domain-name": "string",  # MS Exchange server fully qualified domain name.
-    "username": "string",  # User name used to sign in to the server. Must have proper permissions for servic
+    "username": "string",  # User name used to sign in to the server. Must have proper pe
     "password": "password",  # Password for the specified username.
     "ip": "ipv4-address-any",  # Server IPv4 address.
     "connect-protocol": "option",  # Connection protocol used to connect to MS Exchange service.
     "validate-server-certificate": "option",  # Enable/disable exchange server certificate validation.
-    "auth-type": "option",  # Authentication security type used for the RPC protocol layer.
-    "auth-level": "option",  # Authentication security level used for the RPC protocol layer.
+    "auth-type": "option",  # Authentication security type used for the RPC protocol layer
+    "auth-level": "option",  # Authentication security level used for the RPC protocol laye
     "http-auth-type": "option",  # Authentication security type used for the HTTP transport.
-    "ssl-min-proto-version": "option",  # Minimum SSL/TLS protocol version for HTTPS transport (default is to follow syste
+    "ssl-min-proto-version": "option",  # Minimum SSL/TLS protocol version for HTTPS transport (defaul
     "auto-discover-kdc": "option",  # Enable/disable automatic discovery of KDC IP addresses.
     "kdc-ip": "string",  # KDC IPv4 addresses for Kerberos authentication.
 }

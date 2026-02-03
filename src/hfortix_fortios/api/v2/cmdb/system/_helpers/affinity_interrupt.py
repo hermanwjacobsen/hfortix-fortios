@@ -62,8 +62,8 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "id": "integer",  # ID of the interrupt affinity setting.
     "interrupt": "string",  # Interrupt name.
-    "affinity-cpumask": "string",  # Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
-    "default-affinity-cpumask": "string",  # Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxx
+    "affinity-cpumask": "string",  # Affinity setting (64-bit hexadecimal value in the format of 
+    "default-affinity-cpumask": "string",  # Default affinity setting (64-bit hexadecimal value in the fo
 }
 
 # Field descriptions (help text from FortiOS API)

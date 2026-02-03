@@ -57,7 +57,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "log-violations": "option",  # Enable/Disable log violations for IP source guard logging.
-    "violation-timer": "integer",  # IP source gurad log violation timer in seconds (0 - 1500, default = 0).
+    "violation-timer": "integer",  # IP source gurad log violation timer in seconds (0 - 1500, de
 }
 
 # Field descriptions (help text from FortiOS API)

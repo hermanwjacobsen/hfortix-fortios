@@ -61,7 +61,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Name.
     "remote": "user",  # Remote certificate.
-    "range": "option",  # Either the global or VDOM IP address range for the remote certificate.
+    "range": "option",  # Either the global or VDOM IP address range for the remote ce
     "source": "option",  # Remote certificate source type.
 }
 

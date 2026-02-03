@@ -59,9 +59,9 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # ID.
-    "src": "ipv4-address",  # IPv4 address or subnet on the internal network to compare with the resolved addr
-    "dst": "ipv4-address",  # IPv4 address or subnet on the external network to substitute for the resolved ad
-    "netmask": "ipv4-netmask",  # If src and dst are subnets rather than single IP addresses, enter the netmask fo
+    "src": "ipv4-address",  # IPv4 address or subnet on the internal network to compare wi
+    "dst": "ipv4-address",  # IPv4 address or subnet on the external network to substitute
+    "netmask": "ipv4-netmask",  # If src and dst are subnets rather than single IP addresses, 
 }
 
 # Field descriptions (help text from FortiOS API)

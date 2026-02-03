@@ -63,7 +63,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "override": "option",  # Overriding FortiCloud settings for this VDOM or use global settings.
+    "override": "option",  # Overriding FortiCloud settings for this VDOM or use global s
     "status": "option",  # Enable/disable logging to FortiCloud.
     "upload-option": "option",  # Configure how log messages are sent to FortiCloud.
     "upload-interval": "option",  # Frequency of uploading log files to FortiCloud.

@@ -64,12 +64,12 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # SSH client certificate name.
-    "source-address": "option",  # Enable/disable appending source-address certificate critical option. This option
-    "permit-x11-forwarding": "option",  # Enable/disable appending permit-x11-forwarding certificate extension.
-    "permit-agent-forwarding": "option",  # Enable/disable appending permit-agent-forwarding certificate extension.
-    "permit-port-forwarding": "option",  # Enable/disable appending permit-port-forwarding certificate extension.
+    "source-address": "option",  # Enable/disable appending source-address certificate critical
+    "permit-x11-forwarding": "option",  # Enable/disable appending permit-x11-forwarding certificate e
+    "permit-agent-forwarding": "option",  # Enable/disable appending permit-agent-forwarding certificate
+    "permit-port-forwarding": "option",  # Enable/disable appending permit-port-forwarding certificate 
     "permit-pty": "option",  # Enable/disable appending permit-pty certificate extension.
-    "permit-user-rc": "option",  # Enable/disable appending permit-user-rc certificate extension.
+    "permit-user-rc": "option",  # Enable/disable appending permit-user-rc certificate extensio
     "cert-extension": "string",  # Configure certificate extension for user certificate.
     "auth-ca": "string",  # Name of the SSH server public key authentication CA.
 }

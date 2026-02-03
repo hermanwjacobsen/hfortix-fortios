@@ -71,14 +71,14 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "id": "integer",  # Override rule ID.
     "status": "option",  # Enable/disable override rule.
-    "scope": "option",  # Override either the specific user, user group, IPv4 address, or IPv6 address.
+    "scope": "option",  # Override either the specific user, user group, IPv4 address,
     "ip": "ipv4-address",  # IPv4 address which the override applies.
     "user": "string",  # Name of the user which the override applies.
     "user-group": "string",  # Specify the user group for which the override applies.
     "old-profile": "string",  # Name of the web filter profile which the override applies.
     "new-profile": "string",  # Name of the new web filter profile used by the override.
     "ip6": "ipv6-address",  # IPv6 address which the override applies.
-    "expires": "user",  # Override expiration date and time, from 5 minutes to 365 from now (format: yyyy/
+    "expires": "user",  # Override expiration date and time, from 5 minutes to 365 fro
     "initiator": "string",  # Initiating user of override (read-only setting).
 }
 

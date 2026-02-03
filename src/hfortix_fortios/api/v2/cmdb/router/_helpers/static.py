@@ -87,13 +87,13 @@ FIELD_TYPES = {
     "device": "string",  # Gateway out interface or tunnel.
     "comment": "var-string",  # Optional comments.
     "blackhole": "option",  # Enable/disable black hole.
-    "dynamic-gateway": "option",  # Enable use of dynamic gateway retrieved from a DHCP or PPP server.
+    "dynamic-gateway": "option",  # Enable use of dynamic gateway retrieved from a DHCP or PPP s
     "sdwan-zone": "string",  # Choose SD-WAN Zone.
     "dstaddr": "string",  # Name of firewall address or address group.
     "internet-service": "integer",  # Application ID in the Internet service database.
     "internet-service-custom": "string",  # Application name in the Internet service custom database.
-    "internet-service-fortiguard": "string",  # Application name in the Internet service fortiguard database.
-    "link-monitor-exempt": "option",  # Enable/disable withdrawal of this static route when link monitor or health check
+    "internet-service-fortiguard": "string",  # Application name in the Internet service fortiguard database
+    "link-monitor-exempt": "option",  # Enable/disable withdrawal of this static route when link mon
     "tag": "integer",  # Route tag.
     "vrf": "integer",  # Virtual Routing Forwarding ID.
     "bfd": "option",  # Enable/disable Bidirectional Forwarding Detection (BFD).

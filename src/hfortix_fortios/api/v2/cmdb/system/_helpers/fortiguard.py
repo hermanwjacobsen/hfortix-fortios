@@ -115,10 +115,10 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "fortiguard-anycast": "option",  # Enable/disable use of FortiGuard's Anycast network.
-    "fortiguard-anycast-source": "option",  # Configure which of Fortinet's servers to provide FortiGuard services in FortiGua
+    "fortiguard-anycast-source": "option",  # Configure which of Fortinet's servers to provide FortiGuard 
     "protocol": "option",  # Protocol used to communicate with the FortiGuard servers.
     "port": "option",  # Port used to communicate with the FortiGuard servers.
-    "load-balance-servers": "integer",  # Number of servers to alternate between as first FortiGuard option.
+    "load-balance-servers": "integer",  # Number of servers to alternate between as first FortiGuard o
     "auto-join-forticloud": "option",  # Automatically connect to and login to FortiCloud.
     "update-server-location": "option",  # Location from which to receive FortiGuard updates.
     "sandbox-region": "string",  # FortiCloud Sandbox region.
@@ -128,39 +128,39 @@ FIELD_TYPES = {
     "update-dldb": "option",  # Enable/disable DLP signature update.
     "update-extdb": "option",  # Enable/disable external resource update.
     "update-build-proxy": "option",  # Enable/disable proxy dictionary rebuild.
-    "persistent-connection": "option",  # Enable/disable use of persistent connection to receive update notification from 
+    "persistent-connection": "option",  # Enable/disable use of persistent connection to receive updat
     "vdom": "string",  # FortiGuard Service virtual domain name.
-    "auto-firmware-upgrade": "option",  # Enable/disable automatic patch-level firmware upgrade from FortiGuard. The Forti
-    "auto-firmware-upgrade-day": "option",  # Allowed day(s) of the week to install an automatic patch-level firmware upgrade 
-    "auto-firmware-upgrade-delay": "integer",  # Delay of day(s) before installing an automatic patch-level firmware upgrade from
-    "auto-firmware-upgrade-start-hour": "integer",  # Start time in the designated time window for automatic patch-level firmware upgr
-    "auto-firmware-upgrade-end-hour": "integer",  # End time in the designated time window for automatic patch-level firmware upgrad
-    "FDS-license-expiring-days": "integer",  # Threshold for number of days before FortiGuard license expiration to generate li
-    "subscribe-update-notification": "option",  # Enable/disable subscription to receive update notification from FortiGuard.
+    "auto-firmware-upgrade": "option",  # Enable/disable automatic patch-level firmware upgrade from F
+    "auto-firmware-upgrade-day": "option",  # Allowed day(s) of the week to install an automatic patch-lev
+    "auto-firmware-upgrade-delay": "integer",  # Delay of day(s) before installing an automatic patch-level f
+    "auto-firmware-upgrade-start-hour": "integer",  # Start time in the designated time window for automatic patch
+    "auto-firmware-upgrade-end-hour": "integer",  # End time in the designated time window for automatic patch-l
+    "FDS-license-expiring-days": "integer",  # Threshold for number of days before FortiGuard license expir
+    "subscribe-update-notification": "option",  # Enable/disable subscription to receive update notification f
     "antispam-force-off": "option",  # Enable/disable turning off the FortiGuard antispam service.
-    "antispam-cache": "option",  # Enable/disable FortiGuard antispam request caching. Uses a small amount of memor
-    "antispam-cache-ttl": "integer",  # Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times re
-    "antispam-cache-mpermille": "integer",  # Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 1
-    "antispam-license": "integer",  # Interval of time between license checks for the FortiGuard antispam contract.
+    "antispam-cache": "option",  # Enable/disable FortiGuard antispam request caching. Uses a s
+    "antispam-cache-ttl": "integer",  # Time-to-live for antispam cache entries in seconds (300 - 86
+    "antispam-cache-mpermille": "integer",  # Maximum permille of FortiGate memory the antispam cache is a
+    "antispam-license": "integer",  # Interval of time between license checks for the FortiGuard a
     "antispam-expiration": "integer",  # Expiration date of the FortiGuard antispam contract.
     "antispam-timeout": "integer",  # Antispam query time out (1 - 30 sec, default = 7).
     "outbreak-prevention-force-off": "option",  # Turn off FortiGuard Virus Outbreak Prevention service.
     "outbreak-prevention-cache": "option",  # Enable/disable FortiGuard Virus Outbreak Prevention cache.
-    "outbreak-prevention-cache-ttl": "integer",  # Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400
-    "outbreak-prevention-cache-mpermille": "integer",  # Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1
-    "outbreak-prevention-license": "integer",  # Interval of time between license checks for FortiGuard Virus Outbreak Prevention
-    "outbreak-prevention-expiration": "integer",  # Expiration date of FortiGuard Virus Outbreak Prevention contract.
-    "outbreak-prevention-timeout": "integer",  # FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-    "webfilter-force-off": "option",  # Enable/disable turning off the FortiGuard web filtering service.
+    "outbreak-prevention-cache-ttl": "integer",  # Time-to-live for FortiGuard Virus Outbreak Prevention cache 
+    "outbreak-prevention-cache-mpermille": "integer",  # Maximum permille of memory FortiGuard Virus Outbreak Prevent
+    "outbreak-prevention-license": "integer",  # Interval of time between license checks for FortiGuard Virus
+    "outbreak-prevention-expiration": "integer",  # Expiration date of FortiGuard Virus Outbreak Prevention cont
+    "outbreak-prevention-timeout": "integer",  # FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, d
+    "webfilter-force-off": "option",  # Enable/disable turning off the FortiGuard web filtering serv
     "webfilter-cache": "option",  # Enable/disable FortiGuard web filter caching.
-    "webfilter-cache-ttl": "integer",  # Time-to-live for web filter cache entries in seconds (300 - 86400).
-    "webfilter-license": "integer",  # Interval of time between license checks for the FortiGuard web filter contract.
+    "webfilter-cache-ttl": "integer",  # Time-to-live for web filter cache entries in seconds (300 - 
+    "webfilter-license": "integer",  # Interval of time between license checks for the FortiGuard w
     "webfilter-expiration": "integer",  # Expiration date of the FortiGuard web filter contract.
     "webfilter-timeout": "integer",  # Web filter query time out (1 - 30 sec, default = 15).
     "sdns-server-ip": "user",  # IP address of the FortiGuard DNS rating server.
     "sdns-server-port": "integer",  # Port to connect to on the FortiGuard DNS rating server.
     "anycast-sdns-server-ip": "ipv4-address",  # IP address of the FortiGuard anycast DNS rating server.
-    "anycast-sdns-server-port": "integer",  # Port to connect to on the FortiGuard anycast DNS rating server.
+    "anycast-sdns-server-port": "integer",  # Port to connect to on the FortiGuard anycast DNS rating serv
     "sdns-options": "option",  # Customization options for the FortiGuard DNS service.
     "source-ip": "ipv4-address",  # Source IPv4 address used to communicate with FortiGuard.
     "source-ip6": "ipv6-address",  # Source IPv6 address used to communicate with FortiGuard.

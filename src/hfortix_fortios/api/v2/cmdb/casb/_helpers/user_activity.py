@@ -65,7 +65,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # CASB user activity name.
-    "uuid": "string",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "string",  # Universally Unique Identifier (UUID; automatically assigned 
     "status": "option",  # CASB user activity status.
     "description": "string",  # CASB user activity description.
     "type": "option",  # CASB user activity type.

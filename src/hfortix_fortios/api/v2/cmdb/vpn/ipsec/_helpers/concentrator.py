@@ -59,7 +59,7 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "id": "integer",  # Concentrator ID (1 - 65535).
     "name": "string",  # Concentrator name.
-    "src-check": "option",  # Enable to check source address of phase 2 selector. Disable to check only the de
+    "src-check": "option",  # Enable to check source address of phase 2 selector. Disable 
     "member": "string",  # Names of up to 3 VPN tunnels to add to the concentrator.
 }
 

@@ -117,25 +117,25 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # RADIUS server entry name.
     "server": "string",  # Primary RADIUS server CN domain name or IP address.
-    "secret": "password",  # Pre-shared secret key used to access the primary RADIUS server.
+    "secret": "password",  # Pre-shared secret key used to access the primary RADIUS serv
     "secondary-server": "string",  # Secondary RADIUS CN domain name or IP address.
     "secondary-secret": "password",  # Secret key to access the secondary server.
     "tertiary-server": "string",  # Tertiary RADIUS CN domain name or IP address.
     "tertiary-secret": "password",  # Secret key to access the tertiary server.
     "timeout": "integer",  # Time in seconds to retry connecting server.
-    "status-ttl": "integer",  # Time for which server reachability is cached so that when a server is unreachabl
-    "all-usergroup": "option",  # Enable/disable automatically including this RADIUS server in all user groups.
+    "status-ttl": "integer",  # Time for which server reachability is cached so that when a 
+    "all-usergroup": "option",  # Enable/disable automatically including this RADIUS server in
     "use-management-vdom": "option",  # Enable/disable using management VDOM to send requests.
-    "switch-controller-nas-ip-dynamic": "option",  # Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip.
-    "nas-ip": "ipv4-address",  # IP address used to communicate with the RADIUS server and used as NAS-IP-Address
+    "switch-controller-nas-ip-dynamic": "option",  # Enable/Disable switch-controller nas-ip dynamic to dynamical
+    "nas-ip": "ipv4-address",  # IP address used to communicate with the RADIUS server and us
     "nas-id-type": "option",  # NAS identifier type configuration (default = legacy).
-    "call-station-id-type": "option",  # Calling & Called station identifier type configuration (default = legacy), this 
+    "call-station-id-type": "option",  # Calling & Called station identifier type configuration (defa
     "nas-id": "string",  # Custom NAS identifier.
-    "acct-interim-interval": "integer",  # Time in seconds between each accounting interim update message.
-    "radius-coa": "option",  # Enable to allow a mechanism to change the attributes of an authentication, autho
+    "acct-interim-interval": "integer",  # Time in seconds between each accounting interim update messa
+    "radius-coa": "option",  # Enable to allow a mechanism to change the attributes of an a
     "radius-port": "integer",  # RADIUS service port number.
-    "h3c-compatibility": "option",  # Enable/disable compatibility with the H3C, a mechanism that performs security ch
-    "auth-type": "option",  # Authentication methods/protocols permitted for this RADIUS server.
+    "h3c-compatibility": "option",  # Enable/disable compatibility with the H3C, a mechanism that 
+    "auth-type": "option",  # Authentication methods/protocols permitted for this RADIUS s
     "source-ip": "string",  # Source IP address for communications to the RADIUS server.
     "source-ip-interface": "string",  # Source interface for communication with the RADIUS server.
     "username-case-sensitive": "option",  # Enable/disable case sensitive user names.
@@ -147,35 +147,35 @@ FIELD_TYPES = {
     "mac-username-delimiter": "option",  # MAC authentication username delimiter (default = hyphen).
     "mac-password-delimiter": "option",  # MAC authentication password delimiter (default = hyphen).
     "mac-case": "option",  # MAC authentication case (default = lowercase).
-    "acct-all-servers": "option",  # Enable/disable sending of accounting messages to all configured servers (default
-    "switch-controller-acct-fast-framedip-detect": "integer",  # Switch controller accounting message Framed-IP detection from DHCP snooping (sec
+    "acct-all-servers": "option",  # Enable/disable sending of accounting messages to all configu
+    "switch-controller-acct-fast-framedip-detect": "integer",  # Switch controller accounting message Framed-IP detection fro
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "interface": "string",  # Specify outgoing interface to reach server.
     "vrf-select": "integer",  # VRF ID used for connection to server.
     "switch-controller-service-type": "option",  # RADIUS service type.
     "transport-protocol": "option",  # Transport protocol to be used (default = udp).
-    "tls-min-proto-version": "option",  # Minimum supported protocol version for TLS connections (default is to follow sys
+    "tls-min-proto-version": "option",  # Minimum supported protocol version for TLS connections (defa
     "ca-cert": "string",  # CA of server to trust under TLS.
     "client-cert": "string",  # Client certificate to use under TLS.
-    "server-identity-check": "option",  # Enable/disable RADIUS server identity check (verify server domain name/IP addres
-    "account-key-processing": "option",  # Account key processing operation. The FortiGate will keep either the whole domai
-    "account-key-cert-field": "option",  # Define subject identity field in certificate for user access right checking.
+    "server-identity-check": "option",  # Enable/disable RADIUS server identity check (verify server d
+    "account-key-processing": "option",  # Account key processing operation. The FortiGate will keep ei
+    "account-key-cert-field": "option",  # Define subject identity field in certificate for user access
     "rsso": "option",  # Enable/disable RADIUS based single sign on feature.
     "rsso-radius-server-port": "integer",  # UDP port to listen on for RADIUS Start and Stop records.
-    "rsso-radius-response": "option",  # Enable/disable sending RADIUS response packets after receiving Start and Stop re
-    "rsso-validate-request-secret": "option",  # Enable/disable validating the RADIUS request shared secret in the Start or End r
+    "rsso-radius-response": "option",  # Enable/disable sending RADIUS response packets after receivi
+    "rsso-validate-request-secret": "option",  # Enable/disable validating the RADIUS request shared secret i
     "rsso-secret": "password",  # RADIUS secret used by the RADIUS accounting server.
-    "rsso-endpoint-attribute": "option",  # RADIUS attributes used to extract the user end point identifier from the RADIUS 
+    "rsso-endpoint-attribute": "option",  # RADIUS attributes used to extract the user end point identif
     "rsso-endpoint-block-attribute": "option",  # RADIUS attributes used to block a user.
-    "sso-attribute": "option",  # RADIUS attribute that contains the profile group name to be extracted from the R
+    "sso-attribute": "option",  # RADIUS attribute that contains the profile group name to be 
     "sso-attribute-key": "string",  # Key prefix for SSO group value in the SSO attribute.
-    "sso-attribute-value-override": "option",  # Enable/disable override old attribute value with new value for the same endpoint
-    "rsso-context-timeout": "integer",  # Time in seconds before the logged out user is removed from the \"user context li
-    "rsso-log-period": "integer",  # Time interval in seconds that group event log messages will be generated for dyn
+    "sso-attribute-value-override": "option",  # Enable/disable override old attribute value with new value f
+    "rsso-context-timeout": "integer",  # Time in seconds before the logged out user is removed from t
+    "rsso-log-period": "integer",  # Time interval in seconds that group event log messages will 
     "rsso-log-flags": "option",  # Events to log.
-    "rsso-flush-ip-session": "option",  # Enable/disable flushing user IP sessions on RADIUS accounting Stop messages.
-    "rsso-ep-one-ip-only": "option",  # Enable/disable the replacement of old IP addresses with new ones for the same en
-    "delimiter": "option",  # Configure delimiter to be used for separating profile group names in the SSO att
+    "rsso-flush-ip-session": "option",  # Enable/disable flushing user IP sessions on RADIUS accountin
+    "rsso-ep-one-ip-only": "option",  # Enable/disable the replacement of old IP addresses with new 
+    "delimiter": "option",  # Configure delimiter to be used for separating profile group 
     "accounting-server": "string",  # Additional accounting servers.
 }
 

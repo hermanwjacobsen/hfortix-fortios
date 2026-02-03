@@ -67,7 +67,7 @@ FIELD_TYPES = {
     "vlan": "string",  # Native VLAN to be applied when using this VLAN policy.
     "allowed-vlans": "string",  # Allowed VLANs to be applied when using this VLAN policy.
     "untagged-vlans": "string",  # Untagged VLANs to be applied when using this VLAN policy.
-    "allowed-vlans-all": "option",  # Enable/disable all defined VLANs when using this VLAN policy.
+    "allowed-vlans-all": "option",  # Enable/disable all defined VLANs when using this VLAN policy
     "discard-mode": "option",  # Discard mode to be applied when using this VLAN policy.
 }
 

@@ -56,8 +56,8 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "signature-hold-time": "user",  # Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 21, hour
-    "override-signature-hold-by-id": "option",  # Enable/disable override of hold of triggering signatures that are specified by I
+    "signature-hold-time": "user",  # Time to hold and monitor IPS signatures. Format <#d##h> (day
+    "override-signature-hold-by-id": "option",  # Enable/disable override of hold of triggering signatures tha
 }
 
 # Field descriptions (help text from FortiOS API)

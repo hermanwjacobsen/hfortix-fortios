@@ -58,11 +58,11 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "name": "string",  # Configure a forward server group consisting one or multiple forward servers. Sup
-    "affinity": "option",  # Enable/disable affinity, attaching a source-ip's traffic to the assigned forward
+    "name": "string",  # Configure a forward server group consisting one or multiple 
+    "affinity": "option",  # Enable/disable affinity, attaching a source-ip's traffic to 
     "ldb-method": "option",  # Load balance method: weighted or least-session.
-    "group-down-option": "option",  # Action to take when all of the servers in the forward server group are down: blo
-    "server-list": "string",  # Add web forward servers to a list to form a server group. Optionally assign weig
+    "group-down-option": "option",  # Action to take when all of the servers in the forward server
+    "server-list": "string",  # Add web forward servers to a list to form a server group. Op
 }
 
 # Field descriptions (help text from FortiOS API)

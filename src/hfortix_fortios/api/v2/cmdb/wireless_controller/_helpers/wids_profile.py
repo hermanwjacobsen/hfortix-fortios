@@ -167,30 +167,30 @@ FIELD_TYPES = {
     "ap-scan": "option",  # Enable/disable rogue AP detection.
     "ap-scan-channel-list-2G-5G": "string",  # Selected ap scan channel list for 2.4G and 5G bands.
     "ap-scan-channel-list-6G": "string",  # Selected ap scan channel list for 6G band.
-    "ap-bgscan-period": "integer",  # Period between background scans (10 - 3600 sec, default = 600).
-    "ap-bgscan-intv": "integer",  # Period between successive channel scans (1 - 600 sec, default = 3).
-    "ap-bgscan-duration": "integer",  # Listen time on scanning a channel (10 - 1000 msec, default = 30).
-    "ap-bgscan-idle": "integer",  # Wait time for channel inactivity before scanning this channel (0 - 1000 msec, de
-    "ap-bgscan-report-intv": "integer",  # Period between background scan reports (15 - 600 sec, default = 30).
-    "ap-bgscan-disable-schedules": "string",  # Firewall schedules for turning off FortiAP radio background scan. Background sca
-    "ap-fgscan-report-intv": "integer",  # Period between foreground scan reports (15 - 600 sec, default = 15).
-    "ap-scan-passive": "option",  # Enable/disable passive scanning. Enable means do not send probe request on any c
-    "ap-scan-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP to report detected rog
-    "ap-auto-suppress": "option",  # Enable/disable on-wire rogue AP auto-suppression (default = disable).
-    "wireless-bridge": "option",  # Enable/disable wireless bridge detection (default = disable).
-    "deauth-broadcast": "option",  # Enable/disable broadcasting de-authentication detection (default = disable).
-    "null-ssid-probe-resp": "option",  # Enable/disable null SSID probe response detection (default = disable).
-    "long-duration-attack": "option",  # Enable/disable long duration attack detection based on user configured threshold
-    "long-duration-thresh": "integer",  # Threshold value for long duration attack detection (1000 - 32767 usec, default =
+    "ap-bgscan-period": "integer",  # Period between background scans (10 - 3600 sec, default = 60
+    "ap-bgscan-intv": "integer",  # Period between successive channel scans (1 - 600 sec, defaul
+    "ap-bgscan-duration": "integer",  # Listen time on scanning a channel (10 - 1000 msec, default =
+    "ap-bgscan-idle": "integer",  # Wait time for channel inactivity before scanning this channe
+    "ap-bgscan-report-intv": "integer",  # Period between background scan reports (15 - 600 sec, defaul
+    "ap-bgscan-disable-schedules": "string",  # Firewall schedules for turning off FortiAP radio background 
+    "ap-fgscan-report-intv": "integer",  # Period between foreground scan reports (15 - 600 sec, defaul
+    "ap-scan-passive": "option",  # Enable/disable passive scanning. Enable means do not send pr
+    "ap-scan-threshold": "string",  # Minimum signal level/threshold in dBm required for the AP to
+    "ap-auto-suppress": "option",  # Enable/disable on-wire rogue AP auto-suppression (default = 
+    "wireless-bridge": "option",  # Enable/disable wireless bridge detection (default = disable)
+    "deauth-broadcast": "option",  # Enable/disable broadcasting de-authentication detection (def
+    "null-ssid-probe-resp": "option",  # Enable/disable null SSID probe response detection (default =
+    "long-duration-attack": "option",  # Enable/disable long duration attack detection based on user 
+    "long-duration-thresh": "integer",  # Threshold value for long duration attack detection (1000 - 3
     "invalid-mac-oui": "option",  # Enable/disable invalid MAC OUI detection.
-    "weak-wep-iv": "option",  # Enable/disable weak WEP IV (Initialization Vector) detection (default = disable)
-    "auth-frame-flood": "option",  # Enable/disable authentication frame flooding detection (default = disable).
-    "auth-flood-time": "integer",  # Number of seconds after which a station is considered not connected.
+    "weak-wep-iv": "option",  # Enable/disable weak WEP IV (Initialization Vector) detection
+    "auth-frame-flood": "option",  # Enable/disable authentication frame flooding detection (defa
+    "auth-flood-time": "integer",  # Number of seconds after which a station is considered not co
     "auth-flood-thresh": "integer",  # The threshold value for authentication frame flooding.
-    "assoc-frame-flood": "option",  # Enable/disable association frame flooding detection (default = disable).
-    "assoc-flood-time": "integer",  # Number of seconds after which a station is considered not connected.
+    "assoc-frame-flood": "option",  # Enable/disable association frame flooding detection (default
+    "assoc-flood-time": "integer",  # Number of seconds after which a station is considered not co
     "assoc-flood-thresh": "integer",  # The threshold value for association frame flooding.
-    "reassoc-flood": "option",  # Enable/disable reassociation flood detection (default = disable).
+    "reassoc-flood": "option",  # Enable/disable reassociation flood detection (default = disa
     "reassoc-flood-time": "integer",  # Detection Window Period.
     "reassoc-flood-thresh": "integer",  # The threshold value for reassociation flood.
     "probe-flood": "option",  # Enable/disable probe flood detection (default = disable).
@@ -208,7 +208,7 @@ FIELD_TYPES = {
     "client-flood": "option",  # Enable/disable client flood detection (default = disable).
     "client-flood-time": "integer",  # Detection Window Period.
     "client-flood-thresh": "integer",  # The threshold value for client flood.
-    "block_ack-flood": "option",  # Enable/disable block_ack flood detection (default = disable).
+    "block_ack-flood": "option",  # Enable/disable block_ack flood detection (default = disable)
     "block_ack-flood-time": "integer",  # Detection Window Period.
     "block_ack-flood-thresh": "integer",  # The threshold value for block_ack flood.
     "pspoll-flood": "option",  # Enable/disable pspoll flood detection (default = disable).
@@ -220,55 +220,55 @@ FIELD_TYPES = {
     "wellenreiter": "option",  # Enable/disable wellenreiter detection (default = disable).
     "wellenreiter-time": "integer",  # Detection Window Period.
     "wellenreiter-thresh": "integer",  # The threshold value for wellenreiter.
-    "spoofed-deauth": "option",  # Enable/disable spoofed de-authentication attack detection (default = disable).
+    "spoofed-deauth": "option",  # Enable/disable spoofed de-authentication attack detection (d
     "asleap-attack": "option",  # Enable/disable asleap attack detection (default = disable).
-    "eapol-start-flood": "option",  # Enable/disable EAPOL-Start flooding (to AP) detection (default = disable).
-    "eapol-start-thresh": "integer",  # The threshold value for EAPOL-Start flooding in specified interval.
-    "eapol-start-intv": "integer",  # The detection interval for EAPOL-Start flooding (1 - 3600 sec).
-    "eapol-logoff-flood": "option",  # Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable).
-    "eapol-logoff-thresh": "integer",  # The threshold value for EAPOL-Logoff flooding in specified interval.
-    "eapol-logoff-intv": "integer",  # The detection interval for EAPOL-Logoff flooding (1 - 3600 sec).
-    "eapol-succ-flood": "option",  # Enable/disable EAPOL-Success flooding (to AP) detection (default = disable).
-    "eapol-succ-thresh": "integer",  # The threshold value for EAPOL-Success flooding in specified interval.
-    "eapol-succ-intv": "integer",  # The detection interval for EAPOL-Success flooding (1 - 3600 sec).
-    "eapol-fail-flood": "option",  # Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable).
-    "eapol-fail-thresh": "integer",  # The threshold value for EAPOL-Failure flooding in specified interval.
-    "eapol-fail-intv": "integer",  # The detection interval for EAPOL-Failure flooding (1 - 3600 sec).
-    "eapol-pre-succ-flood": "option",  # Enable/disable premature EAPOL-Success flooding (to STA) detection (default = di
-    "eapol-pre-succ-thresh": "integer",  # The threshold value for premature EAPOL-Success flooding in specified interval.
-    "eapol-pre-succ-intv": "integer",  # The detection interval for premature EAPOL-Success flooding (1 - 3600 sec).
-    "eapol-pre-fail-flood": "option",  # Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = di
-    "eapol-pre-fail-thresh": "integer",  # The threshold value for premature EAPOL-Failure flooding in specified interval.
-    "eapol-pre-fail-intv": "integer",  # The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec).
-    "deauth-unknown-src-thresh": "integer",  # Threshold value per second to deauth unknown src for DoS attack (0: no limit).
+    "eapol-start-flood": "option",  # Enable/disable EAPOL-Start flooding (to AP) detection (defau
+    "eapol-start-thresh": "integer",  # The threshold value for EAPOL-Start flooding in specified in
+    "eapol-start-intv": "integer",  # The detection interval for EAPOL-Start flooding (1 - 3600 se
+    "eapol-logoff-flood": "option",  # Enable/disable EAPOL-Logoff flooding (to AP) detection (defa
+    "eapol-logoff-thresh": "integer",  # The threshold value for EAPOL-Logoff flooding in specified i
+    "eapol-logoff-intv": "integer",  # The detection interval for EAPOL-Logoff flooding (1 - 3600 s
+    "eapol-succ-flood": "option",  # Enable/disable EAPOL-Success flooding (to AP) detection (def
+    "eapol-succ-thresh": "integer",  # The threshold value for EAPOL-Success flooding in specified 
+    "eapol-succ-intv": "integer",  # The detection interval for EAPOL-Success flooding (1 - 3600 
+    "eapol-fail-flood": "option",  # Enable/disable EAPOL-Failure flooding (to AP) detection (def
+    "eapol-fail-thresh": "integer",  # The threshold value for EAPOL-Failure flooding in specified 
+    "eapol-fail-intv": "integer",  # The detection interval for EAPOL-Failure flooding (1 - 3600 
+    "eapol-pre-succ-flood": "option",  # Enable/disable premature EAPOL-Success flooding (to STA) det
+    "eapol-pre-succ-thresh": "integer",  # The threshold value for premature EAPOL-Success flooding in 
+    "eapol-pre-succ-intv": "integer",  # The detection interval for premature EAPOL-Success flooding 
+    "eapol-pre-fail-flood": "option",  # Enable/disable premature EAPOL-Failure flooding (to STA) det
+    "eapol-pre-fail-thresh": "integer",  # The threshold value for premature EAPOL-Failure flooding in 
+    "eapol-pre-fail-intv": "integer",  # The detection interval for premature EAPOL-Failure flooding 
+    "deauth-unknown-src-thresh": "integer",  # Threshold value per second to deauth unknown src for DoS att
     "windows-bridge": "option",  # Enable/disable windows bridge detection (default = disable).
-    "disassoc-broadcast": "option",  # Enable/disable broadcast dis-association detection (default = disable).
+    "disassoc-broadcast": "option",  # Enable/disable broadcast dis-association detection (default 
     "ap-spoofing": "option",  # Enable/disable AP spoofing detection (default = disable).
-    "chan-based-mitm": "option",  # Enable/disable channel based mitm detection (default = disable).
-    "adhoc-valid-ssid": "option",  # Enable/disable adhoc using valid SSID detection (default = disable).
+    "chan-based-mitm": "option",  # Enable/disable channel based mitm detection (default = disab
+    "adhoc-valid-ssid": "option",  # Enable/disable adhoc using valid SSID detection (default = d
     "adhoc-network": "option",  # Enable/disable adhoc network detection (default = disable).
-    "eapol-key-overflow": "option",  # Enable/disable overflow EAPOL key detection (default = disable).
-    "ap-impersonation": "option",  # Enable/disable AP impersonation detection (default = disable).
-    "invalid-addr-combination": "option",  # Enable/disable invalid address combination detection (default = disable).
-    "beacon-wrong-channel": "option",  # Enable/disable beacon wrong channel detection (default = disable).
+    "eapol-key-overflow": "option",  # Enable/disable overflow EAPOL key detection (default = disab
+    "ap-impersonation": "option",  # Enable/disable AP impersonation detection (default = disable
+    "invalid-addr-combination": "option",  # Enable/disable invalid address combination detection (defaul
+    "beacon-wrong-channel": "option",  # Enable/disable beacon wrong channel detection (default = dis
     "ht-greenfield": "option",  # Enable/disable HT greenfield detection (default = disable).
     "overflow-ie": "option",  # Enable/disable overflow IE detection (default = disable).
-    "malformed-ht-ie": "option",  # Enable/disable malformed HT IE detection (default = disable).
-    "malformed-auth": "option",  # Enable/disable malformed auth frame detection (default = disable).
-    "malformed-association": "option",  # Enable/disable malformed association request detection (default = disable).
-    "ht-40mhz-intolerance": "option",  # Enable/disable HT 40 MHz intolerance detection (default = disable).
-    "valid-ssid-misuse": "option",  # Enable/disable valid SSID misuse detection (default = disable).
-    "valid-client-misassociation": "option",  # Enable/disable valid client misassociation detection (default = disable).
-    "hotspotter-attack": "option",  # Enable/disable hotspotter attack detection (default = disable).
-    "pwsave-dos-attack": "option",  # Enable/disable power save DOS attack detection (default = disable).
+    "malformed-ht-ie": "option",  # Enable/disable malformed HT IE detection (default = disable)
+    "malformed-auth": "option",  # Enable/disable malformed auth frame detection (default = dis
+    "malformed-association": "option",  # Enable/disable malformed association request detection (defa
+    "ht-40mhz-intolerance": "option",  # Enable/disable HT 40 MHz intolerance detection (default = di
+    "valid-ssid-misuse": "option",  # Enable/disable valid SSID misuse detection (default = disabl
+    "valid-client-misassociation": "option",  # Enable/disable valid client misassociation detection (defaul
+    "hotspotter-attack": "option",  # Enable/disable hotspotter attack detection (default = disabl
+    "pwsave-dos-attack": "option",  # Enable/disable power save DOS attack detection (default = di
     "omerta-attack": "option",  # Enable/disable omerta attack detection (default = disable).
-    "disconnect-station": "option",  # Enable/disable disconnect station detection (default = disable).
-    "unencrypted-valid": "option",  # Enable/disable unencrypted valid detection (default = disable).
+    "disconnect-station": "option",  # Enable/disable disconnect station detection (default = disab
+    "unencrypted-valid": "option",  # Enable/disable unencrypted valid detection (default = disabl
     "fata-jack": "option",  # Enable/disable FATA-Jack detection (default = disable).
-    "risky-encryption": "option",  # Enable/disable Risky Encryption detection (default = disable).
+    "risky-encryption": "option",  # Enable/disable Risky Encryption detection (default = disable
     "fuzzed-beacon": "option",  # Enable/disable fuzzed beacon detection (default = disable).
-    "fuzzed-probe-request": "option",  # Enable/disable fuzzed probe request detection (default = disable).
-    "fuzzed-probe-response": "option",  # Enable/disable fuzzed probe response detection (default = disable).
+    "fuzzed-probe-request": "option",  # Enable/disable fuzzed probe request detection (default = dis
+    "fuzzed-probe-response": "option",  # Enable/disable fuzzed probe response detection (default = di
     "air-jack": "option",  # Enable/disable AirJack detection (default = disable).
     "wpa-ft-attack": "option",  # Enable/disable WPA FT attack detection (default = disable).
 }

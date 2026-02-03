@@ -57,9 +57,9 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "resolve-hosts": "option",  # Enable/disable resolving IP addresses to hostname in log messages on the GUI usi
-    "resolve-apps": "option",  # Resolve unknown applications on the GUI using Fortinet's remote application data
-    "fortiview-unscanned-apps": "option",  # Enable/disable showing unscanned traffic in FortiView application charts.
+    "resolve-hosts": "option",  # Enable/disable resolving IP addresses to hostname in log mes
+    "resolve-apps": "option",  # Resolve unknown applications on the GUI using Fortinet's rem
+    "fortiview-unscanned-apps": "option",  # Enable/disable showing unscanned traffic in FortiView applic
 }
 
 # Field descriptions (help text from FortiOS API)

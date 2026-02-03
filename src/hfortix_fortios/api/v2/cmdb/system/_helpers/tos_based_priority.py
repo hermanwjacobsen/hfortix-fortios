@@ -58,8 +58,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "id": "integer",  # Item ID.
-    "tos": "integer",  # Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: max
-    "priority": "option",  # ToS based priority level to low, medium or high (these priorities match firewall
+    "tos": "integer",  # Value of the ToS byte in the IP datagram header (0-15, 8: mi
+    "priority": "option",  # ToS based priority level to low, medium or high (these prior
 }
 
 # Field descriptions (help text from FortiOS API)

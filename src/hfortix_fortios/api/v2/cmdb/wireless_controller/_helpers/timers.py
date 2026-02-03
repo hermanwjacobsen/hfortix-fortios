@@ -80,32 +80,32 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "echo-interval": "integer",  # Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec,
-    "nat-session-keep-alive": "integer",  # Maximal time in seconds between control requests sent by the managed WTP, AP, or
+    "echo-interval": "integer",  # Time between echo requests sent by the managed WTP, AP, or F
+    "nat-session-keep-alive": "integer",  # Maximal time in seconds between control requests sent by the
     "discovery-interval": "integer",  # Time between discovery requests (2 - 180 sec, default = 5).
-    "client-idle-timeout": "integer",  # Time after which a client is considered idle and times out (20 - 3600 sec, defau
-    "client-idle-rehome-timeout": "integer",  # Time after which a client is considered idle and disconnected from the home cont
-    "auth-timeout": "integer",  # Time after which a client is considered failed in RADIUS authentication and time
-    "rogue-ap-log": "integer",  # Time between logging rogue AP messages if periodic rogue AP logging is configure
-    "fake-ap-log": "integer",  # Time between recording logs about fake APs if periodic fake AP logging is config
-    "sta-offline-cleanup": "integer",  # Time period in seconds to keep station offline data after it is gone (default = 
-    "sta-offline-ip2mac-cleanup": "integer",  # Time period in seconds to keep station offline Ip2mac data after it is gone (def
-    "sta-cap-cleanup": "integer",  # Time period in minutes to keep station capability data after it is gone (default
-    "rogue-ap-cleanup": "integer",  # Time period in minutes to keep rogue AP after it is gone (default = 0).
-    "rogue-sta-cleanup": "integer",  # Time period in minutes to keep rogue station after it is gone (default = 0).
-    "wids-entry-cleanup": "integer",  # Time period in minutes to keep wids entry after it is gone (default = 0).
-    "ble-device-cleanup": "integer",  # Time period in minutes to keep BLE device after it is gone (default = 60).
-    "sta-stats-interval": "integer",  # Time between running client (station) reports (1 - 255 sec, default = 10).
-    "vap-stats-interval": "integer",  # Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 
-    "radio-stats-interval": "integer",  # Time between running radio reports (1 - 255 sec, default = 15).
-    "sta-capability-interval": "integer",  # Time between running station capability reports (1 - 255 sec, default = 30).
-    "sta-locate-timer": "integer",  # Time between running client presence flushes to remove clients that are listed b
-    "ipsec-intf-cleanup": "integer",  # Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected 
-    "ble-scan-report-intv": "integer",  # Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default 
-    "drma-interval": "integer",  # Dynamic radio mode assignment (DRMA) schedule interval in minutes (1 - 1440, def
-    "ap-reboot-wait-interval1": "integer",  # Time in minutes to wait before AP reboots when there is no controller detected (
-    "ap-reboot-wait-time": "string",  # Time to reboot the AP when there is no controller detected and standalone SSIDs 
-    "ap-reboot-wait-interval2": "integer",  # Time in minutes to wait before AP reboots when there is no controller detected a
+    "client-idle-timeout": "integer",  # Time after which a client is considered idle and times out (
+    "client-idle-rehome-timeout": "integer",  # Time after which a client is considered idle and disconnecte
+    "auth-timeout": "integer",  # Time after which a client is considered failed in RADIUS aut
+    "rogue-ap-log": "integer",  # Time between logging rogue AP messages if periodic rogue AP 
+    "fake-ap-log": "integer",  # Time between recording logs about fake APs if periodic fake 
+    "sta-offline-cleanup": "integer",  # Time period in seconds to keep station offline data after it
+    "sta-offline-ip2mac-cleanup": "integer",  # Time period in seconds to keep station offline Ip2mac data a
+    "sta-cap-cleanup": "integer",  # Time period in minutes to keep station capability data after
+    "rogue-ap-cleanup": "integer",  # Time period in minutes to keep rogue AP after it is gone (de
+    "rogue-sta-cleanup": "integer",  # Time period in minutes to keep rogue station after it is gon
+    "wids-entry-cleanup": "integer",  # Time period in minutes to keep wids entry after it is gone (
+    "ble-device-cleanup": "integer",  # Time period in minutes to keep BLE device after it is gone (
+    "sta-stats-interval": "integer",  # Time between running client (station) reports (1 - 255 sec, 
+    "vap-stats-interval": "integer",  # Time between running Virtual Access Point (VAP) reports (1 -
+    "radio-stats-interval": "integer",  # Time between running radio reports (1 - 255 sec, default = 1
+    "sta-capability-interval": "integer",  # Time between running station capability reports (1 - 255 sec
+    "sta-locate-timer": "integer",  # Time between running client presence flushes to remove clien
+    "ipsec-intf-cleanup": "integer",  # Time period to keep IPsec VPN interfaces up after WTP sessio
+    "ble-scan-report-intv": "integer",  # Time between running Bluetooth Low Energy (BLE) reports (10 
+    "drma-interval": "integer",  # Dynamic radio mode assignment (DRMA) schedule interval in mi
+    "ap-reboot-wait-interval1": "integer",  # Time in minutes to wait before AP reboots when there is no c
+    "ap-reboot-wait-time": "string",  # Time to reboot the AP when there is no controller detected a
+    "ap-reboot-wait-interval2": "integer",  # Time in minutes to wait before AP reboots when there is no c
 }
 
 # Field descriptions (help text from FortiOS API)

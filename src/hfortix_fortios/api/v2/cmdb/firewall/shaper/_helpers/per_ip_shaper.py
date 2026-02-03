@@ -65,15 +65,15 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Traffic shaper name.
-    "max-bandwidth": "integer",  # Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. 
-    "bandwidth-unit": "option",  # Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
-    "max-concurrent-session": "integer",  # Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 me
-    "max-concurrent-tcp-session": "integer",  # Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 
-    "max-concurrent-udp-session": "integer",  # Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 
-    "diffserv-forward": "option",  # Enable/disable changing the Forward (original) DiffServ setting applied to traff
-    "diffserv-reverse": "option",  # Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic 
-    "diffservcode-forward": "user",  # Forward (original) DiffServ setting to be applied to traffic accepted by this sh
-    "diffservcode-rev": "user",  # Reverse (reply) DiffServ setting to be applied to traffic accepted by this shape
+    "max-bandwidth": "integer",  # Upper bandwidth limit enforced by this shaper (0 - 80000000)
+    "bandwidth-unit": "option",  # Unit of measurement for maximum bandwidth for this shaper (K
+    "max-concurrent-session": "integer",  # Maximum number of concurrent sessions allowed by this shaper
+    "max-concurrent-tcp-session": "integer",  # Maximum number of concurrent TCP sessions allowed by this sh
+    "max-concurrent-udp-session": "integer",  # Maximum number of concurrent UDP sessions allowed by this sh
+    "diffserv-forward": "option",  # Enable/disable changing the Forward (original) DiffServ sett
+    "diffserv-reverse": "option",  # Enable/disable changing the Reverse (reply) DiffServ setting
+    "diffservcode-forward": "user",  # Forward (original) DiffServ setting to be applied to traffic
+    "diffservcode-rev": "user",  # Reverse (reply) DiffServ setting to be applied to traffic ac
 }
 
 # Field descriptions (help text from FortiOS API)

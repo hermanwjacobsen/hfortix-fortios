@@ -86,13 +86,13 @@ FIELD_TYPES = {
     "subnet-id": "string",  # AWS subnet id for TGW route propagation.
     "bgp-as": "integer",  # BGP Router AS number.
     "cgw-gateway": "ipv4-address-any",  # Public IP address of the customer gateway.
-    "nat-traversal": "option",  # Enable/disable use for NAT traversal. Please enable if your FortiGate device is 
+    "nat-traversal": "option",  # Enable/disable use for NAT traversal. Please enable if your 
     "tunnel-interface": "string",  # Tunnel interface with public IP.
     "internal-interface": "string",  # Internal interface with local subnet.
     "local-cidr": "ipv4-classnet",  # Local subnet address and subnet mask.
     "remote-cidr": "ipv4-classnet",  # Remote subnet address and subnet mask.
     "cgw-name": "string",  # AWS customer gateway name to be created.
-    "psksecret": "password-3",  # Pre-shared secret for PSK authentication. Auto-generated if not specified
+    "psksecret": "password-3",  # Pre-shared secret for PSK authentication. Auto-generated if 
     "type": "integer",  # SDN VPN type.
     "status": "integer",  # SDN VPN status.
     "code": "integer",  # SDN VPN error code.

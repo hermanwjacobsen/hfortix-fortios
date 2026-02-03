@@ -55,7 +55,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "status": "option",  # Enable/disable statistics collection for when no external logging destination, s
+    "status": "option",  # Enable/disable statistics collection for when no external lo
 }
 
 # Field descriptions (help text from FortiOS API)

@@ -62,13 +62,13 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Multicast address name.
-    "type": "option",  # Type of address object: multicast IP address range or broadcast IP/mask to be tr
+    "type": "option",  # Type of address object: multicast IP address range or broadc
     "subnet": "ipv4-classnet-any",  # Broadcast address and subnet.
     "start-ip": "ipv4-address-any",  # First IPv4 address (inclusive) in the range for the address.
     "end-ip": "ipv4-address-any",  # Final IPv4 address (inclusive) in the range for the address.
     "comment": "var-string",  # Comment.
-    "associated-interface": "string",  # Interface associated with the address object. When setting up a policy, only add
-    "color": "integer",  # Integer value to determine the color of the icon in the GUI (1 - 32, default = 0
+    "associated-interface": "string",  # Interface associated with the address object. When setting u
+    "color": "integer",  # Integer value to determine the color of the icon in the GUI 
     "tagging": "string",  # Config object tagging.
 }
 

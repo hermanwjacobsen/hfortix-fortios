@@ -75,9 +75,9 @@ FIELD_TYPES = {
     "vendor": "option",  # HSM vendor.
     "api-version": "option",  # API version for communicating with HSM.
     "certificate": "user",  # PEM format certificate.
-    "range": "option",  # Either a global or VDOM IP address range for the certificate.
+    "range": "option",  # Either a global or VDOM IP address range for the certificate
     "source": "option",  # Certificate source type.
-    "gch-url": "string",  # Google Cloud HSM key URL (e.g. \"https://cloudkms.googleapis.com/v1/projects/sam
+    "gch-url": "string",  # Google Cloud HSM key URL (e.g. "https://cloudkms.googleapis.
     "gch-project": "string",  # Google Cloud HSM project ID.
     "gch-location": "string",  # Google Cloud HSM location.
     "gch-keyring": "string",  # Google Cloud HSM keyring.

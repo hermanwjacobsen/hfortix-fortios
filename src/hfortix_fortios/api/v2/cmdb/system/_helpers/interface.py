@@ -266,17 +266,17 @@ FIELD_TYPES = {
     "vdom": "string",  # Interface is in this virtual domain (VDOM).
     "vrf": "integer",  # Virtual Routing Forwarding ID.
     "cli-conn-status": "integer",  # CLI connection status.
-    "fortilink": "option",  # Enable FortiLink to dedicate this interface to manage other Fortinet devices.
+    "fortilink": "option",  # Enable FortiLink to dedicate this interface to manage other 
     "switch-controller-source-ip": "option",  # Source IP address used in FortiLink over L3 connections.
     "mode": "option",  # Addressing mode (static, DHCP, PPPoE).
     "client-options": "string",  # DHCP client options.
-    "distance": "integer",  # Distance for routes learned through PPPoE or DHCP, lower distance indicates pref
+    "distance": "integer",  # Distance for routes learned through PPPoE or DHCP, lower dis
     "priority": "integer",  # Priority of learned routes.
     "dhcp-relay-interface-select-method": "option",  # Specify how to select outgoing interface to reach server.
     "dhcp-relay-interface": "string",  # Specify outgoing interface to reach server.
     "dhcp-relay-vrf-select": "integer",  # VRF ID used for connection to server.
-    "dhcp-broadcast-flag": "option",  # Enable/disable setting of the broadcast flag in messages sent by the DHCP client
-    "dhcp-relay-service": "option",  # Enable/disable allowing this interface to act as a DHCP relay.
+    "dhcp-broadcast-flag": "option",  # Enable/disable setting of the broadcast flag in messages sen
+    "dhcp-relay-service": "option",  # Enable/disable allowing this interface to act as a DHCP rela
     "dhcp-relay-ip": "user",  # DHCP relay IP address.
     "dhcp-relay-source-ip": "ipv4-address",  # IP address used by the DHCP relay as its source IP.
     "dhcp-relay-circuit-id": "string",  # DHCP relay circuit ID.
@@ -286,8 +286,8 @@ FIELD_TYPES = {
     "dhcp-relay-type": "option",  # DHCP relay type (regular or IPsec).
     "dhcp-smart-relay": "option",  # Enable/disable DHCP smart relay.
     "dhcp-relay-agent-option": "option",  # Enable/disable DHCP relay agent option.
-    "dhcp-classless-route-addition": "option",  # Enable/disable addition of classless static routes retrieved from DHCP server.
-    "management-ip": "ipv4-classnet-host",  # High Availability in-band management IP address of this interface.
+    "dhcp-classless-route-addition": "option",  # Enable/disable addition of classless static routes retrieved
+    "management-ip": "ipv4-classnet-host",  # High Availability in-band management IP address of this inte
     "ip": "ipv4-classnet-host",  # Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
     "allowaccess": "option",  # Permitted types of management access to this interface.
     "gwdetect": "option",  # Enable/disable detect gateway alive for first.
@@ -297,25 +297,25 @@ FIELD_TYPES = {
     "ha-priority": "integer",  # HA election priority for the PING server.
     "fail-detect": "option",  # Enable/disable fail detection features for this interface.
     "fail-detect-option": "option",  # Options for detecting that this interface has failed.
-    "fail-alert-method": "option",  # Select link-failed-signal or link-down method to alert about a failed link.
+    "fail-alert-method": "option",  # Select link-failed-signal or link-down method to alert about
     "fail-action-on-extender": "option",  # Action on FortiExtender when interface fail.
-    "fail-alert-interfaces": "string",  # Names of the FortiGate interfaces to which the link failure alert is sent.
+    "fail-alert-interfaces": "string",  # Names of the FortiGate interfaces to which the link failure 
     "dhcp-client-identifier": "string",  # DHCP client identifier.
-    "dhcp-renew-time": "integer",  # DHCP renew time in seconds (300-604800), 0 means use the renew time provided by 
-    "ipunnumbered": "ipv4-address",  # Unnumbered IP used for PPPoE interfaces for which no unique local address is pro
+    "dhcp-renew-time": "integer",  # DHCP renew time in seconds (300-604800), 0 means use the ren
+    "ipunnumbered": "ipv4-address",  # Unnumbered IP used for PPPoE interfaces for which no unique 
     "username": "string",  # Username of the PPPoE account, provided by your ISP.
     "pppoe-egress-cos": "option",  # CoS in VLAN tag for outgoing PPPoE/PPP packets.
     "pppoe-unnumbered-negotiate": "option",  # Enable/disable PPPoE unnumbered negotiation.
     "password": "password",  # PPPoE account's password.
-    "idle-timeout": "integer",  # PPPoE auto disconnect after idle timeout seconds, 0 means no timeout.
+    "idle-timeout": "integer",  # PPPoE auto disconnect after idle timeout seconds, 0 means no
     "multilink": "option",  # Enable/disable PPP multilink support.
     "mrru": "integer",  # PPP MRRU (296 - 65535, default = 1500).
     "detected-peer-mtu": "integer",  # MTU of detected peer (0 - 4294967295).
-    "disc-retry-timeout": "integer",  # Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no t
-    "padt-retry-timeout": "integer",  # PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle
+    "disc-retry-timeout": "integer",  # Time in seconds to wait before retrying to start a PPPoE dis
+    "padt-retry-timeout": "integer",  # PPPoE Active Discovery Terminate (PADT) used to terminate se
     "service-name": "string",  # PPPoE service name.
     "ac-name": "string",  # PPPoE server name.
-    "lcp-echo-interval": "integer",  # Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+    "lcp-echo-interval": "integer",  # Time in seconds between PPPoE Link Control Protocol (LCP) ec
     "lcp-max-echo-fails": "integer",  # Maximum missed LCP echo messages before disconnect.
     "defaultgw": "option",  # Enable to get the gateway IP from the DHCP or PPPoE server.
     "dns-server-override": "option",  # Enable/disable use DNS acquired by DHCP or PPPoE.
@@ -337,34 +337,34 @@ FIELD_TYPES = {
     "l2forward": "option",  # Enable/disable l2 forwarding.
     "icmp-send-redirect": "option",  # Enable/disable sending of ICMP redirects.
     "icmp-accept-redirect": "option",  # Enable/disable ICMP accept redirect.
-    "reachable-time": "integer",  # IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
-    "vlanforward": "option",  # Enable/disable traffic forwarding between VLANs on this interface.
+    "reachable-time": "integer",  # IPv4 reachable time in milliseconds (30000 - 3600000, defaul
+    "vlanforward": "option",  # Enable/disable traffic forwarding between VLANs on this inte
     "stpforward": "option",  # Enable/disable STP forwarding.
     "stpforward-mode": "option",  # Configure STP forwarding mode.
-    "ips-sniffer-mode": "option",  # Enable/disable the use of this interface as a one-armed sniffer.
+    "ips-sniffer-mode": "option",  # Enable/disable the use of this interface as a one-armed snif
     "ident-accept": "option",  # Enable/disable authentication for this interface.
     "ipmac": "option",  # Enable/disable IP/MAC binding.
-    "subst": "option",  # Enable to always send packets from this interface to a destination MAC address.
+    "subst": "option",  # Enable to always send packets from this interface to a desti
     "macaddr": "mac-address",  # Change the interface's MAC address.
     "virtual-mac": "mac-address",  # Change the interface's virtual MAC address.
-    "substitute-dst-mac": "mac-address",  # Destination MAC address that all packets are sent to from this interface.
-    "speed": "option",  # Interface speed. The default setting and the options available depend on the int
+    "substitute-dst-mac": "mac-address",  # Destination MAC address that all packets are sent to from th
+    "speed": "option",  # Interface speed. The default setting and the options availab
     "status": "option",  # Bring the interface up or shut the interface down.
     "netbios-forward": "option",  # Enable/disable NETBIOS forwarding.
     "wins-ip": "ipv4-address",  # WINS server IP.
     "type": "option",  # Interface type.
     "dedicated-to": "option",  # Configure interface for single purpose.
-    "trust-ip-1": "ipv4-classnet-any",  # Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
-    "trust-ip-2": "ipv4-classnet-any",  # Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
-    "trust-ip-3": "ipv4-classnet-any",  # Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
-    "trust-ip6-1": "ipv6-prefix",  # Trusted IPv6 host for dedicated management traffic (::/0 for all hosts).
-    "trust-ip6-2": "ipv6-prefix",  # Trusted IPv6 host for dedicated management traffic (::/0 for all hosts).
-    "trust-ip6-3": "ipv6-prefix",  # Trusted IPv6 host for dedicated management traffic (::/0 for all hosts).
+    "trust-ip-1": "ipv4-classnet-any",  # Trusted host for dedicated management traffic (0.0.0.0/24 fo
+    "trust-ip-2": "ipv4-classnet-any",  # Trusted host for dedicated management traffic (0.0.0.0/24 fo
+    "trust-ip-3": "ipv4-classnet-any",  # Trusted host for dedicated management traffic (0.0.0.0/24 fo
+    "trust-ip6-1": "ipv6-prefix",  # Trusted IPv6 host for dedicated management traffic (::/0 for
+    "trust-ip6-2": "ipv6-prefix",  # Trusted IPv6 host for dedicated management traffic (::/0 for
+    "trust-ip6-3": "ipv6-prefix",  # Trusted IPv6 host for dedicated management traffic (::/0 for
     "ring-rx": "integer",  # RX ring size.
     "ring-tx": "integer",  # TX ring size.
-    "wccp": "option",  # Enable/disable WCCP on this interface. Used for encapsulated WCCP communication 
-    "netflow-sampler": "option",  # Enable/disable NetFlow on this interface and set the data that NetFlow collects 
-    "netflow-sample-rate": "integer",  # NetFlow sample rate.  Sample one packet every configured number of packets (1 - 
+    "wccp": "option",  # Enable/disable WCCP on this interface. Used for encapsulated
+    "netflow-sampler": "option",  # Enable/disable NetFlow on this interface and set the data th
+    "netflow-sample-rate": "integer",  # NetFlow sample rate.  Sample one packet every configured num
     "netflow-sampler-id": "integer",  # Netflow sampler ID.
     "sflow-sampler": "option",  # Enable/disable sFlow on this interface.
     "drop-fragment": "option",  # Enable/disable drop fragment packets.
@@ -375,41 +375,41 @@ FIELD_TYPES = {
     "explicit-web-proxy": "option",  # Enable/disable the explicit web proxy on this interface.
     "explicit-ftp-proxy": "option",  # Enable/disable the explicit FTP proxy on this interface.
     "proxy-captive-portal": "option",  # Enable/disable proxy captive portal on this interface.
-    "tcp-mss": "integer",  # TCP maximum segment size. 0 means do not change segment size.
-    "inbandwidth": "integer",  # Bandwidth limit for incoming traffic (0 - 80000000 kbps), 0 means unlimited.
+    "tcp-mss": "integer",  # TCP maximum segment size. 0 means do not change segment size
+    "inbandwidth": "integer",  # Bandwidth limit for incoming traffic (0 - 80000000 kbps), 0 
     "outbandwidth": "integer",  # Bandwidth limit for outgoing traffic (0 - 80000000 kbps).
     "egress-shaping-profile": "string",  # Outgoing traffic shaping profile.
     "ingress-shaping-profile": "string",  # Incoming traffic shaping profile.
-    "spillover-threshold": "integer",  # Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
-    "ingress-spillover-threshold": "integer",  # Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
-    "weight": "integer",  # Default weight for static routes (if route has no weight configured).
+    "spillover-threshold": "integer",  # Egress Spillover threshold (0 - 16776000 kbps), 0 means unli
+    "ingress-spillover-threshold": "integer",  # Ingress Spillover threshold (0 - 16776000 kbps), 0 means unl
+    "weight": "integer",  # Default weight for static routes (if route has no weight con
     "interface": "string",  # Interface name.
-    "external": "option",  # Enable/disable identifying the interface as an external interface (which usually
+    "external": "option",  # Enable/disable identifying the interface as an external inte
     "mtu-override": "option",  # Enable to set a custom MTU for this interface.
     "mtu": "integer",  # MTU value for this interface.
     "vlan-protocol": "option",  # Ethernet protocol of VLAN.
     "vlanid": "integer",  # VLAN ID (1 - 4094).
     "forward-domain": "integer",  # Transparent mode forward domain.
     "remote-ip": "ipv4-classnet-host",  # Remote IP address of tunnel.
-    "member": "string",  # Physical interfaces that belong to the aggregate or redundant interface.
+    "member": "string",  # Physical interfaces that belong to the aggregate or redundan
     "lacp-mode": "option",  # LACP mode.
     "lacp-ha-secondary": "option",  # LACP HA secondary member.
     "system-id-type": "option",  # Method in which system ID is generated.
     "system-id": "mac-address",  # Define a system ID for the aggregate interface.
     "lacp-speed": "option",  # How often the interface sends LACP messages.
     "min-links": "integer",  # Minimum number of aggregated ports that must be up.
-    "min-links-down": "option",  # Action to take when less than the configured minimum number of links are active.
+    "min-links-down": "option",  # Action to take when less than the configured minimum number 
     "algorithm": "option",  # Frame distribution algorithm.
-    "link-up-delay": "integer",  # Number of milliseconds to wait before considering a link is up.
+    "link-up-delay": "integer",  # Number of milliseconds to wait before considering a link is 
     "aggregate-type": "option",  # Type of aggregation.
-    "priority-override": "option",  # Enable/disable fail back to higher priority port once recovered.
+    "priority-override": "option",  # Enable/disable fail back to higher priority port once recove
     "aggregate": "string",  # Aggregate interface.
     "redundant-interface": "string",  # Redundant interface.
     "devindex": "integer",  # Device Index.
     "vindex": "integer",  # Switch control interface VLAN ID.
     "switch": "string",  # Contained in switch.
     "description": "var-string",  # Description.
-    "alias": "string",  # Alias will be displayed with the interface name to make it easier to distinguish
+    "alias": "string",  # Alias will be displayed with the interface name to make it e
     "security-mode": "option",  # Turn on captive portal authentication for this interface.
     "security-mac-auth-bypass": "option",  # Enable/disable MAC authentication bypass.
     "security-ip-auth-bypass": "option",  # Enable/disable IP authentication bypass.
@@ -422,14 +422,14 @@ FIELD_TYPES = {
     "security-exempt-list": "string",  # Name of security-exempt-list.
     "security-groups": "string",  # User groups that can authenticate with the captive portal.
     "ike-saml-server": "string",  # Configure IKE authentication SAML server.
-    "device-identification": "option",  # Enable/disable passively gathering of device identity information about the devi
+    "device-identification": "option",  # Enable/disable passively gathering of device identity inform
     "exclude-signatures": "option",  # Exclude IOT or OT application signatures.
-    "device-user-identification": "option",  # Enable/disable passive gathering of user identity information about users on thi
-    "lldp-reception": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) reception.
-    "lldp-transmission": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
+    "device-user-identification": "option",  # Enable/disable passive gathering of user identity informatio
+    "lldp-reception": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) receptio
+    "lldp-transmission": "option",  # Enable/disable Link Layer Discovery Protocol (LLDP) transmis
     "lldp-network-policy": "string",  # LLDP-MED network policy profile.
-    "estimated-upstream-bandwidth": "integer",  # Estimated maximum upstream bandwidth (kbps). Used to estimate link utilization.
-    "estimated-downstream-bandwidth": "integer",  # Estimated maximum downstream bandwidth (kbps). Used to estimate link utilization
+    "estimated-upstream-bandwidth": "integer",  # Estimated maximum upstream bandwidth (kbps). Used to estimat
+    "estimated-downstream-bandwidth": "integer",  # Estimated maximum downstream bandwidth (kbps). Used to estim
     "measured-upstream-bandwidth": "integer",  # Measured upstream bandwidth (kbps).
     "measured-downstream-bandwidth": "integer",  # Measured downstream bandwidth (kbps).
     "bandwidth-measure-time": "integer",  # Bandwidth measure time.
@@ -442,17 +442,17 @@ FIELD_TYPES = {
     "secondary-IP": "option",  # Enable/disable adding a secondary IP to this interface.
     "secondaryip": "string",  # Second IP address of interface.
     "preserve-session-route": "option",  # Enable/disable preservation of session route when dirty.
-    "auto-auth-extension-device": "option",  # Enable/disable automatic authorization of dedicated Fortinet extension device on
-    "ap-discover": "option",  # Enable/disable automatic registration of unknown FortiAP devices.
+    "auto-auth-extension-device": "option",  # Enable/disable automatic authorization of dedicated Fortinet
+    "ap-discover": "option",  # Enable/disable automatic registration of unknown FortiAP dev
     "fortilink-neighbor-detect": "option",  # Protocol for FortiGate neighbor discovery.
-    "ip-managed-by-fortiipam": "option",  # Enable/disable automatic IP address assignment of this interface by FortiIPAM.
-    "managed-subnetwork-size": "option",  # Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate u
-    "fortilink-split-interface": "option",  # Enable/disable FortiLink split interface to connect member link to different For
+    "ip-managed-by-fortiipam": "option",  # Enable/disable automatic IP address assignment of this inter
+    "managed-subnetwork-size": "option",  # Number of IP addresses to be allocated by FortiIPAM and used
+    "fortilink-split-interface": "option",  # Enable/disable FortiLink split interface to connect member l
     "internal": "integer",  # Implicitly created.
     "fortilink-backup-link": "integer",  # FortiLink split interface backup link.
     "switch-controller-access-vlan": "option",  # Block FortiSwitch port-to-port traffic.
     "switch-controller-traffic-policy": "string",  # Switch controller traffic policy for the VLAN.
-    "switch-controller-rspan-mode": "option",  # Stop Layer2 MAC learning and interception of BPDUs and other packets on this int
+    "switch-controller-rspan-mode": "option",  # Stop Layer2 MAC learning and interception of BPDUs and other
     "switch-controller-netflow-collect": "option",  # NetFlow collection and processing.
     "switch-controller-mgmt-vlan": "integer",  # VLAN to use for FortiLink management purposes.
     "switch-controller-igmp-snooping": "option",  # Switch controller IGMP snooping.
@@ -463,7 +463,7 @@ FIELD_TYPES = {
     "switch-controller-dhcp-snooping-option82": "option",  # Switch controller DHCP snooping option82.
     "dhcp-snooping-server-list": "string",  # Configure DHCP server access list.
     "switch-controller-arp-inspection": "option",  # Enable/disable/Monitor FortiSwitch ARP inspection.
-    "switch-controller-learning-limit": "integer",  # Limit the number of dynamic MAC addresses on this VLAN (1 - 128, 0 = no limit, d
+    "switch-controller-learning-limit": "integer",  # Limit the number of dynamic MAC addresses on this VLAN (1 - 
     "switch-controller-nac": "string",  # Integrated FortiLink settings for managed FortiSwitch.
     "switch-controller-dynamic": "string",  # Integrated FortiLink settings for managed FortiSwitch.
     "switch-controller-feature": "option",  # Interface's purpose when assigning traffic (read only).

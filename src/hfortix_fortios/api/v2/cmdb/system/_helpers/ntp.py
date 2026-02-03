@@ -64,18 +64,18 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "ntpsync": "option",  # Enable/disable setting the FortiGate system time by synchronizing with an NTP Se
-    "type": "option",  # Use the FortiGuard NTP server or any other available NTP Server.
+    "ntpsync": "option",  # Enable/disable setting the FortiGate system time by synchron
+    "type": "option",  # Use the FortiGuard NTP server or any other available NTP Ser
     "syncinterval": "integer",  # NTP synchronization interval (1 - 1440 min).
-    "ntpserver": "string",  # Configure the FortiGate to connect to any available third-party NTP server.
+    "ntpserver": "string",  # Configure the FortiGate to connect to any available third-pa
     "source-ip": "ipv4-address",  # Source IP address for communication to the NTP server.
     "source-ip6": "ipv6-address",  # Source IPv6 address for communication to the NTP server.
-    "server-mode": "option",  # Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server f
+    "server-mode": "option",  # Enable/disable FortiGate NTP Server Mode. Your FortiGate bec
     "authentication": "option",  # Enable/disable authentication.
     "key-type": "option",  # Key type for authentication (MD5, SHA1, SHA256).
     "key": "password",  # Key for authentication.
     "key-id": "integer",  # Key ID for authentication.
-    "interface": "string",  # FortiGate interface(s) with NTP server mode enabled. Devices on your network can
+    "interface": "string",  # FortiGate interface(s) with NTP server mode enabled. Devices
 }
 
 # Field descriptions (help text from FortiOS API)

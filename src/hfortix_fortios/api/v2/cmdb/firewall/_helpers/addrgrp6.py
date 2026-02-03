@@ -62,8 +62,8 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # IPv6 address group name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
-    "color": "integer",  # Integer value to determine the color of the icon in the GUI (1 - 32, default = 0
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
+    "color": "integer",  # Integer value to determine the color of the icon in the GUI 
     "comment": "var-string",  # Comment.
     "member": "string",  # Address objects contained within the group.
     "exclude": "option",  # Enable/disable address6 exclusion.

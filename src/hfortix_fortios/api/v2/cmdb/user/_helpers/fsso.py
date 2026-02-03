@@ -90,13 +90,13 @@ FIELD_TYPES = {
     "server": "string",  # Domain name or IP address of the first FSSO collector agent.
     "port": "integer",  # Port of the first FSSO collector agent.
     "password": "password",  # Password of the first FSSO collector agent.
-    "server2": "string",  # Domain name or IP address of the second FSSO collector agent.
+    "server2": "string",  # Domain name or IP address of the second FSSO collector agent
     "port2": "integer",  # Port of the second FSSO collector agent.
     "password2": "password",  # Password of the second FSSO collector agent.
     "server3": "string",  # Domain name or IP address of the third FSSO collector agent.
     "port3": "integer",  # Port of the third FSSO collector agent.
     "password3": "password",  # Password of the third FSSO collector agent.
-    "server4": "string",  # Domain name or IP address of the fourth FSSO collector agent.
+    "server4": "string",  # Domain name or IP address of the fourth FSSO collector agent
     "port4": "integer",  # Port of the fourth FSSO collector agent.
     "password4": "password",  # Password of the fourth FSSO collector agent.
     "server5": "string",  # Domain name or IP address of the fifth FSSO collector agent.
@@ -104,8 +104,8 @@ FIELD_TYPES = {
     "password5": "password",  # Password of the fifth FSSO collector agent.
     "logon-timeout": "integer",  # Interval in minutes to keep logons after FSSO server down.
     "ldap-server": "string",  # LDAP server to get group information.
-    "group-poll-interval": "integer",  # Interval in minutes within to fetch groups from FSSO server, or unset to disable
-    "ldap-poll": "option",  # Enable/disable automatic fetching of groups from LDAP server.
+    "group-poll-interval": "integer",  # Interval in minutes within to fetch groups from FSSO server,
+    "ldap-poll": "option",  # Enable/disable automatic fetching of groups from LDAP server
     "ldap-poll-interval": "integer",  # Interval in minutes within to fetch groups from LDAP server.
     "ldap-poll-filter": "string",  # Filter used to fetch groups.
     "user-info-server": "string",  # LDAP server to get user information.

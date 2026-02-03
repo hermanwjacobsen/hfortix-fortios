@@ -75,8 +75,8 @@ FIELD_TYPES = {
     "trap-log-full-threshold": "integer",  # Log disk usage when trap is sent.
     "trap-free-memory-threshold": "integer",  # Free memory usage when trap is sent.
     "trap-freeable-memory-threshold": "integer",  # Freeable memory usage when trap is sent.
-    "append-index": "option",  # Enable/disable allowance of appending vdom or interface index in some RFC tables
-    "non-mgmt-vdom-query": "option",  # Enable/disable allowance of SNMPv3 query from non-management vdoms.
+    "append-index": "option",  # Enable/disable allowance of appending vdom or interface inde
+    "non-mgmt-vdom-query": "option",  # Enable/disable allowance of SNMPv3 query from non-management
 }
 
 # Field descriptions (help text from FortiOS API)

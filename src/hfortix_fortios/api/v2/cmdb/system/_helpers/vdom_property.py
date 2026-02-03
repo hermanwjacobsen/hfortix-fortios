@@ -81,12 +81,12 @@ FIELD_TYPES = {
     "session": "user",  # Maximum guaranteed number of sessions.
     "ipsec-phase1": "user",  # Maximum guaranteed number of VPN IPsec phase 1 tunnels.
     "ipsec-phase2": "user",  # Maximum guaranteed number of VPN IPsec phase 2 tunnels.
-    "ipsec-phase1-interface": "user",  # Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
-    "ipsec-phase2-interface": "user",  # Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
+    "ipsec-phase1-interface": "user",  # Maximum guaranteed number of VPN IPsec phase1 interface tunn
+    "ipsec-phase2-interface": "user",  # Maximum guaranteed number of VPN IPsec phase2 interface tunn
     "dialup-tunnel": "user",  # Maximum guaranteed number of dial-up tunnels.
-    "firewall-policy": "user",  # Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6
-    "firewall-address": "user",  # Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
-    "firewall-addrgrp": "user",  # Maximum guaranteed number of firewall address groups (IPv4, IPv6).
+    "firewall-policy": "user",  # Maximum guaranteed number of firewall policies (policy, DoS-
+    "firewall-address": "user",  # Maximum guaranteed number of firewall addresses (IPv4, IPv6,
+    "firewall-addrgrp": "user",  # Maximum guaranteed number of firewall address groups (IPv4, 
     "custom-service": "user",  # Maximum guaranteed number of firewall custom services.
     "service-group": "user",  # Maximum guaranteed number of firewall service groups.
     "onetime-schedule": "user",  # Maximum guaranteed number of firewall one-time schedules..
@@ -95,7 +95,7 @@ FIELD_TYPES = {
     "user-group": "user",  # Maximum guaranteed number of user groups.
     "sslvpn": "user",  # Maximum guaranteed number of Agentless VPNs.
     "proxy": "user",  # Maximum guaranteed number of concurrent proxy users.
-    "log-disk-quota": "user",  # Log disk quota in megabytes (MB). Range depends on how much disk space is availa
+    "log-disk-quota": "user",  # Log disk quota in megabytes (MB). Range depends on how much 
 }
 
 # Field descriptions (help text from FortiOS API)

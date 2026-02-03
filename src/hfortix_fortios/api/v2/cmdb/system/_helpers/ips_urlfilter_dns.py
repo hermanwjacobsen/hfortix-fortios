@@ -58,7 +58,7 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "address": "ipv4-address",  # DNS server IP address.
-    "status": "option",  # Enable/disable using this DNS server for IPS URL filter DNS queries.
+    "status": "option",  # Enable/disable using this DNS server for IPS URL filter DNS 
     "ipv6-capability": "option",  # Enable/disable this server for IPv6 queries.
 }
 

@@ -73,23 +73,23 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Address name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "type": "option",  # Proxy address type.
     "host": "string",  # Address object for the host.
     "host-regex": "string",  # Host name as a regular expression.
     "path": "string",  # URL path as a regular expression.
     "query": "string",  # Match the query part of the URL as a regular expression.
-    "referrer": "option",  # Enable/disable use of referrer field in the HTTP header to match the address.
+    "referrer": "option",  # Enable/disable use of referrer field in the HTTP header to m
     "category": "string",  # FortiGuard category ID.
     "method": "option",  # HTTP request methods to be used.
     "ua": "option",  # Names of browsers to be used as user agent.
-    "ua-min-ver": "string",  # Minimum version of the user agent specified in dotted notation. For example, use
-    "ua-max-ver": "string",  # Maximum version of the user agent specified in dotted notation. For example, use
+    "ua-min-ver": "string",  # Minimum version of the user agent specified in dotted notati
+    "ua-max-ver": "string",  # Maximum version of the user agent specified in dotted notati
     "header-name": "string",  # Name of HTTP header.
     "header": "string",  # HTTP header name as a regular expression.
     "case-sensitivity": "option",  # Enable to make the pattern case sensitive.
     "header-group": "string",  # HTTP header group.
-    "color": "integer",  # Integer value to determine the color of the icon in the GUI (1 - 32, default = 0
+    "color": "integer",  # Integer value to determine the color of the icon in the GUI 
     "tagging": "string",  # Config object tagging.
     "comment": "var-string",  # Optional comments.
     "application": "string",  # SaaS application.

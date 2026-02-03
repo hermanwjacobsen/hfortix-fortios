@@ -79,33 +79,33 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "mac-aging-interval": "integer",  # Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0
+    "mac-aging-interval": "integer",  # Time after which an inactive MAC is aged out (10 - 1000000 s
     "https-image-push": "option",  # Enable/disable image push to FortiSwitch using HTTPS.
-    "vlan-all-mode": "option",  # VLAN configuration mode, user-defined-vlans or all-possible-vlans.
+    "vlan-all-mode": "option",  # VLAN configuration mode, user-defined-vlans or all-possible-
     "vlan-optimization": "option",  # FortiLink VLAN optimization.
-    "vlan-identity": "option",  # Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id.
+    "vlan-identity": "option",  # Identity of the VLAN. Commonly used for RADIUS Tunnel-Privat
     "disable-discovery": "string",  # Prevent this FortiSwitch from discovering.
-    "mac-retention-period": "integer",  # Time in hours after which an inactive MAC is removed from client DB (0 = aged ou
+    "mac-retention-period": "integer",  # Time in hours after which an inactive MAC is removed from cl
     "default-virtual-switch-vlan": "string",  # Default VLAN for ports when added to the virtual-switch.
     "dhcp-server-access-list": "option",  # Enable/disable DHCP snooping server access list.
     "dhcp-option82-format": "option",  # DHCP option-82 format string.
-    "dhcp-option82-circuit-id": "option",  # List the parameters to be included to inform about client identification.
-    "dhcp-option82-remote-id": "option",  # List the parameters to be included to inform about client identification.
+    "dhcp-option82-circuit-id": "option",  # List the parameters to be included to inform about client id
+    "dhcp-option82-remote-id": "option",  # List the parameters to be included to inform about client id
     "dhcp-snoop-client-req": "option",  # Client DHCP packet broadcast mode.
-    "dhcp-snoop-client-db-exp": "integer",  # Expiry time for DHCP snooping server database entries (300 - 259200 sec, default
-    "dhcp-snoop-db-per-port-learn-limit": "integer",  # Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+    "dhcp-snoop-client-db-exp": "integer",  # Expiry time for DHCP snooping server database entries (300 -
+    "dhcp-snoop-db-per-port-learn-limit": "integer",  # Per Interface dhcp-server entries learn limit (0 - 1024, def
     "log-mac-limit-violations": "option",  # Enable/disable logs for Learning Limit Violations.
     "mac-violation-timer": "integer",  # Set timeout for Learning Limit Violations (0 = disabled).
-    "sn-dns-resolution": "option",  # Enable/disable DNS resolution of the FortiSwitch unit's IP address with switch n
+    "sn-dns-resolution": "option",  # Enable/disable DNS resolution of the FortiSwitch unit's IP a
     "mac-event-logging": "option",  # Enable/disable MAC address event logging.
-    "bounce-quarantined-link": "option",  # Enable/disable bouncing (administratively bring the link down, up) of a switch p
+    "bounce-quarantined-link": "option",  # Enable/disable bouncing (administratively bring the link dow
     "quarantine-mode": "option",  # Quarantine mode.
     "update-user-device": "option",  # Control which sources update the device user list.
-    "custom-command": "string",  # List of custom commands to be pushed to all FortiSwitches in the VDOM.
-    "fips-enforce": "option",  # Enable/disable enforcement of FIPS on managed FortiSwitch devices.
-    "firmware-provision-on-authorization": "option",  # Enable/disable automatic provisioning of latest firmware on authorization.
-    "switch-on-deauth": "option",  # No-operation/Factory-reset the managed FortiSwitch on deauthorization.
-    "firewall-auth-user-hold-period": "integer",  # Time period in minutes to hold firewall authenticated MAC users (5 - 1440, defau
+    "custom-command": "string",  # List of custom commands to be pushed to all FortiSwitches in
+    "fips-enforce": "option",  # Enable/disable enforcement of FIPS on managed FortiSwitch de
+    "firmware-provision-on-authorization": "option",  # Enable/disable automatic provisioning of latest firmware on 
+    "switch-on-deauth": "option",  # No-operation/Factory-reset the managed FortiSwitch on deauth
+    "firewall-auth-user-hold-period": "integer",  # Time period in minutes to hold firewall authenticated MAC us
 }
 
 # Field descriptions (help text from FortiOS API)

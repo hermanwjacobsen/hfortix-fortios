@@ -69,7 +69,7 @@ FIELD_TYPES = {
     "usage": "option",  # Usage for this public key.
     "ip": "ipv4-address-any",  # IP address of the SSH server.
     "port": "integer",  # Port of the SSH server.
-    "hostname": "string",  # Hostname of the SSH server to match SSH certificate principals.
+    "hostname": "string",  # Hostname of the SSH server to match SSH certificate principa
     "public-key": "var-string",  # SSH public key.
 }
 

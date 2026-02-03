@@ -56,9 +56,9 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "name": "string",  # Configure an ICAP server group consisting one or multiple forward servers. Suppo
+    "name": "string",  # Configure an ICAP server group consisting one or multiple fo
     "ldb-method": "option",  # Load balance method.
-    "server-list": "string",  # Add ICAP servers to a list to form a server group. Optionally assign weights to 
+    "server-list": "string",  # Add ICAP servers to a list to form a server group. Optionall
 }
 
 # Field descriptions (help text from FortiOS API)

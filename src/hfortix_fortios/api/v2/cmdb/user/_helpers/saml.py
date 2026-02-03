@@ -91,18 +91,18 @@ FIELD_TYPES = {
     "idp-single-logout-url": "string",  # IDP single logout url.
     "idp-cert": "string",  # IDP Certificate name.
     "scim-client": "string",  # SCIM client name.
-    "scim-user-attr-type": "option",  # User attribute type used to match SCIM users (default = user-name).
-    "scim-group-attr-type": "option",  # Group attribute type used to match SCIM groups (default = display-name).
+    "scim-user-attr-type": "option",  # User attribute type used to match SCIM users (default = user
+    "scim-group-attr-type": "option",  # Group attribute type used to match SCIM groups (default = di
     "user-name": "string",  # User name in assertion statement.
     "group-name": "string",  # Group name in assertion statement.
     "digest-method": "option",  # Digest method algorithm.
-    "require-signed-resp-and-asrt": "option",  # Require both response and assertion from IDP to be signed when FGT acts as SP (d
-    "limit-relaystate": "option",  # Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specif
-    "clock-tolerance": "integer",  # Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
-    "adfs-claim": "option",  # Enable/disable ADFS Claim for user/group attribute in assertion statement (defau
+    "require-signed-resp-and-asrt": "option",  # Require both response and assertion from IDP to be signed wh
+    "limit-relaystate": "option",  # Enable/disable limiting of relay-state parameter when it exc
+    "clock-tolerance": "integer",  # Clock skew tolerance in seconds (0 - 300, default = 15, 0 = 
+    "adfs-claim": "option",  # Enable/disable ADFS Claim for user/group attribute in assert
     "user-claim-type": "option",  # User name claim in assertion statement.
     "group-claim-type": "option",  # Group claim in assertion statement.
-    "reauth": "option",  # Enable/disable signalling of IDP to force user re-authentication (default = disa
+    "reauth": "option",  # Enable/disable signalling of IDP to force user re-authentica
 }
 
 # Field descriptions (help text from FortiOS API)

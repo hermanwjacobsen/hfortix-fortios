@@ -68,14 +68,14 @@ DEPRECATED_FIELDS = {
 FIELD_TYPES = {
     "name": "string",  # Profile name.
     "comment": "var-string",  # Comment.
-    "monitor-all-messages": "option",  # Enable/disable logging for all User Name and Result Code AVP messages.
+    "monitor-all-messages": "option",  # Enable/disable logging for all User Name and Result Code AVP
     "log-packet": "option",  # Enable/disable packet log for triggered diameter settings.
-    "track-requests-answers": "option",  # Enable/disable validation that each answer has a corresponding request.
-    "missing-request-action": "option",  # Action to be taken for answers without corresponding request.
+    "track-requests-answers": "option",  # Enable/disable validation that each answer has a correspondi
+    "missing-request-action": "option",  # Action to be taken for answers without corresponding request
     "protocol-version-invalid": "option",  # Action to be taken for invalid protocol version.
     "message-length-invalid": "option",  # Action to be taken for invalid message length.
     "request-error-flag-set": "option",  # Action to be taken for request messages with error flag set.
-    "cmd-flags-reserve-set": "option",  # Action to be taken for messages with cmd flag reserve bits set.
+    "cmd-flags-reserve-set": "option",  # Action to be taken for messages with cmd flag reserve bits s
     "command-code-invalid": "option",  # Action to be taken for messages with invalid command code.
     "command-code-range": "user",  # Valid range for command codes (0-16777215).
 }

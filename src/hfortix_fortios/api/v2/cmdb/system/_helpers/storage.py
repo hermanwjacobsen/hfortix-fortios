@@ -70,7 +70,7 @@ FIELD_TYPES = {
     "partition": "string",  # Label of underlying partition.
     "device": "string",  # Partition device.
     "size": "integer",  # Partition size.
-    "usage": "option",  # Use hard disk for logging or WAN Optimization (default = log).
+    "usage": "option",  # Use hard disk for logging or WAN Optimization (default = log
     "wanopt-mode": "option",  # WAN Optimization mode (default = mix).
 }
 

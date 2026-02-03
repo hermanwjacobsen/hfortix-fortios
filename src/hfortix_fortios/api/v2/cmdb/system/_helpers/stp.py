@@ -54,7 +54,7 @@ DEPRECATED_FIELDS = {
 
 # Field types mapping
 FIELD_TYPES = {
-    "switch-priority": "option",  # STP switch priority; the lower the number the higher the priority (select from 0
+    "switch-priority": "option",  # STP switch priority; the lower the number the higher the pri
     "hello-time": "integer",  # Hello time (1 - 10 sec, default = 2).
     "forward-delay": "integer",  # Forward delay (4 - 30 sec, default = 15).
     "max-age": "integer",  # Maximum packet age (6 - 40 sec, default = 20).

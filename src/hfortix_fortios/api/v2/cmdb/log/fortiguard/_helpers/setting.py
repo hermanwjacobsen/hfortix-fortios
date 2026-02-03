@@ -78,8 +78,8 @@ FIELD_TYPES = {
     "priority": "option",  # Set log transmission priority.
     "max-log-rate": "integer",  # FortiCloud maximum log rate in MBps (0 = unlimited).
     "access-config": "option",  # Enable/disable FortiCloud access to configuration and data.
-    "enc-algorithm": "option",  # Configure the level of SSL protection for secure communication with FortiCloud.
-    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (default is to follow
+    "enc-algorithm": "option",  # Configure the level of SSL protection for secure communicati
+    "ssl-min-proto-version": "option",  # Minimum supported protocol version for SSL/TLS connections (
     "conn-timeout": "integer",  # FortiGate Cloud connection timeout in seconds.
     "source-ip": "ipv4-address",  # Source IP address used to connect FortiCloud.
     "interface-select-method": "option",  # Specify how to select outgoing interface to reach server.

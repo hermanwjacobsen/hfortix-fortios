@@ -74,24 +74,24 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # Traffic shaper name.
-    "guaranteed-bandwidth": "integer",  # Amount of bandwidth guaranteed for this shaper (0 - 80000000). Units depend on t
-    "maximum-bandwidth": "integer",  # Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. 
-    "bandwidth-unit": "option",  # Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, 
-    "priority": "option",  # Higher priority traffic is more likely to be forwarded without delays and withou
-    "per-policy": "option",  # Enable/disable applying a separate shaper for each policy. For example, if enabl
-    "diffserv": "option",  # Enable/disable changing the DiffServ setting applied to traffic accepted by this
-    "diffservcode": "user",  # DiffServ setting to be applied to traffic accepted by this shaper.
+    "guaranteed-bandwidth": "integer",  # Amount of bandwidth guaranteed for this shaper (0 - 80000000
+    "maximum-bandwidth": "integer",  # Upper bandwidth limit enforced by this shaper (0 - 80000000)
+    "bandwidth-unit": "option",  # Unit of measurement for guaranteed and maximum bandwidth for
+    "priority": "option",  # Higher priority traffic is more likely to be forwarded witho
+    "per-policy": "option",  # Enable/disable applying a separate shaper for each policy. F
+    "diffserv": "option",  # Enable/disable changing the DiffServ setting applied to traf
+    "diffservcode": "user",  # DiffServ setting to be applied to traffic accepted by this s
     "dscp-marking-method": "option",  # Select DSCP marking method.
-    "exceed-bandwidth": "integer",  # Exceed bandwidth used for DSCP/VLAN CoS multi-stage marking. Units depend on the
-    "exceed-dscp": "user",  # DSCP mark for traffic in guaranteed-bandwidth and exceed-bandwidth.
-    "maximum-dscp": "user",  # DSCP mark for traffic in exceed-bandwidth and maximum-bandwidth.
+    "exceed-bandwidth": "integer",  # Exceed bandwidth used for DSCP/VLAN CoS multi-stage marking.
+    "exceed-dscp": "user",  # DSCP mark for traffic in guaranteed-bandwidth and exceed-ban
+    "maximum-dscp": "user",  # DSCP mark for traffic in exceed-bandwidth and maximum-bandwi
     "cos-marking": "option",  # Enable/disable VLAN CoS marking.
     "cos-marking-method": "option",  # Select VLAN CoS marking method.
     "cos": "user",  # VLAN CoS mark.
-    "exceed-cos": "user",  # VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
-    "maximum-cos": "user",  # VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+    "exceed-cos": "user",  # VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-b
+    "maximum-cos": "user",  # VLAN CoS mark for traffic in [exceed-bandwidth, maximum-band
     "overhead": "integer",  # Per-packet size overhead used in rate computations.
-    "exceed-class-id": "integer",  # Class ID for traffic in guaranteed-bandwidth and maximum-bandwidth.
+    "exceed-class-id": "integer",  # Class ID for traffic in guaranteed-bandwidth and maximum-ban
 }
 
 # Field descriptions (help text from FortiOS API)

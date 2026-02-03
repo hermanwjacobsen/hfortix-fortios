@@ -61,11 +61,11 @@ DEPRECATED_FIELDS = {
 # Field types mapping
 FIELD_TYPES = {
     "name": "string",  # VIP group name.
-    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned but can be manually 
+    "uuid": "uuid",  # Universally Unique Identifier (UUID; automatically assigned 
     "interface": "string",  # Interface.
-    "color": "integer",  # Integer value to determine the color of the icon in the GUI (range 1 to 32, defa
+    "color": "integer",  # Integer value to determine the color of the icon in the GUI 
     "comments": "var-string",  # Comment.
-    "member": "string",  # Member VIP objects of the group (Separate multiple objects with a space).
+    "member": "string",  # Member VIP objects of the group (Separate multiple objects w
 }
 
 # Field descriptions (help text from FortiOS API)

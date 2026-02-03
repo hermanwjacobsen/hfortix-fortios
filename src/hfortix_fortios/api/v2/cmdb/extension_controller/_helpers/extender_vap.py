@@ -86,10 +86,10 @@ FIELD_TYPES = {
     "broadcast-ssid": "option",  # Wi-Fi broadcast SSID enable / disable.
     "security": "option",  # Wi-Fi security.
     "dtim": "integer",  # Wi-Fi DTIM (1 - 255) default = 1.
-    "rts-threshold": "integer",  # Wi-Fi RTS Threshold (256 - 2347), default = 2347 (RTS/CTS disabled).
+    "rts-threshold": "integer",  # Wi-Fi RTS Threshold (256 - 2347), default = 2347 (RTS/CTS di
     "pmf": "option",  # Wi-Fi pmf enable/disable, default = disable.
-    "target-wake-time": "option",  # Wi-Fi 802.11AX target wake time enable / disable, default = enable.
-    "bss-color-partial": "option",  # Wi-Fi 802.11AX bss color partial enable / disable, default = enable.
+    "target-wake-time": "option",  # Wi-Fi 802.11AX target wake time enable / disable, default = 
+    "bss-color-partial": "option",  # Wi-Fi 802.11AX bss color partial enable / disable, default =
     "mu-mimo": "option",  # Wi-Fi multi-user MIMO enable / disable, default = enable.
     "passphrase": "password",  # Wi-Fi passphrase.
     "sae-password": "password",  # Wi-Fi SAE Password.
@@ -99,7 +99,7 @@ FIELD_TYPES = {
     "ip-address": "ipv4-classnet-host",  # Extender ip address.
     "start-ip": "ipv4-address",  # Start ip address.
     "end-ip": "ipv4-address",  # End ip address.
-    "allowaccess": "option",  # Control management access to the managed extender. Separate entries with a space
+    "allowaccess": "option",  # Control management access to the managed extender. Separate 
 }
 
 # Field descriptions (help text from FortiOS API)
