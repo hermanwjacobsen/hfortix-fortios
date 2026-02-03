@@ -1,231 +1,135 @@
 API Reference
 =============
 
-Complete low-level API documentation for all 1,219 FortiOS endpoints (886 CMDB + 295 Monitor + 38 Log).
-These endpoints use standard HTTP methods (``.get()``, ``.post()``, ``.put()``, ``.delete()``) for direct API access.
+Complete SDK reference documentation for classes, methods, and type definitions in the HFortix-FortiOS library.
 
-CMDB API (Configuration)
--------------------------
+.. note::
+   
+   Looking for **API endpoints** (CMDB, Monitor, Log, Service)?
+   See :doc:`/endpoints/index` for the complete endpoint catalog.
 
-.. toctree::
-   :maxdepth: 1
-   :caption: CMDB Categories
+SDK Components
+--------------
 
-   cmdb/index
+Main Client Classes
+^^^^^^^^^^^^^^^^^^^
 
-Monitor API (Status & Statistics)
-----------------------------------
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Monitor Categories
+   hfortix_fortios.FortiOS
+   hfortix_fortios.AsyncFortiOS
 
-   monitor/index
+These are the main entry points for interacting with FortiOS devices.
 
-Log API (Historical Data)
---------------------------
+**FortiOS** - Synchronous client for blocking I/O operations.
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Log Categories
+**AsyncFortiOS** - Asynchronous client for concurrent operations with asyncio.
 
-   log/index
+API Handlers
+^^^^^^^^^^^^
 
-Service API (Operations)
--------------------------
+The API handlers provide access to the four main API categories:
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Service Categories
+* **CMDB Handler** - Configuration management (561 endpoints)
+* **Monitor Handler** - Status and statistics (490 endpoints)  
+* **Log Handler** - Historical data queries (286 endpoints)
+* **Service Handler** - Operations and actions (11 endpoints)
 
-   service/index
+See :doc:`/endpoints/index` for complete endpoint documentation.
 
-Overview
---------
+Configuration & Authentication
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The FortiOS API is organized into four main categories:
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
 
-CMDB API - Configuration Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   hfortix_fortios.Config
+   hfortix_fortios.AuthConfig
 
-The **Configuration Management Database (CMDB)** API provides access to all FortiOS configuration settings.
-This includes **886 endpoints** across categories covering:
+These classes handle client configuration and authentication settings.
 
-- **Firewall**: Addresses, policies, services, VIPs, schedules
-- **System**: Global settings, interfaces, routing, admin users
-- **VPN**: IPsec, SSL VPN, certificates
-- **Wireless**: WiFi controllers, APs, SSIDs
-- **Security**: IPS, antivirus, web filtering, application control
-- **Network**: Routing (static, BGP, OSPF), DNS, DHCP
-- **And much more...**
+Transactions & Batch Operations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-See :doc:`/fortios/api-reference/cmdb/index` for the complete list of CMDB endpoints.
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
 
-Monitor API - Status & Statistics
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   hfortix_fortios.Transaction
+   hfortix_fortios.BatchOperation
 
-The **Monitor** API provides real-time status information and statistics. This includes **295 endpoints** across categories covering:
+Support for atomic configuration changes and batch operations.
 
-- **System**: Status, resources, performance
-- **Firewall**: Active sessions, policy stats
-- **Router**: Routing tables, neighbor status
-- **VPN**: Tunnel status, connection stats
-- **WiFi**: Client status, AP performance
-- **UTM**: IPS stats, AV activity, web filter logs
-- **And much more...**
+Error Handling
+^^^^^^^^^^^^^^
 
-See :doc:`/fortios/api-reference/monitor/index` for the complete list of Monitor endpoints.
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
 
-Log API - Historical Data
+   hfortix_fortios.FortiOSError
+   hfortix_fortios.AuthenticationError
+   hfortix_fortios.ValidationError
+   hfortix_fortios.APIError
+
+Exception classes for handling errors.
+
+Type Definitions
+^^^^^^^^^^^^^^^^
+
+The library includes comprehensive type hints for all endpoints and operations.
+See the individual endpoint documentation for parameter types and return types.
+
+Advanced Features
+-----------------
+
+Observability & Debugging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **Log** API provides access to historical logs and events. This includes **38 endpoints** with full parameterization support:
+The SDK includes built-in observability features for monitoring API interactions:
 
-The **Log** API provides access to historical log data:
+* **Request/Response Logging** - Track all API calls
+* **Performance Metrics** - Monitor API latency and throughput
+* **Audit Trail** - Record configuration changes
+* **Debug Mode** - Detailed diagnostic output
 
-- Traffic logs
-- Security event logs
-- System logs
-- UTM logs
-- Application logs
+See :doc:`/guides/observability` for details.
 
-See :doc:`/fortios/api-reference/log/index` for log query capabilities.
+FortiManager Proxy
+^^^^^^^^^^^^^^^^^^
 
-Service API - Operations
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The **Service** API provides operational commands:
-
-- Backup and restore
-- System reboot
-- Configuration validation
-- License management
-- And more...
-
-See :doc:`/fortios/api-reference/service/index` for available service operations.
-
-API Patterns
-------------
-
-All FortiOS endpoints follow consistent patterns:
-
-**CMDB Endpoints** (Configuration)
+Manage multiple FortiGates through FortiManager with automatic ADOM and device routing:
 
 .. code-block:: python
 
-   # List all objects
-   fgt.api.cmdb.firewall.address.get()
+   from hfortix_fortios import FortiOS
 
-   # Get specific object
-   fgt.api.cmdb.firewall.address.get(name="web-server")
-
-   # Create object
-   fgt.api.cmdb.firewall.address.post(
-       name="web-server",
-       subnet="10.0.1.100/32"
+   # Connect through FortiManager
+   fgt = FortiOS.from_fortimanager(
+       fmg_host="fortimanager.example.com",
+       fmg_token="fmg-token",
+       adom="root",
+       device="FortiGate-1"
    )
 
-   # Update object
-   fgt.api.cmdb.firewall.address.put(
-       name="web-server",
-       comment="Updated comment"
-   )
+See :doc:`/guides/fmg-proxy` for complete documentation.
 
-   # Delete object
-   fgt.api.cmdb.firewall.address.delete(name="web-server")
+Custom Wrappers
+^^^^^^^^^^^^^^^
 
-**Monitor Endpoints** (Status)
+Build your own high-level abstractions and convenience methods:
 
 .. code-block:: python
 
-   # Get status (no parameters)
-   fgt.api.monitor.system.status.get()
+   from hfortix_fortios import FortiOS
 
-   # Get status with filters
-   fgt.api.monitor.firewall.session.get(
-       ip_version="ipv4",
-       count=100
-   )
+   class MyFortiGate(FortiOS):
+       def create_datacenter_policy(self, name, servers):
+           """Custom wrapper for datacenter policies."""
+           # Implementation here
+           pass
 
-**Log Endpoints** (Historical Data)
-
-.. code-block:: python
-
-   # Query logs
-   fgt.api.log.disk.traffic.get(
-       rows=100,
-       start=0,
-       filter="srcip==10.0.1.100"
-   )
-
-**Service Endpoints** (Operations)
-
-.. code-block:: python
-
-   # Execute service operation
-   fgt.api.service.system.backup.post(
-       scope="global",
-       password="backup-password"
-   )
-
-Async Support
--------------
-
-All endpoints support async/await by adding ``_async`` suffix:
-
-.. code-block:: python
-
-   import asyncio
-
-   async def get_status():
-       status = await fgt.api.monitor.system.status.get_async()
-       return status
-
-   asyncio.run(get_status())
-
-Direct API Methods
-------------------
-
-Use the direct API methods which provide type-safe access to all endpoints:
-
-.. code-block:: python
-
-   # Firewall policy using post()
-   fgt.api.cmdb.firewall.policy.post(
-       name="Allow-Web",
-       srcintf=[{"name": "internal"}],
-       dstintf=[{"name": "wan1"}],
-       srcaddr=[{"name": "all"}],
-       dstaddr=[{"name": "web-server"}],
-       service=[{"name": "HTTP"}, {"name": "HTTPS"}],
-       action="accept"
-   )
-
-   # Recurring schedule using post()
-   fgt.api.cmdb.firewall.schedule.recurring.post(
-       name="business-hours",
-       day=["monday", "tuesday", "wednesday", "thursday", "friday"],
-       start="08:00",
-       end="18:00"
-   )
-
-See :doc:`/fortios/user-guide/endpoint-methods` for details on all available methods.
-
-Navigation
-----------
-
-Use the sidebar to navigate to specific API categories, or start with these popular ones:
-
-**Popular CMDB Categories:**
-
-- :doc:`/fortios/api-reference/cmdb/firewall` - Firewall configuration
-- :doc:`/fortios/api-reference/cmdb/system` - System settings
-- :doc:`/fortios/api-reference/cmdb/router` - Routing configuration
-- :doc:`/fortios/api-reference/cmdb/vpn` - VPN configuration
-
-**Popular Monitor Categories:**
-
-- :doc:`/fortios/api-reference/monitor/system` - System status
-- :doc:`/fortios/api-reference/monitor/firewall` - Firewall statistics
-- :doc:`/fortios/api-reference/monitor/router` - Routing information
-- :doc:`/fortios/api-reference/monitor/vpn` - VPN status
+See :doc:`/guides/custom-wrappers` for patterns and examples.
