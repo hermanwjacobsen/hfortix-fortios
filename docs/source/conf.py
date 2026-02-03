@@ -77,7 +77,7 @@ if os.environ.get('READTHEDOCS') == 'True':
     # Optimize navigation for large doc sets
     html_theme_options = {
         'navigation_depth': 4,  # Keep full depth
-        'collapse_navigation': True,  # Collapsed by default to save memory
+        'collapse_navigation': False,  # Keep expanded so users can see content
         'sticky_navigation': True,
         'includehidden': True,
         'titles_only': False,  # Show full navigation (not just titles)
