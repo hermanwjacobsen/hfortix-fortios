@@ -173,6 +173,20 @@ class FtgdLocalRisk:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        url: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_url: str | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

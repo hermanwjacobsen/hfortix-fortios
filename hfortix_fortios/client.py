@@ -725,6 +725,7 @@ class FortiOS:
                 params=None,
                 vdom=None,
                 unwrap_single=False,
+                silent=False,
             ):
                 """GET request with automatic response processing.
                 
@@ -734,7 +735,7 @@ class FortiOS:
                 # Always get full response to store in .raw property
                 start_time = _time.perf_counter()
                 result = self._wrapped_client.get(
-                    api_type, path, params, vdom, raw_json=True
+                    api_type, path, params, vdom, raw_json=True, silent=silent
                 )
                 response_time = _time.perf_counter() - start_time
                 

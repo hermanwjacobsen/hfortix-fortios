@@ -193,6 +193,20 @@ class Fortitoken:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        serial_number: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_serial_number: str | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

@@ -267,6 +267,19 @@ class Ddns:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        ddnsid: int,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_ddnsid: int | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

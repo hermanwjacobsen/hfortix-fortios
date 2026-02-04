@@ -168,6 +168,20 @@ class FtgdLocalCat:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        desc: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_desc: str | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

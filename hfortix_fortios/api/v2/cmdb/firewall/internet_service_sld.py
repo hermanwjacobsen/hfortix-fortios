@@ -64,7 +64,7 @@ class InternetServiceSld(CRUDEndpoint, MetadataMixin):
     SUPPORTS_UPDATE = False
     SUPPORTS_DELETE = False
     SUPPORTS_MOVE = False
-    SUPPORTS_CLONE = False
+    # SUPPORTS_CLONE = False  # Disabled - unreliable across endpoints
     SUPPORTS_FILTERING = True
     SUPPORTS_PAGINATION = True
     SUPPORTS_SEARCH = False
@@ -85,6 +85,8 @@ class InternetServiceSld(CRUDEndpoint, MetadataMixin):
         self,
         id: int | None = None,
         filter: list[str] | None = None,
+        sort: str | None = None,
+        format: str | None = None,
         count: int | None = None,
         start: int | None = None,
         payload_dict: dict[str, Any] | None = None,
@@ -104,13 +106,17 @@ class InternetServiceSld(CRUDEndpoint, MetadataMixin):
                 Operators: ==, !=, =@ (contains), !@ (not contains), <=, <, >=, >
                 Multiple filters use AND logic. For OR, use comma in single string.
                 Example: ["name==test", "status==enable"] or ["name==test,name==prod"]
+            sort: Sort results by field. Format: "field" or "field,asc" or "field,dsc"
+                Example: "name" (ascending) or "name,dsc" (descending)
+                Multiple sorts: Use multiple sort parameters in order of priority
+            format: Return only specific fields. Format: "field1|field2|field3"
+                Example: "name|type|subnet"
             count: Maximum number of entries to return (pagination).
             start: Starting entry index for pagination (0-based).
             payload_dict: Additional query parameters for advanced options:
                 - datasource (bool): Include datasource information
                 - with_meta (bool): Include metadata about each object
                 - with_contents_hash (bool): Include checksum of object contents
-                - format (list[str]): Property names to include (e.g., ["policyid", "srcintf"])
                 - scope (str): Query scope - "global", "vdom", or "both"
                 - action (str): Special actions - "schema", "default"
                 See FortiOS REST API documentation for complete list.
@@ -175,8 +181,62 @@ class InternetServiceSld(CRUDEndpoint, MetadataMixin):
         params = payload_dict.copy() if payload_dict else {}
         
         # Add explicit query parameters
+        # Handle filter parameter specially to support FortiOS AND syntax with multiple filters
+        # FortiOS uses: ?filter=a&filter=b for AND operations
+        # Normalize filter syntax to support all common formats:
+        #   1. name=@test&name!@web (implicit & separator)
+        #   2. name=@test&filter=name!@web (mixed implicit/explicit)
+        #   3. filter=name=@test&filter=name!@web (explicit with filter= prefix)
+        #   4. filter=name=@test&name!@web (explicit prefix with implicit separator)
         if filter is not None:
-            params["filter"] = filter
+            normalized_filter = filter
+            
+            # Step 1: Remove leading "filter=" if present (normalize input format)
+            # "filter=name=@test&..." -> "name=@test&..."
+            if normalized_filter.startswith("filter="):
+                normalized_filter = normalized_filter[7:]  # Remove "filter=" prefix
+            
+            # Step 2: Normalize & separators to &filter=
+            # This handles all variations: "a&b", "a&filter=b", etc.
+            if "&" in normalized_filter:
+                # Split on both & and &filter= to get all filter parts
+                # Then rejoin with &filter= for consistency
+                parts = []
+                current = normalized_filter
+                
+                # Split on &filter= first to preserve already-explicit parts
+                while "&filter=" in current:
+                    before, after = current.split("&filter=", 1)
+                    # Now split 'before' on & if it contains any
+                    if "&" in before:
+                        parts.extend(before.split("&"))
+                    else:
+                        parts.append(before)
+                    current = after
+                
+                # Handle remaining part (after last &filter= or the whole string if no &filter=)
+                if "&" in current:
+                    parts.extend(current.split("&"))
+                else:
+                    parts.append(current)
+                
+                # Rejoin with &filter= separator
+                if len(parts) > 1:
+                    normalized_filter = parts[0] + "".join(f"&filter={part}" for part in parts[1:])
+            
+            # Step 3: Check if we have multiple filters (AND operation)
+            if "&filter=" in normalized_filter:
+                # Multiple filters for AND operation: "filter1&filter=filter2&filter=filter3"
+                # Split and create list of filter values
+                filters = [normalized_filter.split("&filter=")[0]]  # First filter before &filter=
+                filters.extend(normalized_filter.split("&filter=")[1:])  # Remaining filters after each &filter=
+                params["filter"] = filters
+            else:
+                params["filter"] = normalized_filter
+        if sort is not None:
+            params["sort"] = sort
+        if format is not None:
+            params["format"] = format
         if count is not None:
             params["count"] = count
         if start is not None:

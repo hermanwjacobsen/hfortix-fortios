@@ -173,6 +173,20 @@ class ArpTable:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        id: int,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_id: int | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

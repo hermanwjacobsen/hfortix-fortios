@@ -168,6 +168,20 @@ class MacAddressTable:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        mac: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_mac: str | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

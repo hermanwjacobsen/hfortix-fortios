@@ -267,6 +267,19 @@ class Fctems:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        ems_id: int,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_ems_id: int | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

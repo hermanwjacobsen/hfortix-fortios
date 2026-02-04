@@ -162,6 +162,19 @@ class IpsUrlfilterDns:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        address: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_address: str | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

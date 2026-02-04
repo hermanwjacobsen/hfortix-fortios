@@ -68,7 +68,7 @@ class SetStatus(CRUDEndpoint, MetadataMixin):
     SUPPORTS_UPDATE = True
     SUPPORTS_DELETE = False
     SUPPORTS_MOVE = False
-    SUPPORTS_CLONE = False
+    # SUPPORTS_CLONE = False  # Disabled - unreliable across endpoints
     SUPPORTS_FILTERING = False
     SUPPORTS_PAGINATION = False
     SUPPORTS_SEARCH = False

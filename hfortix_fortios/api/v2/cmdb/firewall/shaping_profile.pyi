@@ -213,6 +213,20 @@ class ShapingProfile:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        profile_name: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_profile_name: str | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

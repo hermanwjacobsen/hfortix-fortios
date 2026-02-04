@@ -6,6 +6,7 @@ Advanced topics, patterns, and techniques for working with HFortix.
 .. toctree::
    :maxdepth: 1
 
+   reordering-objects
    transactions
    api-request-inspection
    fmg-proxy
@@ -26,6 +27,13 @@ Topic guides provide detailed, task-oriented documentation for advanced features
 
 Key Topics
 ----------
+
+**Reordering Objects** *(New in v0.5.155)*
+   Change execution order of firewall policies, routes, and other sequential objects using
+   the `.move()` method. Critical for policy management where order determines which rules
+   are evaluated first. Move objects before/after others, to top/bottom, or specific positions.
+   Available on 561 endpoints. Includes examples for firewall policies, route policies, and
+   batch reordering operations.
 
 **Batch Transactions** *(New in v0.5.152)*
    Atomic configuration changes with automatic commit/rollback support (FortiOS 6.4.0+).

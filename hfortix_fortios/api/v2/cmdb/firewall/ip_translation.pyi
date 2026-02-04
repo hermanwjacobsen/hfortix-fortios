@@ -178,6 +178,20 @@ class IpTranslation:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        transid: int,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_transid: int | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

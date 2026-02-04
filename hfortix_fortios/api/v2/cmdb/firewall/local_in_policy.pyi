@@ -358,6 +358,20 @@ class LocalInPolicy:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        policyid: int,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_policyid: int | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

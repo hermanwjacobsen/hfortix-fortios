@@ -157,6 +157,19 @@ class IpsUrlfilterDns6:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        address6: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_address6: str | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

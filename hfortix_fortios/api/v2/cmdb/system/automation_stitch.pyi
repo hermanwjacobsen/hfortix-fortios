@@ -223,6 +223,19 @@ class AutomationStitch:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        name: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_name: str | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     

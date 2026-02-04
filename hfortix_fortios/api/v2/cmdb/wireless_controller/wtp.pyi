@@ -688,6 +688,20 @@ class Wtp:
     ) -> FortiObject[Any]: ...
 
     # ================================================================
+    # Action: Move
+    # ================================================================
+    
+    def move(
+        self,
+        wtp_id: str,
+        position: Literal["before", "after", "top", "bottom"] | int,
+        reference_wtp_id: str | None = ...,
+        vdom: str | bool | None = ...,
+        **kwargs: Any,
+    ) -> FortiObject[Any]: ...
+
+
+    # ================================================================
     # Utility Methods
     # ================================================================
     
