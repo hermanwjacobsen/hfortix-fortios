@@ -7,6 +7,7 @@ Practical code examples for common HFortix use cases.
    :maxdepth: 1
 
    basic-usage
+   router-configuration
    advanced-patterns
    error-handling
    validation

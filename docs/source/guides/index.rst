@@ -6,6 +6,7 @@ Advanced topics, patterns, and techniques for working with HFortix.
 .. toctree::
    :maxdepth: 1
 
+   child-tables
    reordering-objects
    transactions
    api-request-inspection
@@ -27,6 +28,13 @@ Topic guides provide detailed, task-oriented documentation for advanced features
 
 Key Topics
 ----------
+
+**Child Table Helpers** *(New)*
+   Simplified CRUD operations for nested configuration within router singleton endpoints.
+   Manage BGP neighbors, OSPF areas, RIP networks, and other child tables without requiring
+   full parent object updates. Available for 10 router endpoints with comprehensive examples
+   for common networking tasks. Includes best practices for error handling, validation, and
+   efficient operations.
 
 **Reordering Objects** *(New in v0.5.155)*
    Change execution order of firewall policies, routes, and other sequential objects using
